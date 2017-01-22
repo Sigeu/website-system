@@ -4,6 +4,8 @@
  */
 package framework.system.service;
 
+import java.util.List;
+
 import framework.system.model.User;
 
 /**   
@@ -23,5 +25,20 @@ public interface IUserService {
 	 * @return
 	 */
 	User queryUserByLogin(User userParam);
+	
+	/**
+	 * 
+	 * @Description: 用户分页查询 
+	 * @param user
+	 * @return
+	 */
+	List<User> queryUserList(User user);
+	
+	/**
+	 * 
+	 * @Description: 用户保存 
+	 * @param user
+	 */
+	int saveUser(User user);
 
 }

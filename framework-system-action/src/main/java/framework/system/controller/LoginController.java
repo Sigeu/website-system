@@ -24,7 +24,7 @@ import framework.system.service.IUserService;
  * @version V1.0   
  */
 @Controller
-@RequestMapping("/loginController")
+@RequestMapping("/system/controller/loginController")
 public class LoginController extends MyBaseController{
 	@Resource
 	private IUserService userService;

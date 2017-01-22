@@ -4,6 +4,8 @@
  */
 package framework.system.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -36,6 +38,18 @@ public class UserService implements IUserService {
 	public User queryUserByLogin(User userParam) {
 		// TODO Auto-generated method stub
 		return userMapper.queryUserByLogin(userParam);
+	}
+
+	@Override
+	public List<User> queryUserList(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.queryUserList(user);
+	}
+
+	@Override
+	public int saveUser(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.insertSelective(user);
 	}
 
 }

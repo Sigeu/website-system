@@ -85,6 +85,11 @@ public class MyBaseController{
 	// 返回的KEY
 	public static final String RESULT_MESSAGE_STRING = "result_message";
 
+	//结果数
+	public static final int RESULT_COUNT_0 = 0;
+	public static final int RESULT_COUNT_1 = 1;
+	
+	
 	// 保存成功
 	public static final String SAVE_SUCESS_MESSAGE = "保存成功！";
 
