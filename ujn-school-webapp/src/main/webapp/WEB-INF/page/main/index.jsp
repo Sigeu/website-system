@@ -130,7 +130,7 @@
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="system-base.html" data-title="用户" href="javascript:void(0)">用户管理</a></li>
+					<li><a _href="${pageContext.request.contextPath}/system/controller/userController/toUserList" data-title="用户" href="javascript:void(0)">用户管理</a></li>
 					<li><a _href="system-base.html" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
 					<li><a _href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
 					<li><a _href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>

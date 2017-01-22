@@ -3,7 +3,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin2.5/lib/layer/2.1/layer.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin2.5/static/h-ui.admin/js/H-ui.admin.js"></script> 
 
+<!-- DataTables -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin2.5/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 
+<!-- 模版 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/handlebars-v4.0.5.js"></script>
 
 
 

@@ -128,10 +128,10 @@
 			<generatedKey column="id" sqlStatement="Mysql" />
 		</table> -->
 		
-		<table tableName="ujn_user" domainObjectName="User"
-			enableCountByExample="true" enableUpdateByExample="true"
-			enableDeleteByExample="true" enableSelectByExample="true"
-			selectByExampleQueryId="true" >
+		<table tableName="ujn_code" domainObjectName="Code"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false" >
 			<property name="useActualColumnNames" value="true" />
 			<generatedKey column="id" sqlStatement="Mysql" />
 		</table>

@@ -16,7 +16,7 @@
 	<div class="loginWraper">
 		<div id="login_div" class="loginBox">
 			<form id="form_" class="form form-horizontal"
-				action="${pageContext.request.contextPath}/loginController/login"
+				action="${pageContext.request.contextPath}/system/controller/loginController/login"
 				method="post">
 				<div class="row cl">
 					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
