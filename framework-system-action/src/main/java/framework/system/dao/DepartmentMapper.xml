@@ -287,4 +287,10 @@
       update_user_id = #{update_user_id,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="queryDepartmentList" parameterType="framework.system.model.Department" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_department
+  </select>
 </mapper>

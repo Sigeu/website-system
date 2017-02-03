@@ -1,5 +1,7 @@
 package framework.system.dao;
 
+import java.util.List;
+
 import framework.system.model.Department;
 
 public interface DepartmentMapper {
@@ -50,4 +52,6 @@ public interface DepartmentMapper {
      * @mbg.generated Wed Jan 18 11:12:08 CST 2017
      */
     int updateByPrimaryKey(Department record);
+
+	List<Department> queryDepartmentList(Department department);
 }

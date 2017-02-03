@@ -4,6 +4,8 @@
  */
 package framework.system.controller;
 
+import java.awt.Menu;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,33 +103,27 @@ public class DepartmentController extends MyBaseController{
 	 * @param department
 	 * @return
 	 */
-	public ZtreeNode queryDepartmentTree(HttpServletRequest request, HttpServletResponse response,Department department){
-		//使用DataTables的属性接收分页数据
-		DataTablePageUtil<Department> dataTable = null;
+	@ResponseBody
+	@RequestMapping("/queryDepartmentTree")
+	public List<ZtreeNode> queryDepartmentTree(HttpServletRequest request, HttpServletResponse response,Department department){
+		//返回的数据
+		List<ZtreeNode> listZtreeNode = new ArrayList<ZtreeNode>();
 		try {
-			//使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Department>(request);
-			//开始分页：PageHelper会处理接下来的第一个查询
-			PageHelper.startPage(dataTable.getPage_num(),dataTable.getPage_size());
-			//还是使用List，方便后期用到
 			List<Department>  departmentList = this.departmentService.queryDepartmentList(department);
-			//用PageInfo对结果进行包装 
-			PageInfo<Department> pageInfo = new PageInfo<Department>(departmentList);
-			
-			//封装数据给DataTables
-			dataTable.setDraw(dataTable.getDraw());
-			dataTable.setData(pageInfo.getList());  
-		    dataTable.setRecordsTotal((int)pageInfo.getTotal());  
-		    dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
-		    
+			for (Department departmentObj : departmentList) {
+				listZtreeNode.add(new ZtreeNode(departmentObj.getId()
+						.toString(), departmentObj.getParent_code().toString(),
+						departmentObj.getDept_name(), true, false, false));
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		
 		
-		return null;
+		return listZtreeNode;
 	}
+	
 	
 	//跳转到修改
 	@RequestMapping("/toDepartmentUpdate")

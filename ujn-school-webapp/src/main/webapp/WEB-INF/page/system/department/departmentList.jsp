@@ -5,7 +5,7 @@
 <head>
 <%@ include file="../../../../common/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/hui/admin2.5/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" />
-<title>用户信息表页</title>
+<title>部门表页</title>
 </head>
 <body class="pos-r">
 <div class="pos-a" style="width:260px;overflow:scroll;left:0;top:0; bottom:0; height:100%; border-right:1px solid #e5e5e5; background-color:#f5f5f5">
@@ -102,10 +102,10 @@
 			}
 		};
 
-		$(document).ready(function(){
+		$(function(){
 			$.ajax({
 				 type: "post",
-				 url: "${pageContext.request.contextPath}/role/queryAllMenuTree.do?role_id=${role.id }",
+				 url: "${pageContext.request.contextPath}/system/controller/departmentController/queryDepartmentTree.do?role_id=${role.id }",
 	             data: {},
 	             dataType: "json",
 	             success: function(data){

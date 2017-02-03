@@ -38,7 +38,7 @@ public class DepartmentService implements IDepartmentService {
 	@Override
 	public List<Department> queryDepartmentList(Department department) {
 		// TODO Auto-generated method stub
-		return null;
+		return departmentMapper.queryDepartmentList(department);
 	}
 
 	@Override
