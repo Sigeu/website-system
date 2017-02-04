@@ -38,5 +38,13 @@ public interface IDepartmentService {
 	 * @param department
 	 */
 	int saveDepartment(Department department);
+	
+	/**
+	 * 
+	 * @Description: 部门树 
+	 * @param department
+	 * @return
+	 */
+	List<Department> queryDepartmentTree(Department department);
 
 }

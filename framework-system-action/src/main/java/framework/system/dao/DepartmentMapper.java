@@ -54,4 +54,6 @@ public interface DepartmentMapper {
     int updateByPrimaryKey(Department record);
 
 	List<Department> queryDepartmentList(Department department);
+
+	List<Department> queryDepartmentTree(String dept_code);
 }

@@ -47,4 +47,19 @@ public class DepartmentService implements IDepartmentService {
 		return departmentMapper.insertSelective(department);
 	}
 
+
+	@Override
+	public List<Department> queryDepartmentTree(Department department) {
+		// TODO Auto-generated method stub
+		List<Department> departmentList = departmentMapper.queryDepartmentList(department);
+		if(null != departmentList){
+			for(Department dept : departmentList){
+				
+			}
+		}
+		
+		
+		return null;
+	}
+
 }

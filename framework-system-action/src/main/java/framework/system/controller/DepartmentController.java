@@ -109,7 +109,8 @@ public class DepartmentController extends MyBaseController{
 		//返回的数据
 		List<ZtreeNode> listZtreeNode = new ArrayList<ZtreeNode>();
 		try {
-			List<Department>  departmentList = this.departmentService.queryDepartmentList(department);
+			String dept_code = "";
+			List<Department>  departmentList = this.departmentService.queryDepartmentTree(department);
 			for (Department departmentObj : departmentList) {
 				listZtreeNode.add(new ZtreeNode(departmentObj.getId()
 						.toString(), departmentObj.getParent_code().toString(),
