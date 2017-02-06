@@ -7,8 +7,10 @@ package framework.system.controller;
 import java.awt.Menu;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -105,24 +107,26 @@ public class DepartmentController extends MyBaseController{
 	 */
 	@ResponseBody
 	@RequestMapping("/queryDepartmentTree")
-	public List<ZtreeNode> queryDepartmentTree(HttpServletRequest request, HttpServletResponse response,Department department){
+	public ZtreeNode queryDepartmentTree(HttpServletRequest request, HttpServletResponse response,Department department){
+		ZtreeNode ztreeNode = null;
 		//返回的数据
 		List<ZtreeNode> listZtreeNode = new ArrayList<ZtreeNode>();
 		try {
-			String dept_code = "";
-			List<Department>  departmentList = this.departmentService.queryDepartmentTree(department);
+			List<Department>  departmentList = this.departmentService.queryDepartmentList(department);
 			for (Department departmentObj : departmentList) {
-				listZtreeNode.add(new ZtreeNode(departmentObj.getId()
+				listZtreeNode.add(new ZtreeNode(departmentObj.getDept_code()
 						.toString(), departmentObj.getParent_code().toString(),
 						departmentObj.getDept_name(), true, false, false));
 			}
+			
+			ztreeNode = this.listToJson(listZtreeNode);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		
 		
-		return listZtreeNode;
+		return ztreeNode;
 	}
 	
 	
@@ -182,5 +186,41 @@ public class DepartmentController extends MyBaseController{
 		Department department = this.departmentService.getDepartmentById(departmentId);
 		model.addAttribute("department", department);
 		return "showDepartment";
+	}
+	
+	
+	public ZtreeNode listToJson(List<ZtreeNode> ztreeNodeList){
+		 // 根节点  
+        ZtreeNode rootNode = null; 
+        // 节点列表（散列表，用于临时存储节点对象）  
+        HashMap<String,ZtreeNode> nodeMap = new HashMap<String,ZtreeNode>();  
+        // 将结果集存入散列表（后面将借助散列表构造多叉树）  
+        if(null != ztreeNodeList){
+			for(ZtreeNode node : ztreeNodeList){
+				//这里是ID
+				nodeMap.put(node.getId(), node);
+			}
+		}
+        // 构造无序的多叉树  
+        Set<?> entrySet = nodeMap.entrySet();  
+        for (Iterator<?> it = entrySet.iterator(); it.hasNext();) {  
+            @SuppressWarnings("rawtypes")
+			ZtreeNode node = (ZtreeNode) ((Map.Entry) it.next()).getValue();  
+            if (null == node.getPid() || "0".equals(node.getPid()) || "".equals(node.getPid()) ) {  
+            	rootNode = node;  
+            } else {  
+            	//这里是PID
+                nodeMap.get(node.getPid()).addChild(node);  
+            }  
+        }  
+		
+        // 输出无序的树形菜单的JSON字符串  
+        //System.out.println(rootNode);  
+        // 对多叉树进行横向排序  
+        rootNode.sortChildren();  
+        // 输出有序的树形菜单的JSON字符串  
+        //System.out.println(rootNode); 
+		
+		return rootNode;
 	}
 }
