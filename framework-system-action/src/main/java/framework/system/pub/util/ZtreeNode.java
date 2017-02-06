@@ -34,11 +34,11 @@ public class ZtreeNode {
 		super();
 	}
 
-	public ZtreeNode(String id, String pId, String name, boolean open,
+	public ZtreeNode(String id, String pid, String name, boolean open,
 			boolean nocheck, boolean checked) {
 		super();
 		this.id = id;
-		this.pid = pId;
+		this.pid = pid;
 		this.name = name;
 		this.open = open;
 		this.nocheck = nocheck;
@@ -55,8 +55,8 @@ public class ZtreeNode {
         children.add(node);  
     }  
   
-    // 先序遍历，拼接JSON字符串  
-    public String toString() {  
+    // 先序遍历，拼接JSON字符串  :为了通过打印测试重写toString方法
+    /*public String toString() {  
         String result = "{" + "id : '" + id + "'" + ", text : '" + name + "'";  
         if (children.size() != 0) {  
             result += ", children : [";  
@@ -69,7 +69,7 @@ public class ZtreeNode {
             result += ", leaf : true";  
         }  
         return result + "}";  
-    }  
+    }*/  
   
     // 兄弟节点横向排序  
 	public void sortChildren() {  
@@ -130,5 +130,13 @@ public class ZtreeNode {
 
 	public void setPid(String pid) {
 		this.pid = pid;
+	}
+
+	public List<ZtreeNode> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<ZtreeNode> children) {
+		this.children = children;
 	}
 }

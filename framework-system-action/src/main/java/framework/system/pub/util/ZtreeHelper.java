@@ -154,7 +154,7 @@ public class ZtreeHelper {
         Set entrySet = nodeMap.entrySet();  
         for (Iterator it = entrySet.iterator(); it.hasNext();) {  
             ZtreeNode node = (ZtreeNode) ((Map.Entry) it.next()).getValue();  
-            if (node.getPid() == null || "".equals(node.getPid())) {  
+            if (null == node.getPid() || "0".equals(node.getPid()) || "".equals(node.getPid()) ) {  
             	rootNode = node;  
             } else {  
                 ((ZtreeNode) nodeMap.get(node.getPid())).addChild(node);  

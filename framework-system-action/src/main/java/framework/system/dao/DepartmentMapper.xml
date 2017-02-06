@@ -298,6 +298,5 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_department
-     where FIND_IN_SET(id, getChildLst(0));
   </select>
 </mapper>
