@@ -182,14 +182,9 @@
 							</td>
 						</tr>
 						<tr id="content_tr" style="display:none">
-							<td align="right" nowrap="nowrap" class="text-r mybg">详细内容：</td>
-							<td colspan="3" nowrap="nowrap">
-								<div class="row cl">
-									<div> 
-										<script id="editor" type="text/plain" style="width:100%;height:600px;"></script> 
-									</div>
-								</div>
-							</td>
+							<td><label class="form-label">详细内容：</label></td>
+							<td colspan="3"><div class="formControls" style="width:90%"><script id="editor" type="text/plain" style="min-width:300px; height:400px"></script></div></td>
+							<!-- 上面formControls的 style="width:90%"，对于编辑器的长度起作用 -->
 						</tr>
 					</table>
 				</div>
