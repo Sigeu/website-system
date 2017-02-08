@@ -60,14 +60,16 @@
 			<table id="data_table" style="width: 98%" style="text-align: center;"
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
-					<tr class="text-c mybg">
+					<tr class="text-c">
+						<th><input type="checkbox" name="" value=""></th>
 						<th>序号</th>
+						<th>排序</th>
 						<th>栏目名称</th>
 						<th>所属模块</th>
 						<th>显示位置</th>
 						<th>是否前台显示</th>
-						<th>栏目级别</th>
-						<th>打开方式</th>
+						<!-- <th>栏目级别</th>
+						<th>打开方式</th> -->
 						<th width="15%">操作</th>
 					</tr>
 				</thead>
@@ -106,20 +108,28 @@
 									}
 								}, 
 								serverSide : true,//开启服务器模式:启用服务器分页
-								lengthChange : true,//是否允许用户改变表格每页显示的记录数
-								ordering : true,//是否允许用户排序
+								lengthChange : false,//是否允许用户改变表格每页显示的记录数
+								ordering : false,//是否允许用户排序
 								paging : true,//是否分页
 								pagingType : "full_numbers",//除首页、上一页、下一页、末页四个按钮还有页数按钮
 								processing : true,//是否显示处理状态
 								/* scrollX: true,//允许水平滚动
 								scrollY: "200px",
 								scrollCollapse: true, */
-								searching : true,//是否开始本地搜索
+								searching : false,//是否开始本地搜索
 								stateSave : false,//刷新时是否保存状态
 								autoWidth : true,//自动计算宽度
 								//deferRender : true,//延迟渲染
 								columns : [ {
+									data : "id",
+									render: function (data, type, full, meta) {
+					                     return '<input type="checkbox" value="' + data + '" />';
+					                 }
+								}, {
 									data : "id"
+								}, {
+									data : "no_order",
+									defaultContent : 0
 								}, {
 									data : "name",
 									defaultContent : ""
@@ -131,12 +141,6 @@
 									defaultContent : ""
 								}, {
 									data : "display",
-									defaultContent : ""
-								}, {
-									data : "classtype",
-									defaultContent : ""
-								}, {
-									data : "new_windows",
 									defaultContent : ""
 								}, {
 									data : null
@@ -161,7 +165,7 @@
 														"type" : "primary-outline size-MINI radius",
 														"display" : row.zt == '1'? true:false
 													},{
-														"name" : "授权",
+														"name" : "设置",
 														"fn" : "toIssue(\'"
 																+ row.id
 																+ "\')",

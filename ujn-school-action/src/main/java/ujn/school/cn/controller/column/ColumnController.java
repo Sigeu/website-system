@@ -179,13 +179,12 @@ public class ColumnController extends MyBaseController {
 	 * @Description: 保存
 	 * @param request
 	 * @param column
-	 * @param model
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/saveColumn")
 	public Map<String, Object> saveColumn(HttpServletRequest request,
-			ColumnWithBLOBs column, Model model) {
+			ColumnWithBLOBs column) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = this.columnService.saveColumn(column);
 		if (RESULT_COUNT_1 == count) {

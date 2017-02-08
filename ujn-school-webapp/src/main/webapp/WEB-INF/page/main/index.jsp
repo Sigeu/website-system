@@ -104,10 +104,9 @@
 			</dd>
 		</dl>
 		<dl id="menu-site">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 网站管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe62d;</i> 内容管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="${pageContext.request.contextPath}/column/controller/columnController/toColumnList" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/column/controller/columnController/toColumnList" data-title="内容管理" href="javascript:void(0)">内容管理</a></li>
 				</ul>
 			</dd>
@@ -119,6 +118,8 @@
 					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
 					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
 					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/userController/toUserList" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentList" data-title="部门管理" href="javascript:void(0)">部门管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -140,8 +141,8 @@
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="${pageContext.request.contextPath}/system/controller/userController/toUserList" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentList" data-title="部门管理" href="javascript:void(0)">部门管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/config/controller/configController/toConfig" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/column/controller/columnController/toColumnList" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
 					<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
 					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
 					<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>

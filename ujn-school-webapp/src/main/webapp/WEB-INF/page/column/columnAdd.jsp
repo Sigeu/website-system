@@ -245,12 +245,6 @@ $(function() {
 	});
 	
 });
-function chooseAmAndPm(){
-	var h = $dp.cal.getP('H');
-	alert(h);
-	//$dp.$('d523_y').value=$dp.cal.getP('y');
-}
-
 </script>
 </body>
 </body>
