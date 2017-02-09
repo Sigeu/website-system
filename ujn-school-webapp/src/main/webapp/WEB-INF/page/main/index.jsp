@@ -145,7 +145,7 @@
 					<li><a data-href="${pageContext.request.contextPath}/column/controller/columnController/toColumnList" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
 					<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
 					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
-					<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/logController/toLogList" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
 				</ul>
 			</dd>
 		</dl>
