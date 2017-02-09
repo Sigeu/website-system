@@ -47,7 +47,7 @@ public class ColumnController extends MyBaseController {
 	 * @return
 	 */
 	@RequestMapping("/toColumnList")
-	public String toColumnList(Model model) {
+	public String toColumnList(HttpServletRequest request, Model model) {
 
 		return "column/columnList";
 	}
@@ -111,7 +111,6 @@ public class ColumnController extends MyBaseController {
 		// 使用DataTables的属性接收分页数据
 		DataTablePageUtil<Column> dataTable = null;
 		try {
-			System.out.println("order_dir:"+request.getParameter("order_dir") + "--order:--");
 			// 使用DataTables的属性接收分页数据
 			dataTable = new DataTablePageUtil<Column>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询

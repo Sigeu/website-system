@@ -143,6 +143,7 @@
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/config/controller/configController/toConfig" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/column/controller/columnController/toColumnList" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/link/controller/linkController/toLinkList" data-title="友情链接管理" href="javascript:void(0)">友情链接管理</a></li>
 					<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
 					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/logController/toLogList" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
