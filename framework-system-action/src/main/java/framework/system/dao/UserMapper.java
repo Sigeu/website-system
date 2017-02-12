@@ -1,6 +1,7 @@
 package framework.system.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import framework.system.model.User;
 
@@ -69,4 +70,10 @@ public interface UserMapper {
 	 * @return
 	 */
 	List<User> queryUserList(User user);
+
+	Set<String> queryUserRolesByUserName(String username);
+
+	Set<String> queryUserPermissionsByUserName(String username);
+
+	User queryUserByUserName(String username);
 }

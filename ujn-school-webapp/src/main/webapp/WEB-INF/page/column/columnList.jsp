@@ -162,7 +162,7 @@
 														"fn" : "toDelete(\'"
 																+ row.id
 																+ "\')",
-														"type" : "primary-outline size-MINI radius",
+														"type" : "danger-outline size-MINI radius",
 														"display" : row.zt == '1'? true:false
 													},{
 														"name" : "设置",

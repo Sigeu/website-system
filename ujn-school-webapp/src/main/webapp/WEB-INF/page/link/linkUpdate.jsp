@@ -8,39 +8,40 @@
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增友情链接
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>更新友情链接
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/link/controller/linkController/addLink" method="post" class="form form-horizontal" id="form-link-add">
+	<form action="${pageContext.request.contextPath}/link/controller/linkController/updateLink" method="post" class="form form-horizontal" id="form-link-update">
+		<input type="hidden" name="id" id="id" value="${link.id }" >
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="网站名称" id="web_name" name="web_name">
+				<input type="text" class="input-text" value="${link.web_name }" placeholder="网站名称" id="web_name" name="web_name">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">网站URL：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="网站URL" id="web_url" name="web_url">
+				<input type="text" class="input-text" value="${link.web_url }" placeholder="网站URL" id="web_url" name="web_url">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">联系方式：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="联系方式" id="contact" name="contact">
+				<input type="text" class="input-text" value="${link.contact }" placeholder="联系方式" id="contact" name="contact">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="info" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+				<textarea name="info" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">${link.info }</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="0" placeholder="排序值，越小越靠前" id="order_no" name="order_no">
+				<input type="text" class="input-text" value="${link.order_no }" placeholder="排序值，越小越靠前" id="order_no" name="order_no">
 			</div>
 		</div>
 		<div class="row cl">
@@ -91,10 +92,10 @@ $(function() {
 		}
 	};
 	// 准备form表单
-	$("#form-link-add").ajaxForm(options);
+	$("#form-link-update").ajaxForm(options);
 	// 表单提交     
 	$('#submit_but').on('click', function() {
-		$("#form-link-add").ajaxSubmit(options);
+		$("#form-link-update").ajaxSubmit(options);
 		return false;
 	});
 	

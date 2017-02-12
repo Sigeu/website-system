@@ -6,6 +6,8 @@ package ujn.school.cn.service.link;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.link.Link;
 
@@ -32,7 +34,10 @@ public interface ILinkService {
 	List<Link> queryLinkList(Link link);
 
 
-	int addLink(Link link);
+	int addLink(HttpServletRequest request,Link link);
+
+
+	int deleteLink(int linkId);
 
 
 }

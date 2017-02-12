@@ -136,17 +136,10 @@
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
+														"display" : true
 													},{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
-																+ row.id
-																+ "\')",
-														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? true:false
-													},{
-														"name" : "设置",
-														"fn" : "toIssue(\'"
 																+ row.id
 																+ "\')",
 														"type" : "danger-outline size-MINI radius",
@@ -254,27 +247,28 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiEdit.do?id='+id
+			    content: '${pageContext.request.contextPath}/link/controller/linkController/toLinkUpdate?id='+id
 			 });
 		}
-		//发布
-		function toIssue(id){
-			layer.confirm("确认要发布吗？已发布的信息不可再修改。", {
+		//删除
+		function toDelete(id){
+			layer.confirm("确认删除？", {
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/issueKaoShiChangCi.do" ,
+						    url: "${pageContext.request.contextPath}/link/controller/linkController/deleteLink" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
 						    success:function(data){
-						    	layer.open({
-						    		  content: data.result_message,
-						    		  yes: function(index, layero){
-						    		    window.location.reload();//刷新当前页面
-						    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
-						    		  }
-						    		});
+						    	layer.alert(data.result_message, {
+									  closeBtn: 0
+									}, function(){
+										//父页面刷新
+										window.location.reload();//刷新当前页面.
+										var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+										parent.layer.close(index); //再执行关闭
+									});
 						    }
 						});
 					}, function(index){
@@ -282,7 +276,7 @@
 				}); 
 		}
 		
-		//查看明细
+		//查看
 		function toDetail(id){
 			layer.open({
 			    type: 2,
@@ -290,19 +284,7 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiDetail.do?id='+id
-			 });
-		}
-		
-		//考生列表
-		function toShowList(id){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShengXinXiController/toKaoShengXinXiList.do?kscc='+id
+			    content: '${pageContext.request.contextPath}/link/controller/linkController/toLinkDetail?id='+id
 			 });
 		}
 		

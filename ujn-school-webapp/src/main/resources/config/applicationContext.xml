@@ -4,9 +4,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  
-                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
                         http://www.springframework.org/schema/context  
-                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd  
                         http://www.springframework.org/schema/mvc  
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 	<!-- 自动扫描的包 :除了Controller的包-->
@@ -26,7 +26,7 @@
 		init-method="init" destroy-method="close">
 		<property name="url" value="jdbc:mysql://localhost:3306/db_ujn?useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="username" value="root" />
-		<property name="password" value="root_123" />
+		<property name="password" value="123456" />
 		<!-- 初始化连接大小 -->
 		<property name="initialSize" value="0" />
 		<!-- 连接池最大使用连接数量 -->

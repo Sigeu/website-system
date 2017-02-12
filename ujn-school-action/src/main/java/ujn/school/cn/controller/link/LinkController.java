@@ -4,7 +4,9 @@
  */
 package ujn.school.cn.controller.link;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import ujn.school.cn.model.link.Link;
+import ujn.school.cn.pub.util.DateUtil;
 import ujn.school.cn.service.link.ILinkService;
 
 import com.github.pagehelper.PageHelper;
@@ -73,7 +80,7 @@ public class LinkController extends MyBaseController {
 		Link link = this.linkService.queryLinkById(linkId);
 		model.addAttribute("link", link);
 
-		return "system/link/linkUpdate";
+		return "link/linkUpdate";
 	}
 
 	/**
@@ -89,7 +96,7 @@ public class LinkController extends MyBaseController {
 		Link link = this.linkService.queryLinkById(linkId);
 		model.addAttribute("link", link);
 
-		return "system/link/link";
+		return "link/linkDetail";
 	}
 
 	/**
@@ -143,15 +150,15 @@ public class LinkController extends MyBaseController {
 	@ResponseBody
 	@RequestMapping("/addLink")
 	public Map<String, Object> addLink(HttpServletRequest request, Link link) {
-		
 		Map<String, Object> map = new HashMap<String, Object>();
-		int count = this.linkService.addLink(link);
-		if (RESULT_COUNT_1 == count) {
+		try {
+			linkService.addLink(request, link);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
-		} else {
+		} catch (Exception e) {
+			e.printStackTrace();
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
 		return map;
 	}
 
@@ -166,6 +173,7 @@ public class LinkController extends MyBaseController {
 	public Map<String, Object> updateLink(HttpServletRequest request, Link link) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		link.setAdd_time(DateUtil.getDateTime());
 		int count = this.linkService.updateLink(link);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
@@ -206,12 +214,18 @@ public class LinkController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping("/deleteLink")
-	public String deleteLink(HttpServletRequest request, Model model) {
+	public Map<String, Object> deleteLink(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		int linkId = Integer.parseInt(request.getParameter("id"));
-		Link link = this.linkService.queryLinkById(linkId);
-		model.addAttribute("link", link);
-		return "showLink";
+		int count  = this.linkService.deleteLink(linkId);
+		if (RESULT_COUNT_1 == count) {
+			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
+		}
+		return map;
 	}
 
 	/**
