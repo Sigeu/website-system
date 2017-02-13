@@ -2,7 +2,7 @@
  * Copyright (C), 2015, 山东旭日俞和科技有限公司
  * All right reserved.
  */
-package ujn.school.cn.controller.link;
+package framework.system.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,28 +17,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ujn.school.cn.model.link.Link;
-import ujn.school.cn.pub.util.DateUtil;
-import ujn.school.cn.service.link.ILinkService;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import framework.system.model.Role;
 import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.service.IRoleService;
 
 /**
- * @Description: 网站设置管理
+ * @Description: 角色管理
  * @author lizhaotao lzh_me@126.com
  * @date 2017年1月17日 下午1:52:12
  * @version V1.0
  */
 @Controller
-@RequestMapping("/link/controller/linkController")
-public class LinkController extends MyBaseController {
+@RequestMapping("system/controller/roleController")
+public class RoleController extends MyBaseController {
 
 	@Resource
-	private ILinkService linkService;
+	private IRoleService roleService;
 
 
 	/**
@@ -48,17 +46,22 @@ public class LinkController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toLinkList")
-	public String toLinkList(HttpServletRequest request, Model model) {
+	@RequestMapping("/toRoleList")
+	public String toRoleList(HttpServletRequest request, Model model) {
 
-		return "link/linkList";
+		return "system/role/roleList";
 	}
 
-	
-	@RequestMapping("/toLinkAdd")
-	public String toLinkAdd(HttpServletRequest request, Model model) {
+	/**
+	 * @Description:  跳转到新增
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toRoleAdd")
+	public String toRoleAdd(HttpServletRequest request, Model model) {
 		
-		return "link/linkAdd";
+		return "system/role/roleAdd";
 	}
 
 	/**
@@ -68,13 +71,13 @@ public class LinkController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toLinkUpdate")
-	public String toLinkUpdate(HttpServletRequest request, Model model) {
-		int linkId = Integer.parseInt(request.getParameter("id"));
-		Link link = this.linkService.queryLinkById(linkId);
-		model.addAttribute("link", link);
+	@RequestMapping("/toRoleUpdate")
+	public String toRoleUpdate(HttpServletRequest request, Model model) {
+		int roleId = Integer.parseInt(request.getParameter("id"));
+		Role role = this.roleService.queryRoleById(roleId);
+		model.addAttribute("role", role);
 
-		return "link/linkUpdate";
+		return "system/role/roleUpdate";
 	}
 
 	/**
@@ -84,13 +87,13 @@ public class LinkController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toLinkDetail")
-	public String toLinkDetail(HttpServletRequest request, Model model) {
-		int linkId = Integer.parseInt(request.getParameter("id"));
-		Link link = this.linkService.queryLinkById(linkId);
-		model.addAttribute("link", link);
+	@RequestMapping("/toRoleDetail")
+	public String toRoleDetail(HttpServletRequest request, Model model) {
+		int roleId = Integer.parseInt(request.getParameter("id"));
+		Role role = this.roleService.queryRoleById(roleId);
+		model.addAttribute("role", role);
 
-		return "link/linkDetail";
+		return "system/role/roleDetail";
 	}
 
 	/**
@@ -98,27 +101,27 @@ public class LinkController extends MyBaseController {
 	 * @Description: 栏目分页查询
 	 * @param request
 	 * @param response
-	 * @param link
+	 * @param role
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryLinkList")
-	public DataTablePageUtil<Link> queryLinkList(
+	@RequestMapping("/queryRoleList")
+	public DataTablePageUtil<Role> queryRoleList(
 			HttpServletRequest request, HttpServletResponse response,
-			Link link) {
+			Role role) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Link> dataTable = null;
+		DataTablePageUtil<Role> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Link>(request);
+			dataTable = new DataTablePageUtil<Role>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Link> linkList = this.linkService
-					.queryLinkList(link);
+			List<Role> roleList = this.roleService
+					.queryRoleList(role);
 			// 用PageInfo对结果进行包装
-			PageInfo<Link> pageInfo = new PageInfo<Link>(linkList);
+			PageInfo<Role> pageInfo = new PageInfo<Role>(roleList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -138,15 +141,15 @@ public class LinkController extends MyBaseController {
 	 * 
 	 * @Description: 添加 
 	 * @param request
-	 * @param link
+	 * @param role
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/addLink")
-	public Map<String, Object> addLink(HttpServletRequest request, Link link) {
+	@RequestMapping("/addRole")
+	public Map<String, Object> addRole(HttpServletRequest request, Role role) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			linkService.addLink(request, link);
+			roleService.addRole(request, role);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,16 +162,15 @@ public class LinkController extends MyBaseController {
 	/**
 	 * 
 	 * @param request
-	 * @param link
+	 * @param role
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/updateLink")
-	public Map<String, Object> updateLink(HttpServletRequest request, Link link) {
+	@RequestMapping("/updateRole")
+	public Map<String, Object> updateRole(HttpServletRequest request, Role role) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		link.setAdd_time(DateUtil.getDateTime());
-		int count = this.linkService.updateLink(link);
+		int count = this.roleService.updateRole(role);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
@@ -183,15 +185,15 @@ public class LinkController extends MyBaseController {
 	 * 
 	 * @Description: 保存
 	 * @param request
-	 * @param link
+	 * @param role
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/saveLink")
-	public Map<String, Object> saveLink(HttpServletRequest request,
-			Link link) {
+	@RequestMapping("/saveRole")
+	public Map<String, Object> saveRole(HttpServletRequest request,
+			Role role) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int count = this.linkService.updateLink(link);
+		int count = this.roleService.updateRole(role);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
@@ -209,11 +211,11 @@ public class LinkController extends MyBaseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/deleteLink")
-	public Map<String, Object> deleteLink(HttpServletRequest request) {
+	@RequestMapping("/deleteRole")
+	public Map<String, Object> deleteRole(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int linkId = Integer.parseInt(request.getParameter("id"));
-		int count  = this.linkService.deleteLink(linkId);
+		int roleId = Integer.parseInt(request.getParameter("id"));
+		int count  = this.roleService.deleteRole(roleId);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
 		} else {
@@ -222,18 +224,4 @@ public class LinkController extends MyBaseController {
 		return map;
 	}
 
-	/**
-	 * 
-	 * @Description: 明细查询
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/queryLinkById")
-	public String queryLinkById(HttpServletRequest request, Model model) {
-		int linkId = Integer.parseInt(request.getParameter("id"));
-		Link link = this.linkService.queryLinkById(linkId);
-		model.addAttribute("link", link);
-		return "showLink";
-	}
 }

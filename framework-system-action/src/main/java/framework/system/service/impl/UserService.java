@@ -47,9 +47,15 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public int saveUser(User user) {
+	public int addUser(User user) {
 		// TODO Auto-generated method stub
 		return userMapper.insertSelective(user);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		userMapper.updateByPrimaryKey(user);
 	}
 
 }

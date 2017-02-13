@@ -23,20 +23,6 @@
 					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
 						name="ksccmc" class="input-text input-collspace size-MINI" />
 					</td>
-					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>注册时间起止:</strong>&nbsp;&nbsp;
-					</td>
-					<td width="10%" >
-						<input id="kssj_start" type="text" name="date_start" type="text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'kssj_end\')||\'2020-10-01\'}'})" class="input-text input-collspace size-MINI" /> 
-					</td>
-					<td width="10%" >
-						<input id="kssj_end" type="text" name="date_end" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'kssj_start\')}',maxDate:'2020-10-01'})" class="input-text input-collspace size-MINI" />
-					</td>
-					<td align="right" width="10%" nowrap="nowrap" class="mybg"><strong>考试地点:</strong>&nbsp;
-					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksdd"
-						name="ksdd" value="" class="input-text input-collspace size-MINI" />
-					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
 							<i class="Hui-iconfont Hui-iconfont-search2">&nbsp;&nbsp;</i>查询
@@ -61,19 +47,14 @@
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
 					<tr class="text-c mybg">
+						<th><input type="checkbox" name="" value=""></th>
 						<th>序号</th>
 						<th>登录名</th>
 						<th>真实姓名</th>
 						<th>用户类型</th>
-						<th>性别</th>
-						<th>职位</th>
-						<th>邮箱</th>
-						<th>联系电话</th>
-						<th>联系手机</th>
 						<th>状态</th>
 						<th>部门</th>
-						<th>备注</th>
-						<th width="15%">操作</th>
+						<th width="20%">操作</th>
 					</tr>
 				</thead>
 				<!-- tbody是必须的 -->
@@ -124,6 +105,11 @@
 								autoWidth : true,//自动计算宽度
 								//deferRender : true,//延迟渲染
 								columns : [ {
+									data : "id",
+									render: function (data, type, full, meta) {
+					                     return '<input type="checkbox" value="' + data + '" />';
+					                 }
+								}, {
 									data : "id"
 								}, {
 									data : "login_name",
@@ -135,28 +121,10 @@
 									data : "user_type",
 									defaultContent : ""
 								}, {
-									data : "sex",
-									defaultContent : ""
-								}, {
-									data : "position",
-									defaultContent : ""
-								}, {
-									data : "email",
-									defaultContent : ""
-								}, {
-									data : "contact_tel",
-									defaultContent : ""
-								}, {
-									data : "contact_mobile",
-									defaultContent : ""
-								}, {
 									data : "status",
 									defaultContent : ""
 								}, {
 									data : "dept",
-									defaultContent : ""
-								}, {
-									data : "remark",
 									defaultContent : ""
 								}, {
 									data : null
@@ -178,14 +146,14 @@
 														"fn" : "toDelete(\'"
 																+ row.id
 																+ "\')",
-														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? true:false
+														"type" : "danger-outline size-MINI radius",
+														"display" : row.zt == '1'? false:true
 													},{
 														"name" : "授权",
 														"fn" : "toIssue(\'"
 																+ row.id
 																+ "\')",
-														"type" : "danger-outline size-MINI radius",
+														"type" : "primary-outline size-MINI radius",
 														"display" : row.zt == '1'? false:true
 													},{
 														"name" : "查看",

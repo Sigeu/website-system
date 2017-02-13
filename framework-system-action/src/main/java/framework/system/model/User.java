@@ -38,6 +38,9 @@ public class User {
      * @mbg.generated Wed Jan 18 11:12:08 CST 2017
      */
     private String real_name;
+    
+    
+    private String dept;
 
     /**
      *
@@ -794,4 +797,12 @@ public class User {
     public void setUpdate_user_id(String update_user_id) {
         this.update_user_id = update_user_id == null ? null : update_user_id.trim();
     }
+
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
 }

@@ -39,6 +39,8 @@ public interface IUserService {
 	 * @Description: 用户保存 
 	 * @param user
 	 */
-	int saveUser(User user);
+	int addUser(User user);
+
+	void updateUser(User user);
 
 }

@@ -38,16 +38,6 @@ public class UserController extends MyBaseController{
 	@Resource
 	private IUserService userService;
 	
-	
-	//跳转到用户列表
-	@RequestMapping("/getUserById")
-	public String getUserById(HttpServletRequest request,Model model){
-		int userId = Integer.parseInt("1");
-		User user = this.userService.getUserById(userId);
-		model.addAttribute("user", user);
-		return "showUser";
-	}
-		
 		
 	//跳转到用户列表
 	@RequestMapping("/toUserList")
@@ -99,26 +89,33 @@ public class UserController extends MyBaseController{
 		int userId = Integer.parseInt(request.getParameter("id"));
 		User user = this.userService.getUserById(userId);
 		model.addAttribute("user", user);
-		return "showUser";
+		return "system/user/userUpdate";
 	}
 	
 	
 	
 	//更新
 	@RequestMapping("/updateUser")
-	public String updateUser(HttpServletRequest request,Model model){
-		int userId = Integer.parseInt(request.getParameter("id"));
-		User user = this.userService.getUserById(userId);
-		model.addAttribute("user", user);
-		return "showUser";
+	public Map<String,Object> updateUser(HttpServletRequest request,User user){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			this.userService.updateUser(user);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+		
+		return map;
 	}
 	
 	//保存
 	@ResponseBody
-	@RequestMapping("/saveUser")
-	public Map<String,Object> saveUser(HttpServletRequest request,User user,Model model){
+	@RequestMapping("/addUser")
+	public Map<String,Object> addUser(HttpServletRequest request,User user,Model model){
 		Map<String,Object> map = new HashMap<String,Object>();
- 		int count = this.userService.saveUser(user);
+ 		int count = this.userService.addUser(user);
 		if(RESULT_COUNT_1 == count){
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
@@ -133,14 +130,6 @@ public class UserController extends MyBaseController{
 		return "system/user/userAdd";
 	}
 	
-	//添加
-	@RequestMapping("/addUser")
-	public String addUser(HttpServletRequest request,Model model){
-		int userId = Integer.parseInt(request.getParameter("id"));
-		User user = this.userService.getUserById(userId);
-		model.addAttribute("user", user);
-		return "showUser";
-	}
 	
 	//删除
 	@RequestMapping("/deleteUser")
