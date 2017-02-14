@@ -43,14 +43,14 @@
     delete from ujn_role
     where Id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="framework.system.model.Role">
-    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+  <insert id="insert" parameterType="framework.system.model.Role" useGeneratedKeys="true" keyProperty="id">
+    <!-- <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into ujn_role (Id, role_code, role_name, 
+    </selectKey> -->
+    insert into ujn_role ( role_code, role_name, 
       role_type_code, dept_code, remark, 
       status)
-    values (#{id,jdbcType=INTEGER}, #{role_code,jdbcType=VARCHAR}, #{role_name,jdbcType=VARCHAR}, 
+    values (#{role_code,jdbcType=VARCHAR}, #{role_name,jdbcType=VARCHAR}, 
       #{role_type_code,jdbcType=VARCHAR}, #{dept_code,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR})
   </insert>

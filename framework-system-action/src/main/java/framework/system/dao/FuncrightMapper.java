@@ -1,5 +1,7 @@
 package framework.system.dao;
 
+import java.util.List;
+
 import framework.system.model.Funcright;
 
 public interface FuncrightMapper {
@@ -50,4 +52,6 @@ public interface FuncrightMapper {
      * @mbg.generated Wed Jan 18 11:12:08 CST 2017
      */
     int updateByPrimaryKey(Funcright record);
+
+	List<Funcright> queryFuncrightList(Funcright funcright);
 }

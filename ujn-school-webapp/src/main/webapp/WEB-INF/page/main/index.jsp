@@ -115,11 +115,11 @@
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="${pageContext.request.contextPath}/system/controller/roleController/toRoleList" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/userController/toUserList" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/roleController/toRoleList" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightList" data-title="菜单管理" href="javascript:void(0)">菜单管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentList" data-title="部门管理" href="javascript:void(0)">部门管理</a></li>
+					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 				</ul>
 			</dd>
 		</dl>

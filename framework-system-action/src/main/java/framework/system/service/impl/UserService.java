@@ -49,7 +49,7 @@ public class UserService implements IUserService {
 	@Override
 	public int addUser(User user) {
 		// TODO Auto-generated method stub
-		return userMapper.insertSelective(user);
+		return userMapper.insert(user);
 	}
 
 	@Override
