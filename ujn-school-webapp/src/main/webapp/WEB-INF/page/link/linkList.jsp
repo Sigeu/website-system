@@ -52,6 +52,7 @@
 						<th>排序</th>
 						<th>网站名称</th>
 						<th>网站链接</th>
+						<th>网站logo</th>
 						<th>添加时间</th>
 						<th width="15%">操作</th>
 					</tr>
@@ -119,6 +120,12 @@
 								}, {
 									data : "web_url",
 									defaultContent : ""
+								}, {
+									data : "web_logo",
+									render : function(data, type, row, meta) {
+										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/' + data + '">';
+										return context;
+									}
 								}, {
 									data : "add_time",
 									defaultContent : ""

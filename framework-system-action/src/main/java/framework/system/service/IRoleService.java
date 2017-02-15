@@ -35,5 +35,12 @@ public interface IRoleService {
 
 	int deleteRole(int roleId);
 
+	/**
+	 * 
+	 * @Description: 角色下拉列表 
+	 * @return
+	 */
+	List<Role> getRoleSelectList();
+
 
 }

@@ -4,31 +4,43 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>菜单表页</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>角色修改
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>菜单修改
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/system/controller/roleController/updateRole" method="post" class="form form-horizontal" id="form-role-update">
-		<input type="hidden" name="id" id="id" value="${role.id }" >
+	<form action="${pageContext.request.contextPath}/system/controller/funcrightController/updateFuncright" method="post" class="form form-horizontal" id="form-funcright-update">
+		<input type="hidden" name="id" id="id" value="${funcright.id }" >
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>角色名称：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单code：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${role.role_name }" placeholder="角色名称" id="role_name" name="role_name">
+				<input type="text" class="input-text" value="${funcright.funcright_code }" placeholder="菜单code" id="funcright_code" name="funcright_code">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">角色code：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${role.role_code }" placeholder="角色code" id="role_code" name="role_code">
+				<input type="text" class="input-text" value="${funcright.funcright_name }" placeholder="菜单名称" id="funcright_name" name="funcright_name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单url：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${funcright.url }" placeholder="菜单url" id="url" name="url">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>排序：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${funcright.show_order }" placeholder="排序号，越小越靠前" id="show_order" name="show_order">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">${role.remark }</textarea>
+				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">${funcright.remark }</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
@@ -71,10 +83,10 @@ $(function() {
 		}
 	};
 	// 准备form表单
-	$("#form-role-update").ajaxForm(options);
+	$("#form-funcright-update").ajaxForm(options);
 	// 表单提交     
 	$('#submit_but').on('click', function() {
-		$("#form-role-update").ajaxSubmit(options);
+		$("#form-funcright-update").ajaxSubmit(options);
 		return false;
 	});
 	

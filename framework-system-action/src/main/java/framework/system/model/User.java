@@ -149,6 +149,7 @@ public class User {
      * @mbg.generated Wed Jan 18 11:12:08 CST 2017
      */
     private String status;
+    private String status_name;
 
     /**
      *
@@ -804,5 +805,13 @@ public class User {
 
 	public void setDept(String dept) {
 		this.dept = dept;
+	}
+
+	public String getStatus_name() {
+		return status_name;
+	}
+
+	public void setStatus_name(String status_name) {
+		this.status_name = status_name;
 	}
 }

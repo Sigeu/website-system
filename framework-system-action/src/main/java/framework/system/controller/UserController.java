@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import framework.system.model.Role;
 import framework.system.model.User;
 import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.service.IRoleService;
 import framework.system.service.IUserService;
 
 /**   
@@ -34,17 +36,65 @@ import framework.system.service.IUserService;
 @Controller
 @RequestMapping("/system/controller/userController")
 public class UserController extends MyBaseController{
-	
+	//用户Service
 	@Resource
 	private IUserService userService;
+	//角色Service
+	@Resource
+	private IRoleService roleService;
 	
 		
-	//跳转到用户列表
+	/**
+	 * 
+	 * @Description: 跳转到用户列表 页面
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/toUserList")
-	public String toUserList(Model model){
+	public String toUserList(HttpServletRequest request, Model model){
 		return "system/user/userList";
 	}
 	
+	/**
+	 * 
+	 * @Description: 跳转到用户添加页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toUserAdd")
+	public String toUserAdd(HttpServletRequest request, Model model){
+		try {
+			//角色下拉列表
+			//List<Role> roleList = roleService.getRoleSelectList();
+			//model.addAttribute("roleList", roleList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "system/user/userAdd";
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到用户授权页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toUserRole")
+	public String toUserRole(HttpServletRequest request, Model model){
+		try {
+			//角色下拉列表
+			//List<Role> roleList = roleService.getRoleSelectList();
+			//model.addAttribute("roleList", roleList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "system/user/userRole";
+	}
 	/**
 	 * 
 	 * @Description: 用户分页查询 
@@ -125,18 +175,69 @@ public class UserController extends MyBaseController{
 		return map;
 	}
 	
-	@RequestMapping("/toUserAdd")
-	public String toUserAdd(Model model){
-		return "system/user/userAdd";
+
+	
+	
+	/**
+	 * 
+	 * @Description: 删除
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteUser")
+	public Map<String,Object> deleteUser(HttpServletRequest request){
+		int userId = Integer.parseInt(request.getParameter("id"));
+		Map<String,Object> map = new HashMap<String,Object>();
+ 		int count = this.userService.deleteUser(userId);
+		if(RESULT_COUNT_1 == count){
+			map.put(RESULT_MESSAGE_STRING, "删除成功！");
+		} else {
+			map.put(RESULT_MESSAGE_STRING, "删除失败！");
+		}
+		
+		return map;
 	}
 	
-	
-	//删除
-	@RequestMapping("/deleteUser")
-	public String deleteUser(HttpServletRequest request,Model model){
+	/**
+	 * 
+	 * @Description: 停用用户 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/stopUser")
+	public Map<String,Object> stopUser(HttpServletRequest request){
 		int userId = Integer.parseInt(request.getParameter("id"));
-		User user = this.userService.getUserById(userId);
-		model.addAttribute("user", user);
-		return "showUser";
+		Map<String,Object> map = new HashMap<String,Object>();
+ 		int count = this.userService.stopUser(userId);
+		if(RESULT_COUNT_1 == count){
+			map.put(RESULT_MESSAGE_STRING, "停用成功！");
+		} else {
+			map.put(RESULT_MESSAGE_STRING, "停用失败！");
+		}
+		
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 启用用户 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/startUser")
+	public Map<String,Object> startUser(HttpServletRequest request){
+		int userId = Integer.parseInt(request.getParameter("id"));
+		Map<String,Object> map = new HashMap<String,Object>();
+ 		int count = this.userService.startUser(userId);
+		if(RESULT_COUNT_1 == count){
+			map.put(RESULT_MESSAGE_STRING, "启用成功！");
+		} else {
+			map.put(RESULT_MESSAGE_STRING, "启用失败！");
+		}
+		
+		return map;
 	}
 }

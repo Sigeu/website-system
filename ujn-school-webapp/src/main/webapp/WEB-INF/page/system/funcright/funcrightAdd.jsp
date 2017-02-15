@@ -8,20 +8,32 @@
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增角色
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增菜单
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/system/controller/roleController/addRole" method="post" class="form form-horizontal" id="form-role-add">
+	<form action="${pageContext.request.contextPath}/system/controller/funcrightController/addFuncright" method="post" class="form form-horizontal" id="form-funcright-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>角色名称：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单code：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="角色名称" id="role_name" name="role_name">
+				<input type="text" class="input-text" value="" placeholder="菜单code" id="funcright_code" name="funcright_code">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">角色code：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="角色code" id="role_code" name="role_code">
+				<input type="text" class="input-text" value="" placeholder="菜单名称" id="funcright_name" name="funcright_name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">菜单url：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="菜单url" id="url" name="url">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>排序：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="排序号，越小越靠前" id="show_order" name="show_order">
 			</div>
 		</div>
 		<div class="row cl">
@@ -70,10 +82,10 @@ $(function() {
 		}
 	};
 	// 准备form表单
-	$("#form-role-add").ajaxForm(options);
+	$("#form-funcright-add").ajaxForm(options);
 	// 表单提交     
 	$('#submit_but').on('click', function() {
-		$("#form-role-add").ajaxSubmit(options);
+		$("#form-funcright-add").ajaxSubmit(options);
 		return false;
 	});
 	

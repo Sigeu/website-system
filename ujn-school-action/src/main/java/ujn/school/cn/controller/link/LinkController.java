@@ -28,7 +28,7 @@ import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
- * @Description: 网站设置管理
+ * @Description: 友情链接管理
  * @author lizhaotao lzh_me@126.com
  * @date 2017年1月17日 下午1:52:12
  * @version V1.0
@@ -36,14 +36,13 @@ import framework.system.pub.util.DataTablePageUtil;
 @Controller
 @RequestMapping("/link/controller/linkController")
 public class LinkController extends MyBaseController {
-
+	// 友情链接Service
 	@Resource
 	private ILinkService linkService;
 
-
 	/**
 	 * 
-	 * @Description: 跳转到列表
+	 * @Description: 跳转到分页列表
 	 * @param request
 	 * @param model
 	 * @return
@@ -54,16 +53,22 @@ public class LinkController extends MyBaseController {
 		return "link/linkList";
 	}
 
-	
+	/**
+	 * 
+	 * @Description: 跳转到新增页面
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/toLinkAdd")
 	public String toLinkAdd(HttpServletRequest request, Model model) {
-		
+
 		return "link/linkAdd";
 	}
 
 	/**
 	 * 
-	 * @Description: 跳转到修改
+	 * @Description: 跳转到修改页面
 	 * @param request
 	 * @param model
 	 * @return
@@ -95,7 +100,7 @@ public class LinkController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 栏目分页查询
+	 * @Description: 分页列表
 	 * @param request
 	 * @param response
 	 * @param link
@@ -103,9 +108,8 @@ public class LinkController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/queryLinkList")
-	public DataTablePageUtil<Link> queryLinkList(
-			HttpServletRequest request, HttpServletResponse response,
-			Link link) {
+	public DataTablePageUtil<Link> queryLinkList(HttpServletRequest request,
+			HttpServletResponse response, Link link) {
 		// 使用DataTables的属性接收分页数据
 		DataTablePageUtil<Link> dataTable = null;
 		try {
@@ -115,8 +119,7 @@ public class LinkController extends MyBaseController {
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Link> linkList = this.linkService
-					.queryLinkList(link);
+			List<Link> linkList = this.linkService.queryLinkList(link);
 			// 用PageInfo对结果进行包装
 			PageInfo<Link> pageInfo = new PageInfo<Link>(linkList);
 
@@ -136,7 +139,7 @@ public class LinkController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 添加 
+	 * @Description: 添加
 	 * @param request
 	 * @param link
 	 * @return
@@ -152,12 +155,13 @@ public class LinkController extends MyBaseController {
 			e.printStackTrace();
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-		
+
 		return map;
 	}
 
 	/**
 	 * 
+	 * @Description: 修改
 	 * @param request
 	 * @param link
 	 * @return
@@ -165,7 +169,7 @@ public class LinkController extends MyBaseController {
 	@ResponseBody
 	@RequestMapping("/updateLink")
 	public Map<String, Object> updateLink(HttpServletRequest request, Link link) {
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		link.setAdd_time(DateUtil.getDateTime());
 		int count = this.linkService.updateLink(link);
@@ -177,7 +181,6 @@ public class LinkController extends MyBaseController {
 
 		return map;
 	}
-	
 
 	/**
 	 * 
@@ -188,8 +191,7 @@ public class LinkController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/saveLink")
-	public Map<String, Object> saveLink(HttpServletRequest request,
-			Link link) {
+	public Map<String, Object> saveLink(HttpServletRequest request, Link link) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = this.linkService.updateLink(link);
 		if (RESULT_COUNT_1 == count) {
@@ -213,7 +215,7 @@ public class LinkController extends MyBaseController {
 	public Map<String, Object> deleteLink(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int linkId = Integer.parseInt(request.getParameter("id"));
-		int count  = this.linkService.deleteLink(linkId);
+		int count = this.linkService.deleteLink(linkId);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
 		} else {
@@ -222,18 +224,4 @@ public class LinkController extends MyBaseController {
 		return map;
 	}
 
-	/**
-	 * 
-	 * @Description: 明细查询
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/queryLinkById")
-	public String queryLinkById(HttpServletRequest request, Model model) {
-		int linkId = Integer.parseInt(request.getParameter("id"));
-		Link link = this.linkService.queryLinkById(linkId);
-		model.addAttribute("link", link);
-		return "showLink";
-	}
 }

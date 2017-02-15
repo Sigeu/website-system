@@ -8,27 +8,39 @@
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>角色详情
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>菜单详情
 		</nav>
 	<div class="page-container">
-	<form action="#" method="post" class="form form-horizontal" id="form-role-detail">
-		<input type="hidden" name="id" id="id" value="${role.id }" >
+	<form action="#" method="post" class="form form-horizontal" id="form-funcright-detail">
+		<input type="hidden" name="id" id="id" value="${funcright.id }" >
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>角色名称：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单code：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				${role.role_name }
+				${funcright.funcright_code }
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">角色code：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				${role.role_code}
+				${funcright.funcright_name }
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单url：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				${funcright.url }
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">排序：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				${funcright.show_order}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				${role.remark }
+				${funcright.remark }
 			</div>
 		</div>
 		</br>

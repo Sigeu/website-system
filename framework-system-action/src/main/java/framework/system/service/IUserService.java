@@ -43,4 +43,10 @@ public interface IUserService {
 
 	void updateUser(User user);
 
+	int deleteUser(int userId);
+
+	int stopUser(int userId);
+
+	int startUser(int userId);
+
 }

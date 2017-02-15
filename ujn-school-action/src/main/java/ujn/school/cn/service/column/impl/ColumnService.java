@@ -26,6 +26,14 @@ public class ColumnService implements IColumnService {
 	@Resource
 	private ColumnMapper columnMapper;
 	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: queryColumnById</p> 
+	 * <p>Description: </p> 
+	 * @param columnId
+	 * @return 
+	 * @see ujn.school.cn.service.column.IColumnService#queryColumnById(int)
+	 */
 	@Override
 	public Column queryColumnById(int columnId) {
 		//加载xml文件
@@ -35,20 +43,42 @@ public class ColumnService implements IColumnService {
         return columnMapper.selectByPrimaryKey(columnId);
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: queryColumnList</p> 
+	 * <p>Description: </p> 
+	 * @param column
+	 * @return 
+	 * @see ujn.school.cn.service.column.IColumnService#queryColumnList(ujn.school.cn.model.column.Column)
+	 */
 	@Override
 	public List<Column> queryColumnList(Column column) {
 		// TODO Auto-generated method stub
 		return columnMapper.queryColumnList(column);
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: saveColumn</p> 
+	 * <p>Description: </p> 
+	 * @param column
+	 * @return 
+	 * @see ujn.school.cn.service.column.IColumnService#saveColumn(ujn.school.cn.model.column.ColumnWithBLOBs)
+	 */
 	@Override
 	public int saveColumn(ColumnWithBLOBs column) {
 		// TODO Auto-generated method stub
 		return columnMapper.insertSelective(column);
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: addColumn</p> 
+	 * <p>Description: </p> 
+	 * @param column
+	 * @return 
+	 * @see ujn.school.cn.service.column.IColumnService#addColumn(ujn.school.cn.model.column.ColumnWithBLOBs)
+	 */
 	@Override
 	public int addColumn(ColumnWithBLOBs column) {
 		// TODO Auto-generated method stub

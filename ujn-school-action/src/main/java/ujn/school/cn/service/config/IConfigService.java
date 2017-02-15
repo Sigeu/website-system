@@ -19,12 +19,15 @@ public interface IConfigService {
 	
 	/**
 	 * 
+	 * @Description: 查询网站设置 
 	 * @return
 	 */
 	Config queryConfig();
 	
 	
 	/**
+	 * 
+	 * @Description: 添加更新（有数据更新，无数据添加） 
 	 * @param config
 	 * @return
 	 */

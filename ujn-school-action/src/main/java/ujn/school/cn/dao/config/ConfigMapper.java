@@ -50,7 +50,13 @@ public interface ConfigMapper {
      * @mbg.generated Wed Feb 08 22:45:50 CST 2017
      */
     int updateByPrimaryKey(Config record);
-
+    
+    /**
+     * 
+     * @Description: 更新（无数据则添加，有数据则更新） 
+     * @param config
+     * @return
+     */
 	int updateConfig(Config config);
 
 }

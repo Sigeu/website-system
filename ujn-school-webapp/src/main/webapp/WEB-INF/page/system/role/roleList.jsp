@@ -141,6 +141,13 @@
 														"type" : "danger-outline size-MINI radius",
 														"display" : row.zt == '1'? false:true
 													},{
+														"name" : "授权",
+														"fn" : "toFuncright(\'"
+																+ row.id
+																+ "\')",
+														"type" : "primary-outline size-MINI radius",
+														"display" : true
+													},{
 														"name" : "查看",
 														"fn" : "toDetail(\'"
 																+ row.id
@@ -257,6 +264,18 @@
 					}, function(index){
 						layer.close(index);
 				}); 
+		}
+		
+		//授权
+		function toFuncright(id){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;角色授权</div></strong>","background-color: #5a97df"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleFuncright?id='+id
+			 });
 		}
 		
 		//查看

@@ -4,12 +4,12 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>菜单表页</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span>角色管理
+		系统管理 <span class="c-gray en">&gt;</span>菜单管理
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>
@@ -18,7 +18,7 @@
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>角色名称:</strong>&nbsp;&nbsp;
+						<strong>菜单名称:</strong>&nbsp;&nbsp;
 					</td>
 					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
 						name="ksccmc" class="input-text input-collspace size-MINI" />
@@ -33,9 +33,6 @@
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 
@@ -49,8 +46,10 @@
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
 						<th>序号</th>
-						<th>角色名称</th>
-						<th>角色code</th>
+						<th>排序号</th>
+						<th>菜单code</th>
+						<th>菜单名称</th>
+						<th>菜单url</th>
 						<th>备注</th>
 						<th width="15%">操作</th>
 					</tr>
@@ -83,7 +82,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/system/controller/roleController/queryRoleList",
+									url : "${pageContext.request.contextPath}/system/controller/funcrightController/queryFuncrightList",
 									type:"POST",
 									data : {
 										//args1: "固定传参"
@@ -110,10 +109,16 @@
 								}, {
 									data : "id"
 								}, {
-									data : "role_name",
+									data : "show_order",
 									defaultContent : ""
 								}, {
-									data : "role_code",
+									data : "funcright_code",
+									defaultContent : ""
+								}, {
+									data : "funcright_name",
+									defaultContent : ""
+								}, {
+									data : "url",
 									defaultContent : ""
 								}, {
 									data : "remark",
@@ -177,10 +182,10 @@
 			//获取查询条件
 			function getSearchParams(){
 				//角色名称
-				var role_name = $("#role_name").val().trim();
+				var funcright_name = $("#funcright_name").val().trim();
 				//查询条件
 				var param = {
-					"role_name" : role_name
+					"funcright_name" : funcright_name
 				};
 				
 				return param;
@@ -189,7 +194,7 @@
 			//重置
 			$('#reset_but').on('click', function() {
 				//角色名称
-				$("#role_name").val('');
+				$("#funcright_name").val('');
 				
 			});
 			
@@ -201,7 +206,7 @@
 				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加角色</div></strong>","background-color: #5a97df"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleAdd'
+				    content: '${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightAdd'
 				 });
 			});
 			
@@ -230,7 +235,7 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改角色</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleUpdate?id='+id
+			    content: '${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightUpdate?id='+id
 			 });
 		}
 		//删除
@@ -239,7 +244,7 @@
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/system/controller/roleController/deleteRole" ,
+						    url: "${pageContext.request.contextPath}/system/controller/funcrightController/deleteFuncright" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
@@ -267,7 +272,7 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看角色</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleDetail?id='+id
+			    content: '${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightDetail?id='+id
 			 });
 		}
 		

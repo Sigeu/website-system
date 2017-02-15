@@ -52,6 +52,19 @@ public interface RoleMapper {
      * @mbg.generated Mon Feb 13 22:47:30 CST 2017
      */
     int updateByPrimaryKey(Role record);
-
+    
+    /**
+     * 
+     * @Description: 角色分页列表 
+     * @param role
+     * @return
+     */
 	List<Role> queryRoleList(Role role);
+	
+	/**
+	 * 
+	 * @Description: 角色下拉列表 
+	 * @return
+	 */
+	List<Role> getRoleSelectList();
 }

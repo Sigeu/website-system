@@ -7,6 +7,7 @@ package ujn.school.cn.service.link.impl;
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,38 +19,73 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import ujn.school.cn.dao.link.LinkMapper;
 import ujn.school.cn.model.link.Link;
+import ujn.school.cn.pub.constants.ISystemConstants;
 import ujn.school.cn.pub.util.DateUtil;
 import ujn.school.cn.service.link.ILinkService;
 
 /**   
- * @Description: TODO 
+ * @Description: 友情链接Service 
  * @author lizhaotao lzh_me@126.com  
  * @date 2017年1月18日 上午10:50:13 
  * @version V1.0   
  */
 @Service("linkService") 
 public class LinkService implements ILinkService {
+	//友情链接Mapper
 	@Resource
 	private LinkMapper linkMapper;
-
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: updateLink</p> 
+	 * <p>Description: </p> 
+	 * @param link
+	 * @return 
+	 * @see ujn.school.cn.service.link.ILinkService#updateLink(ujn.school.cn.model.link.Link)
+	 */
 	@Override
 	public int updateLink(Link link) {
 		// TODO Auto-generated method stub
 		return linkMapper.updateByPrimaryKey(link);
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: queryLinkById</p> 
+	 * <p>Description: </p> 
+	 * @param linkId
+	 * @return 
+	 * @see ujn.school.cn.service.link.ILinkService#queryLinkById(int)
+	 */
 	@Override
 	public Link queryLinkById(int linkId) {
 		// TODO Auto-generated method stub
 		return linkMapper.selectByPrimaryKey(linkId);
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: queryLinkList</p> 
+	 * <p>Description: </p> 
+	 * @param link
+	 * @return 
+	 * @see ujn.school.cn.service.link.ILinkService#queryLinkList(ujn.school.cn.model.link.Link)
+	 */
 	@Override
 	public List<Link> queryLinkList(Link link) {
 		// TODO Auto-generated method stub
 		return linkMapper.queryLinkList(link);
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: addLink</p> 
+	 * <p>Description: </p> 
+	 * @param request
+	 * @param link
+	 * @return 
+	 * @see ujn.school.cn.service.link.ILinkService#addLink(javax.servlet.http.HttpServletRequest, ujn.school.cn.model.link.Link)
+	 */
 	@Override
 	public int addLink(HttpServletRequest request,Link link) {
 		try {
@@ -70,15 +106,17 @@ public class LinkService implements ILinkService {
 	                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
 	                    if(myFileName.trim() !=""){  
 	                        //重命名上传后的文件名  
-	                        String fileName = "link-" + file.getOriginalFilename();  
+	                    	UUID uuid = UUID.randomUUID();
+	                        String fileName = uuid + file.getOriginalFilename(); 
+	                        String path = request.getSession().getServletContext().getRealPath(ISystemConstants.FILE_PATH_IMAGE);
 	                        //定义上传路径  
-	                        String path = "E:/upload-file/"; 
+	                        //String path = "E:/upload-file/"; 
 	                        File localFile = new File(path, fileName);  
 	                        if(!localFile.exists()){  
 	                        	localFile.mkdirs();  
 	                        }  
 	                        file.transferTo(localFile);  
-	                        link.setWeb_logo(path);
+	                        link.setWeb_logo(ISystemConstants.FILE_PATH_IMAGE + fileName);
 	                    }  
 	                }  
 	            }  
@@ -90,7 +128,15 @@ public class LinkService implements ILinkService {
 		link.setAdd_time(DateUtil.getDateTime());
 		return linkMapper.insert(link);
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: deleteLink</p> 
+	 * <p>Description: </p> 
+	 * @param linkId
+	 * @return 
+	 * @see ujn.school.cn.service.link.ILinkService#deleteLink(int)
+	 */
 	@Override
 	public int deleteLink(int linkId) {
 		

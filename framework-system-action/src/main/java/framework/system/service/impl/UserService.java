@@ -58,4 +58,22 @@ public class UserService implements IUserService {
 		userMapper.updateByPrimaryKey(user);
 	}
 
+	@Override
+	public int deleteUser(int userId) {
+		// TODO Auto-generated method stub
+		return userMapper.deleteByPrimaryKey(userId);
+	}
+
+	@Override
+	public int stopUser(int userId) {
+		// TODO Auto-generated method stub
+		return userMapper.stopUser(userId);
+	}
+
+	@Override
+	public int startUser(int userId) {
+		// TODO Auto-generated method stub
+		return userMapper.startUser(userId);
+	}
+
 }

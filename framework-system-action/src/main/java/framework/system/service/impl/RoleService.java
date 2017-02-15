@@ -55,6 +55,12 @@ public class RoleService implements IRoleService {
 		
 		return roleMapper.deleteByPrimaryKey(roleId);
 	}
+
+	@Override
+	public List<Role> getRoleSelectList() {
+		// TODO Auto-generated method stub
+		return roleMapper.getRoleSelectList();
+	}
 	
 
 

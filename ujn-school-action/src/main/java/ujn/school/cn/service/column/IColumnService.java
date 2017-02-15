@@ -39,7 +39,13 @@ public interface IColumnService {
 	 * @param column
 	 */
 	int saveColumn(ColumnWithBLOBs column);
-
+	
+	/**
+	 * 
+	 * @Description: 添加 
+	 * @param column
+	 * @return
+	 */
 	int addColumn(ColumnWithBLOBs column);
 
 }

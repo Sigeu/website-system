@@ -121,7 +121,7 @@
 									data : "user_type",
 									defaultContent : ""
 								}, {
-									data : "status",
+									data : "status_name",
 									defaultContent : ""
 								}, {
 									data : "dept",
@@ -142,6 +142,20 @@
 														"type" : "primary-outline size-MINI radius",
 														"display" : row.zt == '1'? false:true
 													},{
+														"name" : "停用",
+														"fn" : "toStop(\'"
+																+ row.id
+																+ "\')",
+														"type" : "danger-outline size-MINI radius",
+														"display" : row.status == '2'? false:true
+													},{
+														"name" : "启用",
+														"fn" : "toStart(\'"
+																+ row.id
+																+ "\')",
+														"type" : "danger-outline size-MINI radius",
+														"display" : row.status == '2'? true:false
+													},{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
@@ -150,7 +164,7 @@
 														"display" : row.zt == '1'? false:true
 													},{
 														"name" : "授权",
-														"fn" : "toIssue(\'"
+														"fn" : "toRole(\'"
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
@@ -237,7 +251,7 @@
 			$('#export_but').on('click', function() {
 				
 				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
+			    var url = "${pageContext.request.contextPath}/system/userCiController/exportExcel.do"+ "?" + params;
 			    //window.location.href = url;
 			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
 			    //$('#search_form').submit().remove();
@@ -258,27 +272,29 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiEdit.do?id='+id
+			    content: '${pageContext.request.contextPath}/system/userCiController/toUserEdit.do?id='+id
 			 });
 		}
-		//发布
-		function toIssue(id){
-			layer.confirm("确认要发布吗？已发布的信息不可再修改。", {
+		
+		//删除
+		function toDelete(id){
+			layer.confirm("确认删除？", {
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/issueKaoShiChangCi.do" ,
+						    url: "${pageContext.request.contextPath}/system/controller/userController/deleteUser" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
 						    success:function(data){
-						    	layer.open({
-						    		  content: data.result_message,
-						    		  yes: function(index, layero){
-						    		    window.location.reload();//刷新当前页面
-						    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
-						    		  }
-						    		});
+						    	layer.alert(data.result_message, {
+									  closeBtn: 0
+									}, function(){
+										//父页面刷新
+										window.location.reload();//刷新当前页面.
+										var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+										parent.layer.close(index); //再执行关闭
+									});
 						    }
 						});
 					}, function(index){
@@ -286,6 +302,69 @@
 				}); 
 		}
 		
+		//停用
+		function toStop(id){
+			layer.confirm("确认停用？", {
+				  btn: ['确认','返回'] //按钮
+					}, function(index){
+						$.ajax({
+						    url: "${pageContext.request.contextPath}/system/controller/userController/stopUser" ,
+						    type: "POST",
+						    dataType: "JSON",
+						    data: {id:id},
+						    success:function(data){
+						    	layer.alert(data.result_message, {
+									  closeBtn: 0
+									}, function(){
+										//父页面刷新
+										window.location.reload();//刷新当前页面.
+										var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+										parent.layer.close(index); //再执行关闭
+									});
+						    }
+						});
+					}, function(index){
+						layer.close(index);
+				}); 
+		}
+		
+		//启用
+		function toStart(id){
+			layer.confirm("确认启用？", {
+				  btn: ['确认','返回'] //按钮
+					}, function(index){
+						$.ajax({
+						    url: "${pageContext.request.contextPath}/system/controller/userController/startUser" ,
+						    type: "POST",
+						    dataType: "JSON",
+						    data: {id:id},
+						    success:function(data){
+						    	layer.alert(data.result_message, {
+									  closeBtn: 0
+									}, function(){
+										//父页面刷新
+										window.location.reload();//刷新当前页面.
+										var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+										parent.layer.close(index); //再执行关闭
+									});
+						    }
+						});
+					}, function(index){
+						layer.close(index);
+				}); 
+		}
+		
+		//用户授权：添加角色
+		function toRole(id){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户授权</div></strong>","background-color: #5a97df"],
+			    area: ['400px', '600px'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: '${pageContext.request.contextPath}/system/controller/userController/toUserRole'
+			 });
+		}
 		//查看明细
 		function toDetail(id){
 			layer.open({
@@ -294,7 +373,7 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiDetail.do?id='+id
+			    content: '${pageContext.request.contextPath}/system/userCiController/toUserDetail.do?id='+id
 			 });
 		}
 		
@@ -306,7 +385,7 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShengXinXiController/toKaoShengXinXiList.do?kscc='+id
+			    content: '${pageContext.request.contextPath}/system/userController/toUserList.do?kscc='+id
 			 });
 		}
 		

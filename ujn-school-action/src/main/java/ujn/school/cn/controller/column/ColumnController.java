@@ -59,13 +59,13 @@ public class ColumnController extends MyBaseController {
 	 * @return
 	 */
 	@RequestMapping("/toColumnAdd")
-	public String toColumnAdd(Model model) {
+	public String toColumnAdd(HttpServletRequest request, Model model) {
 		return "column/columnAdd";
 	}
 
 	/**
 	 * 
-	 * @Description: 跳转到修改
+	 * @Description: 跳转到修改页面
 	 * @param request
 	 * @param model
 	 * @return
@@ -138,15 +138,16 @@ public class ColumnController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 添加 
+	 * @Description: 添加
 	 * @param request
 	 * @param column
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/addColumn")
-	public Map<String, Object> addColumn(HttpServletRequest request, ColumnWithBLOBs column) {
-		
+	public Map<String, Object> addColumn(HttpServletRequest request,
+			ColumnWithBLOBs column) {
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = this.columnService.addColumn(column);
 		if (RESULT_COUNT_1 == count) {
@@ -204,21 +205,6 @@ public class ColumnController extends MyBaseController {
 	 */
 	@RequestMapping("/deleteColumn")
 	public String deleteColumn(HttpServletRequest request, Model model) {
-		int columnId = Integer.parseInt(request.getParameter("id"));
-		Column column = this.columnService.queryColumnById(columnId);
-		model.addAttribute("column", column);
-		return "showColumn";
-	}
-
-	/**
-	 * 
-	 * @Description: 明细查询
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/queryColumnById")
-	public String queryColumnById(HttpServletRequest request, Model model) {
 		int columnId = Integer.parseInt(request.getParameter("id"));
 		Column column = this.columnService.queryColumnById(columnId);
 		model.addAttribute("column", column);

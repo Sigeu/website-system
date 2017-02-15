@@ -33,4 +33,8 @@ public interface ISystemConstants {
 	static final String FZJG_CYYCODE_XTLB = "99";
 	// 查验员code 代码类别 : 发证机关 
 	static final String FZJG_CYYCODE_DMLB = "0034";
+	
+	
+	static final String FILE_PATH_IMAGE = "upload/image/";
+	static final String FILE_PATH = "upload/";
 }
