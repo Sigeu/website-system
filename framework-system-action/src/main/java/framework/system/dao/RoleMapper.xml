@@ -165,4 +165,11 @@
     <include refid="Base_Column_List" />
     from ujn_role
   </select>
+  
+  <!-- 角色分页列表 -->
+  <select id="queryRoleTree" parameterType="framework.system.model.Role" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_role
+  </select>
 </mapper>

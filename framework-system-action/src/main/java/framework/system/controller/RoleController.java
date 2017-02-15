@@ -21,8 +21,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Role;
+import framework.system.model.UserRole;
 import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.ZtreeNode;
 import framework.system.service.IRoleService;
 
 /**
@@ -37,7 +39,6 @@ public class RoleController extends MyBaseController {
 
 	@Resource
 	private IRoleService roleService;
-
 
 	/**
 	 * 
@@ -94,6 +95,14 @@ public class RoleController extends MyBaseController {
 		model.addAttribute("role", role);
 
 		return "system/role/roleDetail";
+	}
+	
+	@RequestMapping("/toRoleFuncright")
+	public String toRoleFuncright(HttpServletRequest request, Model model) {
+		int role_id = Integer.parseInt(request.getParameter("id"));
+		model.addAttribute("role_id", role_id);
+
+		return "system/role/roleFuncright";
 	}
 
 	/**
@@ -224,4 +233,73 @@ public class RoleController extends MyBaseController {
 		return map;
 	}
 
+	@ResponseBody
+	@RequestMapping("/queryRoleTree")
+	public ZtreeNode queryRoleTree(HttpServletRequest request, HttpServletResponse response,Role role){
+		ZtreeNode ztreeNode = null;
+		//返回的数据
+		try {
+			String login_name = request.getParameter("login_name");
+			List<Role>  roleList = this.roleService.queryRoleTree(role);
+			List<UserRole>  userRoleList = this.roleService.queryUserRoleTree(login_name);
+			//根节点
+			ztreeNode = new ZtreeNode("", null,"系统角色", true, false, false);
+			String role_code = "";
+			boolean flag = false;
+			for (Role roleObj : roleList) {
+				role_code = roleObj.getRole_code();
+				for(UserRole userRole : userRoleList){
+					if(role_code.equals(userRole.getRole_code())){
+						flag = true;
+						break;
+					}else{
+						flag = false;
+					}
+				}
+				ztreeNode.addChild((new ZtreeNode(roleObj.getRole_code()
+						.toString(), "",
+						roleObj.getRole_name(), true, false, flag)));
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return ztreeNode;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/addUserRole")
+	public Map<String, Object> addUserRole(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String login_name = request.getParameter("login_name");
+		String role_ids = request.getParameter("role_ids");
+		boolean flag = this.roleService.addUserRole(login_name, role_ids);
+		if (flag) {
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/addUserFuncright")
+	public Map<String, Object> addUserFuncright(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String role_id = request.getParameter("role_id");
+		String funcright_ids = request.getParameter("funcright_ids");
+		boolean flag = this.roleService.addUserFuncright(role_id, funcright_ids);
+		if (flag) {
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
 }

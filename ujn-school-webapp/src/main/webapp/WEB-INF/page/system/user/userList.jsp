@@ -54,7 +54,7 @@
 						<th>用户类型</th>
 						<th>状态</th>
 						<th>部门</th>
-						<th width="20%">操作</th>
+						<th width="25%">操作</th>
 					</tr>
 				</thead>
 				<!-- tbody是必须的 -->
@@ -165,7 +165,7 @@
 													},{
 														"name" : "授权",
 														"fn" : "toRole(\'"
-																+ row.id
+																+ row.login_name
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
 														"display" : row.zt == '1'? false:true
@@ -355,14 +355,14 @@
 		}
 		
 		//用户授权：添加角色
-		function toRole(id){
+		function toRole(login_name){
 			layer.open({
 			    type: 2,
 			    maxmin:true,
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户授权</div></strong>","background-color: #5a97df"],
-			    area: ['400px', '600px'],
+			    area: ['50%', '80%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/system/controller/userController/toUserRole'
+			    content: '${pageContext.request.contextPath}/system/controller/userController/toUserRole?login_name='+login_name
 			 });
 		}
 		//查看明细

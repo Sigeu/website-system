@@ -272,7 +272,7 @@
 			    type: 2,
 			    maxmin:true,
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;角色授权</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
+			    area: ['50%', '80%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleFuncright?id='+id
 			 });

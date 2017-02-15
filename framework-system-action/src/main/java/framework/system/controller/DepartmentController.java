@@ -125,7 +125,6 @@ public class DepartmentController extends MyBaseController{
 			e.printStackTrace();
 		}
 		
-		
 		return ztreeNode;
 	}
 	

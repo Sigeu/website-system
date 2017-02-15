@@ -21,8 +21,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Funcright;
+import framework.system.model.RoleFuncright;
 import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.ZtreeNode;
 import framework.system.service.IFuncrightService;
 
 /**
@@ -223,5 +225,40 @@ public class FuncrightController extends MyBaseController {
 		}
 		return map;
 	}
-
+	
+	@ResponseBody
+	@RequestMapping("/queryFuncrightTree")
+	public ZtreeNode queryFuncrightTree(HttpServletRequest request, HttpServletResponse response,Funcright funcright){
+		ZtreeNode ztreeNode = null;
+		//返回的数据
+		try {
+			String role_id = request.getParameter("role_id");
+			List<Funcright>  funcrightList = this.funcrightService.queryFuncrightTree(funcright);
+			List<RoleFuncright>  roleFuncrightList = this.funcrightService.queryRoleFuncrightTree(role_id);
+			//根节点
+			ztreeNode = new ZtreeNode("", null,"系统菜单", true, false, false);
+			String funcright_code = "";
+			boolean flag = false;
+			for (Funcright funcrightObj : funcrightList) {
+				funcright_code = funcrightObj.getFuncright_code();
+				for(RoleFuncright roleFuncright : roleFuncrightList){
+					if(funcright_code.equals(roleFuncright.getFuncright_code())){
+						flag = true;
+						break;
+					}else{
+						flag = false;
+					}
+				}
+				ztreeNode.addChild((new ZtreeNode(funcrightObj.getFuncright_code()
+						.toString(), "",
+						funcrightObj.getFuncright_name(), true, false, flag)));
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return ztreeNode;
+	}
 }

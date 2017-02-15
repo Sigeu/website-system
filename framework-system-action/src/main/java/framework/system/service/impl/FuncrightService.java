@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import framework.system.dao.FuncrightMapper;
+import framework.system.dao.RoleFuncrightMapper;
 import framework.system.model.Funcright;
+import framework.system.model.RoleFuncright;
 import framework.system.service.IFuncrightService;
 
 /**   
@@ -25,6 +27,9 @@ import framework.system.service.IFuncrightService;
 public class FuncrightService implements IFuncrightService {
 	@Resource
 	private FuncrightMapper funcrightMapper;
+	
+	@Resource
+	private RoleFuncrightMapper roleFuncrightMapper;
 
 	@Override
 	public int updateFuncright(Funcright funcright) {
@@ -54,6 +59,18 @@ public class FuncrightService implements IFuncrightService {
 	public int deleteFuncright(int funcrightId) {
 		
 		return funcrightMapper.deleteByPrimaryKey(funcrightId);
+	}
+
+	@Override
+	public List<Funcright> queryFuncrightTree(Funcright funcright) {
+		// TODO Auto-generated method stub
+		return funcrightMapper.queryFuncrightTree(funcright);
+	}
+
+	@Override
+	public List<RoleFuncright> queryRoleFuncrightTree(String role_id) {
+		// TODO Auto-generated method stub
+		return roleFuncrightMapper.queryRoleFuncrightTree(role_id);
 	}
 	
 

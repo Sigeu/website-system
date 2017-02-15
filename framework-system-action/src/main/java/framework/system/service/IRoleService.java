@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import framework.system.model.Role;
+import framework.system.model.UserRole;
 
 /**   
  * @Description: TODO 
@@ -41,6 +42,18 @@ public interface IRoleService {
 	 * @return
 	 */
 	List<Role> getRoleSelectList();
+
+
+	List<Role> queryRoleTree(Role role);
+
+
+	List<UserRole> queryUserRoleTree(String user_code);
+
+
+	boolean addUserRole(String login_name,String role_ids);
+
+
+	boolean addUserFuncright(String role_id, String funcright_ids);
 
 
 }

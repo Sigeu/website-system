@@ -119,4 +119,18 @@
       status = #{status,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  <select id="queryUserRoleTree" parameterType="string" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_user_role
+    where user_code = #{user_code,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByUserCode" parameterType="string">
+    delete from ujn_user_role
+    where user_code = #{login_name,jdbcType=INTEGER}
+  </delete>
 </mapper>

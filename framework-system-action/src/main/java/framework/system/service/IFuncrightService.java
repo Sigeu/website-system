@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import framework.system.model.Funcright;
+import framework.system.model.RoleFuncright;
 
 
 /**   
@@ -36,5 +37,11 @@ public interface IFuncrightService {
 
 	int deleteFuncright(int funcrightId);
 
+
+
+	List<Funcright> queryFuncrightTree(Funcright funcright);
+
+
+	List<RoleFuncright> queryRoleFuncrightTree(String role_id);
 
 }

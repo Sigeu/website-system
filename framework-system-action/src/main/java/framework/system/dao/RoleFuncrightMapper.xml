@@ -121,4 +121,16 @@
       status = #{status,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="queryRoleFuncrightTree" parameterType="string" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_role_funcright
+    where role_code = #{role_id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByRoleCode" parameterType="string">
+    delete from ujn_role_funcright
+    where role_code = #{role_id,jdbcType=INTEGER}
+  </delete>
 </mapper>

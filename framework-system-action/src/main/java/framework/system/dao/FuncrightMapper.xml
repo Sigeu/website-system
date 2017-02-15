@@ -281,4 +281,10 @@
     <include refid="Base_Column_List" />
     from ujn_funcright
   </select>
+  
+    <select id="queryFuncrightTree" parameterType="framework.system.model.Funcright" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_funcright
+  </select>
 </mapper>

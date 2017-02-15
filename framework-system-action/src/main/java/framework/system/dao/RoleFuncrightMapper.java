@@ -1,5 +1,7 @@
 package framework.system.dao;
 
+import java.util.List;
+
 import framework.system.model.RoleFuncright;
 
 public interface RoleFuncrightMapper {
@@ -50,4 +52,8 @@ public interface RoleFuncrightMapper {
      * @mbg.generated Wed Jan 18 11:12:08 CST 2017
      */
     int updateByPrimaryKey(RoleFuncright record);
+
+	List<RoleFuncright> queryRoleFuncrightTree(String role_code);
+
+	void deleteByRoleCode(String role_id);
 }

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import framework.system.model.Role;
 import framework.system.model.User;
 import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
@@ -86,9 +85,8 @@ public class UserController extends MyBaseController{
 	@RequestMapping("/toUserRole")
 	public String toUserRole(HttpServletRequest request, Model model){
 		try {
-			//角色下拉列表
-			//List<Role> roleList = roleService.getRoleSelectList();
-			//model.addAttribute("roleList", roleList);
+			String login_name = request.getParameter("login_name");
+			model.addAttribute("login_name", login_name);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

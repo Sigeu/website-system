@@ -1,5 +1,7 @@
 package framework.system.dao;
 
+import java.util.List;
+
 import framework.system.model.UserRole;
 
 public interface UserRoleMapper {
@@ -50,4 +52,8 @@ public interface UserRoleMapper {
      * @mbg.generated Wed Feb 15 00:35:15 CST 2017
      */
     int updateByPrimaryKey(UserRole record);
+
+	List<UserRole> queryUserRoleTree(String user_code);
+
+	void deleteByUserCode(String login_name);
 }

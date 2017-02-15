@@ -54,4 +54,6 @@ public interface FuncrightMapper {
     int updateByPrimaryKey(Funcright record);
 
 	List<Funcright> queryFuncrightList(Funcright funcright);
+
+	List<Funcright> queryFuncrightTree(Funcright funcright);
 }

@@ -67,4 +67,6 @@ public interface RoleMapper {
 	 * @return
 	 */
 	List<Role> getRoleSelectList();
+
+	List<Role> queryRoleTree(Role role);
 }
