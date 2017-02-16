@@ -41,7 +41,18 @@ public interface IFuncrightService {
 
 	List<Funcright> queryFuncrightTree(Funcright funcright);
 
-
+	/**
+	 * 
+	 * @param role_id
+	 * @return
+	 */
 	List<RoleFuncright> queryRoleFuncrightTree(String role_id);
+
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
+	List<RoleFuncright> queryUserFuncright(String username);
 
 }

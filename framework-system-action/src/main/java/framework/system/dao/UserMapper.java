@@ -75,7 +75,7 @@ public interface UserMapper {
 
 	Set<String> queryUserPermissionsByUserName(String username);
 
-	User queryUserByUserName(String username);
+	User queryUserByUserName(String login_name);
 
 	int stopUser(int userId);
 

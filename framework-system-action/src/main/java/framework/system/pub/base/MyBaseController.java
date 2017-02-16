@@ -3,8 +3,10 @@ package framework.system.pub.base;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import framework.system.model.User;
 
 /**
  * 基类：提取一些公用的方法
@@ -12,27 +14,23 @@ import javax.servlet.http.HttpServletResponse;
  * @author lizhaotao lzh_me@126.com
  * @date 2016年12月22日 下午2:55:55
  */
-public class MyBaseController{
+public class MyBaseController {
 
 	/**
-	 *  
+	 * 
 	 * @Description: 获取保存在Session中的用户对象
 	 * @param request
-	 * @return
-	 * User
+	 * @return User
 	 */
-	/*protected User getSessionUser(HttpServletRequest request) {
-		//UserSessionUtil.getUser(request);
+	protected User getSessionUser(HttpServletRequest request) {
 		
-		return (User) UserSessionUtil.getUser(request);
-	}*/
+		return (User) request.getSession().getAttribute(SESSION_USER_KEY);
+	}
 
 	// 将用户对象保存到Session中
-	/*
-	 * protected void setSessionUser(HttpServletRequest request,User user) {
-	 * request.getSession().setAttribute(CommonConstant.USER_CONTEXT, user); }
-	 */
-	
+	protected void setSessionUser(HttpServletRequest request, User user) {
+		request.getSession().setAttribute(SESSION_USER_KEY, user);
+	}
 
 	/**
 	 * 将返回结果通过IO返回到前台
@@ -79,17 +77,16 @@ public class MyBaseController{
 			}
 		}
 	}
-	
-	//用户session key=
+
+	// 用户session key=
 	public static final String SESSION_USER_KEY = "session_user";
 	// 返回的KEY
 	public static final String RESULT_MESSAGE_STRING = "result_message";
 
-	//结果数
+	// 结果数
 	public static final int RESULT_COUNT_0 = 0;
 	public static final int RESULT_COUNT_1 = 1;
-	
-	
+
 	// 保存成功
 	public static final String SAVE_SUCESS_MESSAGE = "保存成功！";
 	public static final String DELETE_SUCESS_MESSAGE = "保存成功！";
@@ -109,9 +106,8 @@ public class MyBaseController{
 	public static final String STATUS_CODE_1 = "1";
 	public static final String STATUS_CODE_2 = "2";
 	public static final String STATUS_CODE_3 = "3";
-	
-	
-	//流程字段
+
+	// 流程字段
 	public static final String INSPECTOR_INFO_AUDIT = "inspectorInfoAudit";
 	public static final String INSTANCE_ID = "instanceId";
 

@@ -133,4 +133,15 @@
     delete from ujn_role_funcright
     where role_code = #{role_id,jdbcType=INTEGER}
   </delete>
+  
+  
+  <select id="queryRoleFuncright" parameterType="string" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_role_funcright
+    where role_code in
+    <foreach collection="userRoleList" index="index" item="item" open="(" separator="," close=")">
+              #{item.role_code}
+	</foreach>
+  </select>
 </mapper>

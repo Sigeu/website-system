@@ -394,4 +394,12 @@
 		set status = '1'
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
+	
+	<select id="queryUserByUserName" parameterType="string"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ujn_user
+		where login_name = #{login_name}
+	</select>
 </mapper>

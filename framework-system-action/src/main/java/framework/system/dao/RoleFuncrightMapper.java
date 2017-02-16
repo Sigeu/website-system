@@ -3,6 +3,7 @@ package framework.system.dao;
 import java.util.List;
 
 import framework.system.model.RoleFuncright;
+import framework.system.model.UserRole;
 
 public interface RoleFuncrightMapper {
     /**
@@ -56,4 +57,6 @@ public interface RoleFuncrightMapper {
 	List<RoleFuncright> queryRoleFuncrightTree(String role_code);
 
 	void deleteByRoleCode(String role_id);
+
+	List<RoleFuncright> queryRoleFuncright(List<UserRole> userRoleList);
 }
