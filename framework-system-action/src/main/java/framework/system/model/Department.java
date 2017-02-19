@@ -45,6 +45,7 @@ public class Department {
      * @mbg.generated Wed Jan 18 11:12:08 CST 2017
      */
     private String parent_code;
+    private String parent_name;
 
     /**
      *
@@ -594,4 +595,12 @@ public class Department {
     public void setUpdate_user_id(String update_user_id) {
         this.update_user_id = update_user_id == null ? null : update_user_id.trim();
     }
+
+	public String getParent_name() {
+		return parent_name;
+	}
+
+	public void setParent_name(String parent_name) {
+		this.parent_name = parent_name;
+	}
 }

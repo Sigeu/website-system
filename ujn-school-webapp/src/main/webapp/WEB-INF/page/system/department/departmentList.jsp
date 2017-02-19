@@ -58,6 +58,7 @@
 		</table>
 			<table id="data_table" style="width: 98%" style="text-align: center;"
 				class="table table-border table-bordered  table-hover table-striped">
+				<input type="hidden" name="parent_code" id="parent_code" value="" >
 				<thead>
 					<tr class="text-c mybg">
 						<th>序号</th>
@@ -97,9 +98,23 @@
 				simpleData: {
 					enable: true
 				}
+			},
+			callback: {
+				onClick: toShowList
 			}
 		};
-
+	
+	function toShowList(event, treeId, treeNode, clickFlag){
+		//查询条件
+		var param = {
+			"treeNode" : treeNode.id
+		};
+		$('#parent_code').val(treeNode.id);
+		var myTable = $("#data_table").DataTable();
+		myTable.settings()[0].ajax.data = param;
+		myTable.ajax.reload();
+	}
+	
 		$(function(){
 			$.ajax({
 				 type: "post",
@@ -116,31 +131,6 @@
                 },
 			 });
 			
-			$('#submit_but').on('click',function(){
-				var treeObj = $.fn.zTree.getZTreeObj("dept_tree");
-				var nodes = treeObj.getCheckedNodes(true);
-				var node_ids = '';
-			   	 $(nodes).each(function(index,element){
-			   		node_ids += element.id + ",";
-			   	 });
-			   	var role_id = $('#role_id').val();
-		        $('#menu_from').ajaxSubmit({
-		            type: 'post', // 提交方式 get/post
-		            url: '${pageContext.request.contextPath}/role/saveRoleMenu.do', // 需要提交的 url
-		            dataType : "json",
-		            data: {
-		                'role_id': role_id,
-		                'role_menu': node_ids
-		            },
-		            success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
-		                // 此处可对 data 作相关处理
-		                alert(data.result_message);
-		                parent.closeWin();
-		            }
-		           // $('#menu_from').resetForm(); // 提交后重置表单
-		        });
-		       // return false; // 阻止表单自动提交事件
-			});
 		});
 		
 		//初始化
@@ -186,7 +176,7 @@
 									data : "dept_main",
 									defaultContent : ""
 								}, {
-									data : "parent_code",
+									data : "manager_user_id",
 									defaultContent : ""
 								}, {
 									data : "contact_tel",
@@ -216,13 +206,6 @@
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
 														"display" : row.zt == '1'? true:false
-													},{
-														"name" : "授权",
-														"fn" : "toIssue(\'"
-																+ row.id
-																+ "\')",
-														"type" : "danger-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
 													},{
 														"name" : "查看",
 														"fn" : "toDetail(\'"
@@ -284,10 +267,10 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加用户</div></strong>","background-color: #5a97df"],
+				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加部门</div></strong>","background-color: #5a97df"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: '${pageContext.request.contextPath}/system/controller/userController/toUserAdd'
+				    content: '${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentAdd?parent_code=' + $('#parent_code').val()
 				 });
 			});
 			
@@ -303,10 +286,10 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改部门</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiEdit.do?id='+id
+			    content: '${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentUpdate?id='+id
 			 });
 		}
 		
@@ -315,24 +298,13 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;部门明细</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiDetail.do?id='+id
+			    content: '${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentDetail?id='+id
 			 });
 		}
-		
-		//考生列表
-		function toShowList(id){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShengXinXiController/toKaoShengXinXiList.do?kscc='+id
-			 });
-		}
+
 		
 	</script>
 </body>

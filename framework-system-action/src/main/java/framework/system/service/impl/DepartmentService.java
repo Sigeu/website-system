@@ -49,18 +49,23 @@ public class DepartmentService implements IDepartmentService {
 
 
 	@Override
-	public List<Department> queryDepartmentTree(Department department) {
+	public int addDepartment(Department department) {
 		// TODO Auto-generated method stub
-		List<Department> departmentList = departmentMapper.queryDepartmentList(department);
-		if(null != departmentList){
-			for(Department dept : departmentList){
-				
-				
-			}
-		}
-		
-		
-		return null;
+		return departmentMapper.insert(department);
+	}
+
+
+	@Override
+	public Department getDepartmentByCode(String parent_code) {
+		// TODO Auto-generated method stub
+		return departmentMapper.getDepartmentByCode(parent_code);
+	}
+
+
+	@Override
+	public int updateDepartment(Department department) {
+		// TODO Auto-generated method stub
+		return departmentMapper.updateByPrimaryKeySelective(department);
 	}
 
 }

@@ -39,12 +39,11 @@ public interface IDepartmentService {
 	 */
 	int saveDepartment(Department department);
 	
-	/**
-	 * 
-	 * @Description: 部门树 
-	 * @param department
-	 * @return
-	 */
-	List<Department> queryDepartmentTree(Department department);
+
+	int addDepartment(Department department);
+
+	Department getDepartmentByCode(String parent_code);
+
+	int updateDepartment(Department department);
 
 }

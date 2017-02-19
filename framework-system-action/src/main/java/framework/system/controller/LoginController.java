@@ -22,7 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import framework.system.model.Log;
-import framework.system.model.User;
 import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DateUtil;
 import framework.system.service.ILogService;

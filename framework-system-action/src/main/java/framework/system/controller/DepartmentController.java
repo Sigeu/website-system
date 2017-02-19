@@ -4,7 +4,6 @@
  */
 package framework.system.controller;
 
-import java.awt.Menu;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -74,6 +73,8 @@ public class DepartmentController extends MyBaseController{
 		//使用DataTables的属性接收分页数据
 		DataTablePageUtil<Department> dataTable = null;
 		try {
+			String treeNode = request.getParameter("treeNode")==null? "":request.getParameter("treeNode");
+			department.setParent_code(treeNode);
 			//使用DataTables的属性接收分页数据
 			dataTable = new DataTablePageUtil<Department>(request);
 			//开始分页：PageHelper会处理接下来的第一个查询
@@ -135,24 +136,50 @@ public class DepartmentController extends MyBaseController{
 		int departmentId = Integer.parseInt(request.getParameter("id"));
 		Department department = this.departmentService.getDepartmentById(departmentId);
 		model.addAttribute("department", department);
-		return "showDepartment";
+		
+		Department dept = departmentService.getDepartmentByCode(department.getParent_code());
+		model.addAttribute("parent_name", dept.getDept_name());
+		
+		return "system/department/departmentEdit";
 	}
 	
-	
-	
-	//更新
-	@RequestMapping("/updateDepartment")
-	public String updateDepartment(HttpServletRequest request,Model model){
+	@RequestMapping("/toDepartmentDetail")
+	public String toDepartmentDetail(HttpServletRequest request,Model model){
 		int departmentId = Integer.parseInt(request.getParameter("id"));
 		Department department = this.departmentService.getDepartmentById(departmentId);
 		model.addAttribute("department", department);
-		return "showDepartment";
+		
+		Department dept = departmentService.getDepartmentByCode(department.getParent_code());
+		if(null == dept){
+			model.addAttribute("parent_name","无上级部门");
+		}else{
+			model.addAttribute("parent_name", dept.getDept_name());
+		}
+		
+		
+		return "system/department/departmentDetail";
+	}
+	
+	
+	//更新
+	@ResponseBody
+	@RequestMapping("/updateDepartment")
+	public Map<String,Object> updateDepartment(HttpServletRequest request,Department department){
+		Map<String,Object> map = new HashMap<String,Object>();
+ 		int count = this.departmentService.updateDepartment(department);
+		if(RESULT_COUNT_1 == count){
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+		
+		return map;
 	}
 	
 	//保存
 	@ResponseBody
 	@RequestMapping("/saveDepartment")
-	public Map<String,Object> saveDepartment(HttpServletRequest request,Department department,Model model){
+	public Map<String,Object> saveDepartment(HttpServletRequest request,Department department){
 		Map<String,Object> map = new HashMap<String,Object>();
  		int count = this.departmentService.saveDepartment(department);
 		if(RESULT_COUNT_1 == count){
@@ -165,17 +192,34 @@ public class DepartmentController extends MyBaseController{
 	}
 	
 	@RequestMapping("/toDepartmentAdd")
-	public String toDepartmentAdd(Model model){
+	public String toDepartmentAdd(HttpServletRequest request,Model model){
+		String parent_code = request.getParameter("parent_code")==null? "":request.getParameter("parent_code");
+		//if("0".equals(parent_code)){
+			model.addAttribute("parent_code", parent_code);
+			Department department = departmentService.getDepartmentByCode(parent_code);
+			if(null == department){
+				model.addAttribute("parent_name","无上级部门");
+			}else{
+				model.addAttribute("parent_name", department.getDept_name());
+			}
+			
+		//}
 		return "system/department/departmentAdd";
 	}
 	
 	//添加
+	@ResponseBody
 	@RequestMapping("/addDepartment")
-	public String addDepartment(HttpServletRequest request,Model model){
-		int departmentId = Integer.parseInt(request.getParameter("id"));
-		Department department = this.departmentService.getDepartmentById(departmentId);
-		model.addAttribute("department", department);
-		return "showDepartment";
+	public Map<String,Object> addDepartment(HttpServletRequest request,Department department){
+		Map<String,Object> map = new HashMap<String,Object>();
+ 		int count = this.departmentService.addDepartment(department);
+		if(RESULT_COUNT_1 == count){
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+		
+		return map;
 	}
 	
 	//删除
