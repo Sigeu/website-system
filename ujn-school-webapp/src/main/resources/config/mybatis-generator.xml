@@ -23,19 +23,19 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 
-		<javaModelGenerator targetPackage="ujn.school.cn.model.link"
+		<javaModelGenerator targetPackage="ujn.school.cn.model.content"
 			targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>  
             <property name="trimStrings" value="true"/>  
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="ujn.school.cn.dao.link"
+		<sqlMapGenerator targetPackage="ujn.school.cn.dao.content"
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="ujn.school.cn.dao.link" targetProject="src/main/java">
+			targetPackage="ujn.school.cn.dao.content" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			
 		</javaClientGenerator>
@@ -128,7 +128,7 @@
 			<generatedKey column="id" sqlStatement="Mysql" />
 		</table> -->
 		
-		<table tableName="ujn_link" domainObjectName="Link"
+		<table tableName="ujn_content" domainObjectName="Content"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false" >
