@@ -6,11 +6,9 @@ package ujn.school.cn.controller.column;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.column.ColumnWithBLOBs;
-import ujn.school.cn.pub.util.MyTree;
-import ujn.school.cn.pub.util.Node;
 import ujn.school.cn.service.column.IColumnService;
 
 import com.github.pagehelper.PageHelper;
@@ -32,7 +28,6 @@ import com.github.pagehelper.PageInfo;
 
 import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
-import framework.system.pub.util.ZtreeNode;
 
 /**
  * @Description: 栏目管理
@@ -68,39 +63,28 @@ public class ColumnController extends MyBaseController {
 	@RequestMapping("/toColumnAdd")
 	public String toColumnAdd(HttpServletRequest request, Model model) {
 		
+		// 还是使用List，方便后期用到
+		List<Column> columnList = this.columnService
+				.queryColumnList(null);
+		//处理栏目名称
+		for(Column co : columnList){
+			if(2 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;" + co.getName());
+			}else if(3 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
+			}else if(4 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
+			}else{
+				//co.setName(co.getName());
+			}
+		}
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
+		model.addAttribute("columnList", columnLinkedList);
+					
 		return "column/columnAdd";
 	}
 	
-	
-	@ResponseBody
-	@RequestMapping("/queryColumnTree")
-	public Map<String,String> queryColumnTree(HttpServletRequest request, HttpServletResponse response){
-		Map<String,String> map = new HashMap<String,String>();
-		try {
-			Column columnParam = new Column();
-			List<Column> columnList = columnService.queryColumnList(columnParam);
-			List<Node> nodeList = new ArrayList<Node>();
-			Node node = null;
-			for (Column column : columnList) {
-				node = new Node();
-				node.setId(column.getId());  
-				node.setName(column.getName());  
-				node.setParentId(column.getBig_class());  
-				node.setClass_type(column.getClass_type());
-				nodeList.add(node);
-			}
-			
-			MyTree tree = new MyTree(nodeList);  
-	        //System.out.println(tree.buildTree()+ "\r\n</select>"); 
-	        String selectHtml = tree.buildTree()+ "\r\n</select>";
-	        map.put("selectHtml", selectHtml);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		return map;
-	}
 	
 	/**
 	 * 
@@ -134,42 +118,14 @@ public class ColumnController extends MyBaseController {
 		return map;
 	}
 	
+	
 	/**
-	 * 
-	 * @param ztreeNodeList
+	 * 排序
+	 * @param list
+	 * @param result
+	 * @param father
 	 * @return
 	 */
-	public ZtreeNode listToJson(List<ZtreeNode> ztreeNodeList){
-		 // 根节点  
-       ZtreeNode rootNode = null; 
-       // 节点列表（散列表，用于临时存储节点对象）  
-       HashMap<String,ZtreeNode> nodeMap = new HashMap<String,ZtreeNode>();  
-       // 将结果集存入散列表（后面将借助散列表构造多叉树）  
-       if(null != ztreeNodeList){
-			for(ZtreeNode node : ztreeNodeList){
-				//这里是ID
-				nodeMap.put(node.getId(), node);
-			}
-		}
-       // 构造无序的多叉树  
-       Set<?> entrySet = nodeMap.entrySet();  
-       for (Iterator<?> it = entrySet.iterator(); it.hasNext();) {  
-           @SuppressWarnings("rawtypes")
-			ZtreeNode node = (ZtreeNode) ((Map.Entry) it.next()).getValue();  
-           if (null == node.getPid() || "0".equals(node.getPid()) || "".equals(node.getPid()) ) {  
-           	rootNode = node;  
-           } else {  
-           	//这里是PID
-               nodeMap.get(node.getPid()).addChild(node);  
-           }  
-       }  
-		
-       rootNode.sortChildren();  
-		
-		return rootNode;
-	}
-	
-	
 	protected LinkedList<Column> toSort(List<Column> list,
 			LinkedList<Column> result, int father) {
 		List<Column> temp = new ArrayList<Column>();
@@ -222,8 +178,27 @@ public class ColumnController extends MyBaseController {
 		int columnId = Integer.parseInt(request.getParameter("id"));
 		Column column = this.columnService.queryColumnById(columnId);
 		model.addAttribute("column", column);
+		
+		// 还是使用List，方便后期用到
+		List<Column> columnList = this.columnService
+				.queryColumnList(null);
+		//处理栏目名称
+		for(Column co : columnList){
+			if(2 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;" + co.getName());
+			}else if(3 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
+			}else if(4 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
+			}else{
+				//co.setName(co.getName());
+			}
+		}
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
+		model.addAttribute("columnList", columnLinkedList);
 
-		return "system/column/columnUpdate";
+		return "column/columnUpdate";
 	}
 
 	/**
@@ -239,7 +214,7 @@ public class ColumnController extends MyBaseController {
 		Column column = this.columnService.queryColumnById(columnId);
 		model.addAttribute("column", column);
 
-		return "system/column/column";
+		return "column/columnDetail";
 	}
 
 	/**
@@ -266,8 +241,26 @@ public class ColumnController extends MyBaseController {
 			// 还是使用List，方便后期用到
 			List<Column> columnList = this.columnService
 					.queryColumnList(column);
+			//处理栏目名称
+			for(Column co : columnList){
+				if(2 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;" + co.getName());
+				}else if(3 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;&mdash;" + co.getName());
+				}else if(4 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
+				}else{
+					//co.setName(co.getName());
+				}
+			}
+			//排序
+			LinkedList<Column> result = new LinkedList<Column>();
+			LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
+			//转换为ArrayList
+			List<Column> resultList = new ArrayList<Column>(columnLinkedList);
+			
 			// 用PageInfo对结果进行包装
-			PageInfo<Column> pageInfo = new PageInfo<Column>(columnList);
+			PageInfo<Column> pageInfo = new PageInfo<Column>(resultList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -310,30 +303,15 @@ public class ColumnController extends MyBaseController {
 	 * 
 	 * @Description: 更新
 	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/updateColumn")
-	public String updateColumn(HttpServletRequest request, Model model) {
-		int columnId = Integer.parseInt(request.getParameter("id"));
-		Column column = this.columnService.queryColumnById(columnId);
-		model.addAttribute("column", column);
-		return "showColumn";
-	}
-
-	/**
-	 * 
-	 * @Description: 保存
-	 * @param request
 	 * @param column
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/saveColumn")
-	public Map<String, Object> saveColumn(HttpServletRequest request,
+	@RequestMapping("/updateColumn")
+	public Map<String, Object> updateColumn(HttpServletRequest request,
 			ColumnWithBLOBs column) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int count = this.columnService.saveColumn(column);
+		int count = this.columnService.updateColumn(column);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {

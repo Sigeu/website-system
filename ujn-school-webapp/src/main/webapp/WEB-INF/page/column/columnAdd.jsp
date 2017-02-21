@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -13,10 +14,16 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/column/controller/columnController/addColumn" method="post" class="form form-horizontal" id="form-column-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上级栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
 				<!-- <ul id="column_tree" class="ztree"></ul> -->
 				<span class="select-box" id="sel_span">
+					<select class="select" id="big_class" name="big_class"> 
+						<option value="0">--请选择--</option>  
+                        <c:forEach items="${columnList}" var="column">  
+                        	<option value="${column.id}">${column.name}</option>  
+                        </c:forEach>  
+                    </select> 
 				</span>
 			</div>
 		</div>
@@ -38,22 +45,22 @@
 				<select name="class_type" class="select">
 					<option value="0">一级分类</option>
 					<option value="1">二级分类</option>
-					<option value="11">三级级分类</option>
-					<option value="12">四级分类</option>
+					<option value="3">三级级分类</option>
+					<option value="4">四级分类</option>
 				</select>
 				</span> 
 			</div>
 		</div>
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">内容分类：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="内容分类" id="module" name="module">
 			</div>
-		</div>
+		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="链接到网站外部的网址" id="links" name="links">
+				<input type="text" class="input-text" value="" placeholder="外部网址，填写后会跳转到目标网址" id="out_url" name="out_url">
 			</div>
 		</div>
 		</br>
@@ -69,33 +76,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
 <script type="text/javascript">
-var setting = {
-		check: {
-			enable: true,
-			nocheckInherit: true
-		},
-		data: {
-			simpleData: {
-				enable: true
-			}
-		}
-	};
-
-	$(function(){
-		$.ajax({
-			 type: "post",
-			 url: "${pageContext.request.contextPath}/column/controller/columnController/queryColumnTree",
-             data: {},
-             dataType: "json",
-             success: function(data){
-                 $("#sel_span").append(data.selectHtml);
-             },
-             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                layer.alert("分类栏目获取失败！");
-            },
-		 });
-		
-	});
 	
 /* $(function(){
 	//UE编辑器

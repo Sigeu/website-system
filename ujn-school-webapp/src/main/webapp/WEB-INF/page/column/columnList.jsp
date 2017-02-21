@@ -18,24 +18,10 @@
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>用户名称:</strong>&nbsp;&nbsp;
+						<strong>栏目名称:</strong>&nbsp;&nbsp;
 					</td>
 					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
 						name="ksccmc" class="input-text input-collspace size-MINI" />
-					</td>
-					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>注册时间起止:</strong>&nbsp;&nbsp;
-					</td>
-					<td width="10%" >
-						<input id="kssj_start" type="text" name="date_start" type="text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'kssj_end\')||\'2020-10-01\'}'})" class="input-text input-collspace size-MINI" /> 
-					</td>
-					<td width="10%" >
-						<input id="kssj_end" type="text" name="date_end" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'kssj_start\')}',maxDate:'2020-10-01'})" class="input-text input-collspace size-MINI" />
-					</td>
-					<td align="right" width="10%" nowrap="nowrap" class="mybg"><strong>考试地点:</strong>&nbsp;
-					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksdd"
-						name="ksdd" value="" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -65,9 +51,9 @@
 						<th>序号</th>
 						<th>排序</th>
 						<th>栏目名称</th>
-						<th>所属模块</th>
+						<!-- <th>所属模块</th> -->
 						<th>显示位置</th>
-						<th>是否前台显示</th>
+						<!-- <th>是否前台显示</th> -->
 						<!-- <th>栏目级别</th>
 						<th>打开方式</th> -->
 						<th width="15%">操作</th>
@@ -133,16 +119,16 @@
 								}, {
 									data : "name",
 									defaultContent : ""
-								}, {
+								}, /* {
 									data : "module",
 									defaultContent : ""
-								}, {
-									data : "nav",
+								},  */{
+									data : "nav_name",
 									defaultContent : ""
-								}, {
+								}, /* {
 									data : "display",
 									defaultContent : ""
-								}, {
+								},  */{
 									data : null
 								} ],
 								columnDefs : [ {
@@ -271,19 +257,19 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改栏目</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiEdit.do?id='+id
+			    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnUpdate?id='+id
 			 });
 		}
-		//发布
+		//删除
 		function toIssue(id){
-			layer.confirm("确认要发布吗？已发布的信息不可再修改。", {
+			layer.confirm("确认要删除吗？栏目下的内容也会一并删！。", {
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/issueKaoShiChangCi.do" ,
+						    url: "${pageContext.request.contextPath}/column/controller/columnController/deleteColumn" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
@@ -307,22 +293,10 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;栏目明细</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiDetail.do?id='+id
-			 });
-		}
-		
-		//考生列表
-		function toShowList(id){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShengXinXiController/toKaoShengXinXiList.do?kscc='+id
+			    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnDetail?id='+id
 			 });
 		}
 		

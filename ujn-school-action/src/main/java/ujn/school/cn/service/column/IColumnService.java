@@ -35,10 +35,10 @@ public interface IColumnService {
 	
 	/**
 	 * 
-	 * @Description: 用户保存 
+	 * @Description: 保存 
 	 * @param column
 	 */
-	int saveColumn(ColumnWithBLOBs column);
+	int updateColumn(ColumnWithBLOBs column);
 	
 	/**
 	 * 

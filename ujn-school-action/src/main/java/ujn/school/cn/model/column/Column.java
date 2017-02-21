@@ -81,6 +81,7 @@ public class Column {
      * @mbg.generated Mon Feb 06 11:15:53 CST 2017
      */
     private Integer nav;
+    private String nav_name;
 
     /**
      *
@@ -825,4 +826,12 @@ public class Column {
     public void setAdd_class(String add_class) {
         this.add_class = add_class == null ? null : add_class.trim();
     }
+
+	public String getNav_name() {
+		return nav_name;
+	}
+
+	public void setNav_name(String nav_name) {
+		this.nav_name = nav_name;
+	}
 }

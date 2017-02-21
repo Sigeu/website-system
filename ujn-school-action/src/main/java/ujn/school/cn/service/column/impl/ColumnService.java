@@ -36,9 +36,6 @@ public class ColumnService implements IColumnService {
 	 */
 	@Override
 	public Column queryColumnById(int columnId) {
-		//加载xml文件
-        //ApplicationContext  ac = new ClassPathXmlApplicationContext("classpath:config/applicationContext.xml");
-        //columnMapper = (ColumnMapper) ac.getBean("columnMapper");
 
         return columnMapper.selectByPrimaryKey(columnId);
 	}
@@ -66,9 +63,9 @@ public class ColumnService implements IColumnService {
 	 * @see ujn.school.cn.service.column.IColumnService#saveColumn(ujn.school.cn.model.column.ColumnWithBLOBs)
 	 */
 	@Override
-	public int saveColumn(ColumnWithBLOBs column) {
+	public int updateColumn(ColumnWithBLOBs column) {
 		// TODO Auto-generated method stub
-		return columnMapper.insertSelective(column);
+		return columnMapper.updateByPrimaryKeyWithBLOBs(column);
 	}
 
 	/*
