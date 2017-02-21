@@ -7,6 +7,7 @@ package ujn.school.cn.controller.column;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -103,6 +104,38 @@ public class ColumnController extends MyBaseController {
 	
 	/**
 	 * 
+	 * @Description: 树状List数据 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryColumnTreeList")
+	public Map<String,String> queryColumnTreeList(HttpServletRequest request, HttpServletResponse response){
+		Map<String,String> map = new HashMap<String,String>();
+		try {
+			Column columnParam = new Column();
+			List<Column> columnList = columnService.queryColumnList(columnParam);
+			
+			LinkedList<Column> result = new LinkedList<Column>();
+			LinkedList<Column> f = toSort(columnList, result, 0);
+			for (int i = 0; i < f.size(); i++) {
+				System.out.print(f.get(i).getId() + ",");
+				System.out.print(f.get(i).getName() + ",");
+				System.out.print(f.get(i).getBig_class() + ",");
+				System.out.println(f.get(i).getNo_order());
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+	
+	/**
+	 * 
 	 * @param ztreeNodeList
 	 * @return
 	 */
@@ -135,7 +168,48 @@ public class ColumnController extends MyBaseController {
 		
 		return rootNode;
 	}
+	
+	
+	protected LinkedList<Column> toSort(List<Column> list,
+			LinkedList<Column> result, int father) {
+		List<Column> temp = new ArrayList<Column>();
+		// 最高层,临时存放
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getBig_class() == father) {
+				temp.add(list.get(i));
+			}
+		}
 
+		if (temp.size() < 1) {
+			return result;
+		} else { 
+			// 删除最高层
+			for (int j = 0; j < list.size(); j++) {
+				if (list.get(j).getBig_class() == father) {
+					list.remove(j);
+				}
+			}
+			// 对最高层排序
+			for (int i = 0; i < temp.size() - 1; i++) {
+				for (int j = i + 1; j < temp.size(); j++) {
+					if (temp.get(i).getNo_order() > temp.get(j).getNo_order()) {
+						Column column = temp.get(i);
+						temp.set(i, temp.get(j));
+						temp.set(j, column);
+					}
+				}
+			}
+			// 递归
+			for (int i = 0; i < temp.size(); i++) {
+				result.add(temp.get(i));
+				toSort(list, result, temp.get(i).getId());
+			}
+			return result;
+		}
+
+	}
+	
+	
 	/**
 	 * 
 	 * @Description: 跳转到修改页面
