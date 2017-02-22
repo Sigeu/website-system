@@ -95,20 +95,28 @@ public class ColumnController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/queryColumnTreeList")
-	public Map<String,String> queryColumnTreeList(HttpServletRequest request, HttpServletResponse response){
-		Map<String,String> map = new HashMap<String,String>();
+	public Map<String,Object> queryColumnTreeList(HttpServletRequest request, HttpServletResponse response){
+		Map<String,Object> map = new HashMap<String,Object>();
 		try {
-			Column columnParam = new Column();
-			List<Column> columnList = columnService.queryColumnList(columnParam);
-			
-			LinkedList<Column> result = new LinkedList<Column>();
-			LinkedList<Column> f = toSort(columnList, result, 0);
-			for (int i = 0; i < f.size(); i++) {
-				System.out.print(f.get(i).getId() + ",");
-				System.out.print(f.get(i).getName() + ",");
-				System.out.print(f.get(i).getBig_class() + ",");
-				System.out.println(f.get(i).getNo_order());
+			List<Column> columnList = columnService.queryColumnList(null);
+			//处理栏目名称
+			for(Column co : columnList){
+				if(2 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;" + co.getName());
+				}else if(3 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;&mdash;" + co.getName());
+				}else if(4 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
+				}else{
+					//co.setName(co.getName());
+				}
 			}
+			//排序
+			LinkedList<Column> result = new LinkedList<Column>();
+			LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
+			//转换为ArrayList
+			List<Column> resultList = new ArrayList<Column>(columnLinkedList);
+			map.put("resultList", resultList);
 			
 		} catch (Exception e) {
 			// TODO: handle exception

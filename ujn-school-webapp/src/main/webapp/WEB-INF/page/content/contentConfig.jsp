@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -14,13 +13,14 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/content/controller/contentController/addContent" method="post" class="form form-horizontal" id="form-content-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="class1" name="class1">
-					<option value="0">--请选择--</option>  
-                    <c:forEach items="${columnSelectList}" var="column">  
-                    	<option value="${column.id}">${column.name}</option>  
-                    </c:forEach>  
+				<select name="" class="select">
+					<option value="0">一级分类</option>
+					<option value="1">一级分类</option>
+					<option value="11">├二级分类</option>
+					<option value="12">├二级分类</option>
+					<option value="13">├二级分类</option>
 				</select>
 				</span> </div>
 		</div>
@@ -30,12 +30,18 @@
 				<input type="text" class="input-text" value="" placeholder="标题" id="title" name="title">
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">详细内容：</label>
-			<div class="formControls col-xs-8 col-sm-9"> 
-				<script id="editor" name="content" type="text/plain" style="width:100%;height:400px;"></script> 
+		<!-- <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">title标签内容：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="title标签内容" id="ctitle" name="ctitle">
 			</div>
 		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">关键词：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="关键词，多个次以空格分隔" id="keywords" name="keywords">
+			</div>
+		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -47,6 +53,45 @@
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">封面缩略图：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="btn-upload form-group">
+				  <input class="input-text upload-url radius" type="text" name="cover_img_url" id="uploadfile-1" readonly>&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
+				  <input type="file" multiple name="cover_img_url" class="input-file">
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否设置最新：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="设置内容是否是最新内容" id="new_ok" name="new_ok">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否设置为推荐：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="设置是否显示在推荐内容" id="com_ok" name="com_ok">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否设置置顶：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="置顶内容排在最前面" id="top_ok" name="top_ok">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否前台显示：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="是否在主页显示" id="display_type" name="display_type">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">标签：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="内容标签，多个标签以空格分开" id="tag" name="tag">
 			</div>
 		</div>
 		<div class="row cl">
@@ -67,6 +112,24 @@
 				<input type="text" class="input-text" value="" placeholder="链接到网站外部的网址" id="links" name="links">
 			</div>
 		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">点击数：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="点击数" id="hits" name="hits">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">添加时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="添加时间" id="add_time" name="add_time">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">更新时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="内容更新时间" id="update_time" name="update_time">
+			</div>
+		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -77,12 +140,8 @@
 	</form>
 </div>
 <%@ include file="../../../common/footer_form.jsp"%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
 <script type="text/javascript">
 $(function(){
-	//UE编辑器
-	var ue = UE.getEditor('editor');
 	//表单验证
 	//$("#form_").Validform();
 

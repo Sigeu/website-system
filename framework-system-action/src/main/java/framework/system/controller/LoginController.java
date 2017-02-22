@@ -63,7 +63,7 @@ public class LoginController extends MyBaseController {
 				log.setType("");
 				logService.saveLog(log);
 	        } 
-	        return "main/index"; 
+	        return "redirect:/index.jsp"; 
 		} catch (IncorrectCredentialsException e) {  
 	        msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";  
 	        model.addAttribute("message", msg);  
@@ -101,6 +101,20 @@ public class LoginController extends MyBaseController {
 	        return "redirect:/";
 	    }
 		
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request,  Model model) {
+		Subject currentUser = SecurityUtils.getSubject();  
+        currentUser.logout();  
+        return "redirect:/"; 
+		
+	}
+	
+	@RequestMapping("/index")
+	public String index(HttpServletRequest request,  Model model) {
+		
+		return "main/index";
 	}
 	
 	/**
