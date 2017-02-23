@@ -63,4 +63,6 @@ public interface ContentMapper {
     int updateByPrimaryKey(Content record);
 
 	List<Content> queryContentList(Content content);
+
+	List<Content> queryAuditContentList(Content content);
 }

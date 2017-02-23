@@ -29,7 +29,7 @@
 					<li>超级管理员</li>
 					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="#">个人信息</a></li>
+							<li><a href="#" id="userMessage">个人信息</a></li>
 							<li><a href="${pageContext.request.contextPath}/system/controller/loginController/logout">切换账户</a></li>
 							<li><a href="${pageContext.request.contextPath}/system/controller/loginController/logout">退出</a></li>
 						</ul>
@@ -80,7 +80,7 @@
 			<dt><i class="Hui-iconfont">&#xe637;</i> 审核管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="picture-list.html" data-title="审核管理" href="javascript:void(0)">审核管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/audit/controller/auditController/toAuditContentList" data-title="审核管理" href="javascript:void(0)">审核管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -184,6 +184,16 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
 $(function(){
+	$('#userMessage').on('click',function(){
+		layer.open({
+		    type: 2,
+		    maxmin:true,
+		    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户信息</div></strong>","background-color: #5a97df"],
+		    area: ['100%', '100%'],
+		    shadeClose: false, //点击遮罩关闭
+		    content: '${pageContext.request.contextPath}/system/controller/userController/toUserMessage'
+		 });
+	});
 	/*$("#min_title_list li").contextMenu('Huiadminmenu', {
 		bindings: {
 			'closethis': function(t) {

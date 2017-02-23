@@ -48,7 +48,7 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>序号</th>
+						<!-- <th>序号</th> -->
 						<th>排序</th>
 						<th>栏目名称</th>
 						<!-- <th>所属模块</th> -->
@@ -111,9 +111,9 @@
 									render: function (data, type, full, meta) {
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
-								}, {
+								}, /* {
 									data : "id"
-								}, {
+								},  */{
 									data : "no_order",
 									defaultContent : 0
 								}, {
@@ -149,7 +149,7 @@
 																+ row.id
 																+ "\')",
 														"type" : "danger-outline size-MINI radius",
-														"display" : row.zt == '1'? true:false
+														"display" : true
 													},{
 														"name" : "设置",
 														"fn" : "toIssue(\'"

@@ -12,7 +12,7 @@
 			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>更新栏目
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/column/controller/columnController/updateColumn" method="post" class="form form-horizontal" id="form-column-add">
+	<form action="${pageContext.request.contextPath}/column/controller/columnController/updateColumn" method="post" class="form form-horizontal" id="form-column-update">
 		<input type="hidden" name="id" id="id" value="${column.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上级栏目：</label>
@@ -20,7 +20,7 @@
 				<!-- <ul id="column_tree" class="ztree"></ul> -->
 				<span class="select-box" id="sel_span">
 					<select class="select" id="big_class" name="big_class"> 
-						<option value="0">--请选择--</option>  
+						<option value="0">--顶级栏目--</option>  
                         <c:forEach items="${columnList}" var="column">  
                         	<option value="${column.id}">${column.name}</option>  
                         </c:forEach>  
@@ -110,10 +110,10 @@ $(function() {
 		}
 	};
 	// 准备form表单
-	$("#form-column-add").ajaxForm(options);
+	$("#form-column-update").ajaxForm(options);
 	// 表单提交     
 	$('#submit_but').on('click', function() {
-		$("#form-column-add").ajaxSubmit(options);
+		$("#form-column-update").ajaxSubmit(options);
 		return false;
 	});
 	

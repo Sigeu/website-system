@@ -9,7 +9,6 @@
 		<result column="login_name" jdbcType="VARCHAR" property="login_name" />
 		<result column="password" jdbcType="VARCHAR" property="password" />
 		<result column="real_name" jdbcType="VARCHAR" property="real_name" />
-		<result column="dept" jdbcType="VARCHAR" property="dept" />
 		<result column="position" jdbcType="VARCHAR" property="position" />
 		<result column="user_type" jdbcType="VARCHAR" property="user_type" />
 		<result column="sex" jdbcType="VARCHAR" property="sex" />
@@ -73,7 +72,7 @@
 			SELECT LAST_INSERT_ID()
 		</selectKey> -->
 		insert into ujn_user (Id, login_name, password,
-		real_name,dept, position, user_type,
+		real_name, position, user_type,
 		sex, pid, birthday,
 		email, contact_tel, contact_mobile,
 		contact_fax, contact_zip, contact_addr,
@@ -83,7 +82,7 @@
 		)
 		values (#{id,jdbcType=INTEGER}, #{login_name,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{real_name,jdbcType=VARCHAR},#{dept,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR},
+		#{real_name,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR},
 		#{sex,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR},
 		#{birthday,jdbcType=VARCHAR},
 		#{email,jdbcType=VARCHAR}, #{contact_tel,jdbcType=VARCHAR}, #{contact_mobile,jdbcType=VARCHAR},
@@ -111,9 +110,6 @@
 			</if>
 			<if test="real_name != null">
 				real_name,
-			</if>
-			<if test="dept != null">
-				dept,
 			</if>
 			<if test="position != null">
 				position,
@@ -186,9 +182,6 @@
 			</if>
 			<if test="real_name != null">
 				#{real_name,jdbcType=VARCHAR},
-			</if>
-			<if test="dept != null">
-				#{dept,jdbcType=VARCHAR},
 			</if>
 			<if test="position != null">
 				#{position,jdbcType=VARCHAR},
@@ -267,9 +260,6 @@
 			<if test="real_name != null">
 				real_name = #{real_name,jdbcType=VARCHAR},
 			</if>
-			<if test="dept != null">
-				dept = #{dept,jdbcType=VARCHAR},
-			</if>
 			<if test="position != null">
 				position = #{position,jdbcType=VARCHAR},
 			</if>
@@ -341,7 +331,6 @@
 		set login_name = #{login_name,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
 		real_name = #{real_name,jdbcType=VARCHAR},
-		dept = #{dept,jdbcType=VARCHAR},
 		position = #{position,jdbcType=VARCHAR},
 		user_type = #{user_type,jdbcType=VARCHAR},
 		sex = #{sex,jdbcType=VARCHAR},

@@ -66,20 +66,26 @@ public class ColumnController extends MyBaseController {
 		// 还是使用List，方便后期用到
 		List<Column> columnList = this.columnService
 				.queryColumnList(null);
-		//处理栏目名称
-		for(Column co : columnList){
-			if(2 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;" + co.getName());
-			}else if(3 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-			}else if(4 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
-			}else{
-				//co.setName(co.getName());
+		if(null != columnList){
+			//处理栏目名称
+			for(Column co : columnList){
+				if(2 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;" + co.getName());
+				}else if(3 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;&mdash;" + co.getName());
+				}else if(4 == co.getClass_type()){
+					co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
+				}else{
+					//co.setName(co.getName());
+				}
 			}
 		}
+		
+		//排序
 		LinkedList<Column> result = new LinkedList<Column>();
 		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
+		
+		//传到页面
 		model.addAttribute("columnList", columnLinkedList);
 					
 		return "column/columnAdd";

@@ -77,6 +77,34 @@ public class UserController extends MyBaseController{
 	
 	/**
 	 * 
+	 * @Description: 个人信息 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toUserMessage")
+	public String toUserMessage(HttpServletRequest request, Model model){
+		try {
+			//获取登录用户
+			User userSession = super.getSessionUser(request);
+			if(null != userSession){
+				User user = userService.getUserById(userSession.getId());
+				model.addAttribute("user", user);
+				return "system/user/userMessage";
+			}else{
+				 return "redirect:/";
+			}
+			
+			//List<Role> roleList = roleService.getRoleSelectList();
+			//model.addAttribute("roleList", roleList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/";
+		}
+	}
+	
+	/**
+	 * 
 	 * @Description: 跳转到用户授权页面 
 	 * @param request
 	 * @param model
@@ -143,6 +171,7 @@ public class UserController extends MyBaseController{
 	
 	
 	//更新
+	@ResponseBody
 	@RequestMapping("/updateUser")
 	public Map<String,Object> updateUser(HttpServletRequest request,User user){
 		

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.content.ContentWithBLOBs;
+import ujn.school.cn.pub.constants.ISystemConstants;
 import ujn.school.cn.pub.util.DateUtil;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.content.IContentService;
@@ -179,6 +180,8 @@ public class ContentController extends MyBaseController {
 		try {
 			//发布人
 			content.setIssue(getSessionUser(request).getLogin_name());
+			//默认状态为“0”：待审核
+			content.setStatus(ISystemConstants.VALUE_0);
 			contentService.addContent(request, content);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {

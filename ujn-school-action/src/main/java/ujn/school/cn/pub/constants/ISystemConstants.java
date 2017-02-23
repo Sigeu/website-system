@@ -8,6 +8,8 @@ package ujn.school.cn.pub.constants;
  */
 public interface ISystemConstants {
 	
+	static final String VALUE_0 = "0";
+	
 	//起止位置1
 	static final int PAGE_NUM = 1;
 	// 数据长度15
