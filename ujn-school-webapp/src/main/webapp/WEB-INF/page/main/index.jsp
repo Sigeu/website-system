@@ -72,7 +72,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/content/controller/contentController/toContentList" data-title="内容管理" href="javascript:void(0)">内容管理</a></li>
-					<li><a href="javascript:void(0)">二级菜单</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/content/controller/contentController/toContentRecycleList" data-title="内容回收站" href="javascript:void(0)">内容回收站</a></li>
 				</ul>
 			</dd>
 		</dl>

@@ -65,18 +65,6 @@
 				</span> 
 			</div>
 		</div>
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">内容分类：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="内容分类" id="module" name="module">
-			</div>
-		</div> -->
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="外部网址，填写后会跳转到目标网址" id="out_url" name="out_url">
-			</div>
-		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -106,7 +94,6 @@ $(function() {
 		rules:{
 			name:{
 				required:true,
-				minlength:4,
 				maxlength:50
 			},
 			no_order:{
@@ -118,9 +105,6 @@ $(function() {
 			},
 			nav:{
 				required:true
-			},
-			out_url:{
-				url:true
 			}
 		},
 		onkeyup:false,

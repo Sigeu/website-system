@@ -217,6 +217,23 @@ public class ColumnController extends MyBaseController {
 
 	/**
 	 * 
+	 * @Description: 跳转到栏目设置页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toColumnConfig")
+	public String toColumnConfig(HttpServletRequest request, Model model) {
+		int columnId = Integer.parseInt(request.getParameter("id"));
+		Column column = this.columnService.queryColumnById(columnId);
+		model.addAttribute("column", column);
+		
+
+		return "column/columnConfig";
+	}
+	
+	/**
+	 * 
 	 * @Description: 跳转到明细页面
 	 * @param request
 	 * @param model
@@ -334,6 +351,28 @@ public class ColumnController extends MyBaseController {
 
 		return map;
 	}
+	
+	/**
+	 * 
+	 * @Description: 更新配置 
+	 * @param request
+	 * @param column
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/updateColumnConfig")
+	public Map<String, Object> updateColumnConfig(HttpServletRequest request,
+			ColumnWithBLOBs column) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int count = this.columnService.updateColumnConfig(column);
+		if (RESULT_COUNT_1 == count) {
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
 
 	/**
 	 * 
@@ -342,11 +381,25 @@ public class ColumnController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping("/deleteColumn")
-	public String deleteColumn(HttpServletRequest request, Model model) {
-		int columnId = Integer.parseInt(request.getParameter("id"));
-		Column column = this.columnService.queryColumnById(columnId);
-		model.addAttribute("column", column);
-		return "showColumn";
+	public Map<String, Object> deleteColumn(HttpServletRequest request, Model model) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String ids = request.getParameter("ids") == null? "":request.getParameter("ids");
+			boolean flag = this.columnService.deleteColumn(ids);
+			if (flag) {
+				map.put(RESULT_MESSAGE_STRING, "删除成功！");
+			} else {
+				map.put(RESULT_MESSAGE_STRING, "删除失败！");
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			map.put(RESULT_MESSAGE_STRING, "删除失败！");
+		}
+		
+		return map;
 	}
 }

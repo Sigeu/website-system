@@ -60,4 +60,6 @@ public interface IContentService {
 	 */
 	int deleteContent(int contentId);
 
+	List<Content> queryContentRecycleList(Content content);
+
 }

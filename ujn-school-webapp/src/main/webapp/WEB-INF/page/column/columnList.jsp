@@ -135,14 +135,27 @@
 									targets : -1,
 									render : function(data, type, row, meta) {
 										var context = {
-											func : [
-													{
+											func : [{
+														"name" : "设置",
+														"fn" : "toConfig(\'"
+																+ row.id
+																+ "\')",
+														"type" : "primary-outline size-MINI radius",
+														"display" : true
+													}, {
 														"name" : "修改",
 														"fn" : "toEdit(\'"
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
+														"display" :true
+													}, {
+														"name" : "查看",
+														"fn" : "toDetail(\'"
+																+ row.id
+																+ "\')",
+														"type" : "primary-outline size-MINI radius",
+														"display" : true
 													},{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
@@ -150,21 +163,7 @@
 																+ "\')",
 														"type" : "danger-outline size-MINI radius",
 														"display" : true
-													},{
-														"name" : "设置",
-														"fn" : "toIssue(\'"
-																+ row.id
-																+ "\')",
-														"type" : "danger-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
-													},{
-														"name" : "查看",
-														"fn" : "toDetail(\'"
-																+ row.id
-																+ "\')",
-														"type" : "primary-outline size-MINI radius",
-														"display" : true
-													} ]
+													}]
 										};
 										var html = template(context);
 										return html;
@@ -263,16 +262,30 @@
 			    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnUpdate?id='+id
 			 });
 		}
-		//删除
-		function toIssue(id){
-			layer.confirm("确认要删除吗？栏目下的内容也会一并删！。", {
+		
+		//设置
+		function toConfig(id){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;栏目设置</div></strong>","background-color: #5a97df"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnConfig?id='+id
+			 });
+		}
+		
+		
+		//删除(此处兼容批量删除)
+		function toDelete(id){
+			layer.confirm("确认要删除吗？栏目下的内容也会一并删！", {
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
 						    url: "${pageContext.request.contextPath}/column/controller/columnController/deleteColumn" ,
 						    type: "POST",
 						    dataType: "JSON",
-						    data: {id:id},
+						    data: {ids:id+','},
 						    success:function(data){
 						    	layer.open({
 						    		  content: data.result_message,

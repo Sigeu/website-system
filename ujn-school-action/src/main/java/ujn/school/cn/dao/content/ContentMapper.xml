@@ -11,6 +11,7 @@
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="ctitle" jdbcType="VARCHAR" property="ctitle" />
     <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="column_id" jdbcType="VARCHAR" property="column_id" />
     <result column="class1" jdbcType="VARCHAR" property="class1" />
     <result column="class2" jdbcType="VARCHAR" property="class2" />
     <result column="class3" jdbcType="VARCHAR" property="class3" />
@@ -91,7 +92,7 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ujn_content (title, ctitle, keywords, 
+    insert into ujn_content (title, ctitle, keywords, column_id,
       class1, class2, class3, 
       class4, no_order, new_ok, 
       img_url, images_url, cover_img_url, 
@@ -100,7 +101,7 @@
       display_type, validity_time, links, 
       status, read_type, content, 
       description, tag)
-    values (#{title,jdbcType=VARCHAR}, #{ctitle,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+    values (#{title,jdbcType=VARCHAR}, #{ctitle,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{column_id,jdbcType=VARCHAR},
       #{class1,jdbcType=VARCHAR}, #{class2,jdbcType=VARCHAR}, #{class3,jdbcType=VARCHAR}, 
       #{class4,jdbcType=VARCHAR}, #{no_order,jdbcType=VARCHAR}, #{new_ok,jdbcType=VARCHAR}, 
       #{img_url,jdbcType=VARCHAR}, #{images_url,jdbcType=VARCHAR}, #{cover_img_url,jdbcType=VARCHAR}, 
@@ -129,6 +130,9 @@
       </if>
       <if test="keywords != null">
         keywords,
+      </if>
+       <if test="column_id != null">
+        column_id,
       </if>
       <if test="class1 != null">
         class1,
@@ -209,6 +213,9 @@
       </if>
       <if test="keywords != null">
         #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="column_id != null">
+        #{column_id,jdbcType=VARCHAR},
       </if>
       <if test="class1 != null">
         #{class1,jdbcType=VARCHAR},
@@ -298,6 +305,9 @@
       <if test="keywords != null">
         keywords = #{keywords,jdbcType=VARCHAR},
       </if>
+       <if test="column_id != null">
+        column_id = #{column_id,jdbcType=VARCHAR},
+      </if>
       <if test="class1 != null">
         class1 = #{class1,jdbcType=VARCHAR},
       </if>
@@ -380,6 +390,7 @@
     set title = #{title,jdbcType=VARCHAR},
       ctitle = #{ctitle,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
+      column_id = #{column_id,jdbcType=VARCHAR},
       class1 = #{class1,jdbcType=VARCHAR},
       class2 = #{class2,jdbcType=VARCHAR},
       class3 = #{class3,jdbcType=VARCHAR},
@@ -415,6 +426,7 @@
     set title = #{title,jdbcType=VARCHAR},
       ctitle = #{ctitle,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
+      column_id = #{column_id,jdbcType=VARCHAR},
       class1 = #{class1,jdbcType=VARCHAR},
       class2 = #{class2,jdbcType=VARCHAR},
       class3 = #{class3,jdbcType=VARCHAR},
@@ -455,5 +467,23 @@
     <include refid="Blob_Column_List" />
     from ujn_content
     where status = '0'
+  </select>
+  
+  <!-- 内容逻辑删除-->
+  <update id="deleteContentByColumnId" parameterType="string">
+    update ujn_content
+    set status = '2'
+    where column_id = #{column_id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 内容回收站列表 -->
+   <select id="queryContentRecycleList" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_content
+    where status = '2'
   </select>
 </mapper>

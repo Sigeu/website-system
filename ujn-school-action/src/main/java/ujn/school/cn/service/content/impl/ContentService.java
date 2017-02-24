@@ -143,6 +143,12 @@ public class ContentService implements IContentService {
 		
 		return contentMapper.deleteByPrimaryKey(contentId);
 	}
+
+	@Override
+	public List<Content> queryContentRecycleList(Content content) {
+		// TODO Auto-generated method stub
+		return contentMapper.queryContentRecycleList(content);
+	}
 	
 
 

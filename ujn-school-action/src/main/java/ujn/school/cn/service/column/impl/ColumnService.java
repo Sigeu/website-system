@@ -7,10 +7,12 @@ package ujn.school.cn.service.column.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import ujn.school.cn.dao.column.ColumnMapper;
+import ujn.school.cn.dao.content.ContentMapper;
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.column.ColumnWithBLOBs;
 import ujn.school.cn.service.column.IColumnService;
@@ -25,6 +27,9 @@ import ujn.school.cn.service.column.IColumnService;
 public class ColumnService implements IColumnService {
 	@Resource
 	private ColumnMapper columnMapper;
+	
+	@Resource
+	private ContentMapper contentMapper;
 	
 	/*
 	 * (non-Javadoc)
@@ -65,7 +70,7 @@ public class ColumnService implements IColumnService {
 	@Override
 	public int updateColumn(ColumnWithBLOBs column) {
 		// TODO Auto-generated method stub
-		return columnMapper.updateByPrimaryKeyWithBLOBs(column);
+		return columnMapper.updateByPrimaryKeySelective(column);
 	}
 
 	/*
@@ -80,6 +85,55 @@ public class ColumnService implements IColumnService {
 	public int addColumn(ColumnWithBLOBs column) {
 		// TODO Auto-generated method stub
 		return columnMapper.insert(column);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: deleteColumn</p> 
+	 * <p>Description: </p> 
+	 * @param ids
+	 * @return 
+	 * @see ujn.school.cn.service.column.IColumnService#deleteColumn(java.lang.String)
+	 */
+	@Transactional
+	@Override
+	public boolean deleteColumn(String ids) {
+		//默认为0
+		boolean flag = false;
+		try {
+			if(!"".equals(ids)){
+				String[] idArray = ids.split(",");
+				int columnId = 0;
+				for(String id : idArray){
+					columnId = Integer.parseInt(id);
+					//删除栏目
+					columnMapper.deleteByPrimaryKey(columnId);
+					//删除栏目对应内容（逻辑删除）
+					contentMapper.deleteContentByColumnId(id);
+				}
+				flag = true;		
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag = false;
+			
+		}
+
+		return flag;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: updateColumnConfig</p> 
+	 * <p>Description: </p> 
+	 * @param column
+	 * @return 
+	 * @see ujn.school.cn.service.column.IColumnService#updateColumnConfig(ujn.school.cn.model.column.ColumnWithBLOBs)
+	 */
+	@Override
+	public int updateColumnConfig(ColumnWithBLOBs column) {
+		// TODO Auto-generated method stub
+		return columnMapper.updateByPrimaryKeySelective(column);
 	}
 
 }

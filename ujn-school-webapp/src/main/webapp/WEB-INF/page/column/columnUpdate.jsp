@@ -13,7 +13,7 @@
 		</nav>
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/column/controller/columnController/updateColumn" method="post" class="form form-horizontal" id="form-column-update">
-		<input type="hidden" name="id" id="id" value="${column.id}">
+		<input type="hidden" name="id" id="id_" value="${column.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上级栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
@@ -52,23 +52,24 @@
 				</span> 
 			</div>
 		</div>
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">内容分类：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${column.module}" placeholder="内容分类" id="module" name="module">
-			</div>
-		</div> --%>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${column.out_url}" placeholder="外部网址，填写后会跳转到目标网址" id="out_url" name="out_url">
+			<label class="form-label col-xs-4 col-sm-2">显示位置：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select id="nav" name="nav" class="select">
+					<option value="">--请选择--</option>
+					<option value="1">头部导航</option>
+					<option value="2">尾部导航</option>
+					<option value="3">都显示</option>
+					<option value="0">不显示</option>
+				</select>
+				</span> 
 			</div>
 		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="submit_but" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button id="submit_but" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button id="close_but" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</form>
@@ -79,13 +80,11 @@
 <script type="text/javascript">
 	
 $(function(){
+	//设置下拉选项的选中值
 	$("#big_class").val('${column.big_class}');
 	$("#class_type").val('${column.class_type}');
-	//UE编辑器
-	var ue = UE.getEditor('editor');
-	//表单验证
-	//$("#form_").Validform();
-
+	$("#nav").val('${column.nav}');
+	//取消按钮
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭
@@ -97,24 +96,48 @@ $(function(){
 
 //表单提交，可上传文件
 $(function() {
-	var options = {
-		success : function(data) {
-			layer.alert(data.result_message, {
-			  closeBtn: 0
-			}, function(){
-				//父页面刷新
-				parent.reloadPage();
-				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-				parent.layer.close(index); //再执行关闭
-			});
+	//表单验证
+	$("#form-column-update").validate({
+		rules:{
+			name:{
+				required:true,
+				maxlength:50
+			},
+			no_order:{
+				required:true,
+				digits:true
+			},
+			class_type:{
+				required:true
+			},
+			nav:{
+				required:true
+			}
+		},
+		onkeyup:false,
+		focusCleanup:false,
+		onsubmit:true,
+		success:"valid",
+		submitHandler:function(form){
+			var options = {
+					success : function(data) {
+						layer.alert(data.result_message, {
+						  closeBtn: 0
+						}, function(){
+							//父页面刷新
+							parent.reloadPage();
+							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+							parent.layer.close(index); //再执行关闭
+						});
+					}
+				};
+			// 准备form表单
+			$("#form-column-update").ajaxForm(options);
+			//提交表单
+			$("#form-column-update").ajaxSubmit(options);
+			
+			return false;
 		}
-	};
-	// 准备form表单
-	$("#form-column-update").ajaxForm(options);
-	// 表单提交     
-	$('#submit_but').on('click', function() {
-		$("#form-column-update").ajaxSubmit(options);
-		return false;
 	});
 	
 });

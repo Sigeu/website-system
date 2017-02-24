@@ -36,6 +36,8 @@ public class Content {
      * @mbg.generated Thu Feb 23 00:12:18 CST 2017
      */
     private String keywords;
+    
+    private String column_id;
 
     /**
      *
@@ -792,4 +794,12 @@ public class Content {
     public void setRead_type(String read_type) {
         this.read_type = read_type == null ? null : read_type.trim();
     }
+
+	public String getColumn_id() {
+		return column_id;
+	}
+
+	public void setColumn_id(String column_id) {
+		this.column_id = column_id;
+	}
 }

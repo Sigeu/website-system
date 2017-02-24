@@ -65,4 +65,13 @@ public interface ContentMapper {
 	List<Content> queryContentList(Content content);
 
 	List<Content> queryAuditContentList(Content content);
+	
+	/**
+	 * 
+	 * @Description: 根据栏目ID删除对应内容，逻辑删除
+	 * @param column_id
+	 */
+	void deleteContentByColumnId(String column_id);
+
+	List<Content> queryContentRecycleList(Content content);
 }

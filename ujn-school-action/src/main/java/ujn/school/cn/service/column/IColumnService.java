@@ -48,4 +48,8 @@ public interface IColumnService {
 	 */
 	int addColumn(ColumnWithBLOBs column);
 
+	boolean deleteColumn(String ids);
+
+	int updateColumnConfig(ColumnWithBLOBs column);
+
 }

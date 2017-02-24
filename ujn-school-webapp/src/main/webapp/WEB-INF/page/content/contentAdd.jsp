@@ -5,6 +5,9 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
+<script type="text/javascript">
+//window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
+</script>
 <title>内容信息表页</title>
 </head>
 <body class="pos-r">
@@ -16,7 +19,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="class1" name="class1">
+				<select class="select" id="column_id" name="column_id">
 					<option value="0">--请选择--</option>  
                     <c:forEach items="${columnSelectList}" var="column">  
                     	<option value="${column.id}">${column.name}</option>  
@@ -39,7 +42,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
@@ -70,7 +73,7 @@
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="submit_but" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button id="submit_but" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -83,8 +86,6 @@
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
-	//表单验证
-	//$("#form_").Validform();
 
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -97,24 +98,43 @@ $(function(){
 
 //表单提交，可上传文件
 $(function() {
-	var options = {
-		success : function(data) {
-			layer.alert(data.result_message, {
-			  closeBtn: 0
-			}, function(){
-				//父页面刷新
-				parent.reloadPage();
-				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-				parent.layer.close(index); //再执行关闭
-			});
+	//表单验证
+	$("#form-content-add").validate({
+		rules:{
+			title:{
+				required:true,
+				maxlength:100
+			},
+			no_order:{
+				digits:true
+			},
+			links:{
+				url:true
+			}
+		},
+		onkeyup:false,
+		focusCleanup:false,
+		success:"valid",
+		submitHandler:function(form){
+			var options = {
+					success : function(data) {
+						layer.alert(data.result_message, {
+						  closeBtn: 0
+						}, function(){
+							//父页面刷新
+							parent.reloadPage();
+							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+							parent.layer.close(index); //再执行关闭
+						});
+					}
+				};
+				// 准备form表单
+				$("#form-content-add").ajaxForm(options);
+				// 表单提交     
+				$("#form-content-add").ajaxSubmit(options);
+				
+				return false;
 		}
-	};
-	// 准备form表单
-	$("#form-content-add").ajaxForm(options);
-	// 表单提交     
-	$('#submit_but').on('click', function() {
-		$("#form-content-add").ajaxSubmit(options);
-		return false;
 	});
 	
 });
