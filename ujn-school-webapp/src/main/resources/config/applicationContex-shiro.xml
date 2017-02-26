@@ -130,10 +130,12 @@
 				/system/controller/loginController/logout = logout
 				/unauthorized.jsp = authc 
 				/system/controller/loginController/login = anon
+				/site/** = anon
 				/static/** = anon
 				/common = anon
 				/verifyCodeServlet = anon
 				/** = authc
+				
 
 			</value>
 		</property>

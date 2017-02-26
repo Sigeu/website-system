@@ -111,11 +111,12 @@ public class LoginController extends MyBaseController {
 		
 	}
 	
-	@RequestMapping("/index")
+/*	@RequestMapping("/index")
 	public String index(HttpServletRequest request,  Model model) {
 		
-		return "main/index";
-	}
+		//return "main/index";
+		return "site/index";
+	}*/
 	
 	/**
 	 * 获取IP

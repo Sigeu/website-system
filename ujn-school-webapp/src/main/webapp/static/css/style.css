@@ -1,0 +1,219 @@
+@charset "utf-8";
+body {font-family: 微软雅黑, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif; color: #333; font-size:13px}
+ul,li {list-style:none; padding:0}
+img {margin:0; border:0}
+em {font-style:normal}
+a {color:#333}
+a:hover, a:focus, a:visited {color:#25499d; text-decoration:none}
+.navbar-top {background-color:#25499d; border-bottom:0}
+.navbar {margin-bottom:0}
+.navbar-header {padding:0}
+.navbar-brand {height:auto}
+.navbar-search {color:#999}
+.navbar-menu {padding:0; min-height:40px; line-height:40px; font-size:14px; background:#fff; border-bottom:0}
+.navbar-menu a:hover {text-decoration:none}
+.navbar-menu .navbar-header {padding:0} 
+.navbar-dropdown {position:absolute; width:230px}
+.navbar-dropdown span {display:inline-block; width:50%; height:40px; text-align:center; cursor:pointer; color:#25499d}
+.navbar-dorpdown-one {background:url(../images/dropdown.png) repeat-x left bottom; -moz-border-radius:4px 4px 0 0; border-radius:4px 4px 0 0;}
+#navbar-dropdown-con {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
+#navbar-dropdown-con li {line-height:40px}
+.navbar-dropdown .navbar-dropdown-two {display:block; padding:0 10%; height:40px; text-align:left}
+.navbar-dropdown a.navbar-dropdown-two:hover, .navbar-dropdown a.active {color:#25499d; background:url(../images/dropdown-pro.png) repeat-x}
+a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:#000}
+.navbar-pos {position:relative}
+.navbar-dropdown .navbar-dropdown-thr {position:absolute; top:0px; left:100%; padding:10px 25px; width:560px; line-height:30px; background:url(../images/dropdown-thr.png)}
+#navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
+.navbar-pos a {color:#000}
+.navbar-pos a:hover, .navbar-pos a:hover span, .navbar-dropdown a.active span {color:#25499d}
+#footer {margin-top:20px; background-color:#25499d; color:#fff}
+#footer img {margin-top:20px}
+#footer li {line-height:30px}
+.page {margin-top:15px; text-align:center}
+.footer-tool {margin-top:10px; margin-right:15px; width:175px}
+.carousel-inner img {margin: 0 auto}
+.nav > li > a {padding-top:0; padding-bottom:0; color:#000}
+.navbar-top .input-group .form-control, .navbar-top .input-group .btn-default {height:50px}
+
+.index-info {margin-top:15px; margin-bottom:30px}
+.info-list {margin-top:30px}
+.pro-top {width:100%; height:30px; line-height:30px; border-bottom:1px solid #25499d; color:#000}
+.pro-top > h4 {margin-top:0; width:auto; height:30px; line-height:30px; font-size:14px; border-bottom:1px solid #f60}
+.pro-top > h4 > a {color:#000}
+.pro-top > h4 > a > span {color:#666}
+.pro-top a.more {color:#666; font-size:13px}
+.pro-top a.more:hover {text-decoration:underline}
+.index-info-fir-top a {display:block; width:100%; line-height:25px; font-size:14px; color:#000}
+.index-info-fir-top a:hover {color:#25499d}
+.index-info-fir-top span {color:#25499d; font-size:12px}
+.index-info-fir-body {margin-top:5px; padding-bottom:10px; width:100%; color:#666; background:url(../images/line.png) repeat-x left bottom}
+.pro-date {width:45px; height:55px; padding:3px; margin-top:10px; border:1px solid #c7c7c7; border-top:4px solid #25499d; text-align:center}
+.pro-date dt {height:28px; line-height:27px; border-bottom:1px solid #25499d; font-size:15px; font-weight:normal; color:#25499d}
+.pro-date dd {height:20px; line-height:20px; font-size:12px; color:#666}
+.pro-con {width:100%; background:url(../images/line.png) repeat-x left bottom}
+.pro-con > a {line-height:30px; color:#000}
+.pro-con > a:hover {color:#25499d}
+.pro-con > a > h5 {overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:14px}
+.pro-con > p {height:48px; line-height:24px; overflow:hidden; color:#666}
+.list-pro li {padding-bottom:10px; background:url(../images/line.png) repeat-x left bottom}
+.list-pro a {width:100%; padding:5px 0; overflow:hidden;  font-size:14px; white-space:nowrap; text-overflow:ellipsis; color:#333}
+.list-pro a:hover {color:#25499d}
+.list-pro .list-date {color:#666; font-size:12px}
+.contact {margin-top:30px}
+.contact li {font-size:14px; line-height:30px}
+
+.article .breadcrumb {padding-left:0px; padding-right:0px; background:none; color:#777}
+.article .breadcrumb > a {color:#25499d}
+.article .breadcrumb > a:hover {color:#333}
+.article-main {margin-top:10px}
+.article-top > h1 {font-size:17px; line-height:180%}
+.article-info {line-height:180%; color:#777; background:url(../images/line-gray.png) repeat-x left bottom, url(../images/line-gray.png) repeat-x left top}
+.article-info > span {margin-right:30px}
+.article-body {margin-top:15px}
+.article-body p {text-indent:26px; line-height:180%; margin-bottom:20px}
+.article-like-top {margin-bottom:10px; border-bottom:1px solid #25499d}
+.article-like-top > h4 {font-size:14px}
+
+.sidebarl {margin-bottom:30px}
+.sidebar-top {padding-bottom:1px; border-bottom:1px solid #25499d}
+.sidebar-top > h4 {font-size:14px}
+.sidebar-nav {padding:0 5px; margin-top:5px}
+.sidebar-nav li {width:100%; height:40px; line-height:40px; overflow:hidden; border-bottom:1px solid #ddd}
+.sidebar-nav a:hover span, .sidebar-nav a:focus span {color:#fff}
+.sidebarr-pro {margin-bottom:10px; background:#f5f5f5}
+.sidebar-con {margin-top:10px}
+.sidebar-con li {width:100%; height:30px; line-height:30px; overflow:hidden}
+.sidebarr-pro {padding:10px 15px}
+.search-list .pro-top span {margin:0 10px; color:#f60}
+.search-list-con {padding:0 15px}
+.search-list span {color:#f60}
+.search-pro {width:100%; padding:10px 0; background:url(../images/line.png) repeat-x left bottom}
+.search-pro > a > h5 {overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:14px}
+.search-pro p {width:100%; max-height:40px; line-height:20px; overflow:hidden; color:#666}
+.search-pro p.search-date {color:#999}
+.cat-con .nav {margin-top:20px}
+.cat-con .nav > li > a {padding:7px 10px; font-size:14px}
+.cat-con .nav > li.active > a {color:#333}
+.cat-pro {padding:15px 0; background:url(../images/line.png) repeat-x left bottom}
+.cat-pro p {margin:0 0 5px 0; font-size:14px; color:#000}
+.cat-pro a {display:block; float:left; line-height:30px; margin-right:20px; color:#666}
+.cat-pro a:hover {color:#25499d}
+.apply-con {margin-top:20px}
+.form-btn {margin-top:20px; text-align:center}
+.form-btn > button {width:100px}
+.btn-primary {background:#25499d}
+
+.login-top {background:#fff}
+.login-jumb {padding:0px; margin-bottom:0px; background:#fff}
+.login-jumb img {margin:0 auto}
+/* 小屏幕（平板，大于等于768px） */
+@media (min-width: 768px) {
+	.navbar-search {position:relative; top:25px}
+	.navbar-top .container {padding-left:15px; padding-right:15px}
+	#navbar-collapse .nav-justified {height:40px; line-height:40px}
+	.navbar-top .input-group .form-control, .navbar-top .input-group .btn-default {height:34px}
+	.index-info {margin-top:20px}
+	#footer {margin-top:50px; position:relative}
+	#footer .footer-tool {position:absolute; top:10px; right:15px}
+	.page {margin-top:30px}
+	.article-top > h1 {font-size:23px}
+	.article-body {margin-top:22px}
+	.sidebar-con {font-size:12px}
+	.sidebar-con a {color:#333}
+	.sidebar-con a:hover {color:#25499d}
+	.login-search {margin-top:20px}
+	.login-jumb img {height:430px}
+	.login-jumb .modal-content {position:absolute; top:70px; right:-30px; width:390px}
+}
+/* 中等屏幕（桌面显示器，大于等于992px） */
+@media (min-width: 992px) {
+	.navbar-header {padding:0 15px}
+	.navbar-top .container {background:url(../images/cloud-small.png) no-repeat right bottom}
+	.login-top .container {background:none}
+	.navbar-search {position:relative; right:-20px; width:200px}
+	.navbar-menu {font-size:14px}
+	.navbar-dropdown .navbar-dropdown-two {padding-left:12%}
+	.carousel-inner img {min-height:400px}
+	.index-info {margin-top:30px}
+	.pro-top {height:40px; line-height:40px}
+	.pro-top > h4 {font-size:16px; height:40px; line-height:40px}
+	.index-info .container, .index-tab .container {padding-left:0px; padding-left:0px}
+	.list-tab {padding-right:65px}
+	.index-info-fir-top a {margin-bottom:5px; width:100%; max-height:60px; line-height:30px; font-size:15px; overflow:hidden}
+	.index-info-fir-top span {font-size:13px}
+	.index-info-fir-body {margin-top:10px; padding-bottom:0px; height:175px; line-height:25px; overflow:hidden; font-size:13px; background:none}
+	.all-list {padding-left:65px}
+	.all-list-pro {margin-top:-3px}
+	.pro-con {width:510px}
+	.pro-con > a > h5 {font-size:15px}
+	.no-line, .list-pro li.no-line {background:none}
+	.list-pro li {padding-bottom:0px; height:45px; line-height:45px}
+	.list-pro a {padding:0; width:80%; height:45px; line-height:45px; font-size:15px}
+	.list-pro .list-date {float:right; font-size:13px}
+	.info-list {margin-top:30px}
+	.contact {margin-top:0}
+	.contact li {font-size:15px}
+	#footer {padding-top:10px; position:static}
+	#footer .footer-tool {position:static; top:auto; right:auto}
+	.page {margin-top:35px}
+	.all-con {padding-top:40px}
+	.article {margin-top:20px}
+	.article-main {margin-top:50px}
+	.article-top > h1 {font-size:27px}
+	.article-info {line-height:40px}
+	.article-body {padding:0 30px; margin-top:40px}
+	.article-body p {text-indent:28px; text-align:justify; font-size:14px; line-height:30px; margin-bottom:25px}
+	.article-body img {width:78%; margin:0 auto 30px}
+	.article-like {padding-left:30px; padding-right:30px}
+	.article .all-list {padding-left:0px; padding-right:0px}
+	.article-like {margin-top:60px}
+	/* .article-like-top {margin-left:30px; margin-right:30px} */
+	.article-pro-con {width:830px}
+	.article-like-top > h4 {font-size:17px}
+	.sidebarl {padding-left:0px; padding-right:30px}
+	.sidebar-top > h4 {font-size:17px}
+	.article-sidebarl .article-pro-con {width:572px}
+	.list-sidebarl {padding-right:0px}
+	.list-sidebarl .list-pro-container {padding-left:15px; padding-right:15px}
+	.list-sidebarr {padding-left:0px; padding-right:50px}
+	.sidebarr {padding-left:0px; padding-right:0px; margin-top:-10px}
+	.search-pro > a > h5 {font-size:15px}
+	.cat-con .nav {margin-top:0px}
+	.cat-con .nav > li > a {padding:10px 15px; font-size:15px; margin-top:2px}
+	.apply-top .nav > li > a {margin-top:4px}
+	.cat-list {padding:0 30px}
+	.cat-pro p {font-size:15px}
+	.form-btn {margin-top:40px; text-align:left; margin-left:27%}
+	.modal-dialog {margin:220px auto}
+	.login-jumb img {height:350px}
+	.login-jumb .modal-content {position:absolute; top:-125px; right:-140px; width:390px}
+}
+
+/* 大屏幕（大桌面显示器，大于等于1200px） */
+@media (min-width: 1200px) {
+	.navbar-header {padding:15px 0}
+	.navbar-search {position:relative; top:35px; right:-150px; width:200px}
+	.navbar-top .container {background:url(../images/cloud.png) no-repeat right bottom}
+	.navbar-search .glyphicon-search {font-size:16px; top:2px; color:#999}
+	.login-top .container {background:#fff}
+	.navbar-menu {font-size:17px}
+	#navbar-dropdown-con {font-size:14px}
+	.navbar-dropdown .navbar-dropdown-two {padding-left:10%}
+	.index-info {margin-top:35px}
+	.pro-top > h4 {font-size:17px}
+	.pro-con {width:645px; }
+	.index-info {margin-bottom:50px}
+	.info-list {margin-top:50px}
+	.article-body img {width:70%}
+	.article-pro-con {width:1035px}
+	.sidebarl {padding-right:40px}
+	.article-sidebarl .article-pro-con {width:722px}
+	.sidebarr {padding-left:15px}
+	.sidebar-con {font-size:13px}
+	.cat-con .nav > li > a {margin-top:0px}
+	.apply-top .nav > li > a {margin-top:0px}
+	.form-btn {margin-left:32%}
+	.login-search {margin-top:35px}
+	.login-jumb img {height:auto}
+	.login-jumb .modal-content {position:absolute; top:-60px; right:-230px; width:390px}
+}

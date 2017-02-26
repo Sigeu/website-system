@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-	 	window.location.href = "${pageContext.request.contextPath}/system/controller/loginController/index";
+	 	window.location.href = "${pageContext.request.contextPath}/index/controller/indexController/index";
 	</script>
 </body>
 </html>
