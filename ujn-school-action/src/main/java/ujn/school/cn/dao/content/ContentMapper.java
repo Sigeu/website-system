@@ -74,4 +74,6 @@ public interface ContentMapper {
 	void deleteContentByColumnId(String column_id);
 
 	List<Content> queryContentRecycleList(Content content);
+
+	List<Content> queryContentListByColumn(Content content);
 }

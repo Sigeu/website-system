@@ -4,36 +4,30 @@
  */
 package ujn.school.cn.controller.index;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ujn.school.cn.model.column.Column;
-import ujn.school.cn.model.column.ColumnWithBLOBs;
 import ujn.school.cn.model.config.Config;
 import ujn.school.cn.model.contact.Contact;
+import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.link.Link;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.config.IConfigService;
 import ujn.school.cn.service.contact.IContactService;
+import ujn.school.cn.service.content.IContentService;
 import ujn.school.cn.service.link.ILinkService;
-
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-
 import framework.system.pub.base.MyBaseController;
-import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.constants.ISystemConstants;
+import framework.system.pub.util.DateUtil;
 
 /**
  * @Description: 栏目管理
@@ -56,6 +50,9 @@ public class IndexController extends MyBaseController {
 	// 友情链接
 	@Resource
 	private ILinkService linkService;
+	// 内容Service
+	@Resource
+	private IContentService contentService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -72,10 +69,43 @@ public class IndexController extends MyBaseController {
 			Contact contact = contactService.queryContact();
 			// 友情链接
 			List<Link> linkList = linkService.queryLinkList(null);
+			// 最新公开信息 
+			Content content1 = new Content();
+			String column_id1 = "111";
+			content1.setColumn_id(column_id1);
+			content1.setOrder_column("add_time");
+			content1.setOrder_type("desc");
+			content1.setCount_num(4);
+			//内容列表
+			List<Content> contentList1 = contentService.queryContentListByColumn(content1);
+			// 重要信息公开 
+			Content content2 = new Content();
+			String column_id2 = "112";
+			content2.setColumn_id(column_id2);
+			content2.setOrder_column("add_time");
+			content2.setOrder_type("desc");
+			content2.setCount_num(2);
+			//内容列表
+			List<Content> contentList2 = contentService.queryContentListByColumn(content2);
+			// 信息公开规章制度 
+			Content content3 = new Content();
+			String column_id3 = "103";
+			content3.setColumn_id(column_id3);
+			content3.setOrder_column("add_time");
+			content3.setOrder_type("desc");
+			content3.setCount_num(2);
+			//内容列表
+			List<Content> contentList3 = contentService.queryContentListByColumn(content3);
 			
 			model.addAttribute("config", config);
 			model.addAttribute("contact", contact);
 			model.addAttribute("linkList", linkList);
+			model.addAttribute("contentList1", contentList1);
+			model.addAttribute("column_id1", column_id1);
+			model.addAttribute("contentList2", contentList2);
+			model.addAttribute("column_id2", column_id2);
+			model.addAttribute("contentList3", contentList3);
+			model.addAttribute("column_id3", column_id3);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -84,362 +114,105 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 跳转到栏目列表
+	 * @Description: 跳转到栏目更多页面
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toColumnList")
-	public String toColumnList(HttpServletRequest request, Model model) {
+	@RequestMapping("/toContentList")
+	public String toContentList(HttpServletRequest request, Model model) {
 
-		return "column/columnList";
+		return "site/articleList";
+	}
+
+	
+	/**
+	 * 
+	 * @Description: 跳转到详情页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toContentDetail")
+	public String toContentDetail(HttpServletRequest request, Model model) {
+
+		return "site/article";
+	}
+	
+	@RequestMapping("/toContentDetailByPwd")
+	public String toContentDetailByPwd(HttpServletRequest request, Model model) {
+
+		return "site/article";
 	}
 
 	/**
 	 * 
-	 * @Description: 跳转到添加页面
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/toColumnAdd")
-	public String toColumnAdd(HttpServletRequest request, Model model) {
-		
-		// 还是使用List，方便后期用到
-		List<Column> columnList = this.columnService
-				.queryColumnList(null);
-		if(null != columnList){
-			//处理栏目名称
-			for(Column co : columnList){
-				if(2 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;" + co.getName());
-				}else if(3 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-				}else if(4 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
-				}else{
-					//co.setName(co.getName());
-				}
-			}
-		}
-		
-		//排序
-		LinkedList<Column> result = new LinkedList<Column>();
-		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
-		
-		//传到页面
-		model.addAttribute("columnList", columnLinkedList);
-					
-		return "column/columnAdd";
-	}
-	
-	
-	/**
-	 * 
-	 * @Description: 树状List数据 
+	 * @Description: 
 	 * @param request
-	 * @param response
+	 * @param column
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryColumnTreeList")
-	public Map<String,Object> queryColumnTreeList(HttpServletRequest request, HttpServletResponse response){
-		Map<String,Object> map = new HashMap<String,Object>();
-		try {
-			List<Column> columnList = columnService.queryColumnList(null);
-			//处理栏目名称
-			for(Column co : columnList){
-				if(2 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;" + co.getName());
-				}else if(3 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-				}else if(4 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
-				}else{
-					//co.setName(co.getName());
-				}
-			}
-			//排序
-			LinkedList<Column> result = new LinkedList<Column>();
-			LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
-			//转换为ArrayList
-			List<Column> resultList = new ArrayList<Column>(columnLinkedList);
-			map.put("resultList", resultList);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		return map;
-	}
-	
-	
-	/**
-	 * 排序
-	 * @param list
-	 * @param result
-	 * @param father
-	 * @return
-	 */
-	protected LinkedList<Column> toSort(List<Column> list,
-			LinkedList<Column> result, int father) {
-		List<Column> temp = new ArrayList<Column>();
-		// 最高层,临时存放
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getBig_class() == father) {
-				temp.add(list.get(i));
-			}
-		}
-
-		if (temp.size() < 1) {
-			return result;
-		} else { 
-			// 删除最高层
-			for (int j = 0; j < list.size(); j++) {
-				if (list.get(j).getBig_class() == father) {
-					list.remove(j);
-				}
-			}
-			// 对最高层排序
-			for (int i = 0; i < temp.size() - 1; i++) {
-				for (int j = i + 1; j < temp.size(); j++) {
-					if (temp.get(i).getNo_order() > temp.get(j).getNo_order()) {
-						Column column = temp.get(i);
-						temp.set(i, temp.get(j));
-						temp.set(j, column);
-					}
-				}
-			}
-			// 递归
-			for (int i = 0; i < temp.size(); i++) {
-				result.add(temp.get(i));
-				toSort(list, result, temp.get(i).getId());
-			}
-			return result;
-		}
-
-	}
-	
-	
-	/**
-	 * 
-	 * @Description: 跳转到修改页面
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/toColumnUpdate")
-	public String toColumnUpdate(HttpServletRequest request, Model model) {
-		int columnId = Integer.parseInt(request.getParameter("id"));
-		Column column = this.columnService.queryColumnById(columnId);
-		model.addAttribute("column", column);
-		
-		// 还是使用List，方便后期用到
-		List<Column> columnList = this.columnService
-				.queryColumnList(null);
-		//处理栏目名称
-		for(Column co : columnList){
-			if(2 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;" + co.getName());
-			}else if(3 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-			}else if(4 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
+	@RequestMapping("/toContentCheck")
+	public Map<String, Object> toContentCheck(HttpServletRequest request) {
+		String open_type = "1";
+		Map<String, Object> map = new HashMap<String, Object>();
+		String contentId = request.getParameter("id")==null? "0":request.getParameter("id");
+		Content content = contentService.queryContentById(Integer.parseInt(contentId));
+		// 有效日期
+		String validity_time = "";
+		String read_type = "";
+		if(null != content){
+			validity_time = content.getValidity_time();
+			read_type = content.getRead_type();
+			String now = DateUtil.getDateTime();
+			//比较日期
+			if(DateUtil.getMargin(now, validity_time) > 1){
+				//已过有效期
 			}else{
-				//co.setName(co.getName());
-			}
-		}
-		LinkedList<Column> result = new LinkedList<Column>();
-		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
-		model.addAttribute("columnList", columnLinkedList);
-
-		return "column/columnUpdate";
-	}
-
-	/**
-	 * 
-	 * @Description: 跳转到栏目设置页面 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/toColumnConfig")
-	public String toColumnConfig(HttpServletRequest request, Model model) {
-		int columnId = Integer.parseInt(request.getParameter("id"));
-		Column column = this.columnService.queryColumnById(columnId);
-		model.addAttribute("column", column);
-		
-
-		return "column/columnConfig";
-	}
-	
-	/**
-	 * 
-	 * @Description: 跳转到明细页面
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/toColumnDetail")
-	public String toColumnDetail(HttpServletRequest request, Model model) {
-		int columnId = Integer.parseInt(request.getParameter("id"));
-		Column column = this.columnService.queryColumnById(columnId);
-		model.addAttribute("column", column);
-
-		return "column/columnDetail";
-	}
-
-	/**
-	 * 
-	 * @Description: 栏目分页查询
-	 * @param request
-	 * @param response
-	 * @param column
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/queryColumnList")
-	public DataTablePageUtil<Column> queryColumnList(
-			HttpServletRequest request, HttpServletResponse response,
-			Column column) {
-		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Column> dataTable = null;
-		try {
-			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Column>(request);
-			// 开始分页：PageHelper会处理接下来的第一个查询
-			PageHelper.startPage(dataTable.getPage_num(),
-					dataTable.getPage_size());
-			// 还是使用List，方便后期用到
-			List<Column> columnList = this.columnService
-					.queryColumnList(column);
-			//处理栏目名称
-			for(Column co : columnList){
-				if(2 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;" + co.getName());
-				}else if(3 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-				}else if(4 == co.getClass_type()){
-					co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
-				}else{
-					//co.setName(co.getName());
+				if(ISystemConstants.VALUE_0.equals(read_type)){
+					//直接查看
+					open_type = "1";
+				}else if(ISystemConstants.VALUE_1.equals(read_type)){
+					//验证IP
+					String ip = getIpAddr(request);
+					if("127.0.0.1".equals(ip)){
+						open_type = "2";
+					}else{
+						open_type = "3";
+					}
+				}else if(ISystemConstants.VALUE_2.equals(read_type)){
+					//输入密码查看
+					open_type = "4";
 				}
 			}
-			//排序
-			LinkedList<Column> result = new LinkedList<Column>();
-			LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
-			//转换为ArrayList
-			List<Column> resultList = new ArrayList<Column>(columnLinkedList);
-			
-			// 用PageInfo对结果进行包装
-			PageInfo<Column> pageInfo = new PageInfo<Column>(resultList);
-
-			// 封装数据给DataTables
-			dataTable.setDraw(dataTable.getDraw());
-			dataTable.setData(pageInfo.getList());
-			dataTable.setRecordsTotal((int) pageInfo.getTotal());
-			dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
 		}
-
-		return dataTable;
-	}
-
-	/**
-	 * 
-	 * @Description: 添加
-	 * @param request
-	 * @param column
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/addColumn")
-	public Map<String, Object> addColumn(HttpServletRequest request,
-			ColumnWithBLOBs column) {
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		int count = this.columnService.addColumn(column);
-		if (RESULT_COUNT_1 == count) {
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
-		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
-		}
-
-		return map;
-	}
-
-	/**
-	 * 
-	 * @Description: 更新
-	 * @param request
-	 * @param column
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/updateColumn")
-	public Map<String, Object> updateColumn(HttpServletRequest request,
-			ColumnWithBLOBs column) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		int count = this.columnService.updateColumn(column);
-		if (RESULT_COUNT_1 == count) {
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
-		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
-		}
+		
+		map.put("open_type", open_type);
 
 		return map;
 	}
 	
 	/**
-	 * 
-	 * @Description: 更新配置 
+	 * 获取IP
 	 * @param request
-	 * @param column
 	 * @return
 	 */
-	@ResponseBody
-	@RequestMapping("/updateColumnConfig")
-	public Map<String, Object> updateColumnConfig(HttpServletRequest request,
-			ColumnWithBLOBs column) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		int count = this.columnService.updateColumnConfig(column);
-		if (RESULT_COUNT_1 == count) {
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
-		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+	String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("X-Forwarded-For");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
 		}
-
-		return map;
-	}
-
-	/**
-	 * 
-	 * @Description: 删除
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/deleteColumn")
-	public Map<String, Object> deleteColumn(HttpServletRequest request, Model model) {
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		try {
-			String ids = request.getParameter("ids") == null? "":request.getParameter("ids");
-			boolean flag = this.columnService.deleteColumn(ids);
-			if (flag) {
-				map.put(RESULT_MESSAGE_STRING, "删除成功！");
-			} else {
-				map.put(RESULT_MESSAGE_STRING, "删除失败！");
-			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			map.put(RESULT_MESSAGE_STRING, "删除失败！");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
 		}
-		
-		return map;
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		return ip;
 	}
 }

@@ -62,4 +62,6 @@ public interface IContentService {
 
 	List<Content> queryContentRecycleList(Content content);
 
+	List<Content> queryContentListByColumn(Content content);
+
 }

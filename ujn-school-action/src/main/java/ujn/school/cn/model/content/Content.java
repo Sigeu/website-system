@@ -38,6 +38,12 @@ public class Content {
     private String keywords;
     
     private String column_id;
+    
+    private String order_column;
+    
+    private String order_type;
+    
+    private int count_num;
 
     /**
      *
@@ -801,5 +807,29 @@ public class Content {
 
 	public void setColumn_id(String column_id) {
 		this.column_id = column_id;
+	}
+
+	public String getOrder_column() {
+		return order_column;
+	}
+
+	public void setOrder_column(String order_column) {
+		this.order_column = order_column;
+	}
+
+	public String getOrder_type() {
+		return order_type;
+	}
+
+	public void setOrder_type(String order_type) {
+		this.order_type = order_type;
+	}
+
+	public int getCount_num() {
+		return count_num;
+	}
+
+	public void setCount_num(int count_num) {
+		this.count_num = count_num;
 	}
 }

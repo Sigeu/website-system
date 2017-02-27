@@ -486,4 +486,17 @@
     from ujn_content
     where status = '2'
   </select>
+  
+  
+  <!-- 栏目（更多）内容列表 -->
+   <select id="queryContentListByColumn" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_content
+    where column_id = #{column_id,jdbcType=VARCHAR}
+    and unix_timestamp(validity_time) &lt;  unix_timestamp(now()) 
+    order by #{order_column} #{order_type} limit #{count_num} 
+  </select>
 </mapper>

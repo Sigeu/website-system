@@ -149,6 +149,12 @@ public class ContentService implements IContentService {
 		// TODO Auto-generated method stub
 		return contentMapper.queryContentRecycleList(content);
 	}
+
+	@Override
+	public List<Content> queryContentListByColumn(Content content) {
+		// TODO Auto-generated method stub
+		return contentMapper.queryContentListByColumn(content);
+	}
 	
 
 

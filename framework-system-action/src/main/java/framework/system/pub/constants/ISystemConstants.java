@@ -19,18 +19,9 @@ public interface ISystemConstants {
 	// 数据长度15
 	static final int PAGE_LENGTH = 10;
 	
-	// 证件类型
-	static final String ZJLX_CODE_LB = "4";
-	// 政治面貌
-	static final String ZZMM_CODE_LB = "6";
-	// 民族
-	static final String MZ_CODE_LB = "5";
-	// 查验员等级
-	static final String CYYDJ_CODE_LB = "7";
-	// 报考等级
-	static final String BKDJ_CODE_LB = "8";
-	// 查验员code 系统类别 : 发证机关
-	static final String FZJG_CYYCODE_XTLB = "99";
-	// 查验员code 代码类别 : 发证机关 
-	static final String FZJG_CYYCODE_DMLB = "0034";
+	// 
+	static final String VALUE_0 = "0";
+	static final String VALUE_1 = "1";
+	static final String VALUE_2 = "2";
+	static final String VALUE_3 = "3";
 }

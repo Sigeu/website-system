@@ -138,63 +138,43 @@
 		<div class="container">
 			<div class="pro-top">
 				<h4 class="pull-left">
-					<a href="###"><span class="glyphicon glyphicon-th-list"></span>
+					<a href="###" onclick="toContentList('${column_id1}');"><span class="glyphicon glyphicon-th-list"></span>
 						最新公开信息</a>
 				</h4>
-				<a href="###" class="more pull-right">更多&gt;&gt;</a>
+				<a href="###" onclick="toContentList('${column_id1}');" class="more pull-right">更多&gt;&gt;</a>
 			</div>
 			<div class="clearfix"></div>
 			<div class="row text-justify">
-				<div class="col-md-4 index-info-con">
-					<div class="index-info-fir-top">
-						<a href="###">省委“两学一做” 学习教育和基层党建工作督导调研组来我校督导调研</a> <span>2016-12-14</span>
-					</div>
-					<div class="index-info-fir-body">
-						12月13日下午，省委组织部组织二处调研员韩丽萍带队省委组织部督导调研四组、
-						省委高校工委组织统战处调研员徐文元带队省委高校工委督导调研二组来我校就 “两学一做”学习教育和基层党建工作进行督查调研。
-						督导组通过听取学校党委专题汇报、座谈、查阅有关资料等方式，全面了解学校 “两学一做”学习教育和基层党建工作开展情况。学
-						校党委书记程新以及相关职能部门负责人参加了督导调研。</div>
-				</div>
+				 <c:forEach var="content1" items="${contentList1}"> 
+				 	<c:if test="content1.index == 0"> 
+	                   	<div class="col-md-4 index-info-con">
+							<div class="index-info-fir-top">
+								<a href="###"  onclick="toContentDetail('${content1.id}');">${content1.title}</a> <span>${content1.add_time}</span>
+							</div>
+							<div class="index-info-fir-body">
+								${content1.description}
+							</div>
+						</div> 
+					</c:if>
+                 </c:forEach>
+				
 				<div class="col-md-8 all-list">
-					<div class="all-list-pro clearfix">
-						<div class="pro-date pull-left hidden-xs hidden-sm">
-							<dl>
-								<dt>08</dt>
-								<dd>12月</dd>
-							</dl>
-						</div>
-						<div class="pro-con pull-right">
-							<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-							<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
-								货物名称 预算。</p>
-						</div>
-					</div>
-					<div class="all-list-pro clearfix">
-						<div class="pro-date pull-left hidden-xs hidden-sm">
-							<dl>
-								<dt>08</dt>
-								<dd>12月</dd>
-							</dl>
-						</div>
-						<div class="pro-con pull-right">
-							<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-							<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
-								货物名称 预算。</p>
-						</div>
-					</div>
-					<div class="all-list-pro clearfix">
-						<div class="pro-date pull-left hidden-xs hidden-sm">
-							<dl>
-								<dt>08</dt>
-								<dd>12月</dd>
-							</dl>
-						</div>
-						<div class="pro-con pull-right no-line">
-							<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-							<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
-								货物名称 预算。</p>
-						</div>
-					</div>
+					<c:forEach var="content1" items="${contentList1}"> 
+					 	<c:if test="content1.index > 1"> 
+		                   	<div class="all-list-pro clearfix">
+								<div class="pro-date pull-left hidden-xs hidden-sm">
+									<dl>
+										<dt>${content1.add_time}</dt>
+										<dd>${content1.add_time}月</dd>
+									</dl>
+								</div>
+								<div class="pro-con pull-right">
+									<a href="###" onclick="toContentDetail('${content1.id}');"><h5>${content1.title}</h5></a>
+									<p>${content1.description}</p>
+								</div>
+							</div>
+						</c:if>
+	                 </c:forEach>
 				</div>
 			</div>
 		</div>
@@ -207,19 +187,19 @@
 					<div class="list">
 						<div class="pro-top">
 							<h4 class="pull-left">
-								<a href="###"><span class="glyphicon glyphicon-align-left"></span>
+								<a href="###" onclick="toContentList('${column_id2}');"><span class="glyphicon glyphicon-align-left"></span>
 									重要信息公开</a>
 							</h4>
-							<a href="###" class="more pull-right">更多&gt;&gt;</a>
+							<a href="###" onclick="toContentList('${column_id2}');" class="more pull-right">更多&gt;&gt;</a>
 						</div>
 						<div class="clearfix"></div>
 						<div class="list-pro-container">
 							<div class="list-pro">
 								<ul>
-									<li><a href="###" class="pull-left">自动化与电气工程学院举办第二十四届入党积极分子专题讲座</a><span
-										class="list-date">2016-11-21</span></li>
-									<li class="no-line"><a href="###" class="pull-left">自动化与电气工程学院举办第二十四届入党积极分子专题讲座自动化与电气工程学院举办第二十四届入党积极分子专题讲座自动化与电气工程学院举办第二十四届入党积极分子专题讲座</a><span
-										class="list-date">2016-11-21</span></li>
+									<c:forEach var="content2" items="${contentList2}"> 
+						                   	<li><a href="###" onclick="toContentDetail('${content2.id}');" class="pull-left">${content2.title}</a><span
+										class="list-date">${content2.add_time}</span></li>
+					                 </c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -227,19 +207,19 @@
 					<div class="list info-list">
 						<div class="pro-top">
 							<h4 class="pull-left">
-								<a href="###"><span class="glyphicon glyphicon-list-alt"></span>
+								<a href="###"  onclick="toContentList('${column_id3}');"><span class="glyphicon glyphicon-list-alt"></span>
 									信息公开规章制度</a>
 							</h4>
-							<a href="###" class="more pull-right">更多&gt;&gt;</a>
+							<a href="###"  onclick="toContentList('${column_id3}');" class="more pull-right">更多&gt;&gt;</a>
 						</div>
 						<div class="clearfix"></div>
 						<div class="list-pro-container">
 							<div class="list-pro">
 								<ul>
-									<li><a href="###" class="pull-left">自动化与电气工程学院举办第二十四届入党积极分子专题讲座</a><span
-										class="list-date">2016-11-21</span></li>
-									<li class="no-line"><a href="###" class="pull-left">自动化与电气工程学院举办第二十四届入党积极分子专题讲座自动化与电气工程学院举办第二十四届入党积极分子专题讲座自动化与电气工程学院举办第二十四届入党积极分子专题讲座</a><span
-										class="list-date">2016-11-21</span></li>
+									<c:forEach var="content3" items="${contentList3}"> 
+										<li><a href="###" onclick="toContentDetail('${content3.id}');" class="pull-left">${content3.title}</a><span
+										class="list-date">${content3.add_time}</span></li>
+					                 </c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -251,15 +231,15 @@
 							<h4 class="pull-left">
 								<a href="###">信息公开联系方式</a>
 							</h4>
-							<a href="###" class="more pull-right">更多&gt;&gt;</a>
+							<!-- <a href="###" class="more pull-right">更多&gt;&gt;</a> -->
 						</div>
 						<div class="clearfix"></div>
 						<ul>
-							<li>部门：党委办公室、校长办公室</li>
-							<li>地址：济南市市中区南辛庄西路336号</li>
-							<li>电话：0531-89736251</li>
-							<li>邮编：250022</li>
-							<li>邮箱：xxgk@ujn.edu.cn</li>
+							<li>部门：${contact.dept_name }</li>
+							<li>地址：${contact.address }</li>
+							<li>电话：${contact.tel }</li>
+							<li>邮编：${contact.addr_zip }</li>
+							<li>邮箱：${contact.email }</li>
 						</ul>
 						<a href="###"><img
 							src="${pageContext.request.contextPath}/static/images/news.jpg"
@@ -328,6 +308,33 @@
 					ulos[i].style.display = "none";
 				}
 			}
+		}
+		
+		//内容
+		function toContentDetail(id){
+			$.ajax({
+				method : "POST",
+				url : "${pageContext.request.contextPath}/index/controller/indexController/toContentCheck",
+				data : {
+					id : id
+				}
+			}).done(function(data) {
+				var open_type = data.open_type;
+				alert(open_type);
+				if(open_type == '4'){
+					alert("输入密码");
+				}else {
+					var url = "${pageContext.request.contextPath}/index/controller/indexController/toContentDetail";
+					window.location.href = url;
+				}
+				
+			});
+			
+		}
+		//列表
+		function toContentList(id) {
+			var url = "${pageContext.request.contextPath}/index/controller/indexController/toContentList";
+			window.location.href = url;
 		}
 	</script>
 </body>
