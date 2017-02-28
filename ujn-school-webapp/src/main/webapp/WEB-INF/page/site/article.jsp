@@ -142,31 +142,7 @@
 		</div>
 	</div>
 
-	<footer id="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<img src="${pageContext.request.contextPath}/static/images/footer.jpg" class="img-responsive" alt="logo">
-				</div>
-				<div class="col-md-7">
-					<ul>
-						<li>Copyright © 1995-2016 University of Jinan</li>
-						<li>鲁ICP备05001960号</li>
-						<li>地址：济南市市中区南辛庄西路336号 电话：0531-89736251 邮编：250022</li>
-					</ul>
-				</div>
-				<div class="footer-tool pull-right hidden-xs">
-					<p>技术支持：lzh_me@126.com</p>
-					<select class="form-control">
-						<option>友情链接</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<%@ include file="siteFooter.jsp"%>
 
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript">

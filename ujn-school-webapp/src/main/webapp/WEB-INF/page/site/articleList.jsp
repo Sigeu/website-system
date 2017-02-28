@@ -5,14 +5,17 @@
 <html>
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
-<title>内容详情</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/static/css/keleyidivpager.css">
+<title>内容列表</title>
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top navbar-top">
 	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="###"> <img alt="logo"
-				src="${pageContext.request.contextPath}/static/images/logo.png" class="img-responsive" />
+				src="${pageContext.request.contextPath}/static/images/logo.png"
+				class="img-responsive" />
 			</a>
 		</div>
 		<div
@@ -62,115 +65,69 @@
 	</nav>
 
 	<div class="container" style="padding-left: 0; padding-right: 0">
-		<img src="${pageContext.request.contextPath}/static/images/banner.jpg" class="img-responsive" alt="济大风光">
+		<img src="${pageContext.request.contextPath}/static/images/banner.jpg"
+			class="img-responsive" alt="济大风光">
 	</div>
 
-	<div class="article">
+	<div class="article all-con">
 		<div class="container">
 			<div class="row">
-				<p class="breadcrumb">
-					<a href="###">首页</a> \ <a href="###">信息管理制度</a> \ 济南大学召开中外合作办学工作调度会
-				</p>
-				<div class="article-main">
-					<div class="article-top text-center">
-						<h1>济南大学召开中外合作办学工作调度会</h1>
-						<div class="article-info">
-							<span>2016年12月16日</span><span>作者：Admin</span><span>浏览次数：121018</span><span>公开日期：2016年12月16日-2016年12月31日</span><span>公开部门：院办</span>
+				<div class="col-md-9 article-sidebarl list-sidebarl list-sidebarr">
+					<div class="list">
+						<div class="pro-top">
+							<h4 class="pull-left">
+								<a href="###"><span class="glyphicon glyphicon-list"></span>
+									学生奖学金申请与管理规定</a>
+							</h4>
+							<a href="###" class="more pull-right">更多&gt;&gt;</a>
 						</div>
-					</div>
-					<div class="article-body">
-						<p>2月15日，学校召开中外合作办学工作调度会。济南大学校长张士强，副校长王保贤，学校有关职能部门负责人及相关学院院长参加了会议。会议由王保贤副校长主持。</p>
-						<p>张士强校长在讲话中强调，中外合作办学是我国高等教育的重要组成部分，是当前形势下开展双一流建设的重要途径。通过中外合作办学引进国外优质教育资源，可以推进学科专业、师资队伍、教学科研、人才培养的国际化建设，提高学校整体的国际化办学水平。各有关部门、学院要以学校中外合作办学新政策出台为契机，广开思路，开拓渠道，加快推进我校中外合作办学事业发展。</p>
-						<p>
-							<img src="${pageContext.request.contextPath}/static/images/ex.jpg" class="img-responsive"
-								alt="济南大学召开中外合作办学工作调度会">
-						</p>
-						<p>王保贤副校长分析了当前中外合作办学面临的形势与机遇，他指出中外合作办学对学校国际化人才培养具有重要意义，学院要充分发挥合作办学的主体作用，根据各自学科专业特点精准定位，在学校有关部门指导下，积极开展与国外高水平院校的中外合作办学工作。国际合作与交流处介绍了国家有关中外合作办学的政策与要求，并就学校新出台的中外合作办学有关政策进行了解读。</p>
-						<p>此次合作办学工作调度会的召开，进一步统一了思想，提高了认识，明确了方向，为学校中外合作办学事业的可持续发展奠定了坚实的基础。</p>
-					</div>
-				</div>
-				<div class="article-like">
-					<div class="article-like-top">
-						<h4 class="pull-left">相关阅读</h4>
-						<button type="button" class="btn btn-primary pull-right">关闭</button>
 						<div class="clearfix"></div>
-					</div>
-					<div class="clearfix"></div>
-					<div class="all-list">
-						<div class="all-list-pro clearfix">
-							<div class="pro-date pull-left hidden-xs hidden-sm">
-								<dl>
-									<dt>08</dt>
-									<dd>12月</dd>
-								</dl>
-							</div>
-							<div class="pro-con article-pro-con pull-right">
-								<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-								<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
-									货物名称 预算。</p>
-							</div>
-						</div>
-						<div class="all-list-pro clearfix">
-							<div class="pro-date pull-left hidden-xs hidden-sm">
-								<dl>
-									<dt>08</dt>
-									<dd>12月</dd>
-								</dl>
-							</div>
-							<div class="pro-con article-pro-con pull-right">
-								<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-								<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
-									货物名称 预算。</p>
-							</div>
-						</div>
-						<div class="all-list-pro clearfix">
-							<div class="pro-date pull-left hidden-xs hidden-sm">
-								<dl>
-									<dt>08</dt>
-									<dd>12月</dd>
-								</dl>
-							</div>
-							<div class="pro-con article-pro-con pull-right">
-								<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-								<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
-									货物名称 预算。</p>
+						<div class="list-pro-container">
+							<div class="list-pro">
+								<ul>
+									<c:forEach var="content" items="${contentList}">
+										<li><a href="###"
+											onclick="toContentDetail('${content.id}');" class="pull-left">${content.title}</a><span
+											class="list-date">${content.add_time}</span></li>
+									</c:forEach>
+								</ul>
 							</div>
 						</div>
 					</div>
+					<nav class="page">
+					<ul class="pagination">
+						<div id="div_pager"></div>
+						<!-- <li><a href="#">&laquo;</a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">&raquo;</a></li> -->
+					</ul>
+					</nav>
 				</div>
+				<%@ include file="articleListSidebar.jsp"%>
 			</div>
 		</div>
 	</div>
-
-	<footer id="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<img src="${pageContext.request.contextPath}/static/images/footer.jpg" class="img-responsive" alt="logo">
-				</div>
-				<div class="col-md-7">
-					<ul>
-						<li>Copyright © 1995-2016 University of Jinan</li>
-						<li>鲁ICP备05001960号</li>
-						<li>地址：济南市市中区南辛庄西路336号 电话：0531-89736251 邮编：250022</li>
-					</ul>
-				</div>
-				<div class="footer-tool pull-right hidden-xs">
-					<p>技术支持：lzh_me@126.com</p>
-					<select class="form-control">
-						<option>友情链接</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				</div>
-			</div>
-		</div>
-	</footer>
-
+	<input type="hidden" name="id" id="id_" value="${column_id }">
+	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/keleyidivpager.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/article.pager.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/article.js"></script>
 	<script type="text/javascript">
-		
+		//-------分页数据----------
+		var id = '${column_id }';
+		var totalPage = '${totalPage }';
+		var totalRecords = '${totalRecords }';
+		// 项目路径
+		var contextPath = '${pageContext.request.contextPath}';
+		//-------分页数据----------
 	</script>
 </body>
 </html>

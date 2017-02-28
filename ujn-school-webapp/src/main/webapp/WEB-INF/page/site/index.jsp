@@ -1,14 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav.css">
 <title>index</title>
+<script type="text/javascript">
+	//-------分页数据----------
+	var id = '${column_id }';
+	var totalPage = '${totalPage }';
+	var totalRecords = '${totalRecords }';
+	// 项目路径
+	var contextPath = '${pageContext.request.contextPath}';
+	//-------分页数据----------
+</script>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-static-top navbar-top">
+	<%-- <nav class="navbar navbar-default navbar-static-top navbar-top">
 	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="###"> <img alt="logo"
@@ -29,81 +39,82 @@
 			</div>
 		</div>
 	</div>
-	</nav>
+	</nav> --%>
 
-	<nav class="navbar navbar-default navbar-static-top navbar-menu">
-	<div class="container">
-		<div class="row">
-			<div class="navbar-dropdown hidden-xs hidden-sm">
-				<div id="navbar-dropdown-top">
-					<span class="navbar-dorpdown-one">校务公开</span><span>党务公开</span>
+<!-- 	<nav class="navbar navbar-default navbar-static-top navbar-menu">
+		<div class="container">
+			<div class="row">
+				<div class="navbar-dropdown hidden-xs hidden-sm">
+					<div id="navbar-dropdown-top">
+						<span class="navbar-dorpdown-one">校务公开</span><span>党务公开</span>
+					</div>
+					<div id="navbar-dropdown-con">
+						<ul>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">基本信息<span>&gt;</span></a></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">招生考试信息<span>&gt;</span></a></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">财务、资产及收费信息<span>&gt;</span></a></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">人事师资信息<span>&gt;</span></a></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">教学质量信息<span>&gt;</span></a></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two active">学生管理服务信息<span>&gt;</span></a>
+								<ul class="navbar-dropdown-thr">
+									<li><a href="###">学籍管理办法</a></li>
+									<li><a href="###">学生奖学金申请与管理规定</a></li>
+									<li><a href="###">助学金申请与管理规定</a></li>
+									<li><a href="###">学费减免申请与管理规定</a></li>
+									<li><a href="###">助学贷款申请与管理规定</a></li>
+									<li><a href="###">勤工俭学的申请与管理规定</a></li>
+									<li><a href="###">学生奖励处罚办法</a></li>
+									<li><a href="###">学生申诉办法</a></li>
+								</ul></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">学风建设信息<span>&gt;</span></a></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">学位、学科信息<span>&gt;</span></a></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">对外交流与合作信息<span>&gt;</span></a></li>
+							<li class="navbar-pos"><a href="###"
+								class="navbar-dropdown-two">其他信息<span>&gt;</span></a></li>
+						</ul>
+						<ul style="display: none">
+							<li><a href="###">00</a></li>
+							<li><a href="###">11</a></li>
+							<li><a href="###">22</a></li>
+							<li><a href="###">33</a></li>
+							<li><a href="###">44</a></li>
+						</ul>
+					</div>
 				</div>
-				<div id="navbar-dropdown-con">
-					<ul>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">基本信息<span>&gt;</span></a></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">招生考试信息<span>&gt;</span></a></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">财务、资产及收费信息<span>&gt;</span></a></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">人事师资信息<span>&gt;</span></a></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">教学质量信息<span>&gt;</span></a></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two active">学生管理服务信息<span>&gt;</span></a>
-							<ul class="navbar-dropdown-thr">
-								<li><a href="###">学籍管理办法</a></li>
-								<li><a href="###">学生奖学金申请与管理规定</a></li>
-								<li><a href="###">助学金申请与管理规定</a></li>
-								<li><a href="###">学费减免申请与管理规定</a></li>
-								<li><a href="###">助学贷款申请与管理规定</a></li>
-								<li><a href="###">勤工俭学的申请与管理规定</a></li>
-								<li><a href="###">学生奖励处罚办法</a></li>
-								<li><a href="###">学生申诉办法</a></li>
-							</ul></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">学风建设信息<span>&gt;</span></a></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">学位、学科信息<span>&gt;</span></a></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">对外交流与合作信息<span>&gt;</span></a></li>
-						<li class="navbar-pos"><a href="###"
-							class="navbar-dropdown-two">其他信息<span>&gt;</span></a></li>
-					</ul>
-					<ul style="display: none">
-						<li><a href="###">00</a></li>
-						<li><a href="###">11</a></li>
-						<li><a href="###">22</a></li>
-						<li><a href="###">33</a></li>
-						<li><a href="###">44</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-md-9 col-xs-12 navbar-right">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#navbar-collapse">
-						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<ul class="nav nav-justified">
-						<li class="active"><a href="###">首页</a></li>
-						<li><a href="###">信息公开制度</a></li>
-						<li><a href="###">信息公开指南</a></li>
-						<li><a href="###">信息公开目录</a></li>
-						<li><a href="###">信息公开申请</a></li>
-						<li><a href="###">年度报告</a></li>
-					</ul>
+				<div class="col-md-9 col-xs-12 navbar-right">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#navbar-collapse">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse">
+						<ul class="nav nav-justified">
+							<li class="active"><a href="###">首页</a></li>
+							<li><a href="###">信息公开制度</a></li>
+							<li><a href="###">信息公开指南</a></li>
+							<li><a href="###">信息公开目录</a></li>
+							<li><a href="###">信息公开申请</a></li>
+							<li><a href="###">年度报告</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</nav>
+	</nav> -->
+	<%@ include file="siteHeader.jsp"%>
 
-	<div id="myCarousel" class="carousel slide">
+<%-- 	<div id="myCarousel" class="carousel slide">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -132,36 +143,37 @@
 			class="carousel-control right"> <span
 			class="glyphicon glyphicon-chevron-right"></span>
 		</a>
-	</div>
+	</div> --%>
+	<%@ include file="carousel.jsp"%>
 
 	<div class="index-info">
 		<div class="container">
 			<div class="pro-top">
 				<h4 class="pull-left">
-					<a href="###" onclick="toContentList('${column_id1}');"><span class="glyphicon glyphicon-th-list"></span>
-						最新公开信息</a>
+					<a href="###" onclick="toContentList('${column_id1}');"><span
+						class="glyphicon glyphicon-th-list"></span> 最新公开信息</a>
 				</h4>
-				<a href="###" onclick="toContentList('${column_id1}');" class="more pull-right">更多&gt;&gt;</a>
+				<a href="###" onclick="toContentList('${column_id1}');"
+					class="more pull-right">更多&gt;&gt;</a>
 			</div>
 			<div class="clearfix"></div>
 			<div class="row text-justify">
-				 <c:forEach var="content1" items="${contentList1}"> 
-				 	<c:if test="content1.index == 0"> 
-	                   	<div class="col-md-4 index-info-con">
+				<c:forEach var="content1" items="${contentList1}">
+					<c:if test="content1.index == 0">
+						<div class="col-md-4 index-info-con">
 							<div class="index-info-fir-top">
-								<a href="###"  onclick="toContentDetail('${content1.id}');">${content1.title}</a> <span>${content1.add_time}</span>
+								<a href="###" onclick="toContentDetail('${content1.id}');">${content1.title}</a>
+								<span>${content1.add_time}</span>
 							</div>
-							<div class="index-info-fir-body">
-								${content1.description}
-							</div>
-						</div> 
+							<div class="index-info-fir-body">${content1.description}</div>
+						</div>
 					</c:if>
-                 </c:forEach>
-				
+				</c:forEach>
+
 				<div class="col-md-8 all-list">
-					<c:forEach var="content1" items="${contentList1}"> 
-					 	<c:if test="content1.index > 1"> 
-		                   	<div class="all-list-pro clearfix">
+					<c:forEach var="content1" items="${contentList1}">
+						<c:if test="content1.index > 1">
+							<div class="all-list-pro clearfix">
 								<div class="pro-date pull-left hidden-xs hidden-sm">
 									<dl>
 										<dt>${content1.add_time}</dt>
@@ -174,7 +186,7 @@
 								</div>
 							</div>
 						</c:if>
-	                 </c:forEach>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -187,19 +199,22 @@
 					<div class="list">
 						<div class="pro-top">
 							<h4 class="pull-left">
-								<a href="###" onclick="toContentList('${column_id2}');"><span class="glyphicon glyphicon-align-left"></span>
-									重要信息公开</a>
+								<a href="###" onclick="toContentList('${column_id2}');"><span
+									class="glyphicon glyphicon-align-left"></span> 重要信息公开</a>
 							</h4>
-							<a href="###" onclick="toContentList('${column_id2}');" class="more pull-right">更多&gt;&gt;</a>
+							<a href="###" onclick="toContentList('${column_id2}');"
+								class="more pull-right">更多&gt;&gt;</a>
 						</div>
 						<div class="clearfix"></div>
 						<div class="list-pro-container">
 							<div class="list-pro">
 								<ul>
-									<c:forEach var="content2" items="${contentList2}"> 
-						                   	<li><a href="###" onclick="toContentDetail('${content2.id}');" class="pull-left">${content2.title}</a><span
-										class="list-date">${content2.add_time}</span></li>
-					                 </c:forEach>
+									<c:forEach var="content2" items="${contentList2}">
+										<li><a href="###"
+											onclick="toContentDetail('${content2.id}');"
+											class="pull-left">${content2.title}</a><span
+											class="list-date">${content2.add_time}</span></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -207,19 +222,22 @@
 					<div class="list info-list">
 						<div class="pro-top">
 							<h4 class="pull-left">
-								<a href="###"  onclick="toContentList('${column_id3}');"><span class="glyphicon glyphicon-list-alt"></span>
-									信息公开规章制度</a>
+								<a href="###" onclick="toContentList('${column_id3}');"><span
+									class="glyphicon glyphicon-list-alt"></span> 信息公开规章制度</a>
 							</h4>
-							<a href="###"  onclick="toContentList('${column_id3}');" class="more pull-right">更多&gt;&gt;</a>
+							<a href="###" onclick="toContentList('${column_id3}');"
+								class="more pull-right">更多&gt;&gt;</a>
 						</div>
 						<div class="clearfix"></div>
 						<div class="list-pro-container">
 							<div class="list-pro">
 								<ul>
-									<c:forEach var="content3" items="${contentList3}"> 
-										<li><a href="###" onclick="toContentDetail('${content3.id}');" class="pull-left">${content3.title}</a><span
-										class="list-date">${content3.add_time}</span></li>
-					                 </c:forEach>
+									<c:forEach var="content3" items="${contentList3}">
+										<li><a href="###"
+											onclick="toContentDetail('${content3.id}');"
+											class="pull-left">${content3.title}</a><span
+											class="list-date">${content3.add_time}</span></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -250,41 +268,12 @@
 		</div>
 	</div>
 
-	<footer id="footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2">
-				<img
-					src="${pageContext.request.contextPath}/static/images/footer.jpg"
-					class="img-responsive" alt="logo">
-			</div>
-			<div class="col-md-7">
-				<ul>
-					<li>${config.copyright }</li>
-					<li>${config.record_num }</li>
-					<li>地址：${contact.address } 电话：${contact.tel } 邮编：${contact.addr_zip }</li>
-				</ul>
-			</div>
-			<div class="footer-tool pull-right hidden-xs">
-				<p>技术支持：lzh_me@126.com</p>
-				<select id="link_select" name="link" class="form-control">
-					<option value="">友情链接</option>  
-                    <c:forEach var="link" items="${linkList}">  
-                    	<a href="${link.web_url}"><option value="${link.id }">${link.web_name}</option></a> 
-                    </c:forEach>  
-                </select> 
-				<!-- <select class="form-control">
-					<option>友情链接</option>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-				</select> -->
-			</div>
-		</div>
-	</div>
-	</footer>
-
+	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/article.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/nav.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			//轮播自动播放
@@ -308,33 +297,6 @@
 					ulos[i].style.display = "none";
 				}
 			}
-		}
-		
-		//内容
-		function toContentDetail(id){
-			$.ajax({
-				method : "POST",
-				url : "${pageContext.request.contextPath}/index/controller/indexController/toContentCheck",
-				data : {
-					id : id
-				}
-			}).done(function(data) {
-				var open_type = data.open_type;
-				alert(open_type);
-				if(open_type == '4'){
-					alert("输入密码");
-				}else {
-					var url = "${pageContext.request.contextPath}/index/controller/indexController/toContentDetail";
-					window.location.href = url;
-				}
-				
-			});
-			
-		}
-		//列表
-		function toContentList(id) {
-			var url = "${pageContext.request.contextPath}/index/controller/indexController/toContentList";
-			window.location.href = url;
 		}
 	</script>
 </body>
