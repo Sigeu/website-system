@@ -22,6 +22,7 @@ import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.config.Config;
 import ujn.school.cn.model.contact.Contact;
 import ujn.school.cn.model.content.Content;
+import ujn.school.cn.model.content.ContentWithBLOBs;
 import ujn.school.cn.model.link.Link;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.config.IConfigService;
@@ -165,7 +166,16 @@ public class IndexController extends MyBaseController {
 		contentReport.setCount_num(ISystemConstants.COUNT_NUM5);
 		//年度报告内容列表
 		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
-				
+		//点击的栏目
+		Column column = columnService.queryColumnById(Integer.parseInt(column_id));
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
 		
 		model.addAttribute("contact", contact);
 		model.addAttribute("linkList", linkList);
@@ -174,6 +184,8 @@ public class IndexController extends MyBaseController {
 		model.addAttribute("totalRecords", totalRecords);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("column", column);
+		model.addAttribute("columnList", columnList);
 		return "site/articleList";
 	}
 
@@ -191,8 +203,13 @@ public class IndexController extends MyBaseController {
 		// 友情链接
 		List<Link> linkList = linkService.queryLinkList(null);
 		
+		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
+		Content content = contentService.queryContentById(contentId);
+		
 		model.addAttribute("contact", contact);
 		model.addAttribute("linkList", linkList);
+		model.addAttribute("content", content);
+		
 		return "site/article";
 	}
 	
@@ -248,6 +265,61 @@ public class IndexController extends MyBaseController {
 		map.put("open_type", open_type);
 
 		return map;
+	}
+	
+	
+	@RequestMapping("/search")
+	public String search(HttpServletRequest request, Model model) {
+		String search_text = request.getParameter("serach_text")==null? "":request.getParameter("serach_text");
+		// 最新公开信息 
+		ContentWithBLOBs content = new ContentWithBLOBs();
+		content.setTitle(search_text);
+		content.setContent(search_text);
+		content.setKeywords(search_text);
+		content.setDescription(search_text);
+		content.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
+		content.setOrder_type(ISystemConstants.ORDER_DESC);
+		content.setCount_num(ISystemConstants.COUNT_NUM4);
+		//内容列表
+		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
+		PageHelper.startPage(pageNo,ISystemConstants.PAGE_SIZE15);
+		List<Content> contentList = contentService.queryContentList(content);
+		int totalRecords = contentList.size();
+		int totalPage = (totalRecords  +  ISystemConstants.PAGE_SIZE15  - 1) / ISystemConstants.PAGE_SIZE15;  
+		
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = "103";
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(ISystemConstants.ORDER_DESC);
+		contentReport.setCount_num(ISystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentList", contentList);
+		model.addAttribute("totalRecords", totalRecords);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("columnList", columnList);
+		model.addAttribute("search_text", search_text);
+		
+		return "site/searchList";
 	}
 	
 	/**

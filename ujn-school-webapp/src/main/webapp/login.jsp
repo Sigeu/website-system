@@ -37,9 +37,8 @@
 						<input class="input-text size-L" type="text" placeholder="验证码"
 							onblur="if(this.value==''){this.value='验证码:'}"
 							onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:"
-							style="width: 150px;"> <img
-							src="images/VerifyCode.aspx.png"> <a id="kanbuq"
-							href="javascript:;">看不清，换一张</a>
+							style="width: 150px;"> <img id="img_" src="${pageContext.request.contextPath}/verifyCodeServlet"> <a id="kanbuq"
+							href="##">看不清，换一张</a>
 					</div>
 				</div>
 				<div class="row cl">
@@ -62,5 +61,12 @@
 	</div>
 	<div class="footer">Copyright 你的公司名称 by H-ui.admin.v2.3</div>
 	<%@ include file="common/footer_index.jsp"%>
+	<script type="text/javascript">  
+		$(function(){
+			$('#kanbuq').on('click',function(){
+				$('#img_').attr('src','${pageContext.request.contextPath}/verifyCodeServlet?' + new Date().getTime());
+			});
+		});
+    </script> 
 </body>
 </html>

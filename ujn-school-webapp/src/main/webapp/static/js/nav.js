@@ -8,6 +8,8 @@ $(function() {
 	$("#span_first").hover(function(event) {
 		$(this).addClass("navbar-dorpdown-one");
 		$("#div_first").show();
+		$("#div_second").hide();
+		$("#span_second").removeClass("navbar-dorpdown-one");
 	}, function(event) {
 		
 	});
@@ -25,6 +27,8 @@ $(function() {
 	$("#span_second").hover(function(event) {
 		$(this).addClass("navbar-dorpdown-one");
 		$("#div_second").show();
+		$("#div_first").hide();
+		$("#span_first").removeClass("navbar-dorpdown-one");
 	}, function(event) {
 		
 	});
@@ -32,12 +36,17 @@ $(function() {
 	$("#div_second").hover(function(event) {
 		$("#span_second").addClass("navbar-dorpdown-one");
 		$(this).show();
+		$("#div_first").hide();
 	}, function(event) {
 		$("#span_second").removeClass("navbar-dorpdown-one");
 		$(this).hide(); 
 	});
 	//----党务公开----//
 	
+	$("#logo_nav").hover(function(event) {
+		$("#div_first").hide();
+		$("#div_second").hide();
+	});
 	
 	//二级导航
 	$(".navbar-pos").hover(function(event) {
@@ -53,3 +62,10 @@ $(function() {
 
 /*----------------------导航-----------------------*/
 
+
+$(function() {
+	$('#search_but').on('click',function(){
+		var url = contextPath + "/index/controller/indexController/search?"+ new Date().getTime();  
+		$('#search_form').attr("action", url).submit();;
+	});
+});

@@ -63,7 +63,7 @@ public class LoginController extends MyBaseController {
 				log.setType("");
 				logService.saveLog(log);
 	        } 
-	        return "redirect:/index.jsp"; 
+	        return "main/index"; 
 		} catch (IncorrectCredentialsException e) {  
 	        msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";  
 	        model.addAttribute("message", msg);  
@@ -111,12 +111,12 @@ public class LoginController extends MyBaseController {
 		
 	}
 	
-/*	@RequestMapping("/index")
-	public String index(HttpServletRequest request,  Model model) {
+	@RequestMapping("/admin")
+	public String admin(HttpServletRequest request,  Model model) {
 		
 		//return "main/index";
-		return "site/index";
-	}*/
+		return "/login";
+	}
 	
 	/**
 	 * 获取IP

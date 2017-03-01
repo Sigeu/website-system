@@ -23,7 +23,7 @@ function toContentDetail(id) {
 							alert("输入密码");
 						} else {
 							var url = contextPath
-									+ "/index/controller/indexController/toContentDetail";
+									+ "/index/controller/indexController/toContentDetail?id=" + id;
 							window.location.href = url;
 						}
 					});

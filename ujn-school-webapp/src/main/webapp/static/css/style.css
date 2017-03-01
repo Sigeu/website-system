@@ -16,14 +16,17 @@ a:hover, a:focus, a:visited {color:#25499d; text-decoration:none}
 .navbar-dropdown {position:absolute; width:230px}
 .navbar-dropdown span {display:inline-block; width:50%; height:40px; text-align:center; cursor:pointer; color:#25499d}
 .navbar-dorpdown-one {background:url(../images/dropdown.png) repeat-x left bottom; -moz-border-radius:4px 4px 0 0; border-radius:4px 4px 0 0;}
-#navbar-dropdown-con {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
-#navbar-dropdown-con li {line-height:40px}
+#div_first {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
+#div_first li {line-height:40px}
+#div_second {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
+#div_second li {line-height:40px}
 .navbar-dropdown .navbar-dropdown-two {display:block; padding:0 10%; height:40px; text-align:left}
 .navbar-dropdown a.navbar-dropdown-two:hover, .navbar-dropdown a.active {color:#25499d; background:url(../images/dropdown-pro.png) repeat-x}
 a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:#000}
 .navbar-pos {position:relative}
 .navbar-dropdown .navbar-dropdown-thr {position:absolute; top:0px; left:100%; padding:10px 25px; width:560px; line-height:30px; background:url(../images/dropdown-thr.png)}
-#navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
+#div_first .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
+#div_second .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
 .navbar-pos a {color:#000}
 .navbar-pos a:hover, .navbar-pos a:hover span, .navbar-dropdown a.active span {color:#25499d}
 #footer {margin-top:20px; background-color:#25499d; color:#fff}
@@ -197,7 +200,8 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.navbar-search .glyphicon-search {font-size:16px; top:2px; color:#999}
 	.login-top .container {background:#fff}
 	.navbar-menu {font-size:17px}
-	#navbar-dropdown-con {font-size:14px}
+	#div_first {font-size:14px}
+	#div_second {font-size:14px}
 	.navbar-dropdown .navbar-dropdown-two {padding-left:10%}
 	.index-info {margin-top:35px}
 	.pro-top > h4 {font-size:17px}

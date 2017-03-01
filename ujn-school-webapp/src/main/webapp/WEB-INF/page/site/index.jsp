@@ -6,7 +6,7 @@
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav.css">
-<title>index</title>
+<title>网站首页</title>
 <script type="text/javascript">
 	//-------分页数据----------
 	var id = '${column_id }';
@@ -18,132 +18,8 @@
 </script>
 </head>
 <body>
-	<%-- <nav class="navbar navbar-default navbar-static-top navbar-top">
-	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="###"> <img alt="logo"
-				src="${pageContext.request.contextPath}/static/images/logo.png"
-				class="img-responsive" />
-			</a>
-		</div>
-		<div
-			class="col-xs-12 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-3 navbar-search"
-			style="padding: 0px">
-			<div class="input-group">
-				<input type="text" class="form-control"> <span
-					class="input-group-btn">
-					<button class="btn btn-default" type="button">
-						<span class="glyphicon glyphicon-search"></span>
-					</button>
-				</span>
-			</div>
-		</div>
-	</div>
-	</nav> --%>
-
-<!-- 	<nav class="navbar navbar-default navbar-static-top navbar-menu">
-		<div class="container">
-			<div class="row">
-				<div class="navbar-dropdown hidden-xs hidden-sm">
-					<div id="navbar-dropdown-top">
-						<span class="navbar-dorpdown-one">校务公开</span><span>党务公开</span>
-					</div>
-					<div id="navbar-dropdown-con">
-						<ul>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">基本信息<span>&gt;</span></a></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">招生考试信息<span>&gt;</span></a></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">财务、资产及收费信息<span>&gt;</span></a></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">人事师资信息<span>&gt;</span></a></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">教学质量信息<span>&gt;</span></a></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two active">学生管理服务信息<span>&gt;</span></a>
-								<ul class="navbar-dropdown-thr">
-									<li><a href="###">学籍管理办法</a></li>
-									<li><a href="###">学生奖学金申请与管理规定</a></li>
-									<li><a href="###">助学金申请与管理规定</a></li>
-									<li><a href="###">学费减免申请与管理规定</a></li>
-									<li><a href="###">助学贷款申请与管理规定</a></li>
-									<li><a href="###">勤工俭学的申请与管理规定</a></li>
-									<li><a href="###">学生奖励处罚办法</a></li>
-									<li><a href="###">学生申诉办法</a></li>
-								</ul></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">学风建设信息<span>&gt;</span></a></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">学位、学科信息<span>&gt;</span></a></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">对外交流与合作信息<span>&gt;</span></a></li>
-							<li class="navbar-pos"><a href="###"
-								class="navbar-dropdown-two">其他信息<span>&gt;</span></a></li>
-						</ul>
-						<ul style="display: none">
-							<li><a href="###">00</a></li>
-							<li><a href="###">11</a></li>
-							<li><a href="###">22</a></li>
-							<li><a href="###">33</a></li>
-							<li><a href="###">44</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-9 col-xs-12 navbar-right">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#navbar-collapse">
-							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="collapse navbar-collapse" id="navbar-collapse">
-						<ul class="nav nav-justified">
-							<li class="active"><a href="###">首页</a></li>
-							<li><a href="###">信息公开制度</a></li>
-							<li><a href="###">信息公开指南</a></li>
-							<li><a href="###">信息公开目录</a></li>
-							<li><a href="###">信息公开申请</a></li>
-							<li><a href="###">年度报告</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav> -->
 	<%@ include file="siteHeader.jsp"%>
 
-<%-- 	<div id="myCarousel" class="carousel slide">
-		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner">
-			<div class="item active" style="background: #223240">
-				<img
-					src="${pageContext.request.contextPath}/static/images/slide1.png"
-					alt="第一张">
-			</div>
-			<div class="item" style="background: #F5E4DC;">
-				<img
-					src="${pageContext.request.contextPath}/static/images/slide2.png"
-					alt="第二张">
-			</div>
-			<div class="item" style="background: #DE2A2D;">
-				<img
-					src="${pageContext.request.contextPath}/static/images/slide3.png"
-					alt="第三张">
-			</div>
-		</div>
-		<a href="#myCarousel" data-slide="prev" class="carousel-control left">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-		</a> <a href="#myCarousel" data-slide="next"
-			class="carousel-control right"> <span
-			class="glyphicon glyphicon-chevron-right"></span>
-		</a>
-	</div> --%>
 	<%@ include file="carousel.jsp"%>
 
 	<div class="index-info">
