@@ -29,9 +29,10 @@
 		<div class="row">
 			<div class="navbar-dropdown hidden-xs hidden-sm">
 				<div id="navbar-dropdown-top">
-					<span class="navbar-dorpdown-one" id="span_first">校务公开</span><span id="span_second">党务公开</span>
+					<span id="span_first">校务公开</span><span id="span_second">党务公开</span>
 				</div>
-				<div id="navbar-dropdown-con" style="display: block">
+				<!-- id="navbar-dropdown-con" -->
+				<div id="div_first" style="display: none">
 					<ul>
 					<c:forEach var="column" items="${columnList}">
 						<c:if test="${column.big_class == 102}">
@@ -39,11 +40,37 @@
 								<li class="navbar-pos">
 								<a href="###"
 									class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
-									<%-- <c:if test="${column.class_type == 3}"> --%>
+									<c:if test="${column.class_type == 3}">
 										<ul class="navbar-dropdown-thr" style="display: none">
-											<li><a href="###">123${column.name }</a></li>
+											<li><a href="###">${column.name }</a></li>
 										</ul>
-									<%-- </c:if> --%>
+									</c:if>
+								</li>
+							</c:if>
+						</c:if>
+					</c:forEach>
+					</ul>
+					<ul style="display: none">
+						<li><a href="###">00</a></li>
+						<li><a href="###">11</a></li>
+						<li><a href="###">22</a></li>
+						<li><a href="###">33</a></li>
+						<li><a href="###">44</a></li>
+					</ul>
+				</div>
+				<div id="div_second" style="display: none">
+					<ul>
+					<c:forEach var="column" items="${columnList}">
+						<c:if test="${column.big_class == 102}">
+							<c:if test="${column.class_type == 2}">
+								<li class="navbar-pos">
+								<a href="###"
+									class="navbar-dropdown-two active">${column.name }2<span>&gt;</span></a>
+									<c:if test="${column.class_type == 3}">
+										<ul class="navbar-dropdown-thr" style="display: none">
+											<li><a href="###">${column.name }</a></li>
+										</ul>
+									</c:if>
 								</li>
 							</c:if>
 						</c:if>
