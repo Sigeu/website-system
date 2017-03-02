@@ -34,7 +34,6 @@
 				<div id="navbar-dropdown-top" >
 					<span id="span_first">校务公开</span><span id="span_second">党务公开</span>
 				</div>
-				<!-- id="navbar-dropdown-con" -->
 				<div id="div_first" style="display: none">
 					<ul>
 					<c:forEach var="column" items="${columnList}">

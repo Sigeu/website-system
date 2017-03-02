@@ -20,7 +20,7 @@
 				<select id="link_select" name="link" class="form-control">
 					<option value="">友情链接</option>  
                     <c:forEach var="link" items="${linkList}">  
-                    	<a href="${link.web_url}"><option value="${link.id }">${link.web_name}</option></a> 
+                    	<option value="${link.web_url }">${link.web_name}</option> 
                     </c:forEach>  
                 </select> 
 			</div>
