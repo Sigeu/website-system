@@ -39,9 +39,9 @@ public class AuditContentService implements IAuditContentService {
 	}
 
 	@Override
-	public Content queryAuditContentById(int auditContentId) {
+	public Content queryContentAuditById(int auditContentId) {
 		// TODO Auto-generated method stub
-		return null;
+		return contentMapper.selectByPrimaryKey(auditContentId);
 	}
 
 	

@@ -25,7 +25,7 @@ public interface IContentService {
 	 * @param content
 	 * @return
 	 */
-	int updateContent(Content content);
+	int updateContent(ContentWithBLOBs content);
 
 	/**
 	 * 
@@ -33,7 +33,7 @@ public interface IContentService {
 	 * @param contentId
 	 * @return
 	 */
-	Content queryContentById(int contentId);
+	ContentWithBLOBs  queryContentById(int contentId);
 
 	/**
 	 * 
@@ -63,5 +63,7 @@ public interface IContentService {
 	List<Content> queryContentRecycleList(Content content);
 
 	List<Content> queryContentListByColumn(Content content);
+
+	int recoverContent(int contentId);
 
 }

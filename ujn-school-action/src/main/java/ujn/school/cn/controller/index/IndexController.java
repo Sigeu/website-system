@@ -229,7 +229,8 @@ public class IndexController extends MyBaseController {
 	@ResponseBody
 	@RequestMapping("/toContentCheck")
 	public Map<String, Object> toContentCheck(HttpServletRequest request) {
-		String open_type = "1";
+		//默认3，不允许访问
+		String open_type = ISystemConstants.VALUE_3;
 		Map<String, Object> map = new HashMap<String, Object>();
 		String contentId = request.getParameter("id")==null? "0":request.getParameter("id");
 		Content content = contentService.queryContentById(Integer.parseInt(contentId));
@@ -245,20 +246,55 @@ public class IndexController extends MyBaseController {
 				//已过有效期
 			}else{
 				if(ISystemConstants.VALUE_0.equals(read_type)){
-					//直接查看
-					open_type = "1";
+					//0：直接查看
+					open_type = ISystemConstants.VALUE_0;
 				}else if(ISystemConstants.VALUE_1.equals(read_type)){
 					//验证IP
 					String ip = getIpAddr(request);
 					if("127.0.0.1".equals(ip)){
-						open_type = "2";
+						//允许访问
+						open_type = ISystemConstants.VALUE_1;
 					}else{
-						open_type = "3";
+						//不允许访问
+						open_type = ISystemConstants.VALUE_3;
 					}
 				}else if(ISystemConstants.VALUE_2.equals(read_type)){
-					//输入密码查看
-					open_type = "4";
+					//2：输入密码查看
+					open_type = ISystemConstants.VALUE_2;
 				}
+			}
+		}
+		
+		map.put("open_type", open_type);
+
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 验证访问密码 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/toContentCheckPwd")
+	public Map<String, Object> toContentCheckPwd(HttpServletRequest request) {
+		//默认4，密码错误不允许访问
+		String open_type = ISystemConstants.VALUE_4;
+		Map<String, Object> map = new HashMap<String, Object>();
+		String contentId = request.getParameter("id")==null? "0":request.getParameter("id");
+		String pwd = request.getParameter("pwd")==null? "":request.getParameter("pwd");
+		Content content = contentService.queryContentById(Integer.parseInt(contentId));
+		// 有效日期
+		String read_pwd = "";
+		if(null != content){
+			read_pwd = content.getRead_pwd();
+			if(!"".equals(read_pwd) && pwd.equals(read_pwd)){
+				//密码正确可以访问
+				open_type = ISystemConstants.VALUE_5;
+			}else{
+				//密码错误不允许访问
+				open_type = ISystemConstants.VALUE_4;
 			}
 		}
 		

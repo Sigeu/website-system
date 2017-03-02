@@ -12,10 +12,11 @@
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增内容
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>审核内容
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/content/controller/contentController/addContent" method="post" class="form form-horizontal" id="form-content-add">
+	<form action="${pageContext.request.contextPath}/content/controller/contentController/updateContent" method="post" class="form form-horizontal" id="form-content-update">
+		<input type="hidden" name="id" id="id_" value="${auditContent.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
@@ -30,7 +31,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="标题" id="title" name="title">
+				<input type="text" class="input-text" value="${auditContent.title}" placeholder="标题" id="title" name="title">
 			</div>
 		</div>
 		<div class="row cl">
@@ -42,20 +43,20 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${auditContent.description}</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+				<input type="text" class="input-text" value="${auditContent.no_order}" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">有效期：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" class="input-text Wdate"  value="" placeholder="内容公示截止有效期" id="validity_time" name="validity_time">
+				<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" class="input-text Wdate"  value="${auditContent.validity_time}" placeholder="内容公示截止有效期" id="validity_time" name="validity_time">
 			</div>
 		</div>
 		<div class="row cl">
@@ -73,14 +74,32 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="链接到网站外部的网址" id="links" name="links">
+				<input type="text" class="input-text" value="${auditContent.links}" placeholder="链接到网站外部的网址" id="links" name="links">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">审核：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+					<select class="select" id="status" name="status">
+						<option value="0">--请选择--</option> 
+						<option value="1">通过</option> 
+						<option value="2">不通过</option>  
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">访问密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="访问密码，不需要密码访问的可以为空" id="read_pwd" name="read_pwd">
 			</div>
 		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button id="submit_but" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-				<button id="close_but" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</form>
@@ -93,20 +112,25 @@
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
-
+	
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭
 		return false;
 	});
-	
+	//赋值
+	$('#column_id').val('${auditContent.column_id}');
+	$('#read_type').val('${auditContent.read_type}');
+	ue.ready(function() {//编辑器初始化完成再赋值  
+    	ue.setContent('${auditContent.content}');  //赋值给UEditor  
+    });  
 });
 
 
 //表单提交，可上传文件
 $(function() {
 	//表单验证
-	$("#form-content-add").validate({
+	$("#form-content-update").validate({
 		rules:{
 			title:{
 				required:true,
@@ -126,7 +150,7 @@ $(function() {
 			var options = {
 					success : function(data) {
 						layer.alert(data.result_message, {
-						  closeBtn: 1
+						  closeBtn: 0
 						}, function(){
 							//父页面刷新
 							parent.reloadPage();
@@ -136,9 +160,9 @@ $(function() {
 					}
 				};
 				// 准备form表单
-				$("#form-content-add").ajaxForm(options);
+				$("#form-content-update").ajaxForm(options);
 				// 表单提交     
-				$("#form-content-add").ajaxSubmit(options);
+				$("#form-content-update").ajaxSubmit(options);
 				
 				return false;
 		}

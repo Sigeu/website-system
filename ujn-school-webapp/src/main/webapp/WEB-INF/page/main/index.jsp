@@ -4,11 +4,16 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>山东查验员信息管理系统</title>
-<meta name="keywords" content="山东查验员信息管理系统">
-<meta name="description" content="山东查验员信息管理系统">
+<title>山东济南大学信息公开-网站后台管理系统</title>
+<meta name="keywords" content="山东济南大学信息公开">
+<meta name="description" content="山东济南大学信息公开">
 </head>
 <body>
+<div class="navbar-logo hidden-xs">
+		<div class="navbar-header">
+			<a href="index.html" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui.admin/images/logo2.png" class="img-responsive" alt=""></a>
+		</div>
+</div>
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
 		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">H-ui.admin</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.0</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>

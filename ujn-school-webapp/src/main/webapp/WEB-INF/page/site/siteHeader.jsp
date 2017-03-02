@@ -9,28 +9,29 @@
 				class="img-responsive" />
 			</a>
 		</div>
-		<div
-			class="col-xs-12 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-3 navbar-search"
-			style="padding: 0px">
-			<div class="input-group">
-				<form id="search_form" action="#" method="post">
-					<input type="text" name="serach_text" class="form-control"> <span
-						class="input-group-btn">
-						<button class="btn btn-default" type="button" id="search_but">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</span>
-				</form>
+		<form id="search_form" action="#" method="post">
+			<div
+				class="col-xs-12 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-3 navbar-search"
+				style="padding: 0px">
+				<div class="input-group">
+					
+						<input type="text" name="serach_text" class="form-control"> <span
+							class="input-group-btn">
+							<button class="btn btn-default" type="button" id="search_but">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 </nav>
 
-<nav class="navbar navbar-default navbar-static-top navbar-menu">
+<nav id="menu_nav" class="navbar navbar-default navbar-static-top navbar-menu">
 	<div class="container">
-		<div class="row" id="menu_nav" >
-			<div class="navbar-dropdown hidden-xs hidden-sm">
-				<div id="navbar-dropdown-top">
+		<div class="row">
+			<div id="menu_self" class="navbar-dropdown hidden-xs hidden-sm">
+				<div id="navbar-dropdown-top" >
 					<span id="span_first">校务公开</span><span id="span_second">党务公开</span>
 				</div>
 				<!-- id="navbar-dropdown-con" -->

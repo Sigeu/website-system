@@ -20,14 +20,14 @@
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>内容标题:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="title"
+						name="title" placeholder="标题" class="input-text input-collspace size-MINI" />
 					</td>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>内容关键字:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="keywords"
+						name="keywords" placeholder="关键字" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -111,7 +111,7 @@
 									data : "title",
 									defaultContent : ""
 								}, {
-									data : "issue",
+									data : "issue_name",
 									defaultContent : ""
 								}, {
 									data : "update_time",
@@ -163,19 +163,14 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//登录名称
-				var login_name = $("#login_name").val().trim();
-				//真实姓名
-				var real_name = $("#real_name").val().trim();
-				//注册时间
-				var date_start = $("#date_start").val().trim();
-				var date_end = $("#date_end").val().trim();
+				//标题
+				var title = $("#title").val().trim();
+				//关键字
+				var keywords = $("#keywords").val().trim();
 				//查询条件
 				var param = {
-					"login_name" : login_name,
-					"real_name" : real_name,
-					"date_start" : date_start,
-					"date_end" : date_end
+					"title" : title,
+					"keywords" : keywords
 				};
 				
 				return param;
@@ -183,13 +178,10 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				//登录名称
-				$("#login_name").val('');
-				//真实姓名
-				$("#real_name").val('');
-				//注册时间
-				$("#date_start").val('');
-				$("#date_end").val('');
+				//标题
+				$("#title").val('');
+				//关键字
+				$("#keywords").val('');
 				
 			});
 			
@@ -205,10 +197,10 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改信息</div></strong>","background-color: #5a97df"],
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;信息审核</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentUpdate?id='+id
+			    content: '${pageContext.request.contextPath}/audit/controller/auditController/toContentAudit?id='+id
 			 });
 		}
 	</script>

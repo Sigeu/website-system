@@ -76,4 +76,6 @@ public interface ContentMapper {
 	List<Content> queryContentRecycleList(Content content);
 
 	List<Content> queryContentListByColumn(Content content);
+
+	int recoverContent(int id);
 }

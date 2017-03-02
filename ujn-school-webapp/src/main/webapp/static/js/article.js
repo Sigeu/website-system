@@ -18,12 +18,42 @@ function toContentDetail(id) {
 			.done(
 					function(data) {
 						var open_type = data.open_type;
-						alert(open_type);
-						if (open_type == '4') {
-							alert("输入密码");
+						if (open_type == '2') {
+							layer
+									.prompt(
+											{
+												title : '输入访问密码，并确认',
+												formType : 1
+											},
+											function(pass, index) {
+												layer.close(index);
+												$
+														.ajax(
+																{
+																	method : "POST",
+																	url : contextPath
+																			+ "/index/controller/indexController/toContentCheckPwd",
+																	data : {
+																		id : id
+																	}
+																})
+														.done(
+																function(data) {
+																	if (data.open_tupe == '5') {
+																		var url = contextPath
+																				+ "/index/controller/indexController/toContentDetail?id="
+																				+ id;
+																		window.location.href = url;
+																	} else {
+																		layer
+																				.alert('密码错误，请联系管理员索取密码！')
+																	}
+																});
+											});
 						} else {
 							var url = contextPath
-									+ "/index/controller/indexController/toContentDetail?id=" + id;
+									+ "/index/controller/indexController/toContentDetail?id="
+									+ id;
 							window.location.href = url;
 						}
 					});

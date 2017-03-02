@@ -18,10 +18,16 @@
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>网站名称:</strong>&nbsp;&nbsp;
+						<strong>内容标题:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="title"
+						name="title" placeholder="标题" class="input-text input-collspace size-MINI" />
+					</td>
+					<td align="right" width="10%" class="mybg" nowrap="nowrap">
+						<strong>内容关键字:</strong>&nbsp;&nbsp;
+					</td>
+					<td width="10%" nowrap="nowrap"><input type="text" id="keywords"
+						name="keywords" placeholder="关键字" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -30,12 +36,6 @@
 						<button class="btn btn-success radius size-MINI" id="reset_but">
 							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="add_but">
-							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
-						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 
@@ -156,14 +156,21 @@
 																+ "\')",
 														"type" : "danger-outline size-MINI radius",
 														"display" : row.zt == '1'? false:true
-													},{
+													}, {
 														"name" : "查看",
 														"fn" : "toDetail(\'"
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
 														"display" : true
-													} ]
+													}, {
+														"name" : "恢复",
+														"fn" : "toRecover(\'"
+																+ row.id
+																+ "\')",
+														"type" : "primary-outline size-MINI radius",
+														"display" : true
+													}]
 										};
 										var html = template(context);
 										return html;
@@ -192,19 +199,14 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//登录名称
-				var login_name = $("#login_name").val().trim();
-				//真实姓名
-				var real_name = $("#real_name").val().trim();
-				//注册时间
-				var date_start = $("#date_start").val().trim();
-				var date_end = $("#date_end").val().trim();
+				//标题
+				var title = $("#title").val().trim();
+				//关键字
+				var keywords = $("#keywords").val().trim();
 				//查询条件
 				var param = {
-					"login_name" : login_name,
-					"real_name" : real_name,
-					"date_start" : date_start,
-					"date_end" : date_end
+					"title" : title,
+					"keywords" : keywords
 				};
 				
 				return param;
@@ -212,63 +214,24 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				//登录名称
-				$("#login_name").val('');
-				//真实姓名
-				$("#real_name").val('');
-				//注册时间
-				$("#date_start").val('');
-				$("#date_end").val('');
-				
+				//标题
+				$("#title").val('');
+				//关键字
+				$("#keywords").val('');
 			});
-			
-			//添加
-			$('#add_but').on('click', function() {
-				layer.open({
-				    type: 2,
-				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加内容</div></strong>","background-color: #5a97df"],
-				    area: ['100%', '100%'],
-				    shadeClose: false, //点击遮罩关闭
-				    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentAdd'
-				 });
-			});
-			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
-			});
-			
 		});
 
 		//重新加载页面：子页面调用
 		function reloadPage(){
 			window.location.reload();//刷新当前页面.
 		}
-		
-		//修改
-		function toEdit(id){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改信息</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentUpdate?id='+id
-			 });
-		}
-		//删除
-		function toDelete(id){
-			layer.confirm("确认删除？", {
+		//恢复
+		function toRecover(id){
+			layer.confirm("确认恢复？", {
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/content/controller/contentController/deleteContent" ,
+						    url: "${pageContext.request.contextPath}/content/controller/contentController/recoverContent" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},

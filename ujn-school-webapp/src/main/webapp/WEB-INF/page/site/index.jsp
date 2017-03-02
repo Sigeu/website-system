@@ -7,15 +7,6 @@
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav.css">
 <title>网站首页</title>
-<script type="text/javascript">
-	//-------分页数据----------
-	var id = '${column_id }';
-	var totalPage = '${totalPage }';
-	var totalRecords = '${totalRecords }';
-	// 项目路径
-	var contextPath = '${pageContext.request.contextPath}';
-	//-------分页数据----------
-</script>
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>
@@ -151,29 +142,13 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/nav.js"></script>
 	<script type="text/javascript">
-		$(function() {
-			//轮播自动播放
-			$('#myCarousel').carousel({
-				//自动4秒播放
-				interval : 4000,
-			});
-		});
-
-		var spanos = document.getElementById("navbar-dropdown-top")
-				.getElementsByTagName("span");
-		var ulos = document.getElementById("navbar-dropdown-con")
-				.getElementsByTagName("ul");
-		function show(num) {
-			for (i = 0; i < spanos.length; i++) {
-				if (i == num) {
-					spanos[i].className = "navbar-dorpdown-one";
-					ulos[i].style.display = "block";
-				} else {
-					spanos[i].className = "";
-					ulos[i].style.display = "none";
-				}
-			}
-		}
+		//-------分页数据----------
+		var id = '${column_id }';
+		var totalPage = '${totalPage }';
+		var totalRecords = '${totalRecords }';
+		// 项目路径
+		var contextPath = '${pageContext.request.contextPath}';
+		//-------分页数据----------	
 	</script>
 </body>
 </html>

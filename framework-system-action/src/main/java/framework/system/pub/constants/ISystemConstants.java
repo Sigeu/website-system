@@ -26,6 +26,8 @@ public interface ISystemConstants {
 	static final String VALUE_1 = "1";
 	static final String VALUE_2 = "2";
 	static final String VALUE_3 = "3";
+	static final String VALUE_4 = "4";
+	static final String VALUE_5 = "5";
 	
 	//---列表数值-----------------//
 	static final int COUNT_NUM1 = 1;

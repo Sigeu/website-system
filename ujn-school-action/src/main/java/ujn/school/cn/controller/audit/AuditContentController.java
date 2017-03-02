@@ -4,7 +4,9 @@
  */
 package ujn.school.cn.controller.audit;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,9 +19,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.content.Content;
 import ujn.school.cn.pub.util.DateUtil;
 import ujn.school.cn.service.audit.IAuditContentService;
+import ujn.school.cn.service.column.IColumnService;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -39,6 +43,9 @@ public class AuditContentController extends MyBaseController {
 	// 内容审核Service
 	@Resource
 	private IAuditContentService auditContentService;
+	
+	@Resource
+	private IColumnService columnService;
 	
 
 	/**
@@ -62,13 +69,34 @@ public class AuditContentController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toAuditContentUpdate")
-	public String toAuditContentUpdate(HttpServletRequest request, Model model) {
+	@RequestMapping("/toContentAudit")
+	public String toContentAudit(HttpServletRequest request, Model model) {
+		List<Column> columnList = columnService.queryColumnList(null);
+		//处理栏目名称
+		for(Column co : columnList){
+			if(2 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;" + co.getName());
+			}else if(3 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
+			}else if(4 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
+			}else{
+				//co.setName(co.getName());
+			}
+		}
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
+		//转换为ArrayList
+		List<Column> columnSelectList = new ArrayList<Column>(columnLinkedList);
+		
+		
 		int auditContentId = Integer.parseInt(request.getParameter("id"));
-		Content auditContent = this.auditContentService.queryAuditContentById(auditContentId);
+		Content auditContent = this.auditContentService.queryContentAuditById(auditContentId);
 		model.addAttribute("auditContent", auditContent);
+		model.addAttribute("columnSelectList", columnSelectList);
 
-		return "audit/auditContentUpdate";
+		return "audit/auditContent";
 	}
 
 
@@ -134,4 +162,50 @@ public class AuditContentController extends MyBaseController {
 		return map;
 	}
 	
+	
+	/**
+	 * 排序
+	 * @param list
+	 * @param result
+	 * @param father
+	 * @return
+	 */
+	protected LinkedList<Column> toSort(List<Column> list,
+			LinkedList<Column> result, int father) {
+		List<Column> temp = new ArrayList<Column>();
+		// 最高层,临时存放
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getBig_class() == father) {
+				temp.add(list.get(i));
+			}
+		}
+
+		if (temp.size() < 1) {
+			return result;
+		} else { 
+			// 删除最高层
+			for (int j = 0; j < list.size(); j++) {
+				if (list.get(j).getBig_class() == father) {
+					list.remove(j);
+				}
+			}
+			// 对最高层排序
+			for (int i = 0; i < temp.size() - 1; i++) {
+				for (int j = i + 1; j < temp.size(); j++) {
+					if (temp.get(i).getNo_order() > temp.get(j).getNo_order()) {
+						Column column = temp.get(i);
+						temp.set(i, temp.get(j));
+						temp.set(j, column);
+					}
+				}
+			}
+			// 递归
+			for (int i = 0; i < temp.size(); i++) {
+				result.add(temp.get(i));
+				toSort(list, result, temp.get(i).getId());
+			}
+			return result;
+		}
+
+	}
 }

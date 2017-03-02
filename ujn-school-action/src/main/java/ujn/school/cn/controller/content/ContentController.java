@@ -120,9 +120,30 @@ public class ContentController extends MyBaseController {
 		int contentId = Integer.parseInt(request.getParameter("id"));
 		Content content = this.contentService.queryContentById(contentId);
 		model.addAttribute("content", content);
-
+		
+		List<Column> columnList = columnService.queryColumnList(null);
+		//处理栏目名称
+		for(Column co : columnList){
+			if(2 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;" + co.getName());
+			}else if(3 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
+			}else if(4 == co.getClass_type()){
+				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
+			}else{
+				//co.setName(co.getName());
+			}
+		}
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
+		//转换为ArrayList
+		List<Column> columnSelectList = new ArrayList<Column>(columnLinkedList);
+		model.addAttribute("columnSelectList", columnSelectList);
+		
 		return "content/contentUpdate";
 	}
+	
 
 	/**
 	 * 
@@ -134,7 +155,7 @@ public class ContentController extends MyBaseController {
 	@RequestMapping("/toContentDetail")
 	public String toContentDetail(HttpServletRequest request, Model model) {
 		int contentId = Integer.parseInt(request.getParameter("id"));
-		Content content = this.contentService.queryContentById(contentId);
+		ContentWithBLOBs  content = this.contentService.queryContentById(contentId);
 		model.addAttribute("content", content);
 
 		return "content/contentDetail";
@@ -253,31 +274,10 @@ public class ContentController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/updateContent")
-	public Map<String, Object> updateContent(HttpServletRequest request, Content content) {
+	public Map<String, Object> updateContent(HttpServletRequest request, ContentWithBLOBs content) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		content.setAdd_time(DateUtil.getDateTime());
-		int count = this.contentService.updateContent(content);
-		if (RESULT_COUNT_1 == count) {
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
-		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
-		}
-
-		return map;
-	}
-
-	/**
-	 * 
-	 * @Description: 保存
-	 * @param request
-	 * @param content
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/saveContent")
-	public Map<String, Object> saveContent(HttpServletRequest request, Content content) {
-		Map<String, Object> map = new HashMap<String, Object>();
 		int count = this.contentService.updateContent(content);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
@@ -301,6 +301,26 @@ public class ContentController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int contentId = Integer.parseInt(request.getParameter("id"));
 		int count = this.contentService.deleteContent(contentId);
+		if (RESULT_COUNT_1 == count) {
+			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
+		}
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 恢复内容 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/recoverContent")
+	public Map<String, Object> recoverContent(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int contentId = Integer.parseInt(request.getParameter("id"));
+		int count = this.contentService.recoverContent(contentId);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
 		} else {

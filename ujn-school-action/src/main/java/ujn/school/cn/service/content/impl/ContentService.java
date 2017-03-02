@@ -45,9 +45,9 @@ public class ContentService implements IContentService {
 	 * @see ujn.school.cn.service.content.IContentService#updateContent(ujn.school.cn.model.content.Content)
 	 */
 	@Override
-	public int updateContent(Content content) {
+	public int updateContent(ContentWithBLOBs content) {
 		// TODO Auto-generated method stub
-		return contentMapper.updateByPrimaryKey(content);
+		return contentMapper.updateByPrimaryKeyWithBLOBs(content);
 	}
 	
 	/*
@@ -59,7 +59,7 @@ public class ContentService implements IContentService {
 	 * @see ujn.school.cn.service.content.IContentService#queryContentById(int)
 	 */
 	@Override
-	public Content queryContentById(int contentId) {
+	public ContentWithBLOBs queryContentById(int contentId) {
 		// TODO Auto-generated method stub
 		return contentMapper.selectByPrimaryKey(contentId);
 	}
@@ -154,6 +154,12 @@ public class ContentService implements IContentService {
 	public List<Content> queryContentListByColumn(Content content) {
 		// TODO Auto-generated method stub
 		return contentMapper.queryContentListByColumn(content);
+	}
+
+	@Override
+	public int recoverContent(int contentId) {
+		// TODO Auto-generated method stub
+		return contentMapper.recoverContent(contentId);
 	}
 	
 

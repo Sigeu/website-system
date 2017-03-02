@@ -3,70 +3,100 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="common/header_index.jsp"%>
-<title>后台登录</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/admin.css">
+<title>网站后台管理登录</title>
 <meta name="keywords"
-	content="H-ui.admin v2.3,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+	content="">
 <meta name="description"
-	content="H-ui.admin v2.3，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+	content="">
 </head>
 <body>
-	<input type="hidden" id="TenantId" name="TenantId" value="" />
-	<div class="header"></div>
-	<div class="loginWraper">
-		<div id="login_div" class="loginBox">
-			<form id="form_" class="form form-horizontal"
-				action="${pageContext.request.contextPath}/system/controller/loginController/login"
-				method="post">
-				<div class="row cl">
-					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
-					<div class="formControls col-xs-8">
-						<input id="login_name" name="login_name" type="text" placeholder="登录名"
-							class="input-text size-L">
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-					<div class="formControls col-xs-8">
-						<input id="password" name="password" type="password" placeholder="密码"
-							class="input-text size-L">
-					</div>
-				</div>
-				<div class="row cl">
-					<div class="formControls col-xs-8 col-xs-offset-3">
-						<input class="input-text size-L" type="text" placeholder="验证码"
-							onblur="if(this.value==''){this.value='验证码:'}"
-							onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:"
-							style="width: 150px;"> <img id="img_" src="${pageContext.request.contextPath}/verifyCodeServlet"> <a id="kanbuq"
-							href="##">看不清，换一张</a>
-					</div>
-				</div>
-				<div class="row cl">
-					<div class="formControls col-xs-8 col-xs-offset-3">
-						<label for="online"> <input type="checkbox" name="online"
-							id="online" value=""> 使我保持登录状态
-						</label>
-					</div>
-				</div>
-				<div class="row cl">
-					<div class="formControls col-xs-8 col-xs-offset-3">
-						<input id="submit_but" name="submit_but" type="submit" class="btn btn-success radius size-L"
-							value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"> <input
-							name="" type="reset" class="btn btn-default radius size-L"
-							value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
-					</div>
-				</div>
-			</form>
+<div class="navbar navbar-logo admin">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="index.html" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/images/login.png" class="img-responsive" alt=""></a>
 		</div>
 	</div>
-	<div class="footer">Copyright 你的公司名称 by H-ui.admin.v2.3</div>
-	<%@ include file="common/footer_index.jsp"%>
-	<script type="text/javascript">  
-		$(function(){
-			$('#kanbuq').on('click',function(){
-				$('#img_').attr('src','${pageContext.request.contextPath}/verifyCodeServlet?' + new Date().getTime());
-			});
+</div>
+
+<div class="login-jumb">
+	<img src="${pageContext.request.contextPath}/static/images/jumb.jpg" class="img-responsive login-img hidden-xs" alt="background" />
+	<form id="form_" class="form form-horizontal"
+				action="${pageContext.request.contextPath}/system/controller/loginController/login"
+				method="post">
+	<!-- 模态框声明 -->
+	<div class="modal show" id="regModal" tabindex="-1" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">用户登录</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form class="form-horizontal">
+							 <div class="form-group">
+								<label class="control-label col-md-3">用户名</label>
+								<div class="col-md-9">
+									<input type="text" id="login_name" name="login_name" class="form-control" placeholder="请输入您的用户名">	
+								</div>
+							</div>
+							 <div class="form-group">
+								<label class="control-label col-md-3">密码</label>
+								<div class="col-md-9">
+									<input id="password" name="password" type="password" class="form-control" placeholder="请输入您的密码">	
+								</div>
+							</div>
+							 <div class="form-group">
+								<label class="control-label col-md-3">验证码</label>
+								<div class="">
+									<div class="col-md-5 col-xs-8">
+										<input type="text" class="form-control pull-left" placeholder="请输入验证码">
+									</div>
+									<div class="col-md-4 col-xs-4" style="padding:0">
+										<a href="###"><img class="code-img pull-left" id="img_" src="${pageContext.request.contextPath}/verifyCodeServlet"></a> <a class="code-img-wd hidden-xs" id="kanbuq" href="##">换一张</a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" type="reset">重置</button>
+					<button class="btn btn-primary" id="submit_but" name="submit_but" type="submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+
+<footer id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9">
+				<ul>
+					<li>Copyright &copy; 1995-2016 University of Jinan</li>
+					<li>鲁ICP备05001960号</li>
+					<li>地址：济南市市中区南辛庄西路336号     电话：0531-89736251 <span class="hidden-xs hidden-sm">邮编：250022</span></li>
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<div class="footer-tool pull-right hidden-xs">
+					<p>技术支持：源拾科技有限公司</p>
+					<p>技术邮箱：lzh_me@126.com</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<%@ include file="common/footer_index.jsp"%>
+<script type="text/javascript">  
+	$(function(){
+		$('#kanbuq').on('click',function(){
+			$('#img_').attr('src','${pageContext.request.contextPath}/verifyCodeServlet?' + new Date().getTime());
 		});
-    </script> 
+	});
+</script>
 </body>
 </html>

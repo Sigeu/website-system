@@ -34,6 +34,6 @@ public interface IAuditContentService {
 	List<Content> queryAuditContentList(Content content);
 
 
-	Content queryAuditContentById(int auditContentId);
+	Content queryContentAuditById(int auditContentId);
 
 }
