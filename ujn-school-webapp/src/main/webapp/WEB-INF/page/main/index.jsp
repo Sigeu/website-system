@@ -11,7 +11,7 @@
 <body>
 <div class="navbar-logo hidden-xs">
 		<div class="navbar-header">
-			<a href="index.html" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui.admin/images/logo2.png" class="img-responsive" alt=""></a>
+			<a href="${pageContext.request.contextPath}/index.jsp" target="_blank" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui.admin/images/logo2.png" class="img-responsive" alt=""></a>
 		</div>
 </div>
 <header class="navbar-wrapper">

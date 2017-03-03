@@ -43,7 +43,7 @@
 								<a href="###"  onclick="toContentList('${column.id}');" 
 									class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
 									<c:if test="${column.class_type == 3}">
-										<ul class="navbar-dropdown-thr" style="display: none">
+										<ul class="navbar-dropdown-thr" style="display: block">
 											<li><a href="###" onclick="toContentList('${column.id}');" >${column.name }</a></li>
 										</ul>
 									</c:if>

@@ -113,6 +113,18 @@ public class IndexController extends MyBaseController {
 			List<Column> columnList = new ArrayList<Column>(columnLinkedList);
 			
 			
+			//校务
+			//LinkedList<Column> columnLinkedList1 = this.toSort(resultList, result, 102);
+			//转换为ArrayList
+			//List<Column> columnList1 = new ArrayList<Column>(columnLinkedList1);
+			
+			
+			//党务
+			//LinkedList<Column> columnLinkedList2 = this.toSort(resultList, result, 107);
+			//转换为ArrayList
+			//List<Column> columnList2 = new ArrayList<Column>(columnLinkedList2);
+			
+			
 			model.addAttribute("config", config);
 			model.addAttribute("contact", contact);
 			model.addAttribute("linkList", linkList);
@@ -123,6 +135,8 @@ public class IndexController extends MyBaseController {
 			model.addAttribute("contentList3", contentList3);
 			model.addAttribute("column_id3", column_id3);
 			model.addAttribute("columnList", columnList);
+			//model.addAttribute("columnList1", columnList1);
+			//model.addAttribute("columnList2", columnList2);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

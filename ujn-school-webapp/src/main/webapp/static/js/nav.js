@@ -55,11 +55,11 @@ $(function() {
 	
 	//二级导航
 	$(".navbar-pos").hover(function(event) {
-		$(this).children("ul").show();
+		$(this).children(".navbar-dropdown-thr").show();
 	}, function(event) {
 		var $this=$(this); 
 	    setTimeout(function(){
-	    	$this.children("ul").hide();
+	    	$this.children(".navbar-dropdown-thr").hide();
 	    },500); 
 	});
 
