@@ -22,7 +22,7 @@ import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Role;
 import framework.system.model.UserRole;
-import framework.system.pub.base.MyBaseController;
+import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.pub.util.ZtreeNode;
 import framework.system.service.IRoleService;
@@ -35,7 +35,7 @@ import framework.system.service.IRoleService;
  */
 @Controller
 @RequestMapping("system/controller/roleController")
-public class RoleController extends MyBaseController {
+public class RoleController extends SystemBaseController {
 
 	@Resource
 	private IRoleService roleService;

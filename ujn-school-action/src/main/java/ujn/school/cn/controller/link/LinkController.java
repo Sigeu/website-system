@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ujn.school.cn.model.link.Link;
-import ujn.school.cn.pub.util.DateUtil;
+import ujn.school.cn.pub.base.MyBaseController;
+import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.link.ILinkService;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
@@ -171,7 +171,7 @@ public class LinkController extends MyBaseController {
 	public Map<String, Object> updateLink(HttpServletRequest request, Link link) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		link.setAdd_time(DateUtil.getDateTime());
+		link.setAdd_time(MyDateUtil.getDateTime());
 		int count = this.linkService.updateLink(link);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

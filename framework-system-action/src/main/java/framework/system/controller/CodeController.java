@@ -21,7 +21,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Code;
-import framework.system.pub.base.MyBaseController;
+import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.service.ICodeService;
 
@@ -33,7 +33,7 @@ import framework.system.service.ICodeService;
  */
 @Controller
 @RequestMapping("/system/controller/codeController")
-public class CodeController extends MyBaseController{
+public class CodeController extends SystemBaseController{
 	
 	@Resource
 	private ICodeService CodeService;

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ujn.school.cn.model.contact.Contact;
+import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.service.contact.IContactService;
-import framework.system.pub.base.MyBaseController;
 
 /**
  * @Description: 网站联系方式设置管理

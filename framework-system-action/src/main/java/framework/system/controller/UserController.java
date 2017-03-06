@@ -21,7 +21,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.model.User;
-import framework.system.pub.base.MyBaseController;
+import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.service.IRoleService;
 import framework.system.service.IUserService;
@@ -34,7 +34,7 @@ import framework.system.service.IUserService;
  */
 @Controller
 @RequestMapping("/system/controller/userController")
-public class UserController extends MyBaseController{
+public class UserController extends SystemBaseController{
 	//用户Service
 	@Resource
 	private IUserService userService;

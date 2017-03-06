@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ujn.school.cn.model.config.Config;
+import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.service.config.IConfigService;
-import framework.system.pub.base.MyBaseController;
 
 /**
  * @Description: 网站设置管理

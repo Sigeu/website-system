@@ -22,7 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import framework.system.model.Log;
-import framework.system.pub.base.MyBaseController;
+import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DateUtil;
 import framework.system.service.ILogService;
 import framework.system.service.IUserService;
@@ -35,7 +35,7 @@ import framework.system.service.IUserService;
  */
 @Controller
 @RequestMapping("/system/controller/loginController")
-public class LoginController extends MyBaseController {
+public class LoginController extends SystemBaseController {
 	@Resource
 	private IUserService userService;
 

@@ -22,15 +22,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.content.ContentWithBLOBs;
-import ujn.school.cn.pub.constants.ISystemConstants;
-import ujn.school.cn.pub.util.DateUtil;
+import ujn.school.cn.pub.base.MyBaseController;
+import ujn.school.cn.pub.constants.IMySystemConstants;
+import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.content.IContentService;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
@@ -254,7 +254,7 @@ public class ContentController extends MyBaseController {
 			//发布人
 			content.setIssue(getSessionUser(request).getLogin_name());
 			//默认状态为“0”：待审核
-			content.setStatus(ISystemConstants.VALUE_0);
+			content.setStatus(IMySystemConstants.VALUE_0);
 			contentService.addContent(request, content);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
@@ -277,7 +277,7 @@ public class ContentController extends MyBaseController {
 	public Map<String, Object> updateContent(HttpServletRequest request, ContentWithBLOBs content) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		content.setAdd_time(DateUtil.getDateTime());
+		content.setAdd_time(MyDateUtil.getDateTime());
 		int count = this.contentService.updateContent(content);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

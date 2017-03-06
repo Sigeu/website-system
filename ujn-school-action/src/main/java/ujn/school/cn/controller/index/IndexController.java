@@ -24,6 +24,9 @@ import ujn.school.cn.model.contact.Contact;
 import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.content.ContentWithBLOBs;
 import ujn.school.cn.model.link.Link;
+import ujn.school.cn.pub.base.MyBaseController;
+import ujn.school.cn.pub.constants.IMySystemConstants;
+import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.config.IConfigService;
 import ujn.school.cn.service.contact.IContactService;
@@ -31,10 +34,6 @@ import ujn.school.cn.service.content.IContentService;
 import ujn.school.cn.service.link.ILinkService;
 
 import com.github.pagehelper.PageHelper;
-
-import framework.system.pub.base.MyBaseController;
-import framework.system.pub.constants.ISystemConstants;
-import framework.system.pub.util.DateUtil;
 
 /**
  * @Description: 栏目管理
@@ -80,27 +79,27 @@ public class IndexController extends MyBaseController {
 			Content content1 = new Content();
 			String column_id1 = "111";
 			content1.setColumn_id(column_id1);
-			content1.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
-			content1.setOrder_type(ISystemConstants.ORDER_DESC);
-			content1.setCount_num(ISystemConstants.COUNT_NUM4);
+			content1.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			content1.setOrder_type(IMySystemConstants.ORDER_DESC);
+			content1.setCount_num(IMySystemConstants.COUNT_NUM4);
 			//内容列表
 			List<Content> contentList1 = contentService.queryContentListByColumn(content1);
 			// 重要信息公开 
 			Content content2 = new Content();
 			String column_id2 = "112";
 			content2.setColumn_id(column_id2);
-			content2.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
-			content2.setOrder_type(ISystemConstants.ORDER_DESC);
-			content2.setCount_num(ISystemConstants.COUNT_NUM2);
+			content2.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			content2.setOrder_type(IMySystemConstants.ORDER_DESC);
+			content2.setCount_num(IMySystemConstants.COUNT_NUM2);
 			//内容列表
 			List<Content> contentList2 = contentService.queryContentListByColumn(content2);
 			// 信息公开规章制度 
 			Content content3 = new Content();
 			String column_id3 = "103";
 			content3.setColumn_id(column_id3);
-			content3.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
-			content3.setOrder_type(ISystemConstants.ORDER_DESC);
-			content3.setCount_num(ISystemConstants.COUNT_NUM2);
+			content3.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			content3.setOrder_type(IMySystemConstants.ORDER_DESC);
+			content3.setCount_num(IMySystemConstants.COUNT_NUM2);
 			//内容列表
 			List<Content> contentList3 = contentService.queryContentListByColumn(content3);
 			
@@ -160,24 +159,24 @@ public class IndexController extends MyBaseController {
 		Content content = new Content();
 		String column_id = request.getParameter("id")==null? "0":request.getParameter("id");
 		content.setColumn_id(column_id);
-		content.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
-		content.setOrder_type(ISystemConstants.ORDER_DESC);
-		content.setCount_num(ISystemConstants.COUNT_NUM4);
+		content.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		content.setOrder_type(IMySystemConstants.ORDER_DESC);
+		content.setCount_num(IMySystemConstants.COUNT_NUM4);
 		//内容列表
 		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
-		PageHelper.startPage(pageNo,ISystemConstants.PAGE_SIZE15);
+		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
 		List<Content> contentList = contentService.queryContentListByColumn(content);
 		int totalRecords = contentList.size();
-		int totalPage = (totalRecords  +  ISystemConstants.PAGE_SIZE15  - 1) / ISystemConstants.PAGE_SIZE15;  
+		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
 		
 		
 		// 侧栏年度报告 
 		Content contentReport = new Content();
 		String column_id_report = "103";
 		contentReport.setColumn_id(column_id_report);
-		contentReport.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
-		contentReport.setOrder_type(ISystemConstants.ORDER_DESC);
-		contentReport.setCount_num(ISystemConstants.COUNT_NUM5);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
 		//年度报告内容列表
 		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
 		//点击的栏目
@@ -244,7 +243,7 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/toContentCheck")
 	public Map<String, Object> toContentCheck(HttpServletRequest request) {
 		//默认3，不允许访问
-		String open_type = ISystemConstants.VALUE_3;
+		String open_type = IMySystemConstants.VALUE_3;
 		Map<String, Object> map = new HashMap<String, Object>();
 		String contentId = request.getParameter("id")==null? "0":request.getParameter("id");
 		Content content = contentService.queryContentById(Integer.parseInt(contentId));
@@ -254,27 +253,27 @@ public class IndexController extends MyBaseController {
 		if(null != content){
 			validity_time = content.getValidity_time();
 			read_type = content.getRead_type();
-			String now = DateUtil.getDateTime();
+			String now = MyDateUtil.getDateTime();
 			//比较日期
-			if(DateUtil.getMargin(now, validity_time) > 1){
+			if(MyDateUtil.getMargin(now, validity_time) > 1){
 				//已过有效期
 			}else{
-				if(ISystemConstants.VALUE_0.equals(read_type)){
+				if(IMySystemConstants.VALUE_0.equals(read_type)){
 					//0：直接查看
-					open_type = ISystemConstants.VALUE_0;
-				}else if(ISystemConstants.VALUE_1.equals(read_type)){
+					open_type = IMySystemConstants.VALUE_0;
+				}else if(IMySystemConstants.VALUE_1.equals(read_type)){
 					//验证IP
 					String ip = getIpAddr(request);
 					if("127.0.0.1".equals(ip)){
 						//允许访问
-						open_type = ISystemConstants.VALUE_1;
+						open_type = IMySystemConstants.VALUE_1;
 					}else{
 						//不允许访问
-						open_type = ISystemConstants.VALUE_3;
+						open_type = IMySystemConstants.VALUE_3;
 					}
-				}else if(ISystemConstants.VALUE_2.equals(read_type)){
+				}else if(IMySystemConstants.VALUE_2.equals(read_type)){
 					//2：输入密码查看
-					open_type = ISystemConstants.VALUE_2;
+					open_type = IMySystemConstants.VALUE_2;
 				}
 			}
 		}
@@ -294,7 +293,7 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/toContentCheckPwd")
 	public Map<String, Object> toContentCheckPwd(HttpServletRequest request) {
 		//默认4，密码错误不允许访问
-		String open_type = ISystemConstants.VALUE_4;
+		String open_type = IMySystemConstants.VALUE_4;
 		Map<String, Object> map = new HashMap<String, Object>();
 		String contentId = request.getParameter("id")==null? "0":request.getParameter("id");
 		String pwd = request.getParameter("pwd")==null? "":request.getParameter("pwd");
@@ -305,10 +304,10 @@ public class IndexController extends MyBaseController {
 			read_pwd = content.getRead_pwd();
 			if(!"".equals(read_pwd) && pwd.equals(read_pwd)){
 				//密码正确可以访问
-				open_type = ISystemConstants.VALUE_5;
+				open_type = IMySystemConstants.VALUE_5;
 			}else{
 				//密码错误不允许访问
-				open_type = ISystemConstants.VALUE_4;
+				open_type = IMySystemConstants.VALUE_4;
 			}
 		}
 		
@@ -327,15 +326,15 @@ public class IndexController extends MyBaseController {
 		content.setContent(search_text);
 		content.setKeywords(search_text);
 		content.setDescription(search_text);
-		content.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
-		content.setOrder_type(ISystemConstants.ORDER_DESC);
-		content.setCount_num(ISystemConstants.COUNT_NUM4);
+		content.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		content.setOrder_type(IMySystemConstants.ORDER_DESC);
+		content.setCount_num(IMySystemConstants.COUNT_NUM4);
 		//内容列表
 		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
-		PageHelper.startPage(pageNo,ISystemConstants.PAGE_SIZE15);
+		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
 		List<Content> contentList = contentService.queryContentList(content);
 		int totalRecords = contentList.size();
-		int totalPage = (totalRecords  +  ISystemConstants.PAGE_SIZE15  - 1) / ISystemConstants.PAGE_SIZE15;  
+		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
 		
 		// 网站联系方式
 		Contact contact = contactService.queryContact();
@@ -346,9 +345,9 @@ public class IndexController extends MyBaseController {
 		Content contentReport = new Content();
 		String column_id_report = "103";
 		contentReport.setColumn_id(column_id_report);
-		contentReport.setOrder_column(ISystemConstants.ORDER_COLUMN_ADD_TIME);
-		contentReport.setOrder_type(ISystemConstants.ORDER_DESC);
-		contentReport.setCount_num(ISystemConstants.COUNT_NUM5);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
 		//年度报告内容列表
 		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
 		

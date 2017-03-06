@@ -19,7 +19,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Log;
-import framework.system.pub.base.MyBaseController;
+import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.service.ILogService;
 
@@ -31,7 +31,7 @@ import framework.system.service.ILogService;
  */
 @Controller
 @RequestMapping("/system/controller/logController")
-public class LogController extends MyBaseController{
+public class LogController extends SystemBaseController{
 	
 	@Resource
 	private ILogService logService;

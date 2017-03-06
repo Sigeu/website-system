@@ -20,8 +20,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import ujn.school.cn.dao.content.ContentMapper;
 import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.content.ContentWithBLOBs;
-import ujn.school.cn.pub.constants.ISystemConstants;
-import ujn.school.cn.pub.util.DateUtil;
+import ujn.school.cn.pub.constants.IMySystemConstants;
+import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.content.IContentService;
 
 /**   
@@ -109,7 +109,7 @@ public class ContentService implements IContentService {
 	                        //重命名上传后的文件名  
 	                    	UUID uuid = UUID.randomUUID();
 	                        String fileName = uuid + file.getOriginalFilename(); 
-	                        String path = request.getSession().getServletContext().getRealPath(ISystemConstants.FILE_PATH_IMAGE);
+	                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
 	                        //定义上传路径  
 	                        //String path = "E:/upload-file/"; 
 	                        File localFile = new File(path, fileName);  
@@ -117,7 +117,7 @@ public class ContentService implements IContentService {
 	                        	localFile.mkdirs();  
 	                        }  
 	                        file.transferTo(localFile);  
-	                        content.setCover_img_url(ISystemConstants.FILE_PATH_IMAGE + fileName);
+	                        content.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
 	                    }  
 	                }  
 	            }  
@@ -126,7 +126,7 @@ public class ContentService implements IContentService {
 			// TODO: handle exception
 		}
 		//创建时间
-		content.setAdd_time(DateUtil.getDateTime());
+		content.setAdd_time(MyDateUtil.getDateTime());
 		return contentMapper.insert(content);
 	}
 	

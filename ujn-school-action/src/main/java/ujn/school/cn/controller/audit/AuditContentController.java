@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.content.Content;
-import ujn.school.cn.pub.util.DateUtil;
+import ujn.school.cn.pub.base.MyBaseController;
+import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.audit.IAuditContentService;
 import ujn.school.cn.service.column.IColumnService;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import framework.system.pub.base.MyBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
@@ -151,7 +151,7 @@ public class AuditContentController extends MyBaseController {
 	public Map<String, Object> updateAuditContent(HttpServletRequest request, Content content) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		content.setAdd_time(DateUtil.getDateTime());
+		content.setAdd_time(MyDateUtil.getDateTime());
 		int count = this.auditContentService.updateAuditContent(content);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

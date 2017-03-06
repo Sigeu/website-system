@@ -22,7 +22,7 @@ import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Funcright;
 import framework.system.model.RoleFuncright;
-import framework.system.pub.base.MyBaseController;
+import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.pub.util.ZtreeNode;
 import framework.system.service.IFuncrightService;
@@ -35,7 +35,7 @@ import framework.system.service.IFuncrightService;
  */
 @Controller
 @RequestMapping("system/controller/funcrightController")
-public class FuncrightController extends MyBaseController {
+public class FuncrightController extends SystemBaseController {
 
 	@Resource
 	private IFuncrightService funcrightService;

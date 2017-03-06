@@ -24,7 +24,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Department;
-import framework.system.pub.base.MyBaseController;
+import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.pub.util.ZtreeNode;
 import framework.system.service.IDepartmentService;
@@ -37,7 +37,7 @@ import framework.system.service.IDepartmentService;
  */
 @Controller
 @RequestMapping("/system/controller/departmentController")
-public class DepartmentController extends MyBaseController{
+public class DepartmentController extends SystemBaseController{
 	
 	@Resource
 	private IDepartmentService departmentService;
