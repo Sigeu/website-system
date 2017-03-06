@@ -7,9 +7,8 @@
     <artifactId>framework-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>framework-parent</groupId>
+  <groupId>yuanyuansinian-site-webapp</groupId>
   <artifactId>yuanyuansinian-site-webapp</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>yuanyuansinian-site-webapp Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -20,6 +19,16 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+	    <groupId>org.mybatis.generator</groupId>
+	    <artifactId>mybatis-generator-core</artifactId>
+	    <version>1.3.5</version>
+	</dependency>
+	<dependency>
+	    <groupId>yuanyuansinian-site-action</groupId>
+	    <artifactId>yuanyuansinian-site-action</artifactId>
+	    <version>${project.version}</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>yuanyuansinian-site-webapp</finalName>
