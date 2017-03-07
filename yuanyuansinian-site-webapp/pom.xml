@@ -25,6 +25,11 @@
 	    <version>1.3.5</version>
 	</dependency>
 	<dependency>
+		<groupId>framework-parent</groupId>
+		<artifactId>framework-system-action</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+	<dependency>
 	    <groupId>yuanyuansinian-site-action</groupId>
 	    <artifactId>yuanyuansinian-site-action</artifactId>
 	    <version>${project.version}</version>

@@ -132,6 +132,7 @@
 				/static/** = anon
 				/site/** = anon
 				/verifyCodeServlet = anon
+				/sinian/member/memberController/registerMember = anon
 				/system/controller/loginController/login = anon
 				/system/controller/loginController/logout = logout
 				/sinian/index/** = anon

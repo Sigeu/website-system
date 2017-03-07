@@ -70,7 +70,7 @@ $(function() {
 /*----------------------搜索 begin---------------------*/
 $(function() {
 	$('#search_but').on('click',function(){
-		var url = contextPath + "/index/controller/indexController/search?"+ new Date().getTime();  
+		var url = contextPath + "/sinian/index/indexController/search?"+ new Date().getTime();  
 		$('#search_form').attr("action", url).submit();;
 	});
 });
@@ -97,3 +97,20 @@ $(function() {
 	});
 });
 /*----------------------友情链接 end-----------------------*/
+
+/*----------------------用户注册 begin---------------------*/
+$(function() {
+	//轮播自动播放
+	$('#register').on('click',function(){
+		layer.open({
+		    type: 2,
+		    maxmin:true,
+		    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户注册</div></strong>","background-color: #5a97df"],
+		    area: ['60%', '90%'],
+		    shadeClose: false, //点击遮罩关闭
+		    content: contextPath + '/sinian/index/indexController/toRegister'
+		 });
+	});
+});
+/*----------------------用户注册 end-----------------------*/
+

@@ -109,11 +109,11 @@
 				</ul>
 			</dd>
 		</dl>
-		<!-- <dl id="menu-member">
+		<dl id="menu-member">
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="member-list.html" data-title="会员列表" href="javascript:;">会员列表</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/member/memberController/toMemberList" data-title="会员列表" href="javascript:;">会员列表</a></li>
 					<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">删除的会员</a></li>
 					<li><a data-href="member-level.html" data-title="等级管理" href="javascript:;">等级管理</a></li>
 					<li><a data-href="member-scoreoperation.html" data-title="积分管理" href="javascript:;">积分管理</a></li>
@@ -122,7 +122,7 @@
 					<li><a data-href="member-record-share.html" data-title="分享记录" href="javascript:void(0)">分享记录</a></li>
 				</ul>
 			</dd>
-		</dl> -->
+		</dl>
 		<%-- <dl id="menu-site">
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 内容管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>

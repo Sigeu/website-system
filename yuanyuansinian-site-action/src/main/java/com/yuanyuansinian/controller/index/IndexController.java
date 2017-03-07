@@ -231,7 +231,13 @@ public class IndexController extends MyBaseController {
 
 		return "site/article";
 	}
-
+	
+	@RequestMapping("/toRegister")
+	public String toRegister(HttpServletRequest request, Model model) {
+		
+		return "site/register";
+	}
+	
 	/**
 	 * 
 	 * @Description: 
