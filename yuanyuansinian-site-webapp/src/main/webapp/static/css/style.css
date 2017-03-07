@@ -1,0 +1,371 @@
+@charset "utf-8";
+body {font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif; color: #333; font-size:14px; background:#f5f5dc}
+.container {background:#fff}
+ul, li {list-style:none; padding:0}
+h1 {font-size:27px}
+h2 {font-size:25px}
+h3 {font-size:20px}
+h4 {font-size:17px}
+h5 {font-size:15px}
+a {color:#333; text-decoration:none}
+a:hover {color:#b85844; text-decoration:none}
+a:focus {color:#b85844; text-decoration:none}
+a.more {color:#333; margin-top:7px}
+a.more:hover {text-decoration:underline; color:#b85844}
+.navbar-top {padding:0; margin-bottom:0;min-height:40px; font-size:13px; border-bottom:1px solid #b85844; background:#efdba7}
+.navbar-top .container, .navbar-logo .container {background:#efdba7}
+.navbar-top p {padding-left:0; margin:0; height:40px; line-height:40px}
+.navbar-logo {margin-bottom:0; background:#efdba7}
+.navbar-logo .logo {padding-top:0; margin:10px 0}
+.navbar-logo .navbar-form {padding-bottom:0}
+.navbar {font-size:17px}
+.navbar-mainnav {z-index:1000}
+.nav > li > a {color:#000}
+.nav > li > a:focus, .nav > li >a:hover {color:#b85844; background-color:#efdba7}
+.nav > li.active > a {color:#b85844}
+.navbar-toggle {margin-top:-10px; margin-right:0; border:1px solid #b85844}
+.navbar-toggle span {background:#b85844}
+.navbar-mainnav {margin-bottom:0; padding-bottom:0}
+.navbar-mainnav .container {background:#f5f5dc}
+#footer {padding:25px 0; background:#776a62}
+#footer .container {background:#776a62; color:#fff}
+#footer li {height:30px; line-height:30px}
+.modal {margin-top:10px}
+.modal .code-img {margin-top:1px; height:32px}
+.code-img-wd {margin-left:15px; color:#f0ad4e}
+.btn-submit {width:100%}
+.modal-footer {margin-right:15px}
+.modal-footer button {width:70px}
+.page {text-align:center}
+.banner-con {padding:0; margin-top:-50px}
+.carousel-inner img {margin:0 auto}
+#myCarousel, .miss, .contact {margin-top:-50px; margin-bottom:20px}  
+.pro-header {padding:5px 0; height:45px; border-bottom:1px solid #efdba7}
+.pro-title {height:30px; border-bottom:1px solid #b85844}
+.all-info .thumbnail {border:0; padding:0; margin-bottom:20px}
+.all-info .thumbnail img {width:100%}
+.all-info .thumbnail .caption {padding:0}
+.all-info .thumbnail a {color:#000}
+.all-info .thumbnail .thumbnail-des {width:100%; max-height:44px; line-height:22px; overflow:hidden}
+.pro-header-tool {margin-top:7px}
+.pro-header-tool li {margin-right:7px}
+.pro-header-tool a {color:#333}
+.pro-header-tool a:hover {color:#b85844; text-decoration:none}
+.arclist .media-heading {margin:25px 0 10px 0}
+.arclist p {color:#666}
+.arclist .arclist-des {width:100%; height:75px; line-height:25px; overflow:hidden}
+.media-img .media-left {padding-right:0}
+.list li {height:45px; line-height:45px; font-size:15px; background:url(../images/line.png) repeat-x left bottom}
+.list a {display:block; width:70%; height:100%; overflow:hidden}
+span.list-date {font-size:13px; color:#666}
+.glyphicon-arrow-up, .glyphicon-arrow-down {color:#b85844}
+.all-bg {margin-bottom:20px; padding-bottom:20px}
+.memorial {margin-top:50px}
+.notice {margin-top:50px}
+.recommend {margin-top:30px}
+.con-tab {margin-bottom:20px}
+.login .pro-header {margin-bottom:15px}
+.input-group {margin-bottom:12px}
+.btn-login, .btn-register {width:100%; margin-top:12px}
+.notice-list a {display:block; width:100%; height:32px; line-height:32px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.sidebar .recommend-body .thumbnail {border:0; padding:0}
+.sidebar .recommend-body .caption {padding:0}
+.sidebar .recommend-body .caption h5 {width:100%; height:25px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.memorial-pro li {height:30px; line-height:30px}
+.memorial-pro .with-date a {display:block; width:70%; height:30px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.memorial-pro .without-date li {width:100%; height:30px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.search-body {margin-top:5px}
+.search-body .form-group {margin-bottom:10px}
+.search-body button {width:100%}
+.search-body dl {margin-bottom:10px}
+.search-body dl h5 {margin-bottom:0}
+.search-body dl dt {line-height:20px}
+.search-body span {margin-right:5px; color:#b85844}
+.search-body dl dd {padding-left:20px; color:#999}
+.img-list {margin-top:50px}
+.img-list .pro-header {margin-bottom:15px}
+.img-list .caption {padding:0}
+.img-list .thumbnail {border:0; padding:0}
+.img-list .thumbnail h5 {width:100%; height:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.btn-memorial {margin:8px 0 0 5px}
+.nav-title {margin:10px 0 15px 0}
+.nav-title-tool {margin-top:-27px}
+.nav-title .nav-tabs > li {margin-bottom:0}
+.nav-title .nav-tabs > li.active > a {border:1px solid transparent}
+.con-tab .img-list{margin-top:0}
+.side-nav .pro-header {border-bottom:1px solid #b85844}
+.side-nav-body {padding:0 10px; margin-top:10px}
+.side-nav-body li {margin-bottom:1px; width:100%; height:40px; line-height:40px; border-bottom:1px solid #ddd}
+.side-nav-body li a {display:block; padding:0 20px; width:100%; height:40px}
+.side-nav-body li a:hover, .side-nav-body li.active > a {color:#fff; background:#b85844}
+.article-top {text-align:center}
+.article-top h1 {padding:15px 0; line-height:1.6; font-size:20px}
+.article-info {height:40px; line-height:40px; color: #777; background: url(../images/line-gray.png) repeat-x left bottom, url(../images/line-gray.png) repeat-x left top}
+.article-info span {margin-right:10px}
+.article-body {padding:30px 0}
+.article-body p {margin-bottom:20px; line-height:30px; text-align:justify; text-indent:28px}
+.article-near {border-top:1px solid #ddd}
+.article-near li.previous a {margin-bottom:10px}
+.article-near a {width:100%; height:30px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.info-list-body {padding-left:15px; padding-right:15px}
+.shop-header {margin:30px 15px 10px 15px; text-align:center; border-bottom:2px solid #b85844}
+.shop-header .more {margin-top:-30px}
+.product, .miss {padding:15px 0}
+.product h3 {width:100%; height:25px; line-height:25px; overflow:hidden}
+.product span.btn-label {display:block; margin-right:15px; width:80px; height:25px; line-height:25px; text-align:center; color:#fff; background:#edad55; border-radius:4px; border:1px solid #e38d13}
+.product-price h2 {margin-top:-1px; color:#b85844}
+.product-price small {color:#b85844}
+.product-reason li {width:100%; height:35px; line-height:35px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.product-reason span.glyphicon {margin-right:5px; color:#b85844}
+.product-btn button {margin-bottom:10px; width:100%}
+.article-tab-header {border-bottom-color:#b85844}
+.article-tab-header h5 {margin-top:0px; padding:0 15px; height:40px; line-height:40px; color:#b85844; border:1px solid #b85844; border-top:2px solid #b85844; border-bottom:0; background:#fff}
+.map-body {margin-bottom:10px}
+.miss {color:#999}
+.web-info {padding-bottom:5px; border-bottom:1px solid #ddd}
+.web-info h3 {margin-bottom:15px; color:#333}
+.web-info p {margin-bottom:5px}
+.true-info {margin-top:15px; width:100%}
+.true-info li {margin-right:20px; height:30px; line-height:30px; font-size:17px; color:#333}
+.miss span {color:#999; font-size:13px}
+.count-info {margin-top:30px}
+.count-info .product-price h2 {margin-top:-7px; margin-right:30px}
+.count-info button {margin-bottom:10px; width:100%}
+.miss-con {padding-top:15px}
+.btn-tools {margin-top:-40px}
+.miss-setup-pro {margin-bottom:20px}
+.miss-setup h5 {margin:10px 0 15px 0; width:100%; height:16px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.miss-setup .miss-des {width:100%; height:81px; line-height:27px; overflow:hidden}
+.museum {padding-top:15px; margin-top:-50px}
+.museum-info {margin-bottom:30px}
+.museum-info img {margin-bottom:10px}
+.museum-info-left {margin-bottom:20px}
+.museum-info-left button {width:32%}
+.museum-info-left button:last-child {width:33%}
+p.museum-des {position:relative; top:8px}
+.pro-header  mark {padding:0 5px; margin:0 5px}
+.museum-info-right li {line-height:35px; background:url(../images/line.png) repeat-x left bottom}
+.museum-info-right li span {display:block; width:80px; color:#999}
+.museum-body .thumbnail img {width:100%}
+.anthology-body {padding-top:0px; padding-bottom:0px; margin-top:-15px}
+.anthology-pro {padding:15px; border-bottom:1px solid #ddd}
+.anthology-pro h5 {margin-bottom:10px; width:100%; height:20px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.anthology-date {display:block; margin-bottom:7px; color:#999}
+.anthology-des {width:100%; max-height:120px; line-height:30px; overflow:hidden; color:#666}
+.incense {margin-top:-50px; margin-bottom:20px; padding:0; position:relative}
+.incense-body img.incense-bg {margin:0 auto; width:320px}
+.incense-img {position:absolute; top:53px; width:50px; height:50px}
+.incense-btn button {width:24%}
+.contact-left {padding-left:10px}
+.contact-left h2 {margin-bottom:10px; font-size:20px}
+.contact-left p {margin-bottom:10px; height:25px; line-height:25px; font-size:15px}
+.contact-left p.contact-tel {font-size:20px; color:#e60012}
+.contact-left p span {margin-right:10px; font-size:17px; color:#333}
+.contact-left p.contact-zip {padding-left:27px}
+.contact-add-map {padding-bottom:10px}
+.new-noleft {padding:0; margin-bottom:10px}
+.new-noright {padding:0}
+.new-notice {margin-bottom:10px; line-height:25px; color:#b85844}
+.new-add {margin-top:10px; text-align:center}
+.new-add a {color:#b85844}
+.new-add a:hover {text-decoration:underline}
+.new-add button {margin-top:20px; width:90%}
+/* 小屏幕（平板，大于等于768px） */
+@media (min-width: 768px) {
+	.navbar-logo {padding:0}
+	.navbar-logo .logo {padding-left:15px; margin-top:20px}
+	.navbar-logo .container {height:120px; background:url(../images/cloud.png) no-repeat right bottom}
+	.navbar-logo .navbar-form {margin:45px 30px 0 0}
+	.nav>li>a:focus,.nav>li>a:hover {background-color:transparent}
+	.navbar-mainnav .container {padding:0}
+	#myCarousel, .banner-con, .miss, .contact {margin-top:-5px; margin-bottom:30px}
+	#footer {padding:25px 0 15px 0}
+	.footer-logo {margin-top:20px}
+	.modal {margin-top:200px}
+	.all-info .thumbnail {margin-bottom:35px}
+	.all-info .thumbnail img {width:220px; height:220px}
+	.all-info .thumbnail .thumbnail-des {max-height:66px; height:66px; line-height:22px}
+	.media-img img {width:100%}
+	.list a {width:75%}
+	.all-bg {margin-bottom:30px; padding-bottom:20px}
+	.information {margin-top:20px}
+	.memorial {margin-top:60px}
+	.recommend {margin-top:40px}
+	.con-tab {margin-bottom:25px}
+	.sidebar {padding-left:30px}
+	.sidebar .recommend-body img {width:100%; height:127px} 
+	.memorial-pro .with-date a {width:60%}
+	.memorial-pro {padding-right:20px}
+	.metorial-arc {padding:0 10px 0 10px}
+	.search-memorial {padding:0 0 0 20px}
+	.img-list .thumbnail img {width:157px; height:105px}
+	.all-info.img-list img {width:220px; height:220px}
+	.all-info.img-list .thumbnail .thumbnail-des {max-height:66px; height:66px; line-height:22px}
+	.nav-title .nav-tabs > li {margin-bottom:-2px}
+	.nav-title .nav-tabs > li.active > a {border:1px solid #ddd; border-bottom:1px solid transparent}
+	.here .breadcrumb {background:none; padding-left:0; border-bottom:1px solid #ddd}
+	.here .breadcrumb a {color:#b85844}
+	.article-info span {margin-right:30px}
+	.article-top h1 {padding:16px; font-size:22px}
+	.article-body {padding:30px 15px}
+	.article-body img {width:80%; margin:0 auto}
+	.article-near li.previous a {margin-bottom:0}
+	.article-near a {max-width:220px}
+	.shop .row {margin-bottom:10px}
+	.shop-cat img {height:280px}
+	.product img {width:100%; height:230px} 
+	.product h3 {height:25px}
+	.product-reason ul {margin-bottom:0px; height:70px; overflow:hidden}
+	.product-btn button {margin-right:5px; margin-bottom:0; width:105px; font-size:15px}
+	.article-tab-header h5 {margin-top:1px}
+	.map {margin:5px 0}
+	.map-body {margin-bottom:20px}
+	.miss-ico img {width:100%; height:157px}
+	.true-info {height:30px; overflow:hidden}
+	.count-info {margin-top:20px}
+	.count-info button {margin:-12px 10px 0 0; width:100px}
+	.miss-shop-list .thumbnail h5 {width:55%; float:left; font-size:14px}
+	.miss-shop-info {margin-top:6px; font-size:14px; color:#b85844}
+	.miss-shop-full .thumbnail h5 {width:100%}
+	.miss-setup img {width:100%; height:158px}
+	.museum, .incense {margin-top:-5px}	
+	.museum-info img {width:100%; height:220px}
+	.museum-info-left button:last-child {width:32%}
+	.museum-info-left {margin-bottom:0}
+	.museum-info-right li {width:100%; height:35px; line-height:35px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+	.museum-body .caption {width:100%; height:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+	.museum-body .thumbnail img {height:210px}
+	.anthology-des {max-height:60px; overflow:hidden}
+	.anthology-body {padding-top:0px; padding-bottom:0px; margin-top:0}
+	.incense {margin-top:-5px; margin-bottom:30px}
+	.incense-body img.incense-bg {width:100%}
+	.incense-img {top:124px; left:315px; width:119px; height:119px}
+	.incense-btn {position:absolute; left:265px; bottom:20px}
+	.incense-btn button {width:auto; height:25px; line-height:25px; padding-top:0}
+	.contact-add {padding:50px 15px}
+	.contact-left h2 {margin-bottom:20px; font-size:25px}
+	.contact-left p {font-size:17px}
+	.contact-left p.contact-tel {font-size:25px}
+	.contact-add-map {padding-left:0; padding-right:30px; padding-bottom:0}
+	.new-noleft {padding-left:0; padding-right:10px; margin-bottom:0}
+	.new-noright {padding-right:0; padding-left:10px}
+	.new-navbar {height:220px}
+	.new-con {position:relative; margin-top:-100px}
+	.new-body {padding:20px 30px}
+	.new-notice {padding:0 30px; margin-bottom:20px}
+	.new-add {margin-top:90px}
+	.new-add button {margin-top:30px; width:35%}
+}
+
+/* 中等屏幕（桌面显示器，大于等于992px） */
+@media (min-width: 992px) {
+	.pro-header-tool li {margin-right:10px}
+	.arclist .media-heading {margin:10px 0}
+	.media-img img {max-width:229px; height:151px}
+	.list a {width:85%}
+	#myCarousel, .banner-con, .miss, .contact {margin-bottom:40px}
+	#footer .container {padding-left:0; padding-right:0}
+	.footer-logo {margin-top:10px}
+	.all-bg {margin-bottom:40px; padding-bottom:40px}
+	.all-info .thumbnail {margin-bottom:40px}
+	.all-info .thumbnail img {width:185px; height:185px}
+	.information {margin-top:25px}
+	.memorial {margin-top:70px}
+	.con-tab {margin-bottom:30px}
+	.sidebar {padding-left:45px}
+	.login .pro-header {margin-bottom:10px}
+	.input-group {margin-bottom:10px}
+	.btn-login, .btn-register {width:100%; margin-top:10px}
+	.sidebar .recommend-body .caption h5 {width:100%; height:50px; line-height:25px; white-space:normal}
+	.sidebar .recommend-body img {width:100%; height:163px} 
+	.memorial-pro .with-date a {width:70%}
+	.img-list .thumbnail img {width:212px; height:141px} 
+	.all-info.img-list img {width:212px; height:212px}
+	.nav-title .nav-tabs > li {margin-bottom:-2px}
+	.side-nav {padding-right:20px}
+	.article-top h1 {padding:18px; font-size:25px}
+	.article-body img {width:70%}
+	.article-near a {max-width:270px}
+	.shop-list .thumbnail h5 {width:70%; float:left}
+	.shop-info {margin-top:6px; font-size:17px; color:#b85844}
+	.miss-shop-info {font-size:14px}
+	.shop-info small {font-size:70%}
+	.shop-cat img {height:350px}
+	.product img {height:302px}
+	.product-reason ul {margin-bottom:0px; height:140px}
+	.product-btn button {margin-right:5px; width:140px; font-size:20px}
+	.map {margin-top:15px}
+	.miss-ico img {height:212px}
+	.true-info {height:30px; overflow:hidden}
+	.count-info {margin-top:25px}
+	.miss-shop-full .thumbnail h5 {width:100%}
+	.miss-list {padding-left:15px; padding-right:15px}
+	.miss-setup img {height:152px}
+	.museum-info img {height:212px}
+	.museum-info-right li {width:100%; height:34px; line-height:34px}
+	.museum-body .thumbnail img {height:203px}
+	.anthology-body {padding-top:0px; padding-bottom:0px}
+	.anthology-pro {padding:15px}
+	.anthology-date {color:#999}
+	.incense {margin-bottom:40px}
+	.incense-img {top:160px; left:409px; width:153px; height:153px}
+	.incense-btn {left:370px; bottom:25px}
+	.incense-btn button {height:34px; line-height:32px}
+	.contact-left {padding-left:20px}
+	.contact-left h2 {margin-bottom:20px}
+	.new-navbar {height:220px}
+	.new-add {margin-top:100px}
+	.new-add button {width:25%}
+}
+
+/* 大屏幕（大桌面显示器，大于等于1200px） */
+@media (min-width: 1200px) {
+	.media-img img {max-width:295px; height:182px}
+	.arclist .media-heading {margin:25px 0 10px 0}
+	#myCarousel, .banner-con, .contact {margin-bottom:50px}
+	.all-bg {margin-bottom:50px}
+	.all-info .thumbnail img {width:230px; height:230px}
+	.information {margin-top:30px}
+	.memorial {margin-top:75px}
+	.recommend {margin-top:45px}
+	.sidebar {padding-left:60px}
+	.login .pro-header {margin-bottom:15px}
+	.input-group {margin-bottom:12px}
+	.btn-login, .btn-register {margin-top:12px}
+	.sidebar .recommend-body img {width:100%; height:195px} 
+	.memorial-pro .with-date a {width:75%}
+	.memorial-pro {padding-right:40px}
+	.metorial-arc {padding:0 20px 0 20px}
+	.search-memorial {padding:0 0 0 40px}
+	.img-list .thumbnail img {width:262px; height:175px}
+	.all-info.img-list img {width:262px; height:262px}
+	.nav-title .nav-tabs > li {margin-bottom:-1px}
+	.side-nav {padding-right:30px}
+	.article-top h1 {padding:20px; font-size:27px}
+	.shop-list .thumbnail h5 {width:75%}
+	.shop-cat img {height:418px}
+	.product img {height:370px}
+	.product h3 {height:50px}
+	.product span.btn-label {display:block; margin-right:15px; width:80px; height:25px; line-height:25px; text-align:center; color:#fff; background:#edad55; border-radius:4px; border:1px solid #e38d13}
+	.product-reason ul {margin:15px 0}
+	.article-tab-header h5 {margin-top:0px}
+	.miss-ico img {height:262px}
+	.web-info {padding-bottom:10px}
+	.true-info {margin-top:25px; height:60px; overflow:hidden}
+	.true-info li {margin-right:30px}
+	.miss-shop-full .thumbnail h5 {width:100%}
+	.miss-setup-pro {margin-bottom:30px}
+	.miss-setup img {height:189px}
+	.miss-setup h5 {margin:20px 0 15px 0}
+	.miss-setup .miss-des {width:100%; height:81px; line-height:27px; overflow:hidden}
+	.museum-info img {height:263px}
+	.museum-info-right li {padding:0 15px; width:100%; height:42px; line-height:42px}
+	.museum-body .thumbnail img {height:253px}
+	.anthology-body {padding-top:0px; padding-bottom:0px}
+	.incense {margin-bottom:50px}
+	.incense-img {top:192px; left:492px; width:185px; height:185px}
+	.incense-btn {left:472px; bottom:25px}
+	.contact-left {padding-left:50px}
+	.contact-left p {margin-bottom:20px}
+	.new-add {margin-top:120px}
+}
