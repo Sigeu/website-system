@@ -4,8 +4,10 @@
  */
 package com.yuanyuansinian.service.member.impl;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,14 +23,14 @@ import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.member.IMemberService;
 
 /**   
- * @Description: 友情链接Service 
+ * @Description: 会员Service 
  * @author lizhaotao lzh_me@126.com  
  * @date 2017年1月18日 上午10:50:13 
  * @version V1.0   
  */
 @Service("memberService") 
 public class MemberService implements IMemberService {
-	//友情链接Mapper
+	//会员Mapper
 	@Resource
 	private MemberMapper memberMapper;
 	
@@ -139,6 +141,34 @@ public class MemberService implements IMemberService {
 	public int deleteMember(int memberId) {
 		
 		return memberMapper.deleteByPrimaryKey(memberId);
+	}
+
+	@Override
+	public Member queryMemberByPhone(String phone,String pwd) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("phone", phone);
+		map.put("pwd", pwd);
+		return memberMapper.queryMemberByPhone(map);
+	}
+
+	@Override
+	public int queryMemberCountByPhone(String phone) {
+		// TODO Auto-generated method stub
+		return memberMapper.queryMemberCountByPhone(phone);
+	}
+
+	@Override
+	public int queryMemberCountByEmail(String email) {
+		// TODO Auto-generated method stub
+		return memberMapper.queryMemberCountByEmail(email);
+	}
+
+	@Override
+	public Member queryMemberByEmail(String email,String pwd) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("email", email);
+		map.put("pwd", pwd);
+		return memberMapper.queryMemberByEmail(map);
 	}
 	
 

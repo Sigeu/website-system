@@ -279,4 +279,40 @@
     from ujn_member
     order by id desc
   </select>
+  <!--根据手机号获取会员信息 -->
+  <select id="queryMemberByPhone" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_member
+    where phone = #{phone,jdbcType=VARCHAR}
+    <if test="pwd != null and pwd !=''">
+        and pwd = #{pwd,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <!--根据email获取会员信息 -->
+  <select id="queryMemberByEmail" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_member
+    where email = #{email,jdbcType=VARCHAR}
+     <if test="pwd != null and pwd !=''">
+        and pwd = #{pwd,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <!-- 验证手机号 -->
+  <select id="queryMemberCountByPhone" parameterType="string" resultType="java.lang.Integer">
+    select count(*)
+    from ujn_member
+    where phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  <!-- 验证email -->
+  <select id="queryMemberCountByEmail" parameterType="string" resultType="java.lang.Integer">
+    select count(*)
+    from ujn_member
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
 </mapper>

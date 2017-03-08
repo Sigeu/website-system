@@ -38,6 +38,7 @@ public class MyBaseController{
 	public static final String SESSION_USER_KEY = "session_user";
 	// 返回的KEY
 	public static final String RESULT_MESSAGE_STRING = "result_message";
+	public static final String RESULT_STATUS_STRING = "status_flag";
 
 	// 结果数
 	public static final int RESULT_COUNT_0 = 0;

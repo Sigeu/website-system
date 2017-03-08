@@ -27,7 +27,7 @@ import com.yuanyuansinian.service.member.IMemberService;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
- * @Description: 友情链接管理
+ * @Description: 会员管理
  * @author lizhaotao lzh_me@126.com
  * @date 2017年1月17日 下午1:52:12
  * @version V1.0
@@ -35,7 +35,7 @@ import framework.system.pub.util.DataTablePageUtil;
 @Controller
 @RequestMapping("/sinian/member/memberController")
 public class MemberController extends MyBaseController {
-	// 友情链接Service
+	// 会员Service
 	@Resource
 	private IMemberService memberService;
 
@@ -238,4 +238,87 @@ public class MemberController extends MyBaseController {
 		return map;
 	}
 
+	/**
+	 * 
+	 * @Description: 验证手机号是否已经注册。状态0：不可用注册，1：可以注册 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/checkMemberByPhone")
+	public Map<String, Object> checkMemberByPhone(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String phone = request.getParameter("phone")==null? "":request.getParameter("phone");
+		int count = 1;
+		if(!"".equals(phone)){
+			count = this.memberService.queryMemberCountByPhone(phone);
+		}else{
+			map.put(RESULT_MESSAGE_STRING, "手机号码为空！");
+			map.put(RESULT_STATUS_STRING, "0");
+		}
+		if (count > 0) {
+			map.put(RESULT_MESSAGE_STRING, "该手机号已经被注册");
+			map.put(RESULT_STATUS_STRING, "0");
+		} else if(RESULT_COUNT_0 == count){
+			map.put(RESULT_MESSAGE_STRING, "手机号可以注册");
+			map.put(RESULT_STATUS_STRING, "1");
+		}
+
+		return map;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/checkMemberByEmail")
+	public Map<String, Object> checkMemberByEmail(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String email = request.getParameter("email")==null? "":request.getParameter("email");
+		int count = 1;
+		if(!"".equals(email)){
+			count = this.memberService.queryMemberCountByEmail(email);
+		}else{
+			map.put(RESULT_MESSAGE_STRING, "手机号码为空！");
+			map.put(RESULT_STATUS_STRING, "0");
+		}
+		if (count > 0) {
+			map.put(RESULT_MESSAGE_STRING, "该手机号已经被注册");
+			map.put(RESULT_STATUS_STRING, "0");
+		} else if(RESULT_COUNT_0 == count){
+			map.put(RESULT_MESSAGE_STRING, "手机号可以注册");
+			map.put(RESULT_STATUS_STRING, "1");
+		}
+
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 会员登录 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/memberLogin")
+	public Map<String, Object> memberLogin(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Member member = null;
+		String name = request.getParameter("name")==null? "":request.getParameter("name");
+		String pwd = request.getParameter("pwd")==null? "":request.getParameter("pwd");
+		if(!"".equals(name) && name.indexOf("@") > 0){
+			//邮箱登录
+			member = this.memberService.queryMemberByEmail(name,pwd);
+		}else{
+			//手机号登录
+			member = this.memberService.queryMemberByPhone(name,pwd);
+		}
+		if (null != member) {
+			map.put(RESULT_MESSAGE_STRING, "登录成功！");
+			map.put(RESULT_STATUS_STRING, "1");
+		} else {
+			map.put(RESULT_MESSAGE_STRING, "用户不存在！");
+			map.put(RESULT_STATUS_STRING, "0");
+		}
+
+		return map;
+	}
 }

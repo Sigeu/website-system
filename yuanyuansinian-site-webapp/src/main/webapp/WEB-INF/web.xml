@@ -75,13 +75,14 @@
 	</servlet-mapping>
 
 	<!-- 加载LOG4J -->
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>classpath:config/log4j.properties</param-value>
 	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	
     
 	<!-- 配置session超时时间，单位分钟 -->
 	<session-config>

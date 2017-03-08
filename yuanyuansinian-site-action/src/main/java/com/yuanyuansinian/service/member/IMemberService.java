@@ -59,4 +59,12 @@ public interface IMemberService {
 	 */
 	int deleteMember(int memberId);
 
+	Member queryMemberByPhone(String phone,String pwd);
+
+	int queryMemberCountByPhone(String phone);
+
+	int queryMemberCountByEmail(String email);
+
+	Member queryMemberByEmail(String email,String pwd);
+
 }

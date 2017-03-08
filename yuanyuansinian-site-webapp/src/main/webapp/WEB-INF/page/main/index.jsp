@@ -90,16 +90,16 @@
 				</ul>
 			</dd>
 		</dl>
-		<!-- <dl id="menu-product">
+		<dl id="menu-product">
 			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="product-brand.html" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductList" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/order/orderController/toOrderList" data-title="订单管理" href="javascript:void(0)">订单管理</a></li>
 					<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
-					<li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
 				</ul>
 			</dd>
-		</dl> -->
+		</dl>
 		<dl id="menu-comments">
 			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
@@ -123,14 +123,6 @@
 				</ul>
 			</dd>
 		</dl>
-		<%-- <dl id="menu-site">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 内容管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="${pageContext.request.contextPath}/sinian/content/contentController/toContentList" data-title="内容管理" href="javascript:void(0)">内容管理</a></li>
-				</ul>
-			</dd>
-		</dl> --%>
 		<dl id="menu-tongji">
 			<dt><i class="Hui-iconfont">&#xe61a;</i> 统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>

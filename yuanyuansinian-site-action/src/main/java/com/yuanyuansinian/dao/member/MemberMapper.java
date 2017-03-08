@@ -1,6 +1,7 @@
 package com.yuanyuansinian.dao.member;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yuanyuansinian.model.member.Member;
 
@@ -62,4 +63,12 @@ public interface MemberMapper {
     int updateByPrimaryKey(Member record);
 
 	List<Member> queryMemberList(Member member);
+
+	Member queryMemberByPhone(Map<String, Object> map);
+
+	int queryMemberCountByPhone(String phone);
+
+	int queryMemberCountByEmail(String email);
+
+	Member queryMemberByEmail(Map<String, Object> map);
 }
