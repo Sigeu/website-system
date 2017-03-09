@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.service.contact.IContactService;
@@ -46,6 +47,29 @@ public class ContactController extends MyBaseController {
 		model.addAttribute("contact", contact);
 
 		return "contact/contact";
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到联系我们页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toContactUs")
+	public String toContactUs(HttpServletRequest request, Model model) {
+		//联系我们栏目ID
+		String columnId = request.getParameter("id")==null? "0":request.getParameter("id");
+		Column column = null;
+		if(!"".equals(columnId)){
+			column = this.contactService.queryContactUs(columnId);
+		}
+		model.addAttribute("column", column);
+		
+		Contact contact = this.contactService.queryContact();
+		model.addAttribute("contact", contact);
+
+		return "site/contactUs";
 	}
 
 	/**

@@ -147,7 +147,7 @@
 		</div>
 		
 		<div class="col-sm-4 sidebar">
-			<div class="login hidden-xs">
+			<!-- <div class="login hidden-xs">
 				<div class="pro-header">
 					<h4 class="pro-title pull-left">用户登录</h4>
 				</div>
@@ -170,7 +170,8 @@
 						<button class="btn btn-warning btn-register" id="register_but2">点击注册</button>
 					</form>
 				</div>
-			</div>
+			</div> -->
+			<%@ include file="siteLogin.jsp"%>
 			
 			<div class="notice">
 				<div class="pro-header">

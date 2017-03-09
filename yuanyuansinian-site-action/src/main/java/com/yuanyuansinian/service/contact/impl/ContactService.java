@@ -8,7 +8,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.yuanyuansinian.dao.column.ColumnMapper;
 import com.yuanyuansinian.dao.contact.ContactMapper;
+import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.service.contact.IContactService;
 
@@ -22,6 +24,9 @@ import com.yuanyuansinian.service.contact.IContactService;
 public class ContactService implements IContactService {
 	@Resource
 	private ContactMapper contactMapper;
+	
+	@Resource
+	private ColumnMapper columMapper;
 
 	/*
 	 * (non-Javadoc) <p>Title: updateContact</p> <p>Description: </p>
@@ -51,6 +56,12 @@ public class ContactService implements IContactService {
 	public Contact queryContact() {
 		// TODO Auto-generated method stub
 		return contactMapper.selectByPrimaryKey(1);
+	}
+
+	@Override
+	public Column queryContactUs(String columnId) {
+		
+		return columMapper.selectByPrimaryKey(Integer.parseInt(columnId));
 	}
 
 }

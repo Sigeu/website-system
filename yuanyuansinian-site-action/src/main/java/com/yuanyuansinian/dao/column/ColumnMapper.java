@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.column.ColumnWithBLOBs;
+import com.yuanyuansinian.model.contact.Contact;
 
 public interface ColumnMapper {
     /**
@@ -63,4 +64,5 @@ public interface ColumnMapper {
     int updateByPrimaryKey(Column record);
 
 	List<Column> queryColumnList(Column column);
+
 }

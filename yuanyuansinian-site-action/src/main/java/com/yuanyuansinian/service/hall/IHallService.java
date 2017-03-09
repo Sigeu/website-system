@@ -1,0 +1,70 @@
+/**
+ * Copyright (C), 2013, 山东旭日俞和科技有限公司
+ * All right reserved.
+ */
+package com.yuanyuansinian.service.hall;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.yuanyuansinian.model.hall.Hall;
+
+/**
+ * @Description: TODO
+ * @author lizhaotao lzh_me@126.com
+ * @date 2017年1月18日 上午10:49:54
+ * @version V1.0
+ */
+public interface IHallService {
+
+	/**
+	 * 
+	 * @Description: 更新
+	 * @param hall
+	 * @return
+	 */
+	int updateHall(Hall hall);
+
+	/**
+	 * 
+	 * @Description: 根据ID查询
+	 * @param hallId
+	 * @return
+	 */
+	Hall  queryHallById(int hallId);
+
+	/**
+	 * 
+	 * @Description: 分页列表
+	 * @param hall
+	 * @return
+	 */
+	List<Hall> queryHallList(Hall hall);
+
+	/**
+	 * 
+	 * @Description: 添加 
+	 * @param request
+	 * @param hall
+	 * @return
+	 */
+	int addHall(HttpServletRequest request, Hall hall);
+
+	/**
+	 * 
+	 * @Description: 删除
+	 * @param hallId
+	 * @return
+	 */
+	int deleteHall(int hallId);
+
+
+	List<Hall> queryHallListByType(Hall hall);
+
+	List<Hall> queryHallListByMember(Hall hall);
+
+	List<Hall> queryHallListByOpenType(Hall hall);
+
+
+}

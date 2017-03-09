@@ -96,7 +96,7 @@
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductList" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/order/orderController/toOrderList" data-title="订单管理" href="javascript:void(0)">订单管理</a></li>
-					<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/hall/hallController/toHallList" data-title="纪念馆管理" href="javascript:void(0)">纪念馆管理</a></li>
 				</ul>
 			</dd>
 		</dl>

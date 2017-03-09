@@ -4,6 +4,7 @@
  */
 package com.yuanyuansinian.service.contact;
 
+import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.contact.Contact;
 
 /**   
@@ -29,6 +30,9 @@ public interface IContactService {
 	 * @return
 	 */
 	int updateContact(Contact contact);
+
+
+	Column queryContactUs(String columnId);
 
 
 }
