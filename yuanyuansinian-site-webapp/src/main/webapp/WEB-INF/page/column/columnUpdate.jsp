@@ -65,6 +65,12 @@
 				</span> 
 			</div>
 		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">栏目URL：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${column.column_url}" placeholder="栏目URL" id="column_url" name="column_url">
+			</div>
+		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">

@@ -378,6 +378,69 @@ public class IndexController extends MyBaseController {
 	}
 	
 	/**
+	 * @Description:  纪念馆
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallList")
+	public String toHallList(HttpServletRequest request, Model model) {
+		
+		return "site/hallList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 缘园资讯
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toInformationList")
+	public String toInformationList(HttpServletRequest request, Model model) {
+		
+		return "site/informationList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 商城
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toShoppingList")
+	public String toShoppingList(HttpServletRequest request, Model model) {
+		
+		return "site/shoppingList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 公墓陵园
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toCemeteryList")
+	public String toCemeteryList(HttpServletRequest request, Model model) {
+		
+		return "site/cemeteryList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 我的思念
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toMemberCenter")
+	public String toMemberCenter(HttpServletRequest request, Model model) {
+		
+		return "site/memberCenter";
+	}
+	/**
 	 * 获取IP
 	 * @param request
 	 * @return

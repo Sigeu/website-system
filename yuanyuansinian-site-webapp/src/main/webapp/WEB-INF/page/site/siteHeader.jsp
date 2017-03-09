@@ -142,7 +142,7 @@
 			<ul class="nav nav-justified">
 				<li class="active"><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 				<c:forEach var="column" items="${columnList}">
-					<li><a href="###" onclick="toContentList('${column.id}');">${column.name}</a></li>
+					<li><a href="${pageContext.request.contextPath}/${column.column_url }">${column.name}</a></li>
 				</c:forEach>
 				<!-- <li><a href="###">纪念馆</a></li>
 				<li><a href="###">缘园资讯</a></li>
