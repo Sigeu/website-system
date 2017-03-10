@@ -15,10 +15,10 @@
 				<div class="footer-tool pull-right hidden-xs">
 					<p>技术支持：lzh_me@126.com</p>
 					<select id="link_select" name="link" class="form-control">
-						<option value="">友情链接</option>  
+						<%-- <option value="">友情链接</option>  
 	                    <c:forEach var="link" items="${linkList}">  
 	                    	<option value="${link.web_url }">${link.web_name}</option> 
-	                    </c:forEach>  
+	                    </c:forEach>  --%> 
                 	</select>
 				</div>
 			</div>
