@@ -20,6 +20,8 @@
     <result column="addr_now" jdbcType="VARCHAR" property="addr_now" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="create_date" jdbcType="VARCHAR" property="create_date" />
+    <result column="days" jdbcType="INTEGER" property="days" />
+    <result column="balance" jdbcType="DOUBLE" property="balance" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yuanyuansinian.model.member.Member">
     <!--
@@ -43,7 +45,9 @@
 	  else ''  
 	end as sex_name, 
     phone, email, addr_old, addr_now, 
-    status, create_date
+    status, create_date,
+    TIMESTAMPDIFF(day,create_date,now()) as days,
+    balance
   </sql>
   <sql id="Blob_Column_List">
     <!--
@@ -87,12 +91,12 @@
     insert into ujn_member (login_name, pwd, member_name, 
       real_name, sex, phone, 
       email, addr_old, addr_now, 
-      status, create_date, pic
+      status, create_date, balance, pic
       )
     values (#{login_name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{member_name,jdbcType=VARCHAR}, 
       #{real_name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{addr_old,jdbcType=VARCHAR}, #{addr_now,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{create_date,jdbcType=VARCHAR}, #{pic,jdbcType=LONGVARBINARY}
+      #{status,jdbcType=VARCHAR}, #{create_date,jdbcType=VARCHAR}, #{balance,jdbcType=DOUBLE}, #{pic,jdbcType=LONGVARBINARY}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yuanyuansinian.model.member.Member">
@@ -139,6 +143,9 @@
       <if test="create_date != null">
         create_date,
       </if>
+      <if test="balance != null">
+        balance,
+      </if>
       <if test="pic != null">
         pic,
       </if>
@@ -176,6 +183,9 @@
       </if>
       <if test="create_date != null">
         #{create_date,jdbcType=VARCHAR},
+      </if>
+       <if test="balance != null">
+        #{balance,jdbcType=DOUBLE},
       </if>
       <if test="pic != null">
         #{pic,jdbcType=LONGVARBINARY},
@@ -223,6 +233,9 @@
       <if test="create_date != null">
         create_date = #{create_date,jdbcType=VARCHAR},
       </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
       <if test="pic != null">
         pic = #{pic,jdbcType=LONGVARBINARY},
       </if>
@@ -247,6 +260,7 @@
       addr_now = #{addr_now,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       create_date = #{create_date,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DOUBLE},
       pic = #{pic,jdbcType=LONGVARBINARY}
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -267,7 +281,8 @@
       addr_old = #{addr_old,jdbcType=VARCHAR},
       addr_now = #{addr_now,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
-      create_date = #{create_date,jdbcType=VARCHAR}
+      create_date = #{create_date,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DOUBLE}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   

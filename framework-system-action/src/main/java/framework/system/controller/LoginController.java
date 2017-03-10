@@ -22,8 +22,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import framework.system.model.Log;
+import framework.system.model.User;
 import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DateUtil;
+import framework.system.pub.util.UserSessionUtil;
 import framework.system.service.ILogService;
 import framework.system.service.IUserService;
 
@@ -55,6 +57,12 @@ public class LoginController extends SystemBaseController {
 	        subject.login(token);  
 	        //验证通过
 	        if (subject.isAuthenticated()) { 
+	        	User userParam = new User();
+	        	userParam.setLogin_name(userName);
+	        	userParam.setPassword(password);
+	        	User systemUser = userService.queryUserByLogin(userParam);
+	        	//用户信息放在session中
+	        	UserSessionUtil.putUser(request, systemUser);
 				Log log = new Log();
 				log.setUser(userName);
 				log.setIp(this.getIpAddr(request));

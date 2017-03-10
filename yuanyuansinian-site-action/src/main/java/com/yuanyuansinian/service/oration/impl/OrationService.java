@@ -2,7 +2,7 @@
  * Copyright (C), 2013, 山东旭日俞和科技有限公司
  * All right reserved.
  */
-package com.yuanyuansinian.service.hall.impl;
+package com.yuanyuansinian.service.oration.impl;
 
 import java.io.File;
 import java.util.HashMap;
@@ -19,12 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.yuanyuansinian.dao.hall.HallMapper;
-import com.yuanyuansinian.model.hall.Hall;
-import com.yuanyuansinian.model.hall.HallWithBLOBs;
+import com.yuanyuansinian.dao.oration.OrationMapper;
+import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
-import com.yuanyuansinian.service.hall.IHallService;
+import com.yuanyuansinian.service.oration.IOrationService;
 
 /**   
  * @Description: 友情链接Service 
@@ -32,51 +31,51 @@ import com.yuanyuansinian.service.hall.IHallService;
  * @date 2017年1月18日 上午10:50:13 
  * @version V1.0   
  */
-@Service("hallService") 
-public class HallService implements IHallService {
+@Service("orationService") 
+public class OrationService implements IOrationService {
 	//友情链接Mapper
 	@Resource
-	private HallMapper hallMapper;
+	private OrationMapper orationMapper;
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: updateHall</p> 
+	 * <p>Title: updateOration</p> 
 	 * <p>Description: </p> 
-	 * @param hall
+	 * @param oration
 	 * @return 
-	 * @see ujn.school.cn.service.hall.IHallService#updateHall(ujn.school.cn.model.hall.Hall)
+	 * @see ujn.school.cn.service.oration.IOrationService#updateOration(ujn.school.cn.model.oration.Oration)
 	 */
 	@Override
-	public int updateHall(Hall hall) {
+	public int updateOration(Oration oration) {
 		// TODO Auto-generated method stub
-		return hallMapper.updateByPrimaryKey(hall);
+		return orationMapper.updateByPrimaryKey(oration);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: queryHallById</p> 
+	 * <p>Title: queryOrationById</p> 
 	 * <p>Description: </p> 
-	 * @param hallId
+	 * @param orationId
 	 * @return 
-	 * @see ujn.school.cn.service.hall.IHallService#queryHallById(int)
+	 * @see ujn.school.cn.service.oration.IOrationService#queryOrationById(int)
 	 */
 	@Override
-	public Hall queryHallById(int hallId) {
+	public Oration queryOrationById(int orationId) {
 		// TODO Auto-generated method stub
-		return hallMapper.selectByPrimaryKey(hallId);
+		return orationMapper.selectByPrimaryKey(orationId);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: addHall</p> 
+	 * <p>Title: addOration</p> 
 	 * <p>Description: </p> 
 	 * @param request
-	 * @param hall
+	 * @param oration
 	 * @return 
-	 * @see ujn.school.cn.service.hall.IHallService#addHall(javax.servlet.http.HttpServletRequest, ujn.school.cn.model.hall.Hall)
+	 * @see ujn.school.cn.service.oration.IOrationService#addOration(javax.servlet.http.HttpServletRequest, ujn.school.cn.model.oration.Oration)
 	 */
 	@Override
-	public int addHall(HttpServletRequest request,HallWithBLOBs hall) {
+	public int addOration(HttpServletRequest request,Oration oration) {
 		try {
 			//创建一个通用的多部分解析器  
 	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
@@ -105,7 +104,7 @@ public class HallService implements IHallService {
 	                        	localFile.mkdirs();  
 	                        }  
 	                        file.transferTo(localFile);  
-	                        //hall.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
+	                        //oration.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
 	                    }  
 	                }  
 	            }  
@@ -114,56 +113,55 @@ public class HallService implements IHallService {
 			// TODO: handle exception
 		}
 		//创建时间
-		hall.setCreate_date(MyDateUtil.getDateTime());
-		return hallMapper.insert(hall);
+		oration.setCreate_date(MyDateUtil.getDateTime());
+		return orationMapper.insert(oration);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: deleteHall</p> 
+	 * <p>Title: deleteOration</p> 
 	 * <p>Description: </p> 
-	 * @param hallId
+	 * @param orationId
 	 * @return 
-	 * @see ujn.school.cn.service.hall.IHallService#deleteHall(int)
+	 * @see ujn.school.cn.service.oration.IOrationService#deleteOration(int)
 	 */
 	@Override
-	public int deleteHall(int hallId) {
+	public int deleteOration(int orationId) {
 		
-		return hallMapper.deleteByPrimaryKey(hallId);
+		return orationMapper.deleteByPrimaryKey(orationId);
 	}
 
 
 	@Override
-	public List<Hall> queryHallListByType(Hall hall) {
+	public List<Oration> queryOrationListByType(Oration oration) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallListByType(hall);
+		return orationMapper.queryOrationListByType(oration);
 	}
 
 	@Override
-	public List<Hall> queryHallListByMember(String memberId, int limtNum) {
+	public List<Oration> queryOrationListByMember(String memberId, int limtNum) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberId", memberId);
 		map.put("limtNum", limtNum);
-		
-		return hallMapper.queryHallListByMember(map);
+		return orationMapper.queryOrationListByMember(map);
 	}
 
 	@Override
-	public List<Hall> queryHallListByOpenType(Hall hall) {
+	public List<Oration> queryOrationListByOpenType(Oration oration) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallListByOpenType(hall);
+		return orationMapper.queryOrationListByOpenType(oration);
 	}
 
 	@Override
-	public List<Hall> queryHallList(Hall hall) {
+	public List<Oration> queryOrationList(Oration oration) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallList(hall);
+		return orationMapper.queryOrationList(oration);
 	}
 
 	@Override
-	public List<Hall> queryHallPageListByMember(Hall hall) {
+	public List<Oration> queryOrationPageListByMember(Oration oration) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallPageListByMemberHall(hall);
+		return orationMapper.queryOrationPageListByMember(oration);
 	}
 
 }

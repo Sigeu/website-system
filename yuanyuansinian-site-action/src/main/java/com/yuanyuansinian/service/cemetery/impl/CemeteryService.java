@@ -2,7 +2,7 @@
  * Copyright (C), 2013, 山东旭日俞和科技有限公司
  * All right reserved.
  */
-package com.yuanyuansinian.service.hall.impl;
+package com.yuanyuansinian.service.cemetery.impl;
 
 import java.io.File;
 import java.util.HashMap;
@@ -19,12 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.yuanyuansinian.dao.hall.HallMapper;
-import com.yuanyuansinian.model.hall.Hall;
-import com.yuanyuansinian.model.hall.HallWithBLOBs;
+import com.yuanyuansinian.dao.cemetery.CemeteryMapper;
+import com.yuanyuansinian.model.cemetery.Cemetery;
+import com.yuanyuansinian.model.cemetery.CemeteryWithBLOBs;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
-import com.yuanyuansinian.service.hall.IHallService;
+import com.yuanyuansinian.service.cemetery.ICemeteryService;
 
 /**   
  * @Description: 友情链接Service 
@@ -32,51 +32,51 @@ import com.yuanyuansinian.service.hall.IHallService;
  * @date 2017年1月18日 上午10:50:13 
  * @version V1.0   
  */
-@Service("hallService") 
-public class HallService implements IHallService {
+@Service("cemeteryService") 
+public class CemeteryService implements ICemeteryService {
 	//友情链接Mapper
 	@Resource
-	private HallMapper hallMapper;
+	private CemeteryMapper cemeteryMapper;
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: updateHall</p> 
+	 * <p>Title: updateCemetery</p> 
 	 * <p>Description: </p> 
-	 * @param hall
+	 * @param cemetery
 	 * @return 
-	 * @see ujn.school.cn.service.hall.IHallService#updateHall(ujn.school.cn.model.hall.Hall)
+	 * @see ujn.school.cn.service.cemetery.ICemeteryService#updateCemetery(ujn.school.cn.model.cemetery.Cemetery)
 	 */
 	@Override
-	public int updateHall(Hall hall) {
+	public int updateCemetery(Cemetery cemetery) {
 		// TODO Auto-generated method stub
-		return hallMapper.updateByPrimaryKey(hall);
+		return cemeteryMapper.updateByPrimaryKey(cemetery);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: queryHallById</p> 
+	 * <p>Title: queryCemeteryById</p> 
 	 * <p>Description: </p> 
-	 * @param hallId
+	 * @param cemeteryId
 	 * @return 
-	 * @see ujn.school.cn.service.hall.IHallService#queryHallById(int)
+	 * @see ujn.school.cn.service.cemetery.ICemeteryService#queryCemeteryById(int)
 	 */
 	@Override
-	public Hall queryHallById(int hallId) {
+	public Cemetery queryCemeteryById(int cemeteryId) {
 		// TODO Auto-generated method stub
-		return hallMapper.selectByPrimaryKey(hallId);
+		return cemeteryMapper.selectByPrimaryKey(cemeteryId);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: addHall</p> 
+	 * <p>Title: addCemetery</p> 
 	 * <p>Description: </p> 
 	 * @param request
-	 * @param hall
+	 * @param cemetery
 	 * @return 
-	 * @see ujn.school.cn.service.hall.IHallService#addHall(javax.servlet.http.HttpServletRequest, ujn.school.cn.model.hall.Hall)
+	 * @see ujn.school.cn.service.cemetery.ICemeteryService#addCemetery(javax.servlet.http.HttpServletRequest, ujn.school.cn.model.cemetery.Cemetery)
 	 */
 	@Override
-	public int addHall(HttpServletRequest request,HallWithBLOBs hall) {
+	public int addCemetery(HttpServletRequest request,CemeteryWithBLOBs cemetery) {
 		try {
 			//创建一个通用的多部分解析器  
 	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
@@ -105,7 +105,7 @@ public class HallService implements IHallService {
 	                        	localFile.mkdirs();  
 	                        }  
 	                        file.transferTo(localFile);  
-	                        //hall.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
+	                        //cemetery.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
 	                    }  
 	                }  
 	            }  
@@ -114,56 +114,56 @@ public class HallService implements IHallService {
 			// TODO: handle exception
 		}
 		//创建时间
-		hall.setCreate_date(MyDateUtil.getDateTime());
-		return hallMapper.insert(hall);
+		cemetery.setCreate_date(MyDateUtil.getDateTime());
+		return cemeteryMapper.insert(cemetery);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: deleteHall</p> 
+	 * <p>Title: deleteCemetery</p> 
 	 * <p>Description: </p> 
-	 * @param hallId
+	 * @param cemeteryId
 	 * @return 
-	 * @see ujn.school.cn.service.hall.IHallService#deleteHall(int)
+	 * @see ujn.school.cn.service.cemetery.ICemeteryService#deleteCemetery(int)
 	 */
 	@Override
-	public int deleteHall(int hallId) {
+	public int deleteCemetery(int cemeteryId) {
 		
-		return hallMapper.deleteByPrimaryKey(hallId);
+		return cemeteryMapper.deleteByPrimaryKey(cemeteryId);
 	}
 
 
 	@Override
-	public List<Hall> queryHallListByType(Hall hall) {
+	public List<Cemetery> queryCemeteryListByType(Cemetery cemetery) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallListByType(hall);
+		return cemeteryMapper.queryCemeteryListByType(cemetery);
 	}
 
 	@Override
-	public List<Hall> queryHallListByMember(String memberId, int limtNum) {
+	public List<Cemetery> queryCemeteryListByMember(String memberId, int limtNum) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberId", memberId);
 		map.put("limtNum", limtNum);
 		
-		return hallMapper.queryHallListByMember(map);
+		return cemeteryMapper.queryCemeteryListByMember(map);
 	}
 
 	@Override
-	public List<Hall> queryHallListByOpenType(Hall hall) {
+	public List<Cemetery> queryCemeteryListByOpenType(Cemetery cemetery) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallListByOpenType(hall);
+		return cemeteryMapper.queryCemeteryListByOpenType(cemetery);
 	}
 
 	@Override
-	public List<Hall> queryHallList(Hall hall) {
+	public List<Cemetery> queryCemeteryList(Cemetery cemetery) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallList(hall);
+		return cemeteryMapper.queryCemeteryList(cemetery);
 	}
 
 	@Override
-	public List<Hall> queryHallPageListByMember(Hall hall) {
+	public List<Cemetery> queryCemeteryPageListByMember(Cemetery cemetery) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallPageListByMemberHall(hall);
+		return cemeteryMapper.queryCemeteryPageListByMemberCemetery(cemetery);
 	}
 
 }

@@ -25,6 +25,7 @@ import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.model.content.Content;
 import com.yuanyuansinian.model.content.ContentWithBLOBs;
 import com.yuanyuansinian.model.link.Link;
+import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
@@ -35,7 +36,7 @@ import com.yuanyuansinian.service.content.IContentService;
 import com.yuanyuansinian.service.link.ILinkService;
 
 /**
- * @Description: 栏目管理
+ * @Description: 主页管理
  * @author lizhaotao lzh_me@126.com
  * @date 2017年1月17日 下午1:52:12
  * @version V1.0
@@ -378,7 +379,56 @@ public class IndexController extends MyBaseController {
 	}
 	
 	/**
-	 * @Description:  纪念馆
+	 * 
+	 * @Description: 导航 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/navigation")
+	public Map<String, Object> navigation(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			//栏目
+			List<Column> resultList = columnService.queryColumnList(null);
+			//排序
+			LinkedList<Column> result = new LinkedList<Column>();
+			LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+			//转换为ArrayList
+			List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+			
+			map.put("columnList", columnList);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 友情链接 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/link")
+	public Map<String, Object> link(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			// 友情链接
+			List<Link> linkList = linkService.queryLinkList(null);
+			
+			map.put("linkList", linkList);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	/**
+	 * @Description:  纪念馆列表
 	 * @param request
 	 * @param model
 	 * @return
@@ -391,7 +441,20 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 缘园资讯
+	 * @Description:  纪念馆内容页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallDetail")
+	public String toHallDetail(HttpServletRequest request, Model model) {
+
+		return "site/hallDetail";
+	}
+	
+	/**
+	 * 
+	 * @Description: 缘园资讯列表
 	 * @param request
 	 * @param model
 	 * @return
@@ -404,7 +467,20 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 商城
+	 * @Description:  缘园资讯内容页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toInformationDetail")
+	public String toInformationDetail(HttpServletRequest request, Model model) {
+
+		return "site/informationDetail";
+	}
+	
+	/**
+	 * 
+	 * @Description: 商城列表
 	 * @param request
 	 * @param model
 	 * @return
@@ -417,7 +493,20 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 公墓陵园
+	 * @Description:  商城内容页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toShoppingDetail")
+	public String toShoppingDetail(HttpServletRequest request, Model model) {
+
+		return "site/shoppingDetail";
+	}
+	
+	/**
+	 * 
+	 * @Description: 公墓陵园列表
 	 * @param request
 	 * @param model
 	 * @return
@@ -430,6 +519,19 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
+	 * @Description:  公墓陵园内容页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toCemeteryDetail")
+	public String toCemeteryDetail(HttpServletRequest request, Model model) {
+
+		return "site/cemeteryDetail";
+	}
+	
+	/**
+	 * 
 	 * @Description: 我的思念
 	 * @param request
 	 * @param model
@@ -437,9 +539,31 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/toMemberCenter")
 	public String toMemberCenter(HttpServletRequest request, Model model) {
+		//获取登录的会员
+		Member memberUser = super.getSessionMemberUser(request);
 		
+		/*String create_date = memberUser.getCreate_date();
+		String now_date = MyDateUtil.getDateTime();
+		MyDateUtil.getMargin(create_date, now_date);*/
+		
+		model.addAttribute("memberUser", memberUser);
 		return "site/memberCenter";
 	}
+	
+	/**
+	 * 
+	 * @Description:  我的思念内容页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toMemberCenterDetail")
+	public String toMemberCenterDetail(HttpServletRequest request, Model model) {
+
+		return "site/memberCenterDetail";
+	}
+	
+	
 	/**
 	 * 获取IP
 	 * @param request

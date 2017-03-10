@@ -2,7 +2,7 @@
  * Copyright (C), 2015, 山东旭日俞和科技有限公司
  * All right reserved.
  */
-package com.yuanyuansinian.controller.hall;
+package com.yuanyuansinian.controller.oration;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,32 +19,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.yuanyuansinian.model.hall.Hall;
-import com.yuanyuansinian.model.hall.HallWithBLOBs;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.util.MyDateUtil;
-import com.yuanyuansinian.service.hall.IHallService;
+import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.oration.IOrationService;
 
-import framework.system.pub.constants.ISystemConstants;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
- * @Description: 产品管理
+ * @Description: 祭文管理
  * @author lizhaotao lzh_me@126.com
  * @date 2017年1月17日 下午1:52:12
  * @version V1.0
  */
 @Controller
-@RequestMapping("/sinian/hall/hallController")
-public class HallController extends MyBaseController {
+@RequestMapping("/sinian/oration/orationController")
+public class OrationController extends MyBaseController {
 	// 产品Service
 	@Resource
-	private IHallService hallService;
+	private IOrationService orationService;
 	
 	@Resource
-	private IOrationService orationService;
+	private IColumnService columnService;
 
 	/**
 	 * 
@@ -53,36 +50,12 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallList")
-	public String toHallList(HttpServletRequest request, Model model) {
+	@RequestMapping("/toOrationList")
+	public String toOrationList(HttpServletRequest request, Model model) {
 
-		return "hall/hallList";
+		return "oration/orationList";
 	}
 	
-	/**
-	 * 
-	 * @Description: 跳转到会员创建的纪念馆列表 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/toHallListByMember")
-	public String toHallListByMember(HttpServletRequest request, Model model) {
-		//设置差当前登录会员
-		String memberId = super.getSessionMemberUser(request).getId()+"";
-		
-		//我创建的纪念馆
-		List<Hall> hallList = this.hallService.queryHallListByMember(memberId,ISystemConstants.COUNT_NUM2);
-		//我的访问 visit
-		
-		//我发布的祭文
-		List<Oration> orationList = this.orationService.queryOrationListByMember(memberId,ISystemConstants.COUNT_NUM2);
-		
-		model.addAttribute("hallList", hallList);
-		model.addAttribute("orationList", orationList);
-		
-		return "site/memberIssue";
-	}
 	/**
 	 * 
 	 * @Description: 跳转到产品回收站列表 
@@ -90,10 +63,10 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallRecycleList")
-	public String toHallRecycleList(HttpServletRequest request, Model model) {
+	@RequestMapping("/toOrationRecycleList")
+	public String toOrationRecycleList(HttpServletRequest request, Model model) {
 
-		return "hall/hallRecycleList";
+		return "oration/orationRecycleList";
 	}
 
 	/**
@@ -103,11 +76,11 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallAdd")
-	public String toHallAdd(HttpServletRequest request, Model model) {
+	@RequestMapping("/toOrationAdd")
+	public String toOrationAdd(HttpServletRequest request, Model model) {
 		
 		
-		return "hall/hallAdd";
+		return "oration/orationAdd";
 	}
 
 	/**
@@ -117,13 +90,13 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallUpdate")
-	public String toHallUpdate(HttpServletRequest request, Model model) {
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		Hall hall = this.hallService.queryHallById(hallId);
-		model.addAttribute("hall", hall);
+	@RequestMapping("/toOrationUpdate")
+	public String toOrationUpdate(HttpServletRequest request, Model model) {
+		int orationId = Integer.parseInt(request.getParameter("id"));
+		Oration oration = this.orationService.queryOrationById(orationId);
+		model.addAttribute("oration", oration);
 		
-		return "hall/hallUpdate";
+		return "oration/orationUpdate";
 	}
 	
 
@@ -134,13 +107,13 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallDetail")
-	public String toHallDetail(HttpServletRequest request, Model model) {
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		Hall  hall = this.hallService.queryHallById(hallId);
-		model.addAttribute("hall", hall);
+	@RequestMapping("/toOrationDetail")
+	public String toOrationDetail(HttpServletRequest request, Model model) {
+		int orationId = Integer.parseInt(request.getParameter("id"));
+		Oration  oration = this.orationService.queryOrationById(orationId);
+		model.addAttribute("oration", oration);
 
-		return "hall/hallDetail";
+		return "oration/orationDetail";
 	}
 
 	/**
@@ -148,25 +121,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 分页列表
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param oration
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallList")
-	public DataTablePageUtil<Hall> queryHallList(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryOrationList")
+	public DataTablePageUtil<Oration> queryOrationList(HttpServletRequest request,
+			HttpServletResponse response, Oration oration) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<Oration> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<Oration>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallList(hall);
+			List<Oration> orationList = this.orationService.queryOrationList(oration);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<Oration> pageInfo = new PageInfo<Oration>(orationList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -187,25 +160,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 分页列表
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param oration
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallListByMember")
-	public DataTablePageUtil<Hall> queryHallListByMember(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryOrationListByMember")
+	public DataTablePageUtil<Oration> queryOrationListByMember(HttpServletRequest request,
+			HttpServletResponse response, Oration oration) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<Oration> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<Oration>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallPageListByMember(hall);
+			List<Oration> orationList = this.orationService.queryOrationPageListByMember(oration);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<Oration> pageInfo = new PageInfo<Oration>(orationList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -226,25 +199,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 根据公开状态查询列表 
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param oration
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallListByOpenType")
-	public DataTablePageUtil<Hall> queryHallListByOpenType(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryOrationListByOpenType")
+	public DataTablePageUtil<Oration> queryOrationListByOpenType(HttpServletRequest request,
+			HttpServletResponse response, Oration oration) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<Oration> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<Oration>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallListByOpenType(hall);
+			List<Oration> orationList = this.orationService.queryOrationListByOpenType(oration);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<Oration> pageInfo = new PageInfo<Oration>(orationList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -264,18 +237,18 @@ public class HallController extends MyBaseController {
 	 * 
 	 * @Description: 添加
 	 * @param request
-	 * @param hall
+	 * @param oration
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/addHall")
-	public Map<String, Object> addHall(HttpServletRequest request, HallWithBLOBs hall) {
+	@RequestMapping("/addOration")
+	public Map<String, Object> addOration(HttpServletRequest request, Oration oration) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			//发布人
-			//hall.setIssue(getSessionUser(request).getLogin_name());
+			//oration.setIssue(getSessionUser(request).getLogin_name());
 			//默认状态为“0”：待审核
-			hallService.addHall(request, hall);
+			orationService.addOration(request, oration);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -289,16 +262,16 @@ public class HallController extends MyBaseController {
 	 * 
 	 * @Description: 修改
 	 * @param request
-	 * @param hall
+	 * @param oration
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/updateHall")
-	public Map<String, Object> updateHall(HttpServletRequest request, Hall hall) {
+	@RequestMapping("/updateOration")
+	public Map<String, Object> updateOration(HttpServletRequest request, Oration oration) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		hall.setCreate_date(MyDateUtil.getDateTime());
-		int count = this.hallService.updateHall(hall);
+		oration.setCreate_date(MyDateUtil.getDateTime());
+		int count = this.orationService.updateOration(oration);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
@@ -316,11 +289,11 @@ public class HallController extends MyBaseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/deleteHall")
-	public Map<String, Object> deleteHall(HttpServletRequest request) {
+	@RequestMapping("/deleteOration")
+	public Map<String, Object> deleteOration(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		int count = this.hallService.deleteHall(hallId);
+		int orationId = Integer.parseInt(request.getParameter("id"));
+		int count = this.orationService.deleteOration(orationId);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
 		} else {

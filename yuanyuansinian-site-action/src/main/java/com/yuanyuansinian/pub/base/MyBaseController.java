@@ -6,6 +6,8 @@ package com.yuanyuansinian.pub.base;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.yuanyuansinian.model.member.Member;
+
 import framework.system.model.User;
 
 /**
@@ -23,19 +25,30 @@ public class MyBaseController{
 	 * @param request
 	 * @return User
 	 */
-	protected User getSessionUser(HttpServletRequest request) {
+	protected User getSessionSystemUser(HttpServletRequest request) {
 		
-		return (User) request.getSession().getAttribute(SESSION_USER_KEY);
+		return (User) request.getSession().getAttribute(SYSTEM_USER_KEY);
 	}
 
 	// 将用户对象保存到Session中
-	protected void setSessionUser(HttpServletRequest request, User user) {
-		request.getSession().setAttribute(SESSION_USER_KEY, user);
+	protected void setSessionSystemUser(HttpServletRequest request, User user) {
+		request.getSession().setAttribute(SYSTEM_USER_KEY, user);
 	}
 
+	protected Member getSessionMemberUser(HttpServletRequest request) {
+		
+		return (Member) request.getSession().getAttribute(MEMBER_USER_KEY);
+	}
+	
+	// 将用户对象保存到Session中
+	protected void setSessionMemberUser(HttpServletRequest request, Member member) {
+		request.getSession().setAttribute(MEMBER_USER_KEY, member);
+	}
 
 	// 用户session key=
-	public static final String SESSION_USER_KEY = "session_user";
+	public static final String SESSION_USER_KEY = "systemUser";
+	public static final String SYSTEM_USER_KEY = "systemUser";
+	public static final String MEMBER_USER_KEY = "memberUser";
 	// 返回的KEY
 	public static final String RESULT_MESSAGE_STRING = "result_message";
 	public static final String RESULT_STATUS_STRING = "status_flag";

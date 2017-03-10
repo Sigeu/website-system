@@ -2,7 +2,7 @@
  * Copyright (C), 2015, 山东旭日俞和科技有限公司
  * All right reserved.
  */
-package com.yuanyuansinian.controller.hall;
+package com.yuanyuansinian.controller.cemetery;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,29 +19,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.yuanyuansinian.model.hall.Hall;
-import com.yuanyuansinian.model.hall.HallWithBLOBs;
+import com.yuanyuansinian.model.cemetery.Cemetery;
+import com.yuanyuansinian.model.cemetery.CemeteryWithBLOBs;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.util.MyDateUtil;
-import com.yuanyuansinian.service.hall.IHallService;
+import com.yuanyuansinian.service.cemetery.ICemeteryService;
 import com.yuanyuansinian.service.oration.IOrationService;
 
 import framework.system.pub.constants.ISystemConstants;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
- * @Description: 产品管理
+ * @Description: 墓地陵园管理
  * @author lizhaotao lzh_me@126.com
  * @date 2017年1月17日 下午1:52:12
  * @version V1.0
  */
 @Controller
-@RequestMapping("/sinian/hall/hallController")
-public class HallController extends MyBaseController {
-	// 产品Service
+@RequestMapping("/sinian/cemetery/cemeteryController")
+public class CemeteryController extends MyBaseController {
+	// 墓地陵园Service
 	@Resource
-	private IHallService hallService;
+	private ICemeteryService cemeteryService;
 	
 	@Resource
 	private IOrationService orationService;
@@ -53,10 +53,10 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallList")
-	public String toHallList(HttpServletRequest request, Model model) {
+	@RequestMapping("/toCemeteryList")
+	public String toCemeteryList(HttpServletRequest request, Model model) {
 
-		return "hall/hallList";
+		return "cemetery/cemeteryList";
 	}
 	
 	/**
@@ -66,34 +66,34 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallListByMember")
-	public String toHallListByMember(HttpServletRequest request, Model model) {
+	@RequestMapping("/toCemeteryListByMember")
+	public String toCemeteryListByMember(HttpServletRequest request, Model model) {
 		//设置差当前登录会员
 		String memberId = super.getSessionMemberUser(request).getId()+"";
 		
 		//我创建的纪念馆
-		List<Hall> hallList = this.hallService.queryHallListByMember(memberId,ISystemConstants.COUNT_NUM2);
+		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListByMember(memberId,ISystemConstants.COUNT_NUM2);
 		//我的访问 visit
 		
 		//我发布的祭文
 		List<Oration> orationList = this.orationService.queryOrationListByMember(memberId,ISystemConstants.COUNT_NUM2);
 		
-		model.addAttribute("hallList", hallList);
+		model.addAttribute("cemeteryList", cemeteryList);
 		model.addAttribute("orationList", orationList);
 		
 		return "site/memberIssue";
 	}
 	/**
 	 * 
-	 * @Description: 跳转到产品回收站列表 
+	 * @Description: 跳转到墓地陵园回收站列表 
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallRecycleList")
-	public String toHallRecycleList(HttpServletRequest request, Model model) {
+	@RequestMapping("/toCemeteryRecycleList")
+	public String toCemeteryRecycleList(HttpServletRequest request, Model model) {
 
-		return "hall/hallRecycleList";
+		return "cemetery/cemeteryRecycleList";
 	}
 
 	/**
@@ -103,11 +103,11 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallAdd")
-	public String toHallAdd(HttpServletRequest request, Model model) {
+	@RequestMapping("/toCemeteryAdd")
+	public String toCemeteryAdd(HttpServletRequest request, Model model) {
 		
 		
-		return "hall/hallAdd";
+		return "cemetery/cemeteryAdd";
 	}
 
 	/**
@@ -117,13 +117,13 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallUpdate")
-	public String toHallUpdate(HttpServletRequest request, Model model) {
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		Hall hall = this.hallService.queryHallById(hallId);
-		model.addAttribute("hall", hall);
+	@RequestMapping("/toCemeteryUpdate")
+	public String toCemeteryUpdate(HttpServletRequest request, Model model) {
+		int cemeteryId = Integer.parseInt(request.getParameter("id"));
+		Cemetery cemetery = this.cemeteryService.queryCemeteryById(cemeteryId);
+		model.addAttribute("cemetery", cemetery);
 		
-		return "hall/hallUpdate";
+		return "cemetery/cemeteryUpdate";
 	}
 	
 
@@ -134,13 +134,13 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallDetail")
-	public String toHallDetail(HttpServletRequest request, Model model) {
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		Hall  hall = this.hallService.queryHallById(hallId);
-		model.addAttribute("hall", hall);
+	@RequestMapping("/toCemeteryDetail")
+	public String toCemeteryDetail(HttpServletRequest request, Model model) {
+		int cemeteryId = Integer.parseInt(request.getParameter("id"));
+		Cemetery  cemetery = this.cemeteryService.queryCemeteryById(cemeteryId);
+		model.addAttribute("cemetery", cemetery);
 
-		return "hall/hallDetail";
+		return "cemetery/cemeteryDetail";
 	}
 
 	/**
@@ -148,25 +148,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 分页列表
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param cemetery
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallList")
-	public DataTablePageUtil<Hall> queryHallList(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryCemeteryList")
+	public DataTablePageUtil<Cemetery> queryCemeteryList(HttpServletRequest request,
+			HttpServletResponse response, Cemetery cemetery) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<Cemetery> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<Cemetery>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallList(hall);
+			List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryList(cemetery);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<Cemetery> pageInfo = new PageInfo<Cemetery>(cemeteryList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -187,25 +187,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 分页列表
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param cemetery
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallListByMember")
-	public DataTablePageUtil<Hall> queryHallListByMember(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryCemeteryListByMember")
+	public DataTablePageUtil<Cemetery> queryCemeteryListByMember(HttpServletRequest request,
+			HttpServletResponse response, Cemetery cemetery) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<Cemetery> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<Cemetery>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallPageListByMember(hall);
+			List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryPageListByMember(cemetery);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<Cemetery> pageInfo = new PageInfo<Cemetery>(cemeteryList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -226,25 +226,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 根据公开状态查询列表 
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param cemetery
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallListByOpenType")
-	public DataTablePageUtil<Hall> queryHallListByOpenType(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryCemeteryListByOpenType")
+	public DataTablePageUtil<Cemetery> queryCemeteryListByOpenType(HttpServletRequest request,
+			HttpServletResponse response, Cemetery cemetery) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<Cemetery> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<Cemetery>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallListByOpenType(hall);
+			List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListByOpenType(cemetery);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<Cemetery> pageInfo = new PageInfo<Cemetery>(cemeteryList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -264,18 +264,18 @@ public class HallController extends MyBaseController {
 	 * 
 	 * @Description: 添加
 	 * @param request
-	 * @param hall
+	 * @param cemetery
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/addHall")
-	public Map<String, Object> addHall(HttpServletRequest request, HallWithBLOBs hall) {
+	@RequestMapping("/addCemetery")
+	public Map<String, Object> addCemetery(HttpServletRequest request, CemeteryWithBLOBs cemetery) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			//发布人
-			//hall.setIssue(getSessionUser(request).getLogin_name());
+			//cemetery.setIssue(getSessionUser(request).getLogin_name());
 			//默认状态为“0”：待审核
-			hallService.addHall(request, hall);
+			cemeteryService.addCemetery(request, cemetery);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -289,16 +289,16 @@ public class HallController extends MyBaseController {
 	 * 
 	 * @Description: 修改
 	 * @param request
-	 * @param hall
+	 * @param cemetery
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/updateHall")
-	public Map<String, Object> updateHall(HttpServletRequest request, Hall hall) {
+	@RequestMapping("/updateCemetery")
+	public Map<String, Object> updateCemetery(HttpServletRequest request, Cemetery cemetery) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		hall.setCreate_date(MyDateUtil.getDateTime());
-		int count = this.hallService.updateHall(hall);
+		cemetery.setCreate_date(MyDateUtil.getDateTime());
+		int count = this.cemeteryService.updateCemetery(cemetery);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
@@ -316,11 +316,11 @@ public class HallController extends MyBaseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/deleteHall")
-	public Map<String, Object> deleteHall(HttpServletRequest request) {
+	@RequestMapping("/deleteCemetery")
+	public Map<String, Object> deleteCemetery(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		int count = this.hallService.deleteHall(hallId);
+		int cemeteryId = Integer.parseInt(request.getParameter("id"));
+		int count = this.cemeteryService.deleteCemetery(cemeteryId);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
 		} else {

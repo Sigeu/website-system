@@ -9,6 +9,8 @@ public class Member {
      * @mbg.generated Tue Mar 07 22:57:46 CST 2017
      */
     private Integer id;
+    
+    private Integer days;
 
     /**
      *
@@ -109,6 +111,8 @@ public class Member {
      * @mbg.generated Tue Mar 07 22:57:46 CST 2017
      */
     private String create_date;
+    
+    private Double balance;
 
     /**
      *
@@ -437,5 +441,21 @@ public class Member {
 
 	public void setSex_name(String sex_name) {
 		this.sex_name = sex_name;
+	}
+
+	public Integer getDays() {
+		return days;
+	}
+
+	public void setDays(Integer days) {
+		this.days = days;
+	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
 	}
 }

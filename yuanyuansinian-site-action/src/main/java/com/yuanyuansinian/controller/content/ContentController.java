@@ -251,7 +251,7 @@ public class ContentController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			//发布人
-			content.setIssue(getSessionUser(request).getLogin_name());
+			content.setIssue(getSessionSystemUser(request).getLogin_name());
 			//默认状态为“0”：待审核
 			content.setStatus(IMySystemConstants.VALUE_0);
 			contentService.addContent(request, content);

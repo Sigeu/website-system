@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.yuanyuansinian.model.hall.Hall;
+import com.yuanyuansinian.model.hall.HallWithBLOBs;
 
 /**
  * @Description: TODO
@@ -49,7 +50,7 @@ public interface IHallService {
 	 * @param hall
 	 * @return
 	 */
-	int addHall(HttpServletRequest request, Hall hall);
+	int addHall(HttpServletRequest request, HallWithBLOBs hall);
 
 	/**
 	 * 
@@ -62,9 +63,11 @@ public interface IHallService {
 
 	List<Hall> queryHallListByType(Hall hall);
 
-	List<Hall> queryHallListByMember(Hall hall);
+	List<Hall> queryHallListByMember(String memberId, int limtNum);
 
 	List<Hall> queryHallListByOpenType(Hall hall);
+
+	List<Hall> queryHallPageListByMember(Hall hall);
 
 
 }

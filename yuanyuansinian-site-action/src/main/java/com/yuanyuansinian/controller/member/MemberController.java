@@ -22,6 +22,7 @@ import com.github.pagehelper.PageInfo;
 import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.util.MyDateUtil;
+import com.yuanyuansinian.pub.util.MyUserSessionUtil;
 import com.yuanyuansinian.service.member.IMemberService;
 
 import framework.system.pub.util.DataTablePageUtil;
@@ -312,6 +313,8 @@ public class MemberController extends MyBaseController {
 			member = this.memberService.queryMemberByPhone(name,pwd);
 		}
 		if (null != member) {
+			//存放session
+			MyUserSessionUtil.putMember(request, member);
 			map.put(RESULT_MESSAGE_STRING, "登录成功！");
 			map.put(RESULT_STATUS_STRING, "1");
 		} else {
