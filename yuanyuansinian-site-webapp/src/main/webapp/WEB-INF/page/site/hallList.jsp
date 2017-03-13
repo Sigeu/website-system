@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
@@ -122,17 +122,43 @@
 								</p>
 							</div>
 						</div>
+					</div>
+					<div class="col-sm-4 col-md-3">
+						<div class="thumbnail">
+							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive"
+								alt="img"></a>
+							<div class="caption">
+								<a href="###"><h5>${hallOpen.title}</h5></a>
+								<p>
+									<strong>在世：</strong>2016-2016
+								</p>
+								<p class="thumbnail-des text-justify">
+									<strong>简介：</strong>${hallOpen.description}
+								</p>
+							</div>
+						</div>
 					</div> 
+					<div class="col-sm-4 col-md-3">
+						<div class="thumbnail">
+							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive"
+								alt="img"></a>
+							<div class="caption">
+								<a href="###"><h5>${hallOpen.title}</h5></a>
+								<p>
+									<strong>在世：</strong>2016-2016
+								</p>
+								<p class="thumbnail-des text-justify">
+									<strong>简介：</strong>${hallOpen.description}
+								</p>
+							</div>
+						</div>
+					</div>  
 					<div class="clearfix"></div>
 					<div class="page">
 						<ul class="pagination">
 							<li><a href="#" aria-label="Previous"><span
 									aria-hidden="true">&laquo;</span></a></li>
 							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
 							<li><a href="#" aria-label="Next"><span
 									aria-hidden="true">&raquo;</span></a></li>
 						</ul>
@@ -342,6 +368,8 @@
 
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/js/hall.js"></script>
 	<script type="text/javascript">
 		//-------分页数据----------
 		var id = '${column_id }';

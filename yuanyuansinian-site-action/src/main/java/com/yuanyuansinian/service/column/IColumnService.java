@@ -52,4 +52,6 @@ public interface IColumnService {
 
 	int updateColumnConfig(ColumnWithBLOBs column);
 
+	List<Column> queryColumnListForNavigation(int nav_num);
+
 }

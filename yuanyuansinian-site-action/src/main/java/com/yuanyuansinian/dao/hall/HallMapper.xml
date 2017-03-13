@@ -73,7 +73,7 @@
 	  when hall_type = 1 then '单人馆'  
 	  when hall_type = 2 then '双人馆'  
 	  else ''  
-	end as hall_type_name,
+	end as hall_type_name
   </sql>
   <sql id="Blob_Column_List">
     <!--

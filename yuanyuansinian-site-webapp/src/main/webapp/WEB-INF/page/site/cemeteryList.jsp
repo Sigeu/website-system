@@ -49,7 +49,7 @@
 						<div class="row tab-pane active" id="areaA">
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -63,7 +63,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -77,7 +77,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -91,7 +91,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -105,7 +105,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -119,7 +119,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -133,7 +133,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -147,7 +147,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -161,7 +161,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide1.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -192,7 +192,7 @@
 						<div class="row tab-pane" id="areaB">
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -206,7 +206,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -220,7 +220,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -234,7 +234,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -248,7 +248,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -262,7 +262,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -276,7 +276,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -290,7 +290,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -304,7 +304,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide2.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -335,7 +335,7 @@
 						<div class="row tab-pane" id="areaC">
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide3.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -349,7 +349,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide3.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -363,7 +363,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -377,7 +377,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide3.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -391,7 +391,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide3.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -405,7 +405,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -419,7 +419,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide3.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -433,7 +433,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
 								<div class="thumbnail">
-									<a href="###"><img src="images/slide3.png" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -447,7 +447,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -478,7 +478,7 @@
 						<div class="row tab-pane" id="areaD">
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex2.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -492,7 +492,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -506,7 +506,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -520,7 +520,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex2.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -534,7 +534,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -548,7 +548,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -562,7 +562,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -576,7 +576,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -607,7 +607,7 @@
 						<div class="row tab-pane" id="areaE">
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex3.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -621,7 +621,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -635,7 +635,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -649,7 +649,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex3.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -663,7 +663,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -677,7 +677,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>
@@ -691,7 +691,7 @@
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="images/ex.jpg" alt="img"></a>
+									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 									<div class="caption">
 										<a href="###"><h5>天束幽花</h5></a>
 										<p>

@@ -65,4 +65,6 @@ public interface ColumnMapper {
 
 	List<Column> queryColumnList(Column column);
 
+	List<Column> queryColumnListForNavigation(Integer nav_num);
+
 }

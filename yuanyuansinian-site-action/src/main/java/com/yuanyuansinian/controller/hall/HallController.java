@@ -23,6 +23,7 @@ import com.yuanyuansinian.model.hall.Hall;
 import com.yuanyuansinian.model.hall.HallWithBLOBs;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
+import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.oration.IOrationService;
@@ -72,11 +73,11 @@ public class HallController extends MyBaseController {
 		String memberId = super.getSessionMemberUser(request).getId()+"";
 		
 		//我创建的纪念馆
-		List<Hall> hallList = this.hallService.queryHallListByMember(memberId,ISystemConstants.COUNT_NUM2);
+		List<Hall> hallList = this.hallService.queryHallListByMember(memberId,IMySystemConstants.COUNT_NUM2);
 		//我的访问 visit
 		
 		//我发布的祭文
-		List<Oration> orationList = this.orationService.queryOrationListByMember(memberId,ISystemConstants.COUNT_NUM2);
+		List<Oration> orationList = this.orationService.queryOrationListByMember(memberId,IMySystemConstants.COUNT_NUM2);
 		
 		model.addAttribute("hallList", hallList);
 		model.addAttribute("orationList", orationList);
@@ -242,7 +243,7 @@ public class HallController extends MyBaseController {
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallListByOpenType(ISystemConstants.VALUE_2);
+			List<Hall> hallList = this.hallService.queryHallListByOpenType(IMySystemConstants.VALUE_2);
 			// 用PageInfo对结果进行包装
 			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
 

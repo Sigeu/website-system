@@ -431,7 +431,7 @@ public class IndexController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			//栏目
-			List<Column> resultList = columnService.queryColumnList(null);
+			List<Column> resultList = columnService.queryColumnListForNavigation(IMySystemConstants.COUNT_NUM1);
 			//排序
 			LinkedList<Column> result = new LinkedList<Column>();
 			LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
@@ -478,11 +478,11 @@ public class IndexController extends MyBaseController {
 	public String toHallList(HttpServletRequest request, Model model) {
 		
 		//最新建馆
-		List<Hall> listHallNew = hallService.queryHallNewList(ISystemConstants.COUNT_NUM6);
+		List<Hall> listHallNew = hallService.queryHallNewList(IMySystemConstants.COUNT_NUM6);
 		//最新文章
-		List<Oration> listOrationNew = orationService.queryOrationNewList(ISystemConstants.COUNT_NUM6);
+		List<Oration> listOrationNew = orationService.queryOrationNewList(IMySystemConstants.COUNT_NUM6);
 		//网上纪念馆:公开属性，单人和双人
-		List<Hall> listHallByOpenType = hallService.queryHallListByOpenType(ISystemConstants.VALUE_2);
+		List<Hall> listHallByOpenType = hallService.queryHallListByOpenType(IMySystemConstants.VALUE_2);
 		
 		model.addAttribute("listHallNew", listHallNew);
 		model.addAttribute("listOrationNew", listOrationNew);
@@ -593,7 +593,7 @@ public class IndexController extends MyBaseController {
 		//获取登录的会员
 		Member memberUser = super.getSessionMemberUser(request);
 		if(null == memberUser){
-			return "redirect:/toMemberLogin";
+			return "redirect:/sinian/index/indexController/toMemberLogin";
 		}else{
 			model.addAttribute("memberUser", memberUser);
 			return "site/memberCenter";

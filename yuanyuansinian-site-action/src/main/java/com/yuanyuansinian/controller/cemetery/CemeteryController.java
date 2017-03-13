@@ -23,11 +23,11 @@ import com.yuanyuansinian.model.cemetery.Cemetery;
 import com.yuanyuansinian.model.cemetery.CemeteryWithBLOBs;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
+import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.cemetery.ICemeteryService;
 import com.yuanyuansinian.service.oration.IOrationService;
 
-import framework.system.pub.constants.ISystemConstants;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
@@ -72,11 +72,11 @@ public class CemeteryController extends MyBaseController {
 		String memberId = super.getSessionMemberUser(request).getId()+"";
 		
 		//我创建的纪念馆
-		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListByMember(memberId,ISystemConstants.COUNT_NUM2);
+		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListByMember(memberId,IMySystemConstants.COUNT_NUM2);
 		//我的访问 visit
 		
 		//我发布的祭文
-		List<Oration> orationList = this.orationService.queryOrationListByMember(memberId,ISystemConstants.COUNT_NUM2);
+		List<Oration> orationList = this.orationService.queryOrationListByMember(memberId,IMySystemConstants.COUNT_NUM2);
 		
 		model.addAttribute("cemeteryList", cemeteryList);
 		model.addAttribute("orationList", orationList);

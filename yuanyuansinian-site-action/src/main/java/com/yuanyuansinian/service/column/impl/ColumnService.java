@@ -136,4 +136,10 @@ public class ColumnService implements IColumnService {
 		return columnMapper.updateByPrimaryKeySelective(column);
 	}
 
+	@Override
+	public List<Column> queryColumnListForNavigation(int nav_num) {
+		// TODO Auto-generated method stub
+		return columnMapper.queryColumnListForNavigation(nav_num);
+	}
+
 }
