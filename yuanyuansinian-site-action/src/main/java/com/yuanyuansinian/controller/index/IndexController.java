@@ -24,8 +24,10 @@ import com.yuanyuansinian.model.config.Config;
 import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.model.content.Content;
 import com.yuanyuansinian.model.content.ContentWithBLOBs;
+import com.yuanyuansinian.model.hall.Hall;
 import com.yuanyuansinian.model.link.Link;
 import com.yuanyuansinian.model.member.Member;
+import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
@@ -33,7 +35,11 @@ import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.config.IConfigService;
 import com.yuanyuansinian.service.contact.IContactService;
 import com.yuanyuansinian.service.content.IContentService;
+import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.link.ILinkService;
+import com.yuanyuansinian.service.oration.IOrationService;
+
+import framework.system.pub.constants.ISystemConstants;
 
 /**
  * @Description: 主页管理
@@ -59,6 +65,14 @@ public class IndexController extends MyBaseController {
 	// 内容Service
 	@Resource
 	private IContentService contentService;
+	
+	// 纪念馆
+	@Resource
+	private IHallService hallService;
+	
+	// 纪念馆
+	@Resource
+	private IOrationService orationService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -323,7 +337,13 @@ public class IndexController extends MyBaseController {
 		return map;
 	}
 	
-	
+	/**
+	 * 
+	 * @Description: TODO 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/search")
 	public String search(HttpServletRequest request, Model model) {
 		String search_text = request.getParameter("serach_text")==null? "":request.getParameter("serach_text");
@@ -376,6 +396,27 @@ public class IndexController extends MyBaseController {
 		model.addAttribute("search_text", search_text);
 		
 		return "site/searchList";
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: TODO 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/searchHall")
+	public String searchHall(HttpServletRequest request, Model model) {
+		String search_text = request.getParameter("serach_text")==null? "":request.getParameter("serach_text");
+		// 最新公开信息 
+		//网上纪念馆:公开属性，单人和双人
+		List<Hall> listHallBySearch = hallService.queryHallListBySearch(search_text);
+		
+		model.addAttribute("search_text", search_text);
+		model.addAttribute("listHallBySearch", listHallBySearch);
+		
+		return "site/hallSearchList";
 	}
 	
 	/**
@@ -436,6 +477,16 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/toHallList")
 	public String toHallList(HttpServletRequest request, Model model) {
 		
+		//最新建馆
+		List<Hall> listHallNew = hallService.queryHallNewList(ISystemConstants.COUNT_NUM6);
+		//最新文章
+		List<Oration> listOrationNew = orationService.queryOrationNewList(ISystemConstants.COUNT_NUM6);
+		//网上纪念馆:公开属性，单人和双人
+		List<Hall> listHallByOpenType = hallService.queryHallListByOpenType(ISystemConstants.VALUE_2);
+		
+		model.addAttribute("listHallNew", listHallNew);
+		model.addAttribute("listOrationNew", listOrationNew);
+		model.addAttribute("listHallByOpenType", listHallByOpenType);
 		return "site/hallList";
 	}
 	
@@ -541,13 +592,15 @@ public class IndexController extends MyBaseController {
 	public String toMemberCenter(HttpServletRequest request, Model model) {
 		//获取登录的会员
 		Member memberUser = super.getSessionMemberUser(request);
+		if(null == memberUser){
+			return "redirect:/toMemberLogin";
+		}else{
+			model.addAttribute("memberUser", memberUser);
+			return "site/memberCenter";
+		}
 		
-		/*String create_date = memberUser.getCreate_date();
-		String now_date = MyDateUtil.getDateTime();
-		MyDateUtil.getMargin(create_date, now_date);*/
 		
-		model.addAttribute("memberUser", memberUser);
-		return "site/memberCenter";
+		
 	}
 	
 	/**
@@ -563,6 +616,18 @@ public class IndexController extends MyBaseController {
 		return "site/memberCenterDetail";
 	}
 	
+	/**
+	 * 
+	 * @Description: 跳转到会员登录 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toMemberLogin")
+	public String toMemberLogin(HttpServletRequest request, Model model) {
+		
+		return "site/memberLogin";
+	}
 	
 	/**
 	 * 获取IP

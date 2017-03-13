@@ -78,7 +78,7 @@
 				<ul>
 					<li>Copyright &copy; 1995-2016 University of Jinan</li>
 					<li>鲁ICP备05001960号</li>
-					<li>地址：济南市市中区南辛庄西路336号     电话：0531-89736251 <span class="hidden-xs hidden-sm">邮编：250022</span></li>
+					<li>地址：山东省济南市历下区历山路76号     电话：0531-89736251 <span class="hidden-xs hidden-sm">邮编：250022</span></li>
 				</ul>
 			</div>
 			<div class="col-sm-3">

@@ -65,9 +65,13 @@ public interface IHallService {
 
 	List<Hall> queryHallListByMember(String memberId, int limtNum);
 
-	List<Hall> queryHallListByOpenType(Hall hall);
+	List<Hall> queryHallListByOpenType(String open_type);
 
 	List<Hall> queryHallPageListByMember(Hall hall);
+
+	List<Hall> queryHallNewList(int countNum);
+
+	List<Hall> queryHallListBySearch(String search_text);
 
 
 }

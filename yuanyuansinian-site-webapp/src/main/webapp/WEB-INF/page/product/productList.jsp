@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>产品管理表页</title>
 </head>
 <body>
 	<nav class="breadcrumb">
@@ -217,16 +217,6 @@
 				 });
 			});
 			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
-			});
-			
 		});
 
 		//重新加载页面：子页面调用
@@ -239,7 +229,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改信息</div></strong>","background-color: #5a97df"],
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改产品</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/sinian/product/productController/toProductUpdate?id='+id
@@ -248,7 +238,7 @@
 		//删除
 		function toDelete(id){
 			layer.confirm("确认删除？", {
-				  btn: ['确认','返回'] //按钮
+				  btn: ['确认','取消'] //按钮
 					}, function(index){
 						$.ajax({
 						    url: "${pageContext.request.contextPath}/sinian/product/productController/deleteProduct" ,
@@ -276,7 +266,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看明细</div></strong>","background-color: #5a97df"],
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看产品</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/sinian/product/productController/toProductDetail?id='+id

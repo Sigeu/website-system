@@ -29,6 +29,8 @@
     <result column="validity" jdbcType="VARCHAR" property="validity" />
     <result column="create_user" jdbcType="VARCHAR" property="create_user" />
     <result column="create_user_name" jdbcType="VARCHAR" property="create_user_name" />
+    <result column="hall_type" jdbcType="VARCHAR" property="hall_type" />
+    <result column="hall_type_name" jdbcType="VARCHAR" property="hall_type_name" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yuanyuansinian.model.hall.HallWithBLOBs">
     <!--
@@ -65,7 +67,13 @@
 	  else ''  
 	end as status_name,
 	create_date, validity, create_user,
-	(select real_name from ujn_member m where m.id = create_user) as create_user_name
+	(select real_name from ujn_member m where m.id = create_user) as create_user_name,
+	hall_type,
+	case   
+	  when hall_type = 1 then '单人馆'  
+	  when hall_type = 2 then '双人馆'  
+	  else ''  
+	end as hall_type_name,
   </sql>
   <sql id="Blob_Column_List">
     <!--
@@ -111,14 +119,14 @@
       nation, address, belief, 
       birthplace, native_place, open_type, 
       status, create_date, validity, 
-      create_user, img_index, achievement
+      create_user, hall_type, img_index, achievement
       )
     values (#{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR}, 
       #{nation,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{belief,jdbcType=VARCHAR}, 
       #{birthplace,jdbcType=VARCHAR}, #{native_place,jdbcType=VARCHAR}, #{open_type,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR}, #{create_date,jdbcType=VARCHAR}, #{validity,jdbcType=VARCHAR}, 
-      #{create_user,jdbcType=VARCHAR}, #{img_index,jdbcType=LONGVARBINARY}, #{achievement,jdbcType=LONGVARCHAR}
+      #{create_user,jdbcType=VARCHAR}, #{hall_type,jdbcType=VARCHAR}, #{img_index,jdbcType=LONGVARBINARY}, #{achievement,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yuanyuansinian.model.hall.HallWithBLOBs">
@@ -183,6 +191,9 @@
       <if test="create_user != null">
         create_user,
       </if>
+      <if test="create_user != null">
+        hall_type,
+      </if>
       <if test="img_index != null">
         img_index,
       </if>
@@ -241,6 +252,9 @@
       </if>
       <if test="create_user != null">
         #{create_user,jdbcType=VARCHAR},
+      </if>
+      <if test="hall_type != null">
+        #{hall_type,jdbcType=VARCHAR},
       </if>
       <if test="img_index != null">
         #{img_index,jdbcType=LONGVARBINARY},
@@ -309,6 +323,9 @@
       <if test="create_user != null">
         create_user = #{create_user,jdbcType=VARCHAR},
       </if>
+       <if test="hall_type != null">
+        hall_type = #{hall_type,jdbcType=VARCHAR},
+      </if>
       <if test="img_index != null">
         img_index = #{img_index,jdbcType=LONGVARBINARY},
       </if>
@@ -342,6 +359,7 @@
       create_date = #{create_date,jdbcType=VARCHAR},
       validity = #{validity,jdbcType=VARCHAR},
       create_user = #{create_user,jdbcType=VARCHAR},
+      hall_type = #{hall_type,jdbcType=VARCHAR},
       img_index = #{img_index,jdbcType=LONGVARBINARY},
       achievement = #{achievement,jdbcType=LONGVARCHAR}
     where Id = #{id,jdbcType=INTEGER}
@@ -368,8 +386,54 @@
       open_type = #{open_type,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       create_date = #{create_date,jdbcType=VARCHAR},
+      hall_type = #{hall_type,jdbcType=VARCHAR},
       validity = #{validity,jdbcType=VARCHAR},
       create_user = #{create_user,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 最新建馆 -->
+  <select id="queryHallNewList" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_hall
+    order by unix_timestamp(create_date) desc limit #{countNum}
+  </select>
+  
+  <!-- 分页列表 -->
+  <select id="queryHallList" parameterType="com.yuanyuansinian.model.hall.Hall" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_hall
+    order by unix_timestamp(create_date) desc 
+  </select>
+  
+  
+  <!-- 网上纪念馆 -->
+  <select id="queryHallListByOpenType" parameterType="string" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_hall
+    where open_type = #{open_type,jdbcType=VARCHAR}
+    order by unix_timestamp(create_date) desc 
+  </select>
+  
+  
+  <!-- 纪念馆搜索 -->
+  <select id="queryHallListBySearch" parameterType="string" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_hall
+    where open_type = '2'
+    and (title like concat('%', #{search_text}, '%') or description like concat('%', #{search_text}, '%') or title name concat('%', #{search_text}, '%'))
+    order by unix_timestamp(create_date) desc 
+  </select>
 </mapper>

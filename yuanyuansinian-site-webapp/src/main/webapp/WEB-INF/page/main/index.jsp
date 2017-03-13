@@ -4,19 +4,19 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>山东济南大学信息公开-网站后台管理系统</title>
+<title>缘园思念网-网站后台管理系统</title>
 <meta name="keywords" content="山东济南大学信息公开">
 <meta name="description" content="山东济南大学信息公开">
 </head>
 <body>
 <div class="navbar-logo hidden-xs">
 		<div class="navbar-header">
-			<a href="${pageContext.request.contextPath}/index.jsp" target="_blank" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui.admin/images/logo2.png" class="img-responsive" alt=""></a>
+			<a href="${pageContext.request.contextPath}/index.jsp" target="_blank" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui.admin/images/logo.png" class="img-responsive" alt=""></a>
 		</div>
 </div>
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
-		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">H-ui.admin</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.0</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="###">技术支持</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="##">&nbsp;</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">&nbsp;</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 			<nav class="nav navbar-nav">
 				<ul class="cl">
 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>

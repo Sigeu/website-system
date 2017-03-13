@@ -149,9 +149,9 @@ public class HallService implements IHallService {
 	}
 
 	@Override
-	public List<Hall> queryHallListByOpenType(Hall hall) {
+	public List<Hall> queryHallListByOpenType(String open_type) {
 		// TODO Auto-generated method stub
-		return hallMapper.queryHallListByOpenType(hall);
+		return hallMapper.queryHallListByOpenType(open_type);
 	}
 
 	@Override
@@ -164,6 +164,18 @@ public class HallService implements IHallService {
 	public List<Hall> queryHallPageListByMember(Hall hall) {
 		// TODO Auto-generated method stub
 		return hallMapper.queryHallPageListByMemberHall(hall);
+	}
+
+	@Override
+	public List<Hall> queryHallNewList(int countNum) {
+		// TODO Auto-generated method stub
+		return hallMapper.queryHallNewList(countNum);
+	}
+
+	@Override
+	public List<Hall> queryHallListBySearch(String search_text) {
+		// TODO Auto-generated method stub
+		return hallMapper.queryHallListBySearch(search_text);
 	}
 
 }

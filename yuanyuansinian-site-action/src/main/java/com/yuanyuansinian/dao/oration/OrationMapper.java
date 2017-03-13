@@ -71,4 +71,6 @@ public interface OrationMapper {
 	List<Oration> queryOrationListByType(Oration hall);
 
 	List<Oration> queryOrationPageListByMember(Oration oration);
+
+	List<Oration> queryOrationNewList(int countNum);
 }

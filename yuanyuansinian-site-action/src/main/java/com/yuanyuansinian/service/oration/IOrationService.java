@@ -68,5 +68,7 @@ public interface IOrationService {
 
 	List<Oration> queryOrationPageListByMember(Oration oration);
 
+	List<Oration> queryOrationNewList(int countNum6);
+
 
 }

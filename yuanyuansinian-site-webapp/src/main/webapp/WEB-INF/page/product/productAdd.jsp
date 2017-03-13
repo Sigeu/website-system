@@ -5,10 +5,11 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
+<link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 //window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
 </script>
-<title>内容信息表页</title>
+<title>产品新增表页</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
@@ -83,9 +84,16 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">产品图片：</label>
+			<label class="form-label col-xs-4 col-sm-2">产品封面：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="产品图片" id="pic" name="pic">
+				<!-- <input type="text" class="input-text" value="" placeholder="产品图片" id="img_index" name="img_index"> -->
+				<!--dom结构部分-->
+				<div id="uploader-demo">
+				    <!--用来存放item-->
+				    <div id="fileList" class="uploader-list"></div>
+				    <div id="filePicker">选择图片</div>
+				    <div class="element-invisible" id="filePickerChoose">重新选择</div>
+				</div>
 			</div>
 		</div>
 		<div class="row cl">
@@ -106,7 +114,10 @@
 <%@ include file="../../../common/footer_form.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/file-upload.js"> </script>
 <script type="text/javascript">
+var BASE_URL = '${pageContext.request.contextPath}';
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');

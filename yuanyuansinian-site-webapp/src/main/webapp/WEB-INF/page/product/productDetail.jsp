@@ -15,23 +15,84 @@
 			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>内容明细
 		</nav>
 	<div class="page-container">
-	<form action="#" method="post" class="form form-horizontal" id="form-content-detail">
-		<input type="hidden" name="id" id="id_" value="${content.id}">
+		<form action="${pageContext.request.contextPath}/sinian/product/productController/addProduct" method="post" class="form form-horizontal" id="form-product-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="column_id" name="column_id">
+				<select class="select" id="type" name="type">
 					<option value="0">--请选择--</option>  
-                    <c:forEach items="${columnSelectList}" var="column">  
-                    	<option value="${column.id}">${column.name}</option>  
+                    <c:forEach items="${typeSelectList}" var="column">  
+                    	<option value=""></option>  
                     </c:forEach>  
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${content.title}" placeholder="标题" id="title" name="title">
+				<input type="text" class="input-text" value="${product.name }" placeholder="产品名称" id="name" name="name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>简短标题：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${product.name_short }" placeholder="简短标题" id="name_short" name="name_short">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>销售价格：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${product.price_site }" placeholder="销售价格" id="price_site" name="price_site">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>成本价格：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${product.price_cost }" placeholder="成本价格" id="price_cost" name="price_cost">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>最低价格：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${product.price_min }" placeholder="最低价格" id="price_min" name="price_min">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>计算单位：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${product.units }" placeholder="计算单位" id="units" name="units">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${product.keywords }" placeholder="关键词，多个以空格隔开" id="keywords" name="keywords">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${product.description }</textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${product.no_order }" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">产品封面：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<!-- <input type="text" class="input-text" value="" placeholder="产品图片" id="img_index" name="img_index"> -->
+				<!--dom结构部分-->
+				<div id="uploader-demo">
+				    <!--用来存放item-->
+				    <div id="fileList" class="uploader-list"></div>
+				    <div id="filePicker">选择图片</div>
+				    <div class="element-invisible" id="filePickerChoose">重新选择</div>
+				</div>
 			</div>
 		</div>
 		<div class="row cl">
@@ -40,46 +101,10 @@
 				<script id="editor" name="content" type="text/plain" style="width:100%;height:400px;"></script> 
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${content.description}</textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${content.no_order}" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">有效期：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" class="input-text Wdate"  value="${content.validity_time}" placeholder="内容公示截止有效期" id="validity_time" name="validity_time">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">阅读方式：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<span class="select-box">
-					<select class="select" id="read_type" name="read_type">
-						<option value="0">直接访问</option> 
-						<option value="1">校内访问</option> 
-						<option value="2">凭密码访问</option>  
-					</select>
-				</span>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${content.links}" placeholder="链接到网站外部的网址" id="links" name="links">
-			</div>
-		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button id="submit_but" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button id="close_but" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>

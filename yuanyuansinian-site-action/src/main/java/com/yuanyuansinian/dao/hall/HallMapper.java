@@ -67,9 +67,13 @@ public interface HallMapper {
 
 	List<Hall> queryHallListByMember(Map<String, Object> map);
 
-	List<Hall> queryHallListByOpenType(Hall hall);
+	List<Hall> queryHallListByOpenType(String open_type);
 
 	List<Hall> queryHallList(Hall hall);
 
 	List<Hall> queryHallPageListByMemberHall(Hall hall);
+
+	List<Hall> queryHallNewList(int countNum);
+
+	List<Hall> queryHallListBySearch(String search_text);
 }

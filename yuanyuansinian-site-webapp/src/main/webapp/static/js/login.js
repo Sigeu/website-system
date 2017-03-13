@@ -10,7 +10,7 @@ $(function() {
 				var flag = data.status_flag;
 				if(flag == '1'){
 					//layer.alert("登录成功！");
-					window.location.href = contextPath + '/index.jsp';
+					window.location.href = contextPath + '/sinian/index/indexController/toMemberCenter';
 				}
 			},
 			error : function(data) {

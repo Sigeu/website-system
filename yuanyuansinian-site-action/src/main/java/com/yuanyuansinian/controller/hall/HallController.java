@@ -242,7 +242,7 @@ public class HallController extends MyBaseController {
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallListByOpenType(hall);
+			List<Hall> hallList = this.hallService.queryHallListByOpenType(ISystemConstants.VALUE_2);
 			// 用PageInfo对结果进行包装
 			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
 

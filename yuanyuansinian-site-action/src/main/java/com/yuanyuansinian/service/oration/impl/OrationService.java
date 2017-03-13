@@ -164,4 +164,10 @@ public class OrationService implements IOrationService {
 		return orationMapper.queryOrationPageListByMember(oration);
 	}
 
+	@Override
+	public List<Oration> queryOrationNewList(int countNum) {
+		// TODO Auto-generated method stub
+		return orationMapper.queryOrationNewList(countNum);
+	}
+
 }

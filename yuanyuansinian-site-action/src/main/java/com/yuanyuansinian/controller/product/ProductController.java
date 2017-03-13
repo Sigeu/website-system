@@ -101,25 +101,6 @@ public class ProductController extends MyBaseController {
 		Product product = this.productService.queryProductById(productId);
 		model.addAttribute("product", product);
 		
-		List<Column> columnList = columnService.queryColumnList(null);
-		//处理栏目名称
-		for(Column co : columnList){
-			if(2 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;" + co.getName());
-			}else if(3 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-			}else if(4 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
-			}else{
-				//co.setName(co.getName());
-			}
-		}
-		//排序
-		LinkedList<Column> result = new LinkedList<Column>();
-		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
-		//转换为ArrayList
-		List<Column> columnSelectList = new ArrayList<Column>(columnLinkedList);
-		model.addAttribute("columnSelectList", columnSelectList);
 		
 		return "product/productUpdate";
 	}

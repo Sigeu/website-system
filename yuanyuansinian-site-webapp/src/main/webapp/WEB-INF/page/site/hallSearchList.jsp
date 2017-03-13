@@ -7,7 +7,7 @@
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/css/keleyidivpager.css">
-<title>纪念馆-列表页</title>
+<title>纪念馆搜索结果列表页</title>
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>
