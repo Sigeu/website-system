@@ -480,6 +480,7 @@
     <if test="keywords != null and keywords != ''">
         and keywords like concat('%', #{keywords}, '%')
     </if>
+    order by #{order_column} #{order_type} 
   </select>
   
   <!-- 内容审核列表 -->
@@ -530,8 +531,7 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_content
-    where status = '1' and column_id = #{column_id,jdbcType=VARCHAR}
-    and unix_timestamp(validity_time) &lt;  unix_timestamp(now()) 
+    where column_id = #{column_id,jdbcType=VARCHAR}
     order by #{order_column} #{order_type} limit #{count_num} 
   </select>
   

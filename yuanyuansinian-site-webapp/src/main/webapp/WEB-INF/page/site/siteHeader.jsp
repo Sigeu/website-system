@@ -31,7 +31,7 @@
 	<div class="container">
 		<div class="collapse navbar-collapse" id="navbar-collapse">
 			<ul class="nav nav-justified" id="index_ul">
-				<li class="active" id="index_li"><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+				<li id="index_li"><a id="index_a" href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 			</ul>
 		</div>
 	</div>

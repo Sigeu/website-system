@@ -15,7 +15,9 @@
 	<%@ include file="page-pic.jsp"%>
 
 	<div class="container con-tab">
-		<%@ include file="recommend.jsp"%>
+		<div class="img-list">
+			<%@ include file="recommend.jsp"%>
+		</div>
 	</div>
 	<div class="container con-tab all-bg">
 		<div class="row">
@@ -26,14 +28,22 @@
 					</div>
 					<div class="side-nav-body">
 						<ul>
-							<li><a href="###">缘园动态</a></li>
+						<c:forEach items="${columnChildList}" var="columnChild"> 
+							<c:if test="${columnChildId == columnChild.id}">
+								<li class="active"><a href="###" onclick="toInformationList('${columnChild.id }')">${columnChild.name }</a></li>
+							</c:if>
+							<c:if test="${columnChildId != columnChild.id}">
+								<li><a href="###" onclick="toInformationList('${columnChild.id }')">${columnChild.name }</a></li>
+							</c:if>
+						</c:forEach>
+							<!-- <li><a href="###">缘园动态</a></li>
 							<li class="active"><a href="###">宗教文化</a></li>
 							<li><a href="###">民间习俗</a></li>
 							<li><a href="###">祭祀礼仪</a></li>
 							<li><a href="###">孝道文化</a></li>
 							<li><a href="###">墓志铭</a></li>
 							<li><a href="###">祭文</a></li>
-							<li><a href="###">悼文</a></li>
+							<li><a href="###">悼文</a></li> -->
 						</ul>
 					</div>
 				</div>
@@ -41,22 +51,27 @@
 			<div class="col-sm-9">
 				<div class="info-list">
 					<div class="pro-header">
-						<h4 class="pro-title pull-left">宗教文化</h4>
+						<h4 class="pro-title pull-left">${columnChildName }</h4>
 					</div>
 					<div class="clearfix"></div>
 					<div class="arclist info-list-body">
 						<div class="row media">
-							<div class="col-md-4 media-img">
-								<a class="media-left" href="#"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
-									class="img-responsive" alt="img"></a>
-							</div>
-							<div class="col-md-8">
-								<div class="media-body">
-									<a href="###"><h5 class="media-heading">电影《爵迹》剧情简介电影《爵迹》剧情简介电影《爵迹》剧情简介</h5></a>
-									<p>2017-1-1</p>
-									<p class="arclist-des text-justify">传说中的神话奥汀大陆分为水、风、火、地四个国家，每个国家都有精通魂术的人，其中最厉害的七个被称为王爵。水国普通男孩麒零（陈学冬饰）离奇地被七度王爵银尘（吴亦凡饰）收为使徒，卷入了这场魂术的风暴。传说中的神话奥汀大陆分为水、风、火、地四个国家，每个国家都有精通魂术的人，其中最厉害的七个被称为王爵。水国普通男孩麒零（陈学冬饰）离奇地被七度王爵银尘（吴亦凡饰）收为使徒，卷入了这场魂术的风暴。</p>
-								</div>
-							</div>
+							<c:forEach items="${contentChildList}" var="contentChild" varStatus="status"> 
+								<c:if test="${status.index == 0}">
+									<div class="col-md-4 media-img">
+										<a class="media-left" href="#" onclick="toInformationDetail('${contentChild.id }','${columnChildId }')"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
+											class="img-responsive" alt="img"></a>
+									</div>
+									<div class="col-md-8">
+										<div class="media-body">
+											<a href="###" onclick="toInformationDetail('${contentChild.id }','${columnChildId }')"><h5 class="media-heading">${contentChild.title}</h5></a>
+											<p>${contentChild.add_time}</p>
+											<p class="arclist-des text-justify">${contentChild.description}</p>
+										</div>
+									</div>
+								</c:if>
+							</c:forEach>
+							
 						</div>
 						<div class="list">
 							<ul>
@@ -112,7 +127,10 @@
 	</div>
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/information.js"></script>
 	<script type="text/javascript">
+		var activeFlag = '缘园资讯';
 		//-------分页数据----------
 		var id = '${column_id }';
 		var totalPage = '${totalPage }';

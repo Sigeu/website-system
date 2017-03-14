@@ -94,9 +94,9 @@
 				</div>
 			</div>
 		</div>
-
-		<%@ include file="recommend.jsp"%>
-
+		<div class="img-list">
+			<%@ include file="recommend.jsp"%>
+		</div>
 		<div class="all-info img-list">
 			<div class="pro-header">
 				<h4 class="pro-title pull-left">网上纪念馆</h4>
@@ -371,6 +371,7 @@
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/hall.js"></script>
 	<script type="text/javascript">
+		var activeFlag = '纪念馆';
 		//-------分页数据----------
 		var id = '${column_id }';
 		var totalPage = '${totalPage }';

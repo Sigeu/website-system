@@ -490,4 +490,26 @@
         and nav = #{nav_num}
       </if>
   </select>
+  
+  
+  <!-- 栏目:父子栏目 -->
+  <select id="querySelfAndChildColumnListByColumnId" parameterType="string" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_column
+    where id = #{columnId} or big_class = #{columnId}
+  </select>
+  
+  <!-- 子栏目 -->
+  <select id="queryChildColumnListByColumnId" parameterType="string" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_column
+    where big_class = #{columnId}
+    order by no_order asc
+  </select>
 </mapper>

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.column.ColumnWithBLOBs;
-import com.yuanyuansinian.model.contact.Contact;
 
 public interface ColumnMapper {
     /**
@@ -66,5 +65,9 @@ public interface ColumnMapper {
 	List<Column> queryColumnList(Column column);
 
 	List<Column> queryColumnListForNavigation(Integer nav_num);
+
+	List<Column> querySelfAndChildColumnListByColumnId(String columnId);
+
+	List<Column> queryChildColumnListByColumnId(String columnId);
 
 }

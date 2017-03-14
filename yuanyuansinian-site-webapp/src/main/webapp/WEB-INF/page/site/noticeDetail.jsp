@@ -14,38 +14,35 @@
 
 	<%@ include file="page-pic.jsp"%>
 
-	<div class="container con-tab">
-		<div class="img-list">
-			<%@ include file="recommend.jsp"%>
-		</div>
-	</div>
+	<%-- <div class="container con-tab">
+		<%@ include file="recommend.jsp"%>
+	</div> --%>
 	<div class="container con-tab all-bg">
 		<div class="row">
-			<div class="col-sm-3">
+			<!-- <div class="col-sm-3">
 				<div class="side-nav">
 					<div class="side-nav-top">
 						<h4>缘园资讯</h4>
 					</div>
 					<div class="side-nav-body">
 						<ul>
-							<c:forEach items="${columnChildList}" var="columnChild"> 
-								<c:if test="${columnChildId == columnChild.id}">
-									<li class="active"><a href="###" onclick="toInformationList('${columnChild.id }')">${columnChild.name }</a></li>
-								</c:if>
-								<c:if test="${columnChildId != columnChild.id}">
-									<li><a href="###" onclick="toInformationList('${columnChild.id }')">${columnChild.name }</a></li>
-								</c:if>
-							</c:forEach>
+							<li><a href="###">缘园动态</a></li>
+							<li class="active"><a href="###">宗教文化</a></li>
+							<li><a href="###">民间习俗</a></li>
+							<li><a href="###">祭祀礼仪</a></li>
+							<li><a href="###">孝道文化</a></li>
+							<li><a href="###">墓志铭</a></li>
+							<li><a href="###">祭文</a></li>
+							<li><a href="###">悼文</a></li>
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="col-sm-9">
 				<div class="here">
 					<ol class="breadcrumb">
 						<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
-						<li><a href="${pageContext.request.contextPath}/sinian/index/indexController/toInformationList" >缘园资讯</a></li>
-						<li><a href="#" onclick="toInformationList('${columnChildId }')">${columnChildName }</a></li>
+						<li><a href="#" onclick="toShowNoticeList('${content.column_id }')">通知公告</a></li>
 						<li class="active">${content.title }</li>
 					</ol>
 				</div>
@@ -63,7 +60,7 @@
 					<div class="article-near">
 						<ul class="pager">
 							<li class="previous disabled"><a href="#">上一篇：没有了</a></li>
-							<li class="next"><a href="#">下一篇：记忆中的棉麻服</a></li>
+							<li class="next"><a href="#">下一篇：记忆中的棉麻服饰搭配，你还记得吗？</a></li>
 						</ul>
 					</div>
 				</div>
@@ -73,10 +70,8 @@
 
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/static/js/information.js"></script>
 	<script type="text/javascript">
-		var activeFlag = '缘园资讯';
+		var activeFlag = '首页';
 		//-------分页数据----------
 		var id = '${column_id }';
 		var totalPage = '${totalPage }';

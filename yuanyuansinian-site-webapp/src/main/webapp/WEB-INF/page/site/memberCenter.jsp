@@ -63,6 +63,7 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/member.js"></script>
 	<script type="text/javascript">
+		var activeFlag = '我的思念';
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
 	</script>

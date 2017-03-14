@@ -142,4 +142,16 @@ public class ColumnService implements IColumnService {
 		return columnMapper.queryColumnListForNavigation(nav_num);
 	}
 
+	@Override
+	public List<Column> querySelfAndChildColumnListByColumnId(String columnId) {
+		// TODO Auto-generated method stub
+		return columnMapper.querySelfAndChildColumnListByColumnId(columnId);
+	}
+
+	@Override
+	public List<Column> queryChildColumnListByColumnId(String columnId) {
+		// TODO Auto-generated method stub
+		return columnMapper.queryChildColumnListByColumnId(columnId);
+	}
+
 }

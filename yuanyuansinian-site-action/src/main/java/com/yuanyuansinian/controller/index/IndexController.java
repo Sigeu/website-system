@@ -39,8 +39,6 @@ import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.link.ILinkService;
 import com.yuanyuansinian.service.oration.IOrationService;
 
-import framework.system.pub.constants.ISystemConstants;
-
 /**
  * @Description: 主页管理
  * @author lizhaotao lzh_me@126.com
@@ -446,6 +444,80 @@ public class IndexController extends MyBaseController {
 		return map;
 	}
 	
+	
+	/**
+	 * 
+	 * @Description: 通知公告 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/notice")
+	public Map<String, Object> notice(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			// 通知公告
+			Content contentNotice = new Content();
+			String column_id = "123";
+			contentNotice.setColumn_id(column_id);
+			contentNotice.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			contentNotice.setOrder_type(IMySystemConstants.ORDER_DESC);
+			contentNotice.setCount_num(IMySystemConstants.COUNT_NUM9);
+			//通知公告
+			List<Content> contentNoticeList = contentService.queryContentListByColumn(contentNotice);
+			
+			map.put("contentNoticeList", contentNoticeList);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到通知公告-详情页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toNoticeDetail")
+	public String toNoticeDetail(HttpServletRequest request, Model model) {
+		
+		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
+		Content content = contentService.queryContentById(contentId);
+		
+		model.addAttribute("content", content);
+		
+		return "site/noticeDetail";
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到通知公告列表页 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toNoticeList")
+	public String toNoticeList(HttpServletRequest request, Model model) {
+		
+		// 通知公告
+		Content contentNotice = new Content();
+		String column_id = "123";
+		contentNotice.setColumn_id(column_id);
+		contentNotice.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentNotice.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentNotice.setCount_num(IMySystemConstants.COUNT_NUM9);
+		//通知公告
+		List<Content> contentNoticeList = contentService.queryContentList(contentNotice);
+		
+		model.addAttribute("contentNoticeList", contentNoticeList);
+		
+		return "site/noticeDetail";
+	}
+	
+	
 	/**
 	 * 
 	 * @Description: 友情链接 
@@ -505,29 +577,71 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 缘园资讯列表
+	 * @Description: 缘园资讯列表(首页和列表页为一个)
 	 * @param request
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/toInformationList")
 	public String toInformationList(HttpServletRequest request, Model model) {
+		//
+		String columnId = "107";
+		String columnChildDefault = "124";
+		//子栏目
+		List<Column> columnChildList = columnService.queryChildColumnListByColumnId(columnId);
+		
+		//点击的子栏目
+		String columnChildId = request.getParameter("id")==null? columnChildDefault:request.getParameter("id");
+		String columnChildName = (columnService.queryColumnById(Integer.parseInt(columnChildId))).getName();
+		//子栏目内容
+		Content contentChild = new Content();
+		contentChild.setColumn_id(columnChildId);
+		contentChild.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentChild.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentChild.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//子栏目内容
+		List<Content> contentChildList = contentService.queryContentListByColumn(contentChild);
+		
+		
+		model.addAttribute("columnChildList", columnChildList);
+		model.addAttribute("contentChildList", contentChildList);
+		model.addAttribute("columnChildId", columnChildId);
+		model.addAttribute("columnChildName", columnChildName);
 		
 		return "site/informationList";
 	}
 	
 	/**
 	 * 
-	 * @Description:  缘园资讯内容页
+	 * @Description: 缘园资讯列表详情页
 	 * @param request
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/toInformationDetail")
 	public String toInformationDetail(HttpServletRequest request, Model model) {
-
+		//
+		String columnId = "107";
+		String columnChildDefault = "124";
+		//子栏目
+		List<Column> columnChildList = columnService.queryChildColumnListByColumnId(columnId);
+		
+		//点击的子栏目
+		String columnChildId = request.getParameter("column_id")==null? columnChildDefault:request.getParameter("column_id");
+		String columnChildName = (columnService.queryColumnById(Integer.parseInt(columnChildId))).getName();
+		//内容id
+		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
+		Content content = contentService.queryContentById(contentId);
+		
+		
+		model.addAttribute("columnChildList", columnChildList);
+		model.addAttribute("content", content);
+		model.addAttribute("columnChildId", columnChildId);
+		model.addAttribute("columnChildName", columnChildName);
+		
 		return "site/informationDetail";
 	}
+	
 	
 	/**
 	 * 

@@ -15,7 +15,9 @@
 	<%@ include file="page-pic.jsp"%>
 
 	<div class="container con-tab">
-		<%@ include file="recommend.jsp"%>
+		<div class="img-list">
+			<%@ include file="recommend.jsp"%>
+		</div>
 	</div>
 
 	<div class="container con-tab all-bg shop">
@@ -235,6 +237,7 @@
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript">
+		var activeFlag = '缘园商城';
 		//-------分页数据----------
 		var id = '${column_id }';
 		var totalPage = '${totalPage }';

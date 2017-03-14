@@ -147,103 +147,15 @@
 		</div>
 		
 		<div class="col-sm-4 sidebar">
-			<!-- <div class="login hidden-xs">
-				<div class="pro-header">
-					<h4 class="pro-title pull-left">用户登录</h4>
-				</div>
-				<div class="clearfix"></div>
-				<div class="login-body">
-					<form id="login_form" action="##" method="post">
-						<div class="input-group">
-							<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-							<input type="text" class="form-control" id="name" name="name" placeholder="请输入手机号或者邮箱登录">
-						</div>
-						<div class="input-group">
-							<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-							<input type="text" class="form-control" id="pwd" name="pwd" placeholder="请输入密码">
-						</div>
-						<div class="checkbox">
-							<label class="pull-left"><input type="checkbox"> 记住密码</label>
-							<a href="###" class="pull-right">忘记密码</a>
-						</div>
-						<button class="btn btn-success btn-login" type="button" id="login_but">点击登录</button>
-						<button class="btn btn-warning btn-register" id="register_but2">点击注册</button>
-					</form>
-				</div>
-			</div> -->
 			<%@ include file="siteLogin.jsp"%>
 			
 			<div class="notice">
-				<div class="pro-header">
-					<h4 class="pro-title pull-left">通知公告</h4>
-					<a href="###" class="more pull-right">更多&raquo;</a>
-				</div>
-				<div class="clearfix"></div>
-				<div class="notice-list">
-					<ul>
-						<li><a href="###">2016全民健身迈向新高2016全民健身迈向新高2016全民健身迈向新高</a></li>
-						<li><a href="###">南方2017腊八节吃什么 盘点南方各地的腊八节</a></li>
-						<li><a href="###">2017年腊八节是几月几号 腊八节的由来风俗习俗</a></li>
-						<li><a href="###">红色记忆触动人心红色记忆触动人心红色记忆触动人心 《勇士》见面会热血燃广州</a></li>
-						<li><a href="###">深圳出台全民健身五年实施计划</a></li>
-						<li><a href="###">腊八节是什么节日什么意思 腊八节是为了纪念谁</a></li>
-						<li><a href="###">深圳整治“三乱”现象</a></li>
-						<li><a href="###">乱贴小广告或被追究刑事责任</a></li>
-						<li><a href="###">2017外汇新规：换外币都要填申请书</a></li>
-					</ul>
-				</div>
+				<%@ include file="notice.jsp"%>
 			</div>
 			
 			<div class="recommend">
-				<div class="pro-header">
-					<h4 class="pro-title pull-left">公墓陵园推荐</h4>
-					<a href="###" class="more pull-right">更多&raquo;</a>
-				</div>
-				<div class="clearfix"></div>
-				<div class="recommend-body">
-					<div class="thumbnail">
-						 <img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="thumbnail">
-						 <img src="${pageContext.request.contextPath}/static/images/slide3.png" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="thumbnail">
-						 <img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="thumbnail">
-						 <img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="thumbnail hidden-xs hidden-md hidden-lg">
-						 <img src="${pageContext.request.contextPath}/static/images/slide3.png" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="thumbnail hidden-xs hidden-md hidden-lg">
-						 <img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="thumbnail hidden-xs hidden-md hidden-lg">
-						 <img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-				</div>
+				<%-- --%>
+				<%@ include file="recommend-index.jsp"%>
 			</div>
 		</div>
 	</div>
@@ -254,10 +166,14 @@
 <%@ include file="../../../common/footer-site.jsp"%>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/login.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/carousel.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/js/notice.js"></script>
 <script type="text/javascript">
+	var activeFlag = '首页';
+	$('#index_li').addClass('active');
 	//-------分页数据----------
 	//var id = '${column_id }';
 	//var totalPage = '${totalPage }';

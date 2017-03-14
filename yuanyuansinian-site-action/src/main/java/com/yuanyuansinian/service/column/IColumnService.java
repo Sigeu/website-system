@@ -54,4 +54,8 @@ public interface IColumnService {
 
 	List<Column> queryColumnListForNavigation(int nav_num);
 
+	List<Column> querySelfAndChildColumnListByColumnId(String columnId);
+
+	List<Column> queryChildColumnListByColumnId(String columnId);
+
 }

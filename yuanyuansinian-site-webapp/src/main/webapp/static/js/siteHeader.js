@@ -2,9 +2,9 @@
  * 页头导航、搜索
  * @author lzh_me@126.com
  */
-
 /*----------------------导航 begin-----------------------*/
 $(function() {
+	//alert(activeFlag);
 	$.ajax({
 		method : "POST",
 		url : contextPath + "/sinian/index/indexController/navigation",
@@ -16,11 +16,16 @@ $(function() {
 		//先反转数据再遍历结果
 		$.each(data.columnList.reverse(), function(index, element){
 		    // this === element
-			index_li.after("<li><a href='" + contextPath + element.column_url +"'>" + element.name + "</a></li>");
+			if(element.name == activeFlag){
+				index_li.after("<li class='active'><a href='" + contextPath + element.column_url +"'>" + element.name + "</a></li>");
+			}else{
+				index_li.after("<li><a href='" + contextPath + element.column_url +"'>" + element.name + "</a></li>");
+			}
+			
 		});
 	});
-
 });
+
 /*----------------------导航  end-------------------------*/
 
 /*----------------------搜索 begin---------------------*/
