@@ -22,10 +22,10 @@ a:focus {color:#25499d; text-decoration:none}
 .navbar-toggle span {background:#b85844}
 .navbar-mainnav {margin-bottom:0; padding-bottom:0}
 .navbar-mainnav .container {background:#f5f5dc}
-#footer {padding:25px 0}
+#footer {padding:25px 0; border-top:1px solid #ddd}
 #footer li {height:30px; line-height:30px}
 img.login-img {margin:0 auto}
-.login-jumb .modal-content {margin-top:100px}
+.login-jumb .modal-content {margin-top:70px; width:100%}
 .modal .code-img {margin-top:1px; height:32px}
 .code-img-wd {margin-left:15px; color:#333}
 .btn-submit {width:100%}
@@ -45,9 +45,13 @@ img.login-img {margin:0 auto}
 	.navbar-mainnav .container {padding:0}
 	#footer {padding:25px 0 15px 0}
 	.footer-logo {margin-top:20px}
-	.login-jumb {position:relative}
-	.login-jumb .modal-content {position:absolute; margin-top:0; width:390px; top:110px; right:-3%}
+	.login-jumb {position:relative} 
+	/* .login-jumb .modal-content {position:absolute; margin-top:0; width:390px; top:110px; right:-3%} */
+	.login-jumb .modal {position:absolute; top:-80px; right:0px}
+	.login-jumb .modal-content {width:390px}
 	img.login-img {width:100%; height:420px}
+	.admin-des {margin-top:35px; line-height:180%; border-bottom:1px solid #ddd}
+	.admin-des p {margin-bottom:30px; text-indent:28px}
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -60,6 +64,8 @@ img.login-img {margin:0 auto}
 	.footer-logo {margin-top:10px}
 	img.login-img {height:340px}
 	.login-jumb .modal-content {right:-21%}
+	.admin-des {margin-top:35px; line-height:180%}
+	.admin-des p {margin-bottom:30px; text-indent:28px}
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */

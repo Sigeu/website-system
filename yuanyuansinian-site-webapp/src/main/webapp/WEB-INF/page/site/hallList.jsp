@@ -67,12 +67,12 @@
 					</div>
 					<div class="clearfix"></div>
 					<div class="search-body">
-						<form id="search_hall" action="" method="">
+						<form id="search_hall_form" action="#" method="post">
 							<div class="form-group">
-								<input type="text" class="form-control" id=""
+								<input type="text" class="form-control" name="hall_name"
 									placeholder="请输入逝者姓名">
 							</div>
-							<button class="btn btn-warning">查找纪念馆</button>
+							<button class="btn btn-warning" id="hall_but">查找纪念馆</button>
 						</form>
 						<dl>
 							<dt>

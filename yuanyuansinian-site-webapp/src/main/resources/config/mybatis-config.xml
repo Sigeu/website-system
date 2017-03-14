@@ -6,6 +6,5 @@
      
 <configuration>
 	<mappers>
-		<!-- <mapper resource="cn/edu/ujn/dao/mapping/system/LoginDao.xml" /> -->
 	</mappers>
 </configuration> 

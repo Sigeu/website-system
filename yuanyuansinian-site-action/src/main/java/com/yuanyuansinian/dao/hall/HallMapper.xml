@@ -433,7 +433,7 @@
     <include refid="Blob_Column_List" />
     from ujn_hall
     where open_type = '2'
-    and (title like concat('%', #{search_text}, '%') or description like concat('%', #{search_text}, '%') or title name concat('%', #{search_text}, '%'))
+    and (title like concat('%', #{search_text}, '%') or description like concat('%', #{search_text}, '%') or  name like concat('%', #{search_text}, '%'))
     order by unix_timestamp(create_date) desc 
   </select>
 </mapper>

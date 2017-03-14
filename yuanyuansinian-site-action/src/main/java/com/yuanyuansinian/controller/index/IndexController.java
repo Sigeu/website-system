@@ -406,7 +406,7 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/searchHall")
 	public String searchHall(HttpServletRequest request, Model model) {
-		String search_text = request.getParameter("serach_text")==null? "":request.getParameter("serach_text");
+		String search_text = request.getParameter("hall_name")==null? "":request.getParameter("hall_name");
 		// 最新公开信息 
 		//网上纪念馆:公开属性，单人和双人
 		List<Hall> listHallBySearch = hallService.queryHallListBySearch(search_text);
@@ -713,8 +713,14 @@ public class IndexController extends MyBaseController {
 			return "site/memberCenter";
 		}
 		
+	}
+	
+	//临时的
+	@RequestMapping("/toMemberCenterCart")
+	public String toMemberCenterCart(HttpServletRequest request, Model model) {
 		
 		
+		return "site/memberCenterCart";
 	}
 	
 	/**

@@ -480,7 +480,6 @@
     <if test="keywords != null and keywords != ''">
         and keywords like concat('%', #{keywords}, '%')
     </if>
-    order by #{order_column} #{order_type} 
   </select>
   
   <!-- 内容审核列表 -->

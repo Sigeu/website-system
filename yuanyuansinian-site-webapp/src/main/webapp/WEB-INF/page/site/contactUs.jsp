@@ -43,7 +43,9 @@
 
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript">
-		
+		var activeFlag = '首页';
+		// 项目路径
+		var contextPath = '${pageContext.request.contextPath}';
 	</script>
 </body>
 </html>

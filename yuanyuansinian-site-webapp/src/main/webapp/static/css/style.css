@@ -170,6 +170,14 @@ p.museum-des {position:relative; top:8px}
 .new-add a {color:#b85844}
 .new-add a:hover {text-decoration:underline}
 .new-add button {margin-top:20px; width:90%}
+
+.search-list .pro-top span {margin:0 10px; color:#b85844}
+.search-list-con span {color:#b85844}
+.search-pro {width:100%; padding:10px 0; background:url(../images/line.png) repeat-x left bottom}
+.search-pro > a > h5 {overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:14px}
+.search-pro p {width:100%; max-height:40px; line-height:20px; overflow:hidden; color:#666}
+.search-pro p.search-date {color:#999}
+
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
 	.navbar-logo {padding:0}

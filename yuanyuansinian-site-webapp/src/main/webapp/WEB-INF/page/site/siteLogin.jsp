@@ -10,12 +10,18 @@
 			</div>
 			<div class="clearfix"></div>
 			<div class="login-body">
-				<form id="login_form" action="##" method="post">
+				<div class="row" style="margin-top:10px">
+					<p class="col-sm-5 col-md-4 col-lg-3" style="padding-right:0">用户名：</p>
+					<p class="col-sm-7 col-md-8 col-lg-9">${sessionScope.memberUser.real_name}</p>
+					<p class="col-sm-5 col-md-4 col-lg-3" style="padding-right:0">手机号码：</p>
+					<p class="col-sm-7 col-md-8 col-lg-9">${sessionScope.memberUser.phone}</p>
+				</div>
+				<%-- <form id="login_form" action="##" method="post">
 					<div class="input-group">用户姓名：
 						${sessionScope.memberUser.real_name}</div>
 					<div class="input-group">用户手机号：
 						${sessionScope.memberUser.phone}</div>
-				</form>
+				</form> --%>
 			</div>
 		</div>
 	</c:when>
