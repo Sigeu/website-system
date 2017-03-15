@@ -200,4 +200,20 @@ public class Log {
     public void setCreate_date(String create_date) {
         this.create_date = create_date == null ? null : create_date.trim();
     }
+
+	public String getType_name() {
+		return type_name;
+	}
+
+	public void setType_name(String type_name) {
+		this.type_name = type_name;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 }

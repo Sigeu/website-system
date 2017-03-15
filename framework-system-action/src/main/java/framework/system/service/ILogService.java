@@ -32,5 +32,13 @@ public interface ILogService {
 	 * @param log
 	 */
 	int saveLog(Log log);
+	
+	/**
+	 * 
+	 * @Description: 新增
+	 * @param log
+	 * @return
+	 */
+	int addLog(Log log);
 
 }

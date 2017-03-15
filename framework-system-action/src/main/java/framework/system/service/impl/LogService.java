@@ -48,4 +48,11 @@ public class LogService implements ILogService {
 		return logMapper.queryLogList(log);
 	}
 
+
+	@Override
+	public int addLog(Log log) {
+		// TODO Auto-generated method stub
+		return logMapper.insertSelective(log);
+	}
+
 }
