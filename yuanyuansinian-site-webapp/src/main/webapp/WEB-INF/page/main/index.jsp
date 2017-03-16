@@ -5,8 +5,8 @@
 <head>
 <%@ include file="../../../common/header.jsp"%>
 <title>缘园思念网-网站后台管理系统</title>
-<meta name="keywords" content="山东济南大学信息公开">
-<meta name="description" content="山东济南大学信息公开">
+<meta name="keywords" content="缘园思念网">
+<meta name="description" content="缘园思念网">
 </head>
 <body>
 <div class="navbar-logo hidden-xs">
@@ -66,9 +66,6 @@
 					<li><a data-href="${pageContext.request.contextPath}/sinian/column/columnController/toColumnList" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/link/linkController/toLinkList" data-title="友情链接管理" href="javascript:void(0)">友情链接管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/contact/contactController/toContact" data-title="联系方式设置" href="javascript:void(0)">联系方式设置</a></li>
-					<!-- <li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
-					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li> -->
-					<li><a data-href="${pageContext.request.contextPath}/system/controller/logController/toLogList" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -97,7 +94,7 @@
 					<li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductList" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/order/orderController/toOrderList" data-title="订单管理" href="javascript:void(0)">订单管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/hall/hallController/toHallList" data-title="纪念馆管理" href="javascript:void(0)">纪念馆管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/sinian/oration/orationController/toOrationList" data-title="用户致辞管理" href="javascript:void(0)">用户致辞管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/oration/orationController/toOrationList" data-title="用户致辞管理" href="javascript:void(0)">用户文章管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -115,10 +112,11 @@
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/member/memberController/toMemberList" data-title="会员列表" href="javascript:;">会员列表</a></li>
-					<!-- <li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">删除的会员</a></li>
-					<li><a data-href="member-level.html" data-title="等级管理" href="javascript:;">等级管理</a></li>
-					<li><a data-href="member-scoreoperation.html" data-title="积分管理" href="javascript:;">积分管理</a></li>
+					<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">停用的会员</a></li>
 					<li><a data-href="member-record-browse.html" data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
+					<li><a data-href="member-record-download.html" data-title="购买记录" href="javascript:void(0)">购买记录</a></li>
+			   <!-- <li><a data-href="member-level.html" data-title="等级管理" href="javascript:;">等级管理</a></li>
+					<li><a data-href="member-scoreoperation.html" data-title="积分管理" href="javascript:;">积分管理</a></li>
 					<li><a data-href="member-record-download.html" data-title="下载记录" href="javascript:void(0)">下载记录</a></li>
 					<li><a data-href="member-record-share.html" data-title="分享记录" href="javascript:void(0)">分享记录</a></li> -->
 				</ul>
@@ -128,10 +126,10 @@
 			<dt><i class="Hui-iconfont">&#xe61a;</i> 统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<!-- <li><a data-href="charts-1.html" data-title="折线图" href="javascript:void(0)">折线图</a></li>
-					<li><a data-href="charts-2.html" data-title="时间轴折线图" href="javascript:void(0)">时间轴折线图</a></li>
-					<li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">区域图</a></li>
-					<li><a data-href="charts-4.html" data-title="柱状图" href="javascript:void(0)">柱状图</a></li>
+					<li><a data-href="charts-1.html" data-title="折线图" href="javascript:void(0)">产品销量统计</a></li>
+					<li><a data-href="charts-2.html" data-title="时间轴折线图" href="javascript:void(0)">纪念馆统计</a></li>
+					<li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">墓地陵园统计</a></li>
+					<!-- <li><a data-href="charts-4.html" data-title="柱状图" href="javascript:void(0)">柱状图</a></li>
 					<li><a data-href="charts-5.html" data-title="饼状图" href="javascript:void(0)">饼状图</a></li>
 					<li><a data-href="charts-6.html" data-title="3D柱状图" href="javascript:void(0)">3D柱状图</a></li>
 					<li><a data-href="charts-7.html" data-title="3D饼状图" href="javascript:void(0)">3D饼状图</a></li> -->
@@ -147,6 +145,10 @@
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/roleController/toRoleList" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightList" data-title="菜单管理" href="javascript:void(0)">菜单管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentList" data-title="部门管理" href="javascript:void(0)">部门管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/codeTypeController/toCodeTypeList" data-title="数据字典" href="javascript:void(0)">数据字典管理</a></li>
+					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/logController/toLogList" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
+				
 				</ul>
 			</dd>
 		</dl>
@@ -157,7 +159,7 @@
 	<div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
-				<li class="active"><span title="我的待办" data-href="${pageContext.request.contextPath}/sinian/content/contentController/toContentList">我的待办</span><em></em></li>
+				<li class="active"><span title="我的桌面" data-href="${pageContext.request.contextPath}/sinian/content/contentController/toContentList">我的桌面</span><em></em></li>
 			</ul>
 		</div>
 		<div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>

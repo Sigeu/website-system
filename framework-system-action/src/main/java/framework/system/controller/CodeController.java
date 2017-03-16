@@ -10,7 +10,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,36 +35,32 @@ import framework.system.service.ICodeService;
 public class CodeController extends SystemBaseController{
 	
 	@Resource
-	private ICodeService CodeService;
+	private ICodeService codeService;
 	
-	
-	//跳转到用户列表
-	@RequestMapping("/getCodeById")
-	public String getCodeById(HttpServletRequest request,Model model){
-		int CodeId = Integer.parseInt("1");
-		Code Code = this.CodeService.getCodeById(CodeId);
-		model.addAttribute("Code", Code);
-		return "showCode";
-	}
 		
-		
-	//跳转到用户列表
+	/**
+	 * 
+	 * @Description: 跳转到用户列表 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/toCodeList")
-	public String toCodeList(Model model){
-		return "system/Code/CodeList";
+	public String toCodeList(HttpServletRequest request, Model model){
+		
+		return "system/code/codeList";
 	}
 	
 	/**
 	 * 
-	 * @Description: 用户分页查询 
+	 * @Description: 分页查询 
 	 * @param request
-	 * @param response
 	 * @param Code
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/queryCodeList")
-	public DataTablePageUtil<Code> queryCodeList(HttpServletRequest request, HttpServletResponse response,Code Code){
+	public DataTablePageUtil<Code> queryCodeList(HttpServletRequest request, Code Code){
 		//使用DataTables的属性接收分页数据
 		DataTablePageUtil<Code> dataTable = null;
 		try {
@@ -74,7 +69,7 @@ public class CodeController extends SystemBaseController{
 			//开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),dataTable.getPage_size());
 			//还是使用List，方便后期用到
-			List<Code>  CodeList = this.CodeService.queryCodeList(Code);
+			List<Code>  CodeList = this.codeService.queryCodeList(Code);
 			//用PageInfo对结果进行包装 
 			PageInfo<Code> pageInfo = new PageInfo<Code>(CodeList);
 			
@@ -93,32 +88,40 @@ public class CodeController extends SystemBaseController{
 		return dataTable;
 	}
 	
-	//跳转到修改
+	/**
+	 * 
+	 * @Description: 跳转到修改 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/toCodeUpdate")
 	public String toCodeUpdate(HttpServletRequest request,Model model){
-		int CodeId = Integer.parseInt(request.getParameter("id"));
-		Code Code = this.CodeService.getCodeById(CodeId);
-		model.addAttribute("Code", Code);
-		return "showCode";
+		
+		//获取ID
+		int codeId = Integer.parseInt(super.nullToStringZero(request.getParameter("id")));
+		//查询数据
+		Code code = this.codeService.getCodeById(codeId);
+		
+		model.addAttribute("code", code);
+				
+		return "system/code/codeUpdate";
 	}
 	
 	
 	
-	//更新
-	@RequestMapping("/updateCode")
-	public String updateCode(HttpServletRequest request,Model model){
-		int CodeId = Integer.parseInt(request.getParameter("id"));
-		Code Code = this.CodeService.getCodeById(CodeId);
-		model.addAttribute("Code", Code);
-		return "showCode";
-	}
-	
-	//保存
+	/**
+	 * 
+	 * @Description: 更新 
+	 * @param request
+	 * @param Code
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping("/saveCode")
-	public Map<String,Object> saveCode(HttpServletRequest request,Code Code,Model model){
+	@RequestMapping("/updateCode")
+	public Map<String,Object> updateCode(HttpServletRequest request,Code Code){
 		Map<String,Object> map = new HashMap<String,Object>();
- 		int count = this.CodeService.saveCode(Code);
+ 		int count = this.codeService.updateCode(Code);
 		if(RESULT_COUNT_1 == count){
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
@@ -128,26 +131,63 @@ public class CodeController extends SystemBaseController{
 		return map;
 	}
 	
-	@RequestMapping("/toCodeAdd")
-	public String toCodeAdd(Model model){
-		return "system/Code/CodeAdd";
-	}
-	
-	//添加
+	/**
+	 * 
+	 * @Description: 新增 
+	 * @param request
+	 * @param Code
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
 	@RequestMapping("/addCode")
-	public String addCode(HttpServletRequest request,Model model){
-		int CodeId = Integer.parseInt(request.getParameter("id"));
-		Code Code = this.CodeService.getCodeById(CodeId);
-		model.addAttribute("Code", Code);
-		return "showCode";
+	public Map<String,Object> addCode(HttpServletRequest request,Code Code){
+		Map<String,Object> map = new HashMap<String,Object>();
+ 		int count = this.codeService.addCode(Code);
+		if(RESULT_COUNT_1 == count){
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+		
+		return map;
 	}
 	
-	//删除
+	/**
+	 * 
+	 * @Description: 跳转到添加页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toCodeAdd")
+	public String toCodeAdd(HttpServletRequest request, Model model){
+		
+		
+		return "system/code/codeAdd";
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: 删除 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
 	@RequestMapping("/deleteCode")
-	public String deleteCode(HttpServletRequest request,Model model){
-		int CodeId = Integer.parseInt(request.getParameter("id"));
-		Code Code = this.CodeService.getCodeById(CodeId);
-		model.addAttribute("Code", Code);
-		return "showCode";
+	public Map<String,Object> deleteCode(HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		int codeId = Integer.parseInt(super.nullToStringZero(request.getParameter("id")));
+		int count = this.codeService.deleteCode(codeId);
+		if(RESULT_COUNT_1 == count){
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+		
+		return map;
 	}
 }

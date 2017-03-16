@@ -4,12 +4,12 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>数据字典</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span>用户管理
+		系统管理 <span class="c-gray en">&gt;</span>数据字典
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>

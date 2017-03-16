@@ -34,11 +34,6 @@ public class CodeService implements ICodeService {
         return codeMapper.selectByPrimaryKey(codeId);
 	}
 
-	@Override
-	public Code queryCodeByLogin(Code codeParam) {
-		// TODO Auto-generated method stub
-		return codeMapper.queryCodeByLogin(codeParam);
-	}
 
 	@Override
 	public List<Code> queryCodeList(Code code) {
@@ -47,9 +42,23 @@ public class CodeService implements ICodeService {
 	}
 
 	@Override
-	public int saveCode(Code code) {
+	public int addCode(Code code) {
 		// TODO Auto-generated method stub
 		return codeMapper.insertSelective(code);
+	}
+
+
+	@Override
+	public int deleteCode(int codeId) {
+		// TODO Auto-generated method stub
+		return codeMapper.deleteByPrimaryKey(codeId);
+	}
+
+
+	@Override
+	public int updateCode(Code code) {
+		// TODO Auto-generated method stub
+		return codeMapper.updateByPrimaryKeySelective(code);
 	}
 
 }

@@ -6,7 +6,6 @@ package framework.system.service;
 
 import java.util.List;
 
-import framework.system.model.Code;
 import framework.system.model.CodeType;
 
 /**   
@@ -15,28 +14,27 @@ import framework.system.model.CodeType;
  * @date 2017年1月18日 上午10:49:54 
  * @version V1.0   
  */
-public interface ICodeService {
+public interface ICodeTypeService {
 
-	Code getCodeById(int codeId);
+	CodeType getCodeTypeById(int codeTypeId);
+	
 	
 	/**
 	 * 
 	 * @Description: 用户分页查询 
-	 * @param code
+	 * @param codeType
 	 * @return
 	 */
-	List<Code> queryCodeList(Code code);
+	List<CodeType> queryCodeTypeList(CodeType codeType);
 	
 	/**
 	 * 
 	 * @Description: 用户保存 
-	 * @param code
+	 * @param codeType
 	 */
-	int addCode(Code code);
+	int addCodeType(CodeType codeType);
 
-	int deleteCode(int codeId);
 
-	int updateCode(Code code);
-
+	int updateCodeType(CodeType codeType);
 
 }

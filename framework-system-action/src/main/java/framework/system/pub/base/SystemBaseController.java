@@ -27,7 +27,42 @@ public class SystemBaseController {
 	protected void setSessionUser(HttpServletRequest request, User user) {
 		request.getSession().setAttribute(SESSION_USER_KEY, user);
 	}
-
+	
+	/**
+	 * 
+	 * @Description: 处理字符串null值
+	 * @param value
+	 * @return
+	 */
+	protected String nullToString(String value){
+		String result = "";
+		if(null == value){
+			result = "";
+		}else{
+			result = value.trim();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @Description: null返回"0"
+	 * @param value
+	 * @return
+	 */
+	protected String nullToStringZero(String value){
+		String result = "0";
+		if(null == value){
+			result = "0";
+		}else{
+			result = value.trim();
+		}
+		
+		return result;
+	}
+	
+	
 	// 用户session key=
 	public static final String SESSION_USER_KEY = "session_user";
 	// 返回的KEY
