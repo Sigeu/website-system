@@ -31,9 +31,9 @@ $(function() {
 
 /*----------------------登录 end-----------------------*/
 
-/*----------------------用户注册 begin---------------------*/
+
 $(function() {
-	//
+	/*----------------------用户注册 begin---------------------*/
 	$('#register_but1,#register_but2').on('click',function(){
 		layer.open({
 		    type: 2,
@@ -44,44 +44,13 @@ $(function() {
 		    content: contextPath + '/sinian/index/indexController/toRegister'
 		 });
 	});
-});
-/*----------------------用户注册 end-----------------------*/
-
-/*----------------------轮播 begin---------------------*/
-$(function() {
-	//轮播自动播放
-	$('#myCarousel').carousel({
-		//自动4秒播放
-		interval : 4000,
+	/*----------------------用户注册 end-----------------------*/
+	
+	/*----------------------会员登录返回首页 begin-----------------------*/
+	$('#return_but').on('click',function(){
+		window.location.href = contextPath + '/index.jsp';
 	});
+	/*----------------------会员登录返回首页 end-------------------------*/
 });
-/*----------------------轮播 end-----------------------*/
 
-
-/*----------------------友情链接 begin---------------------*/
-$(function() {
-	//轮播自动播放
-	$('#link_select').on('change',function(){
-		//var url = $(this).val();
-		window.open($(this).val());
-		//window.location.href = url;
-	});
-});
-/*----------------------友情链接 end-----------------------*/
-
-/*----------------------用户注册 begin---------------------*/
-$(function() {
-	//轮播自动播放
-	$('#register').on('click',function(){
-		layer.open({
-		    type: 2,
-		    maxmin:true,
-		    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户注册</div></strong>","background-color: #5a97df"],
-		    area: ['60%', '90%'],
-		    shadeClose: false, //点击遮罩关闭
-		    content: contextPath + '/sinian/index/indexController/toRegister'
-		 });
-	});
-});
-/*----------------------用户注册 end-----------------------*/
 

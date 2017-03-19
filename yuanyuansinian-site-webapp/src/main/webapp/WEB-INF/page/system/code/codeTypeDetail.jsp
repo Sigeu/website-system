@@ -121,10 +121,10 @@ $(function() {
 							columns : [ {
 									data : "id"
 								}, {
-									data : "explain",
+									data : "code_name",
 									defaultContent : ""
 								}, {
-									data : "code",
+									data : "code_value",
 									defaultContent : ""
 								}, {
 									data : "status_name",
@@ -140,13 +140,6 @@ $(function() {
 								render : function(data, type, row, meta) {
 									var context = {
 										func : [{
-													"name" : "查看",
-													"fn" : "toDetail(\'"
-															+ row.id
-															+ "\')",
-													"type" : "primary-outline size-MINI radius",
-													"display" : true
-												}, {
 													"name" : "修改",
 													"fn" : "toEdit(\'"
 															+ row.id
@@ -198,6 +191,11 @@ $(function() {
 		    shadeClose: false, //点击遮罩关闭
 		    content: '${pageContext.request.contextPath}/system/controller/codeController/toCodeUpdate?id='+id
 		 });
+	}
+    
+	//重新加载页面：子页面调用
+	function reloadPage(){
+		window.location.reload();//刷新当前页面.
 	}
 </script>
 </body>

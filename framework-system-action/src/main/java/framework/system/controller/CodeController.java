@@ -4,6 +4,7 @@
  */
 package framework.system.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,6 +91,26 @@ public class CodeController extends SystemBaseController{
 	
 	/**
 	 * 
+	 * @Description:根据类别查询字典数据
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryCodeListByType")
+	public List<Code> queryCodeListByType(HttpServletRequest request){
+		List<Code> codeList = new ArrayList<Code>();
+		//类别
+		String code_type = nullToString(request.getParameter("code_type"));
+		
+		codeList = this.codeService.queryCodeListByType(code_type);
+		
+		
+		return codeList;
+	}
+	
+	
+	/**
+	 * 
 	 * @Description: 跳转到修改 
 	 * @param request
 	 * @param model
@@ -162,7 +183,9 @@ public class CodeController extends SystemBaseController{
 	 */
 	@RequestMapping("/toCodeAdd")
 	public String toCodeAdd(HttpServletRequest request, Model model){
-		
+		//字典类别
+		String code_type = nullToString(request.getParameter("code_type"));
+		model.addAttribute("code_type", code_type);
 		
 		return "system/code/codeAdd";
 	}

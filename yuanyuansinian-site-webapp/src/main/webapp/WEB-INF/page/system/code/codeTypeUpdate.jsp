@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>字典类别修改</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">

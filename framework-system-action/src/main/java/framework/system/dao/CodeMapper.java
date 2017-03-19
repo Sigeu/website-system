@@ -54,4 +54,6 @@ public interface CodeMapper {
     int updateByPrimaryKey(Code record);
 
 	List<Code> queryCodeList(Code code);
+
+	List<Code> queryCodeListByType(String code_type);
 }

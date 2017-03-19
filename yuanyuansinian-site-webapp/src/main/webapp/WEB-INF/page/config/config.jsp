@@ -17,8 +17,8 @@
 			<div class="tabBar cl">
 				<span>基本设置</span>
 				<span>安全设置</span>
-				<span>邮件设置</span>
-				<span>其他设置</span>
+				<!-- <span>邮件设置</span>
+				<span>其他设置</span> -->
 			</div>
 			<div class="tabCon">
 				<div class="row cl">
@@ -81,20 +81,20 @@
 						<textarea class="textarea" name="" id=""></textarea>
 					</div>
 				</div>
-				<div class="row cl">
+				<!-- <div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">访问密码：</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<input type="text" class="input-text" value="" id="" name="" >
 					</div>
-				</div>
+				</div> -->
 				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">后台登录失败最大次数：</label>
+					<label class="form-label col-xs-4 col-sm-2">会员登录失败最大次数：</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<input type="text" class="input-text" value="5" id="" name="" >
 					</div>
 				</div>
 			</div>
-			<div class="tabCon">
+			<!-- <div class="tabCon">
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">邮件发送模式：</label>
 					<div class="formControls col-xs-8 col-sm-9">
@@ -131,9 +131,9 @@
 						<input type="text" id="email-address" value="" class="input-text">
 					</div>
 				</div>
-			</div>
-			<div class="tabCon">
-			</div>
+			</div> -->
+			<!-- <div class="tabCon">
+			</div> -->
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">

@@ -18,7 +18,8 @@ $(function() {
 		$.each(data.linkList.reverse(), function(index, element){
 		    // this === element
 			//<option value="${link.web_url }">${link.web_name}</option>
-			link_select.append("<option value='" + contextPath + element.web_url +"'>" + element.web_name + "</option>");
+			//link_select.append("<option value='" + contextPath + element.web_url +"'>" + element.web_name + "</option>");link_select.append("<option value='" + contextPath + element.web_url +"'>" + element.web_name + "</option>");
+			link_select.append("<option value='" + element.web_url +"'>" + element.web_name + "</option>");
 		});
 	});
 

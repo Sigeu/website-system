@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>友情链接表页</title>
 </head>
 <body>
 	<nav class="breadcrumb">
@@ -33,9 +33,6 @@
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 
@@ -52,7 +49,7 @@
 						<th>排序</th>
 						<th>网站名称</th>
 						<th>网站链接</th>
-						<th>网站logo</th>
+						<!-- <th>网站logo</th> -->
 						<th>添加时间</th>
 						<th width="15%">操作</th>
 					</tr>
@@ -120,13 +117,13 @@
 								}, {
 									data : "web_url",
 									defaultContent : ""
-								}, {
+								}, /* {
 									data : "web_logo",
 									render : function(data, type, row, meta) {
 										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/' + data + '">';
 										return context;
 									}
-								}, {
+								},  */{
 									data : "add_time",
 									defaultContent : ""
 								}, {
@@ -227,16 +224,6 @@
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/sinian/link/linkController/toLinkAdd'
 				 });
-			});
-			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
 			});
 			
 		});

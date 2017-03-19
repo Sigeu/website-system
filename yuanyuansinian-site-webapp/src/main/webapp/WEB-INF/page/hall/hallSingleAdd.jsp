@@ -8,11 +8,11 @@
 <script type="text/javascript">
 //window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
 </script>
-<title>内容信息表页</title>
+<title>纪念馆新建</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增产品
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增纪念馆
 		</nav>
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/sinian/product/productController/addProduct" method="post" class="form form-horizontal" id="form-product-add">

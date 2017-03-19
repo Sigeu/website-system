@@ -61,4 +61,11 @@ public class CodeService implements ICodeService {
 		return codeMapper.updateByPrimaryKeySelective(code);
 	}
 
+
+	@Override
+	public List<Code> queryCodeListByType(String code_type) {
+		// TODO Auto-generated method stub
+		return codeMapper.queryCodeListByType(code_type);
+	}
+
 }

@@ -14,6 +14,7 @@
     <result column="code_name" jdbcType="VARCHAR" property="code_name" />
     <result column="order_num" jdbcType="VARCHAR" property="order_num" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="status_name" jdbcType="VARCHAR" property="status_name" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -24,7 +25,13 @@
     -->
     Id, code_type, 
     (select type_name from ujn_code_type ct where ct.code_type = code_type) as code_type_name,
-    code_value, code_name, order_num, status, remark
+    code_value, code_name, order_num, status,
+    case   
+		  when status = 1 then '启用'  
+		  when status = 0 then '停用'  
+		  else ''  
+		end as status_name, 
+     remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
@@ -162,6 +169,15 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_code
+    order by order_num desc
+  </select>
+  
+  <!-- 分页查询 -->
+  <select id="queryCodeListByType" parameterType="string" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_code
+    where code_type = ${code_type}
     order by order_num desc
   </select>
 </mapper>

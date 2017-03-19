@@ -7,7 +7,6 @@ package framework.system.service;
 import java.util.List;
 
 import framework.system.model.Code;
-import framework.system.model.CodeType;
 
 /**   
  * @Description: TODO 
@@ -37,6 +36,8 @@ public interface ICodeService {
 	int deleteCode(int codeId);
 
 	int updateCode(Code code);
+
+	List<Code> queryCodeListByType(String code_type);
 
 
 }

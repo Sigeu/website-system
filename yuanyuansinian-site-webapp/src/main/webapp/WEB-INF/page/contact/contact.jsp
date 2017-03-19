@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>系统设置</title>
+<title>联系方式设置</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
@@ -17,7 +17,7 @@
 		<div id="tab-system" class="HuiTab">
 			<div class="tabBar cl">
 				<span>基本设置</span>
-				<span>其他设置</span>
+				<!-- <span>其他设置</span> -->
 			</div>
 			<div class="tabCon">
 				<div class="row cl">
@@ -61,8 +61,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="tabCon">
-			</div>
+			<!-- <div class="tabCon">
+			</div> -->
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">

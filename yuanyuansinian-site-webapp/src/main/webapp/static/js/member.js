@@ -21,14 +21,27 @@ $(function(){
 	
 	/*----------------------创建纪念馆 begin-----------------------*/
 	$('#create_hall_but').on('click',function(){
-		layer.open({
-		    type: 2,
-		    maxmin:true,
-		    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;创建纪念馆</div></strong>","background-color: #5a97df"],
-		    area: ['100%', '100%'],
-		    shadeClose: false, //点击遮罩关闭
-		    content: contextPath + '/sinian/hall/hallController/toHallAdd'
-		 });
+		layer.confirm('请选择想要创建的类型', {
+			  btn: ['单人馆','双人馆'] //按钮
+			}, function(){
+				layer.open({
+				    type: 2,
+				    maxmin:true,
+				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;创建纪念馆</div></strong>","background-color: #5a97df"],
+				    area: ['100%', '100%'],
+				    shadeClose: false, //点击遮罩关闭
+				    content: contextPath + '/sinian/hall/hallController/toHallAdd'
+				 });
+			}, function(){
+				layer.open({
+				    type: 2,
+				    maxmin:true,
+				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;创建纪念馆</div></strong>","background-color: #5a97df"],
+				    area: ['100%', '100%'],
+				    shadeClose: false, //点击遮罩关闭
+				    content: contextPath + '/sinian/hall/hallController/toHallAdd'
+				 });
+		});
 	});
 	/*----------------------创建纪念馆 end-------------------------*/
 });

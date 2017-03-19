@@ -55,6 +55,7 @@ public class Code {
      * @mbg.generated Thu Mar 16 15:45:12 CST 2017
      */
     private String status;
+    private String status_name;
 
     /**
      *
@@ -239,5 +240,13 @@ public class Code {
 
 	public void setCode_type_name(String code_type_name) {
 		this.code_type_name = code_type_name;
+	}
+
+	public String getStatus_name() {
+		return status_name;
+	}
+
+	public void setStatus_name(String status_name) {
+		this.status_name = status_name;
 	}
 }

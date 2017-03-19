@@ -28,7 +28,6 @@ import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.oration.IOrationService;
 
-import framework.system.pub.constants.ISystemConstants;
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
@@ -99,16 +98,30 @@ public class HallController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 跳转到新增页面
+	 * @Description: 跳转到单人馆新增页面
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallAdd")
-	public String toHallAdd(HttpServletRequest request, Model model) {
+	@RequestMapping("/toHallSingleAdd")
+	public String toHallSingleAdd(HttpServletRequest request, Model model) {
 		
 		
-		return "hall/hallAdd";
+		return "hall/hallSingleAdd";
+	}
+	
+	/**
+	 * 
+	 * @Description:跳转到双人馆新增页面
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallDoubleAdd")
+	public String toHallDoubleAdd(HttpServletRequest request, Model model) {
+		
+		
+		return "hall/hallDoubleAdd";
 	}
 
 	/**

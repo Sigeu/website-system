@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>友情链接添加</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
@@ -43,7 +43,7 @@
 				<input type="text" class="input-text" value="0" placeholder="排序值，越小越靠前" id="order_no" name="order_no">
 			</div>
 		</div>
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="btn-upload form-group">
@@ -51,7 +51,7 @@
 				  <input type="file" multiple name="file-1" class="input-file">
 				</span>
 			</div>
-		</div>
+		</div> -->
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
