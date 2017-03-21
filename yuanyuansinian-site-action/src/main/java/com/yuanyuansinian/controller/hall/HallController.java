@@ -276,20 +276,45 @@ public class HallController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 添加
+	 * @Description: 单人馆添加
 	 * @param request
 	 * @param hall
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/addHall")
-	public Map<String, Object> addHall(HttpServletRequest request, HallWithBLOBs hall) {
+	@RequestMapping("/addSingleHall")
+	public Map<String, Object> addSingleHall(HttpServletRequest request, HallWithBLOBs hall) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			//发布人
 			//hall.setIssue(getSessionUser(request).getLogin_name());
 			//默认状态为“0”：待审核
-			hallService.addHall(request, hall);
+			hallService.addSingleHall(request, hall);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 双人馆添加
+	 * @param request
+	 * @param hall
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/addDoubleHall")
+	public Map<String, Object> addDoubleHall(HttpServletRequest request, HallWithBLOBs hall) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			//发布人
+			//hall.setIssue(getSessionUser(request).getLogin_name());
+			//默认状态为“0”：待审核
+			hallService.addDoubleHall(request, hall);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -45,15 +45,6 @@ public interface IHallService {
 
 	/**
 	 * 
-	 * @Description: 添加 
-	 * @param request
-	 * @param hall
-	 * @return
-	 */
-	int addHall(HttpServletRequest request, HallWithBLOBs hall);
-
-	/**
-	 * 
 	 * @Description: 删除
 	 * @param hallId
 	 * @return
@@ -72,6 +63,10 @@ public interface IHallService {
 	List<Hall> queryHallNewList(int countNum);
 
 	List<Hall> queryHallListBySearch(String search_text);
+
+	void addSingleHall(HttpServletRequest request, HallWithBLOBs hall);
+
+	void addDoubleHall(HttpServletRequest request, HallWithBLOBs hall);
 
 
 }

@@ -32,6 +32,7 @@ $(function(){
 				    shadeClose: false, //点击遮罩关闭
 				    content: contextPath + '/sinian/hall/hallController/toHallSingleAdd'
 				 });
+				layer.close();
 			}, function(){
 				layer.open({
 				    type: 2,

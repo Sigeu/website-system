@@ -17,9 +17,9 @@
 
 
 	<!-- 缓存管理器 使用Ehcache实现 -->
-	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+	<!-- <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManagerConfigFile" value="classpath:config/ehcache.xml" />
-	</bean>
+	</bean> -->
 
 	<!-- <bean id="passwordHelper" class="com.shinowit.framework.security.PasswordHelper"> 
 		</bean> -->
@@ -93,7 +93,7 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="userRealm" />
 		<property name="sessionManager" ref="sessionManager" />
-		<property name="cacheManager" ref="cacheManager" />
+		<!-- <property name="cacheManager" ref="cacheManager" /> -->
 		<property name="rememberMeManager" ref="rememberMeManager" />
 	</bean>
 
@@ -135,7 +135,8 @@
 				/sinian/member/memberController/registerMember = anon
 				/sinian/member/memberController/memberLogin = anon
 				/sinian/contact/** = anon
-				/sinian/hall/hallController/toHallAdd = anon
+				/sinian/hall/hallController/toHallDoubleAdd = anon
+				/sinian/hall/hallController/toHallSingleAdd = anon
 				/system/controller/loginController/login = anon
 				/system/controller/loginController/logout = logout
 				/sinian/index/** = anon
