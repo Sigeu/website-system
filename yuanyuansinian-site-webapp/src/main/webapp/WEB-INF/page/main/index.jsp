@@ -65,6 +65,7 @@
 					<li><a data-href="${pageContext.request.contextPath}/sinian/column/columnController/toColumnList" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/link/linkController/toLinkList" data-title="友情链接管理" href="javascript:void(0)">友情链接管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/contact/contactController/toContact" data-title="联系方式设置" href="javascript:void(0)">联系方式设置</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/carousel/carouselController/toCarouselList" data-title="轮播图片管理" href="javascript:void(0)">轮播图片管理</a></li>
 				</ul>
 			</dd>
 		</dl>
