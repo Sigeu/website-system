@@ -117,7 +117,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/file-upload.js"> </script>
 <script type="text/javascript">
-var BASE_URL = '${pageContext.request.contextPath}';
+var contextPath = '${pageContext.request.contextPath}';
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');

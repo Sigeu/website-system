@@ -4,11 +4,14 @@
  */
 package com.yuanyuansinian.controller.carousel;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -180,26 +183,6 @@ public class CarouselController extends MyBaseController {
 		return map;
 	}
 
-	/**
-	 * 
-	 * @Description: 保存
-	 * @param request
-	 * @param carousel
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/saveCarousel")
-	public Map<String, Object> saveCarousel(HttpServletRequest request, Carousel carousel) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		int count = this.carouselService.updateCarousel(carousel);
-		if (RESULT_COUNT_1 == count) {
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
-		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
-		}
-
-		return map;
-	}
 
 	/**
 	 * 
@@ -221,5 +204,53 @@ public class CarouselController extends MyBaseController {
 		}
 		return map;
 	}
+	
+	/**
+	 * 
+	 * @Description: 根据ID查询图片 
+	 * @param request
+	 * @param response
+	 */
+	public void queryImgById(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			//id
+			int carouselId = Integer.parseInt(request.getParameter("id"));
+			Carousel carousel = this.carouselService.queryCarouselById(carouselId);
+			if(null != carousel){
+				if(null != carousel.getImg()){
+					byte[] pic = carousel.getImg();
+		            InputStream is = new ByteArrayInputStream(pic);
+		            ServletOutputStream out=null;
+		            response.setContentType("application/octet-stream;charset=UTF-8");
+		            byte[] buff = new byte[2048];
+		            int size = 0;
+		            out = response.getOutputStream();
+		            while (is != null && (size = is.read(buff)) != -1) {
+		            	out.write(buff, 0, size);
+		            }
+		            out.flush();
+		            out.close();
+				}
+			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 * @Description: 查看原图
+	 * @param request
+	 * @param response
+	 * void
+	 */
+	public String showImg(HttpServletRequest request, Model model) {
+		
+		int carouselId = Integer.parseInt(request.getParameter("id"));
+		model.addAttribute("id", carouselId);
+		
+		return "carousel/carouselImg";
+	}
 }

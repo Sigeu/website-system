@@ -21,7 +21,7 @@ $(function(){
 	
 	/*----------------------创建纪念馆 begin-----------------------*/
 	$('#create_hall_but').on('click',function(){
-		layer.confirm('请选择想要创建的类型', {
+		index_confirm = layer.confirm('请选择想要创建的类型', {
 			  btn: ['单人馆','双人馆'] //按钮
 			}, function(){
 				layer.open({
@@ -32,7 +32,7 @@ $(function(){
 				    shadeClose: false, //点击遮罩关闭
 				    content: contextPath + '/sinian/hall/hallController/toHallSingleAdd'
 				 });
-				layer.close();
+				layer.close(index_confirm);
 			}, function(){
 				layer.open({
 				    type: 2,
@@ -42,6 +42,7 @@ $(function(){
 				    shadeClose: false, //点击遮罩关闭
 				    content: contextPath + '/sinian/hall/hallController/toHallAdd'
 				 });
+				layer.close(index_confirm);
 		});
 	});
 	/*----------------------创建纪念馆 end-------------------------*/

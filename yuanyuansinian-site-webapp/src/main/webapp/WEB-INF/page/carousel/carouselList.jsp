@@ -115,9 +115,9 @@
 									data : "img_url",
 									defaultContent : ""
 								}, {
-									data : "img",
+									data : "id",
 									render : function(data, type, row, meta) {
-										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/' + data + '">';
+										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}//sinian/carousel/carouselController/queryImgById?id=' + data + '">';
 										return context;
 									}
 								}, {

@@ -137,6 +137,8 @@
 				/sinian/contact/** = anon
 				/sinian/hall/hallController/toHallDoubleAdd = anon
 				/sinian/hall/hallController/toHallSingleAdd = anon
+				/sinian/hall/hallController/addDoubleHall = anon
+				/sinian/hall/hallController/addSingleHall = anon
 				/system/controller/loginController/login = anon
 				/system/controller/loginController/logout = logout
 				/sinian/index/** = anon

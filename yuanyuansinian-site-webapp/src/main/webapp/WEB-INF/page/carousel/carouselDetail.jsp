@@ -43,12 +43,14 @@
 				${link.order_no }
 			</div>
 		</div>
-		<%-- <div class="row cl">
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<img alt="" src="${link.web_logo }">
+				<a href="###" onclick="toShowImg('${carousel.id }');return false;">
+					<img width="200px" src="${pageContext.request.contextPath}/sinian/carousel/carouselController/queryImgById?id=${carousel.id }">
+				</a>
 			</div>
-		</div> --%>
+		</div> 
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -69,6 +71,17 @@ $(function() {
 	});
 	
 });
+
+function toShowImg(id){
+	layer.open({
+	    type: 2,
+	    maxmin:true,
+	    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看</div></strong>","background-color: #5a97df"],
+	    area: ['100%', '100%'],
+	    shadeClose: false, //点击遮罩关闭
+	    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/showImg?id=' + id
+	 });
+}
 </script>
 </body>
 </body>
