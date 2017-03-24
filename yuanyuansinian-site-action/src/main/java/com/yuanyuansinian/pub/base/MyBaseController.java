@@ -78,5 +78,39 @@ public class MyBaseController{
 	public static final String STATUS_CODE_3 = "3";
 
 	// ------------------------------------------------------------------constants
-
+	
+	
+	/**
+	 * 
+	 * @Description: 处理字符串null值
+	 * @param value
+	 * @return
+	 */
+	protected String nullToString(String value){
+		String result = "";
+		if(null == value){
+			result = "";
+		}else{
+			result = value.trim();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @Description: null返回"0"
+	 * @param value
+	 * @return
+	 */
+	protected String nullToStringZero(String value){
+		String result = "0";
+		if(null == value){
+			result = "0";
+		}else{
+			result = value.trim();
+		}
+		
+		return result;
+	}
 }

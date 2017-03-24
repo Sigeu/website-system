@@ -21,6 +21,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yuanyuansinian.model.hall.Hall;
 import com.yuanyuansinian.model.hall.HallWithBLOBs;
+import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
@@ -286,10 +287,16 @@ public class HallController extends MyBaseController {
 	public Map<String, Object> addSingleHall(HttpServletRequest request, HallWithBLOBs hall) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			//发布人
-			//hall.setIssue(getSessionUser(request).getLogin_name());
-			//默认状态为“0”：待审核
+			Member member = getSessionMemberUser(request);
+			//创建会员
+			hall.setCreate_user(member.getId()+"");
+			//创建时间
+			hall.setCreate_date(MyDateUtil.getDateTime());
+			//纪念馆类型：单人馆
+			hall.setHall_type(IMySystemConstants.VALUE_1);
+			//保存数据
 			hallService.addSingleHall(request, hall);
+			map.put("hall_id", hall.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -299,6 +306,22 @@ public class HallController extends MyBaseController {
 		return map;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/uploadSingleHallImg")
+	public Map<String, Object> uploadSingleHallImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			hallService.uploadSingleHallImg(request, id);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
 	/**
 	 * 
 	 * @Description: 双人馆添加

@@ -436,4 +436,15 @@
     and (title like concat('%', #{search_text}, '%') or description like concat('%', #{search_text}, '%') or  name like concat('%', #{search_text}, '%'))
     order by unix_timestamp(create_date) desc 
   </select>
+  
+  <!-- 更新封面图片 -->
+  <update id="uploadSingleHallImg" parameterType="com.yuanyuansinian.model.hall.HallWithBLOBs">
+    update ujn_hall
+    <set>
+      <if test="img_index != null">
+        img_index = #{img_index,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

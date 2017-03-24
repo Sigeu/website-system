@@ -139,6 +139,7 @@
 				/sinian/hall/hallController/toHallSingleAdd = anon
 				/sinian/hall/hallController/addDoubleHall = anon
 				/sinian/hall/hallController/addSingleHall = anon
+				/sinian/hall/hallController/uploadSingleHallImg = anon
 				/system/controller/loginController/login = anon
 				/system/controller/loginController/logout = logout
 				/sinian/index/** = anon

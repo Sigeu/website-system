@@ -54,6 +54,8 @@ public class Carousel {
      * @mbg.generated Wed Mar 22 22:22:00 CST 2017
      */
     private String remark;
+    
+    private String carousel_type;
 
     /**
      *
@@ -231,4 +233,12 @@ public class Carousel {
     public void setImg(byte[] img) {
         this.img = img;
     }
+
+	public String getCarousel_type() {
+		return carousel_type;
+	}
+
+	public void setCarousel_type(String carousel_type) {
+		this.carousel_type = carousel_type;
+	}
 }

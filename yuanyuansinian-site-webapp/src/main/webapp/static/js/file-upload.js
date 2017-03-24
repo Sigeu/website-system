@@ -1,4 +1,4 @@
-// 文件上传
+/*// 文件上传
 jQuery(function() {
 	var $ = jQuery, $list = $('#thelist'), $btn = $('#ctlBtn'), state = 'pending', uploader;
 
@@ -11,7 +11,8 @@ jQuery(function() {
 		swf : contextPath + '/js/Uploader.swf',
 
 		// 文件接收服务端。
-		server : 'http://webuploader.duapp.com/server/fileupload.php',
+		//server : 'http://webuploader.duapp.com/server/fileupload.php',
+		server: contextPath + '/sinian/hall/hallController/uploadSingleHallImg',
 
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -83,11 +84,11 @@ jQuery(function() {
 			uploader.upload();
 		}
 	});
-});
+});*/
 
 // 图片上传demo
 jQuery(function() {
-	var $ = jQuery, $list = $('#fileList'),
+	var $ = jQuery, $list = $('#fileList'), $btn = $('#ctlBtn'),state = 'pending',
 	// 优化retina, 在retina下这个值是2
 	ratio = window.devicePixelRatio || 1,
 
@@ -107,7 +108,7 @@ jQuery(function() {
 		swf : contextPath + '/js/Uploader.swf',
 
 		// 文件接收服务端。
-		server : 'http://webuploader.duapp.com/server/fileupload.php',
+		server: contextPath + '/sinian/hall/hallController/uploadSingleHallImg',
 
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -123,8 +124,12 @@ jQuery(function() {
 			mimeTypes : 'image/*'
 		},
 		 duplicate : true,
-		 disableGlobalDnd: true,
-         fileNumLimit: 1,
+		 disableGlobalDnd : true,
+		 fileVal : 'img_index',
+		 formData : {
+			 'model_id' : model_id
+		 },
+         //fileNumLimit: 1,
          //fileSizeLimit: 200 * 1024 * 1024,    // 200 M
          fileSingleSizeLimit: 5 * 1024 * 1024    // 5 M
 	});
@@ -132,12 +137,16 @@ jQuery(function() {
     
 	// 当有文件添加进来的时候
 	uploader.on('fileQueued', function(file) {
+		//先清空(只是清空了缩略图，但是之前的图片还是会上传)
+		$list.empty();
+		//移除之前所有文件
+		uploader.removeFile(uploader.getFiles());
 		var $li = $('<div id="' + file.id + '" class="file-item thumbnail">'
 				+ '<img>' + '<div class="info">' + file.name + '</div>'
 				+ '</div>'), $img = $li.find('img');
-
+	
 		$list.append($li);
-
+		
 		// 创建缩略图
 		uploader.makeThumb(file, function(error, src) {
 			if (error) {
@@ -148,8 +157,6 @@ jQuery(function() {
 			$img.attr('src', src);
 		}, thumbnailWidth, thumbnailHeight);
 		
-		//$('#filePicker').addClass( 'element-invisible' );
-		//$('#filePickerChoose').removeClass( 'element-invisible');
 	});
 
 	// 文件上传过程中创建进度条实时显示。
@@ -186,4 +193,62 @@ jQuery(function() {
 	uploader.on('uploadComplete', function(file) {
 		$('#' + file.id).find('.progress').remove();
 	});
+	
+	uploader.on('all', function(type) {
+		if (type === 'startUpload') {
+			state = 'uploading';
+		} else if (type === 'stopUpload') {
+			state = 'paused';
+		} else if (type === 'uploadFinished') {
+			state = 'done';
+		}
+
+		if (state === 'uploading') {
+			$btn.text('暂停上传');
+		} else {
+			$btn.text('开始上传');
+		}
+	});
+	
+	//点击上传
+	$btn.on('click', function() {
+		if (state === 'uploading') {
+			uploader.stop();
+		} else {
+			var options = {
+				success : function(data) {
+					uploader.options.formData.model_id = data.hall_id;
+					uploader.upload();
+				}
+			};
+			// 准备form表单
+			$("#form_").ajaxForm(options);
+			// 表单提交     
+			$("#form_").ajaxSubmit(options);
+		}
+	});
+	//提示上传状态
+	uploader.on( 'uploadAccept', function( file, response ) {
+        if ( response.code==1 ) {
+            // 通过return false来告诉组件，此文件上传有错。
+        	layer.alert("图片上传失败，请联系管理员！", {
+				  closeBtn: 1
+				}, function(){
+					//父页面刷新
+					parent.window.location.reload();
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭
+				});
+            return false;
+        }else{
+        	layer.alert("保存成功！", {
+				  closeBtn: 1
+				}, function(){
+					//父页面刷新
+					parent.window.location.reload();
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭
+				});
+        }
+    });
 });

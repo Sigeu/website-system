@@ -76,4 +76,6 @@ public interface HallMapper {
 	List<Hall> queryHallNewList(int countNum);
 
 	List<Hall> queryHallListBySearch(String search_text);
+
+	void uploadSingleHallImg(HallWithBLOBs hall);
 }

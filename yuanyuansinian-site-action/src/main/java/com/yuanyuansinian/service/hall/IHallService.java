@@ -68,5 +68,7 @@ public interface IHallService {
 
 	void addDoubleHall(HttpServletRequest request, HallWithBLOBs hall);
 
+	void uploadSingleHallImg(HttpServletRequest request, String hall_id);
+
 
 }

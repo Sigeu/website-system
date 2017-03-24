@@ -136,39 +136,20 @@ public class HallService implements IHallService {
 	        if(multipartResolver.isMultipart(request)){  
 	            //转换成多部分request    
 	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
-	            //取得request中的所有文件名  
-	            Iterator<String> iter = multiRequest.getFileNames();  
-	            while(iter.hasNext()){  
-	                //取得上传文件  
-	                MultipartFile file = multiRequest.getFile(iter.next());  
-	                if(file != null){  
-	                    //取得当前上传文件的文件名称  
-	                    String myFileName = file.getOriginalFilename();  
-	                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
-	                    if(myFileName.trim() !=""){  
-	                        //重命名上传后的文件名  
-	                    	UUID uuid = UUID.randomUUID();
-	                        String fileName = uuid + file.getOriginalFilename(); 
-	                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
-	                        //定义上传路径  
-	                        //String path = "E:/upload-file/"; 
-	                        File localFile = new File(path, fileName);  
-	                        if(!localFile.exists()){  
-	                        	localFile.mkdirs();  
-	                        }  
-	                        file.transferTo(localFile);  
-	                        //hall.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
-	                    }  
-	                }  
-	            }  
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_index");
+	            if(null != img_index){
+	            	byte[] imgFile = img_index.getBytes();
+					// 保存照片
+	            	hall.setImg_index(imgFile);
+	            }
 	        }
+	        //保存
+	        hallMapper.insert(hall);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
-		//创建时间
-		hall.setCreate_date(MyDateUtil.getDateTime());
-		hallMapper.insert(hall);
-		
 	}
 
 	@Override
@@ -212,6 +193,36 @@ public class HallService implements IHallService {
 		//创建时间
 		hall.setCreate_date(MyDateUtil.getDateTime());
 		hallMapper.insert(hall);
+		
+	}
+
+	@Override
+	public void uploadSingleHallImg(HttpServletRequest request, String hall_id) {
+		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        HallWithBLOBs hall =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	hall =  new HallWithBLOBs();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+				hall.setId(Integer.parseInt(hall_id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_index");
+	            if(null != img_index){
+	            	byte[] imgFile = img_index.getBytes();
+					// 保存照片
+	            	hall.setImg_index(imgFile);
+	            }
+	        }
+	        //保存
+	        hallMapper.uploadSingleHallImg(hall);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
 	}
 
