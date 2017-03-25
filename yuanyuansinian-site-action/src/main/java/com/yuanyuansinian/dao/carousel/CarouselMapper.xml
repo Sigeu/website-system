@@ -211,4 +211,15 @@
     <include refid="Blob_Column_List" />
     from ujn_carousel
   </select>
+  
+  <!-- 更新轮播图片 -->
+  <update id="uploadCarouselImg" parameterType="com.yuanyuansinian.model.carousel.Carousel">
+    update ujn_carousel
+    <set>
+      <if test="img_index != null">
+        img = #{img,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

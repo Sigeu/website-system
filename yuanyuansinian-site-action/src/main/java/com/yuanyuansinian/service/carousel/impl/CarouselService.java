@@ -141,6 +141,41 @@ public class CarouselService implements ICarouselService {
 		return carouselMapper.deleteByPrimaryKey(carouselId);
 	}
 	
-
-
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: uploadCarouselImg</p> 
+	 * <p>Description: </p> 
+	 * @param request
+	 * @param id 
+	 * @see com.yuanyuansinian.service.carousel.ICarouselService#uploadCarouselImg(javax.servlet.http.HttpServletRequest, java.lang.String)
+	 */
+	@Override
+	public void uploadCarouselImg(HttpServletRequest request, String id) {
+		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        Carousel carousel =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	carousel =  new Carousel();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+	            carousel.setId(Integer.parseInt(id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_");
+	            if(null != img_index){
+	            	byte[] imgFile = img_index.getBytes();
+					// 保存照片
+	            	carousel.setImg(imgFile);
+	            }
+	        }
+	        //保存
+	        carouselMapper.uploadCarouselImg(carousel);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
 }

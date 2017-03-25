@@ -62,4 +62,6 @@ public interface CarouselMapper {
     int updateByPrimaryKey(Carousel record);
 
 	List<Carousel> queryCarouselList(Carousel carousel);
+
+	void uploadCarouselImg(Carousel carousel);
 }

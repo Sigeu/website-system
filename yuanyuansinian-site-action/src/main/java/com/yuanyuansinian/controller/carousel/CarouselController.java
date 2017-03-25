@@ -159,7 +159,30 @@ public class CarouselController extends MyBaseController {
 
 		return map;
 	}
+	
+	/**
+	 * 
+	 * @Description: 上传轮播图片 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/uploadCarouselImg")
+	public Map<String, Object> uploadCarouselImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			carouselService.uploadCarouselImg(request, id);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
 
+		return map;
+	}
+	
 	/**
 	 * 
 	 * @Description: 修改

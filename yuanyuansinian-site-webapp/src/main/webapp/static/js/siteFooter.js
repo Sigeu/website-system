@@ -3,7 +3,7 @@
  * @author lzh_me@126.com
  */
 
-/*----------------------友情链接 begin-----------------------*/
+/*----------------------加载友情链接 begin-----------------------*/
 $(function() {
 	$.ajax({
 		method : "POST",
@@ -24,12 +24,31 @@ $(function() {
 	});
 
 });
-/*----------------------友情链接  end-------------------------*/
+/*----------------------加载友情链接  end-------------------------*/
 
-/*----------------------友情链接 begin---------------------*/
+/*----------------------点击友情链接 begin---------------------*/
 $(function() {
 	$('#link_select').on('change',function(){
 		window.open($(this).val());
 	});
 });
-/*----------------------友情链接 end-----------------------*/
+/*----------------------点击友情链接 end-----------------------*/
+
+/*----------------------页脚联系方式 begin---------------------*/
+$(function() {
+	$.ajax({
+		method : "POST",
+		url : contextPath + "/sinian/index/indexController/contact",
+		data : {
+			//id : id
+		}
+	}).done(function(data) {
+		var contact = data.contact;
+		$('#copyright').text(contact.copyright);
+		$('#record_num').text(contact.record_num);
+		$('#address').text(contact.address);
+		$('#tel').text(contact.tel);
+		$('#addr_zip').text(contact.addr_zip);
+	});
+});
+/*----------------------页脚联系方式 end-----------------------*/

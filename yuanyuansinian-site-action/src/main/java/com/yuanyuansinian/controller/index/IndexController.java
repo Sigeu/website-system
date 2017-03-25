@@ -82,9 +82,9 @@ public class IndexController extends MyBaseController {
 	public String index(HttpServletRequest request,  Model model) {
 		try {
 			// 网站配置
-			Config config = configService.queryConfig();
+			//Config config = configService.queryConfig();
 			// 网站联系方式
-			Contact contact = contactService.queryContact();
+			//Contact contact = contactService.queryContact();
 			// 友情链接
 			List<Link> linkList = linkService.queryLinkList(null);
 			// 最新公开信息 
@@ -136,8 +136,8 @@ public class IndexController extends MyBaseController {
 			//List<Column> columnList2 = new ArrayList<Column>(columnLinkedList2);
 			
 			
-			model.addAttribute("config", config);
-			model.addAttribute("contact", contact);
+			//model.addAttribute("config", config);
+			//model.addAttribute("contact", contact);
 			model.addAttribute("linkList", linkList);
 			model.addAttribute("contentList1", contentList1);
 			model.addAttribute("column_id1", column_id1);
@@ -399,7 +399,7 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: TODO 
+	 * @Description: 纪念馆搜索
 	 * @param request
 	 * @param model
 	 * @return
@@ -419,10 +419,25 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 导航 
+	 * @Description: 网站联系方式 
 	 * @param request
 	 * @return
 	 */
+	@ResponseBody
+	@RequestMapping("/contact")
+	public Map<String, Object> contact(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			// 网站联系方式
+			Contact contact = contactService.queryContact();
+			map.put("contact", contact);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
 	@ResponseBody
 	@RequestMapping("/navigation")
 	public Map<String, Object> navigation(HttpServletRequest request) {

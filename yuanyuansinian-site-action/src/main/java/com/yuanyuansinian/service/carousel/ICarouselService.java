@@ -59,4 +59,6 @@ public interface ICarouselService {
 	 */
 	int deleteCarousel(int carouselId);
 
+	void uploadCarouselImg(HttpServletRequest request, String id);
+
 }
