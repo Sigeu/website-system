@@ -13,6 +13,7 @@
 		</nav>
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/column/controller/columnController/addColumn" method="post" class="form form-horizontal" id="form-column-add">
+		<input type="hidden" name="class_type" id="class_type" value="1">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上级栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
@@ -21,25 +22,13 @@
 					<select class="select" id="big_class" name="big_class"> 
 						<option value="0">--顶级栏目--</option>  
                         <c:forEach items="${columnList}" var="column">  
-                        	<option value="${column.id}">${column.name}</option>  
+                        	<option value="${column.id}" classtype="${column.class_type}">${column.name}</option>  
                         </c:forEach>  
                     </select> 
 				</span>
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>栏目名称：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="栏目名称" id="name" name="name">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
-			</div>
-		</div>
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">栏目级别：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="class_type" class="select">
@@ -50,6 +39,18 @@
 					<option value="4">四级分类</option>
 				</select>
 				</span> 
+			</div>
+		</div> -->
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>栏目名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="栏目名称" id="name" name="name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="1" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
 		</div>
 		<div class="row cl">
@@ -83,6 +84,16 @@ $(function(){
 		parent.layer.close(index); //再执行关闭
 		return false;
 	});
+	//设置栏目等级。默认为1
+	$("#big_class").on('change',function(){
+		var big_class_type = $(this).find("option:selected").attr('classtype');
+		if(typeof(big_class_type) == "undefined"){
+			$('#class_type').val('1');
+		}else{
+			var class_type = new Number(big_class_type) + 1;
+			$('#class_type').val(class_type);
+		}
+	}); 
 	
 }); 
 
@@ -114,7 +125,7 @@ $(function() {
 			var options = {
 					success : function(data) {
 						layer.alert(data.result_message, {
-						  closeBtn: 0
+						  closeBtn: 1
 						}, function(){
 							//父页面刷新
 							parent.reloadPage();

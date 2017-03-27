@@ -54,12 +54,15 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>排序</th>
+						<!-- <th>排序</th> -->
 						<th>名称</th>
 						<th>发布人</th>
-						<th>是否最新</th>
-						<th>是否置顶</th>
-						<th>添加时间</th>
+						<th>发布时间</th>
+						<th>所属栏目</th>
+						<th>有效期</th>
+						<th>访问属性</th>
+						<th>审核状态</th>
+						<th>是否前台显示</th>
 						<th width="15%">操作</th>
 					</tr>
 				</thead>
@@ -116,9 +119,6 @@
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
 								}, {
-									data : "order_no",
-									defaultContent : 0
-								}, {
 									data : "title",
 									defaultContent : ""
 								}, /* {
@@ -137,16 +137,25 @@
 										return context;
 									}
 								},  */{
-									data : "issue",
-									defaultContent : ""
-								}, {
-									data : "new_ok",
-									defaultContent : ""
-								}, {
-									data : "top_ok",
+									data : "issue_name",
 									defaultContent : ""
 								}, {
 									data : "add_time",
+									defaultContent : ""
+								}, {
+									data : "column_id",
+									defaultContent : ""
+								}, {
+									data : "validity_time",
+									defaultContent : ""
+								}, {
+									data : "read_type_name",
+									defaultContent : ""
+								}, {
+									data : "status_name",
+									defaultContent : ""
+								}, {
+									data : "display_type_name",
 									defaultContent : ""
 								}, {
 									data : null

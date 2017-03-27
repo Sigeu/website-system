@@ -134,7 +134,7 @@ $(function(){
 			var options = {
 					success : function(data) {
 						layer.alert(data.result_message, {
-						  closeBtn: 0
+						  closeBtn: 1
 						}, function(){
 							//父页面刷新
 							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引

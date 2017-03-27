@@ -28,6 +28,12 @@
 				</span> </div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>编号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${orderNum }" placeholder="编号" id="code_num" name="code_num" readonly="readonly">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="标题" id="title" name="title">
@@ -55,7 +61,31 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">有效期：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" class="input-text Wdate"  value="" placeholder="内容公示截止有效期" id="validity_time" name="validity_time">
+				<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" class="input-text Wdate"  value="" placeholder="内容公示截止有效期,不填为永久有效" id="validity_time" name="validity_time">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">重要信息标签：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+					<select class="select" id="read_type" name="read_type">
+						<option value="0">社会公众</option> 
+						<option value="1">校内访问</option> 
+						<option value="2">仅部分人可访问</option>  
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">内容标签：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+					<select class="select" id="read_type" name="read_type">
+						<option value="0">社会公众</option> 
+						<option value="1">校内访问</option> 
+						<option value="2">仅部分人可访问</option>  
+					</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
@@ -63,9 +93,9 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
 					<select class="select" id="read_type" name="read_type">
-						<option value="0">直接访问</option> 
+						<option value="0">社会公众</option> 
 						<option value="1">校内访问</option> 
-						<option value="2">凭密码访问</option>  
+						<option value="2">仅部分人可访问</option>  
 					</select>
 				</span>
 			</div>
@@ -93,7 +123,7 @@
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
-
+	//取消按钮
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭

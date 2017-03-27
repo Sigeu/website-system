@@ -59,4 +59,7 @@ public interface IMySystemConstants {
 
 	static final String FILE_PATH_IMAGE = "upload/image/";
 	static final String FILE_PATH = "upload/";
+	
+	//字典数据类型
+	static final String IMPORTANCE = "importance";
 }

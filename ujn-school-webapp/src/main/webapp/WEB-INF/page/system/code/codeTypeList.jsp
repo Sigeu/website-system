@@ -4,12 +4,12 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>字典类别</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span>用户管理
+		系统管理 <span class="c-gray en">&gt;</span>字典类别
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>
@@ -18,10 +18,10 @@
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>用户名称:</strong>&nbsp;&nbsp;
+						<strong>字典类别名称:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="type_name"
+						name="type_name" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -33,9 +33,6 @@
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 
@@ -47,14 +44,13 @@
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
 					<tr class="text-c mybg">
-						<th><input type="checkbox" name="" value=""></th>
 						<th>序号</th>
-						<th>登录名</th>
-						<th>真实姓名</th>
-						<th>用户类型</th>
-						<th>状态</th>
-						<th>部门</th>
-						<th width="25%">操作</th>
+						<th>类别名称</th>
+						<th>类别代码</th>
+						<th>是否可修改</th>
+						<th>是否加载内存</th>
+						<th>备注</th>
+						<th width="15%">操作</th>
 					</tr>
 				</thead>
 				<!-- tbody是必须的 -->
@@ -85,7 +81,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/system/controller/userController/queryUserList",
+									url : "${pageContext.request.contextPath}/system/controller/codeTypeController/queryCodeTypeList",
 									type:"POST",
 									data : {
 										//args1: "固定传参"
@@ -105,26 +101,21 @@
 								autoWidth : true,//自动计算宽度
 								//deferRender : true,//延迟渲染
 								columns : [ {
-									data : "id",
-									render: function (data, type, full, meta) {
-					                     return '<input type="checkbox" value="' + data + '" />';
-					                 }
-								}, {
 									data : "id"
 								}, {
-									data : "login_name",
+									data : "type_name",
 									defaultContent : ""
 								}, {
-									data : "real_name",
+									data : "code_type",
 									defaultContent : ""
 								}, {
-									data : "user_type",
+									data : "is_edit_name",
 									defaultContent : ""
 								}, {
-									data : "status_name",
+									data : "is_memory_name",
 									defaultContent : ""
 								}, {
-									data : "dept",
+									data : "remark",
 									defaultContent : ""
 								}, {
 									data : null
@@ -142,35 +133,14 @@
 														"type" : "primary-outline size-MINI radius",
 														"display" : row.zt == '1'? false:true
 													},{
-														"name" : "停用",
-														"fn" : "toStop(\'"
-																+ row.id
-																+ "\')",
-														"type" : "danger-outline size-MINI radius",
-														"display" : row.status == '2'? false:true
-													},{
-														"name" : "启用",
-														"fn" : "toStart(\'"
-																+ row.id
-																+ "\')",
-														"type" : "danger-outline size-MINI radius",
-														"display" : row.status == '2'? true:false
-													},{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
 																+ "\')",
-														"type" : "danger-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
-													},{
-														"name" : "授权",
-														"fn" : "toRole(\'"
-																+ row.login_name
-																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
+														"display" : row.zt == '1'? true:false
 													},{
-														"name" : "查看",
+														"name" : "数据管理",
 														"fn" : "toDetail(\'"
 																+ row.id
 																+ "\')",
@@ -205,19 +175,11 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//登录名称
-				var login_name = $("#login_name").val().trim();
-				//真实姓名
-				var real_name = $("#real_name").val().trim();
-				//注册时间
-				var date_start = $("#date_start").val().trim();
-				var date_end = $("#date_end").val().trim();
+				//类别名称
+				var type_name = $("#type_name").val().trim();
 				//查询条件
 				var param = {
-					"login_name" : login_name,
-					"real_name" : real_name,
-					"date_start" : date_start,
-					"date_end" : date_end
+					"type_name" : type_name
 				};
 				
 				return param;
@@ -225,14 +187,8 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				//登录名称
-				$("#login_name").val('');
-				//真实姓名
-				$("#real_name").val('');
-				//注册时间
-				$("#date_start").val('');
-				$("#date_end").val('');
-				
+				//类别名称
+				$("#type_name").val('');
 			});
 			
 			//添加
@@ -240,21 +196,11 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加用户</div></strong>","background-color: #5a97df"],
+				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加类别</div></strong>","background-color: #5a97df"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: '${pageContext.request.contextPath}/system/controller/userController/toUserAdd'
+				    content: '${pageContext.request.contextPath}/system/controller/codeTypeController/toCodeTypeAdd'
 				 });
-			});
-			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/system/userCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
 			});
 			
 		});
@@ -272,29 +218,27 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/system/userCiController/toUserEdit.do?id='+id
+			    content: '${pageContext.request.contextPath}/system/controller/codeTypeController/toCodeTypeUpdate?id='+id
 			 });
 		}
-		
 		//删除
 		function toDelete(id){
-			layer.confirm("确认删除？", {
+			layer.confirm("确认要删除吗？类别删除会同时删除对应的字典数据", {
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/system/controller/userController/deleteUser" ,
+						    url: "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/issueKaoShiChangCi.do" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
 						    success:function(data){
-						    	layer.alert(data.result_message, {
-									  closeBtn: 1
-									}, function(){
-										//父页面刷新
-										window.location.reload();//刷新当前页面.
-										var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-										parent.layer.close(index); //再执行关闭
-									});
+						    	layer.open({
+						    		  content: data.result_message,
+						    		  yes: function(index, layero){
+						    		    window.location.reload();//刷新当前页面
+						    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+						    		  }
+						    		});
 						    }
 						});
 					}, function(index){
@@ -302,78 +246,15 @@
 				}); 
 		}
 		
-		//停用
-		function toStop(id){
-			layer.confirm("确认停用？", {
-				  btn: ['确认','返回'] //按钮
-					}, function(index){
-						$.ajax({
-						    url: "${pageContext.request.contextPath}/system/controller/userController/stopUser" ,
-						    type: "POST",
-						    dataType: "JSON",
-						    data: {id:id},
-						    success:function(data){
-						    	layer.alert(data.result_message, {
-									  closeBtn: 1
-									}, function(){
-										//父页面刷新
-										window.location.reload();//刷新当前页面.
-										var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-										parent.layer.close(index); //再执行关闭
-									});
-						    }
-						});
-					}, function(index){
-						layer.close(index);
-				}); 
-		}
-		
-		//启用
-		function toStart(id){
-			layer.confirm("确认启用？", {
-				  btn: ['确认','返回'] //按钮
-					}, function(index){
-						$.ajax({
-						    url: "${pageContext.request.contextPath}/system/controller/userController/startUser" ,
-						    type: "POST",
-						    dataType: "JSON",
-						    data: {id:id},
-						    success:function(data){
-						    	layer.alert(data.result_message, {
-									  closeBtn: 1
-									}, function(){
-										//父页面刷新
-										window.location.reload();//刷新当前页面.
-										var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-										parent.layer.close(index); //再执行关闭
-									});
-						    }
-						});
-					}, function(index){
-						layer.close(index);
-				}); 
-		}
-		
-		//用户授权：添加角色
-		function toRole(login_name){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户授权</div></strong>","background-color: #5a97df"],
-			    area: ['50%', '80%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/system/controller/userController/toUserRole?login_name='+login_name
-			 });
-		}
 		//查看明细
 		function toDetail(id){
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
+			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;字典数据</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/system/userCiController/toUserDetail.do?id='+id
+			    content: '${pageContext.request.contextPath}/system/controller/codeTypeController/toCodeTypeDetail?id='+id
 			 });
 		}
 		
@@ -385,7 +266,7 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/system/userController/toUserList.do?kscc='+id
+			    content: '${pageContext.request.contextPath}/zgzssb/kaoShengXinXiController/toKaoShengXinXiList.do?kscc='+id
 			 });
 		}
 		

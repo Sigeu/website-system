@@ -78,7 +78,7 @@
 		            success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
 		                // 此处可对 data 作相关处理
 		            	layer.alert(data.result_message, {
-							  closeBtn: 0
+							  closeBtn: 1
 							}, function(){
 								//父页面刷新
 								window.location.reload();//刷新当前页面.

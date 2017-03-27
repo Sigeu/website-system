@@ -28,7 +28,7 @@
 							<span><fmt:formatDate value="${add_time}" pattern="yyyy年MM月dd日" /></span>
 							<span>作者：${content.issue }</span><span>浏览次数：${content.hits }</span>
 							<fmt:parseDate value="${content.validity_time}" pattern="yyyy-MM-dd" var="validity_time"/>
-							<span>公开日期：<fmt:formatDate value="${add_time}" pattern="yyyy-MM-dd" />--<fmt:formatDate value="${validity_time}" pattern="yyyy-MM-dd" /></span>
+							<span>公开日期：<fmt:formatDate value="${add_time}" pattern="yyyy-MM-dd" /></span>
 							<span>公开部门：${content.issue }</span>
 						</div>
 					</div>

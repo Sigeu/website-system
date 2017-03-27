@@ -4,53 +4,58 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>字典数据</title>
+<title>用户信息表页</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>字典数据新增
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>字典类别新增
 		</nav>
 		<div class="page-container">
 		<form id="form_"
-			action="${pageContext.request.contextPath}/system/controller/codeController/addCode"
+			action="${pageContext.request.contextPath}/system/controller/codeTypeController/addCodeType" class="form form-horizontal" 
 			method="post">
-			<input type="hidden" name="code_type" id="code_type" value="${code_type }">
 			<table style="width: 99%" class="table table-border table-bordered">
 				<tr>
-					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">字典名称：</td>
-					<td nowrap="nowrap"><input type="text" style="width: 90%;" placeholder="字典名称"
-						id="code_name" name="code_name" value="" class="input-text" maxlength="25"
-						 /> <font style="color: red">*</font></td>
+					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">类别名称：</td>
+					<td nowrap="nowrap"><input type="text" style="width: 90%;" placeholder="类别名称"
+						id="type_name" name="type_name" value="" class="input-text"/> 
+						<font style="color: red">*</font></td>
 
-					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">字典值：</td>
+					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">类别代码：</td>
 					<td nowrap="nowrap">
-					<input type="text"  style="width: 90%;"  placeholder="字典项数值"
-						id="code_value" name="code_value" value="" class="input-text" maxlength="25" />
+					<input type="text"  style="width: 90%;"  placeholder="类别代码"
+						id="code_type" name="code_type" value="" class="input-text" />
 						<font style="color: red">*</font>
 					 </td>
 				</tr>
 				<tr>
-					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">排序值：</td>
-					<td nowrap="nowrap"><input type="text"  style="width: 90%;"  placeholder="排序值，数值越小越靠前"
-						id="order_num" name="order_num" value="" class="input-text" />
-					</td>
-
-					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">状态：</td>
-					<td nowrap="nowrap">
-					<div class="radio-box">
-							<input type="radio" id="status_y" name="status" value="1" checked="checked"/>
-							<label for="sex_man">启用</label>
+					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">是否允许修改：</td>
+					<td nowrap="nowrap"><div class="radio-box">
+							<input type="radio" id="is_edit_y" name="is_edit" value="1" checked />
+							<label for="sex_man">是</label>
 						</div>
 						<div class="radio-box">
-							<input type="radio" id="status_n" name="status" value="0" /> <label
-								for="sfmj_woman">停用</label>
+							<input type="radio" id="is_edit_n" name="is_edit" value="0" /> <label
+								for="sfmj_woman">否</label>
+						</div></td>
+
+					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">是否加载到内存：</td>
+					<td nowrap="nowrap">
+					<div class="radio-box">
+							<input type="radio" id="is_memory_y" name="is_memory" value="1" checked />
+							<label for="sex_man">是</label>
+						</div>
+						<div class="radio-box">
+							<input type="radio" id="is_memory_n" name="is_memory" value="0" /> <label
+								for="sfmj_woman">否</label>
 						</div>
 					 </td>
 				</tr>
 				<tr>
 					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">备注信息：</td>
 					<td colspan="3"><textarea style="width: 90%;" id="remark" placeholder="备注说明，最多300个汉字"
-							name="remark" rows="2" class="textarea" maxlength="600"></textarea>
+							name="remark" rows="2" class="textarea" maxlength="600"
+							></textarea>
 					</td>
 				</tr>
 			</table>
@@ -86,16 +91,13 @@ $(function() {
 	//表单验证
 	$("#form_").validate({
 		rules:{
-			code_name:{
+			type_name:{
 				required:true,
 				maxlength:25
 			},
-			code_value:{
+			code_type:{
 				required:true,
 				maxlength:25
-			},
-			order_num:{
-				digits:true
 			},
 			remark:{
 				maxlength:300

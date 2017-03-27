@@ -240,7 +240,7 @@
 						    data: {id:id},
 						    success:function(data){
 						    	layer.alert(data.result_message, {
-									  closeBtn: 0
+									  closeBtn: 1
 									}, function(){
 										//父页面刷新
 										window.location.reload();//刷新当前页面.

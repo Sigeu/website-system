@@ -24,6 +24,7 @@ import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.content.ContentWithBLOBs;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
+import ujn.school.cn.pub.util.MyAutoGenerateOrderNum;
 import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.content.IContentService;
@@ -31,7 +32,9 @@ import ujn.school.cn.service.content.IContentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import framework.system.model.Code;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.service.ICodeService;
 
 /**
  * @Description: 内容管理
@@ -48,6 +51,9 @@ public class ContentController extends MyBaseController {
 	
 	@Resource
 	private IColumnService columnService;
+	
+	@Resource
+	private ICodeService codeService;
 
 	/**
 	 * 
@@ -104,6 +110,12 @@ public class ContentController extends MyBaseController {
 		//转换为ArrayList
 		List<Column> columnSelectList = new ArrayList<Column>(columnLinkedList);
 		model.addAttribute("columnSelectList", columnSelectList);
+		//字典表 重要信息数据标签
+		List<Code> codeList = codeService.queryCodeListByType(IMySystemConstants.IMPORTANCE);
+		model.addAttribute("codeList", codeList);
+		
+		String orderNum = MyAutoGenerateOrderNum.generateOrderNum("Content");
+		model.addAttribute("orderNum", orderNum);
 		
 		return "content/contentAdd";
 	}
@@ -264,7 +276,7 @@ public class ContentController extends MyBaseController {
 
 		return map;
 	}
-
+	
 	/**
 	 * 
 	 * @Description: 修改

@@ -4,12 +4,12 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>数据字典</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span>用户管理
+		系统管理 <span class="c-gray en">&gt;</span>数据字典
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>
@@ -47,9 +47,6 @@
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 
@@ -263,16 +260,6 @@
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/system/controller/userController/toUserAdd'
 				 });
-			});
-			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
 			});
 			
 		});

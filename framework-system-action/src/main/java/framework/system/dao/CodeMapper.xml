@@ -24,7 +24,6 @@
       This element was generated on Thu Mar 16 15:45:12 CST 2017.
     -->
     Id, code_type, 
-    (select type_name from ujn_code_type ct where ct.code_type = code_type) as code_type_name,
     code_value, code_name, order_num, status,
     case   
 		  when status = 1 then '启用'  
@@ -169,6 +168,7 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_code
+    where code_type = #{code_type}
     order by order_num desc
   </select>
   
@@ -177,7 +177,7 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_code
-    where code_type = ${code_type}
+    where code_type = #{code_type}
     order by order_num desc
   </select>
 </mapper>

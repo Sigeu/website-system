@@ -73,7 +73,7 @@ $(function() {
 	var options = {
 		success : function(data) {
 			layer.alert(data.result_message, {
-			  closeBtn: 0
+			  closeBtn: 1
 			}, function(){
 				//父页面刷新
 				parent.reloadPage();
