@@ -12,7 +12,7 @@
 			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增轮播图片
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/carousel/carouselController/addCarousel" method="post" class="form form-horizontal" id="form-carousel-add">
+	<form action="${pageContext.request.contextPath}/sinian/carousel/carouselController/addCarousel" method="post" class="form form-horizontal" id="form_">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -59,8 +59,8 @@
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="submit_but" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button id="submit_but" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button id="close_but" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</form>
@@ -76,8 +76,6 @@
 </script>
 <script type="text/javascript">
 $(function(){
-	//表单验证
-	//$("#form_").Validform();
 
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -90,26 +88,26 @@ $(function(){
 
 //表单提交，可上传文件
 $(function() {
-	var options = {
-		success : function(data) {
-			layer.alert(data.result_message, {
-			  closeBtn: 1
-			}, function(){
-				//父页面刷新
-				parent.reloadPage();
-				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-				parent.layer.close(index); //再执行关闭
-			});
+	//表单验证
+	$("#form_").validate({
+		debug:true,
+		onkeyup:false,
+		focusCleanup:false,
+		success:"valid",
+		submitHandler:function(form){
+			$('#ctlBtn').trigger("click");
+			return false;
+		},
+		rules:{
+			title:{
+				required:true,
+				maxlength:100
+			},
+			no_order:{
+				digits:true
+			}
 		}
-	};
-	// 准备form表单
-	$("#form-carousel-add").ajaxForm(options);
-	// 表单提交     
-	$('#submit_but').on('click', function() {
-		$("#form-carousel-add").ajaxSubmit(options);
-		return false;
 	});
-	
 });
 </script>
 </body>

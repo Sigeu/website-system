@@ -151,10 +151,11 @@ public class CarouselController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			carouselService.addCarousel(request, carousel);
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			map.put("carousel_id", carousel.getId());
+			//map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			//map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
 
 		return map;

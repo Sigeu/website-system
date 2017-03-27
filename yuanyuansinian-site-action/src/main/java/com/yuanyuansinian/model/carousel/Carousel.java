@@ -56,6 +56,7 @@ public class Carousel {
     private String remark;
     
     private String carousel_type;
+    private String carousel_type_name;
 
     /**
      *
@@ -240,5 +241,13 @@ public class Carousel {
 
 	public void setCarousel_type(String carousel_type) {
 		this.carousel_type = carousel_type;
+	}
+
+	public String getCarousel_type_name() {
+		return carousel_type_name;
+	}
+
+	public void setCarousel_type_name(String carousel_type_name) {
+		this.carousel_type_name = carousel_type_name;
 	}
 }

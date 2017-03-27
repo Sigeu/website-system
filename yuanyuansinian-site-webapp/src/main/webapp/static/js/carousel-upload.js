@@ -38,7 +38,7 @@ jQuery(function() {
 		},
 		 duplicate : true,
 		 disableGlobalDnd : true,
-		 fileVal : 'img_',
+		 fileVal : 'img',
 		 formData : {
 			 'model_id' : model_id
 		 },
@@ -130,7 +130,8 @@ jQuery(function() {
 		} else {
 			var options = {
 				success : function(data) {
-					uploader.options.formData.model_id = data.hall_id;
+					uploader.options.formData.model_id = data.carousel_id;
+					
 					uploader.upload();
 				}
 			};
