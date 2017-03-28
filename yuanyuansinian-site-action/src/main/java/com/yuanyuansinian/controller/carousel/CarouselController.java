@@ -196,9 +196,9 @@ public class CarouselController extends MyBaseController {
 	public Map<String, Object> updateCarousel(HttpServletRequest request, Carousel carousel) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		//carousel.setAdd_time(MyDateUtil.getDateTime());
 		int count = this.carouselService.updateCarousel(carousel);
 		if (RESULT_COUNT_1 == count) {
+			map.put("carousel_id", carousel.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
