@@ -133,7 +133,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.navbar-header {padding:0 15px}
 	.navbar-top .container {background:url(../images/cloud-small.png) no-repeat right bottom}
 	.login-top .container {background:none}
-	.navbar-search {position:relative; right:-20px; width:200px}
+	.navbar-search {position:relative; top:25px; right:-20px; width:250px}
 	.navbar-menu {font-size:14px}
 	.navbar-dropdown .navbar-dropdown-two {padding-left:12%}
 	.carousel-inner img {min-height:400px}
@@ -195,7 +195,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 /* 大屏幕（大桌面显示器，大于等于1200px） */
 @media (min-width: 1200px) {
 	.navbar-header {padding:15px 0}
-	.navbar-search {position:relative; top:35px; right:-150px; width:200px}
+	.navbar-search {position:relative; top:30px; right:-100px; width:300px}
 	.navbar-top .container {background:url(../images/cloud.png) no-repeat right bottom}
 	.navbar-search .glyphicon-search {font-size:16px; top:2px; color:#999}
 	.login-top .container {background:#fff}

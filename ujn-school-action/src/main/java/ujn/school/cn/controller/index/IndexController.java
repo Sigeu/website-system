@@ -138,6 +138,7 @@ public class IndexController extends MyBaseController {
 			//model.addAttribute("columnList2", columnList2);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return "site/index";
 	}

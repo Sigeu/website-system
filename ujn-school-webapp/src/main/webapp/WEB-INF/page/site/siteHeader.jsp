@@ -10,9 +10,7 @@
 			</a>
 		</div>
 		<form id="search_form" action="#" method="post">
-			<div
-				class="col-xs-12 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-3 navbar-search"
-				style="padding: 0px">
+			<div class="col-xs-12 col-md-3 col-md-offset-2 navbar-search" style="padding:0px">
 				<div class="input-group">
 					
 						<input type="text" name="serach_text" class="form-control"> <span

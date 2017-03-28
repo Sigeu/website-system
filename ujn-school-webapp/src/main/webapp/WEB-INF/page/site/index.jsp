@@ -79,7 +79,7 @@
 									<c:forEach var="content2" items="${contentList2}">
 										<li><a href="###"
 											onclick="toContentDetail('${content2.id}');"
-											class="pull-left">${content2.title}</a><span
+											class="pull-left"><label class="btn btn-primary btn-xs">${content2.title}</label></a><span
 											class="list-date">${content2.add_time}</span></li>
 									</c:forEach>
 								</ul>

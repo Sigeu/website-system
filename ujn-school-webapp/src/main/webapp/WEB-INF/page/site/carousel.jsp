@@ -7,17 +7,17 @@
 		<li data-target="#myCarousel" data-slide-to="2"></li>
 	</ol>
 	<div class="carousel-inner">
-		<div class="item active" style="background: #223240">
+		<div class="item active" style="background: #aedef8">
 			<img
 				src="${pageContext.request.contextPath}/static/images/slide1.png"
 				alt="第一张">
 		</div>
-		<div class="item" style="background: #F5E4DC;">
+		<div class="item" style="background: #4eabf8;">
 			<img
 				src="${pageContext.request.contextPath}/static/images/slide2.png"
 				alt="第二张">
 		</div>
-		<div class="item" style="background: #DE2A2D;">
+		<div class="item" style="background: #d6a300;">
 			<img
 				src="${pageContext.request.contextPath}/static/images/slide3.png"
 				alt="第三张">

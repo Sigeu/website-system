@@ -5,31 +5,30 @@
 <head>
 <%@ include file="../../../common/header.jsp"%>
 <link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
-<title>轮播图片修改</title>
+<title>轮播图片添加</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>修改轮播图片
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增轮播图片
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/carousel/carouselController/updateCarousel" method="post" class="form form-horizontal" id="form_">
-		<input type="hidden" name="id" id="id" value="${carousel.id }" >
+	<form action="${pageContext.request.contextPath}/sinian/carousel/carouselController/addCarousel" method="post" class="form form-horizontal" id="form_">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${carousel.title }" placeholder="标题" id="title" name="title">
+				<input type="text" class="input-text" value="" placeholder="标题" id="title" name="title">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">URL：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${carousel.img_url }" placeholder="URL" id="img_url" name="img_url">
+				<input type="text" class="input-text" value="" placeholder="URL" id="img_url" name="img_url">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${carousel.no_order }" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+				<input type="text" class="input-text" value="0" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
 		</div>
 		<div class="row cl">
@@ -46,14 +45,14 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">${carousel.description }</textarea>
+				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">备注说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">${carousel.remark }</textarea>
+				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
