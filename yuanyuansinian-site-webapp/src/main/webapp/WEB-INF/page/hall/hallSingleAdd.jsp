@@ -118,7 +118,7 @@
 				    <!--用来存放item-->
 				    <div id="fileList" class="uploader-list"></div>
 				    <div id="filePicker">选择图片</div>
-				    <button id="ctlBtn" style="display:none" class="btn btn-default">开始上传</button>
+				    <button id="upload_but" style="display:none" class="btn btn-default">开始上传</button>
 				</div>
 			</div>
 		</div>
@@ -160,7 +160,7 @@ $(function() {
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$('#ctlBtn').trigger("click");
+			$('#upload_but').trigger("click");
 			return false;
 		},
 		rules:{

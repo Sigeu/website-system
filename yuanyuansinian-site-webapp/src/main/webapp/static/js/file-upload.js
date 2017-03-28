@@ -86,18 +86,15 @@ jQuery(function() {
 	});
 });*/
 
-// 图片上传demo
+// 图片上传
 jQuery(function() {
-	var $ = jQuery, $list = $('#fileList'), $btn = $('#ctlBtn'),state = 'pending',
+	var $ = jQuery, $list = $('#fileList'), $btn = $('#upload_but'),state = 'pending', 
 	// 优化retina, 在retina下这个值是2
 	ratio = window.devicePixelRatio || 1,
 
 	// 缩略图大小
-	thumbnailWidth = 100 * ratio, thumbnailHeight = 100 * ratio,
-
-	// Web Uploader实例
-	uploader;
-
+	thumbnailWidth = 100 * ratio, thumbnailHeight = 100 * ratio,uploader;
+	
 	// 初始化Web Uploader
 	uploader = WebUploader.create({
 
@@ -126,9 +123,9 @@ jQuery(function() {
 		 duplicate : true,
 		 disableGlobalDnd : true,
 		 fileVal : 'img_index',
-		 formData : {
+		 /*formData : {
 			 'model_id' : model_id
-		 },
+		 },*/
          //fileNumLimit: 1,
          //fileSizeLimit: 200 * 1024 * 1024,    // 200 M
          fileSingleSizeLimit: 5 * 1024 * 1024    // 5 M
@@ -140,7 +137,7 @@ jQuery(function() {
 		//先清空(只是清空了缩略图，但是之前的图片还是会上传)
 		$list.empty();
 		//移除之前所有文件
-		uploader.removeFile(uploader.getFiles());
+		//uploader.removeFile(uploader.getFiles());
 		var $li = $('<div id="' + file.id + '" class="file-item thumbnail">'
 				+ '<img>' + '<div class="info">' + file.name + '</div>'
 				+ '</div>'), $img = $li.find('img');
@@ -215,16 +212,16 @@ jQuery(function() {
 		if (state === 'uploading') {
 			uploader.stop();
 		} else {
-			var options = {
+			var form_options = {
 				success : function(data) {
 					uploader.options.formData.model_id = data.hall_id;
 					uploader.upload();
 				}
 			};
 			// 准备form表单
-			$("#form_").ajaxForm(options);
+			$("#form_").ajaxForm(form_options);
 			// 表单提交     
-			$("#form_").ajaxSubmit(options);
+			$("#form_").ajaxSubmit(form_options);
 		}
 	});
 	//提示上传状态

@@ -83,27 +83,7 @@ public class CarouselService implements ICarouselService {
 	 */
 	@Override
 	public int addCarousel(HttpServletRequest request,Carousel carousel) {
-		try {
-			//创建一个通用的多部分解析器  
-	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
-	        //判断 request 是否有文件上传,即多部分请求  
-	        if(multipartResolver.isMultipart(request)){  
-	            //转换成多部分request    
-	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
-	            //封面照片
-	            MultipartFile img_index = multiRequest.getFile("img");
-	            if(null != img_index){
-	            	byte[] imgFile = img_index.getBytes();
-					// 保存照片
-	            	carousel.setImg(imgFile);
-	            }
-	        }
-	        //保存
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		//创建时间
+		//
 		return carouselMapper.insert(carousel);
 	}
 	
@@ -143,7 +123,7 @@ public class CarouselService implements ICarouselService {
 	            //设置ID
 	            carousel.setId(Integer.parseInt(id));
 	            //封面照片
-	            MultipartFile img_index = multiRequest.getFile("img");
+	            MultipartFile img_index = multiRequest.getFile("img_carousel");
 	            if(null != img_index){
 	            	byte[] imgFile = img_index.getBytes();
 					// 保存照片

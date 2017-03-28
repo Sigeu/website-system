@@ -38,10 +38,10 @@ jQuery(function() {
 		},
 		 duplicate : true,
 		 disableGlobalDnd : true,
-		 fileVal : 'img',
-		 formData : {
+		 fileVal : 'img_carousel',
+		 /*formData : {
 			 'model_id' : model_id
-		 },
+		 },*/
          //fileNumLimit: 1,
          //fileSizeLimit: 200 * 1024 * 1024,    // 200 M
          fileSingleSizeLimit: 5 * 1024 * 1024    // 5 M
@@ -53,7 +53,7 @@ jQuery(function() {
 		//先清空(只是清空了缩略图，但是之前的图片还是会上传)
 		$list.empty();
 		//移除之前所有文件
-		uploader.removeFile(uploader.getFiles());
+		//uploader.removeFile(uploader.getFiles());
 		var $li = $('<div id="' + file.id + '" class="file-item thumbnail">'
 				+ '<img>' + '<div class="info">' + file.name + '</div>'
 				+ '</div>'), $img = $li.find('img');
@@ -131,7 +131,6 @@ jQuery(function() {
 			var options = {
 				success : function(data) {
 					uploader.options.formData.model_id = data.carousel_id;
-					
 					uploader.upload();
 				}
 			};

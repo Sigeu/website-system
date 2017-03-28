@@ -216,7 +216,7 @@
   <update id="uploadCarouselImg" parameterType="com.yuanyuansinian.model.carousel.Carousel">
     update ujn_carousel
     <set>
-      <if test="img_index != null">
+      <if test="img != null">
         img = #{img,jdbcType=LONGVARBINARY},
       </if>
     </set>

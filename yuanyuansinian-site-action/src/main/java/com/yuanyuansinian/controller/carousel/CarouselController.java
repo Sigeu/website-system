@@ -235,6 +235,7 @@ public class CarouselController extends MyBaseController {
 	 * @param request
 	 * @param response
 	 */
+	@RequestMapping("/queryImgById")
 	public void queryImgById(HttpServletRequest request,
 			HttpServletResponse response) {
 		try {

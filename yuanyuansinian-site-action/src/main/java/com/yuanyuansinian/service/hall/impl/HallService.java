@@ -129,27 +129,8 @@ public class HallService implements IHallService {
 
 	@Override
 	public void addSingleHall(HttpServletRequest request, HallWithBLOBs hall) {
-		try {
-			//创建一个通用的多部分解析器  
-	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
-	        //判断 request 是否有文件上传,即多部分请求  
-	        if(multipartResolver.isMultipart(request)){  
-	            //转换成多部分request    
-	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
-	            //封面照片
-	            MultipartFile img_index = multiRequest.getFile("img_index");
-	            if(null != img_index){
-	            	byte[] imgFile = img_index.getBytes();
-					// 保存照片
-	            	hall.setImg_index(imgFile);
-	            }
-	        }
-	        //保存
-	        hallMapper.insert(hall);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		//保存
+        hallMapper.insert(hall);
 	}
 
 	@Override
