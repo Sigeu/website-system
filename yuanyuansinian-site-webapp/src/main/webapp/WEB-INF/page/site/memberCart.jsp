@@ -16,26 +16,7 @@
 		<img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img" />
 	</div>
 	<div class="col-sm-9">
-		<div class="web-info">
-			<h3>${memberUser.member_name}</h3>
-			<p class="hidden-sm">注册时间：${memberUser.create_date}</p>
-			<p class="hidden-sm">你已经在缘园思念网注册${memberUser.days }天了，感谢您的支持</p>
-		</div>
-		<div class="true-info">
-			<ul>
-				<li class="pull-left"><span>姓名：</span>${memberUser.real_name}</li>
-				<li class="pull-left"><span>性别：</span>${memberUser.sex_name}</li>
-				<li class="pull-left"><span>联系方式：</span>${memberUser.phone}&nbsp;|&nbsp;${memberUser.email}</li>
-				<li class="pull-left"><span>居住地：</span>${memberUser.addr_old}</li>
-				<li class="pull-left"><span>现住地：</span>${memberUser.addr_now}</li>
-			</ul>
-		</div>
-		<div class="clearfix"></div>
-		<div class="count-info">
-			<div class="product-price pull-left"><span class="btn-label pull-left">账户余额：</span><h2 class="pull-left"><small>￥</small>${memberUser.balance}</h2></div>
-			<button class="btn btn-danger pull-left" id="recharge_but">立刻充值</button>
-			<button class="btn btn-warning pull-left" id="create_hall_but">创建纪念馆</button>
-		</div>
+		<%@ include file="memberInfo.jsp"%>
 	</div>
 </div>
 
@@ -67,8 +48,8 @@
 				</div>
 				<div class="side-nav-body">
 					<ul>
-						<li class="active"><a href="###">我的购物车</a></li>
-						<li><a href="###">我的创建</a></li>
+						<li class="active"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCart">我的购物车</a></li>
+						<li><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCreate">我的创建</a></li>
 					</ul>
 				</div>
 			</div>
@@ -80,7 +61,7 @@
 					<li role="presentation"><a href="#paid" aria-controls="profile" role="tab" data-toggle="tab">已付款商品</a></li>
 				</ul>
 				<div class="btn-tools pull-right">
-					<button class="btn btn-danger">点击结算</button></li>
+					<button class="btn btn-danger" id="settlement_but">点击结算</button></li>
 				</div>
 			</div>
 			<div class="clearfix"></div>

@@ -19,27 +19,7 @@
 		<%@ include file="memberInfo.jsp"%>
 	</div>
 </div>
-
-<%-- <div class="container con-tab all-bg miss-con">		
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="side-nav">
-				<div class="pro-header">
-					<h4>我的思念</h4>
-				</div>
-				<div class="side-nav-body">
-					<ul>
-						<li><a href="###">我的购物车</a></li>
-						<li class="active"><a href="###">我的创建</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<iframe src="${pageContext.request.contextPath}/sinian/hall/hallController/toHallListByMember" name="my_create" id="my_create" 
-						scrolling="no" frameborder="0" width="100%"></iframe>
-	</div>
-</div> --%>
-	<div class="container con-tab all-bg miss-con">		
+<div class="container con-tab all-bg miss-con">		
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="side-nav">

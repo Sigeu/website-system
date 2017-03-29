@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.yuanyuansinian.model.column.Column;
-import com.yuanyuansinian.model.config.Config;
 import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.model.content.Content;
 import com.yuanyuansinian.model.content.ContentWithBLOBs;
@@ -730,14 +729,36 @@ public class IndexController extends MyBaseController {
 		
 	}
 	
-	//临时的
-	@RequestMapping("/toMemberCenterCart")
-	public String toMemberCenterCart(HttpServletRequest request, Model model) {
+	//购物车
+	@RequestMapping("/toMemberCart")
+	public String toMemberCart(HttpServletRequest request, Model model) {
 		
 		
-		return "site/memberCenterCart";
+		return "site/memberCart";
 	}
 	
+	
+	//我的创建
+	@RequestMapping("/toMemberCreate")
+	public String toMemberCreate(HttpServletRequest request, Model model) {
+		
+		
+		return "site/memberCreate";
+	}
+	/**
+	 * 
+	 * @Description: 会员信息页面，可修改密码，修改信息 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toMemberEdit")
+	public String toMemberEdit(HttpServletRequest request, Model model) {
+		
+		
+		return "site/memberEdit";
+	}
+		
 	/**
 	 * 
 	 * @Description:  我的思念内容页
