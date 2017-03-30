@@ -71,4 +71,5 @@ public interface IHallService {
 	void uploadSingleHallImg(HttpServletRequest request, String hall_id);
 
 
+
 }

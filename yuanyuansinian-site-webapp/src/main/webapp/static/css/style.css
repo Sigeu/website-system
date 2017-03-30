@@ -178,6 +178,20 @@ p.museum-des {position:relative; top:8px}
 .search-pro p {width:100%; max-height:40px; line-height:20px; overflow:hidden; color:#666}
 .search-pro p.search-date {color:#999}
 
+/* 双人馆 double-box*/
+.double-box > a > img {padding:0px}
+.double-box > a > img:first-child {margin-left:5px}
+.double-box > a > img:last-child {margin-right:5px}
+.all-info.img-list img.double-img {width:47%; height:100%}
+.all-info .double-box .caption {padding-left:5px; padding-right:5px}
+.all-info .double-box .caption h5 {margin-right:10px}
+.incense-double-img {margin-top:10px; margin-bottom:10px; width:47%; height:100%}
+.new-body .new-pro:first-child {margin-bottom:30px}
+
+/* 纪念馆贡品列表页 */
+.incense-product-list > div {margin-bottom:10px}
+.incense-product-list .thumbnail h5 {margin-top:2px; width:75%; float:left; font-size:14px}
+
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
 	.navbar-logo {padding:0}
@@ -264,6 +278,16 @@ p.museum-des {position:relative; top:8px}
 	.new-add {margin-top:90px}
 	.new-add button {margin-top:30px; width:35%}
 	.register-con {margin-top:150px}
+	.search-index {margin-top:50px}
+	
+	/* 双人馆 double-box*/
+	.all-info.img-list img.double-img {width:162px; height:162px}
+	.incense-double-img {margin-top:0px; position:absolute; top:130px; left:230px; width:119px; height:119px}
+	.incense-double-imgsec {left:400px}
+	.new-body .new-pro:first-child {margin-bottom:40px}
+	
+	/* 纪念馆贡品列表页 */
+	.incense-product-list .thumbnail h5 {margin-top:10px; width:55%}
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -326,6 +350,14 @@ p.museum-des {position:relative; top:8px}
 	.new-add {margin-top:100px}
 	.new-add button {width:25%}
 	.register-con {margin-top:90px}
+	
+	/* 双人馆 double-box*/
+	.all-info.img-list img.double-img {width:217px; height:217px}
+	.incense-double-img {position:absolute; top:170px; left:295px; width:153px; height:153px}
+	.incense-double-imgsec {left:520px}
+	.new-body .new-pro:first-child {margin-bottom:50px}
+	
+	
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
@@ -374,9 +406,16 @@ p.museum-des {position:relative; top:8px}
 	.anthology-body {padding-top:0px; padding-bottom:0px}
 	.incense {margin-bottom:50px}
 	.incense-img {top:192px; left:492px; width:185px; height:185px}
+	.incense-double-img {}
 	.incense-btn {left:472px; bottom:25px}
 	.contact-left {padding-left:50px}
 	.contact-left p {margin-bottom:20px}
 	.new-add {margin-top:120px}
 	.register-con {margin-top:120px}
+	
+	/* 双人馆 double-box*/
+	.all-info.img-list img.double-img {width:265px; height:265px}
+	.incense-double-img {position:absolute; top:204px; left:358px; width:185px; height:185px}
+	.incense-double-imgsec {left:624px}
+
 }

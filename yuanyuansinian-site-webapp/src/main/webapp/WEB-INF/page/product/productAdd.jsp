@@ -18,12 +18,22 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/sinian/product/productController/addProduct" method="post" class="form form-horizontal" id="form-product-add">
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>大类：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select class="select" id="big_type" name="big_type">
+					<option value="">--请选择--</option>  
+                    	<option value="1">商城商品</option>
+                    	<option value="2">纪念馆商品</option>  
+				</select>
+				</span> </div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" id="type" name="type">
 					<option value="0">--请选择--</option>  
-                    <c:forEach items="${typeSelectList}" var="column">  
-                    	<option value=""></option>  
+                    <c:forEach items="${codeList}" var="code">  
+                    	<option value="${code.code_value}">${code.code_name}</option>  
                     </c:forEach>  
 				</select>
 				</span> </div>
@@ -47,13 +57,13 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>成本价格：</label>
+			<label class="form-label col-xs-4 col-sm-2">成本价格：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="成本价格" id="price_cost" name="price_cost">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>最低价格：</label>
+			<label class="form-label col-xs-4 col-sm-2">最低价格：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="最低价格" id="price_min" name="price_min">
 			</div>
@@ -65,7 +75,7 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
+			<label class="form-label col-xs-4 col-sm-2">关键词：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="关键词，多个以空格隔开" id="keywords" name="keywords">
 			</div>
@@ -80,14 +90,12 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+				<input type="text" class="input-text" value="0" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">产品封面：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<!-- <input type="text" class="input-text" value="" placeholder="产品图片" id="img_index" name="img_index"> -->
-				<!--dom结构部分-->
 				<div id="uploader-demo">
 				    <!--用来存放item-->
 				    <div id="fileList" class="uploader-list"></div>
@@ -139,6 +147,16 @@ $(function() {
 			title:{
 				required:true,
 				maxlength:100
+			},
+			big_type:{
+				required:true
+			},
+			type:{
+				required:true
+			},
+			units:{
+				required:true,
+				maxlength:20
 			},
 			no_order:{
 				digits:true

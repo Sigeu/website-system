@@ -12,14 +12,14 @@
 		<div class="navbar-header">
 			<a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/images/logo.png" class="img-responsive" alt="缘园思念网"></a>
 		</div>
-		<form  id="search_form" class="navbar-form navbar-right" role="search" action="#" method="post">
+		<!-- <form  id="search_form" class="navbar-form navbar-right" role="search" action="#" method="post">
 			<div class="input-group">
 				<input type="text" class="form-control" id="search_text">
 				<span class="input-group-btn">
 					<button class="btn btn-default" type="button" id="search_but"><span class="glyphicon glyphicon-search" style="font-size:15px; color:#aeafb4"></span></button>
 				</span>
 			</div>
-		</form>
+		</form> -->
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>

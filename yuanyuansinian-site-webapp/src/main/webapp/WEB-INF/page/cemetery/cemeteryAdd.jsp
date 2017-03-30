@@ -12,61 +12,50 @@
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增产品
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/product/productController/addProduct" method="post" class="form form-horizontal" id="form-product-add">
+	<form action="${pageContext.request.contextPath}/sinian/cemetery/cemeteryController/addCemetery" method="post" class="form form-horizontal" id="form_">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>墓地名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="墓地名称" id="title" name="title">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>别名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="别名" id="alias" name="alias">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>墓地地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="墓地地址" id="address" name="address">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>价格：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="价格" id="price" name="price">
+			</div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="type" name="type">
-					<option value="0">--请选择--</option>  
-                    <c:forEach items="${typeSelectList}" var="column">  
-                    	<option value=""></option>  
-                    </c:forEach>  
-				</select>
-				</span> </div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="产品名称" id="name" name="name">
+				<input type="text" class="input-text" value="" placeholder="分类" id="cemetery_type" name="cemetery_type">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>简短标题：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标签：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="简短标题" id="name_short" name="name_short">
+				<input type="text" class="input-text" value="" placeholder="标签，多个标签以逗号隔开" id="tags" name="tags">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>销售价格：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="销售价格" id="price_site" name="price_site">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>成本价格：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="成本价格" id="price_cost" name="price_cost">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>最低价格：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="最低价格" id="price_min" name="price_min">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>计算单位：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="计算单位" id="units" name="units">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="关键词，多个以空格隔开" id="keywords" name="keywords">
+			<label class="form-label col-xs-4 col-sm-2">详细内容：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<script id="editor" name="content" type="text/plain" style="width:100%;height:400px;"></script> 
 			</div>
 		</div>
 		<div class="row cl">
@@ -74,24 +63,6 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">产品图片：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="产品图片" id="pic" name="pic">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">详细内容：</label>
-			<div class="formControls col-xs-8 col-sm-9"> 
-				<script id="editor" name="content" type="text/plain" style="width:100%;height:400px;"></script> 
 			</div>
 		</div>
 		</br>
@@ -123,7 +94,7 @@ $(function(){
 //表单提交，可上传文件
 $(function() {
 	//表单验证
-	$("#form-product-add").validate({
+	$("#form_").validate({
 		rules:{
 			title:{
 				required:true,
@@ -150,9 +121,9 @@ $(function() {
 					}
 				};
 				// 准备form表单
-				$("#form-product-add").ajaxForm(options);
+				$("#form_").ajaxForm(options);
 				// 表单提交     
-				$("#form-product-add").ajaxSubmit(options);
+				$("#form_").ajaxSubmit(options);
 				
 				return false;
 		}

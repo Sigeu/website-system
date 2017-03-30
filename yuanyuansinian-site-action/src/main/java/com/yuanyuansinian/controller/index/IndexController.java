@@ -27,6 +27,7 @@ import com.yuanyuansinian.model.hall.Hall;
 import com.yuanyuansinian.model.link.Link;
 import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.oration.Oration;
+import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
@@ -37,6 +38,7 @@ import com.yuanyuansinian.service.content.IContentService;
 import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.link.ILinkService;
 import com.yuanyuansinian.service.oration.IOrationService;
+import com.yuanyuansinian.service.product.IProductService;
 
 /**
  * @Description: 主页管理
@@ -67,9 +69,13 @@ public class IndexController extends MyBaseController {
 	@Resource
 	private IHallService hallService;
 	
-	// 纪念馆
+	// 
 	@Resource
 	private IOrationService orationService;
+	
+	// 产品Service
+	@Resource
+	private IProductService productService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -745,6 +751,73 @@ public class IndexController extends MyBaseController {
 		
 		return "site/memberCreate";
 	}
+	
+	/**
+	 * 
+	 * @Description: 查看纪念馆 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toShowHall")
+	public String toShowHall(HttpServletRequest request, Model model) {
+		String returnPage = "site/hallSingleDetail";
+		//id
+		String id = request.getParameter("id")==null? "0":request.getParameter("id");
+		
+		Hall hall = hallService.queryHallById(Integer.parseInt(id));
+		
+		model.addAttribute("hall", hall);
+		if(null != hall){
+			if(IMySystemConstants.VALUE_1.equals(hall.getHall_type())){
+				returnPage = "site/hallSingleDetail";
+			}else{
+				returnPage = "site/hallDoubleDetail";
+			}
+		}
+		 return returnPage;
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到纪念馆选择祭品页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toChooseProduct")
+	public String toChooseProduct(HttpServletRequest request, Model model) {
+		//type
+		String type = request.getParameter("type")==null? "":request.getParameter("type");
+		Product productParam = new Product();
+		productParam.setType(type);
+		List<Product> productList = productService.queryProductListByType(productParam);
+		
+		model.addAttribute("productList", productList);
+		
+		 return "site/hallChooseProduct";
+	}
+	
+	/**
+	 * 
+	 * @Description: 纪念馆灵堂页面，包括选择的商品 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toShowHallAndProduct")
+	public String toShowHallAndProduct(HttpServletRequest request, Model model) {
+		//type
+		/*String type = request.getParameter("type")==null? "":request.getParameter("type");
+		Product productParam = new Product();
+		productParam.setType(type);
+		List<Product> productList = productService.queryProductListByType(productParam);
+		
+		model.addAttribute("productList", productList);*/
+		
+		 return "site/hallSingleDetailAndProduct";
+	}
+	
 	/**
 	 * 
 	 * @Description: 会员信息页面，可修改密码，修改信息 

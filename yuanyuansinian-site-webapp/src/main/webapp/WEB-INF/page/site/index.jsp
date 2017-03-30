@@ -24,7 +24,7 @@
 				<div class="row">
 					<div class="col-sm-6 col-md-4">
 						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
+							<a href="###" onclick="toShowHall('32');"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
 							<div class="caption">
 								<a href="###"><h5>天束幽花</h5></a>
 								<p><strong>在世：</strong>2016-2016</p>
@@ -148,7 +148,8 @@
 		
 		<div class="col-sm-4 sidebar">
 			<%@ include file="siteLogin.jsp"%>
-			
+			<br/>
+			<%@ include file="siteSearch.jsp"%>
 			<div class="notice">
 				<%@ include file="notice.jsp"%>
 			</div>
@@ -171,6 +172,8 @@
 	src="${pageContext.request.contextPath}/static/js/carousel.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/notice.js"></script>
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/js/index.js"></script>
 <script type="text/javascript">
 	var activeFlag = '首页';
 	$('#index_li').addClass('active');

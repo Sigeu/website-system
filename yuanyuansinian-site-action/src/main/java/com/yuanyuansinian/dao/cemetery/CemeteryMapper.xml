@@ -302,4 +302,13 @@
       cemetery_type = #{cemetery_type,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 列表查询 -->
+  <select id="queryCemeteryList" parameterType="com.yuanyuansinian.model.cemetery.Cemetery" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_cemetery
+  </select>
 </mapper>

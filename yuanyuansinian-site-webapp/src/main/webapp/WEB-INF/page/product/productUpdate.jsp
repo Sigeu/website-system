@@ -5,24 +5,26 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
+<link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 //window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
 </script>
-<title>内容信息表页</title>
+<title>产品新增表页</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>更新内容
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增产品
 		</nav>
 	<div class="page-container">
-		<form action="${pageContext.request.contextPath}/sinian/product/productController/addProduct" method="post" class="form form-horizontal" id="form-product-add">
+	<form action="${pageContext.request.contextPath}/sinian/product/productController/updateProduct" method="post" class="form form-horizontal" id="form_">
+		<input type="hidden" name="id" id="id" value="${product.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" id="type" name="type">
 					<option value="0">--请选择--</option>  
-                    <c:forEach items="${typeSelectList}" var="column">  
-                    	<option value=""></option>  
+                    <c:forEach items="${codeList}" var="code">  
+                    	<option value="${code.code_value}">${code.code_name}</option>  
                     </c:forEach>  
 				</select>
 				</span> </div>
@@ -30,63 +32,61 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.name }" placeholder="产品名称" id="name" name="name">
+				<input type="text" class="input-text" value="${product.name}" placeholder="产品名称" id="name" name="name">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>简短标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.name_short }" placeholder="简短标题" id="name_short" name="name_short">
+				<input type="text" class="input-text" value="${product.name_short}" placeholder="简短标题" id="name_short" name="name_short">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>销售价格：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.price_site }" placeholder="销售价格" id="price_site" name="price_site">
+				<input type="text" class="input-text" value="${product.price_site}" placeholder="销售价格" id="price_site" name="price_site">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>成本价格：</label>
+			<label class="form-label col-xs-4 col-sm-2">成本价格：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.price_cost }" placeholder="成本价格" id="price_cost" name="price_cost">
+				<input type="text" class="input-text" value="${product.price_cost}" placeholder="成本价格" id="price_cost" name="price_cost">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>最低价格：</label>
+			<label class="form-label col-xs-4 col-sm-2">最低价格：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.price_min }" placeholder="最低价格" id="price_min" name="price_min">
+				<input type="text" class="input-text" value="${product.price_min}" placeholder="最低价格" id="price_min" name="price_min">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>计算单位：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.units }" placeholder="计算单位" id="units" name="units">
+				<input type="text" class="input-text" value="${product.units}" placeholder="计算单位" id="units" name="units">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
+			<label class="form-label col-xs-4 col-sm-2">关键词：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.keywords }" placeholder="关键词，多个以空格隔开" id="keywords" name="keywords">
+				<input type="text" class="input-text" value="${product.keywords}" placeholder="关键词，多个以空格隔开" id="keywords" name="keywords">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${product.description }</textarea>
+				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${product.description}</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.no_order }" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+				<input type="text" class="input-text" value="${product.no_order}" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">产品封面：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<!-- <input type="text" class="input-text" value="" placeholder="产品图片" id="img_index" name="img_index"> -->
-				<!--dom结构部分-->
 				<div id="uploader-demo">
 				    <!--用来存放item-->
 				    <div id="fileList" class="uploader-list"></div>
@@ -111,40 +111,48 @@
 	</form>
 </div>
 <%@ include file="../../../common/footer_form.jsp"%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/file-upload.js"> </script>
 <script type="text/javascript">
+var contextPath = '${pageContext.request.contextPath}';
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
 	
+	//设置下拉选中的值
+	$('#type').val('${product.type}');
+	ue.ready(function() {//编辑器初始化完成再赋值  
+    	ue.setContent('${product.content}');  //赋值给UEditor  
+    });
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭
 		return false;
 	});
-	//赋值
-	ue.ready(function() {//编辑器初始化完成再赋值  
-    	ue.setContent('${product.content }');  //赋值给UEditor  
-    });  
+	
 });
 
 
 //表单提交，可上传文件
 $(function() {
 	//表单验证
-	$("#form-content-update").validate({
+	$("#form_").validate({
 		rules:{
 			title:{
 				required:true,
 				maxlength:100
 			},
+			type:{
+				required:true
+			},
+			units:{
+				required:true,
+				maxlength:20
+			},
 			no_order:{
 				digits:true
-			},
-			links:{
-				url:true
 			}
 		},
 		onkeyup:false,
@@ -164,9 +172,9 @@ $(function() {
 					}
 				};
 				// 准备form表单
-				$("#form-content-update").ajaxForm(options);
+				$("#form_").ajaxForm(options);
 				// 表单提交     
-				$("#form-content-update").ajaxSubmit(options);
+				$("#form_").ajaxSubmit(options);
 				
 				return false;
 		}

@@ -30,7 +30,9 @@ import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.product.IProductService;
 
+import framework.system.model.Code;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.service.ICodeService;
 
 /**
  * @Description: 产品管理
@@ -47,10 +49,13 @@ public class ProductController extends MyBaseController {
 	
 	@Resource
 	private IColumnService columnService;
+	
+	@Resource
+	private ICodeService codeService;
 
 	/**
 	 * 
-	 * @Description: 跳转到分页列表
+	 * @Description: 跳转到商城产品分页列表
 	 * @param request
 	 * @param model
 	 * @return
@@ -59,6 +64,19 @@ public class ProductController extends MyBaseController {
 	public String toProductList(HttpServletRequest request, Model model) {
 
 		return "product/productList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到礼品列表 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toProductListForHall")
+	public String toProductListForHall(HttpServletRequest request, Model model) {
+
+		return "product/productListForHall";
 	}
 	
 	/**
@@ -84,7 +102,9 @@ public class ProductController extends MyBaseController {
 	@RequestMapping("/toProductAdd")
 	public String toProductAdd(HttpServletRequest request, Model model) {
 		
+		List<Code> codeList = codeService.queryCodeListByType("product_type");
 		
+		model.addAttribute("codeList", codeList);
 		return "product/productAdd";
 	}
 
@@ -101,7 +121,9 @@ public class ProductController extends MyBaseController {
 		Product product = this.productService.queryProductById(productId);
 		model.addAttribute("product", product);
 		
+		List<Code> codeList = codeService.queryCodeListByType("product_type");
 		
+		model.addAttribute("codeList", codeList);
 		return "product/productUpdate";
 	}
 	
@@ -134,6 +156,8 @@ public class ProductController extends MyBaseController {
 	@RequestMapping("/queryProductList")
 	public DataTablePageUtil<Product> queryProductList(HttpServletRequest request,
 			HttpServletResponse response, Product product) {
+		//商城产品
+		product.setBig_type(IMySystemConstants.VALUE_1);
 		// 使用DataTables的属性接收分页数据
 		DataTablePageUtil<Product> dataTable = null;
 		try {
@@ -161,6 +185,46 @@ public class ProductController extends MyBaseController {
 		return dataTable;
 	}
 	
+	/**
+	 * 
+	 * @Description: 礼品分页列表
+	 * @param request
+	 * @param response
+	 * @param product
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryProductListForHall")
+	public DataTablePageUtil<Product> queryProductListForHall(HttpServletRequest request,
+			HttpServletResponse response, Product product) {
+		//纪念馆产品
+		product.setBig_type(IMySystemConstants.VALUE_2);
+		// 使用DataTables的属性接收分页数据
+		DataTablePageUtil<Product> dataTable = null;
+		try {
+			// 使用DataTables的属性接收分页数据
+			dataTable = new DataTablePageUtil<Product>(request);
+			// 开始分页：PageHelper会处理接下来的第一个查询
+			PageHelper.startPage(dataTable.getPage_num(),
+					dataTable.getPage_size());
+			// 还是使用List，方便后期用到
+			List<Product> productList = this.productService.queryProductList(product);
+			// 用PageInfo对结果进行包装
+			PageInfo<Product> pageInfo = new PageInfo<Product>(productList);
+
+			// 封装数据给DataTables
+			dataTable.setDraw(dataTable.getDraw());
+			dataTable.setData(pageInfo.getList());
+			dataTable.setRecordsTotal((int) pageInfo.getTotal());
+			dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return dataTable;
+	}
 	/**
 	 * 
 	 * @Description: 产品回收站

@@ -130,6 +130,9 @@ public class Product {
      */
     private String type;
     private String type_name;
+    private String big_type;
+    private String big_type_name;
+    
     
     private int no_order;
 
@@ -507,5 +510,21 @@ public class Product {
 
 	public void setSales(Integer sales) {
 		this.sales = sales;
+	}
+
+	public String getBig_type() {
+		return big_type;
+	}
+
+	public void setBig_type(String big_type) {
+		this.big_type = big_type;
+	}
+
+	public String getBig_type_name() {
+		return big_type_name;
+	}
+
+	public void setBig_type_name(String big_type_name) {
+		this.big_type_name = big_type_name;
 	}
 }

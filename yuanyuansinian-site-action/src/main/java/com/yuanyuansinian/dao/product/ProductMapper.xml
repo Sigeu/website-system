@@ -24,6 +24,8 @@
     <result column="pic" jdbcType="VARCHAR" property="pic" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="type_name" jdbcType="VARCHAR" property="type_name" />
+     <result column="big_type" jdbcType="VARCHAR" property="big_type" />
+    <result column="big_type_name" jdbcType="VARCHAR" property="big_type_name" />
     <result column="no_order" jdbcType="INTEGER" property="no_order" />
     <result column="sales" jdbcType="INTEGER" property="sales" />
   </resultMap>
@@ -58,6 +60,14 @@
 	  when type = 4 then '分类4'  
 	  else ''  
 	end as type_name,
+	big_type,
+	 case   
+	  when big_type = 1 then '大分类1'  
+	  when big_type = 2 then '大分类2'
+	  when big_type = 3 then '大分类3'  
+	  when big_type = 4 then '大分类4'  
+	  else ''  
+	end as big_type_name,
 	no_order,
 	sales
   </sql>
@@ -104,13 +114,13 @@
       price_site, price_cost, price_min, 
       units, description, status, 
       create_date, keywords, pic, 
-      type, img_index, content,no_order,sales
+      type, img_index, content,no_order,sales,big_type
       )
     values (#{product_no,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{name_short,jdbcType=VARCHAR}, #{price_market,jdbcType=DOUBLE}, 
       #{price_site,jdbcType=DOUBLE}, #{price_cost,jdbcType=DOUBLE}, #{price_min,jdbcType=DOUBLE}, 
       #{units,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{create_date,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{img_index,jdbcType=LONGVARBINARY}, #{content,jdbcType=LONGVARCHAR},#{no_order,jdbcType=INTEGER},#{sales,jdbcType=INTEGER}
+      #{type,jdbcType=VARCHAR}, #{img_index,jdbcType=LONGVARBINARY}, #{content,jdbcType=LONGVARCHAR},#{no_order,jdbcType=INTEGER},#{sales,jdbcType=INTEGER},#{big_type,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yuanyuansinian.model.product.ProductWithBLOBs">
@@ -178,6 +188,9 @@
       <if test="sales != null">
         sales,
       </if>
+      <if test="big_type != null">
+        big_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="product_no != null">
@@ -233,6 +246,9 @@
       </if>
       <if test="sales != null">
         #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="big_type != null">
+        #{big_type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -298,6 +314,9 @@
       <if test="sales != null">
         sales = #{sales,jdbcType=INTEGER},
       </if>
+      <if test="big_type != null">
+        big_type = #{big_type,jdbcType=VARCHAR},
+      </if>
     </set>
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -325,7 +344,8 @@
       img_index = #{img_index,jdbcType=LONGVARBINARY},
       content = #{content,jdbcType=LONGVARCHAR},
       no_order = #{no_order,jdbcType=INTEGER},
-      sales = #{sales,jdbcType=INTEGER}
+      sales = #{sales,jdbcType=INTEGER},
+      big_type = #{big_type,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yuanyuansinian.model.product.Product">
@@ -350,7 +370,8 @@
       pic = #{pic,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       no_order = #{no_order,jdbcType=INTEGER},
-      sales = #{sales,jdbcType=INTEGER}
+      sales = #{sales,jdbcType=INTEGER},
+      big_type = #{big_type,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -361,5 +382,15 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_product
+     where big_type = #{big_type,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 列表 -->
+  <select id="queryProductListByType" parameterType="com.yuanyuansinian.model.product.Product" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_product where type = #{type,jdbcType=VARCHAR}
   </select>
 </mapper>
