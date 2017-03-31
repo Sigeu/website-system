@@ -34,7 +34,7 @@
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
+							<a href="###" onclick="toShowHall('32');"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 							<div class="caption">
 								<a href="###"><h5>天束幽花</h5></a>
 								<p><strong>在世：</strong>2016-2016</p>
@@ -44,37 +44,7 @@
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-							<div class="caption">
-								<a href="###"><h5>天束幽花</h5></a>
-								<p><strong>在世：</strong>2016-2016</p>
-								<p class="thumbnail-des text-justify"><strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-							<div class="caption">
-								<a href="###"><h5>天束幽花</h5></a>
-								<p><strong>在世：</strong>2016-2016</p>
-								<p class="thumbnail-des text-justify"><strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-							<div class="caption">
-								<a href="###"><h5>天束幽花</h5></a>
-								<p><strong>在世：</strong>2016-2016</p>
-								<p class="thumbnail-des text-justify"><strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
+							<a href="###" onclick="toShowHall('32');"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
 							<div class="caption">
 								<a href="###"><h5>天束幽花</h5></a>
 								<p><strong>在世：</strong>2016-2016</p>
@@ -89,13 +59,16 @@
 				<div class="pro-header">
 					<h4 class="pro-title pull-left">缘园资讯</h4>
 					<ul class="pull-right pro-header-tool hidden-xs">
-						<li class="pull-left"><a href="###">宗教文化</a></li>
+					<c:forEach items="${columnChildList}" var="columnChild"> 
+							<li class="pull-left"><a href="###" onclick="toInformationList('${columnChild.id }')">${columnChild.name }</a></li>
+					</c:forEach>
+						<!-- <li class="pull-left"><a href="###">宗教文化</a></li>
 						<li class="pull-left"><a href="###">民间习俗</a></li>
 						<li class="pull-left"><a href="###">祭祀礼仪</a></li>
 						<li class="pull-left"><a href="###">孝道文化</a></li>
 						<li class="pull-left"><a href="###">墓志铭</a></li>
 						<li class="pull-left"><a href="###">祭文</a></li>
-						<li class="pull-left"><a href="###">悼文</a></li>
+						<li class="pull-left"><a href="###">悼文</a></li> -->
 					</ul>
 				</div>
 				<div class="row media">
@@ -172,8 +145,10 @@
 	src="${pageContext.request.contextPath}/static/js/carousel.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/notice.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/index.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/js/information.js"></script>
 <script type="text/javascript">
 	var activeFlag = '首页';
 	$('#index_li').addClass('active');

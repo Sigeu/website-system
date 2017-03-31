@@ -141,6 +141,14 @@ public class IndexController extends MyBaseController {
 			//List<Column> columnList2 = new ArrayList<Column>(columnLinkedList2);
 			
 			
+			//
+			String columnId = "107";
+			//子栏目
+			List<Column> columnChildList = columnService.queryChildColumnListByColumnId(columnId);
+			
+			//咨询子栏目
+			model.addAttribute("columnChildList", columnChildList);
+			
 			//model.addAttribute("config", config);
 			//model.addAttribute("contact", contact);
 			model.addAttribute("linkList", linkList);
