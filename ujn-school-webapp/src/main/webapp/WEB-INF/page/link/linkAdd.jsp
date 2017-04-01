@@ -11,7 +11,7 @@
 			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增友情链接
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/link/controller/linkController/addLink" method="post" class="form form-horizontal" id="form-link-add">
+	<form action="${pageContext.request.contextPath}/link/controller/linkController/addLink" method="post" class="form form-horizontal" id="form_">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -55,7 +55,7 @@
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="submit_but" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button id="submit_but" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -75,29 +75,50 @@ $(function(){
 	
 });
 
-
 //表单提交，可上传文件
 $(function() {
-	var options = {
-		success : function(data) {
-			layer.alert(data.result_message, {
-			  closeBtn: 1
-			}, function(){
-				//父页面刷新
-				parent.reloadPage();
-				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-				parent.layer.close(index); //再执行关闭
-			});
+	//表单验证
+	$("#form_").validate({
+		rules:{
+			web_name:{
+				required:true,
+				maxlength:100
+			},
+			order_no:{
+				digits:true
+			},
+			web_url:{
+				required:true,
+				url:true
+			},
+			nav:{
+				required:true
+			}
+		},
+		onkeyup:false,
+		focusCleanup:false,
+		success:"valid",
+		submitHandler:function(form){
+			var options = {
+					success : function(data) {
+						layer.alert(data.result_message, {
+						  closeBtn: 1
+						}, function(){
+							//父页面刷新
+							parent.reloadPage();
+							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+							parent.layer.close(index); //再执行关闭
+						});
+					}
+				};
+			// 准备form表单
+			$("#form_").ajaxForm(options);
+			//提交表单
+			$("#form_").ajaxSubmit(options);
+			
+			return false;
 		}
-	};
-	// 准备form表单
-	$("#form-link-add").ajaxForm(options);
-	// 表单提交     
-	$('#submit_but').on('click', function() {
-		$("#form-link-add").ajaxSubmit(options);
-		return false;
 	});
-	
 });
 </script>
 </body>

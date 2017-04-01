@@ -195,5 +195,10 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_link
+    <where>
+    	<if test="web_name != null and web_name != ''">
+      	and  web_name = #{web_name,jdbcType=VARCHAR}
+     </if>
+    </where>
   </select>
 </mapper>

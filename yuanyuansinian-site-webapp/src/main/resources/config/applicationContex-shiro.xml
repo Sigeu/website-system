@@ -134,6 +134,7 @@
 				/verifyCodeServlet = anon
 				/sinian/member/memberController/registerMember = anon
 				/sinian/member/memberController/memberLogin = anon
+				/sinian/carousel/carouselController/queryImgById*  = anon
 				/sinian/contact/** = anon
 				/sinian/hall/hallController/toHallDoubleAdd = anon
 				/sinian/hall/hallController/toHallSingleAdd = anon

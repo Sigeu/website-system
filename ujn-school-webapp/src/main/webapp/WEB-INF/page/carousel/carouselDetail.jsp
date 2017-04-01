@@ -47,7 +47,7 @@
 			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<a href="###" onclick="toShowImg('${carousel.id }');return false;">
-					<img width="200px" src="${pageContext.request.contextPath}/sinian/carousel/carouselController/queryImgById?id=${carousel.id }">
+					<img width="200px" src="${pageContext.request.contextPath}/carousel/carouselController/queryImgById?id=${carousel.id }">
 				</a>
 			</div>
 		</div> 
@@ -79,7 +79,7 @@ function toShowImg(id){
 	    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看</div></strong>","background-color: #5a97df"],
 	    area: ['100%', '100%'],
 	    shadeClose: false, //点击遮罩关闭
-	    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/showImg?id=' + id
+	    content: '${pageContext.request.contextPath}/carousel/carouselController/showImg?id=' + id
 	 });
 }
 </script>

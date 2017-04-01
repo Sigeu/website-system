@@ -16,7 +16,7 @@
 				</ul>
 			</div>
 			<div class="footer-tool pull-right hidden-xs">
-				<p>技术支持：lzh_me@126.com</p>
+				<p>技术支持：lzh_me@126.com &nbsp;<a href="${pageContext.request.contextPath}/login.jsp"><font color="white" >后台管理 </font></a></p>
 				<select id="link_select" name="link" class="form-control">
 					<option value="">友情链接</option>  
                     <c:forEach var="link" items="${linkList}">  

@@ -465,4 +465,9 @@
     <include refid="Blob_Column_List" />
     from ujn_column
   </select>
+  
+  <delete id="deleteColumn" parameterType="java.lang.Integer">
+    delete from ujn_column
+    where id = #{id,jdbcType=INTEGER} or big_class = #{id,jdbcType=INTEGER}
+  </delete>
 </mapper>

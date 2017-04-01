@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ujn.school.cn.model.carousel.Carousel;
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.config.Config;
 import ujn.school.cn.model.contact.Contact;
@@ -27,6 +28,7 @@ import ujn.school.cn.model.link.Link;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
 import ujn.school.cn.pub.util.MyDateUtil;
+import ujn.school.cn.service.carousel.ICarouselService;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.config.IConfigService;
 import ujn.school.cn.service.contact.IContactService;
@@ -59,6 +61,10 @@ public class IndexController extends MyBaseController {
 	// 内容Service
 	@Resource
 	private IContentService contentService;
+	
+	// 轮播图片Service
+	@Resource
+	private ICarouselService carouselService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -122,7 +128,10 @@ public class IndexController extends MyBaseController {
 			//LinkedList<Column> columnLinkedList2 = this.toSort(resultList, result, 107);
 			//转换为ArrayList
 			//List<Column> columnList2 = new ArrayList<Column>(columnLinkedList2);
-			
+			Carousel carousel = new Carousel();
+			//轮播图片
+			carousel.setCarousel_type(IMySystemConstants.VALUE_1);
+			List<Carousel> carouselList = this.carouselService.queryCarouselList(carousel);
 			
 			model.addAttribute("config", config);
 			model.addAttribute("contact", contact);
@@ -136,6 +145,7 @@ public class IndexController extends MyBaseController {
 			model.addAttribute("columnList", columnList);
 			//model.addAttribute("columnList1", columnList1);
 			//model.addAttribute("columnList2", columnList2);
+			model.addAttribute("carouselList", carouselList);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

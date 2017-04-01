@@ -36,7 +36,7 @@ import framework.system.pub.util.DataTablePageUtil;
  * @version V1.0
  */
 @Controller
-@RequestMapping("/sinian/carousel/carouselController")
+@RequestMapping("/carousel/carouselController")
 public class CarouselController extends MyBaseController {
 	// 轮播图片Service
 	@Resource
@@ -198,6 +198,7 @@ public class CarouselController extends MyBaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = this.carouselService.updateCarousel(carousel);
+		map.put("carousel_id", carousel.getId());
 		if (RESULT_COUNT_1 == count) {
 			map.put("carousel_id", carousel.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

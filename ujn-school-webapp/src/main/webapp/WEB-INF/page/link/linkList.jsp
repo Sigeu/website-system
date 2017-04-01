@@ -20,8 +20,8 @@
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>网站名称:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="web_name"
+						name="web_name" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -33,9 +33,6 @@
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 
@@ -48,12 +45,12 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>序号</th>
-						<th>排序</th>
 						<th>网站名称</th>
 						<th>网站链接</th>
-						<th>网站logo</th>
+						<th>联系方式</th>
+						<!-- <th>网站logo</th> -->
 						<th>添加时间</th>
+						<th>描述说明</th>
 						<th width="15%">操作</th>
 					</tr>
 				</thead>
@@ -110,24 +107,25 @@
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
 								}, {
-									data : "id"
-								}, {
-									data : "order_no",
-									defaultContent : 0
-								}, {
 									data : "web_name",
 									defaultContent : ""
 								}, {
 									data : "web_url",
 									defaultContent : ""
 								}, {
+									data : "contact",
+									defaultContent : ""
+								}, /* {
 									data : "web_logo",
 									render : function(data, type, row, meta) {
 										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/' + data + '">';
 										return context;
 									}
-								}, {
+								},  */{
 									data : "add_time",
+									defaultContent : ""
+								}, {
+									data : "info",
 									defaultContent : ""
 								}, {
 									data : null
@@ -187,19 +185,11 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//登录名称
-				var login_name = $("#login_name").val().trim();
-				//真实姓名
-				var real_name = $("#real_name").val().trim();
-				//注册时间
-				var date_start = $("#date_start").val().trim();
-				var date_end = $("#date_end").val().trim();
+				//名称
+				var web_name = $("#web_name").val().trim();
 				//查询条件
 				var param = {
-					"login_name" : login_name,
-					"real_name" : real_name,
-					"date_start" : date_start,
-					"date_end" : date_end
+					"web_name" : web_name
 				};
 				
 				return param;
@@ -207,13 +197,8 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				//登录名称
-				$("#login_name").val('');
-				//真实姓名
-				$("#real_name").val('');
-				//注册时间
-				$("#date_start").val('');
-				$("#date_end").val('');
+				//名称
+				$("#web_name").val('');
 				
 			});
 			
@@ -222,21 +207,11 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加栏目</div></strong>","background-color: #5a97df"],
+				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/link/controller/linkController/toLinkAdd'
 				 });
-			});
-			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
 			});
 			
 		});
@@ -251,7 +226,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
+			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/link/controller/linkController/toLinkUpdate?id='+id
@@ -288,7 +263,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/link/controller/linkController/toLinkDetail?id='+id

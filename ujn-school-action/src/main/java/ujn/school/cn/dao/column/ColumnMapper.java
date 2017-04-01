@@ -63,4 +63,6 @@ public interface ColumnMapper {
     int updateByPrimaryKey(Column record);
 
 	List<Column> queryColumnList(Column column);
+
+	void deleteColumn(int columnId);
 }

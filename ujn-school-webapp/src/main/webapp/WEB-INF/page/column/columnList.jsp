@@ -47,9 +47,7 @@
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
 					<tr class="text-c">
-						<th><input type="checkbox" name="" value=""></th>
 						<!-- <th>序号</th> -->
-						<th>排序</th>
 						<th>栏目名称</th>
 						<!-- <th>所属模块</th> -->
 						<th>显示位置</th>
@@ -96,8 +94,8 @@
 								serverSide : true,//开启服务器模式:启用服务器分页
 								lengthChange : false,//是否允许用户改变表格每页显示的记录数
 								ordering : false,//是否允许用户排序
-								paging : true,//是否分页
-								pagingType : "full_numbers",//除首页、上一页、下一页、末页四个按钮还有页数按钮
+								paging : false,//是否分页
+								//pagingType : "full_numbers",//除首页、上一页、下一页、末页四个按钮还有页数按钮
 								processing : true,//是否显示处理状态
 								/* scrollX: true,//允许水平滚动
 								scrollY: "200px",
@@ -107,16 +105,6 @@
 								autoWidth : true,//自动计算宽度
 								//deferRender : true,//延迟渲染
 								columns : [ {
-									data : "id",
-									render: function (data, type, full, meta) {
-					                     return '<input type="checkbox" value="' + data + '" />';
-					                 }
-								}, /* {
-									data : "id"
-								},  */{
-									data : "no_order",
-									defaultContent : 0
-								}, {
 									data : "name",
 									defaultContent : ""
 								}, /* {
@@ -149,14 +137,14 @@
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
 														"display" :true
-													}, {
+													}, /* {
 														"name" : "查看",
 														"fn" : "toDetail(\'"
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
 														"display" : true
-													},{
+													}, */{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
@@ -169,20 +157,6 @@
 										return html;
 									}
 								} ],
-								language : {
-									lengthMenu : "每页显示 _MENU_记录",
-									zeroRecords : "没有匹配的数据",
-									info : "第_PAGE_页 / 共_PAGES_页",
-									infoEmpty : "",
-									search : "查找",
-									infoFiltered : "",
-									paginate : {
-										"first" : "首页 ",
-										"last" : "末页",
-										"next" : "下一页",
-										"previous" : "上一页"
-									}
-								}
 							});
 			//条件查询
 			$('#search_but').on('click', function() {
@@ -256,7 +230,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改栏目</div></strong>","background-color: #5a97df"],
+			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnUpdate?id='+id
@@ -266,11 +240,11 @@
 		//设置
 		function toConfig(id){
 			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;栏目设置</div></strong>","background-color: #5a97df"],
+				type: 2,
+			    title: '设置',
+			    shadeClose: true,
+			    shade: 0.8,
 			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnConfig?id='+id
 			 });
 		}
@@ -306,7 +280,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;栏目明细</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnDetail?id='+id

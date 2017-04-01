@@ -107,7 +107,7 @@ public class ColumnService implements IColumnService {
 				for(String id : idArray){
 					columnId = Integer.parseInt(id);
 					//删除栏目
-					columnMapper.deleteByPrimaryKey(columnId);
+					columnMapper.deleteColumn(columnId);
 					//删除栏目对应内容（逻辑删除）
 					contentMapper.deleteContentByColumnId(id);
 				}

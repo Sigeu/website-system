@@ -12,7 +12,7 @@
 			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>修改轮播图片
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/carousel/carouselController/updateCarousel" method="post" class="form form-horizontal" id="form_">
+	<form action="${pageContext.request.contextPath}/carousel/carouselController/updateCarousel" method="post" class="form form-horizontal" id="form_">
 		<input type="hidden" name="id" id="id" value="${carousel.id }" >
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
