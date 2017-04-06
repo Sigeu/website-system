@@ -402,4 +402,33 @@ public class ColumnController extends MyBaseController {
 		
 		return map;
 	}
+	
+	
+	/**
+	 * 
+	 * @Description: 根据栏目ID查询子栏目 
+	 * @param request
+	 * @param response
+	 * @param column
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryChildColumnListById")
+	public List<Column> queryChildColumnListById(
+			HttpServletRequest request, HttpServletResponse response) {
+		List<Column> columnList = new ArrayList<Column>();
+		try {
+			String id = request.getParameter("id")==null? "":request.getParameter("id");
+			// 还是使用List，方便后期用到
+			columnList = this.columnService
+					.queryChildColumnListById(id);
+
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return columnList;
+	}
 }

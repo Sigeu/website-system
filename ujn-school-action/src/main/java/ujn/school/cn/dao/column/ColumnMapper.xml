@@ -470,4 +470,25 @@
     delete from ujn_column
     where id = #{id,jdbcType=INTEGER} or big_class = #{id,jdbcType=INTEGER}
   </delete>
+  
+  
+   <!-- 列表查询 -->
+  <select id="queryColumnListByLevel" parameterType="string" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_column
+    where class_type = #{level}
+  </select>
+  
+  <!-- 列表查询 -->
+  <select id="queryChildColumnListById" parameterType="string" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_column
+    where big_class = #{id}
+  </select>
 </mapper>

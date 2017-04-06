@@ -54,7 +54,7 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<!-- <th>排序</th> -->
+						<th>文章编号</th>
 						<th>名称</th>
 						<th>发布人</th>
 						<th>发布时间</th>
@@ -119,24 +119,12 @@
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
 								}, {
+									data : "code_num",
+									defaultContent : ""
+								}, {
 									data : "title",
 									defaultContent : ""
-								}, /* {
-									data : "class1",
-									defaultContent : ""
 								}, {
-									data : "class2",
-									defaultContent : ""
-								}, {
-									data : "class3",
-									defaultContent : ""
-								}, {
-									data : "web_logo",
-									render : function(data, type, row, meta) {
-										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/' + data + '">';
-										return context;
-									}
-								},  */{
 									data : "issue_name",
 									defaultContent : ""
 								}, {

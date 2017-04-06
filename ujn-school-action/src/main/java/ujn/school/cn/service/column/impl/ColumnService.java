@@ -136,4 +136,16 @@ public class ColumnService implements IColumnService {
 		return columnMapper.updateByPrimaryKeySelective(column);
 	}
 
+	@Override
+	public List<Column> queryColumnListByLevel(String level) {
+		// TODO Auto-generated method stub
+		return columnMapper.queryColumnListByLevel(level);
+	}
+
+	@Override
+	public List<Column> queryChildColumnListById(String id) {
+		// TODO Auto-generated method stub
+		return columnMapper.queryChildColumnListById(id);
+	}
+
 }

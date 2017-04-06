@@ -52,4 +52,8 @@ public interface IColumnService {
 
 	int updateColumnConfig(ColumnWithBLOBs column);
 
+	List<Column> queryColumnListByLevel(String level);
+
+	List<Column> queryChildColumnListById(String id);
+
 }

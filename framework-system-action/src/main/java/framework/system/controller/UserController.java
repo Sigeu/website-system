@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import framework.system.model.Department;
 import framework.system.model.User;
 import framework.system.pub.base.SystemBaseController;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.service.IDepartmentService;
 import framework.system.service.IRoleService;
 import framework.system.service.IUserService;
 
@@ -41,6 +43,9 @@ public class UserController extends SystemBaseController{
 	//角色Service
 	@Resource
 	private IRoleService roleService;
+	
+	@Resource
+	private IDepartmentService departmentService;
 	
 		
 	/**
@@ -68,6 +73,10 @@ public class UserController extends SystemBaseController{
 			//角色下拉列表
 			//List<Role> roleList = roleService.getRoleSelectList();
 			//model.addAttribute("roleList", roleList);
+			
+			//部门下拉列表
+			List<Department> departmentList = departmentService.queryDepartmentList(null);
+			model.addAttribute("departmentList", departmentList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

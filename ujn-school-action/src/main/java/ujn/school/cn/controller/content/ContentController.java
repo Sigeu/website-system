@@ -91,31 +91,25 @@ public class ContentController extends MyBaseController {
 	@RequestMapping("/toContentAdd")
 	public String toContentAdd(HttpServletRequest request, Model model) {
 		
-		List<Column> columnList = columnService.queryColumnList(null);
-		//处理栏目名称
-		for(Column co : columnList){
-			if(2 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;" + co.getName());
-			}else if(3 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-			}else if(4 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
-			}else{
-				//co.setName(co.getName());
-			}
-		}
-		//排序
-		LinkedList<Column> result = new LinkedList<Column>();
-		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
-		//转换为ArrayList
-		List<Column> columnSelectList = new ArrayList<Column>(columnLinkedList);
-		model.addAttribute("columnSelectList", columnSelectList);
-		//字典表 重要信息数据标签
-		List<Code> codeList = codeService.queryCodeListByType(IMySystemConstants.IMPORTANCE);
-		model.addAttribute("codeList", codeList);
+		//一级栏目
+		List<Column> columnListByLevel = columnService.queryColumnListByLevel(IMySystemConstants.VALUE_1);
+		model.addAttribute("columnListByLevel", columnListByLevel);
 		
-		String orderNum = MyAutoGenerateOrderNum.generateOrderNum("Content");
-		model.addAttribute("orderNum", orderNum);
+		//字典表 重要信息数据标签
+		List<Code> codeImportantList = codeService.queryCodeListByType(IMySystemConstants.IMPORTANCE);
+		model.addAttribute("codeImportantList", codeImportantList);
+		
+		//字典表 内容标签
+		List<Code> codeContentList = codeService.queryCodeListByType(IMySystemConstants.CONTENT_TAG);
+		model.addAttribute("codeContentList", codeContentList);
+		
+		
+		//字典表 目录分类
+		List<Code> classCodeList = codeService.queryCodeListByType(IMySystemConstants.CLASS_CODE);
+		model.addAttribute("classCodeList", classCodeList);
+		
+		//String orderNum = MyAutoGenerateOrderNum.generateOrderNum("Content");
+		//model.addAttribute("orderNum", orderNum);
 		
 		return "content/contentAdd";
 	}
@@ -132,26 +126,10 @@ public class ContentController extends MyBaseController {
 		int contentId = Integer.parseInt(request.getParameter("id"));
 		Content content = this.contentService.queryContentById(contentId);
 		model.addAttribute("content", content);
+		//一级菜单
+		List<Column> columnListByLevel = columnService.queryColumnListByLevel(IMySystemConstants.VALUE_1);
 		
-		List<Column> columnList = columnService.queryColumnList(null);
-		//处理栏目名称
-		for(Column co : columnList){
-			if(2 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;" + co.getName());
-			}else if(3 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-			}else if(4 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
-			}else{
-				//co.setName(co.getName());
-			}
-		}
-		//排序
-		LinkedList<Column> result = new LinkedList<Column>();
-		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
-		//转换为ArrayList
-		List<Column> columnSelectList = new ArrayList<Column>(columnLinkedList);
-		model.addAttribute("columnSelectList", columnSelectList);
+		model.addAttribute("columnListByLevel", columnListByLevel);
 		
 		return "content/contentUpdate";
 	}
@@ -265,9 +243,23 @@ public class ContentController extends MyBaseController {
 		try {
 			//发布人
 			content.setIssue(getSessionUser(request).getLogin_name());
+			//发布年份
+			content.setYear_code(MyDateUtil.getYear());
+			content.setDept_code(getSessionUser(request).getDept());
+			//校务
+			if(IMySystemConstants.COLUMN102.equals(content.getClass1())){
+				content.setOpen_code(IMySystemConstants.VALUE_1);
+			}else if(IMySystemConstants.COLUMN107.equals(content.getClass1())){
+				content.setOpen_code(IMySystemConstants.VALUE_2);
+			}
+			content.setColumn_id(content.getClass3());
+			
 			//默认状态为“0”：待审核
 			content.setStatus(IMySystemConstants.VALUE_0);
 			contentService.addContent(request, content);
+			//更新文章编号
+			contentService.updateContentOrderNum(content);
+			
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -65,4 +65,8 @@ public interface ColumnMapper {
 	List<Column> queryColumnList(Column column);
 
 	void deleteColumn(int columnId);
+
+	List<Column> queryColumnListByLevel(String level);
+
+	List<Column> queryChildColumnListById(String id);
 }
