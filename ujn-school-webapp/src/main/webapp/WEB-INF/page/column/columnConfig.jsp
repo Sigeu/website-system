@@ -5,7 +5,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>栏目添加</title>
+<title>栏目设置</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
@@ -14,7 +14,7 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/column/controller/columnController/updateColumnConfig" method="post" class="form form-horizontal" id="form-column-config">
 		<input type="hidden" name="id" id="id_" value="${column.id }">
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属模块：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
 				<span class="select-box" id="sel_span">
@@ -63,14 +63,14 @@
 						value="_blank" /> <label for="new_windows_blank">新窗口打开</label>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">外部URL网址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="外部URL网址" id="out_url" name="out_url">
 			</div>
 		</div>
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">栏目标识：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="栏目标识" id="index_num" name="index_num">
@@ -81,7 +81,7 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="栏目首页图片" id="index_img" name="index_img">
 			</div>
-		</div>
+		</div> 
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">栏目列表页图片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -100,7 +100,7 @@
 						value="1" /> <label for="is_show1">是</label>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">栏目修饰名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -148,14 +148,14 @@
 					<input type="radio" id="list_order3" name="list_order"
 						value="3" /> <label for="list_order3">访问数</label>
 				</div>
-				<div class="radio-box">
+				<!-- <div class="radio-box">
 					<input type="radio" id="list_order4" name="list_order"
 						value="4" /> <label for="list_order4">添加顺序正排</label>
 				</div>
 				<div class="radio-box">
 					<input type="radio" id="list_order5" name="list_order"
 						value="5" /> <label for="list_order5">添加顺序倒排</label>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		</br>

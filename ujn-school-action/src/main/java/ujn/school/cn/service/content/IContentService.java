@@ -66,4 +66,6 @@ public interface IContentService {
 
 	int recoverContent(int contentId);
 
+	void updateContentOrderNum(ContentWithBLOBs content);
+
 }

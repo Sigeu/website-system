@@ -50,4 +50,6 @@ public interface UserDeptMapper {
      * @mbg.generated Wed Jan 18 11:12:08 CST 2017
      */
     int updateByPrimaryKey(UserDept record);
+
+	void updateByUserId(UserDept userDept);
 }

@@ -9,7 +9,7 @@
 <body class="pos-r">
 	<div>
 		<img 
-			src="${pageContext.request.contextPath}/sinian/carousel/carouselController/queryImgById?id=${id }">
+			src="${pageContext.request.contextPath}/carousel/carouselController/queryImgById?id=${id }">
 	</div>
 <%@ include file="../../../common/footer_form.jsp"%>
 <script type="text/javascript">

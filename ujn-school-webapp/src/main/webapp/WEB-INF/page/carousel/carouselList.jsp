@@ -17,19 +17,6 @@
 		<div class="page-container">
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
-					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>网站名称:</strong>&nbsp;&nbsp;
-					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
-					</td>
-					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
-						<button class="btn btn-warning radius size-MINI" id="search_but">
-							<i class="Hui-iconfont Hui-iconfont-search2">&nbsp;&nbsp;</i>查询
-						</button> &nbsp;&nbsp;
-						<button class="btn btn-success radius size-MINI" id="reset_but">
-							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
-						</button> &nbsp;&nbsp;
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
@@ -45,7 +32,6 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>序号</th>
 						<th>标题</th>
 						<th>URL</th>
 						<th>图片</th>
@@ -82,7 +68,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/sinian/carousel/carouselController/queryCarouselList",
+									url : "${pageContext.request.contextPath}/carousel/carouselController/queryCarouselList",
 									type:"POST",
 									data : {
 										//args1: "固定传参"
@@ -106,9 +92,7 @@
 									render: function (data, type, full, meta) {
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
-								}, {
-									data : "id"
-								}, {
+								},  {
 									data : "title",
 									defaultContent : 0
 								}, {
@@ -117,7 +101,7 @@
 								}, {
 									data : "id",
 									render : function(data, type, row, meta) {
-										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/sinian/carousel/carouselController/queryImgById?id=' + data + '">';
+										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/carousel/carouselController/queryImgById?id=' + data + '">';
 										return context;
 									}
 								}, {
@@ -222,7 +206,7 @@
 				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加栏目</div></strong>","background-color: #5a97df"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/toCarouselAdd'
+				    content: '${pageContext.request.contextPath}/carousel/carouselController/toCarouselAdd'
 				 });
 			});
 			
@@ -241,7 +225,7 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/toCarouselUpdate?id='+id
+			    content: '${pageContext.request.contextPath}/carousel/carouselController/toCarouselUpdate?id='+id
 			 });
 		}
 		//删除
@@ -250,7 +234,7 @@
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/sinian/carousel/carouselController/deleteCarousel" ,
+						    url: "${pageContext.request.contextPath}/carousel/carouselController/deleteCarousel" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
@@ -278,7 +262,7 @@
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/toCarouselDetail?id='+id
+			    content: '${pageContext.request.contextPath}/carousel/carouselController/toCarouselDetail?id='+id
 			 });
 		}
 		

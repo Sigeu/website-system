@@ -32,22 +32,18 @@
 				<div id="navbar-dropdown-top" >
 					<span id="span_first">校务公开</span><span id="span_second">党务公开</span>
 				</div>
-				<div id="div_first" style="display: none">
+				<div id="div_first" style="display: block">
 					<ul>
-					<c:forEach var="column" items="${columnList}">
-						<c:if test="${column.big_class == 102}">
-							<c:if test="${column.class_type == 2}">
-								<li class="navbar-pos">
-								<a href="###"  onclick="toContentList('${column.id}');" 
-									class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
-									<c:if test="${column.class_type == 3}">
-										<ul class="navbar-dropdown-thr" style="display: block">
-											<li><a href="###" onclick="toContentList('${column.id}');" >${column.name }</a></li>
-										</ul>
-									</c:if>
-								</li>
-							</c:if>
-						</c:if>
+					<c:forEach var="column" items="${columnList102}">
+							<li class="navbar-pos">
+							<a href="###"  onclick="toContentList('${column.id}');" 
+								class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
+								<c:if test="${column.class_type == 3}">
+									<ul class="navbar-dropdown-thr" style="display: block">
+										<li><a href="###" onclick="toContentList('${column.id}');" >${column.name }</a></li>
+									</ul>
+								</c:if>
+							</li>
 					</c:forEach>
 					</ul>
 					<ul style="display: none">
@@ -60,20 +56,16 @@
 				</div>
 				<div id="div_second" style="display: none">
 					<ul>
-					<c:forEach var="column" items="${columnList}">
-						<c:if test="${column.big_class == 102}">
-							<c:if test="${column.class_type == 2}">
-								<li class="navbar-pos">
-								<a href="###" onclick="toContentList('${column.id}');" 
-									class="navbar-dropdown-two active">${column.name }2<span>&gt;</span></a>
-									<c:if test="${column.class_type == 3}">
-										<ul class="navbar-dropdown-thr" style="display: none">
-											<li><a href="###" onclick="toContentList('${column.id}');" >${column.name }</a></li>
-										</ul>
-									</c:if>
-								</li>
-							</c:if>
-						</c:if>
+					<c:forEach var="column" items="${columnList107}">
+							<li class="navbar-pos">
+							<a href="###" onclick="toContentList('${column.id}');" 
+								class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
+								<c:if test="${column.class_type == 3}">
+									<ul class="navbar-dropdown-thr" style="display: none">
+										<li><a href="###" onclick="toContentList('${column.id}');" >${column.name }</a></li>
+									</ul>
+								</c:if>
+							</li>
 					</c:forEach>
 					</ul>
 					<ul style="display: none">

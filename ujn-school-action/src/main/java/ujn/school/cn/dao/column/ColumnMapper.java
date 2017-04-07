@@ -1,6 +1,7 @@
 package ujn.school.cn.dao.column;
 
 import java.util.List;
+import java.util.Map;
 
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.column.ColumnWithBLOBs;
@@ -63,4 +64,12 @@ public interface ColumnMapper {
     int updateByPrimaryKey(Column record);
 
 	List<Column> queryColumnList(Column column);
+
+	void deleteColumn(int columnId);
+
+	List<Column> queryColumnListByLevel(String level);
+
+	List<Column> queryChildColumnListById(String id);
+
+	List<Column> queryColumnListByIdAndLevel(Map<String, String> map);
 }

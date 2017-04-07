@@ -52,4 +52,10 @@ public interface IColumnService {
 
 	int updateColumnConfig(ColumnWithBLOBs column);
 
+	List<Column> queryColumnListByLevel(String level);
+
+	List<Column> queryChildColumnListById(String id);
+
+	List<Column> queryColumnListByIdAndLevel(String id, String level);
+
 }

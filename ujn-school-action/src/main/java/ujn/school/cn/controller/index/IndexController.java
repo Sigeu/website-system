@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ujn.school.cn.model.carousel.Carousel;
 import ujn.school.cn.model.column.Column;
 import ujn.school.cn.model.config.Config;
 import ujn.school.cn.model.contact.Contact;
@@ -27,6 +28,7 @@ import ujn.school.cn.model.link.Link;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
 import ujn.school.cn.pub.util.MyDateUtil;
+import ujn.school.cn.service.carousel.ICarouselService;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.config.IConfigService;
 import ujn.school.cn.service.contact.IContactService;
@@ -59,6 +61,10 @@ public class IndexController extends MyBaseController {
 	// 内容Service
 	@Resource
 	private IContentService contentService;
+	
+	// 轮播图片Service
+	@Resource
+	private ICarouselService carouselService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -113,16 +119,24 @@ public class IndexController extends MyBaseController {
 			
 			
 			//校务
-			//LinkedList<Column> columnLinkedList1 = this.toSort(resultList, result, 102);
-			//转换为ArrayList
-			//List<Column> columnList1 = new ArrayList<Column>(columnLinkedList1);
+			List<Column> columnList102_ = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
+			LinkedList<Column> columnLinkedList102 = this.toSort(columnList102_, result, 102);
+			List<Column> columnList102 = new ArrayList<Column>(columnLinkedList102);
+			//党务
+			List<Column> columnList107_ = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
+			LinkedList<Column> columnLinkedList107 = this.toSort(columnList107_, result, 107);
+			List<Column> columnList107 = new ArrayList<Column>(columnLinkedList107);
 			
-			
+			model.addAttribute("columnList102", columnList102);
+			model.addAttribute("columnList107", columnList107);
 			//党务
 			//LinkedList<Column> columnLinkedList2 = this.toSort(resultList, result, 107);
 			//转换为ArrayList
 			//List<Column> columnList2 = new ArrayList<Column>(columnLinkedList2);
-			
+			Carousel carousel = new Carousel();
+			//轮播图片
+			carousel.setCarousel_type(IMySystemConstants.VALUE_1);
+			List<Carousel> carouselList = this.carouselService.queryCarouselList(carousel);
 			
 			model.addAttribute("config", config);
 			model.addAttribute("contact", contact);
@@ -136,6 +150,7 @@ public class IndexController extends MyBaseController {
 			model.addAttribute("columnList", columnList);
 			//model.addAttribute("columnList1", columnList1);
 			//model.addAttribute("columnList2", columnList2);
+			model.addAttribute("carouselList", carouselList);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

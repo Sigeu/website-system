@@ -61,5 +61,15 @@ public interface IMySystemConstants {
 	static final String FILE_PATH = "upload/";
 	
 	//字典数据类型
+	//重要标签
 	static final String IMPORTANCE = "importance";
+	//内容标签
+	static final String CONTENT_TAG = "content_tag";
+	//目录分类
+	static final String CLASS_CODE = "class_code";
+	
+	//校务
+	static final String COLUMN102 = "102";
+	//党务
+	static final String COLUMN107 = "107";
 }

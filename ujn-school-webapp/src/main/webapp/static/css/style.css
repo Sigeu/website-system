@@ -221,3 +221,8 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.login-jumb img {height:auto}
 	.login-jumb .modal-content {position:absolute; top:-60px; right:-230px; width:390px}
 }
+
+
+/* 按钮标签 */
+.btn-label .btn {margin-bottom:7px; border-radius:4px}
+.row.btn-prompt {margin-top:7px}

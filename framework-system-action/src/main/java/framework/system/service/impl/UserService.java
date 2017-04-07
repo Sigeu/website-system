@@ -10,8 +10,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import framework.system.dao.UserDeptMapper;
 import framework.system.dao.UserMapper;
 import framework.system.model.User;
+import framework.system.model.UserDept;
 import framework.system.service.IUserService;
 
 /**   
@@ -24,6 +26,9 @@ import framework.system.service.IUserService;
 public class UserService implements IUserService {
 	@Resource
 	private UserMapper userMapper;
+	
+	@Resource
+	private UserDeptMapper userDeptMapper;
 	
 	@Override
 	public User getUserById(int userId) {
@@ -48,14 +53,33 @@ public class UserService implements IUserService {
 
 	@Override
 	public int addUser(User user) {
-		// TODO Auto-generated method stub
-		return userMapper.insert(user);
+		int count = 0;
+		try {
+			userMapper.insert(user);
+			
+			UserDept userDept = new UserDept();
+			userDept.setDept_code(user.getDept());
+			userDept.setUser_id(user.getId()+"");
+			count = userDeptMapper.insert(userDept);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		userMapper.updateByPrimaryKeySelective(user);
+		try {
+			userMapper.updateByPrimaryKeySelective(user);
+			
+			UserDept userDept = new UserDept();
+			userDept.setDept_code(user.getDept());
+			userDept.setUser_id(user.getId()+"");
+			userDeptMapper.updateByUserId(userDept);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override

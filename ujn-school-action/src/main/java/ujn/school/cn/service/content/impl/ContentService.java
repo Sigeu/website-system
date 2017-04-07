@@ -21,6 +21,7 @@ import ujn.school.cn.dao.content.ContentMapper;
 import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.content.ContentWithBLOBs;
 import ujn.school.cn.pub.constants.IMySystemConstants;
+import ujn.school.cn.pub.util.MyAutoGenerateOrderNum;
 import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.content.IContentService;
 
@@ -160,6 +161,13 @@ public class ContentService implements IContentService {
 	public int recoverContent(int contentId) {
 		// TODO Auto-generated method stub
 		return contentMapper.recoverContent(contentId);
+	}
+
+	@Override
+	public void updateContentOrderNum(ContentWithBLOBs content) {
+		// TODO Auto-generated method stub
+		content.setCode_num(MyAutoGenerateOrderNum.generateArticleOrder(content,content.getId()+""));
+		contentMapper.updateContentOrderNum(content);
 	}
 	
 

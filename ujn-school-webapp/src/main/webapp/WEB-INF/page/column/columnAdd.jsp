@@ -105,7 +105,7 @@ $(function() {
 		rules:{
 			name:{
 				required:true,
-				maxlength:50
+				maxlength:100
 			},
 			no_order:{
 				required:true,

@@ -131,6 +131,7 @@
 				/system/controller/loginController/logout = logout
 				/unauthorized.jsp = anon 
 				/system/controller/loginController/login = anon
+				/carousel/carouselController/queryImgById*  = anon
 				/index/** = anon
 				/site/** = anon
 				/static/** = anon

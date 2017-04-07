@@ -12,7 +12,19 @@
 			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增轮播图片
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/carousel/carouselController/addCarousel" method="post" class="form form-horizontal" id="form_">
+	<form action="${pageContext.request.contextPath}/carousel/carouselController/addCarousel" method="post" class="form form-horizontal" id="form_">
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型：</label>
+			<div class="radio-box">
+				<input type="radio" id="carousel_type1" name="carousel_type"
+					value="1" checked /> <label for="carousel_type1">首页轮播</label>
+			</div>
+			<div class="radio-box">
+				<input type="radio" id="carousel_type2" name="carousel_type"
+					value="2" /> <label for="carousel_type2">单页图片</label>
+			</div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">

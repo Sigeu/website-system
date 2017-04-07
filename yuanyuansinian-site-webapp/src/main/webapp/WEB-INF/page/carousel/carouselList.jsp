@@ -17,19 +17,6 @@
 		<div class="page-container">
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
-					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>网站名称:</strong>&nbsp;&nbsp;
-					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
-					</td>
-					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
-						<button class="btn btn-warning radius size-MINI" id="search_but">
-							<i class="Hui-iconfont Hui-iconfont-search2">&nbsp;&nbsp;</i>查询
-						</button> &nbsp;&nbsp;
-						<button class="btn btn-success radius size-MINI" id="reset_but">
-							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
-						</button> &nbsp;&nbsp;
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
@@ -45,7 +32,6 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>序号</th>
 						<th>标题</th>
 						<th>URL</th>
 						<th>图片</th>
@@ -106,8 +92,6 @@
 									render: function (data, type, full, meta) {
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
-								}, {
-									data : "id"
 								}, {
 									data : "title",
 									defaultContent : 0
