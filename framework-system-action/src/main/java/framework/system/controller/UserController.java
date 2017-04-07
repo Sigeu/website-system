@@ -19,11 +19,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mysql.jdbc.MysqlIO;
 
 import framework.system.model.Department;
 import framework.system.model.User;
+import framework.system.model.UserDept;
 import framework.system.pub.base.SystemBaseController;
+import framework.system.pub.constants.ISystemConstants;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.DateUtil;
 import framework.system.service.IDepartmentService;
 import framework.system.service.IRoleService;
 import framework.system.service.IUserService;
@@ -171,9 +175,14 @@ public class UserController extends SystemBaseController{
 	//跳转到修改
 	@RequestMapping("/toUserUpdate")
 	public String toUserUpdate(HttpServletRequest request,Model model){
+		
 		int userId = Integer.parseInt(request.getParameter("id"));
 		User user = this.userService.getUserById(userId);
 		model.addAttribute("user", user);
+		//部门下拉列表
+		List<Department> departmentList = departmentService.queryDepartmentList(null);
+		model.addAttribute("departmentList", departmentList);
+		
 		return "system/user/userUpdate";
 	}
 	
@@ -201,7 +210,11 @@ public class UserController extends SystemBaseController{
 	@RequestMapping("/addUser")
 	public Map<String,Object> addUser(HttpServletRequest request,User user,Model model){
 		Map<String,Object> map = new HashMap<String,Object>();
+		//状态
+		user.setStatus(ISystemConstants.VALUE_1);
+		//user.setCreate_date(DateUtil.getDateTime());
  		int count = this.userService.addUser(user);
+ 		
 		if(RESULT_COUNT_1 == count){
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {

@@ -56,4 +56,6 @@ public interface IColumnService {
 
 	List<Column> queryChildColumnListById(String id);
 
+	List<Column> queryColumnListByIdAndLevel(String id, String level);
+
 }

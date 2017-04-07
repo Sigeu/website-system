@@ -4,7 +4,9 @@
  */
 package ujn.school.cn.service.column.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -146,6 +148,14 @@ public class ColumnService implements IColumnService {
 	public List<Column> queryChildColumnListById(String id) {
 		// TODO Auto-generated method stub
 		return columnMapper.queryChildColumnListById(id);
+	}
+
+	@Override
+	public List<Column> queryColumnListByIdAndLevel(String id, String level) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("id", id);
+		map.put("level", level);
+		return columnMapper.queryColumnListByIdAndLevel(map);
 	}
 
 }

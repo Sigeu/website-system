@@ -119,11 +119,16 @@ public class IndexController extends MyBaseController {
 			
 			
 			//校务
-			//LinkedList<Column> columnLinkedList1 = this.toSort(resultList, result, 102);
-			//转换为ArrayList
-			//List<Column> columnList1 = new ArrayList<Column>(columnLinkedList1);
+			List<Column> columnList102_ = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
+			LinkedList<Column> columnLinkedList102 = this.toSort(columnList102_, result, 102);
+			List<Column> columnList102 = new ArrayList<Column>(columnLinkedList102);
+			//党务
+			List<Column> columnList107_ = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
+			LinkedList<Column> columnLinkedList107 = this.toSort(columnList107_, result, 107);
+			List<Column> columnList107 = new ArrayList<Column>(columnLinkedList107);
 			
-			
+			model.addAttribute("columnList102", columnList102);
+			model.addAttribute("columnList107", columnList107);
 			//党务
 			//LinkedList<Column> columnLinkedList2 = this.toSort(resultList, result, 107);
 			//转换为ArrayList
