@@ -109,7 +109,11 @@
 					                 }
 								}, {
 									data : "title",
-									defaultContent : ""
+									defaultContent : "",
+									render : function(data, type, row, meta) {
+										var context = '<a href="##" onclick="toDetail(\'' + row.id + '\')">'+ data + '</a>';
+										return context;
+									}
 								}, {
 									data : "issue_name",
 									defaultContent : ""
@@ -197,10 +201,22 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;信息审核</div></strong>","background-color: #5a97df"],
+			    title:["审核"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/audit/controller/auditController/toContentAudit?id='+id
+			 });
+		}
+		
+		//查看
+		function toDetail(id){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["查看"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentDetail?id='+id
 			 });
 		}
 	</script>

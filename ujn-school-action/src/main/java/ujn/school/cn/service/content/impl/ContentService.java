@@ -169,6 +169,12 @@ public class ContentService implements IContentService {
 		content.setCode_num(MyAutoGenerateOrderNum.generateArticleOrder(content,content.getId()+""));
 		contentMapper.updateContentOrderNum(content);
 	}
+
+	@Override
+	public int auditContent(ContentWithBLOBs content) {
+		// TODO Auto-generated method stub
+		return contentMapper.auditContent(content);
+	}
 	
 
 

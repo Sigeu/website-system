@@ -75,4 +75,6 @@ public interface ContentMapper {
 	List<Content> queryAuditContentList(Content content);
 
 	void updateContentOrderNum(ContentWithBLOBs content);
+
+	int auditContent(ContentWithBLOBs content);
 }

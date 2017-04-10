@@ -17,7 +17,7 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/content/controller/contentController/updateContent" method="post" class="form form-horizontal" id="form-content-update">
 		<input type="hidden" name="id" id="id_" value="${content.id}">
-		<div class="row cl">
+		<%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" id="column_id" name="column_id">
@@ -27,6 +27,36 @@
                     </c:forEach>  
 				</select>
 				</span> </div>
+		</div> --%>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>一级栏目：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select class="select" id="class1" name="class1">
+					<option value="0">--请选择--</option>  
+                    <c:forEach items="${columnListByLevel}" var="column">  
+                    	<option value="${column.id}">${column.name}</option>  
+                    </c:forEach>  
+				</select>
+				</span> 
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>二级栏目：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select class="select" id="class2" name="class2">
+					<option value="">--请选择--</option>  
+				</select>
+				</span> 
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>三级栏目：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select class="select" id="class3" name="class3">
+					<option value="">--请选择--</option>  
+				</select>
+				</span> 
+			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
@@ -60,13 +90,47 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">重要信息标签：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${content.importance}" placeholder="重要信息标签，可以手动录入或选择已有常用标签" id="importance" name="importance">
+			</div>
+		</div>
+		<div class="row cl btn-label btn-prompt">
+			<label class="form-label col-xs-4 col-sm-2"></label>
+			<div class="formControls col-xs-8 col-sm-9" id="importance_content">
+				<c:forEach items="${codeImportantList}" var="codeImportant" varStatus="code"> 
+				 	<c:if test="${code.index < 10}">
+                  		<button class="btn" type="button">${codeImportant.code_name }</button>
+                  	</c:if> 
+                 </c:forEach> 
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">内容标签：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${content.tag}" placeholder="内容标签，可以手动录入或选择已有常用标签" id="tag" name="tag">
+			</div>
+		</div>
+		<div class="row cl btn-label btn-prompt">
+			<!-- 提示标签 -->
+			<label class="form-label col-xs-4 col-sm-2"></label><!-- 占位置 -->
+			<div class="formControls col-xs-8 col-sm-9" id="tag_content">
+				 <c:forEach items="${codeContentList}" var="codeContent" varStatus="code"> 
+				 	<c:if test="${code.index < 10}">
+                  		<button class="btn" type="button">${codeContent.code_name }</button>
+                  	</c:if> 
+                 </c:forEach> 
+			</div>
+			<!-- 提示标签 end -->
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">阅读方式：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
 					<select class="select" id="read_type" name="read_type">
-						<option value="0">直接访问</option> 
+						<option value="0">社会公众</option> 
 						<option value="1">校内访问</option> 
-						<option value="2">凭密码访问</option>  
+						<option value="2">仅部分人可访问</option>  
 					</select>
 				</span>
 			</div>
@@ -90,7 +154,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/content.js"> </script>
 <script type="text/javascript">
+var contextPath = '${pageContext.request.contextPath}';
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
@@ -101,11 +167,15 @@ $(function(){
 		return false;
 	});
 	//赋值
-	$('#column_id').val('${content.column_id}');
+	$('#class1').val('${content.class1}');
 	$('#read_type').val('${content.read_type}');
 	ue.ready(function() {//编辑器初始化完成再赋值  
     	ue.setContent('${content.content}');  //赋值给UEditor  
     });  
+	//有效期
+	if("永久有效" == '${content.validity_time}'){
+		$('#validity_time').val('');
+	}
 });
 
 

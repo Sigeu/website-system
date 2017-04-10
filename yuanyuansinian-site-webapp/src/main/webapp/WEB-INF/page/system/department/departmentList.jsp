@@ -267,7 +267,7 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加部门</div></strong>","background-color: #5a97df"],
+				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentAdd?parent_code=' + $('#parent_code').val()
@@ -286,7 +286,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改部门</div></strong>","background-color: #5a97df"],
+			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentUpdate?id='+id
@@ -298,7 +298,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;部门明细</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentDetail?id='+id

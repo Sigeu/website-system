@@ -24,7 +24,7 @@
 			<input type="hidden" name="role_id" id="role_id" value="${role_id }">
 			<div class="col-xs-offset-4">
 				<button id="submit_but" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button id="close_but"  class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</form>
 	</div>

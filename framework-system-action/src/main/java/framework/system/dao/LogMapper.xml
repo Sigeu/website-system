@@ -151,6 +151,17 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_log
+    <where>
+		<if test="user != null and user != ''">
+			and user  like concat('%', #{user}, '%')
+		</if>
+		<if test="date_start != null and date_start != ''">
+			<![CDATA[ and str_to_date(create_date, '%Y-%m-%d %H:%i:%s')  >=  #{date_start}  ]]>
+		</if>
+		<if test="date_end != null and date_end != ''">
+			<![CDATA[ and str_to_date(create_date, '%Y-%m-%d %H:%i:%s')   <=  #{date_end}  ]]>
+		</if>
+	</where>
   </select>
   
   

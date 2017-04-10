@@ -159,21 +159,21 @@
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : true
+														"display" : row.status == '1'? false : true
 													},{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
 																+ "\')",
 														"type" : "danger-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
+														"display" : row.status == '1'? false : true
 													},{
 														"name" : "查看",
 														"fn" : "toDetail(\'"
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : true
+														"display" : false
 													} ]
 										};
 										var html = template(context);
@@ -229,7 +229,7 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加内容</div></strong>","background-color: #5a97df"],
+				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentAdd'
@@ -258,7 +258,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改信息</div></strong>","background-color: #5a97df"],
+			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentUpdate?id='+id
@@ -295,7 +295,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看明细</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentDetail?id='+id

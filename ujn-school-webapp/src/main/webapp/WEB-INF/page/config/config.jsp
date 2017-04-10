@@ -78,19 +78,19 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">允许访问后台的IP列表：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<textarea class="textarea" name="" id=""></textarea>
+						<textarea class="textarea" name="ip_section" id="ip_section">${config.ip_section }</textarea>
 					</div>
 				</div>
 				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">访问密码：</label>
+					<label class="form-label col-xs-4 col-sm-2">默认密码：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" id="" name="" >
+						<input type="text" class="input-text" value="${config.default_pwd }" id="default_pwd" name="default_pwd" >
 					</div>
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">后台登录失败最大次数：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="5" id="" name="" >
+						<input type="text" class="input-text" value="${config.login_count }" id="login_count" name="login_count" >
 					</div>
 				</div>
 			</div>

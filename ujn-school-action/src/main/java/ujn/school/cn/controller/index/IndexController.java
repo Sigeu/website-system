@@ -28,6 +28,7 @@ import ujn.school.cn.model.link.Link;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
 import ujn.school.cn.pub.util.MyDateUtil;
+import ujn.school.cn.pub.util.MyIpUtil;
 import ujn.school.cn.service.carousel.ICarouselService;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.config.IConfigService;
@@ -232,7 +233,7 @@ public class IndexController extends MyBaseController {
 		// 友情链接
 		List<Link> linkList = linkService.queryLinkList(null);
 		
-		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
+		int contentId =  Integer.parseInt(nullToStringZero(request.getParameter("id")));
 		Content content = contentService.queryContentById(contentId);
 		
 		model.addAttribute("contact", contact);
@@ -280,7 +281,10 @@ public class IndexController extends MyBaseController {
 				}else if(IMySystemConstants.VALUE_1.equals(read_type)){
 					//验证IP
 					String ip = getIpAddr(request);
-					if("127.0.0.1".equals(ip)){
+					// 网站配置
+					Config config = configService.queryConfig();
+					String ipSection = config.getIp_section();
+					if(MyIpUtil.ipExistsInRange(ip, ipSection)){
 						//允许访问
 						open_type = IMySystemConstants.VALUE_1;
 					}else{

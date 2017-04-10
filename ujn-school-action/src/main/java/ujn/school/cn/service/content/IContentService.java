@@ -68,4 +68,6 @@ public interface IContentService {
 
 	void updateContentOrderNum(ContentWithBLOBs content);
 
+	int auditContent(ContentWithBLOBs content);
+
 }

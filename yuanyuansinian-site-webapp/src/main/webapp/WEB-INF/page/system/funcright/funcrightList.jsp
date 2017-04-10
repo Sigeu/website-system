@@ -210,6 +210,16 @@
 				 });
 			});
 			
+			//导出
+			$('#export_but').on('click', function() {
+				
+				var params = $.param(getSearchParams());
+			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
+			    //window.location.href = url;
+			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
+			    //$('#search_form').submit().remove();
+			});
+			
 		});
 
 		//重新加载页面：子页面调用

@@ -88,6 +88,7 @@
 	  when status = 0 then '待审核'  
 	  when status = 1 then '审核通过'
 	  when status = 2 then '已删除'
+	  when status = 3 then '审核未通过'
 	  else ''  
 	end as status_name,
     read_type, 
@@ -684,6 +685,13 @@
   <update id="updateContentOrderNum" parameterType="ujn.school.cn.model.content.Content">
     update ujn_content
     set code_num = #{code_num,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 审核 -->
+  <update id="auditContent" parameterType="ujn.school.cn.model.content.Content">
+    update ujn_content
+    set status = #{status,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
