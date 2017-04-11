@@ -158,4 +158,10 @@ public class ColumnService implements IColumnService {
 		return columnMapper.queryColumnListByIdAndLevel(map);
 	}
 
+	@Override
+	public List<Column> queryAllColumnListByLevel3() {
+		// TODO Auto-generated method stub
+		return columnMapper.queryAllColumnListByLevel3();
+	}
+
 }

@@ -120,16 +120,15 @@ public class IndexController extends MyBaseController {
 			
 			
 			//校务
-			List<Column> columnList102_ = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
-			LinkedList<Column> columnLinkedList102 = this.toSort(columnList102_, result, 102);
-			List<Column> columnList102 = new ArrayList<Column>(columnLinkedList102);
+			List<Column> columnList102 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
 			//党务
-			List<Column> columnList107_ = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
-			LinkedList<Column> columnLinkedList107 = this.toSort(columnList107_, result, 107);
-			List<Column> columnList107 = new ArrayList<Column>(columnLinkedList107);
+			List<Column> columnList107 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
 			
 			model.addAttribute("columnList102", columnList102);
 			model.addAttribute("columnList107", columnList107);
+			//3级菜单
+			List<Column> columnList3 = columnService.queryAllColumnListByLevel3();
+			model.addAttribute("columnList3", columnList3);
 			//党务
 			//LinkedList<Column> columnLinkedList2 = this.toSort(resultList, result, 107);
 			//转换为ArrayList
@@ -207,6 +206,17 @@ public class IndexController extends MyBaseController {
 		//转换为ArrayList
 		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
 		
+		//校务
+		List<Column> columnList102 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
+		//党务
+		List<Column> columnList107 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
+		
+		model.addAttribute("columnList102", columnList102);
+		model.addAttribute("columnList107", columnList107);
+		//3级菜单
+		List<Column> columnList3 = columnService.queryAllColumnListByLevel3();
+		model.addAttribute("columnList3", columnList3);
+		
 		model.addAttribute("contact", contact);
 		model.addAttribute("linkList", linkList);
 		model.addAttribute("contentList", contentList);
@@ -218,7 +228,59 @@ public class IndexController extends MyBaseController {
 		model.addAttribute("columnList", columnList);
 		return "site/articleList";
 	}
-
+	
+	/**
+	 * 
+	 * @Description: 信息公开申请 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toContentList112")
+	public String toContentList112(HttpServletRequest request, Model model) {
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = "103";
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		//校务
+		List<Column> columnList102 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
+		//党务
+		List<Column> columnList107 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
+		
+		model.addAttribute("columnList102", columnList102);
+		model.addAttribute("columnList107", columnList107);
+		//3级菜单
+		List<Column> columnList3 = columnService.queryAllColumnListByLevel3();
+		model.addAttribute("columnList3", columnList3);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("columnList", columnList);
+		
+		return "site/apply";
+	}
 	
 	/**
 	 * 
@@ -236,6 +298,17 @@ public class IndexController extends MyBaseController {
 		int contentId =  Integer.parseInt(nullToStringZero(request.getParameter("id")));
 		Content content = contentService.queryContentById(contentId);
 		
+		//校务
+		List<Column> columnList102 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
+		//党务
+		List<Column> columnList107 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
+		
+		model.addAttribute("columnList102", columnList102);
+		model.addAttribute("columnList107", columnList107);
+		//3级菜单
+		List<Column> columnList3 = columnService.queryAllColumnListByLevel3();
+		model.addAttribute("columnList3", columnList3);
+		
 		model.addAttribute("contact", contact);
 		model.addAttribute("linkList", linkList);
 		model.addAttribute("content", content);
@@ -248,7 +321,23 @@ public class IndexController extends MyBaseController {
 
 		return "site/article";
 	}
-
+	
+	/**
+	 * 
+	 * @Description: 查询子栏目
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryColumnListByIdAndLevel")
+	public List<Column> queryColumnListByIdAndLevel(HttpServletRequest request){
+		List<Column> listColumn = new ArrayList<Column>();
+		String id = nullToString(request.getParameter("id"));
+		String level = nullToString(request.getParameter("level"));
+		listColumn = columnService.queryColumnListByIdAndLevel(id,level);
+		
+		return listColumn;
+	}
 	/**
 	 * 
 	 * @Description: 

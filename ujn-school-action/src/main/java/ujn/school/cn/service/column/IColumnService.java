@@ -58,4 +58,6 @@ public interface IColumnService {
 
 	List<Column> queryColumnListByIdAndLevel(String id, String level);
 
+	List<Column> queryAllColumnListByLevel3();
+
 }
