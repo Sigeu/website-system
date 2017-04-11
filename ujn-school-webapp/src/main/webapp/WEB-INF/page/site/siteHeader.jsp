@@ -35,14 +35,16 @@
 				<div id="div_first" style="display: block">
 					<ul>
 					<c:forEach var="column" items="${columnList102}">
-							<li class="navbar-pos">
+							<li class="navbar-pos" columnId="${column.id}">
 							<a href="###"  onclick="toContentList('${column.id}');" 
 								class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
-								<c:if test="${column.class_type == 3}">
-									<ul class="navbar-dropdown-thr" style="display: block">
-										<li><a href="###" onclick="toContentList('${column.id}');" >${column.name }</a></li>
+									<ul class="navbar-dropdown-thr" style="display: none">
+										<c:forEach var="column3" items="${columnList3}">
+											<c:if test="${column3.big_class == column.id}">
+												<li><a href="###" onclick="toContentList('${column3.id}');" >${column3.name }</a></li>
+											</c:if>
+										</c:forEach>
 									</ul>
-								</c:if>
 							</li>
 					</c:forEach>
 					</ul>
@@ -60,11 +62,13 @@
 							<li class="navbar-pos">
 							<a href="###" onclick="toContentList('${column.id}');" 
 								class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
-								<c:if test="${column.class_type == 3}">
 									<ul class="navbar-dropdown-thr" style="display: none">
-										<li><a href="###" onclick="toContentList('${column.id}');" >${column.name }</a></li>
+										<c:forEach var="column3" items="${columnList3}">
+											<c:if test="${column3.big_class == column.id}">
+												<li><a href="###" onclick="toContentList('${column3.id}');" >${column3.name }</a></li>
+											</c:if>
+										</c:forEach>
 									</ul>
-								</c:if>
 							</li>
 					</c:forEach>
 					</ul>

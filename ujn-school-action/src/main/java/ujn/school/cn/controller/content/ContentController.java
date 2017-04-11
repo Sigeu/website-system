@@ -126,10 +126,22 @@ public class ContentController extends MyBaseController {
 		int contentId = Integer.parseInt(request.getParameter("id"));
 		Content content = this.contentService.queryContentById(contentId);
 		model.addAttribute("content", content);
-		//一级菜单
+		//一级栏目
 		List<Column> columnListByLevel = columnService.queryColumnListByLevel(IMySystemConstants.VALUE_1);
-		
 		model.addAttribute("columnListByLevel", columnListByLevel);
+		
+		//字典表 重要信息数据标签
+		List<Code> codeImportantList = codeService.queryCodeListByType(IMySystemConstants.IMPORTANCE);
+		model.addAttribute("codeImportantList", codeImportantList);
+		
+		//字典表 内容标签
+		List<Code> codeContentList = codeService.queryCodeListByType(IMySystemConstants.CONTENT_TAG);
+		model.addAttribute("codeContentList", codeContentList);
+		
+		
+		//字典表 目录分类
+		List<Code> classCodeList = codeService.queryCodeListByType(IMySystemConstants.CLASS_CODE);
+		model.addAttribute("classCodeList", classCodeList);
 		
 		return "content/contentUpdate";
 	}
@@ -283,6 +295,29 @@ public class ContentController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		content.setAdd_time(MyDateUtil.getDateTime());
 		int count = this.contentService.updateContent(content);
+		if (RESULT_COUNT_1 == count) {
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 审核
+	 * @param request
+	 * @param content
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/auditContent")
+	public Map<String, Object> auditContent(HttpServletRequest request, ContentWithBLOBs content) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		content.setAdd_time(MyDateUtil.getDateTime());
+		int count = this.contentService.auditContent(content);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {

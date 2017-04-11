@@ -20,20 +20,20 @@
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>用户名称:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="user"
+						name="user" class="input-text input-collspace size-MINI" />
 					</td>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>登录时间起:</strong>&nbsp;&nbsp;
 					</td>
 					<td width="10%" >
-						<input id="kssj_start" type="text" name="date_start" type="text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'kssj_end\')||\'2020-10-01\'}'})" class="input-text input-collspace size-MINI" /> 
+						<input id="date_start" type="text" name="date_start" type="text" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'date_end\')||\'2020-10-01\'}'})" class="input-text input-collspace size-MINI" /> 
 					</td>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>登录时间止:</strong>&nbsp;&nbsp;
 					</td>
 					<td width="10%" >
-						<input id="kssj_end" type="text" name="date_end" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'kssj_start\')}',maxDate:'2020-10-01'})" class="input-text input-collspace size-MINI" />
+						<input id="date_end" type="text" name="date_end" type="text" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'date_start\')}',maxDate:'2020-10-01'})" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -42,9 +42,6 @@
 						<button class="btn btn-success radius size-MINI" id="reset_but">
 							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 
@@ -63,7 +60,6 @@
 						<th>用户名</th>
 						<th>客户端IP</th>
 						<th>时间</th>
-						<th width="15%">操作</th>
 					</tr>
 				</thead>
 				<!-- tbody是必须的 -->
@@ -72,6 +68,7 @@
 		</div>
 	</div>
 	<%@ include file="../../../../common/footer_list.jsp"%>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 	<!--定义操作列按钮模板-->
 	<script id="tpl" type="text/x-handlebars-template">
     	{{#each func}}
@@ -135,48 +132,7 @@
 								}, {
 									data : "create_date",
 									defaultContent : ""
-								}, {
-									data : null
-								} ],
-								columnDefs : [ {
-									targets : -1,
-									render : function(data, type, row, meta) {
-										var context = {
-											func : [
-													{
-														"name" : "修改",
-														"fn" : "toEdit(\'"
-																+ row.id
-																+ "\')",
-														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
-													},{
-														"name" : "删除",
-														"fn" : "toDelete(\'"
-																+ row.id
-																+ "\')",
-														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? true:false
-													},{
-														"name" : "设置",
-														"fn" : "toIssue(\'"
-																+ row.id
-																+ "\')",
-														"type" : "danger-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
-													},{
-														"name" : "查看",
-														"fn" : "toDetail(\'"
-																+ row.id
-																+ "\')",
-														"type" : "primary-outline size-MINI radius",
-														"display" : true
-													} ]
-										};
-										var html = template(context);
-										return html;
-									}
-								} ],
+								}],
 								language : {
 									lengthMenu : "每页显示 _MENU_记录",
 									zeroRecords : "没有匹配的数据",
@@ -200,17 +156,13 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//登录名称
-				var login_name = $("#login_name").val().trim();
-				//真实姓名
-				var real_name = $("#real_name").val().trim();
+				var user = $("#user").val().trim();
 				//注册时间
 				var date_start = $("#date_start").val().trim();
 				var date_end = $("#date_end").val().trim();
 				//查询条件
 				var param = {
-					"login_name" : login_name,
-					"real_name" : real_name,
+					"user" : user,
 					"date_start" : date_start,
 					"date_end" : date_end
 				};
@@ -221,104 +173,14 @@
 			//重置
 			$('#reset_but').on('click', function() {
 				//登录名称
-				$("#login_name").val('');
-				//真实姓名
-				$("#real_name").val('');
+				$("#user").val('');
 				//注册时间
 				$("#date_start").val('');
 				$("#date_end").val('');
 				
 			});
 			
-			//添加
-			$('#add_but').on('click', function() {
-				layer.open({
-				    type: 2,
-				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加栏目</div></strong>","background-color: #5a97df"],
-				    area: ['100%', '100%'],
-				    shadeClose: false, //点击遮罩关闭
-				    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnAdd'
-				 });
-			});
-			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
-			});
-			
 		});
-
-		//重新加载页面：子页面调用
-		function reloadPage(){
-			window.location.reload();//刷新当前页面.
-		}
-		
-		//修改
-		function toEdit(id){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiEdit.do?id='+id
-			 });
-		}
-		//发布
-		function toIssue(id){
-			layer.confirm("确认要发布吗？已发布的信息不可再修改。", {
-				  btn: ['确认','返回'] //按钮
-					}, function(index){
-						$.ajax({
-						    url: "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/issueKaoShiChangCi.do" ,
-						    type: "POST",
-						    dataType: "JSON",
-						    data: {id:id},
-						    success:function(data){
-						    	layer.open({
-						    		  content: data.result_message,
-						    		  yes: function(index, layero){
-						    		    window.location.reload();//刷新当前页面
-						    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
-						    		  }
-						    		});
-						    }
-						});
-					}, function(index){
-						layer.close(index);
-				}); 
-		}
-		
-		//查看明细
-		function toDetail(id){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/toKaoShiChangCiDetail.do?id='+id
-			 });
-		}
-		
-		//考生列表
-		function toShowList(id){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/zgzssb/kaoShengXinXiController/toKaoShengXinXiList.do?kscc='+id
-			 });
-		}
-		
 	</script>
 </body>
 </html>

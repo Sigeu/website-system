@@ -2,7 +2,7 @@
  * Copyright (C), 2013, 山东旭日俞和科技有限公司
  * All right reserved.
  */
-package ujn.school.cn.service.content.impl;
+package ujn.school.cn.service.apply.impl;
 
 import java.io.File;
 import java.util.Iterator;
@@ -17,79 +17,77 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import ujn.school.cn.dao.content.ContentMapper;
-import ujn.school.cn.model.content.Content;
-import ujn.school.cn.model.content.ContentWithBLOBs;
+import ujn.school.cn.dao.apply.ApplyMapper;
+import ujn.school.cn.model.apply.Apply;
 import ujn.school.cn.pub.constants.IMySystemConstants;
-import ujn.school.cn.pub.util.MyAutoGenerateOrderNum;
 import ujn.school.cn.pub.util.MyDateUtil;
-import ujn.school.cn.service.content.IContentService;
+import ujn.school.cn.service.apply.IApplyService;
 
 /**   
- * @Description: 友情链接Service 
+ * @Description: 在线申请Service 
  * @author lizhaotao lzh_me@126.com  
  * @date 2017年1月18日 上午10:50:13 
  * @version V1.0   
  */
-@Service("contentService") 
-public class ContentService implements IContentService {
-	//友情链接Mapper
+@Service("applyService") 
+public class ApplyService implements IApplyService {
+	//在线申请Mapper
 	@Resource
-	private ContentMapper contentMapper;
+	private ApplyMapper applyMapper;
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: updateContent</p> 
+	 * <p>Title: updateApply</p> 
 	 * <p>Description: </p> 
-	 * @param content
+	 * @param apply
 	 * @return 
-	 * @see ujn.school.cn.service.content.IContentService#updateContent(ujn.school.cn.model.content.Content)
+	 * @see ujn.school.cn.service.apply.IApplyService#updateApply(ujn.school.cn.model.apply.Apply)
 	 */
 	@Override
-	public int updateContent(ContentWithBLOBs content) {
+	public int updateApply(Apply apply) {
 		// TODO Auto-generated method stub
-		return contentMapper.updateByPrimaryKeyWithBLOBs(content);
+		return applyMapper.updateByPrimaryKey(apply);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: queryContentById</p> 
+	 * <p>Title: queryApplyById</p> 
 	 * <p>Description: </p> 
-	 * @param contentId
+	 * @param applyId
 	 * @return 
-	 * @see ujn.school.cn.service.content.IContentService#queryContentById(int)
+	 * @see ujn.school.cn.service.apply.IApplyService#queryApplyById(int)
 	 */
 	@Override
-	public ContentWithBLOBs queryContentById(int contentId) {
+	public Apply queryApplyById(int applyId) {
 		// TODO Auto-generated method stub
-		return contentMapper.selectByPrimaryKey(contentId);
+		return applyMapper.selectByPrimaryKey(applyId);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: queryContentList</p> 
+	 * <p>Title: queryApplyList</p> 
 	 * <p>Description: </p> 
-	 * @param content
+	 * @param apply
 	 * @return 
-	 * @see ujn.school.cn.service.content.IContentService#queryContentList(ujn.school.cn.model.content.Content)
+	 * @see ujn.school.cn.service.apply.IApplyService#queryApplyList(ujn.school.cn.model.apply.Apply)
 	 */
 	@Override
-	public List<Content> queryContentList(Content content) {
+	public List<Apply> queryApplyList(Apply apply) {
 		// TODO Auto-generated method stub
-		return contentMapper.queryContentList(content);
+		return applyMapper.queryApplyList(apply);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: addContent</p> 
+	 * <p>Title: addApply</p> 
 	 * <p>Description: </p> 
 	 * @param request
-	 * @param content
+	 * @param apply
 	 * @return 
-	 * @see ujn.school.cn.service.content.IContentService#addContent(javax.servlet.http.HttpServletRequest, ujn.school.cn.model.content.ContentWithBLOBs)
+	 * @see ujn.school.cn.service.apply.IApplyService#addApply(javax.servlet.http.HttpServletRequest, ujn.school.cn.model.apply.Apply)
 	 */
 	@Override
-	public int addContent(HttpServletRequest request,ContentWithBLOBs content) {
+	public int addApply(HttpServletRequest request,Apply apply) {
 		try {
 			//创建一个通用的多部分解析器  
 	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
@@ -118,7 +116,7 @@ public class ContentService implements IContentService {
 	                        	localFile.mkdirs();  
 	                        }  
 	                        file.transferTo(localFile);  
-	                        content.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
+	                        //apply.setWeb_logo(IMySystemConstants.FILE_PATH_IMAGE + fileName);
 	                    }  
 	                }  
 	            }  
@@ -127,53 +125,22 @@ public class ContentService implements IContentService {
 			// TODO: handle exception
 		}
 		//创建时间
-		content.setAdd_time(MyDateUtil.getDateTime());
-		return contentMapper.insert(content);
+		//apply.setAdd_time(MyDateUtil.getDateTime());
+		return applyMapper.insert(apply);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: deleteContent</p> 
+	 * <p>Title: deleteApply</p> 
 	 * <p>Description: </p> 
-	 * @param contentId
+	 * @param applyId
 	 * @return 
-	 * @see ujn.school.cn.service.content.IContentService#deleteContent(int)
+	 * @see ujn.school.cn.service.apply.IApplyService#deleteApply(int)
 	 */
 	@Override
-	public int deleteContent(int contentId) {
+	public int deleteApply(int applyId) {
 		
-		return contentMapper.deleteByPrimaryKey(contentId);
-	}
-
-	@Override
-	public List<Content> queryContentRecycleList(Content content) {
-		// TODO Auto-generated method stub
-		return contentMapper.queryContentRecycleList(content);
-	}
-
-	@Override
-	public List<Content> queryContentListByColumn(Content content) {
-		// TODO Auto-generated method stub
-		return contentMapper.queryContentListByColumn(content);
-	}
-
-	@Override
-	public int recoverContent(int contentId) {
-		// TODO Auto-generated method stub
-		return contentMapper.recoverContent(contentId);
-	}
-
-	@Override
-	public void updateContentOrderNum(ContentWithBLOBs content) {
-		// TODO Auto-generated method stub
-		content.setCode_num(MyAutoGenerateOrderNum.generateArticleOrder(content,content.getId()+""));
-		contentMapper.updateContentOrderNum(content);
-	}
-
-	@Override
-	public int auditContent(ContentWithBLOBs content) {
-		// TODO Auto-generated method stub
-		return contentMapper.auditContent(content);
+		return applyMapper.deleteByPrimaryKey(applyId);
 	}
 	
 

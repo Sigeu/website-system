@@ -95,39 +95,6 @@
 				<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" class="input-text Wdate"  value="" placeholder="内容公示截止有效期,不填为永久有效" id="validity_time" name="validity_time">
 			</div>
 		</div>
-		<!-- <div class="row cl input-label">
-			<label class="form-label col-xs-4 col-sm-2">添加之前：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="添加之前的样子" id="" name="">
-			</div>
-		</div>
-		<div class="row cl btn-label">
-			<label class="form-label col-xs-4 col-sm-2">添加之后：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				选择的标签出现在这里
-				<span class="btn btn-primary">财务信息</span>
-				<span class="btn btn-primary">院办公开文件</span>
-				<span class="btn btn-primary">招生信息</span>
-				选择的标签 end
-				<input type="text" class="input-text" value="" placeholder='请输入标签名称，多个标签之间用 " , " 隔开' id="" name="">
-			</div>
-		</div>
-		<div class="row cl btn-label btn-prompt">
-			提示标签
-			<label class="form-label col-xs-4 col-sm-2"></label>占位置
-			<div class="formControls col-xs-8 col-sm-9">
-				<button class="btn" type="button">JAVA</button>
-				<button class="btn" type="button">PHP</button>
-				<button class="btn" type="button">财务信息</button>
-				<button class="btn" type="button">JAVA</button>
-				<button class="btn" type="button">PHP</button>
-				<button class="btn" type="button">院办公开文件</button>
-				<button class="btn" type="button">JAVA</button>
-				<button class="btn" type="button">招生信息</button>
-				<button class="btn" type="button">BootStrap</button>
-			</div>
-			提示标签 end
-		</div> -->
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">重要信息标签：</label>
@@ -140,7 +107,7 @@
 			<div class="formControls col-xs-8 col-sm-9" id="importance_content">
 				<c:forEach items="${codeImportantList}" var="codeImportant" varStatus="code"> 
 				 	<c:if test="${code.index < 10}">
-                  		<button class="btn" type="button">${codeImportant.code_value }</button>
+                  		<button class="btn" type="button">${codeImportant.code_name }</button>
                   	</c:if> 
                  </c:forEach> 
 			</div>
@@ -157,7 +124,7 @@
 			<div class="formControls col-xs-8 col-sm-9" id="tag_content">
 				 <c:forEach items="${codeContentList}" var="codeContent" varStatus="code"> 
 				 	<c:if test="${code.index < 10}">
-                  		<button class="btn" type="button">${codeContent.code_value }</button>
+                  		<button class="btn" type="button">${codeContent.code_name }</button>
                   	</c:if> 
                  </c:forEach> 
 			</div>

@@ -499,7 +499,17 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_column
-    where id = #{id} or big_class = #{id}
+    where big_class = #{id}
     and class_type = #{level}
+    order by no_order asc
+  </select>
+  
+  <select id="queryAllColumnListByLevel3" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_column
+    where class_type = '3'
   </select>
 </mapper>

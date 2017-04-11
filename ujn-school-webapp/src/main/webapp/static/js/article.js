@@ -65,6 +65,10 @@ function toContentDetail(id) {
 function toContentList(id) {
 	var url = contextPath
 			+ "/index/controller/indexController/toContentList?id=" + id;
+	//信息公开申请
+	if(id == '112'){
+		url = contextPath + "/index/controller/indexController/toContentList112?id=" + id;
+	}
 	window.location.href = url;
 }
 /*----------------------访问列表-----------------------*/

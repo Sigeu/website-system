@@ -72,4 +72,6 @@ public interface ColumnMapper {
 	List<Column> queryChildColumnListById(String id);
 
 	List<Column> queryColumnListByIdAndLevel(Map<String, String> map);
+
+	List<Column> queryAllColumnListByLevel3();
 }

@@ -202,11 +202,21 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加角色</div></strong>","background-color: #5a97df"],
+				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleAdd'
 				 });
+			});
+			
+			//导出
+			$('#export_but').on('click', function() {
+				
+				var params = $.param(getSearchParams());
+			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
+			    //window.location.href = url;
+			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
+			    //$('#search_form').submit().remove();
 			});
 			
 		});
@@ -221,7 +231,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改角色</div></strong>","background-color: #5a97df"],
+			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleUpdate?id='+id
@@ -258,7 +268,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;角色授权</div></strong>","background-color: #5a97df"],
+			    title:["角色授权"],
 			    area: ['50%', '80%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleFuncright?id='+id
@@ -270,7 +280,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看角色</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/system/controller/roleController/toRoleDetail?id='+id
