@@ -14,7 +14,7 @@
 <div class="article all-con cat-con">
 	<div class="container">
 		<div class="row">
-		<form action="${pageContext.request.contextPath}/link/controller/linkController/addLink" method="post" class="form form-horizontal" id="form_">
+		<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post" class="form form-horizontal" id="form_">
 			<div class="col-md-9 article-sidebarl list-sidebarl list-sidebarr">
 				<div class="article-top text-center apply-top" style="margin-top:-10px">
 					<h1 style="margin-bottom:30px">信息公开申请</h1>
@@ -72,15 +72,14 @@
 								<input type="text" class="form-control" value="" placeholder="请输入您的证件号码" id="id_num" name="id_num">
 							</div>
 						</div>
-						<div class="form-group col-md-6">
+						<!-- <div class="form-group col-md-6">
 							<label class="col-sm-2 col-md-4 col-lg-3 control-label">上传证件</label>
 							<div class="col-sm-9 col-md-8 col-lg-9">
 								<span class="btn-upload form-group">
-								  <input class="input-text upload-url radius" type="text" name="id_file" id="id_file" readonly><a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
-								  <input type="file" multiple name="file-1" class="input-file">
+								  <input class="input-text upload-url radius" type="text" name="id_file" id="id_file" readonly>&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
 								</span>
 							</div>
-						</div>
+						</div> -->
 						<div class="clearfix"></div>
 						<div class="form-group apply-area">
 							<label class="col-sm-2 col-md-4 col-lg-3">所需信息的内容描述</label>
@@ -101,9 +100,10 @@
 						<div class="form-group col-md-6">
 							<label class="col-sm-2 col-md-4 col-lg-3 control-label">确认码</label>
 							<div class="col-sm-9 col-md-8 col-lg-9">
-								<input type="text" class="form-control" value="" placeholder="请输入您的确认码" id="check_pwd" name="check_pwd">
+								<input type="text" class="form-control" value="" placeholder="确认码用于下次查询反馈结果" id="check_pwd" name="check_pwd">
 							</div>
 						</div>
+						<br/>
 						<div class="form-btn">
 							<button class="btn btn-default" type="reset" style="margin-right:40px">重置</button>
 							<button class="btn btn-primary" type="submit"  style="">提交</button>
@@ -119,53 +119,23 @@
 
 <%@ include file="siteFooter.jsp"%>
 
-<!-- 模态框声明 -->
-<div class="modal fade" id="myFeedback" tabindex="-1" style="font-family:微软雅黑">
-	<!-- 窗口声明 -->
-	<div class="modal-dialog">
-		<!-- 内容声明 -->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close " data-dismiss="modal"><span>&times;</span></button>
-				<h4 class="modal-title">用户信息反馈</h4>
-			</div>
-			<div class="modal-body">
-				<div class="container-fluid">
-					<form class="form-horizontal" style="font-family:微软雅黑; font-size:15px">
-						<label class="control-label" style="color:#333">请输入您的确认码：</label>
-						<div style="margin:10px 0">
-							<input type="text" class="form-control" placeholder="请输入您的确认码">	
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="modal-footer" style="margin-right:15px">
-				<button class="btn btn-default" style="width:70px; font-family:微软雅黑">重置</button>
-				<button class="btn btn-primary" type="submit" style="width:70px; font-family:微软雅黑">提交</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-$('#feedback').on('click', function () {
-	$('#myFeedback').modal('show');
-});
-
-$('#myFeedback').modal({
-	show : false,
-	backdrop: 'static',
-});
-
-</script>
 <%@ include file="../../../common/footer-site.jsp"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui/js/H-ui.js"></script> 
+<!-- 表单验证 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<!-- form提交 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 <script type="text/javascript">
+var contextPath = "${pageContext.request.contextPath}";
 $(function(){
-	//表单验证
-	//$("#form_").Validform();
+	$('#feedback').on('click', function () {
+		layer.prompt({title: '输入口令，并确认', formType: 1}, function(pass, index){
+		  layer.close(index);
+		});
+	});
+	
 
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -202,14 +172,7 @@ $(function() {
 		submitHandler:function(form){
 			var options = {
 					success : function(data) {
-						layer.alert(data.result_message, {
-						  closeBtn: 1
-						}, function(){
-							//父页面刷新
-							parent.reloadPage();
-							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-							parent.layer.close(index); //再执行关闭
-						});
+						layer.alert(data.result_message);
 					}
 				};
 			// 准备form表单

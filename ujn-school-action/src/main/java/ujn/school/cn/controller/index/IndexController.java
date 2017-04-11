@@ -170,7 +170,7 @@ public class IndexController extends MyBaseController {
 		Contact contact = contactService.queryContact();
 		// 友情链接
 		List<Link> linkList = linkService.queryLinkList(null);
-		
+		Config config = configService.queryConfig();
 		// 最新公开信息 
 		Content content = new Content();
 		String column_id = request.getParameter("id")==null? "0":request.getParameter("id");
@@ -217,7 +217,10 @@ public class IndexController extends MyBaseController {
 		List<Column> columnList3 = columnService.queryAllColumnListByLevel3();
 		model.addAttribute("columnList3", columnList3);
 		
+		List<Column> columnListThis3 = columnService.queryColumnListByIdAndLevel(column_id,IMySystemConstants.VALUE_3);
+		model.addAttribute("columnListThis3", columnListThis3);
 		model.addAttribute("contact", contact);
+		model.addAttribute("config", config);
 		model.addAttribute("linkList", linkList);
 		model.addAttribute("contentList", contentList);
 		model.addAttribute("column_id", column_id);
@@ -243,7 +246,7 @@ public class IndexController extends MyBaseController {
 		// 友情链接
 		List<Link> linkList = linkService.queryLinkList(null);
 		
-		
+		Config config = configService.queryConfig();
 		
 		// 侧栏年度报告 
 		Content contentReport = new Content();
@@ -275,6 +278,7 @@ public class IndexController extends MyBaseController {
 		model.addAttribute("columnList3", columnList3);
 		
 		model.addAttribute("contact", contact);
+		model.addAttribute("config", config);
 		model.addAttribute("linkList", linkList);
 		model.addAttribute("contentReportList", contentReportList);
 		model.addAttribute("columnList", columnList);

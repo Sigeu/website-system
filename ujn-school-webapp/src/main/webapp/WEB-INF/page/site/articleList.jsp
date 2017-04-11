@@ -17,6 +17,7 @@
 	<div class="article all-con">
 		<div class="container">
 			<div class="row">
+				<%@ include file="articleListSidebarMenu.jsp"%>
 				<div class="col-md-9 article-sidebarl list-sidebarl list-sidebarr">
 					<div class="list">
 						<div class="pro-top">
@@ -45,7 +46,6 @@
 					</ul>
 					</nav>
 				</div>
-				<%@ include file="articleListSidebar.jsp"%>
 			</div>
 		</div>
 	</div>
