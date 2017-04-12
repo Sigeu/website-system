@@ -4,12 +4,12 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>在线申请列表</title>
+<title>在线反馈列表</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span>在线申请管理
+		系统管理 <span class="c-gray en">&gt;</span>在线反馈管理
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>
@@ -42,12 +42,11 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>申请人姓名</th>
+						<th>反馈人姓名</th>
 						<th>联系电话</th>
 						<th>工作单位</th>
-						<th>申请内容</th>
-						<th>申请原因</th>
-						<th>公开方式</th>
+						<th>反馈内容</th>
+						<th>反馈原因</th>
 						<th>备注说明</th>
 						<th width="15%">操作</th>
 					</tr>
@@ -80,7 +79,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/apply/controller/applyController/queryApplyList",
+									url : "${pageContext.request.contextPath}/apply/controller/applyController/queryFeedbackList",
 									type:"POST",
 									data : {
 										//args1: "固定传参"
@@ -118,9 +117,6 @@
 									defaultContent : ""
 								}, {
 									data : "reason",
-									defaultContent : ""
-								}, {
-									data : "open_type",
 									defaultContent : ""
 								}, {
 									data : "remark",

@@ -73,3 +73,22 @@ function toContentList(id) {
 }
 /*----------------------访问列表-----------------------*/
 
+
+/*----------------------重要信息列表-----------------------*/
+//列表
+function toContentListForImportance() {
+	var url = contextPath
+			+ "/index/controller/indexController/queryContentListForImportance";
+	window.location.href = url;
+}
+/*----------------------重要信息列表-----------------------*/
+
+/*----------------------最新信息列表-----------------------*/
+//列表
+function toContentListForNew() {
+	var url = contextPath
+			+ "/index/controller/indexController/queryContentListForNew";
+	window.location.href = url;
+}
+/*----------------------最新信息列表-----------------------*/
+

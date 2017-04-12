@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +10,7 @@
 <title>网站首页</title>
 </head>
 <body>
-	<%@ include file="siteHeader.jsp"%>
+	<%@ include file="siteHeader-index.jsp"%>
 
 	<%@ include file="carousel.jsp"%>
 
@@ -17,39 +18,39 @@
 		<div class="container">
 			<div class="pro-top">
 				<h4 class="pull-left">
-					<a href="###" onclick="toContentList('${column_id1}');"><span
+					<a href="###" onclick="toContentListForNew();"><span
 						class="glyphicon glyphicon-th-list"></span> 最新公开信息</a>
 				</h4>
-				<a href="###" onclick="toContentList('${column_id1}');"
+				<a href="###" onclick="toContentListForNew();"
 					class="more pull-right">更多&gt;&gt;</a>
 			</div>
 			<div class="clearfix"></div>
 			<div class="row text-justify">
-				<c:forEach var="content1" items="${contentList1}">
-					<c:if test="content1.index == 0">
+				<c:forEach var="contentNew" items="${contentListNew}" varStatus="content">
+					<c:if test="${content.index == 0 }">
 						<div class="col-md-4 index-info-con">
 							<div class="index-info-fir-top">
-								<a href="###" onclick="toContentDetail('${content1.id}');">${content1.title}</a>
-								<span>${content1.add_time}</span>
+								<a href="###" onclick="toContentDetail('${contentNew.id}');">${contentNew.title}</a>
+								<span>${contentNew.add_time}</span>
 							</div>
-							<div class="index-info-fir-body">${content1.description}</div>
+							<div class="index-info-fir-body">${contentNew.description}</div>
 						</div>
 					</c:if>
 				</c:forEach>
 
 				<div class="col-md-8 all-list">
-					<c:forEach var="content1" items="${contentList1}">
-						<c:if test="content1.index > 1">
+					<c:forEach var="contentNew" items="${contentListNew}" varStatus="content">
+						<c:if test="${content.index > 1}">
 							<div class="all-list-pro clearfix">
 								<div class="pro-date pull-left hidden-xs hidden-sm">
 									<dl>
-										<dt>${content1.add_time}</dt>
-										<dd>${content1.add_time}月</dd>
+										<dt>${fn:substring(contentNew.add_time, 8, 10)}</dt>
+										<dd>${fn:substring(contentNew.add_time, 5, 7)}月</dd>
 									</dl>
 								</div>
 								<div class="pro-con pull-right">
-									<a href="###" onclick="toContentDetail('${content1.id}');"><h5>${content1.title}</h5></a>
-									<p>${content1.description}</p>
+									<a href="###" onclick="toContentDetail('${contentNew.id}');"><h5>${contentNew.title}</h5></a>
+									<p>${contentNew.description}</p>
 								</div>
 							</div>
 						</c:if>
@@ -66,10 +67,10 @@
 					<div class="list">
 						<div class="pro-top">
 							<h4 class="pull-left">
-								<a href="###" onclick="toContentList('${column_id2}');"><span
+								<a href="###" onclick="toContentListForImportance();"><span
 									class="glyphicon glyphicon-align-left"></span> 重要信息公开</a>
 							</h4>
-							<a href="###" onclick="toContentList('${column_id2}');"
+							<a href="###" onclick="toContentListForImportance();"
 								class="more pull-right">更多&gt;&gt;</a>
 						</div>
 						<div class="clearfix"></div>

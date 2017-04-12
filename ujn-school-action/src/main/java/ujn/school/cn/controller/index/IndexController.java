@@ -84,25 +84,16 @@ public class IndexController extends MyBaseController {
 			List<Link> linkList = linkService.queryLinkList(null);
 			// 最新公开信息 
 			Content content1 = new Content();
-			String column_id1 = "111";
-			content1.setColumn_id(column_id1);
-			content1.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
-			content1.setOrder_type(IMySystemConstants.ORDER_DESC);
-			content1.setCount_num(IMySystemConstants.COUNT_NUM4);
-			//内容列表
-			List<Content> contentList1 = contentService.queryContentListByColumn(content1);
+			//最新发布的6条信息
+			List<Content> contentListNew = contentService.queryContentListByNew(content1);
+			model.addAttribute("contentListNew", contentListNew);
 			// 重要信息公开 
 			Content content2 = new Content();
-			String column_id2 = "112";
-			content2.setColumn_id(column_id2);
-			content2.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
-			content2.setOrder_type(IMySystemConstants.ORDER_DESC);
-			content2.setCount_num(IMySystemConstants.COUNT_NUM2);
-			//内容列表
-			List<Content> contentList2 = contentService.queryContentListByColumn(content2);
+			List<Content> contentList2 = contentService.queryContentListByImportance(content2);
+			model.addAttribute("contentList2", contentList2);
 			// 信息公开规章制度 
 			Content content3 = new Content();
-			String column_id3 = "103";
+			String column_id3 = IMySystemConstants.COLUMN109;
 			content3.setColumn_id(column_id3);
 			content3.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
 			content3.setOrder_type(IMySystemConstants.ORDER_DESC);
@@ -141,10 +132,8 @@ public class IndexController extends MyBaseController {
 			model.addAttribute("config", config);
 			model.addAttribute("contact", contact);
 			model.addAttribute("linkList", linkList);
-			model.addAttribute("contentList1", contentList1);
-			model.addAttribute("column_id1", column_id1);
-			model.addAttribute("contentList2", contentList2);
-			model.addAttribute("column_id2", column_id2);
+			
+			
 			model.addAttribute("contentList3", contentList3);
 			model.addAttribute("column_id3", column_id3);
 			model.addAttribute("columnList", columnList);
@@ -188,7 +177,7 @@ public class IndexController extends MyBaseController {
 		
 		// 侧栏年度报告 
 		Content contentReport = new Content();
-		String column_id_report = "103";
+		String column_id_report = IMySystemConstants.COLUMN113;
 		contentReport.setColumn_id(column_id_report);
 		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
 		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
@@ -250,7 +239,7 @@ public class IndexController extends MyBaseController {
 		
 		// 侧栏年度报告 
 		Content contentReport = new Content();
-		String column_id_report = "103";
+		String column_id_report = IMySystemConstants.COLUMN113;
 		contentReport.setColumn_id(column_id_report);
 		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
 		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
@@ -301,6 +290,15 @@ public class IndexController extends MyBaseController {
 		
 		int contentId =  Integer.parseInt(nullToStringZero(request.getParameter("id")));
 		Content content = contentService.queryContentById(contentId);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		model.addAttribute("columnList", columnList);
 		
 		//校务
 		List<Column> columnList102 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
@@ -456,7 +454,7 @@ public class IndexController extends MyBaseController {
 		
 		// 侧栏年度报告 
 		Content contentReport = new Content();
-		String column_id_report = "103";
+		String column_id_report = IMySystemConstants.COLUMN113;
 		contentReport.setColumn_id(column_id_report);
 		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
 		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
@@ -483,6 +481,99 @@ public class IndexController extends MyBaseController {
 		
 		return "site/searchList";
 	}
+	
+	//重要信息列表
+	@RequestMapping("/queryContentListForImportance")
+	public String queryContentListForImportance(HttpServletRequest request, Model model) {
+		
+		//内容列表
+		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
+		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
+		List<Content> contentList = contentService.queryContentListByImportance(null);
+		int totalRecords = contentList.size();
+		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
+		
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = IMySystemConstants.COLUMN113;
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentList", contentList);
+		model.addAttribute("totalRecords", totalRecords);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("columnList", columnList);
+		model.addAttribute("search_text", "重要公开信息");
+		
+		return "site/searchList";
+	}
+	
+	//最新公开信息列表
+	@RequestMapping("/queryContentListForNew")
+	public String queryContentListForNew(HttpServletRequest request, Model model) {
+			
+		//内容列表
+		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
+		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
+		List<Content> contentList = contentService.queryContentListByNew(null);
+		int totalRecords = contentList.size();
+		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
+		
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = IMySystemConstants.COLUMN113;
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentList", contentList);
+		model.addAttribute("totalRecords", totalRecords);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("columnList", columnList);
+		model.addAttribute("search_text", "最新公开信息");
+		
+		return "site/searchList";
+	}
+	
 	
 	/**
 	 * 获取IP

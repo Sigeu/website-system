@@ -32,7 +32,7 @@
 				<div id="navbar-dropdown-top" >
 					<span id="span_first">校务公开</span><span id="span_second">党务公开</span>
 				</div>
-				<div id="div_first" style="display: none">
+				<div id="div_first" style="display: block">
 					<ul>
 					<c:forEach var="column" items="${columnList102}">
 							<li class="navbar-pos" columnId="${column.id}">

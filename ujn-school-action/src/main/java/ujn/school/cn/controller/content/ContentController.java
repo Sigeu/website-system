@@ -24,7 +24,6 @@ import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.content.ContentWithBLOBs;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
-import ujn.school.cn.pub.util.MyAutoGenerateOrderNum;
 import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.content.IContentService;
@@ -294,6 +293,8 @@ public class ContentController extends MyBaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		content.setAdd_time(MyDateUtil.getDateTime());
+		//修改后状态为“待审核”
+		content.setStatus(IMySystemConstants.VALUE_0);
 		int count = this.contentService.updateContent(content);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

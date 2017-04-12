@@ -70,4 +70,8 @@ public interface IContentService {
 
 	int auditContent(ContentWithBLOBs content);
 
+	List<Content> queryContentListByNew(Content content);
+
+	List<Content> queryContentListByImportance(Content content);
+
 }

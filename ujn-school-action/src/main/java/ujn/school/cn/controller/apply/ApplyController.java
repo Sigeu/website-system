@@ -52,6 +52,13 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyList";
 	}
+	
+	//意见反馈
+	@RequestMapping("/toFeedbackList")
+	public String toFeedbackList(HttpServletRequest request, Model model) {
+
+		return "apply/feedbackList";
+	}
 
 	/**
 	 * 
@@ -137,6 +144,44 @@ public class ApplyController extends MyBaseController {
 		return dataTable;
 	}
 
+	/**
+	 * 
+	 * @Description: 在线反馈
+	 * @param request
+	 * @param response
+	 * @param apply
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryFeedbackList")
+	public DataTablePageUtil<Apply> queryFeedbackList(HttpServletRequest request,
+			HttpServletResponse response, Apply apply) {
+		// 使用DataTables的属性接收分页数据
+		DataTablePageUtil<Apply> dataTable = null;
+		try {
+			// 使用DataTables的属性接收分页数据
+			dataTable = new DataTablePageUtil<Apply>(request);
+			// 开始分页：PageHelper会处理接下来的第一个查询
+			PageHelper.startPage(dataTable.getPage_num(),
+					dataTable.getPage_size());
+			// 还是使用List，方便后期用到
+			List<Apply> applyList = this.applyService.queryApplyList(apply);
+			// 用PageInfo对结果进行包装
+			PageInfo<Apply> pageInfo = new PageInfo<Apply>(applyList);
+
+			// 封装数据给DataTables
+			dataTable.setDraw(dataTable.getDraw());
+			dataTable.setData(pageInfo.getList());
+			dataTable.setRecordsTotal((int) pageInfo.getTotal());
+			dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return dataTable;
+	}
 	/**
 	 * 
 	 * @Description: 添加

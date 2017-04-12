@@ -128,6 +128,7 @@
 			<value>
 				/login.jsp = anon
 				/index.jsp = anon
+				/apply/controller/applyController/addApply = anon
 				/system/controller/loginController/logout = logout
 				/unauthorized.jsp = anon 
 				/system/controller/loginController/login = anon

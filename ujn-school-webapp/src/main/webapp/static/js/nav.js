@@ -11,7 +11,6 @@ $(function() {
 		$("#div_second").hide();
 		$("#span_second").removeClass("navbar-dorpdown-one");
 	}, function(event) {
-		
 	});
 	
 	$("#div_first").hover(function(event) {

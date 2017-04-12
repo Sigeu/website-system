@@ -25,11 +25,10 @@
 						<h1>${content.title }</h1>
 						<div class="article-info">
 							<fmt:parseDate value="${content.add_time}" pattern="yyyy-MM-dd" var="add_time"/>
-							<span><fmt:formatDate value="${add_time}" pattern="yyyy年MM月dd日" /></span>
-							<span>作者：${content.issue }</span><span>浏览次数：${content.hits }</span>
-							<fmt:parseDate value="${content.validity_time}" pattern="yyyy-MM-dd" var="validity_time"/>
-							<span>公开日期：<fmt:formatDate value="${add_time}" pattern="yyyy-MM-dd" /></span>
-							<span>公开部门：${content.issue }</span>
+							<span>公开日期：<fmt:formatDate value="${add_time}" pattern="yyyy年MM月dd日" /></span>
+							<span>作者：${content.issue_name }</span><span>浏览次数：${content.hits }次</span>
+							<span>有效期：${content.validity_time}</span>
+							<span>公开部门：${content.dept_code_name }</span>
 						</div>
 					</div>
 					<div class="article-body">
@@ -52,33 +51,19 @@
 								</dl>
 							</div>
 							<div class="pro-con article-pro-con pull-right">
-								<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-								<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
-									货物名称 预算。</p>
+								<a href="###"><h5>相关阅读测试1</h5></a>
+								<p>测试内容描述显示，测试内容描述显示测试内容描述显示测试内容描述显示测试内容描述显示测试内容描述显示最多80字比较符合版面设计。</p>
 							</div>
 						</div>
 						<div class="all-list-pro clearfix">
 							<div class="pro-date pull-left hidden-xs hidden-sm">
 								<dl>
-									<dt>08</dt>
-									<dd>12月</dd>
+									<dt>09</dt>
+									<dd>03月</dd>
 								</dl>
 							</div>
 							<div class="pro-con article-pro-con pull-right">
-								<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-								<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
-									货物名称 预算。</p>
-							</div>
-						</div>
-						<div class="all-list-pro clearfix">
-							<div class="pro-date pull-left hidden-xs hidden-sm">
-								<dl>
-									<dt>08</dt>
-									<dd>12月</dd>
-								</dl>
-							</div>
-							<div class="pro-con article-pro-con pull-right">
-								<a href="###"><h5>济南大学幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
+								<a href="###"><h5>相关阅读测试2</h5></a>
 								<p>本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号本项目为济南大学触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号
 									货物名称 预算。</p>
 							</div>
