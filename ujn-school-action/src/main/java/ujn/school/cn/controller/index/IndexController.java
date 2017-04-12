@@ -285,6 +285,7 @@ public class IndexController extends MyBaseController {
 	public String toContentDetail(HttpServletRequest request, Model model) {
 		// 网站联系方式
 		Contact contact = contactService.queryContact();
+		Config config = configService.queryConfig();
 		// 友情链接
 		List<Link> linkList = linkService.queryLinkList(null);
 		
@@ -312,6 +313,7 @@ public class IndexController extends MyBaseController {
 		model.addAttribute("columnList3", columnList3);
 		
 		model.addAttribute("contact", contact);
+		model.addAttribute("config", config);
 		model.addAttribute("linkList", linkList);
 		model.addAttribute("content", content);
 		

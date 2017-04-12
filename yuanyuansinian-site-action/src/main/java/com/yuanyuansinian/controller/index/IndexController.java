@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
+import com.yuanyuansinian.model.carousel.Carousel;
 import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.model.content.Content;
@@ -31,6 +32,7 @@ import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
+import com.yuanyuansinian.service.carousel.ICarouselService;
 import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.config.IConfigService;
 import com.yuanyuansinian.service.contact.IContactService;
@@ -76,6 +78,10 @@ public class IndexController extends MyBaseController {
 	// 产品Service
 	@Resource
 	private IProductService productService;
+	
+	// 轮播图片Service
+	@Resource
+	private ICarouselService carouselService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -149,8 +155,12 @@ public class IndexController extends MyBaseController {
 			//咨询子栏目
 			model.addAttribute("columnChildList", columnChildList);
 			
-			//model.addAttribute("config", config);
-			//model.addAttribute("contact", contact);
+			Carousel carousel = new Carousel();
+			//轮播图片
+			carousel.setCarousel_type(IMySystemConstants.VALUE_1);
+			List<Carousel> carouselList = this.carouselService.queryCarouselList(carousel);
+			model.addAttribute("carouselList", carouselList);
+			
 			model.addAttribute("linkList", linkList);
 			model.addAttribute("contentList1", contentList1);
 			model.addAttribute("column_id1", column_id1);
