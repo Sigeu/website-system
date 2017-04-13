@@ -30,8 +30,8 @@ function toShowNoticeDetail(id) {
 
 
 //通知公告列表
-function toShowNoticeDetail(id) {
-	var url = contextPath + "/sinian/index/indexController/toNoticeDetail?id=" + id;
+function toShowNoticeList(id) {
+	var url = contextPath + "/sinian/index/indexController/toNoticeList?id=" + id;
 	window.location.href = url;
 }
 /*----------------------通知公告  end-------------------------*/

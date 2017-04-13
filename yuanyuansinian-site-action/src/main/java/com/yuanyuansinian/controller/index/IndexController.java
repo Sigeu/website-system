@@ -92,30 +92,53 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request,  Model model) {
 		try {
-			// 网站配置
-			//Config config = configService.queryConfig();
-			// 网站联系方式
-			//Contact contact = contactService.queryContact();
 			// 友情链接
-			List<Link> linkList = linkService.queryLinkList(null);
-			// 最新公开信息 
-			Content content1 = new Content();
-			String column_id1 = "111";
-			content1.setColumn_id(column_id1);
-			content1.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
-			content1.setOrder_type(IMySystemConstants.ORDER_DESC);
-			content1.setCount_num(IMySystemConstants.COUNT_NUM4);
-			//内容列表
-			List<Content> contentList1 = contentService.queryContentListByColumn(content1);
-			// 重要信息公开 
-			Content content2 = new Content();
-			String column_id2 = "112";
-			content2.setColumn_id(column_id2);
-			content2.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
-			content2.setOrder_type(IMySystemConstants.ORDER_DESC);
-			content2.setCount_num(IMySystemConstants.COUNT_NUM2);
-			//内容列表
-			List<Content> contentList2 = contentService.queryContentListByColumn(content2);
+			//List<Link> linkList = linkService.queryLinkList(null);
+			//model.addAttribute("linkList", linkList);
+			// 最新建馆 
+			Content content102 = new Content();
+			String column_id102 = IMySystemConstants.COLUMN102;
+			content102.setColumn_id(column_id102);
+			content102.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			content102.setOrder_type(IMySystemConstants.ORDER_DESC);
+			//3条
+			content102.setCount_num(IMySystemConstants.COUNT_NUM3);
+			//最新建馆 列表
+			List<Content> contentList102 = contentService.queryContentListByColumn(content102);
+			model.addAttribute("contentList102", contentList102);
+			model.addAttribute("column_id102", column_id102);
+			
+			
+			
+			// 资讯--动态
+			Content content124 = new Content();
+			String column_id124 = IMySystemConstants.COLUMN102;
+			content124.setColumn_id(column_id124);
+			content124.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			content124.setOrder_type(IMySystemConstants.ORDER_DESC);
+			//6条
+			content124.setCount_num(IMySystemConstants.COUNT_NUM6);
+			//最新建馆 列表
+			List<Content> contentList124 = contentService.queryContentListByColumn(content124);
+			model.addAttribute("contentList124", contentList124);
+			model.addAttribute("column_id124", column_id124);
+			
+			
+			// 最新祭文
+			Content content130 = new Content();
+			String column_id130 = IMySystemConstants.COLUMN130;
+			content130.setColumn_id(column_id130);
+			content130.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			content130.setOrder_type(IMySystemConstants.ORDER_DESC);
+			//8条
+			content130.setCount_num(IMySystemConstants.COUNT_NUM8);
+			//最新祭文列表
+			List<Content> contentList130 = contentService.queryContentListByColumn(content130);
+			model.addAttribute("contentList130", contentList130);
+			model.addAttribute("column_id130", column_id130);
+			
+			
+			
 			// 信息公开规章制度 
 			Content content3 = new Content();
 			String column_id3 = "103";
@@ -135,24 +158,13 @@ public class IndexController extends MyBaseController {
 			List<Column> columnList = new ArrayList<Column>(columnLinkedList);
 			
 			
-			//校务
-			//LinkedList<Column> columnLinkedList1 = this.toSort(resultList, result, 102);
-			//转换为ArrayList
-			//List<Column> columnList1 = new ArrayList<Column>(columnLinkedList1);
-			
-			
-			//党务
-			//LinkedList<Column> columnLinkedList2 = this.toSort(resultList, result, 107);
-			//转换为ArrayList
-			//List<Column> columnList2 = new ArrayList<Column>(columnLinkedList2);
-			
 			
 			//
 			String columnId = "107";
 			//子栏目
 			List<Column> columnChildList = columnService.queryChildColumnListByColumnId(columnId);
 			
-			//咨询子栏目
+			//资讯子栏目
 			model.addAttribute("columnChildList", columnChildList);
 			
 			Carousel carousel = new Carousel();
@@ -161,16 +173,10 @@ public class IndexController extends MyBaseController {
 			List<Carousel> carouselList = this.carouselService.queryCarouselList(carousel);
 			model.addAttribute("carouselList", carouselList);
 			
-			model.addAttribute("linkList", linkList);
-			model.addAttribute("contentList1", contentList1);
-			model.addAttribute("column_id1", column_id1);
-			model.addAttribute("contentList2", contentList2);
-			model.addAttribute("column_id2", column_id2);
+			
 			model.addAttribute("contentList3", contentList3);
 			model.addAttribute("column_id3", column_id3);
 			model.addAttribute("columnList", columnList);
-			//model.addAttribute("columnList1", columnList1);
-			//model.addAttribute("columnList2", columnList2);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -680,6 +686,15 @@ public class IndexController extends MyBaseController {
 		return "site/informationDetail";
 	}
 	
+	@RequestMapping("/toOrationDetail")
+	public String toOrationDetail(HttpServletRequest request, Model model) {
+		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
+		Content content = contentService.queryContentById(contentId);
+		
+		model.addAttribute("content", content);
+		
+		return "site/noticeDetail";
+	}
 	
 	/**
 	 * 

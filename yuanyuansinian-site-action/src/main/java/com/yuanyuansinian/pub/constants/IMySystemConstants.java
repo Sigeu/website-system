@@ -59,4 +59,11 @@ public interface IMySystemConstants {
 
 	static final String FILE_PATH_IMAGE = "upload/image/";
 	static final String FILE_PATH = "upload/";
+	
+	//祭文
+	static final String COLUMN130 = "130";
+	//纪念馆
+	static final String COLUMN102 = "102";
+	//咨询---动态
+	static final String COLUMN124 = "124";
 }
