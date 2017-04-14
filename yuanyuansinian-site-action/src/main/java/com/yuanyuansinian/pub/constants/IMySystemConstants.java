@@ -57,7 +57,7 @@ public interface IMySystemConstants {
 	// 按降序排列
 	static final String ORDER_COLUMN_ADD_TIME = "add_time";
 
-	static final String FILE_PATH_IMAGE = "upload/image/";
+	static final String FILE_PATH_IMAGE = "/upload/image/";
 	static final String FILE_PATH = "upload/";
 	
 	//祭文
@@ -66,4 +66,14 @@ public interface IMySystemConstants {
 	static final String COLUMN102 = "102";
 	//咨询---动态
 	static final String COLUMN124 = "124";
+	
+	
+	static final String VALUE_A = "A";
+	static final String VALUE_B = "B";
+	static final String VALUE_C = "C";
+	static final String VALUE_D = "D";
+	static final String VALUE_E = "E";
+	
+	//墓地分类
+	static final String CEMETERY_TYPE = "cemetery_type";
 }

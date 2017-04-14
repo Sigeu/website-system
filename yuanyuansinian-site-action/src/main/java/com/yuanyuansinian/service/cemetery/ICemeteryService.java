@@ -25,7 +25,7 @@ public interface ICemeteryService {
 	 * @param cemetery
 	 * @return
 	 */
-	int updateCemetery(Cemetery cemetery);
+	int updateCemetery(CemeteryWithBLOBs cemetery);
 
 	/**
 	 * 
@@ -61,13 +61,15 @@ public interface ICemeteryService {
 	int deleteCemetery(int cemeteryId);
 
 
-	List<Cemetery> queryCemeteryListByType(Cemetery cemetery);
+	List<Cemetery> queryCemeteryListByType(String cemetery_type);
 
 	List<Cemetery> queryCemeteryListByMember(String memberId, int limtNum);
 
 	List<Cemetery> queryCemeteryListByOpenType(Cemetery cemetery);
 
 	List<Cemetery> queryCemeteryPageListByMember(Cemetery cemetery);
+
+	void uploadCemeteryImg(HttpServletRequest request, String id);
 
 
 }

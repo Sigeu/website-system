@@ -128,7 +128,8 @@
 			<value>
 				/login.jsp = anon
 				/index.jsp = anon
-				/unauthorized.jsp = anon 
+				/unauthorized.jsp = anon
+				/upload/image/** = anon 
 				/static/** = anon
 				/site/** = anon
 				/verifyCodeServlet = anon

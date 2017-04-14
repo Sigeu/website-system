@@ -7,25 +7,22 @@
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/css/keleyidivpager.css">
-<title>缘园资讯-内容页</title>
+<title>墓地陵园-内容页</title>
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>
 	<div class="container banner-con product">
 	<div class="col-sm-6">
-		<img src="images/ex3.jpg" class="img-responsive" alt="product">
+		<img src="${cemetery.imgs }" class="img-responsive" alt="product">
 	</div>
 	<div class="col-sm-6">
-		<h3>缘园思念推荐祭奠鲜花缘园思念推荐祭奠鲜花缘园思念推荐祭奠鲜花缘园思念推荐祭奠鲜花缘园思念推荐祭奠鲜花缘园思念推荐祭奠鲜花</h3>
-		<div class="product-price"><span class="btn-label pull-left">推荐价格</span><h2 class="pull-left"><small>￥</small>12.00</h2></div>
+		<h3>${cemetery.title }</h3>
+		<div class="product-price"><span class="btn-label pull-left">推荐价格</span><h2 class="pull-left"><small>￥</small>${cemetery.price }</h2></div>
 		<div class="clearfix"></div>
 		<div class="product-reason">
 			<span class="btn-label">推荐理由</span>
 			<ul>
-				<li><span class="glyphicon glyphicon-star"></span>地处济南打水井村，远离城嚣，环境清幽平静安详</li>
-				<li><span class="glyphicon glyphicon-star"></span>地处济南打水井村，远离城嚣，环境清幽平静安详地处济南打水井村</li>
-				<li class="hidden-sm"><span class="glyphicon glyphicon-star"></span>地处济南打水井村，远离</li>
-				<li class="hidden-sm"><span class="glyphicon glyphicon-star"></span>地处济南打水井村，远离城嚣，环境清幽平</li>
+				<li><span class="glyphicon glyphicon-star"></span>${cemetery.description }</li>
 			</ul>
 		</div>
 		<div class="product-btn">
@@ -46,7 +43,7 @@
 				<div class="clearfix"></div>
 				<div class="map">
 					<div class="map-body">
-						<img src="images/map.jpg" class="img-responsive" alt="map" />
+						<img src="${pageContext.request.contextPath}/static/images/map.jpg" class="img-responsive" alt="map" />
 					</div>
 					<p class="pull-left">图示中红色为已售出，绿色位已预订，空白为可选</p>
 					<button class="btn btn-warning pull-right">点击显示墓园结构</button>
@@ -59,11 +56,7 @@
 				</div>
 				<div class="clearfix"></div>
 				<div class="article-body">
-					<p>清明节又叫踏青节，在仲春与暮春之交，也就是冬至后的第108天。是中国传统节日，也是最重要的祭祀节日之一，是祭祖和扫墓的日子。中华民族传统的清明节大约始于周代，距今已有二千五百多年的历史。</p>
-					<p>清明最早只是一种节气的名称， 其变成纪念祖先的节日与寒食节有关。 晋文公把寒食节的后一天定为清明节。 在山西大部分地区是在清明节前一天过寒食节；榆社县等地是在清明节前两天过寒食节；垣曲县还讲究清明节前一天为寒食节，前二天为小寒食。</p>
-					<p>相传春秋时期，晋公子重耳为逃避迫害而流亡国外，流亡途中，在一处渺无人烟的地方，又累又饿，再也无力站起来。随臣找了半天也找不到一点吃的，正在大家万分焦急的时候，随臣介子推走到僻静处，从自己的大腿上割下了一块肉，煮了一碗肉汤让公子喝了，重耳渐渐恢复了精神，当重耳发现肉是介子推自己腿割下的时候，流下了眼泪。</p>
-					<p><img src="images/ex3.jpg" class="img-responsive" alt="img"></p>
-					<p>清明节又叫踏青节，在仲春与暮春之交，也就是冬至后的第108天。是中国传统节日，也是最重要的祭祀节日之一，是祭祖和扫墓的日子。中华民族传统的清明节大约始于周代，距今已有二千五百多年的历史。</p>
+					<p>${cemetery.content }</p>
 				</div>
 			</div>
 		</div>
@@ -78,13 +71,13 @@
 				<div class="clearfix"></div>
 				<div class="recommend-body">
 					<div class="thumbnail">
-						 <img src="images/ex2.jpg" class="img-responsive" alt="img">
+						 <img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img">
 						<div class="caption">
 							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
 						</div>
 					</div>
 					<div class="thumbnail">
-						 <img src="images/ex.jpg" class="img-responsive" alt="img">
+						 <img src="${pageContext.request.contextPath}/static/images/ex.jpg" class="img-responsive" alt="img">
 						<div class="caption">
 							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
 						</div>
@@ -98,6 +91,7 @@
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript">
+		var activeFlag = '公墓陵园';
 		//-------分页数据----------
 		var id = '${column_id }';
 		var totalPage = '${totalPage }';

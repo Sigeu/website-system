@@ -5,9 +5,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<script type="text/javascript">
-//window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
-</script>
+<link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 <title>内容信息表页</title>
 </head>
 <body class="pos-r">
@@ -44,7 +42,14 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${cemetery.cemetery_type }" placeholder="分类" id="cemetery_type" name="cemetery_type">
+				<span class="select-box">
+					<select class="select" id="cemetery_type" name="cemetery_type">
+						<option value="">--请选择--</option> 
+						 <c:forEach items="${codeCemeteryList}" var="code">  
+	                    	<option value="${code.code_value}">${code.code_name}</option>  
+	                    </c:forEach> 
+					</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
@@ -66,6 +71,17 @@
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">封面图片：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div id="uploader-demo">
+				    <!--用来存放item-->
+				    <div id="fileList" class="uploader-list"></div>
+				    <div id="filePicker">选择图片</div>
+				    <button id="ctlBtn" style="display:none" class="btn btn-default">开始上传</button>
+				</div>
+			</div>
+		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -76,9 +92,15 @@
 	</form>
 </div>
 <%@ include file="../../../common/footer_form.jsp"%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/cemetery-upload.js"> </script>
 <script type="text/javascript">
+// 项目路径
+var contextPath = '${pageContext.request.contextPath}';
+//数据ID
+var model_id = '';
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
@@ -86,6 +108,8 @@ $(function(){
 	ue.ready(function() {//编辑器初始化完成再赋值  
     	ue.setContent('${cemetery.content}');  //赋值给UEditor  
     });
+	
+	$('#cemetery_type').val('${cemetery.cemetery_type}');
 	
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -100,6 +124,14 @@ $(function(){
 $(function() {
 	//表单验证
 	$("#form_").validate({
+		debug:true,
+		onkeyup:false,
+		focusCleanup:false,
+		success:"valid",
+		submitHandler:function(form){
+			$('#ctlBtn').trigger("click");
+			return false;
+		},
 		rules:{
 			title:{
 				required:true,
@@ -108,32 +140,8 @@ $(function() {
 			no_order:{
 				digits:true
 			}
-		},
-		onkeyup:false,
-		focusCleanup:false,
-		success:"valid",
-		submitHandler:function(form){
-			var options = {
-					success : function(data) {
-						layer.alert(data.result_message, {
-						  closeBtn: 1
-						}, function(){
-							//父页面刷新
-							parent.reloadPage();
-							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-							parent.layer.close(index); //再执行关闭
-						});
-					}
-				};
-				// 准备form表单
-				$("#form_").ajaxForm(options);
-				// 表单提交     
-				$("#form_").ajaxSubmit(options);
-				
-				return false;
 		}
 	});
-	
 });
 </script>
 </body>

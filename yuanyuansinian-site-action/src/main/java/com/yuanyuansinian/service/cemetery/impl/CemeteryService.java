@@ -47,9 +47,9 @@ public class CemeteryService implements ICemeteryService {
 	 * @see ujn.school.cn.service.cemetery.ICemeteryService#updateCemetery(ujn.school.cn.model.cemetery.Cemetery)
 	 */
 	@Override
-	public int updateCemetery(Cemetery cemetery) {
+	public int updateCemetery(CemeteryWithBLOBs cemetery) {
 		// TODO Auto-generated method stub
-		return cemeteryMapper.updateByPrimaryKey(cemetery);
+		return cemeteryMapper.updateByPrimaryKeySelective(cemetery);
 	}
 	
 	/*
@@ -134,9 +134,9 @@ public class CemeteryService implements ICemeteryService {
 
 
 	@Override
-	public List<Cemetery> queryCemeteryListByType(Cemetery cemetery) {
+	public List<Cemetery> queryCemeteryListByType(String cemetery_type) {
 		// TODO Auto-generated method stub
-		return cemeteryMapper.queryCemeteryListByType(cemetery);
+		return cemeteryMapper.queryCemeteryListByType(cemetery_type);
 	}
 
 	@Override
@@ -164,6 +164,60 @@ public class CemeteryService implements ICemeteryService {
 	public List<Cemetery> queryCemeteryPageListByMember(Cemetery cemetery) {
 		// TODO Auto-generated method stub
 		return cemeteryMapper.queryCemeteryPageListByMemberCemetery(cemetery);
+	}
+
+	@Override
+	public void uploadCemeteryImg(HttpServletRequest request, String id) {
+		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        Cemetery  cemetery =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	cemetery =  new Cemetery();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+	            cemetery.setId(Integer.parseInt(id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_cemetery");
+	            if(null != img_index){
+	            	//byte[] imgFile = img_index.getBytes();
+					// 保存照片
+	            	//carousel.setImg(imgFile);
+                    //取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
+                        
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        String webNameSrc = request.getContextPath();
+                        String webName = webNameSrc.substring(1);
+                        String srcP = path.substring(path.indexOf(webName),path.length());
+                        String srcPathTem = srcP.replace("\\", "/");
+                        cemetery.setImgs("/" + srcPathTem + "/" + fileName);
+                    }  
+	            }
+	        }
+	        //保存
+	        cemeteryMapper.uploadCemeteryImg(cemetery);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 	}
 
 }

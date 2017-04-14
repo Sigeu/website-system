@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.yuanyuansinian.model.carousel.Carousel;
+import com.yuanyuansinian.model.cemetery.Cemetery;
 import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.model.content.Content;
@@ -33,6 +34,7 @@ import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.carousel.ICarouselService;
+import com.yuanyuansinian.service.cemetery.ICemeteryService;
 import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.config.IConfigService;
 import com.yuanyuansinian.service.contact.IContactService;
@@ -82,6 +84,10 @@ public class IndexController extends MyBaseController {
 	// 轮播图片Service
 	@Resource
 	private ICarouselService carouselService;
+	
+	// 墓地陵园Service
+	@Resource
+	private ICemeteryService cemeteryService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -731,7 +737,20 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/toCemeteryList")
 	public String toCemeteryList(HttpServletRequest request, Model model) {
+		List<Cemetery> cemeteryListA = this.cemeteryService.queryCemeteryListByType(IMySystemConstants.VALUE_A);
+		model.addAttribute("cemeteryListA", cemeteryListA);
 		
+		List<Cemetery> cemeteryListB = this.cemeteryService.queryCemeteryListByType(IMySystemConstants.VALUE_B);
+		model.addAttribute("cemeteryListB", cemeteryListB);
+		
+		List<Cemetery> cemeteryListC = this.cemeteryService.queryCemeteryListByType(IMySystemConstants.VALUE_C);
+		model.addAttribute("cemeteryListC", cemeteryListC);
+		
+		List<Cemetery> cemeteryListD = this.cemeteryService.queryCemeteryListByType(IMySystemConstants.VALUE_D);
+		model.addAttribute("cemeteryListD", cemeteryListD);
+		
+		List<Cemetery> cemeteryListE = this.cemeteryService.queryCemeteryListByType(IMySystemConstants.VALUE_E);
+		model.addAttribute("cemeteryListE", cemeteryListE);
 		return "site/cemeteryList";
 	}
 	
@@ -744,7 +763,11 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/toCemeteryDetail")
 	public String toCemeteryDetail(HttpServletRequest request, Model model) {
-
+		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
+		Cemetery cemetery = cemeteryService.queryCemeteryById(contentId);
+		
+		model.addAttribute("cemetery", cemetery);
+		
 		return "site/cemeteryDetail";
 	}
 	

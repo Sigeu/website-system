@@ -47,132 +47,22 @@
 					</div>
 					<div class="tab-content">
 						<div class="row tab-pane active" id="areaA">
-							<div class="col-sm-6 col-md-4">
+						<c:forEach items="${cemeteryListA}" var="cemeteryA">  
+	                    	<div class="col-sm-6 col-md-4">
 								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
+									<a href="###" onclick="toCemeteryDetail('${cemeteryA.id}')"><img src="${cemeteryA.imgs}" alt="${cemeteryA.title}"></a>
 									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
+										<a href="###"  onclick="toCemeteryDetail('${cemeteryA.id}')"><h5>${cemeteryA.title}</h5></a>
 										<p>
-											<strong>在世：</strong>2016-2016
+											<strong>价格：</strong>面议
 										</p>
 										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
+											<strong>简介：</strong>${cemeteryA.description}
 										</p>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
+							</div> 
+	                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
 								<ul class="pagination">
@@ -190,132 +80,22 @@
 						</div>
 
 						<div class="row tab-pane" id="areaB">
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
+							<c:forEach items="${cemeteryListB}" var="cemeteryB">  
+		                    	<div class="col-sm-6 col-md-4">
+									<div class="thumbnail">
+										<a href="###"  onclick="toCemeteryDetail('${cemeteryB.id}')"><img src="${cemeteryB.imgs}" alt="${cemeteryB.title}"></a>
+										<div class="caption">
+											<a href="###"  onclick="toCemeteryDetail('${cemeteryB.id}')"><h5>${cemeteryB.title}</h5></a>
+											<p>
+												<strong>价格：</strong>面议
+											</p>
+											<p class="thumbnail-des text-justify">
+												<strong>简介：</strong>${cemeteryB.description}
+											</p>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide2.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
+								</div> 
+		                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
 								<ul class="pagination">
@@ -333,132 +113,22 @@
 						</div>
 
 						<div class="row tab-pane" id="areaC">
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
+							<c:forEach items="${cemeteryListC}" var="cemeteryC">  
+		                    	<div class="col-sm-6 col-md-4">
+									<div class="thumbnail">
+										<a href="###"  onclick="toCemeteryDetail('${cemeteryC.id}')"><img src="${cemeteryC.imgs}" alt="${cemeteryC.title}"></a>
+										<div class="caption">
+											<a href="###"  onclick="toCemeteryDetail('${cemeteryC.id}')"><h5>${cemeteryC.title}</h5></a>
+											<p>
+												<strong>价格：</strong>面议
+											</p>
+											<p class="thumbnail-des text-justify">
+												<strong>简介：</strong>${cemeteryC.description}
+											</p>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
+								</div> 
+		                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
 								<ul class="pagination">
@@ -476,118 +146,22 @@
 						</div>
 
 						<div class="row tab-pane" id="areaD">
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
+							<c:forEach items="${cemeteryListD}" var="cemeteryD">  
+		                    	<div class="col-sm-6 col-md-4">
+									<div class="thumbnail">
+										<a href="###" onclick="toCemeteryDetail('${cemeteryD.id}')"><img src="${cemeteryD.imgs}" alt="${cemeteryD.title}"></a>
+										<div class="caption">
+											<a href="###" onclick="toCemeteryDetail('${cemeteryD.id}')"><h5>${cemeteryD.title}</h5></a>
+											<p>
+												<strong>价格：</strong>面议
+											</p>
+											<p class="thumbnail-des text-justify">
+												<strong>简介：</strong>${cemeteryD.description}
+											</p>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4 hidden-xs hidden-sm">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
+								</div> 
+		                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
 								<ul class="pagination">
@@ -605,104 +179,22 @@
 						</div>
 
 						<div class="row tab-pane" id="areaE">
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
+							<c:forEach items="${cemeteryListE}" var="cemeteryE">  
+		                    	<div class="col-sm-6 col-md-4">
+									<div class="thumbnail">
+										<a href="###" onclick="toCemeteryDetail('${cemeteryE.id}')"><img src="${cemeteryE.imgs}" alt="${cemeteryE.title}"></a>
+										<div class="caption">
+											<a href="###" onclick="toCemeteryDetail('${cemeteryE.id}')"><h5>${cemeteryE.title}</h5></a>
+											<p>
+												<strong>价格：</strong>面议
+											</p>
+											<p class="thumbnail-des text-justify">
+												<strong>简介：</strong>${cemeteryE.description}
+											</p>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex.jpg" alt="img"></a>
-									<div class="caption">
-										<a href="###"><h5>天束幽花</h5></a>
-										<p>
-											<strong>在世：</strong>2016-2016
-										</p>
-										<p class="thumbnail-des text-justify">
-											<strong>简介：</strong>上代六度使徒与第六王爵之女，出身高贵的郡主，任性、娇蛮、自私、自傲也有些小女儿家的脾气，对麒零有好感
-										</p>
-									</div>
-								</div>
-							</div>
+								</div> 
+		                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
 								<ul class="pagination">
@@ -739,6 +231,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/notice.js"></script>
+		<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/cemetery.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '公墓陵园';
 		//-------分页数据----------

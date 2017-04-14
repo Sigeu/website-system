@@ -71,5 +71,8 @@ public interface CemeteryMapper {
 
 	List<Cemetery> queryCemeteryListByMember(Map<String, Object> map);
 
-	List<Cemetery> queryCemeteryListByType(Cemetery cemetery);
+	List<Cemetery> queryCemeteryListByType(String cemetery_type);
+
+	void uploadCemeteryImg(Cemetery cemetery);
+
 }

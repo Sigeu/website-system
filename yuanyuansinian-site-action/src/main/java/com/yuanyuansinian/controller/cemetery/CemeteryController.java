@@ -28,7 +28,9 @@ import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.cemetery.ICemeteryService;
 import com.yuanyuansinian.service.oration.IOrationService;
 
+import framework.system.model.Code;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.service.ICodeService;
 
 /**
  * @Description: 墓地陵园管理
@@ -45,7 +47,9 @@ public class CemeteryController extends MyBaseController {
 	
 	@Resource
 	private IOrationService orationService;
-
+	
+	@Resource
+	private ICodeService codeService;
 	/**
 	 * 
 	 * @Description: 跳转到分页列表
@@ -105,7 +109,9 @@ public class CemeteryController extends MyBaseController {
 	 */
 	@RequestMapping("/toCemeteryAdd")
 	public String toCemeteryAdd(HttpServletRequest request, Model model) {
-		
+		//字典表 重要信息数据标签
+		List<Code> codeCemeteryList = codeService.queryCodeListByType(IMySystemConstants.CEMETERY_TYPE);
+		model.addAttribute("codeCemeteryList", codeCemeteryList);
 		
 		return "cemetery/cemeteryAdd";
 	}
@@ -123,6 +129,10 @@ public class CemeteryController extends MyBaseController {
 		Cemetery cemetery = this.cemeteryService.queryCemeteryById(cemeteryId);
 		model.addAttribute("cemetery", cemetery);
 		
+		//字典表 重要信息数据标签
+		List<Code> codeCemeteryList = codeService.queryCodeListByType(IMySystemConstants.CEMETERY_TYPE);
+		model.addAttribute("codeCemeteryList", codeCemeteryList);
+				
 		return "cemetery/cemeteryUpdate";
 	}
 	
@@ -276,6 +286,24 @@ public class CemeteryController extends MyBaseController {
 			//cemetery.setIssue(getSessionUser(request).getLogin_name());
 			//默认状态为“0”：待审核
 			cemeteryService.addCemetery(request, cemetery);
+			map.put("cemetery_id", cemetery.getId());
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/uploadCemeteryImg")
+	public Map<String, Object> uploadCemeteryImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			cemeteryService.uploadCemeteryImg(request, id);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -294,10 +322,11 @@ public class CemeteryController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/updateCemetery")
-	public Map<String, Object> updateCemetery(HttpServletRequest request, Cemetery cemetery) {
+	public Map<String, Object> updateCemetery(HttpServletRequest request, CemeteryWithBLOBs cemetery) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		cemetery.setCreate_date(MyDateUtil.getDateTime());
+		map.put("cemetery_id", cemetery.getId());
 		int count = this.cemeteryService.updateCemetery(cemetery);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
