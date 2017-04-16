@@ -151,9 +151,9 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public List<Product> queryProductListByType(Product product) {
+	public List<Product> queryProductListByType(String type) {
 		// TODO Auto-generated method stub
-		return productMapper.queryProductListByType(product);
+		return productMapper.queryProductListByType(type);
 	}
 
 	@Override

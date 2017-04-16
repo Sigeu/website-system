@@ -33,60 +33,17 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="row img-list shop-list">
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
+					<c:forEach items="${productList1}" var="product1" varStatus="product1Status"> 
+							<div class="col-sm-4">
+								<div class="thumbnail">
+									<a href="###" onclick="toShoppingDetail('${product1.id }')"><img src="${product1.img_index }"
+										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product1.id }')"><h5>${product1.name }</h5></a>
+									<div class="shop-info hidden-xs hidden-sm pull-right">
+										<small>￥</small>${product1.price_market }
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -103,60 +60,17 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="row img-list shop-list">
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
+					<c:forEach items="${productList2}" var="product2" varStatus="product2Status"> 
+							<div class="col-sm-4">
+								<div class="thumbnail">
+									<a href="###" onclick="toShoppingDetail('${product2.id }')"><img src="${product2.img_index }"
+										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product2.id }')"><h5>${product2.name }</h5></a>
+									<div class="shop-info hidden-xs hidden-sm pull-right">
+										<small>￥</small>${product2.price_market }
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -173,60 +87,17 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="row img-list shop-list">
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
+					<c:forEach items="${productList3}" var="product3" varStatus="product3Status"> 
+							<div class="col-sm-4">
+								<div class="thumbnail">
+									<a href="###" onclick="toShoppingDetail('${product3.id }')"><img src="${product3.img_index }"
+										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product3.id }')"><h5>${product3.name }</h5></a>
+									<div class="shop-info hidden-xs hidden-sm pull-right">
+										<small>￥</small>${product3.price_market }
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png"
-								class="img-responsive" alt="img"></a> <a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info hidden-xs hidden-sm pull-right">
-								<small>￥</small>20.25
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -236,6 +107,8 @@
 
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/article.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '缘园商城';
 		//-------分页数据----------

@@ -62,7 +62,7 @@ public interface IProductService {
 
 	List<Product> queryProductRecycleList(Product product);
 
-	List<Product> queryProductListByType(Product product);
+	List<Product> queryProductListByType(String type);
 
 	int recoverProduct(int productId);
 

@@ -726,6 +726,15 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/toShoppingList")
 	public String toShoppingList(HttpServletRequest request, Model model) {
 		
+		List<Product> productList1 = productService.queryProductListByType(IMySystemConstants.VALUE_1);
+		model.addAttribute("productList1", productList1);
+		
+		List<Product> productList2 = productService.queryProductListByType(IMySystemConstants.VALUE_2);
+		model.addAttribute("productList2", productList2);
+		
+		List<Product> productList3 = productService.queryProductListByType(IMySystemConstants.VALUE_3);
+		model.addAttribute("productList3", productList3);
+		
 		//公墓陵园推荐
 		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
 		model.addAttribute("cemeteryList", cemeteryList);
@@ -741,7 +750,10 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/toShoppingDetail")
 	public String toShoppingDetail(HttpServletRequest request, Model model) {
-
+		int productId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
+		Product product = productService.queryProductById(productId);
+		
+		model.addAttribute("product", product);
 		return "site/shoppingDetail";
 	}
 	
@@ -862,9 +874,7 @@ public class IndexController extends MyBaseController {
 	public String toChooseProduct(HttpServletRequest request, Model model) {
 		//type
 		String type = request.getParameter("type")==null? "":request.getParameter("type");
-		Product productParam = new Product();
-		productParam.setType(type);
-		List<Product> productList = productService.queryProductListByType(productParam);
+		List<Product> productList = productService.queryProductListByType(type);
 		
 		model.addAttribute("productList", productList);
 		
