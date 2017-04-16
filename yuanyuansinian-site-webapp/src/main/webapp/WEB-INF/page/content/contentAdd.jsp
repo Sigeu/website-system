@@ -5,6 +5,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
+<link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 //window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
 </script>
@@ -15,7 +16,7 @@
 			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增内容
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/content/contentController/addContent" method="post" class="form form-horizontal" id="form-content-add">
+	<form action="${pageContext.request.contextPath}/sinian/content/contentController/addContent" method="post" class="form form-horizontal" id="form_">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
@@ -53,21 +54,14 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">有效期：</label>
+			<label class="form-label col-xs-4 col-sm-2">封面图片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" class="input-text Wdate"  value="" placeholder="内容公示截止有效期" id="validity_time" name="validity_time">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">阅读方式：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<span class="select-box">
-					<select class="select" id="read_type" name="read_type">
-						<option value="0">直接访问</option> 
-						<option value="1">校内访问</option> 
-						<option value="2">凭密码访问</option>  
-					</select>
-				</span>
+				<div id="uploader-demo">
+				    <!--用来存放item-->
+				    <div id="fileList" class="uploader-list"></div>
+				    <div id="filePicker">选择图片</div>
+				    <button id="ctlBtn" style="display:none" class="btn btn-default">开始上传</button>
+				</div>
 			</div>
 		</div>
 		<div class="row cl">
@@ -87,9 +81,13 @@
 </div>
 <%@ include file="../../../common/footer_form.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/content-upload.js"> </script>
 <script type="text/javascript">
+//项目路径
+var contextPath = '${pageContext.request.contextPath}';
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
@@ -102,11 +100,18 @@ $(function(){
 	
 });
 
-
 //表单提交，可上传文件
 $(function() {
 	//表单验证
-	$("#form-content-add").validate({
+	$("#form_").validate({
+		debug:true,
+		onkeyup:false,
+		focusCleanup:false,
+		success:"valid",
+		submitHandler:function(form){
+			$('#ctlBtn').trigger("click");
+			return false;
+		},
 		rules:{
 			title:{
 				required:true,
@@ -118,32 +123,8 @@ $(function() {
 			links:{
 				url:true
 			}
-		},
-		onkeyup:false,
-		focusCleanup:false,
-		success:"valid",
-		submitHandler:function(form){
-			var options = {
-					success : function(data) {
-						layer.alert(data.result_message, {
-						  closeBtn: 1
-						}, function(){
-							//父页面刷新
-							parent.reloadPage();
-							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-							parent.layer.close(index); //再执行关闭
-						});
-					}
-				};
-				// 准备form表单
-				$("#form-content-add").ajaxForm(options);
-				// 表单提交     
-				$("#form-content-add").ajaxSubmit(options);
-				
-				return false;
 		}
 	});
-	
 });
 </script>
 </body>

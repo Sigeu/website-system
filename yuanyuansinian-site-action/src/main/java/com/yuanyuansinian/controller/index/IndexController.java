@@ -116,18 +116,18 @@ public class IndexController extends MyBaseController {
 			
 			
 			
-			// 资讯--动态
-			Content content124 = new Content();
-			String column_id124 = IMySystemConstants.COLUMN102;
-			content124.setColumn_id(column_id124);
-			content124.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
-			content124.setOrder_type(IMySystemConstants.ORDER_DESC);
+			// 资讯
+			Content content107 = new Content();
+			String column_id107 = IMySystemConstants.COLUMN107;
+			content107.setClass1(column_id107);
+			content107.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			content107.setOrder_type(IMySystemConstants.ORDER_DESC);
 			//6条
-			content124.setCount_num(IMySystemConstants.COUNT_NUM6);
-			//最新建馆 列表
-			List<Content> contentList124 = contentService.queryContentListByColumn(content124);
-			model.addAttribute("contentList124", contentList124);
-			model.addAttribute("column_id124", column_id124);
+			content107.setCount_num(IMySystemConstants.COUNT_NUM6);
+			//资讯列表
+			List<Content> contentList107 = contentService.queryContentListByColumnClass1(content107);
+			model.addAttribute("contentList107", contentList107);
+			model.addAttribute("column_id107", column_id107);
 			
 			
 			// 最新祭文
@@ -142,8 +142,9 @@ public class IndexController extends MyBaseController {
 			List<Content> contentList130 = contentService.queryContentListByColumn(content130);
 			model.addAttribute("contentList130", contentList130);
 			model.addAttribute("column_id130", column_id130);
-			
-			
+			//公墓陵园推荐
+			List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
+			model.addAttribute("cemeteryList", cemeteryList);
 			
 			// 信息公开规章制度 
 			Content content3 = new Content();
@@ -606,6 +607,10 @@ public class IndexController extends MyBaseController {
 		//网上纪念馆:公开属性，单人和双人
 		List<Hall> listHallByOpenType = hallService.queryHallListByOpenType(IMySystemConstants.VALUE_2);
 		
+		//公墓陵园推荐
+		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
+		model.addAttribute("cemeteryList", cemeteryList);
+		
 		model.addAttribute("listHallNew", listHallNew);
 		model.addAttribute("listOrationNew", listOrationNew);
 		model.addAttribute("listHallByOpenType", listHallByOpenType);
@@ -619,10 +624,16 @@ public class IndexController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallDetail")
-	public String toHallDetail(HttpServletRequest request, Model model) {
+	@RequestMapping("/toHallSingleDetail")
+	public String toHallSingleDetail(HttpServletRequest request, Model model) {
 
-		return "site/hallDetail";
+		return "site/hallSingleDetail";
+	}
+	
+	@RequestMapping("/toHallDoubleDetail")
+	public String toHallDoubleDetail(HttpServletRequest request, Model model) {
+
+		return "site/hallDoubleDetail";
 	}
 	
 	/**
@@ -652,6 +663,9 @@ public class IndexController extends MyBaseController {
 		//子栏目内容
 		List<Content> contentChildList = contentService.queryContentListByColumn(contentChild);
 		
+		//公墓陵园推荐
+		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
+		model.addAttribute("cemeteryList", cemeteryList);
 		
 		model.addAttribute("columnChildList", columnChildList);
 		model.addAttribute("contentChildList", contentChildList);
@@ -712,6 +726,9 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/toShoppingList")
 	public String toShoppingList(HttpServletRequest request, Model model) {
 		
+		//公墓陵园推荐
+		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
+		model.addAttribute("cemeteryList", cemeteryList);
 		return "site/shoppingList";
 	}
 	

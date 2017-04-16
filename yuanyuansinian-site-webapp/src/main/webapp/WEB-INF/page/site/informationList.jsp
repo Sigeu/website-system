@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -36,14 +37,6 @@
 								<li><a href="###" onclick="toInformationList('${columnChild.id }')">${columnChild.name }</a></li>
 							</c:if>
 						</c:forEach>
-							<!-- <li><a href="###">缘园动态</a></li>
-							<li class="active"><a href="###">宗教文化</a></li>
-							<li><a href="###">民间习俗</a></li>
-							<li><a href="###">祭祀礼仪</a></li>
-							<li><a href="###">孝道文化</a></li>
-							<li><a href="###">墓志铭</a></li>
-							<li><a href="###">祭文</a></li>
-							<li><a href="###">悼文</a></li> -->
 						</ul>
 					</div>
 				</div>
@@ -75,36 +68,12 @@
 						</div>
 						<div class="list">
 							<ul>
-								<li><a href="###" class="pull-left">宋人眼里荒唐离奇的北地胡风民俗</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">齐鲁文化—鲁文化在中国上古文化中的地位齐鲁文化—鲁文化在中国上古文化中的地位齐鲁文化—鲁文化在中国上古文化中的地位齐鲁文化—鲁文化在中国上古文化中的地位齐鲁文化—鲁文化在中国上古文化中的地位齐鲁文化—鲁文化在中国上古文化中的地位</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">全民阅读生肖民俗文化惠民活动
-										明天将在解放碑十字金街开幕</a><span class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">全国百家媒体聚焦2016互联网+茶产业暨万里茶道武当道茶品牌推介活动</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">《房陵锣鼓歌》出版
-										千古诗经民歌传唱至今深山传唱受赞誉</a><span class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">宋人眼里荒唐离奇的北地胡风民俗</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">齐鲁文化—鲁文化在中国上古文化中的地位</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">全民阅读生肖民俗文化惠民活动
-										明天将在解放碑十字金街开幕</a><span class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">全国百家媒体聚焦2016互联网+茶产业暨万里茶道武当道茶品牌推介活动</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">《房陵锣鼓歌》出版
-										千古诗经民歌传唱至今深山传唱受赞誉</a><span class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">宋人眼里荒唐离奇的北地胡风民俗</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">齐鲁文化—鲁文化在中国上古文化中的地位</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">全民阅读生肖民俗文化惠民活动
-										明天将在解放碑十字金街开幕</a><span class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">全国百家媒体聚焦2016互联网+茶产业暨万里茶道武当道茶品牌推介活动</a><span
-									class="list-date pull-right">2016-12-30</span></li>
-								<li><a href="###" class="pull-left">《房陵锣鼓歌》出版
-										千古诗经民歌传唱至今深山传唱受赞誉</a><span class="list-date pull-right">2016-12-30</span></li>
+								<c:forEach items="${contentChildList}" var="contentChild" varStatus="status"> 
+								<c:if test="${status.index > 0 and status.index < 16}">
+									<li><a href="###" onclick="toInformationDetail('${contentChild.id }','${columnChildId }')" class="pull-left">${contentChild.title}</a><span
+									class="list-date pull-right">${fn:substring(contentChild.add_time, 0, 10)}</span></li>
+								</c:if>
+							</c:forEach>
 							</ul>
 						</div>
 					</div>
@@ -113,10 +82,6 @@
 							<li><a href="#" aria-label="Previous"><span
 									aria-hidden="true">&laquo;</span></a></li>
 							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
 							<li><a href="#" aria-label="Next"><span
 									aria-hidden="true">&raquo;</span></a></li>
 						</ul>

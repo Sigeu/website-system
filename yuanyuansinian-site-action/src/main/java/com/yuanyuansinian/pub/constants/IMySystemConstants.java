@@ -1,27 +1,27 @@
 /**
- * Copyright (C), 2015, 山东旭日俞和科技有限公司
+ * Copyright (C), 2015, 灞变笢鏃棩淇炲拰绉戞妧鏈夐檺鍏徃
  * All right reserved.
  */
 package com.yuanyuansinian.pub.constants;
 
 /**
- * 系统常量
+ * 绯荤粺甯搁噺
  * 
  * @author lizhaotao lzh_me@126.com
- * @date 2016年12月22日 下午2:54:24
+ * @date 2016骞�2鏈�2鏃�涓嬪崍2:54:24
  */
 public interface IMySystemConstants {
 
-	// 起止位置1
+	// 璧锋浣嶇疆1
 	static final int PAGE_NUM = 1;
-	// 数据长度15
+	// 鏁版嵁闀垮害15
 	static final int PAGE_SIZE = 10;
 
 	static final int PAGE_SIZE15 = 15;
 
-	// 起止位置1
+	// 璧锋浣嶇疆1
 	static final int PAGE_START = 0;
-	// 数据长度15
+	// 鏁版嵁闀垮害15
 	static final int PAGE_LENGTH = 10;
 
 	//
@@ -32,7 +32,7 @@ public interface IMySystemConstants {
 	static final String VALUE_4 = "4";
 	static final String VALUE_5 = "5";
 
-	// ---列表数值-----------------//
+	// ---鍒楄〃鏁板�-----------------//
 	static final int COUNT_NUM1 = 1;
 	static final int COUNT_NUM2 = 2;
 	static final int COUNT_NUM3 = 3;
@@ -48,24 +48,24 @@ public interface IMySystemConstants {
 	static final int COUNT_NUM13 = 13;
 	static final int COUNT_NUM14 = 14;
 	static final int COUNT_NUM15 = 15;
-	// ---列表数值-----------------//
+	// ---鍒楄〃鏁板�-----------------//
 
-	// 按升序排列
+	// 鎸夊崌搴忔帓鍒�
 	static final String ORDER_ASC = "asc";
-	// 按降序排列
+	// 鎸夐檷搴忔帓鍒�
 	static final String ORDER_DESC = "desc";
-	// 按降序排列
+	// 鎸夐檷搴忔帓鍒�
 	static final String ORDER_COLUMN_ADD_TIME = "add_time";
 
 	static final String FILE_PATH_IMAGE = "/upload/image/";
 	static final String FILE_PATH = "upload/";
 	
-	//祭文
+	//绁枃
 	static final String COLUMN130 = "130";
-	//纪念馆
+	//绾康棣�
 	static final String COLUMN102 = "102";
-	//咨询---动态
-	static final String COLUMN124 = "124";
+	//鍜ㄨ---鍔ㄦ�
+	static final String COLUMN107 = "107";
 	
 	
 	static final String VALUE_A = "A";
@@ -74,6 +74,6 @@ public interface IMySystemConstants {
 	static final String VALUE_D = "D";
 	static final String VALUE_E = "E";
 	
-	//墓地分类
+	//澧撳湴鍒嗙被
 	static final String CEMETERY_TYPE = "cemetery_type";
 }

@@ -75,4 +75,6 @@ public interface CemeteryMapper {
 
 	void uploadCemeteryImg(Cemetery cemetery);
 
+	List<Cemetery> queryCemeteryListForCountNum(int countNum);
+
 }

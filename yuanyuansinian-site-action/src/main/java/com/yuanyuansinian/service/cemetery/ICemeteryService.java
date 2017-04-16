@@ -71,5 +71,7 @@ public interface ICemeteryService {
 
 	void uploadCemeteryImg(HttpServletRequest request, String id);
 
+	List<Cemetery> queryCemeteryListForCountNum(int countNum);
+
 
 }

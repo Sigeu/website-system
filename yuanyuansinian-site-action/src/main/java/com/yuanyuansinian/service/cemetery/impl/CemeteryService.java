@@ -220,4 +220,10 @@ public class CemeteryService implements ICemeteryService {
 		
 	}
 
+	@Override
+	public List<Cemetery> queryCemeteryListForCountNum(int countNum) {
+		// TODO Auto-generated method stub
+		return cemeteryMapper.queryCemeteryListForCountNum(countNum);
+	}
+
 }

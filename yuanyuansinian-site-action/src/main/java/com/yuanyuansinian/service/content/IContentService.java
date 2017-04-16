@@ -66,4 +66,8 @@ public interface IContentService {
 
 	int recoverContent(int contentId);
 
+	List<Content> queryContentListByColumnClass1(Content content);
+
+	void uploadContentImg(HttpServletRequest request, String id);
+
 }

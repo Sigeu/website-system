@@ -255,6 +255,7 @@ public class ContentController extends MyBaseController {
 			//默认状态为“0”：待审核
 			content.setStatus(IMySystemConstants.VALUE_0);
 			contentService.addContent(request, content);
+			map.put("content_id", content.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -264,6 +265,25 @@ public class ContentController extends MyBaseController {
 		return map;
 	}
 
+	
+	@ResponseBody
+	@RequestMapping("/uploadContentImg")
+	public Map<String, Object> uploadContentImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			contentService.uploadContentImg(request, id);
+			
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
 	/**
 	 * 
 	 * @Description: 修改
@@ -277,6 +297,7 @@ public class ContentController extends MyBaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		content.setAdd_time(MyDateUtil.getDateTime());
+		map.put("content_id", content.getId());
 		int count = this.contentService.updateContent(content);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

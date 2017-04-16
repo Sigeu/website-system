@@ -78,4 +78,8 @@ public interface ContentMapper {
 	List<Content> queryContentListByColumn(Content content);
 
 	int recoverContent(int id);
+
+	List<Content> queryContentListByColumnClass1(Content content);
+
+	void uploadContentImg(Content content);
 }
