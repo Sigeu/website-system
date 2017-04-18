@@ -56,6 +56,12 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>在世：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="在世年份" id="alive_date" name="alive_date">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>国籍：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="国籍" id="nationality" name="nationality">
@@ -160,7 +166,30 @@ $(function() {
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$('#upload_but').trigger("click");
+			var imgList = $('#fileList').children('div');
+			if (imgList.length > 0) {
+				$('#upload_but').trigger("click");
+				// not empty
+			} else {
+				//  is empty
+				var options = {
+						success : function(data) {
+							layer.alert(data.result_message, {
+								  closeBtn: 1
+								}, function(){
+									//父页面刷新
+									parent.window.location.reload();
+									var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+									parent.layer.close(index); //再执行关闭
+								});
+						}
+					};
+					// 准备form表单
+					$("#form_").ajaxForm(options);
+					// 表单提交     
+					$("#form_").ajaxSubmit(options);
+			}  
+			
 			return false;
 		},
 		rules:{

@@ -24,42 +24,39 @@
 				<div class="clearfix"></div>
 				<div class="row">
 					<div class="col-sm-6 col-md-4">
-						<c:forEach items="${contentList102}" var="content102" varStatus="content"> 
-							<c:if test="${content.index == 0 }">
+						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus"> 
+							<c:if test="${hallStatus.index == 0 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toShowHall('32');"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
+									<a href="###" onclick="toShowHall('${hallNew.id}');"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
 									<div class="caption">
-										<a href="###"><h5>${content102.title}</h5></a>
-										<p><strong>在世：</strong>${content102.title}</p>
-										<p class="thumbnail-des text-justify"><strong>简介：</strong>${content102.description}</p>
+										<a href="###"><h5>${hallNew.title}</h5></a>
+										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
 									</div>
 								</div>
 							</c:if>
 						</c:forEach>
 					</div>
 					<div class="col-sm-6 col-md-4">
-						<c:forEach items="${contentList102}" var="content102" varStatus="content"> 
-							<c:if test="${content.index == 1 }">
+						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus"> 
+							<c:if test="${hallStatus.index == 1 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toShowHall('32');"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
+									<a href="###" onclick="toShowHall('${hallNew.id}');"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
 									<div class="caption">
-										<a href="###"><h5>${content102.title}</h5></a>
-										<p><strong>在世：</strong>${content102.title}</p>
-										<p class="thumbnail-des text-justify"><strong>简介：</strong>${content102.description}</p>
+										<a href="###"><h5>${hallNew.title}</h5></a>
+										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
 									</div>
 								</div>
 							</c:if>
 						</c:forEach>
 					</div>
 					<div class="col-sm-6 col-md-4">
-						<c:forEach items="${contentList102}" var="content102" varStatus="content"> 
-							<c:if test="${content.index == 2 }">
+						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus">  
+							<c:if test="${hallStatus.index == 2 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toShowHall('32');"><img src="${pageContext.request.contextPath}/static/images/slide1.png" alt="img"></a>
+									<a href="###" onclick="toShowHall('${hallNew.id}');"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
 									<div class="caption">
-										<a href="###"><h5>${content102.title}</h5></a>
-										<p><strong>在世：</strong>${content102.title}</p>
-										<p class="thumbnail-des text-justify"><strong>简介：</strong>${content102.description}</p>
+										<a href="###"><h5>${hallNew.title}</h5></a>
+										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
 									</div>
 								</div>
 							</c:if>

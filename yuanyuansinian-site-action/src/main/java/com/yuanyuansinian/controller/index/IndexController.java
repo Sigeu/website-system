@@ -32,7 +32,6 @@ import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
-import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.carousel.ICarouselService;
 import com.yuanyuansinian.service.cemetery.ICemeteryService;
 import com.yuanyuansinian.service.column.IColumnService;
@@ -101,20 +100,11 @@ public class IndexController extends MyBaseController {
 			// 友情链接
 			//List<Link> linkList = linkService.queryLinkList(null);
 			//model.addAttribute("linkList", linkList);
-			// 最新建馆 
-			Content content102 = new Content();
-			String column_id102 = IMySystemConstants.COLUMN102;
-			content102.setColumn_id(column_id102);
-			content102.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
-			content102.setOrder_type(IMySystemConstants.ORDER_DESC);
-			//3条
-			content102.setCount_num(IMySystemConstants.COUNT_NUM3);
+			//最新建馆
+			List<Hall> listHallNew = hallService.queryHallNewList(IMySystemConstants.COUNT_NUM6);
 			//最新建馆 列表
-			List<Content> contentList102 = contentService.queryContentListByColumn(content102);
-			model.addAttribute("contentList102", contentList102);
-			model.addAttribute("column_id102", column_id102);
-			
-			
+			model.addAttribute("listHallNew", listHallNew);
+			model.addAttribute("column_id102", IMySystemConstants.COLUMN102);
 			
 			// 资讯
 			Content content107 = new Content();
@@ -275,100 +265,11 @@ public class IndexController extends MyBaseController {
 		return "site/article";
 	}
 	
-	@RequestMapping("/toContentDetailByPwd")
-	public String toContentDetailByPwd(HttpServletRequest request, Model model) {
-
-		return "site/article";
-	}
 	
 	@RequestMapping("/toRegister")
 	public String toRegister(HttpServletRequest request, Model model) {
 		
 		return "site/register";
-	}
-	
-	/**
-	 * 
-	 * @Description: 
-	 * @param request
-	 * @param column
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/toContentCheck")
-	public Map<String, Object> toContentCheck(HttpServletRequest request) {
-		//默认3，不允许访问
-		String open_type = IMySystemConstants.VALUE_3;
-		Map<String, Object> map = new HashMap<String, Object>();
-		String contentId = request.getParameter("id")==null? "0":request.getParameter("id");
-		Content content = contentService.queryContentById(Integer.parseInt(contentId));
-		// 有效日期
-		String validity_time = "";
-		String read_type = "";
-		if(null != content){
-			validity_time = content.getValidity_time();
-			read_type = content.getRead_type();
-			String now = MyDateUtil.getDateTime();
-			//比较日期
-			if(MyDateUtil.getMargin(now, validity_time) > 1){
-				//已过有效期
-			}else{
-				if(IMySystemConstants.VALUE_0.equals(read_type)){
-					//0：直接查看
-					open_type = IMySystemConstants.VALUE_0;
-				}else if(IMySystemConstants.VALUE_1.equals(read_type)){
-					//验证IP
-					String ip = getIpAddr(request);
-					if("127.0.0.1".equals(ip)){
-						//允许访问
-						open_type = IMySystemConstants.VALUE_1;
-					}else{
-						//不允许访问
-						open_type = IMySystemConstants.VALUE_3;
-					}
-				}else if(IMySystemConstants.VALUE_2.equals(read_type)){
-					//2：输入密码查看
-					open_type = IMySystemConstants.VALUE_2;
-				}
-			}
-		}
-		
-		map.put("open_type", open_type);
-
-		return map;
-	}
-	
-	/**
-	 * 
-	 * @Description: 验证访问密码 
-	 * @param request
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/toContentCheckPwd")
-	public Map<String, Object> toContentCheckPwd(HttpServletRequest request) {
-		//默认4，密码错误不允许访问
-		String open_type = IMySystemConstants.VALUE_4;
-		Map<String, Object> map = new HashMap<String, Object>();
-		String contentId = request.getParameter("id")==null? "0":request.getParameter("id");
-		String pwd = request.getParameter("pwd")==null? "":request.getParameter("pwd");
-		Content content = contentService.queryContentById(Integer.parseInt(contentId));
-		// 有效日期
-		String read_pwd = "";
-		if(null != content){
-			read_pwd = content.getRead_pwd();
-			if(!"".equals(read_pwd) && pwd.equals(read_pwd)){
-				//密码正确可以访问
-				open_type = IMySystemConstants.VALUE_5;
-			}else{
-				//密码错误不允许访问
-				open_type = IMySystemConstants.VALUE_4;
-			}
-		}
-		
-		map.put("open_type", open_type);
-
-		return map;
 	}
 	
 	/**
@@ -443,7 +344,6 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/searchHall")
 	public String searchHall(HttpServletRequest request, Model model) {
 		String search_text = request.getParameter("hall_name")==null? "":request.getParameter("hall_name");
-		// 最新公开信息 
 		//网上纪念馆:公开属性，单人和双人
 		List<Hall> listHallBySearch = hallService.queryHallListBySearch(search_text);
 		
@@ -474,6 +374,12 @@ public class IndexController extends MyBaseController {
 		return map;
 	}
 	
+	/**
+	 * 
+	 * @Description: 导航 
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/navigation")
 	public Map<String, Object> navigation(HttpServletRequest request) {
@@ -509,7 +415,7 @@ public class IndexController extends MyBaseController {
 		try {
 			// 通知公告
 			Content contentNotice = new Content();
-			String column_id = "123";
+			String column_id = IMySystemConstants.COLUMN123;
 			contentNotice.setColumn_id(column_id);
 			contentNotice.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
 			contentNotice.setOrder_type(IMySystemConstants.ORDER_DESC);
@@ -605,7 +511,7 @@ public class IndexController extends MyBaseController {
 		//最新文章
 		List<Oration> listOrationNew = orationService.queryOrationNewList(IMySystemConstants.COUNT_NUM6);
 		//网上纪念馆:公开属性，单人和双人
-		List<Hall> listHallByOpenType = hallService.queryHallListByOpenType(IMySystemConstants.VALUE_2);
+		List<Hall> listHallByOpenType = hallService.queryHallListByOpenType(IMySystemConstants.VALUE_1);
 		
 		//公墓陵园推荐
 		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);

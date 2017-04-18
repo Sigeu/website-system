@@ -193,9 +193,30 @@ public class HallService implements IHallService {
 	            //封面照片
 	            MultipartFile img_index = multiRequest.getFile("img_index");
 	            if(null != img_index){
-	            	byte[] imgFile = img_index.getBytes();
-					// 保存照片
-	            	hall.setImg_index(imgFile);
+	            	//取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
+                        
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        String webNameSrc = request.getContextPath();
+                        String webName = webNameSrc.substring(1);
+                        String srcP = path.substring(path.indexOf(webName),path.length());
+                        String srcPathTem = srcP.replace("\\", "/");
+                        hall.setImgs("/" + srcPathTem + "/" + fileName);
+                    }
 	            }
 	        }
 	        //保存

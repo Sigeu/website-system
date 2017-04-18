@@ -182,9 +182,6 @@ public class CemeteryService implements ICemeteryService {
 	            //封面照片
 	            MultipartFile img_index = multiRequest.getFile("img_cemetery");
 	            if(null != img_index){
-	            	//byte[] imgFile = img_index.getBytes();
-					// 保存照片
-	            	//carousel.setImg(imgFile);
                     //取得当前上传文件的文件名称  
                     String myFileName = img_index.getOriginalFilename();  
                     //如果名称不为“”,说明该文件存在，否则说明该文件不存在  

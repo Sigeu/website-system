@@ -66,6 +66,7 @@ public interface IMySystemConstants {
 	static final String COLUMN102 = "102";
 	//鍜ㄨ---鍔ㄦ�
 	static final String COLUMN107 = "107";
+	static final String COLUMN123 = "123";
 	
 	
 	static final String VALUE_A = "A";

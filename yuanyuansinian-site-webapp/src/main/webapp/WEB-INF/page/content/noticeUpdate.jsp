@@ -6,17 +6,15 @@
 <head>
 <%@ include file="../../../common/header.jsp"%>
 <link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-//window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
-</script>
 <title>内容信息表页</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增内容
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>更新内容
 		</nav>
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/content/contentController/addContent" method="post" class="form form-horizontal" id="form_">
+	<form action="${pageContext.request.contextPath}/sinian/content/contentController/updateContent" method="post" class="form form-horizontal" id="form_">
+		<input type="hidden" name="id" id="id_" value="${content.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
@@ -31,7 +29,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="标题" id="title" name="title">
+				<input type="text" class="input-text" value="${content.title}" placeholder="标题" id="title" name="title">
 			</div>
 		</div>
 		<div class="row cl">
@@ -43,14 +41,14 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${content.description}</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+				<input type="text" class="input-text" value="${content.no_order}" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
 		</div>
 		<div class="row cl">
@@ -67,7 +65,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="链接到网站外部的网址" id="links" name="links">
+				<input type="text" class="input-text" value="${content.links}" placeholder="链接到网站外部的网址" id="links" name="links">
 			</div>
 		</div>
 		</br>
@@ -91,14 +89,19 @@ var contextPath = '${pageContext.request.contextPath}';
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
-
+	
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭
 		return false;
 	});
-	
+	//赋值
+	$('#column_id').val('${content.column_id}');
+	ue.ready(function() {//编辑器初始化完成再赋值  
+    	ue.setContent('${content.content}');  //赋值给UEditor  
+    });  
 });
+
 
 //表单提交，可上传文件
 $(function() {
@@ -109,29 +112,7 @@ $(function() {
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			var imgList = $('#fileList').children('div');
-			if (imgList.length > 0) {
-				$('#ctlBtn').trigger("click");
-				// not empty
-			} else {
-				//  is empty
-				var options = {
-						success : function(data) {
-							layer.alert(data.result_message, {
-								  closeBtn: 1
-								}, function(){
-									//父页面刷新
-									parent.window.location.reload();
-									var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-									parent.layer.close(index); //再执行关闭
-								});
-						}
-					};
-					// 准备form表单
-					$("#form_").ajaxForm(options);
-					// 表单提交     
-					$("#form_").ajaxSubmit(options);
-			}  
+			$('#ctlBtn').trigger("click");
 			return false;
 		},
 		rules:{

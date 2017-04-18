@@ -222,6 +222,12 @@ public class ContentService implements IContentService {
 		
 		
 	}
+
+	@Override
+	public List<Content> queryNoticeList(Content content) {
+		// TODO Auto-generated method stub
+		return contentMapper.queryNoticeList(content);
+	}
 	
 
 

@@ -4,12 +4,12 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>通知公告列表页</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span>产品管理
+		系统管理 <span class="c-gray en">&gt;</span>通知公告管理
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>
@@ -18,27 +18,16 @@
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>名称:</strong>&nbsp;&nbsp;
+						<strong>通知公告标题:</strong>&nbsp;&nbsp;
 					</td>
 					<td width="10%" nowrap="nowrap"><input type="text" id="title"
-						name="title" placeholder="名称" class="input-text input-collspace size-MINI" />
+						name="title" placeholder="标题" class="input-text input-collspace size-MINI" />
 					</td>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>姓名:</strong>&nbsp;&nbsp;
+						<strong>内容关键字:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="name"
-						name="name" placeholder="姓名" class="input-text input-collspace size-MINI" />
-					</td>
-					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>公开状态:</strong>&nbsp;&nbsp;
-					</td>
-					<td width="10%" nowrap="nowrap"><span class="select-box" style="width: 90%;">
-						<select class="select" size="1" id="open_type" name="open_type" >
-							<option value=''>--请选择--</option>
-	                            <option value="1">公开</option> 
-	                            <option value="0">不公开</option> 
-						</select>
-						</span>
+					<td width="10%" nowrap="nowrap"><input type="text" id="keywords"
+						name="keywords" placeholder="关键字" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -46,6 +35,9 @@
 						</button> &nbsp;&nbsp;
 						<button class="btn btn-success radius size-MINI" id="reset_but">
 							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
+						</button> &nbsp;&nbsp;
+						<button class="btn btn-primary radius size-MINI" id="add_but">
+							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
 					</td>
 				</tr>
@@ -59,13 +51,10 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>姓名</th>
-						<th>性别</th>
-						<th>国籍</th>
-						<th>民族</th>
-						<th>公开状态</th>
-						<th>创建时间</th>
-						<th>创建人</th>
+						<th>名称</th>
+						<th>简短描述</th>
+						<th>发布人</th>
+						<th>发布时间</th>
 						<th width="15%">操作</th>
 					</tr>
 				</thead>
@@ -97,7 +86,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/sinian/hall/hallController/queryHallList",
+									url : "${pageContext.request.contextPath}/sinian/content/contentController/queryNoticeList",
 									type:"POST",
 									data : {
 										//args1: "固定传参"
@@ -122,26 +111,17 @@
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
 								}, {
-									data : "name",
-									defaultHall : 0
+									data : "title",
+									defaultContent : ""
 								}, {
-									data : "sex_name",
-									defaultHall : 0
+									data : "description",
+									defaultContent : ""
 								}, {
-									data : "nationality",
-									defaultHall : 0
+									data : "issue_name",
+									defaultContent : ""
 								}, {
-									data : "nation",
-									defaultHall : 0
-								}, {
-									data : "open_type_name",
-									defaultHall : 0
-								}, {
-									data : "create_date",
-									defaultHall : ""
-								}, {
-									data : "create_user_name",
-									defaultHall : ""
+									data : "add_time",
+									defaultContent : ""
 								}, {
 									data : null
 								} ],
@@ -151,6 +131,13 @@
 										var context = {
 											func : [
 													{
+														"name" : "修改",
+														"fn" : "toEdit(\'"
+																+ row.id
+																+ "\')",
+														"type" : "primary-outline size-MINI radius",
+														"display" : true
+													},{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
@@ -193,14 +180,14 @@
 			
 			//获取查询条件
 			function getSearchParams(){
+				//标题
 				var title = $("#title").val().trim();
-				var name = $("#name").val().trim();
-				var open_type = $("#open_type").val().trim();
+				//关键字
+				var keywords = $("#keywords").val().trim();
 				//查询条件
 				var param = {
 					"title" : title,
-					"name" : name,
-					"open_type" : open_type
+					"keywords" : keywords
 				};
 				
 				return param;
@@ -208,9 +195,22 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
+				//标题
 				$("#title").val('');
-				$("#name").val('');
-				$("#open_type").val('');
+				//关键字
+				$("#keywords").val('');
+			});
+			
+			//添加
+			$('#add_but').on('click', function() {
+				layer.open({
+				    type: 2,
+				    maxmin:true,
+				    title:["添加"],
+				    area: ['100%', '100%'],
+				    shadeClose: false, //点击遮罩关闭
+				    content: '${pageContext.request.contextPath}/sinian/content/contentController/toNoticeAdd'
+				 });
 			});
 			
 		});
@@ -220,13 +220,24 @@
 			window.location.reload();//刷新当前页面.
 		}
 		
+		//修改
+		function toEdit(id){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["修改"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: '${pageContext.request.contextPath}/sinian/content/contentController/toContentUpdate?id='+id
+			 });
+		}
 		//删除
 		function toDelete(id){
 			layer.confirm("确认删除？", {
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/sinian/hall/hallController/deleteHall" ,
+						    url: "${pageContext.request.contextPath}/sinian/content/contentController/deleteContent" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
@@ -251,10 +262,10 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看明细</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/sinian/hall/hallController/toHallDetail?id='+id
+			    content: '${pageContext.request.contextPath}/sinian/content/contentController/toContentDetail?id='+id
 			 });
 		}
 		

@@ -46,12 +46,6 @@
 							<c:forEach items="${listOrationNew}" var="oration" varStatus="orationStatus"> 
 								<li><a href="###" onclick="toOrationDetail('${oration.id }')">${oration.title}</a></li>
 							</c:forEach>
-							<!-- <li><a href="###">宋人眼里荒唐离奇的北地胡风民俗</a></li>
-							<li><a href="###">鬼山缝魂网上纪念馆鬼山缝魂网上纪念馆鬼山缝魂网上纪念馆</a></li>
-							<li><a href="###">齐鲁文化—鲁文化在中国上古文化中的地位</a></li>
-							<li><a href="###">全民阅读生肖民俗文化惠民活动 明天将在解放碑十</a></li>
-							<li><a href="###">全国百家媒体聚焦2016互联网+茶产业暨万里茶道</a></li>
-							<li><a href="###">《房陵锣鼓歌》出版 千古诗经民歌传唱至今深山传</a></li> -->
 						</ul>
 					</div>
 				</div>
@@ -101,17 +95,17 @@
 				<a href="###" class="more pull-right">更多&raquo;</a>
 			</div>
 			<div class="clearfix"></div>
-				<div class="row" id="double_div" style="display:none"> 
-				<c:forEach items="${listHallByOpenType}" var="hallOpen"> 
+			<div class="row" id="double_div" style="display: none"> 
+				<c:forEach items="${listHallByOpenType}" var="hallOpen" varStatus="hallStatus"> 
 				<c:if test="${hallOpen.hall_type == '2'}">
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
-							<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><img src="${hallOpen.img_index}" class="img-responsive"
+							<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><img src="${hallOpen.imgs}" class="img-responsive"
 								alt="img"></a>
 							<div class="caption">
 								<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><h5>${hallOpen.title}</h5></a>
 								<p>
-									<strong>在世：</strong>2016-2016
+									<strong>在世：</strong>${hallOpen.alive_date }
 								</p>
 								<p class="thumbnail-des text-justify">
 									<strong>简介：</strong>${hallOpen.description}
@@ -119,7 +113,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="clearfix"></div>
+					</c:if>
+            </c:forEach> 
+            <div class="clearfix"></div>
 					<div class="page">
 						<ul class="pagination">
 							<li><a href="#" aria-label="Previous"><span
@@ -129,23 +125,20 @@
 									aria-hidden="true">&raquo;</span></a></li>
 						</ul>
 					</div>
-					</c:if>
-            </c:forEach> 
 				</div>	
 				 
                 
 			<div class="row" id="single_div"  style="block">
-				<c:forEach items="${listHallByOpenType}" var="hallOpen"> 
+				<c:forEach items="${listHallByOpenType}" var="hallOpen" varStatus="hallStatus"> 
 				<c:if test="${hallOpen.hall_type == '1'}">
-				<div class="row" id="double_div" style="display:none"> 
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
-							<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><img src="${hallOpen.img_index}" class="img-responsive"
+							<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><img src="${hallOpen.imgs}" class="img-responsive"
 								alt="img"></a>
 							<div class="caption">
 								<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><h5>${hallOpen.title}</h5></a>
 								<p>
-									<strong>在世：</strong>2016-2016
+									<strong>在世：</strong>${hallOpen.alive_date }
 								</p>
 								<p class="thumbnail-des text-justify">
 									<strong>简介：</strong>${hallOpen.description}
@@ -153,7 +146,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="clearfix"></div>
+				 </c:if>
+            </c:forEach> 
+            <div class="clearfix"></div>
 					<div class="page">
 						<ul class="pagination">
 							<li><a href="#" aria-label="Previous"><span
@@ -163,9 +158,6 @@
 									aria-hidden="true">&raquo;</span></a></li>
 						</ul>
 					</div>
-				</div>	
-				 </c:if>
-            </c:forEach> 
 			</div>
 		</div>
 	</div>

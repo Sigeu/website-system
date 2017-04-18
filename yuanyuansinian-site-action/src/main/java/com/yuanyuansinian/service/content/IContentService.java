@@ -70,4 +70,6 @@ public interface IContentService {
 
 	void uploadContentImg(HttpServletRequest request, String id);
 
+	List<Content> queryNoticeList(Content content);
+
 }
