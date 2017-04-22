@@ -36,7 +36,7 @@
 					<c:forEach items="${productList1}" var="product1" varStatus="product1Status"> 
 							<div class="col-sm-4">
 								<div class="thumbnail">
-									<a href="###" onclick="toShoppingDetail('${product1.id }')"><img src="${product1.img_index }"
+									<a href="###" onclick="toShoppingDetail('${product1.id }')"><img src="${product1.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product1.id }')"><h5>${product1.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
 										<small>￥</small>${product1.price_market }
@@ -63,7 +63,7 @@
 					<c:forEach items="${productList2}" var="product2" varStatus="product2Status"> 
 							<div class="col-sm-4">
 								<div class="thumbnail">
-									<a href="###" onclick="toShoppingDetail('${product2.id }')"><img src="${product2.img_index }"
+									<a href="###" onclick="toShoppingDetail('${product2.id }')"><img src="${product2.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product2.id }')"><h5>${product2.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
 										<small>￥</small>${product2.price_market }
@@ -90,7 +90,7 @@
 					<c:forEach items="${productList3}" var="product3" varStatus="product3Status"> 
 							<div class="col-sm-4">
 								<div class="thumbnail">
-									<a href="###" onclick="toShoppingDetail('${product3.id }')"><img src="${product3.img_index }"
+									<a href="###" onclick="toShoppingDetail('${product3.id }')"><img src="${product3.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product3.id }')"><h5>${product3.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
 										<small>￥</small>${product3.price_market }

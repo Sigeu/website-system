@@ -69,4 +69,6 @@ public interface ProductMapper {
 	int recoverProduct(int productId);
 
 	List<Product> queryProductRecycleList(Product product);
+
+	void uploadImg(Product product);
 }

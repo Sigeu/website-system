@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.yuanyuansinian.dao.product.ProductMapper;
+import com.yuanyuansinian.model.content.Content;
 import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.model.product.ProductWithBLOBs;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
@@ -160,6 +161,60 @@ public class ProductService implements IProductService {
 	public int recoverProduct(int productId) {
 		// TODO Auto-generated method stub
 		return productMapper.recoverProduct(productId);
+	}
+
+	@Override
+	public void uploadImg(HttpServletRequest request, String id) {
+		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        Product product =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	product =  new Product();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+	            product.setId(Integer.parseInt(id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_");
+	            if(null != img_index){
+	            	//byte[] imgFile = img_index.getBytes();
+					// 保存照片
+	            	//carousel.setImg(imgFile);
+                    //取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
+                        
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        String webNameSrc = request.getContextPath();
+                        String webName = webNameSrc.substring(1);
+                        String srcP = path.substring(path.indexOf(webName),path.length());
+                        String srcPathTem = srcP.replace("\\", "/");
+                        product.setPic("/" + srcPathTem + "/" + fileName);
+                    }  
+	            }
+	        }
+	        //保存
+	        productMapper.uploadImg(product);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 	}
 	
 

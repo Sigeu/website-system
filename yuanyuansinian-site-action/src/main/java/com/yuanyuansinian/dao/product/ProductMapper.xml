@@ -393,4 +393,11 @@
     <include refid="Blob_Column_List" />
     from ujn_product where type = #{type,jdbcType=VARCHAR}
   </select>
+  
+  <!-- 封面缩略图 -->
+  <update id="uploadImg" parameterType="com.yuanyuansinian.model.product.Product">
+    update ujn_product
+    set pic = #{pic,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

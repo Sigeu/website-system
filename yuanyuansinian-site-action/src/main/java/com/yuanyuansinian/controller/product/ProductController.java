@@ -101,10 +101,14 @@ public class ProductController extends MyBaseController {
 	 */
 	@RequestMapping("/toProductAdd")
 	public String toProductAdd(HttpServletRequest request, Model model) {
-		
+		//产品小类
 		List<Code> codeList = codeService.queryCodeListByType("product_type");
 		
 		model.addAttribute("codeList", codeList);
+		//产品大类
+		List<Code> bigTypeCodeList = codeService.queryCodeListByType("big_type");
+		
+		model.addAttribute("bigTypeCodeList", bigTypeCodeList);
 		return "product/productAdd";
 	}
 
@@ -281,6 +285,7 @@ public class ProductController extends MyBaseController {
 			//默认状态为“0”：待审核
 			product.setStatus(IMySystemConstants.VALUE_0);
 			productService.addProduct(request, product);
+			map.put("model_id", product.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -290,6 +295,24 @@ public class ProductController extends MyBaseController {
 		return map;
 	}
 
+	@ResponseBody
+	@RequestMapping("/uploadImg")
+	public Map<String, Object> uploadImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			productService.uploadImg(request, id);
+			
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
 	/**
 	 * 
 	 * @Description: 修改
@@ -303,6 +326,7 @@ public class ProductController extends MyBaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		product.setCreate_date(MyDateUtil.getDateTime());
+		map.put("model_id", product.getId());
 		int count = this.productService.updateProduct(product);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

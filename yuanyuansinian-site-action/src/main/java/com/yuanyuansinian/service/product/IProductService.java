@@ -66,4 +66,6 @@ public interface IProductService {
 
 	int recoverProduct(int productId);
 
+	void uploadImg(HttpServletRequest request, String id);
+
 }

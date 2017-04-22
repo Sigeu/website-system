@@ -18,6 +18,7 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/sinian/product/productController/updateProduct" method="post" class="form form-horizontal" id="form_">
 		<input type="hidden" name="id" id="id" value="${product.id}">
+		<input type="hidden" name="status" id="status" value="${product.status}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
@@ -91,7 +92,7 @@
 				    <!--用来存放item-->
 				    <div id="fileList" class="uploader-list"></div>
 				    <div id="filePicker">选择图片</div>
-				    <div class="element-invisible" id="filePickerChoose">重新选择</div>
+				    <button id="ctlBtn" style="display:none" class="btn btn-default">开始上传</button>
 				</div>
 			</div>
 		</div>
@@ -111,12 +112,13 @@
 	</form>
 </div>
 <%@ include file="../../../common/footer_form.jsp"%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/file-upload.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/common-upload.js"> </script>
 <script type="text/javascript">
 var contextPath = '${pageContext.request.contextPath}';
+var serverUrl = '/sinian/product/productController/uploadImg';
 $(function(){
 	//UE编辑器
 	var ue = UE.getEditor('editor');
@@ -159,24 +161,30 @@ $(function() {
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			var options = {
-					success : function(data) {
-						layer.alert(data.result_message, {
-						  closeBtn: 1
-						}, function(){
-							//父页面刷新
-							parent.reloadPage();
-							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-							parent.layer.close(index); //再执行关闭
-						});
-					}
-				};
-				// 准备form表单
-				$("#form_").ajaxForm(options);
-				// 表单提交     
-				$("#form_").ajaxSubmit(options);
-				
-				return false;
+			var imgList = $('#fileList').children('div');
+			if (imgList.length > 0) {
+				$('#ctlBtn').trigger("click");
+				// not empty
+			} else {
+				//  is empty
+				var options = {
+						success : function(data) {
+							layer.alert(data.result_message, {
+								  closeBtn: 1
+								}, function(){
+									//父页面刷新
+									parent.window.location.reload();
+									var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+									parent.layer.close(index); //再执行关闭
+								});
+						}
+					};
+					// 准备form表单
+					$("#form_").ajaxForm(options);
+					// 表单提交     
+					$("#form_").ajaxSubmit(options);
+			}  
+			return false;
 		}
 	});
 	
