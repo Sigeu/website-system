@@ -10,6 +10,10 @@
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
 		网站管理 <span class="c-gray en">&gt;</span>栏目管理
+		<a class="btn btn-success radius r"
+				style="line-height: 1.6em; margin-top: 3px"
+				href="javascript:location.replace(location.href);" title="刷新"><i
+				class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>
@@ -20,8 +24,8 @@
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>栏目名称:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="name"
+						name="name" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -46,7 +50,7 @@
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
 						<!-- <th>序号</th> -->
-						<th>排序</th>
+						<!-- <th>排序</th> -->
 						<th>栏目名称</th>
 						<!-- <th>所属模块</th> -->
 						<th>显示位置</th>
@@ -110,10 +114,10 @@
 					                 }
 								}, /* {
 									data : "id"
-								},  */{
+								},  {
 									data : "no_order",
 									defaultContent : 0
-								}, {
+								}, */{
 									data : "name",
 									defaultContent : ""
 								}, /* {
@@ -189,19 +193,11 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//登录名称
-				var login_name = $("#login_name").val().trim();
-				//真实姓名
-				var real_name = $("#real_name").val().trim();
-				//注册时间
-				var date_start = $("#date_start").val().trim();
-				var date_end = $("#date_end").val().trim();
+				//名称
+				var name = $("#name").val().trim();
 				//查询条件
 				var param = {
-					"login_name" : login_name,
-					"real_name" : real_name,
-					"date_start" : date_start,
-					"date_end" : date_end
+					"name" : name
 				};
 				
 				return param;
@@ -209,13 +205,8 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				//登录名称
-				$("#login_name").val('');
-				//真实姓名
-				$("#real_name").val('');
-				//注册时间
-				$("#date_start").val('');
-				$("#date_end").val('');
+				//名称
+				$("#name").val('');
 				
 			});
 			
@@ -224,7 +215,7 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加栏目</div></strong>","background-color: #5a97df"],
+				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/sinian/column/columnController/toColumnAdd'
@@ -243,7 +234,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改栏目</div></strong>","background-color: #5a97df"],
+			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/sinian/column/columnController/toColumnUpdate?id='+id
@@ -255,7 +246,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;栏目设置</div></strong>","background-color: #5a97df"],
+			    title:["设置"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/sinian/column/columnController/toColumnConfig?id='+id
@@ -293,7 +284,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;栏目明细</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/sinian/column/columnController/toColumnDetail?id='+id
