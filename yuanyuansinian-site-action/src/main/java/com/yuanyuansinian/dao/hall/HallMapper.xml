@@ -478,4 +478,16 @@
        set imgs = #{imgs,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 我的创建 -->
+  <select id="queryHallListByMember" parameterType="map" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_hall
+    where create_user = #{memberId}
+    order by unix_timestamp(create_date) desc limit #{limtNum}
+  </select>
 </mapper>

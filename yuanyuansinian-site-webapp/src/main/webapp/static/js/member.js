@@ -40,7 +40,7 @@ $(function(){
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;创建纪念馆</div></strong>","background-color: #5a97df"],
+				    title:["创建单人纪念馆"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: contextPath + '/sinian/hall/hallController/toHallSingleAdd'
@@ -50,10 +50,10 @@ $(function(){
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;创建纪念馆</div></strong>","background-color: #5a97df"],
+				    title:["创建双人纪念馆"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: contextPath + '/sinian/hall/hallController/toHallAdd'
+				    content: contextPath + '/sinian/hall/hallController/toHallDoubleAdd'
 				 });
 				layer.close(index_confirm);
 		});

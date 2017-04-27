@@ -19,26 +19,6 @@
 		<%@ include file="memberInfo.jsp"%>
 	</div>
 </div>
-
-<%-- <div class="container con-tab all-bg miss-con">		
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="side-nav">
-				<div class="pro-header">
-					<h4>我的思念</h4>
-				</div>
-				<div class="side-nav-body">
-					<ul>
-						<li><a href="###">我的购物车</a></li>
-						<li class="active"><a href="###">我的创建</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<iframe src="${pageContext.request.contextPath}/sinian/hall/hallController/toHallListByMember" name="my_create" id="my_create" 
-						scrolling="no" frameborder="0" width="100%"></iframe>
-	</div>
-</div> --%>
 	<div class="container con-tab all-bg miss-con">		
 	<div class="row">
 		<div class="col-sm-3">
@@ -65,48 +45,25 @@
 			<div class="clearfix"></div>
 			<div class="tab-content">
 				<div class="tab-pane active img-list shop-list miss-setup" id="setup">
-					<div class="row miss-setup-pro">
-						<div class="col-sm-4 col-md-3">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="setup" /></a>
-						</div>
-						<div class="col-sm-8 col-md-9">
-							<a href="###"><h5>天束幽花纪念馆天束幽花纪念馆天束幽花纪念馆天束幽花纪念馆天束幽花纪念馆天束幽花纪念馆天束幽花纪念馆</h5></a>
-							<p><strong>创建日期：</strong>2016-12-30</p>
-							<div class="miss-des text-justify"><strong>简介：</strong>点开直接进入相应的纪念馆页面</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="row miss-setup-pro">
-						<div class="col-sm-4 col-md-3">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="setup" /></a>
-						</div>
-						<div class="col-sm-8 col-md-9">
-							<a href="###"><h5>天束幽花纪念馆</h5></a>
-							<p><strong>创建日期：</strong>2016-12-30</p>
-							<div class="miss-des text-justify"><strong>简介：</strong>点开直接进入相应的纪念馆页面  点开直接进入相应的纪念馆页面</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+					<c:forEach items="${listHall}" var="hall" varStatus="hallStatus"> 
+							<div class="row miss-setup-pro">
+								<div class="col-sm-4 col-md-3">
+									<a href="###"  onclick="toShowHall('${hall.id}');"><img src="${hall.imgs}" class="img-responsive" alt="${hall.title}" /></a>
+								</div>
+								<div class="col-sm-8 col-md-9">
+									<a href="###"  onclick="toShowHall('${hall.id}');"><h5>${hall.title}</h5></a>
+									<p><strong>创建日期：</strong>${hall.create_date}</p>
+									<div class="miss-des text-justify"><strong>简介：</strong>${hall.description}</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</c:forEach>
 				</div>
 				
 				<div class="tab-pane img-list shop-list miss-list" id="visit">
 					<div class="list">
 						<ul>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆访问内容指向某一个纪念馆访问内容指向某一个纪念馆访问内容指向某一个纪念馆访问内容指向某一个纪念馆访问内容指向某一个纪念馆访问内容指向某一个纪念馆访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆+访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆 访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆访问内容指向某一个纪念馆访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆+访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆 访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆 访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆+访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">访问内容指向某一个纪念馆 访问内容指向某一个纪念馆</a><span class="list-date pull-right">2016-12-30</span></li>
+							<li><a href="###" class="pull-left">访问记录...更新中</a><span class="list-date pull-right">2016-12-30</span></li>
 						</ul>
 					</div>
 					<div class="clearfix"></div>
@@ -125,7 +82,10 @@
 				<div class="tab-pane img-list shop-list miss-list" id="release">
 					<div class="list">
 						<ul>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
+							<c:forEach items="${listOration}" var="oration" varStatus="orationStatus"> 
+								<li><a href="###" class="pull-left" onclick="toOrationDetail('${oration.id}');">${oration.title}</a><span class="list-date pull-right">${oration.create_date}</span></li>
+							</c:forEach>
+							<!-- <li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
 							<li><a href="###" class="pull-left">在这个位置打开相应的文章页在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
 							<li><a href="###" class="pull-left">在这个位置打开相应的文章页 在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
 							<li><a href="###" class="pull-left">在这个位置打开相应的文章页+在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
@@ -136,7 +96,7 @@
 							<li><a href="###" class="pull-left">在这个位置打开相应的文章页 在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
 							<li><a href="###" class="pull-left">在这个位置打开相应的文章页+在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
 							<li><a href="###" class="pull-left">在这个位置打开相应的文章页 在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
+							<li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li> -->
 						</ul>
 					</div>
 					<div class="clearfix"></div>
@@ -180,6 +140,8 @@
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/member.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/oration.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '我的思念';
 		// 项目路径

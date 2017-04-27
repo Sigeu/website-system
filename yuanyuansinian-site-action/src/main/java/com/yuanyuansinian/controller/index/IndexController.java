@@ -721,6 +721,18 @@ public class IndexController extends MyBaseController {
 			return "redirect:/sinian/index/indexController/toMemberLogin";
 		}else{
 			model.addAttribute("memberUser", memberUser);
+			//我的创建
+			List<Hall> listHall = hallService.queryHallListByMember(memberUser.getId()+"", IMySystemConstants.COUNT_NUM2);
+			model.addAttribute("listHall", listHall);
+			
+			//我的访问
+			//List<Visit> listVisit = visitService.queryVisitListByMember(memberUser.getId()+"", IMySystemConstants.COUNT_NUM2);
+			//model.addAttribute("listVisit", listVisit);
+			
+			//我的发布
+			List<Oration> listOration = orationService.queryOrationListByMember(memberUser.getId()+"", IMySystemConstants.COUNT_NUM12);
+			model.addAttribute("listOration", listOration);
+			
 			return "site/memberCenter";
 		}
 		

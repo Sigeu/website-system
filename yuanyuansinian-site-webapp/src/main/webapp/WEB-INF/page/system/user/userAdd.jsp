@@ -98,7 +98,7 @@ $(function() {
 			  closeBtn: 1
 			}, function(){
 				//父页面刷新
-				parent.reloadPage();
+				parent.window.location.reload();
 				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 				parent.layer.close(index); //再执行关闭
 			});

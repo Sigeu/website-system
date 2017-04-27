@@ -84,18 +84,6 @@ public class HallController extends MyBaseController {
 		
 		return "site/memberIssue";
 	}
-	/**
-	 * 
-	 * @Description: 跳转到产品回收站列表 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/toHallRecycleList")
-	public String toHallRecycleList(HttpServletRequest request, Model model) {
-
-		return "hall/hallRecycleList";
-	}
 
 	/**
 	 * 
