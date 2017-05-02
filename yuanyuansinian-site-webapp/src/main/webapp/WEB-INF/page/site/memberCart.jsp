@@ -7,7 +7,7 @@
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/css/keleyidivpager.css">
-<title>我的思念-内容页</title>
+<title>我的思念-我的购物车</title>
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>
@@ -67,147 +67,40 @@
 			<div class="clearfix"></div>
 			<div class="tab-content">
 				<div class="row tab-pane active img-list shop-list miss-shop-list" id="pay">
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
+					<c:forEach var="cart" items="${listCart}">
+						<div class="col-sm-4">
+							<div class="thumbnail">
+								<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img"></a>
+								<a href="###"><h5>${cart.title}</h5></a>
+								<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-							<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-						</div>
-					</div>
+	                 </c:forEach>
 					<div class="clearfix"></div>
 					<div class="page">
 						<ul class="pagination">
 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</ul>
 					</div>
 				</div>
 				
 				<div class="row tab-pane img-list shop-list miss-shop-list miss-shop-full" id="paid">
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/logo.png" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
+					<c:forEach var="order" items="${listOrder}">
+						<div class="col-sm-4">
+							<div class="thumbnail">
+								<a href="###"><img src="${pageContext.request.contextPath}/static/images/logo.png" class="img-responsive" alt="img"></a>
+								<a href="###"><h5>${order.title}</h5></a>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="thumbnail">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/slide3.png" class="img-responsive" alt="img"></a>
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
+	                 </c:forEach>
 					<div class="clearfix"></div>
 					<div class="page">
 						<ul class="pagination">
 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 							<li><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</ul>
 					</div>

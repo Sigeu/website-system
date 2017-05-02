@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.yuanyuansinian.model.carousel.Carousel;
+import com.yuanyuansinian.model.cart.Cart;
 import com.yuanyuansinian.model.cemetery.Cemetery;
 import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.contact.Contact;
@@ -29,10 +30,12 @@ import com.yuanyuansinian.model.hall.Hall;
 import com.yuanyuansinian.model.link.Link;
 import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.oration.Oration;
+import com.yuanyuansinian.model.order.Order;
 import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.service.carousel.ICarouselService;
+import com.yuanyuansinian.service.cart.ICartService;
 import com.yuanyuansinian.service.cemetery.ICemeteryService;
 import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.config.IConfigService;
@@ -41,6 +44,7 @@ import com.yuanyuansinian.service.content.IContentService;
 import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.link.ILinkService;
 import com.yuanyuansinian.service.oration.IOrationService;
+import com.yuanyuansinian.service.order.IOrderService;
 import com.yuanyuansinian.service.product.IProductService;
 
 /**
@@ -87,6 +91,12 @@ public class IndexController extends MyBaseController {
 	// 墓地陵园Service
 	@Resource
 	private ICemeteryService cemeteryService;
+	// 购物车
+	@Resource
+	private ICartService cartService;
+	// 订单
+	@Resource
+	private IOrderService orderService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -741,8 +751,19 @@ public class IndexController extends MyBaseController {
 	//购物车
 	@RequestMapping("/toMemberCart")
 	public String toMemberCart(HttpServletRequest request, Model model) {
-		
-		
+		//获取登录的会员
+		Member memberUser = super.getSessionMemberUser(request);
+		if(null == memberUser){
+			return "redirect:/sinian/index/indexController/toMemberLogin";
+		}else{
+			//待付款商品
+			List<Cart> listCart = cartService.queryCartListByMember(memberUser.getId().toString(), IMySystemConstants.COUNT_NUM9);
+			model.addAttribute("listCart", listCart);
+			
+			//已购买商品
+			List<Order> listOrder = orderService.queryOrderListByMember(memberUser.getId().toString(), IMySystemConstants.COUNT_NUM9);
+			model.addAttribute("listOrder", listOrder);
+		}
 		return "site/memberCart";
 	}
 	

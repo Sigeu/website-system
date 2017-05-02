@@ -62,4 +62,6 @@ public interface ICartService {
 
 	List<Cart> queryCartListByType(Cart cart);
 
+	List<Cart> queryCartListByMember(String memberId, int limtNum);
+
 }

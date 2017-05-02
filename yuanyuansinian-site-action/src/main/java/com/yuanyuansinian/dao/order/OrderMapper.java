@@ -1,6 +1,7 @@
 package com.yuanyuansinian.dao.order;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yuanyuansinian.model.order.Order;
 
@@ -56,4 +57,6 @@ public interface OrderMapper {
 	List<Order> queryOrderList(Order order);
 
 	List<Order> queryOrderListByType(Order order);
+
+	List<Order> queryOrderListByMember(Map<String, Object> map);
 }

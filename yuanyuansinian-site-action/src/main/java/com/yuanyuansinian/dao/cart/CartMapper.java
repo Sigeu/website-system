@@ -1,6 +1,7 @@
 package com.yuanyuansinian.dao.cart;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yuanyuansinian.model.cart.Cart;
 
@@ -54,4 +55,6 @@ public interface CartMapper {
     int updateByPrimaryKey(Cart record);
 
 	List<Cart> queryCartList(Cart cart);
+
+	List<Cart> queryCartListByMember(Map<String, Object> map);
 }

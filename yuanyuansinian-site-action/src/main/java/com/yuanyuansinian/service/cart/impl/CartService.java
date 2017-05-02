@@ -5,8 +5,10 @@
 package com.yuanyuansinian.service.cart.impl;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -147,6 +149,15 @@ public class CartService implements ICartService {
 	public List<Cart> queryCartListByType(Cart cart) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Cart> queryCartListByMember(String memberId, int limtNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", memberId);
+		map.put("limtNum", limtNum);
+		
+		return cartMapper.queryCartListByMember(map);
 	}
 
 }

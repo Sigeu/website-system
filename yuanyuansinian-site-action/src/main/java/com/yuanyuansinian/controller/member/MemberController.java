@@ -139,7 +139,7 @@ public class MemberController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 添加
+	 * @Description: 添加网站会员
 	 * @param request
 	 * @param member
 	 * @return
@@ -159,6 +159,13 @@ public class MemberController extends MyBaseController {
 		return map;
 	}
 	
+	/**
+	 * 
+	 * @Description: 网站会员注册 
+	 * @param request
+	 * @param member
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/registerMember")
 	public Map<String, Object> registerMember(HttpServletRequest request, Member member) {
@@ -176,7 +183,7 @@ public class MemberController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 修改
+	 * @Description: 会员信息修改
 	 * @param request
 	 * @param member
 	 * @return
@@ -199,7 +206,7 @@ public class MemberController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 保存
+	 * @Description: 会员信息保存
 	 * @param request
 	 * @param member
 	 * @return
@@ -220,7 +227,7 @@ public class MemberController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 删除
+	 * @Description: 删除会员信息
 	 * @param request
 	 * @param model
 	 * @return
@@ -268,7 +275,12 @@ public class MemberController extends MyBaseController {
 		return map;
 	}
 	
-	
+	/**
+	 * 
+	 * @Description: 验证会员邮箱是否已经被注册
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/checkMemberByEmail")
 	public Map<String, Object> checkMemberByEmail(HttpServletRequest request) {

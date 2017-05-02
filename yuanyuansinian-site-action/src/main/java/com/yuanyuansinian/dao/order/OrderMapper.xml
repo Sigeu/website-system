@@ -177,4 +177,13 @@
       create_date = #{create_date,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 根据会员id查询已购买产品 -->
+  <select id="queryOrderListByMember" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_order
+    where  member_id = #{member_id}
+    order by create_date desc limit #{limtNum} 
+  </select>
 </mapper>

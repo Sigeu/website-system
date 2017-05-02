@@ -62,5 +62,7 @@ public interface IOrderService {
 
 	List<Order> queryOrderListByType(Order order);
 
+	List<Order> queryOrderListByMember(String memberId, int limtNum);
+
 
 }

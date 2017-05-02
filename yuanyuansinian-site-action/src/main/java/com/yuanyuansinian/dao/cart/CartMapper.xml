@@ -130,4 +130,13 @@
       create_date = #{create_date,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 根据会员id查询购物车 -->
+  <select id="queryCartListByMember" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_cart
+    where member_id = #{member_id}
+    order by create_date desc limit #{limtNum} 
+  </select>
 </mapper>

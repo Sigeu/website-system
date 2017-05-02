@@ -5,8 +5,10 @@
 package com.yuanyuansinian.service.order.impl;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -148,6 +150,14 @@ public class OrderService implements IOrderService {
 	public List<Order> queryOrderListByType(Order order) {
 		// TODO Auto-generated method stub
 		return orderMapper.queryOrderListByType(order);
+	}
+
+	@Override
+	public List<Order> queryOrderListByMember(String memberId, int limtNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", memberId);
+		map.put("limtNum", limtNum);
+		return orderMapper.queryOrderListByMember(map);
 	}
 
 }
