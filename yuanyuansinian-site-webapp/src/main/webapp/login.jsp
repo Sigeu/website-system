@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/admin.css">
-<title>网站后台管理登录</title>
+<title>缘园思念网-网站后台管理登录</title>
 <meta name="keywords"
 	content="">
 <meta name="description"

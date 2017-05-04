@@ -5,104 +5,258 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<script type="text/javascript">
-//window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
-</script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/style.css" />
 <title>纪念馆新建</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增纪念馆
+			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增双人纪念馆
 		</nav>
-	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/product/productController/addProduct" method="post" class="form form-horizontal" id="form-product-add">
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="type" name="type">
-					<option value="0">--请选择--</option>  
-                    <c:forEach items="${typeSelectList}" var="column">  
-                    	<option value=""></option>  
-                    </c:forEach>  
-				</select>
-				</span> </div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品名称：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="产品名称" id="name" name="name">
+
+	<div class="container con-tab all-bg miss-con new-con">		
+	<div class="pro-header">
+		<h4 class="pro-title pull-left">缘园思念网创建纪念馆</h4>
+	</div>
+	<div class="clearfix"></div>
+	<div class="new-body">
+		<p class="new-notice text-justify"><span class="glyphicon glyphicon-star"></span>注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务</p>
+		<form class="form-horizontal" action="${pageContext.request.contextPath}/sinian/hall/hallController/addDoubleHall" method="post" id="form_">
+			<div class="new-pro">
+				<input type="hidden" name="hall_type" id="hall_type" value="2">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>纪念馆名称：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" value="" placeholder="纪念馆名称" id="title" name="title">
+					</div>
+				</div>
+				<p class="new-notice"><span class="glyphicon glyphicon-edit" style="margin-right:10px"></span>请填写双人馆第一人信息</p>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">真实姓名</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="text" class="form-control" placeholder="请输入姓名" id="name" name="name">	
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">别名</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="password" class="form-control" placeholder="请输入别名" id="alias" name="alias">	
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">性别</label>
+					<div class="checkbox col-sm-8 col-md-9">
+						<label><input type="radio"> 男</label>
+						<label><input type="radio"> 女</label>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">上传照片</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="file" id="" class="form-control"style="border:0; box-shadow:none">
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">国籍</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="text" class="form-control" placeholder="请输入国籍" id="nationality" name="nationality">	
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">民族</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="password" class="form-control" placeholder="请输入民族" id="nation" name="nation">	
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">墓地地址</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="text" class="form-control" placeholder="请输入墓地地址" id="address" name="address">	
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">信仰</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="password" class="form-control" placeholder="请输入信仰" id="belief" name="belief">	
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">出生地</label>
+					<div class="col-sm-8 col-md-9">
+						<div class="col-sm-6 new-noleft">
+							<select class="form-control">
+								<option>山东省</option>
+								<option>河北省</option>
+								<option>黑龙江省</option>
+								<option>江苏省</option>
+								<option>陕西省</option>
+							</select>	
+						</div>
+						<div class="col-sm-6 new-noright">
+							<select class="form-control">
+								<option>济南市</option>
+								<option>青岛市</option>
+								<option>临沂市</option>
+								<option>潍坊市</option>
+								<option>日照市</option>
+							</select>	
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">籍贯</label>
+					<div class="col-sm-8 col-md-9">
+						<div class="col-sm-6 new-noleft">
+							<select class="form-control">
+								<option>山东省</option>
+								<option>河北省</option>
+								<option>黑龙江省</option>
+								<option>江苏省</option>
+								<option>陕西省</option>
+							</select>	
+						</div>
+						<div class="col-sm-6 new-noright">
+							<select class="form-control">
+								<option>济南市</option>
+								<option>青岛市</option>
+								<option>临沂市</option>
+								<option>潍坊市</option>
+								<option>日照市</option>
+							</select>	
+						</div>
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">主要成就</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="password" class="form-control" placeholder="请输入主要成就" id="achievement" name="achievement">	
+					</div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>简短标题：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="简短标题" id="name_short" name="name_short">
+
+			<div class="new-pro">
+				<p class="new-notice"><span class="glyphicon glyphicon-edit" style="margin-right:10px"></span>请填写双人馆第二人信息</p>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">真实姓名</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="text" class="form-control" placeholder="请输入姓名" id="name2" name="name2">	
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">别名</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="password" class="form-control" placeholder="请输入别名" id="alias2" name="alias2">	
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">性别</label>
+					<div class="checkbox col-sm-8 col-md-9">
+						<label><input type="radio"> 男</label>
+						<label><input type="radio"> 女</label>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">上传照片</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="file" id="" class="form-control"style="border:0; box-shadow:none">
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">国籍</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="text" class="form-control" placeholder="请输入国籍" id="nationality2" name="nationality2">	
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">民族</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="password" class="form-control" placeholder="请输入民族" id="nation2" name="nation2">	
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">墓地地址</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="text" class="form-control" placeholder="请输入墓地地址" id="address2" name="address2">	
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">信仰</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="password" class="form-control" placeholder="请输入信仰" id="belief2" name="belief2">	
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">出生地</label>
+					<div class="col-sm-8 col-md-9">
+						<div class="col-sm-6 new-noleft">
+							<select class="form-control">
+								<option>山东省</option>
+								<option>河北省</option>
+								<option>黑龙江省</option>
+								<option>江苏省</option>
+								<option>陕西省</option>
+							</select>	
+						</div>
+						<div class="col-sm-6 new-noright">
+							<select class="form-control">
+								<option>济南市</option>
+								<option>青岛市</option>
+								<option>临沂市</option>
+								<option>潍坊市</option>
+								<option>日照市</option>
+							</select>	
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">籍贯</label>
+					<div class="col-sm-8 col-md-9">
+						<div class="col-sm-6 new-noleft">
+							<select class="form-control">
+								<option>山东省</option>
+								<option>河北省</option>
+								<option>黑龙江省</option>
+								<option>江苏省</option>
+								<option>陕西省</option>
+							</select>	
+						</div>
+						<div class="col-sm-6 new-noright">
+							<select class="form-control">
+								<option>济南市</option>
+								<option>青岛市</option>
+								<option>临沂市</option>
+								<option>潍坊市</option>
+								<option>日照市</option>
+							</select>	
+						</div>
+					</div>
+				</div>
+				 <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">主要成就</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="password" class="form-control" placeholder="请输入主要成就" id="achievement2" name="achievement2">	
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">是否公开</label>
+					<div class="checkbox col-sm-8 col-md-9">
+						<label><input type="radio"> 公开</label>
+						<label><input type="radio"> 不公开</label>
+					</div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>销售价格：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="销售价格" id="price_site" name="price_site">
+			
+			<div class="new-add">
+				<input type="checkbox"><a href="###">阅读并同意缘园思念网服务条款</a>
+				<div class="clearfix"></div>
+				<button class="btn btn-warning">提交建馆</button>
 			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>成本价格：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="成本价格" id="price_cost" name="price_cost">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>最低价格：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="最低价格" id="price_min" name="price_min">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>计算单位：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="计算单位" id="units" name="units">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="关键词，多个以空格隔开" id="keywords" name="keywords">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">产品图片：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="产品图片" id="pic" name="pic">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">详细内容：</label>
-			<div class="formControls col-xs-8 col-sm-9"> 
-				<script id="editor" name="content" type="text/plain" style="width:100%;height:400px;"></script> 
-			</div>
-		</div>
-		</br>
-		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="submit_but" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-				<button id="close_but" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
-			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>
+<div class="clearfix"></div
 <%@ include file="../../../common/footer_form.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.config.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>

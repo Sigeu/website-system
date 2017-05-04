@@ -4,7 +4,7 @@
 <html lang="zh-cn">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>index</title>
+<title>缘园思念网</title>
 </head>
 <body>
 	<script type="text/javascript">

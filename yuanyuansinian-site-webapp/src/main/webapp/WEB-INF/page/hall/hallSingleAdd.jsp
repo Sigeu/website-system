@@ -6,8 +6,6 @@
 <head>
 <%@ include file="../../../common/header.jsp"%>
 <link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-</script>
 <title>单人纪念馆新建</title>
 </head>
 <body class="pos-r">

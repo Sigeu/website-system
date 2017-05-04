@@ -7,7 +7,7 @@
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav.css">
-<title>网站首页</title>
+<title>缘园思念网首页</title>
 </head>
 <body>
 <%@ include file="siteHeader.jsp"%>
