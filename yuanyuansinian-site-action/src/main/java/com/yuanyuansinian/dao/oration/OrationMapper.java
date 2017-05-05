@@ -73,4 +73,6 @@ public interface OrationMapper {
 	List<Oration> queryOrationPageListByMember(Oration oration);
 
 	List<Oration> queryOrationNewList(int countNum);
+
+	void uploadImg(Oration oration);
 }

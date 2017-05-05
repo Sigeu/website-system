@@ -2,7 +2,7 @@
  * Copyright (C), 2013, 山东旭日俞和科技有限公司
  * All right reserved.
  */
-package com.yuanyuansinian.service.oration.impl;
+package com.yuanyuansinian.service.hall.impl;
 
 import java.io.File;
 import java.util.HashMap;
@@ -19,63 +19,122 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.yuanyuansinian.dao.oration.OrationMapper;
-import com.yuanyuansinian.model.oration.Oration;
+import com.yuanyuansinian.dao.hall.HallDoubleMapper;
+import com.yuanyuansinian.model.hall.HallDouble;
+import com.yuanyuansinian.model.hall.HallDoubleWithBLOBs;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
-import com.yuanyuansinian.service.oration.IOrationService;
+import com.yuanyuansinian.service.hall.IHallDoubleService;
 
 /**   
- * @Description: 文章Service 
+ * @Description: 友情链接Service 
  * @author lizhaotao lzh_me@126.com  
  * @date 2017年1月18日 上午10:50:13 
  * @version V1.0   
  */
-@Service("orationService") 
-public class OrationService implements IOrationService {
+@Service("hallDoubleService") 
+public class HallDoubleService implements IHallDoubleService {
 	//友情链接Mapper
 	@Resource
-	private OrationMapper orationMapper;
+	private HallDoubleMapper hallDoubleMapper;
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: updateOration</p> 
+	 * <p>Title: updateHallDouble</p> 
 	 * <p>Description: </p> 
-	 * @param oration
+	 * @param hallDouble
 	 * @return 
-	 * @see ujn.school.cn.service.oration.IOrationService#updateOration(ujn.school.cn.model.oration.Oration)
+	 * @see ujn.school.cn.service.hallDouble.IHallDoubleService#updateHallDouble(ujn.school.cn.model.hallDouble.HallDouble)
 	 */
 	@Override
-	public int updateOration(Oration oration) {
+	public int updateHallDouble(HallDouble hallDouble) {
 		// TODO Auto-generated method stub
-		return orationMapper.updateByPrimaryKey(oration);
+		return hallDoubleMapper.updateByPrimaryKey(hallDouble);
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: queryOrationById</p> 
+	 * <p>Title: queryHallDoubleById</p> 
 	 * <p>Description: </p> 
-	 * @param orationId
+	 * @param hallDoubleId
 	 * @return 
-	 * @see ujn.school.cn.service.oration.IOrationService#queryOrationById(int)
+	 * @see ujn.school.cn.service.hallDouble.IHallDoubleService#queryHallDoubleById(int)
 	 */
 	@Override
-	public Oration queryOrationById(int orationId) {
+	public HallDouble queryHallDoubleById(int hallDoubleId) {
 		// TODO Auto-generated method stub
-		return orationMapper.selectByPrimaryKey(orationId);
+		return hallDoubleMapper.selectByPrimaryKey(hallDoubleId);
 	}
+	
 	
 	/*
 	 * (non-Javadoc)
-	 * <p>Title: addOration</p> 
+	 * <p>Title: deleteHallDouble</p> 
 	 * <p>Description: </p> 
-	 * @param request
-	 * @param oration
+	 * @param hallDoubleId
 	 * @return 
-	 * @see ujn.school.cn.service.oration.IOrationService#addOration(javax.servlet.http.HttpServletRequest, ujn.school.cn.model.oration.Oration)
+	 * @see ujn.school.cn.service.hallDouble.IHallDoubleService#deleteHallDouble(int)
 	 */
 	@Override
-	public int addOration(HttpServletRequest request,Oration oration) {
+	public int deleteHallDouble(int hallDoubleId) {
+		
+		return hallDoubleMapper.deleteByPrimaryKey(hallDoubleId);
+	}
+
+
+	@Override
+	public List<HallDouble> queryHallDoubleListByType(HallDouble hallDouble) {
+		// TODO Auto-generated method stub
+		return hallDoubleMapper.queryHallDoubleListByType(hallDouble);
+	}
+
+	@Override
+	public List<HallDouble> queryHallDoubleListByMember(String memberId, int limtNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("limtNum", limtNum);
+		
+		return hallDoubleMapper.queryHallDoubleListByMember(map);
+	}
+
+	@Override
+	public List<HallDouble> queryHallDoubleListByOpenType(String open_type) {
+		// TODO Auto-generated method stub
+		return hallDoubleMapper.queryHallDoubleListByOpenType(open_type);
+	}
+
+	@Override
+	public List<HallDouble> queryHallDoubleList(HallDouble hallDouble) {
+		// TODO Auto-generated method stub
+		return hallDoubleMapper.queryHallDoubleList(hallDouble);
+	}
+
+	@Override
+	public List<HallDouble> queryHallDoublePageListByMember(HallDouble hallDouble) {
+		// TODO Auto-generated method stub
+		return hallDoubleMapper.queryHallDoublePageListByMemberHallDouble(hallDouble);
+	}
+
+	@Override
+	public List<HallDouble> queryHallDoubleNewList(int countNum) {
+		// TODO Auto-generated method stub
+		return hallDoubleMapper.queryHallDoubleNewList(countNum);
+	}
+
+	@Override
+	public List<HallDouble> queryHallDoubleListBySearch(String search_text) {
+		// TODO Auto-generated method stub
+		return hallDoubleMapper.queryHallDoubleListBySearch(search_text);
+	}
+
+	@Override
+	public void addSingleHallDouble(HttpServletRequest request, HallDoubleWithBLOBs hallDouble) {
+		//保存
+        hallDoubleMapper.insert(hallDouble);
+	}
+
+	@Override
+	public void addDoubleHallDouble(HttpServletRequest request, HallDoubleWithBLOBs hallDouble) {
 		try {
 			//创建一个通用的多部分解析器  
 	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
@@ -104,7 +163,7 @@ public class OrationService implements IOrationService {
 	                        	localFile.mkdirs();  
 	                        }  
 	                        file.transferTo(localFile);  
-	                        //oration.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
+	                        //hallDouble.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
 	                    }  
 	                }  
 	            }  
@@ -113,76 +172,24 @@ public class OrationService implements IOrationService {
 			// TODO: handle exception
 		}
 		//创建时间
-		oration.setCreate_date(MyDateUtil.getDateTime());
-		return orationMapper.insert(oration);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * <p>Title: deleteOration</p> 
-	 * <p>Description: </p> 
-	 * @param orationId
-	 * @return 
-	 * @see ujn.school.cn.service.oration.IOrationService#deleteOration(int)
-	 */
-	@Override
-	public int deleteOration(int orationId) {
+		hallDouble.setCreate_date(MyDateUtil.getDateTime());
+		hallDoubleMapper.insert(hallDouble);
 		
-		return orationMapper.deleteByPrimaryKey(orationId);
-	}
-
-
-	@Override
-	public List<Oration> queryOrationListByType(Oration oration) {
-		// TODO Auto-generated method stub
-		return orationMapper.queryOrationListByType(oration);
 	}
 
 	@Override
-	public List<Oration> queryOrationListByMember(String memberId, int limtNum) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("memberId", memberId);
-		map.put("limtNum", limtNum);
-		return orationMapper.queryOrationListByMember(map);
-	}
-
-	@Override
-	public List<Oration> queryOrationListByOpenType(Oration oration) {
-		// TODO Auto-generated method stub
-		return orationMapper.queryOrationListByOpenType(oration);
-	}
-
-	@Override
-	public List<Oration> queryOrationList(Oration oration) {
-		// TODO Auto-generated method stub
-		return orationMapper.queryOrationList(oration);
-	}
-
-	@Override
-	public List<Oration> queryOrationPageListByMember(Oration oration) {
-		// TODO Auto-generated method stub
-		return orationMapper.queryOrationPageListByMember(oration);
-	}
-
-	@Override
-	public List<Oration> queryOrationNewList(int countNum) {
-		// TODO Auto-generated method stub
-		return orationMapper.queryOrationNewList(countNum);
-	}
-
-	@Override
-	public void uploadImg(HttpServletRequest request, String id) {
+	public void uploadImg(HttpServletRequest request, String hallDouble_id) {
 		try {
 			//创建一个通用的多部分解析器  
 	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
-	        Oration oration =  null;
+	        HallDoubleWithBLOBs hallDouble =  null;
 	        //判断 request 是否有文件上传,即多部分请求  
 	        if(multipartResolver.isMultipart(request)){ 
-	        	oration =  new Oration();
+	        	hallDouble =  new HallDoubleWithBLOBs();
 	            //转换成多部分request    
 	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
 	            //设置ID
-	            oration.setId(Integer.parseInt(id));
+				hallDouble.setId(Integer.parseInt(hallDouble_id));
 	            //封面照片
 	            MultipartFile img_index = multiRequest.getFile("img_");
 	            if(null != img_index){
@@ -208,17 +215,16 @@ public class OrationService implements IOrationService {
                         String webName = webNameSrc.substring(1);
                         String srcP = path.substring(path.indexOf(webName),path.length());
                         String srcPathTem = srcP.replace("\\", "/");
-                        oration.setImgs("/" + srcPathTem + "/" + fileName);
+                        hallDouble.setImgs("/" + srcPathTem + "/" + fileName);
                     }
 	            }
 	        }
 	        //保存
-	        orationMapper.uploadImg(oration);
+	        hallDoubleMapper.uploadImg(hallDouble);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
 		
 	}
 

@@ -19,30 +19,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.yuanyuansinian.model.hall.Hall;
-import com.yuanyuansinian.model.hall.HallWithBLOBs;
+import com.yuanyuansinian.model.hall.HallDouble;
+import com.yuanyuansinian.model.hall.HallDoubleWithBLOBs;
 import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
-import com.yuanyuansinian.service.hall.IHallService;
+import com.yuanyuansinian.service.hall.IHallDoubleService;
 import com.yuanyuansinian.service.oration.IOrationService;
 
 import framework.system.pub.util.DataTablePageUtil;
 
 /**
- * @Description: 产品管理
+ * @Description: 双人纪念馆管理
  * @author lizhaotao lzh_me@126.com
  * @date 2017年1月17日 下午1:52:12
  * @version V1.0
  */
 @Controller
-@RequestMapping("/sinian/hall/hallController")
-public class HallController extends MyBaseController {
-	// 产品Service
+@RequestMapping("/sinian/hallDouble/hallDoubleController")
+public class HallDoubleController extends MyBaseController {
+	// 双人纪念馆Service
 	@Resource
-	private IHallService hallService;
+	private IHallDoubleService hallDoubleService;
 	
 	@Resource
 	private IOrationService orationService;
@@ -54,10 +54,10 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallList")
-	public String toHallList(HttpServletRequest request, Model model) {
+	@RequestMapping("/toHallDoubleList")
+	public String toHallDoubleList(HttpServletRequest request, Model model) {
 
-		return "hall/hallList";
+		return "hallDouble/hallDoubleList";
 	}
 	
 	/**
@@ -67,19 +67,19 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallListByMember")
-	public String toHallListByMember(HttpServletRequest request, Model model) {
+	@RequestMapping("/toHallDoubleListByMember")
+	public String toHallDoubleListByMember(HttpServletRequest request, Model model) {
 		//设置差当前登录会员
 		String memberId = super.getSessionMemberUser(request).getId()+"";
 		
 		//我创建的纪念馆
-		List<Hall> hallList = this.hallService.queryHallListByMember(memberId,IMySystemConstants.COUNT_NUM2);
+		List<HallDouble> hallDoubleList = this.hallDoubleService.queryHallDoubleListByMember(memberId,IMySystemConstants.COUNT_NUM2);
 		//我的访问 visit
 		
 		//我发布的祭文
 		List<Oration> orationList = this.orationService.queryOrationListByMember(memberId,IMySystemConstants.COUNT_NUM2);
 		
-		model.addAttribute("hallList", hallList);
+		model.addAttribute("hallDoubleList", hallDoubleList);
 		model.addAttribute("orationList", orationList);
 		
 		return "site/memberIssue";
@@ -87,23 +87,23 @@ public class HallController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 跳转到单人馆新增页面
+	 * @Description:跳转到双人馆新增页面
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallSingleAdd")
-	public String toHallSingleAdd(HttpServletRequest request, Model model) {
+	@RequestMapping("/toHallDoubleAdd")
+	public String toHallDoubleAdd(HttpServletRequest request, Model model) {
 		//获取登录的会员
 		Member memberUser = super.getSessionMemberUser(request);
 		if(null == memberUser){
 			return "redirect:/sinian/index/indexController/toMemberLogin";
 		}else{
-
-			return "hall/hallSingleAdd";
+			return "hallDouble/hallDoubleAdd";
 		}
+		
+		
 	}
-	
 
 	/**
 	 * 
@@ -112,13 +112,13 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallUpdate")
-	public String toHallUpdate(HttpServletRequest request, Model model) {
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		Hall hall = this.hallService.queryHallById(hallId);
-		model.addAttribute("hall", hall);
+	@RequestMapping("/toHallDoubleUpdate")
+	public String toHallDoubleUpdate(HttpServletRequest request, Model model) {
+		int hallDoubleId = Integer.parseInt(request.getParameter("id"));
+		HallDouble hallDouble = this.hallDoubleService.queryHallDoubleById(hallDoubleId);
+		model.addAttribute("hallDouble", hallDouble);
 		
-		return "hall/hallUpdate";
+		return "hallDouble/hallDoubleUpdate";
 	}
 	
 
@@ -129,13 +129,13 @@ public class HallController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toHallDetail")
-	public String toHallDetail(HttpServletRequest request, Model model) {
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		Hall  hall = this.hallService.queryHallById(hallId);
-		model.addAttribute("hall", hall);
+	@RequestMapping("/toHallDoubleDetail")
+	public String toHallDoubleDetail(HttpServletRequest request, Model model) {
+		int hallDoubleId = Integer.parseInt(request.getParameter("id"));
+		HallDouble  hallDouble = this.hallDoubleService.queryHallDoubleById(hallDoubleId);
+		model.addAttribute("hallDouble", hallDouble);
 
-		return "hall/hallDetail";
+		return "hallDouble/hallDoubleDetail";
 	}
 
 	/**
@@ -143,25 +143,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 分页列表
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param hallDouble
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallList")
-	public DataTablePageUtil<Hall> queryHallList(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryHallDoubleList")
+	public DataTablePageUtil<HallDouble> queryHallDoubleList(HttpServletRequest request,
+			HttpServletResponse response, HallDouble hallDouble) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<HallDouble> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<HallDouble>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallList(hall);
+			List<HallDouble> hallDoubleList = this.hallDoubleService.queryHallDoubleList(hallDouble);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<HallDouble> pageInfo = new PageInfo<HallDouble>(hallDoubleList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -182,25 +182,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 分页列表
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param hallDouble
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallListByMember")
-	public DataTablePageUtil<Hall> queryHallListByMember(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryHallDoubleListByMember")
+	public DataTablePageUtil<HallDouble> queryHallDoubleListByMember(HttpServletRequest request,
+			HttpServletResponse response, HallDouble hallDouble) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<HallDouble> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<HallDouble>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallPageListByMember(hall);
+			List<HallDouble> hallDoubleList = this.hallDoubleService.queryHallDoublePageListByMember(hallDouble);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<HallDouble> pageInfo = new PageInfo<HallDouble>(hallDoubleList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -221,25 +221,25 @@ public class HallController extends MyBaseController {
 	 * @Description: 根据公开状态查询列表 
 	 * @param request
 	 * @param response
-	 * @param hall
+	 * @param hallDouble
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryHallListByOpenType")
-	public DataTablePageUtil<Hall> queryHallListByOpenType(HttpServletRequest request,
-			HttpServletResponse response, Hall hall) {
+	@RequestMapping("/queryHallDoubleListByOpenType")
+	public DataTablePageUtil<HallDouble> queryHallDoubleListByOpenType(HttpServletRequest request,
+			HttpServletResponse response, HallDouble hallDouble) {
 		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Hall> dataTable = null;
+		DataTablePageUtil<HallDouble> dataTable = null;
 		try {
 			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Hall>(request);
+			dataTable = new DataTablePageUtil<HallDouble>(request);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
-			List<Hall> hallList = this.hallService.queryHallListByOpenType(IMySystemConstants.VALUE_2);
+			List<HallDouble> hallDoubleList = this.hallDoubleService.queryHallDoubleListByOpenType(IMySystemConstants.VALUE_2);
 			// 用PageInfo对结果进行包装
-			PageInfo<Hall> pageInfo = new PageInfo<Hall>(hallList);
+			PageInfo<HallDouble> pageInfo = new PageInfo<HallDouble>(hallDoubleList);
 
 			// 封装数据给DataTables
 			dataTable.setDraw(dataTable.getDraw());
@@ -257,26 +257,22 @@ public class HallController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 单人馆添加
+	 * @Description: 双人馆添加
 	 * @param request
-	 * @param hall
+	 * @param hallDouble
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/addSingleHall")
-	public Map<String, Object> addSingleHall(HttpServletRequest request, HallWithBLOBs hall) {
+	@RequestMapping("/addDoubleHall")
+	public Map<String, Object> addDoubleHall(HttpServletRequest request, HallDoubleWithBLOBs hallDouble) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			Member member = getSessionMemberUser(request);
-			//创建会员
-			hall.setCreate_user(member.getId()+"");
-			//创建时间
-			hall.setCreate_date(MyDateUtil.getDateTime());
-			//纪念馆类型：单人馆
-			hall.setHall_type(IMySystemConstants.VALUE_1);
-			//保存数据
-			hallService.addSingleHall(request, hall);
-			map.put("hall_id", hall.getId());
+			Member memberUser = super.getSessionMemberUser(request);
+			//发布人
+			hallDouble.setCreate_user(memberUser.getId().toString());
+			//默认状态为“0”：待审核
+			hallDoubleService.addDoubleHallDouble(request, hallDouble);
+			map.put("model_id", hallDouble.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -286,14 +282,20 @@ public class HallController extends MyBaseController {
 		return map;
 	}
 	
+	/**
+	 * 
+	 * @Description:封面图片上传（方法命名保持一致）
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping("/uploadSingleHallImg")
-	public Map<String, Object> uploadSingleHallImg(HttpServletRequest request) {
+	@RequestMapping("/uploadImg")
+	public Map<String, Object> uploadImg(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			String id = nullToStringZero(request.getParameter("model_id"));
 			//保存数据
-			hallService.uploadSingleHallImg(request, id);
+			hallDoubleService.uploadImg(request, id);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -302,21 +304,22 @@ public class HallController extends MyBaseController {
 
 		return map;
 	}
-
+	
 	/**
 	 * 
 	 * @Description: 修改
 	 * @param request
-	 * @param hall
+	 * @param hallDouble
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/updateHall")
-	public Map<String, Object> updateHall(HttpServletRequest request, Hall hall) {
+	@RequestMapping("/updateHallDouble")
+	public Map<String, Object> updateHallDouble(HttpServletRequest request, HallDouble hallDouble) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		hall.setCreate_date(MyDateUtil.getDateTime());
-		int count = this.hallService.updateHall(hall);
+		hallDouble.setCreate_date(MyDateUtil.getDateTime());
+		map.put("model_id", hallDouble.getId());
+		int count = this.hallDoubleService.updateHallDouble(hallDouble);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
@@ -334,11 +337,11 @@ public class HallController extends MyBaseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/deleteHall")
-	public Map<String, Object> deleteHall(HttpServletRequest request) {
+	@RequestMapping("/deleteHallDouble")
+	public Map<String, Object> deleteHallDouble(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int hallId = Integer.parseInt(request.getParameter("id"));
-		int count = this.hallService.deleteHall(hallId);
+		int hallDoubleId = Integer.parseInt(request.getParameter("id"));
+		int count = this.hallDoubleService.deleteHallDouble(hallDoubleId);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
 		} else {

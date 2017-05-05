@@ -43,7 +43,8 @@
 	  when open_type = 0 then '公开'  
 	  when open_type = 1 then '不公开'
 	  else ''  
-	end as open_type_name
+	end as open_type_name,
+	imgs
   </sql>
   <sql id="Blob_Column_List">
     <!--
@@ -289,4 +290,11 @@
     from ujn_oration
     order by unix_timestamp(create_date) desc limit #{countNum}
   </select>
+  
+  <!-- 封面缩略图 -->
+  <update id="uploadImg" parameterType="com.yuanyuansinian.model.oration.Oration">
+    update ujn_oration
+    set imgs = #{imgs,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

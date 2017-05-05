@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.yuanyuansinian.dao.product.ProductMapper;
-import com.yuanyuansinian.model.content.Content;
 import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.model.product.ProductWithBLOBs;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;

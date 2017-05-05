@@ -53,11 +53,23 @@ $(function(){
 				    title:["创建双人纪念馆"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: contextPath + '/sinian/hall/hallController/toHallDoubleAdd'
+				    content: contextPath + '/sinian/hallDouble/hallDoubleController/toHallDoubleAdd'
 				 });
 				layer.close(index_confirm);
 		});
 	});
 	/*----------------------创建纪念馆 end-------------------------*/
+	
+	//发布祭文
+	$('#issue_but').on('click',function(){
+		layer.open({
+		    type: 2,
+		    maxmin:true,
+		    title:["发布文章"],
+		    area: ['100%', '100%'],
+		    shadeClose: false, //点击遮罩关闭
+		    content: contextPath + '/sinian/oration/orationController/toOrationAdd'
+		 });
+	});
 });
 

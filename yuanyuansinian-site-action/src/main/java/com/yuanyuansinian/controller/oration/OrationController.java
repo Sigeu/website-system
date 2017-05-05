@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.util.MyDateUtil;
@@ -78,9 +79,14 @@ public class OrationController extends MyBaseController {
 	 */
 	@RequestMapping("/toOrationAdd")
 	public String toOrationAdd(HttpServletRequest request, Model model) {
-		
-		
-		return "oration/orationAdd";
+		//获取登录的会员
+		Member memberUser = super.getSessionMemberUser(request);
+		if(null == memberUser){
+			return "redirect:/sinian/index/indexController/toMemberLogin";
+		}else{
+
+			return "oration/orationAdd";
+		}
 	}
 
 	/**
@@ -245,10 +251,34 @@ public class OrationController extends MyBaseController {
 	public Map<String, Object> addOration(HttpServletRequest request, Oration oration) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
+			Member memberUser = super.getSessionMemberUser(request);
 			//发布人
-			//oration.setIssue(getSessionUser(request).getLogin_name());
-			//默认状态为“0”：待审核
+			oration.setCreate_user(memberUser.getId().toString());
 			orationService.addOration(request, oration);
+			map.put("model_id", oration.getId());
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description:封面图片上传（方法命名保持一致）
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/uploadImg")
+	public Map<String, Object> uploadImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			orationService.uploadImg(request, id);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -271,6 +301,7 @@ public class OrationController extends MyBaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		oration.setCreate_date(MyDateUtil.getDateTime());
+		map.put("model_id", oration.getId());
 		int count = this.orationService.updateOration(oration);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

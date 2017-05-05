@@ -70,5 +70,7 @@ public interface IOrationService {
 
 	List<Oration> queryOrationNewList(int countNum6);
 
+	void uploadImg(HttpServletRequest request, String id);
+
 
 }
