@@ -5,6 +5,7 @@
 <html lang="zh-cn">
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
+<link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 <title>内容列表</title>
 </head>
 <body>
@@ -19,16 +20,16 @@
 		<div class="new-body">
 			<form class="form-horizontal"
 				action="${pageContext.request.contextPath}/sinian/member/memberController/updateMember"
-				method="post" id="form-member-register">
+				method="post" id="form_">
 				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">真实姓名</label>
+					<label class="control-label col-sm-4 col-md-3"><span class="c-red">*</span>真实姓名</label>
 					<div class="col-sm-8 col-md-9">
 						<input type="text" value="${memberUser.real_name}" name="real_name" id="real_name"
 							class="form-control" placeholder="请输入姓名">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">昵称</label>
+					<label class="control-label col-sm-4 col-md-3"><span class="c-red">*</span>昵称</label>
 					<div class="col-sm-8 col-md-9">
 						<input type="text" value="${memberUser.member_name}" name="member_name" id="member_name"
 							class="form-control" placeholder="请输入别名">
@@ -44,26 +45,30 @@
 				<div class="form-group col-sm-6">
 					<label class="control-label col-sm-4 col-md-3">上传头像</label>
 					<div class="col-sm-8 col-md-9">
-						<input type="file" id="" class="form-control"
-							style="border: 0; box-shadow: none">
+						<div id="uploader-demo">
+						    <!--用来存放item-->
+						    <div id="fileList" class="uploader-list"></div>
+						    <div id="filePicker">选择图片</div>
+						    <button id="ctlBtn" style="display:none" class="btn btn-default">开始上传</button>
+						</div>
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">密码</label>
+					<label class="control-label col-sm-4 col-md-3"><span class="c-red">*</span>登录密码</label>
 					<div class="col-sm-8 col-md-9">
 						<input type="password" name="pwd" id="pwd" class="form-control"
 							placeholder="请输入密码">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">确认密码</label>
+					<label class="control-label col-sm-4 col-md-3"><span class="c-red">*</span>再次输入密码</label>
 					<div class="col-sm-8 col-md-9">
 						<input type="password" name="pwd2" id="pwd2" class="form-control"
 							placeholder="请再吃输入密码">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">手机号码</label>
+					<label class="control-label col-sm-4 col-md-3"><span class="c-red">*</span>手机号码</label>
 					<div class="col-sm-8 col-md-9">
 						<input type="text" value="${memberUser.phone}" name="phone" id="phone" class="form-control"
 							placeholder="请输入手机号码">
@@ -77,49 +82,17 @@
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">居住地</label>
+					<label class="control-label col-sm-4 col-md-3">地址</label>
 					<div class="col-sm-8 col-md-9">
-						<div class="col-sm-6 new-noleft">
-							<select class="form-control">
-								<option>山东省</option>
-								<option>河北省</option>
-								<option>黑龙江省</option>
-								<option>江苏省</option>
-								<option>陕西省</option>
-							</select>
-						</div>
-						<div class="col-sm-6 new-noright">
-							<select class="form-control">
-								<option>济南市</option>
-								<option>青岛市</option>
-								<option>临沂市</option>
-								<option>潍坊市</option>
-								<option>日照市</option>
-							</select>
-						</div>
+						<input type="text" value="${memberUser.addr_old}" name="email" id="email" class="form-control"
+							placeholder="请输入电子邮箱">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">现住地</label>
+					<label class="control-label col-sm-4 col-md-3">现居住地</label>
 					<div class="col-sm-8 col-md-9">
-						<div class="col-sm-6 new-noleft">
-							<select class="form-control">
-								<option>山东省</option>
-								<option>河北省</option>
-								<option>黑龙江省</option>
-								<option>江苏省</option>
-								<option>陕西省</option>
-							</select>
-						</div>
-						<div class="col-sm-6 new-noright">
-							<select class="form-control">
-								<option>济南市</option>
-								<option>青岛市</option>
-								<option>临沂市</option>
-								<option>潍坊市</option>
-								<option>日照市</option>
-							</select>
-						</div>
+						<input type="text" value="${memberUser.addr_now}" name="email" id="email" class="form-control"
+							placeholder="请输入电子邮箱">
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -140,30 +113,70 @@
 		src="${pageContext.request.contextPath}/static/js/nav.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
-	<script type="text/javascript">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/common-upload.js"> </script>
+<script type="text/javascript">
+var serverUrl = '/sinian/product/productController/uploadImg';
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
 
 		//表单提交，可上传文件
 		$(function() {
-			var options = {
-				success : function(data) {
-					layer.alert(data.result_message, {
-						closeBtn : 1
-					}, function() {
-						var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-						parent.layer.close(index); //再执行关闭
-					});
+			//表单验证
+			$("#form_").validate({
+				rules:{
+					real_name:{
+						required:true
+					},
+					member_name:{
+						required:true
+					},
+					pwd:{
+						required:true
+					},
+					pwd2:{
+						required:true,
+						equalTo:"#pwd"
+					},
+					phone:{
+						required:true,
+						digits:true
+					},
+					no_order:{
+						digits:true
+					}
+				},
+				onkeyup:false,
+				focusCleanup:false,
+				success:"valid",
+				submitHandler:function(form){
+					var imgList = $('#fileList').children('div');
+					if (imgList.length > 0) {
+						$('#ctlBtn').trigger("click");
+						// not empty
+					} else {
+						//  is empty
+						var options = {
+								success : function(data) {
+									layer.alert(data.result_message, {
+										  closeBtn: 1
+										}, function(){
+											//父页面刷新
+											parent.window.location.reload();
+											var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+											parent.layer.close(index); //再执行关闭
+										});
+								}
+							};
+							// 准备form表单
+							$("#form_").ajaxForm(options);
+							// 表单提交     
+							$("#form_").ajaxSubmit(options);
+					}  
+					return false;
 				}
-			};
-			// 准备form表单
-			$("#form-member-register").ajaxForm(options);
-			// 表单提交     
-			$('#submit_but').on('click', function() {
-				$("#form-member-register").ajaxSubmit(options);
-				return false;
 			});
-
+			
 		});
 	</script>
 </body>

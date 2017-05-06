@@ -150,6 +150,7 @@
 				/sinian/oration/orationController/uploadImg = anon
 				/system/controller/loginController/login = anon
 				/system/controller/loginController/logout = anon
+				/sinian/member/memberController/updateMember = anon
 				/sinian/index/** = anon
 				/** = authc
 				

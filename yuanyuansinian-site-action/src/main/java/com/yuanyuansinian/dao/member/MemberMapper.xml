@@ -22,6 +22,7 @@
     <result column="create_date" jdbcType="VARCHAR" property="create_date" />
     <result column="days" jdbcType="INTEGER" property="days" />
     <result column="balance" jdbcType="DOUBLE" property="balance" />
+     <result column="imgs" jdbcType="VARCHAR" property="imgs" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yuanyuansinian.model.member.Member">
     <!--
@@ -47,7 +48,8 @@
     phone, email, addr_old, addr_now, 
     status, create_date,
     TIMESTAMPDIFF(day,create_date,now()) as days,
-    balance
+    balance,
+    imgs
   </sql>
   <sql id="Blob_Column_List">
     <!--
@@ -146,6 +148,9 @@
       <if test="balance != null">
         balance,
       </if>
+      <if test="imgs != null">
+        imgs,
+      </if>
       <if test="pic != null">
         pic,
       </if>
@@ -186,6 +191,9 @@
       </if>
        <if test="balance != null">
         #{balance,jdbcType=DOUBLE},
+      </if>
+       <if test="imgs != null">
+        #{imgs,jdbcType=VARCHAR},
       </if>
       <if test="pic != null">
         #{pic,jdbcType=LONGVARBINARY},
@@ -236,6 +244,9 @@
       <if test="balance != null">
         balance = #{balance,jdbcType=DOUBLE},
       </if>
+       <if test="imgs != null">
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
       <if test="pic != null">
         pic = #{pic,jdbcType=LONGVARBINARY},
       </if>
@@ -261,6 +272,7 @@
       status = #{status,jdbcType=VARCHAR},
       create_date = #{create_date,jdbcType=VARCHAR},
       balance = #{balance,jdbcType=DOUBLE},
+      imgs = #{imgs,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=LONGVARBINARY}
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -282,7 +294,8 @@
       addr_now = #{addr_now,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       create_date = #{create_date,jdbcType=VARCHAR},
-      balance = #{balance,jdbcType=DOUBLE}
+      balance = #{balance,jdbcType=DOUBLE},
+      imgs = #{imgs,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -330,4 +343,11 @@
     from ujn_member
     where email = #{email,jdbcType=VARCHAR}
   </select>
+  
+  <!-- 头像 -->
+  <update id="uploadImg" parameterType="com.yuanyuansinian.model.member.Member">
+    update ujn_member
+    set imgs = #{imgs,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>
