@@ -76,7 +76,7 @@
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/content/contentController/toContentList" data-title="内容管理" href="javascript:void(0)">内容管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/content/contentController/toNoticeList" data-title="通知公告管理" href="javascript:void(0)">通知公告管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/sinian/content/contentController/toContentRecycleList" data-title="内容回收站" href="javascript:void(0)">内容回收站</a></li>
+					<%-- <li><a data-href="${pageContext.request.contextPath}/sinian/content/contentController/toContentRecycleList" data-title="内容回收站" href="javascript:void(0)">内容回收站</a></li> --%>
 				</ul>
 			</dd>
 		</dl>
@@ -93,8 +93,9 @@
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductList" data-title="商城产品管理" href="javascript:void(0)">商城产品管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toHallProductList" data-title="纪念馆产品管理" href="javascript:void(0)">纪念馆产品管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/order/orderController/toOrderList" data-title="订单管理" href="javascript:void(0)">订单管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductListForHall" data-title="礼品管理" href="javascript:void(0)">礼品管理</a></li>
+					<%-- <li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductListForHall" data-title="礼品管理" href="javascript:void(0)">礼品管理</a></li> --%>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/cemetery/cemeteryController/toCemeteryList" data-title="墓地陵园管理" href="javascript:void(0)">墓地陵园管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/hall/hallController/toHallList" data-title="纪念馆管理" href="javascript:void(0)">纪念馆管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/oration/orationController/toOrationList" data-title="用户文章管理" href="javascript:void(0)">用户文章管理</a></li>

@@ -4,9 +4,7 @@
  */
 package com.yuanyuansinian.controller.product;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.model.product.ProductWithBLOBs;
 import com.yuanyuansinian.pub.base.MyBaseController;
@@ -68,6 +65,18 @@ public class ProductController extends MyBaseController {
 	
 	/**
 	 * 
+	 * @Description: 跳转到纪念馆产品列表 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallProductList")
+	public String toHallProductList(HttpServletRequest request, Model model) {
+
+		return "product/hallProductList";
+	}
+	/**
+	 * 
 	 * @Description: 跳转到礼品列表 
 	 * @param request
 	 * @param model
@@ -94,7 +103,7 @@ public class ProductController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 跳转到新增页面
+	 * @Description: 跳转到商城产品新增页面
 	 * @param request
 	 * @param model
 	 * @return
@@ -106,15 +115,33 @@ public class ProductController extends MyBaseController {
 		
 		model.addAttribute("codeList", codeList);
 		//产品大类
-		List<Code> bigTypeCodeList = codeService.queryCodeListByType("big_type");
+		model.addAttribute("big_type", IMySystemConstants.VALUE_1);
 		
-		model.addAttribute("bigTypeCodeList", bigTypeCodeList);
 		return "product/productAdd";
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到纪念馆产品新增页面
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallProductAdd")
+	public String toHallProductAdd(HttpServletRequest request, Model model) {
+		//产品小类
+		List<Code> codeList = codeService.queryCodeListByType("hall_type");
+		
+		model.addAttribute("codeList", codeList);
+		//产品大类
+		model.addAttribute("big_type", IMySystemConstants.VALUE_2);
+		
+		return "product/hallProductAdd";
 	}
 
 	/**
 	 * 
-	 * @Description: 跳转到修改页面
+	 * @Description: 跳转到商城产品修改页面
 	 * @param request
 	 * @param model
 	 * @return
@@ -125,16 +152,35 @@ public class ProductController extends MyBaseController {
 		Product product = this.productService.queryProductById(productId);
 		model.addAttribute("product", product);
 		
-		List<Code> codeList = codeService.queryCodeListByType("product_type");
+		//List<Code> codeList = codeService.queryCodeListByType("product_type");
+		//model.addAttribute("codeList", codeList);
+		//产品大类
+		//List<Code> bigTypeCodeList = codeService.queryCodeListByType("big_type");
+		//model.addAttribute("bigTypeCodeList", bigTypeCodeList);
 		
-		model.addAttribute("codeList", codeList);
+		
 		return "product/productUpdate";
 	}
 	
+	/**
+	 * 
+	 * @Description: 跳转到纪念馆产品修改页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallProductUpdate")
+	public String toHallProductUpdate(HttpServletRequest request, Model model) {
+		int productId = Integer.parseInt(request.getParameter("id"));
+		Product product = this.productService.queryProductById(productId);
+		model.addAttribute("product", product);
+		
+		return "product/hallProductUpdate";
+	}
 
 	/**
 	 * 
-	 * @Description: 跳转到明细页面
+	 * @Description: 跳转到商城产品明细页面
 	 * @param request
 	 * @param model
 	 * @return
@@ -147,10 +193,27 @@ public class ProductController extends MyBaseController {
 
 		return "product/productDetail";
 	}
+	
+	
+	/**
+	 * 
+	 * @Description: 跳转到纪念馆产品明细页面
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallProductDetail")
+	public String toHallProductDetail(HttpServletRequest request, Model model) {
+		int productId = Integer.parseInt(request.getParameter("id"));
+		ProductWithBLOBs  product = this.productService.queryProductById(productId);
+		model.addAttribute("product", product);
+
+		return "product/hallProductDetail";
+	}
 
 	/**
 	 * 
-	 * @Description: 分页列表
+	 * @Description: 商城产品分页列表
 	 * @param request
 	 * @param response
 	 * @param product
@@ -162,6 +225,47 @@ public class ProductController extends MyBaseController {
 			HttpServletResponse response, Product product) {
 		//商城产品
 		product.setBig_type(IMySystemConstants.VALUE_1);
+		// 使用DataTables的属性接收分页数据
+		DataTablePageUtil<Product> dataTable = null;
+		try {
+			// 使用DataTables的属性接收分页数据
+			dataTable = new DataTablePageUtil<Product>(request);
+			// 开始分页：PageHelper会处理接下来的第一个查询
+			PageHelper.startPage(dataTable.getPage_num(),
+					dataTable.getPage_size());
+			// 还是使用List，方便后期用到
+			List<Product> productList = this.productService.queryProductList(product);
+			// 用PageInfo对结果进行包装
+			PageInfo<Product> pageInfo = new PageInfo<Product>(productList);
+
+			// 封装数据给DataTables
+			dataTable.setDraw(dataTable.getDraw());
+			dataTable.setData(pageInfo.getList());
+			dataTable.setRecordsTotal((int) pageInfo.getTotal());
+			dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return dataTable;
+	}
+	
+	/**
+	 * 
+	 * @Description: 纪念馆产品列表 
+	 * @param request
+	 * @param response
+	 * @param product
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryHallProductList")
+	public DataTablePageUtil<Product> queryHallProductList(HttpServletRequest request,
+			HttpServletResponse response, Product product) {
+		//纪念馆产品
+		product.setBig_type(IMySystemConstants.VALUE_2);
 		// 使用DataTables的属性接收分页数据
 		DataTablePageUtil<Product> dataTable = null;
 		try {
@@ -270,7 +374,7 @@ public class ProductController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 添加
+	 * @Description: 添加商城产品
 	 * @param request
 	 * @param product
 	 * @return
@@ -294,7 +398,12 @@ public class ProductController extends MyBaseController {
 
 		return map;
 	}
-
+	/**
+	 * 
+	 * @Description: 封面上传 
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/uploadImg")
 	public Map<String, Object> uploadImg(HttpServletRequest request) {
@@ -315,7 +424,7 @@ public class ProductController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 修改
+	 * @Description: 商城产品修改
 	 * @param request
 	 * @param product
 	 * @return
@@ -339,7 +448,7 @@ public class ProductController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 删除
+	 * @Description: 产品删除
 	 * @param request
 	 * @param model
 	 * @return
@@ -378,50 +487,4 @@ public class ProductController extends MyBaseController {
 		return map;
 	}
 	
-	
-	/**
-	 * 排序
-	 * @param list
-	 * @param result
-	 * @param father
-	 * @return
-	 */
-	protected LinkedList<Column> toSort(List<Column> list,
-			LinkedList<Column> result, int father) {
-		List<Column> temp = new ArrayList<Column>();
-		// 最高层,临时存放
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getBig_class() == father) {
-				temp.add(list.get(i));
-			}
-		}
-
-		if (temp.size() < 1) {
-			return result;
-		} else { 
-			// 删除最高层
-			for (int j = 0; j < list.size(); j++) {
-				if (list.get(j).getBig_class() == father) {
-					list.remove(j);
-				}
-			}
-			// 对最高层排序
-			for (int i = 0; i < temp.size() - 1; i++) {
-				for (int j = i + 1; j < temp.size(); j++) {
-					if (temp.get(i).getNo_order() > temp.get(j).getNo_order()) {
-						Column column = temp.get(i);
-						temp.set(i, temp.get(j));
-						temp.set(j, column);
-					}
-				}
-			}
-			// 递归
-			for (int i = 0; i < temp.size(); i++) {
-				result.add(temp.get(i));
-				toSort(list, result, temp.get(i).getId());
-			}
-			return result;
-		}
-
-	}
 }

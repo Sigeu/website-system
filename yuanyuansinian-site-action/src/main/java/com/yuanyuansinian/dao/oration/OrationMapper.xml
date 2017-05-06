@@ -244,6 +244,13 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_oration
+    where 1=1 
+   	 <if test="title != null and title != ''">
+   		and title like concat('%', #{title,jdbcType=VARCHAR}, '%')
+     </if>
+     <if test="open_type != null and open_type != ''">
+     	and open_type = #{open_type,jdbcType=VARCHAR}
+     </if>
     order by id desc
   </select>
   

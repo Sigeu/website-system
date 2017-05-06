@@ -18,13 +18,13 @@
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>标题:</strong>&nbsp;&nbsp;
+						<strong>产品标题:</strong>&nbsp;&nbsp;
 					</td>
 					<td width="10%" nowrap="nowrap"><input type="text" id="title"
 						name="title" placeholder="标题" class="input-text input-collspace size-MINI" />
 					</td>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>关键字:</strong>&nbsp;&nbsp;
+						<strong>产品关键字:</strong>&nbsp;&nbsp;
 					</td>
 					<td width="10%" nowrap="nowrap"><input type="text" id="keywords"
 						name="keywords" placeholder="关键字" class="input-text input-collspace size-MINI" />
@@ -87,7 +87,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/sinian/product/productController/queryProductList",
+									url : "${pageContext.request.contextPath}/sinian/product/productController/queryHallProductList",
 									type:"POST",
 									data : {
 										//args1: "固定传参"
@@ -215,7 +215,7 @@
 				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: '${pageContext.request.contextPath}/sinian/product/productController/toProductAdd'
+				    content: '${pageContext.request.contextPath}/sinian/product/productController/toHallProductAdd'
 				 });
 			});
 			
@@ -234,7 +234,7 @@
 			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/sinian/product/productController/toProductUpdate?id='+id
+			    content: '${pageContext.request.contextPath}/sinian/product/productController/toHallProductUpdate?id='+id
 			 });
 		}
 		//删除
@@ -271,7 +271,7 @@
 			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/sinian/product/productController/toProductDetail?id='+id
+			    content: '${pageContext.request.contextPath}/sinian/product/productController/toHallProductDetail?id='+id
 			 });
 		}
 		

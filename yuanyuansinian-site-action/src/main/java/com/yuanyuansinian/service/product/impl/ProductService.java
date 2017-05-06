@@ -47,7 +47,7 @@ public class ProductService implements IProductService {
 	@Override
 	public int updateProduct(ProductWithBLOBs product) {
 		// TODO Auto-generated method stub
-		return productMapper.updateByPrimaryKeyWithBLOBs(product);
+		return productMapper.updateByPrimaryKeySelective(product);
 	}
 	
 	/*
@@ -215,7 +215,5 @@ public class ProductService implements IProductService {
 		}
 		
 	}
-	
-
 
 }

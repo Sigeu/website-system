@@ -68,4 +68,5 @@ public interface IProductService {
 
 	void uploadImg(HttpServletRequest request, String id);
 
+
 }

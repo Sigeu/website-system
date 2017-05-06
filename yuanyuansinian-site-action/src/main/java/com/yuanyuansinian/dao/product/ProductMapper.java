@@ -71,4 +71,5 @@ public interface ProductMapper {
 	List<Product> queryProductRecycleList(Product product);
 
 	void uploadImg(Product product);
+
 }

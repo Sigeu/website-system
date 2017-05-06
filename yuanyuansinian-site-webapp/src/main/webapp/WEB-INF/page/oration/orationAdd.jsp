@@ -10,7 +10,7 @@
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增文章
+			首页 <span class="c-gray en">&gt;</span> 网站产品管理 <span class="c-gray en">&gt;</span>新增文章
 		</nav>
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/sinian/oration/orationController/addOration" method="post" class="form form-horizontal" id="form_">

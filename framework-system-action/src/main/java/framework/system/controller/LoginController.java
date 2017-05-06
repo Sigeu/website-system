@@ -111,11 +111,18 @@ public class LoginController extends SystemBaseController {
 		
 	}
 	
+	/**
+	 * 
+	 * @Description: 后台管理：管理员退出 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request,  Model model) {
 		Subject currentUser = SecurityUtils.getSubject();  
         currentUser.logout();  
-        return "redirect:/"; 
+        return "redirect:/admin"; 
 		
 	}
 	

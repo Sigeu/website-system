@@ -4,12 +4,12 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>用户文章列表页</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span>产品管理
+		网站产品管理 <span class="c-gray en">&gt;</span>用户文章管理
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>
@@ -18,10 +18,10 @@
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>姓名:</strong>&nbsp;&nbsp;
+						<strong>标题:</strong>&nbsp;&nbsp;
 					</td>
 					<td width="10%" nowrap="nowrap"><input type="text" id="title"
-						name="title" placeholder="姓名" class="input-text input-collspace size-MINI" />
+						name="title" placeholder="标题" class="input-text input-collspace size-MINI" />
 					</td>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>公开状态:</strong>&nbsp;&nbsp;
@@ -53,11 +53,9 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>姓名</th>
-						<th>性别</th>
-						<th>国籍</th>
-						<th>民族</th>
-						<th>公开状态</th>
+						<th>纪念馆名称</th>
+						<th>文章标题</th>
+						<th>公开类型</th>
 						<th>创建时间</th>
 						<th>创建人</th>
 						<th width="15%">操作</th>
@@ -91,7 +89,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/sinian/hall/hallController/queryHallList",
+									url : "${pageContext.request.contextPath}/sinian/oration/orationController/queryOrationList",
 									type:"POST",
 									data : {
 										//args1: "固定传参"
@@ -116,16 +114,10 @@
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
 								}, {
-									data : "name",
+									data : "hall_name",
 									defaultHall : 0
 								}, {
-									data : "sex_name",
-									defaultHall : 0
-								}, {
-									data : "nationality",
-									defaultHall : 0
-								}, {
-									data : "nation",
+									data : "title",
 									defaultHall : 0
 								}, {
 									data : "open_type_name",
@@ -150,7 +142,7 @@
 																+ row.id
 																+ "\')",
 														"type" : "danger-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
+														"display" : true
 													},{
 														"name" : "查看",
 														"fn" : "toDetail(\'"
@@ -188,12 +180,12 @@
 			//获取查询条件
 			function getSearchParams(){
 				//标题
-				var name = $("#name").val().trim();
+				var title = $("#title").val().trim();
 				//关键字
 				var open_type = $("#open_type").val().trim();
 				//查询条件
 				var param = {
-					"name" : name,
+					"title" : title,
 					"open_type" : open_type
 				};
 				
@@ -202,7 +194,7 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				$("#name").val('');
+				$("#title").val('');
 				$("#open_type").val('');
 			});
 			
@@ -219,7 +211,7 @@
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/sinian/hall/hallController/deleteHall" ,
+						    url: "${pageContext.request.contextPath}/sinian/oration/orationController/deleteOration" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
@@ -244,10 +236,10 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看明细</div></strong>","background-color: #5a97df"],
+			    title:["明细"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/sinian/hall/hallController/toHallDetail?id='+id
+			    content: '${pageContext.request.contextPath}/sinian/oration/orationController/toOrationDetail?id='+id
 			 });
 		}
 		

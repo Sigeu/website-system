@@ -59,7 +59,7 @@ public class MyBaseController{
 
 	// 保存成功
 	public static final String SAVE_SUCESS_MESSAGE = "保存成功！";
-	public static final String DELETE_SUCESS_MESSAGE = "保存成功！";
+	public static final String DELETE_SUCESS_MESSAGE = "删除成功！";
 
 	// 提交成功
 	public static final String SUBMIT_SUCESS_MESSAGE = "提交成功！";

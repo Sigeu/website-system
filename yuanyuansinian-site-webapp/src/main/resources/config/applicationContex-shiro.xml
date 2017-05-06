@@ -149,7 +149,7 @@
 				/sinian/oration/orationController/addOration = anon
 				/sinian/oration/orationController/uploadImg = anon
 				/system/controller/loginController/login = anon
-				/system/controller/loginController/logout = logout
+				/system/controller/loginController/logout = anon
 				/sinian/index/** = anon
 				/** = authc
 				
