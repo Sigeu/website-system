@@ -57,4 +57,6 @@ public interface CartMapper {
 	List<Cart> queryCartList(Cart cart);
 
 	List<Cart> queryCartListByMember(Map<String, Object> map);
+
+	Cart selectByProductId(String product_id);
 }

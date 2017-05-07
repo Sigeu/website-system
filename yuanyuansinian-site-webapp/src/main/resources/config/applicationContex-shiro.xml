@@ -151,6 +151,7 @@
 				/system/controller/loginController/login = anon
 				/system/controller/loginController/logout = anon
 				/sinian/member/memberController/updateMember = anon
+				/sinian/cart/cartController/addCart = anon
 				/sinian/index/** = anon
 				/** = authc
 				

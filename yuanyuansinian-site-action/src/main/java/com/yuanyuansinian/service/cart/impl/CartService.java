@@ -4,24 +4,17 @@
  */
 package com.yuanyuansinian.service.cart.impl;
 
-import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.yuanyuansinian.dao.cart.CartMapper;
 import com.yuanyuansinian.model.cart.Cart;
-import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.cart.ICartService;
 
@@ -90,45 +83,21 @@ public class CartService implements ICartService {
 	 */
 	@Override
 	public int addCart(HttpServletRequest request,Cart cart) {
+		int flag = 0;
 		try {
-			//创建一个通用的多部分解析器  
-	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
-	        //判断 request 是否有文件上传,即多部分请求  
-	        if(multipartResolver.isMultipart(request)){  
-	            //转换成多部分request    
-	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
-	            //取得request中的所有文件名  
-	            Iterator<String> iter = multiRequest.getFileNames();  
-	            while(iter.hasNext()){  
-	                //取得上传文件  
-	                MultipartFile file = multiRequest.getFile(iter.next());  
-	                if(file != null){  
-	                    //取得当前上传文件的文件名称  
-	                    String myFileName = file.getOriginalFilename();  
-	                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
-	                    if(myFileName.trim() !=""){  
-	                        //重命名上传后的文件名  
-	                    	UUID uuid = UUID.randomUUID();
-	                        String fileName = uuid + file.getOriginalFilename(); 
-	                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
-	                        //定义上传路径  
-	                        //String path = "E:/upload-file/"; 
-	                        File localFile = new File(path, fileName);  
-	                        if(!localFile.exists()){  
-	                        	localFile.mkdirs();  
-	                        }  
-	                        file.transferTo(localFile);  
-	                        //cart.setCover_img_url(IMySystemConstants.FILE_PATH_IMAGE + fileName);
-	                    }  
-	                }  
-	            }  
-	        }
+			//先查询是否已经在购物车
+			Cart cartProduct = cartMapper.selectByProductId(cart.getProduct_id());
+			if(null == cartProduct){
+				//创建时间
+				cart.setCreate_date(MyDateUtil.getDateTime());
+				flag = cartMapper.insert(cart);
+			}else{
+				flag = 1;
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		//创建时间
-		cart.setCreate_date(MyDateUtil.getDateTime());
-		return cartMapper.insert(cart);
+		return flag;
 	}
 	
 	/*

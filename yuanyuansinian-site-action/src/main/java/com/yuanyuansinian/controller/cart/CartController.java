@@ -23,7 +23,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yuanyuansinian.model.cart.Cart;
 import com.yuanyuansinian.model.column.Column;
+import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.pub.base.MyBaseController;
+import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.cart.ICartService;
 import com.yuanyuansinian.service.column.IColumnService;
@@ -99,26 +101,6 @@ public class CartController extends MyBaseController {
 		Cart cart = this.cartService.queryCartById(cartId);
 		model.addAttribute("cart", cart);
 		
-		List<Column> columnList = columnService.queryColumnList(null);
-		//处理栏目名称
-		for(Column co : columnList){
-			if(2 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;" + co.getName());
-			}else if(3 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;" + co.getName());
-			}else if(4 == co.getClass_type()){
-				co.setName("&brvbar;&mdash;&mdash;&mdash;" + co.getName());
-			}else{
-				//co.setName(co.getName());
-			}
-		}
-		//排序
-		LinkedList<Column> result = new LinkedList<Column>();
-		LinkedList<Column> columnLinkedList = this.toSort(columnList, result, 0);
-		//转换为ArrayList
-		List<Column> columnSelectList = new ArrayList<Column>(columnLinkedList);
-		model.addAttribute("columnSelectList", columnSelectList);
-		
 		return "cart/cartUpdate";
 	}
 	
@@ -191,11 +173,19 @@ public class CartController extends MyBaseController {
 	public Map<String, Object> addCart(HttpServletRequest request, Cart cart) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			//发布人
-			//cart.setIssue(getSessionUser(request).getLogin_name());
-			//默认状态为“0”：待审核
-			cartService.addCart(request, cart);
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			//获取登录的会员
+			Member memberUser = super.getSessionMemberUser(request);
+			if(null == memberUser){
+				//return "redirect:/sinian/index/indexController/toMemberLogin";
+				map.put(RESULT_MESSAGE_STRING, "请登录后购买！");
+				map.put("flag", "0");
+			}else{
+				cart.setMember_id(memberUser.getId().toString());
+				cart.setProduct_num(IMySystemConstants.COUNT_NUM1);
+				cartService.addCart(request, cart);
+				map.put(RESULT_MESSAGE_STRING, "加入购物车成功");
+				map.put("flag", "1");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);

@@ -139,4 +139,11 @@
     where member_id = #{member_id}
     order by create_date desc limit #{limtNum} 
   </select>
+  
+  <select id="selectByProductId" parameterType="string" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_cart
+    where product_id = #{product_id,jdbcType=VARCHAR}
+  </select>
 </mapper>
