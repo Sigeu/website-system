@@ -72,5 +72,10 @@ public interface IOrationService {
 
 	void uploadImg(HttpServletRequest request, String id);
 
+	List<Oration> queryOrationListByMemberAndHall(String hallId, String memberId,
+			int limitNum);
+
+	List<Oration> queryOrationListByHall(String hallId, int limitNum);
+
 
 }

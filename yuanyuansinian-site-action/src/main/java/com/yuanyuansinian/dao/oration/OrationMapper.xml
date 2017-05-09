@@ -304,4 +304,28 @@
     set imgs = #{imgs,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 当前用户当前纪念馆致辞列表 -->
+  <select id="queryOrationListByMemberAndHall" parameterType="com.yuanyuansinian.model.oration.Oration" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_oration
+    where hall = #{hallId}
+    and create_user = #{memberId }
+    order by id desc
+  </select>
+  
+  <!-- 当前纪念馆致辞列表 -->
+  <select id="queryOrationListByHall" parameterType="com.yuanyuansinian.model.oration.Oration" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_oration
+    where hall = #{hallId}
+    order by id desc
+  </select>
 </mapper>

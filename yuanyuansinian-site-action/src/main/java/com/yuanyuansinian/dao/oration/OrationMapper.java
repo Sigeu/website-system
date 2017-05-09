@@ -75,4 +75,8 @@ public interface OrationMapper {
 	List<Oration> queryOrationNewList(int countNum);
 
 	void uploadImg(Oration oration);
+
+	List<Oration> queryOrationListByMemberAndHall(Map<String, Object> map);
+
+	List<Oration> queryOrationListByHall(Map<String, Object> map);
 }

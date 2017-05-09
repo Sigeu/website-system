@@ -222,4 +222,23 @@ public class OrationService implements IOrationService {
 		
 	}
 
+	@Override
+	public List<Oration> queryOrationListByMemberAndHall(String hallId,
+			String memberId, int limitNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hallId", hallId);
+		map.put("memberId", memberId);
+		map.put("limitNum", limitNum);
+		
+		return orationMapper.queryOrationListByMemberAndHall(map);
+	}
+
+	@Override
+	public List<Oration> queryOrationListByHall(String hallId, int limitNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hallId", hallId);
+		map.put("limitNum", limitNum);
+		return orationMapper.queryOrationListByHall(map);
+	}
+
 }

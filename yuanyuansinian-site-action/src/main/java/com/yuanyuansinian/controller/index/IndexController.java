@@ -552,6 +552,12 @@ public class IndexController extends MyBaseController {
 		int hallId = Integer.parseInt(request.getParameter("id"));
 		Hall hall = this.hallService.queryHallById(hallId);
 		model.addAttribute("hall", hall);
+		//获取登录的会员
+		//Member memberUser = super.getSessionMemberUser(request);
+		//String memberId= memberUser.getId().toString();
+		//当前纪念馆的祭文
+		List<Oration> listOration = orationService.queryOrationListByHall(hallId+"", IMySystemConstants.COUNT_NUM5);
+		model.addAttribute("listOration", listOration);
 		
 		return "site/hallSingleDetail";
 	}
@@ -563,6 +569,13 @@ public class IndexController extends MyBaseController {
 		HallDouble hallDouble = this.hallDoubleService.queryHallDoubleById(hallDoubleId);
 		model.addAttribute("hallDouble", hallDouble);
 		
+		//获取登录的会员
+		//Member memberUser = super.getSessionMemberUser(request);
+		//String memberId= memberUser.getId().toString();
+		//当前纪念馆的祭文
+		List<Oration> listOration = orationService.queryOrationListByHall(hallDoubleId+"", IMySystemConstants.COUNT_NUM5);
+		model.addAttribute("listOration", listOration);
+				
 		return "site/hallDoubleDetail";
 	}
 	
