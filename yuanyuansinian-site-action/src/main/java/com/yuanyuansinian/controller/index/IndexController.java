@@ -27,6 +27,7 @@ import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.model.content.Content;
 import com.yuanyuansinian.model.content.ContentWithBLOBs;
 import com.yuanyuansinian.model.hall.Hall;
+import com.yuanyuansinian.model.hall.HallDouble;
 import com.yuanyuansinian.model.link.Link;
 import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.oration.Oration;
@@ -41,6 +42,7 @@ import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.config.IConfigService;
 import com.yuanyuansinian.service.contact.IContactService;
 import com.yuanyuansinian.service.content.IContentService;
+import com.yuanyuansinian.service.hall.IHallDoubleService;
 import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.link.ILinkService;
 import com.yuanyuansinian.service.oration.IOrationService;
@@ -97,6 +99,10 @@ public class IndexController extends MyBaseController {
 	// 订单
 	@Resource
 	private IOrderService orderService;
+	
+	// 双人纪念馆Service
+	@Resource
+	private IHallDoubleService hallDoubleService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -542,13 +548,21 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/toHallSingleDetail")
 	public String toHallSingleDetail(HttpServletRequest request, Model model) {
-
+		
+		int hallId = Integer.parseInt(request.getParameter("id"));
+		Hall hall = this.hallService.queryHallById(hallId);
+		model.addAttribute("hall", hall);
+		
 		return "site/hallSingleDetail";
 	}
 	
 	@RequestMapping("/toHallDoubleDetail")
 	public String toHallDoubleDetail(HttpServletRequest request, Model model) {
-
+		
+		int hallDoubleId = Integer.parseInt(request.getParameter("id"));
+		HallDouble hallDouble = this.hallDoubleService.queryHallDoubleById(hallDoubleId);
+		model.addAttribute("hallDouble", hallDouble);
+		
 		return "site/hallDoubleDetail";
 	}
 	

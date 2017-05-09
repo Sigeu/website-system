@@ -19,16 +19,16 @@
 				<button class="btn btn-success">
 					<span class="hidden-sm hidden-md">缘园</span>祭奠
 				</button>
-				<button class="btn btn-info">
+				<!-- <button class="btn btn-info">
 					纪念<span class="hidden-sm hidden-md">相</span>册
-				</button>
-				<button class="btn btn-warning">关注</button>
+				</button> -->
+				<!-- <button class="btn btn-warning">关注</button> -->
 			</div>
 			<div class="col-sm-8 col-md-9">
 				<div class="pro-header">
 					<h4 class="pro-title pull-left">基本信息</h4>
 					<p class="pull-right museum-des hidden-xs">
-						天束幽花已经离开我们
+						${hall.title }
 						<mark>120</mark>
 						天
 					</p>
@@ -37,21 +37,19 @@
 				<div class="row museum-info-right">
 					<div class="col-sm-6">
 						<ul>
-							<li><span class="pull-left">中文名：</span>天束幽花</li>
-							<li><span class="pull-left">生日：</span>2016-09-30</li>
-							<li><span class="pull-left">国籍：</span>中国</li>
-							<li><span class="pull-left">出生地：</span>北京</li>
-							<li><span class="pull-left">墓地地址：</span>打水井村缘园思念</li>
-							<li><span class="pull-left">主要成就：</span>西之亚斯蓝帝国的【六度使徒】西之亚斯蓝帝国的【六度使徒】西之亚斯蓝帝国的【六度使徒】西之亚斯蓝帝国的【六度使徒】</li>
+							<li><span class="pull-left">中文名：</span>${hall.name }</li>
+							<li><span class="pull-left">国籍：</span>${hall.nationality }</li>
+							<li><span class="pull-left">出生地：</span>${hall.birthplace }</li>
+							<li><span class="pull-left">墓地地址：</span>${hall.address }</li>
+							<li><span class="pull-left">主要成就：</span>${hall.achievement }</li>
 						</ul>
 					</div>
 					<div class="col-sm-6">
 						<ul>
-							<li><span class="pull-left">别名：</span>天束幽花</li>
-							<li><span class="pull-left">生肖：</span>猴</li>
-							<li><span class="pull-left">民族：</span>蒙古族</li>
-							<li><span class="pull-left">籍贯：</span>北京</li>
-							<li><span class="pull-left">信仰：</span>无</li>
+							<li><span class="pull-left">别名：</span>${hall.alias }</li>
+							<li><span class="pull-left">民族：</span>${hall.nation }</li>
+							<li><span class="pull-left">籍贯：</span>${hall.native_place }</li>
+							<li><span class="pull-left">信仰：</span>${hall.belief }</li>
 						</ul>
 					</div>
 				</div>
