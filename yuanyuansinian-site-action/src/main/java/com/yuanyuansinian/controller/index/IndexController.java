@@ -35,6 +35,7 @@ import com.yuanyuansinian.model.order.Order;
 import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
+import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.carousel.ICarouselService;
 import com.yuanyuansinian.service.cart.ICartService;
 import com.yuanyuansinian.service.cemetery.ICemeteryService;
@@ -526,8 +527,12 @@ public class IndexController extends MyBaseController {
 		List<Hall> listHallNew = hallService.queryHallNewList(IMySystemConstants.COUNT_NUM6);
 		//最新文章
 		List<Oration> listOrationNew = orationService.queryOrationNewList(IMySystemConstants.COUNT_NUM6);
-		//网上纪念馆:公开属性，单人和双人
-		List<Hall> listHallByOpenType = hallService.queryHallListByOpenType(IMySystemConstants.VALUE_1);
+		//网上纪念馆:公开属性，单人
+		List<Hall> listSingleHallByOpenType = hallService.queryHallListByOpenType(IMySystemConstants.VALUE_1);
+		
+		//网上纪念馆:公开属性，双人
+		List<HallDouble> listHallDoubleByOpenType = hallDoubleService.queryHallDoubleListByOpenType(IMySystemConstants.VALUE_1);
+				
 		
 		//公墓陵园推荐
 		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
@@ -535,13 +540,14 @@ public class IndexController extends MyBaseController {
 		
 		model.addAttribute("listHallNew", listHallNew);
 		model.addAttribute("listOrationNew", listOrationNew);
-		model.addAttribute("listHallByOpenType", listHallByOpenType);
+		model.addAttribute("listSingleHallByOpenType", listSingleHallByOpenType);
+		model.addAttribute("listHallDoubleByOpenType", listHallDoubleByOpenType);
 		return "site/hallList";
 	}
 	
 	/**
 	 * 
-	 * @Description:  纪念馆内容页
+	 * @Description:  单人纪念馆详细内容
 	 * @param request
 	 * @param model
 	 * @return
@@ -551,6 +557,9 @@ public class IndexController extends MyBaseController {
 		
 		int hallId = Integer.parseInt(request.getParameter("id"));
 		Hall hall = this.hallService.queryHallById(hallId);
+		
+		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hall.getDeath_date());
+		hall.setDays(days);
 		model.addAttribute("hall", hall);
 		//获取登录的会员
 		//Member memberUser = super.getSessionMemberUser(request);
@@ -562,11 +571,20 @@ public class IndexController extends MyBaseController {
 		return "site/hallSingleDetail";
 	}
 	
+	/**
+	 * 
+	 * @Description: 双人纪念馆详细内容 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/toHallDoubleDetail")
 	public String toHallDoubleDetail(HttpServletRequest request, Model model) {
 		
 		int hallDoubleId = Integer.parseInt(request.getParameter("id"));
 		HallDouble hallDouble = this.hallDoubleService.queryHallDoubleById(hallDoubleId);
+		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hallDouble.getDeath_date());
+		hallDouble.setDays(days);
 		model.addAttribute("hallDouble", hallDouble);
 		
 		//获取登录的会员

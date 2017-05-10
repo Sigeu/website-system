@@ -22,14 +22,14 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>纪念馆简短说明：</label>
+			<label class="form-label col-xs-4 col-sm-2">纪念馆简短说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="description" cols="" rows="" class="textarea"  placeholder="纪念馆简短说明" datatype="*0-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>别名：</label>
+			<label class="form-label col-xs-4 col-sm-2">别名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="别名" id="alias" name="alias">
 			</div>
@@ -53,53 +53,94 @@
 				</div>
 			</div>
 		</div>
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>在世：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="在世年份" id="alive_date" name="alive_date">
 			</div>
+		</div> -->
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>出生日期：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd' })" value="" placeholder="出生日期" id="birthday" name="birthday" class="input-text Wdate">
+			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>国籍：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>生肖：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box"> <select id="zodiac" name="zodiac" class="select">
+								<option value="">--请选择--</option>
+								<option value="鼠">鼠</option>
+								<option value="牛">牛</option>
+								<option value="虎">虎</option>
+								<option value="兔">兔</option>
+								<option value="龙">龙</option>
+								<option value="蛇">蛇</option>
+								<option value="马">马</option>
+								<option value="羊">羊</option>
+								<option value="猴">猴</option>
+								<option value="鸡">鸡</option>
+								<option value="狗">狗</option>
+								<option value="猪">猪</option>
+						</select>
+						</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>去世日期：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd' })" value="" placeholder="去世日期" id="death_date" name="death_date" class="input-text Wdate">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">国籍：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="国籍" id="nationality" name="nationality">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>出生地：</label>
+			<label class="form-label col-xs-4 col-sm-2">出生地：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="出生地" id="birthplace" name="birthplace">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>籍贯：</label>
+			<label class="form-label col-xs-4 col-sm-2">籍贯：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="籍贯" id="native_place" name="native_place">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>民族：</label>
+			<label class="form-label col-xs-4 col-sm-2">民族：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="民族" id="nation" name="nation">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>墓地地址：</label>
+			<label class="form-label col-xs-4 col-sm-2">墓地地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="墓地地址" id="address" name="address">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>信仰：</label>
+			<label class="form-label col-xs-4 col-sm-2">信仰：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="信仰" id="belief" name="belief">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>成就：</label>
+			<label class="form-label col-xs-4 col-sm-2">成就：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="achievement" cols="" rows="" class="textarea"  placeholder="成就" datatype="*0-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/2000</p>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">生平事迹：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="life_story" cols="" rows="" class="textarea"  placeholder="成就" datatype="*0-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/2000</p>
 			</div>
 		</div>
 		<div class="row cl">
@@ -138,6 +179,7 @@
 <%@ include file="../../../common/footer_form.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/file-upload.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript">
 	// 项目路径
 	var contextPath = '${pageContext.request.contextPath}';
@@ -195,8 +237,23 @@ $(function() {
 				required:true,
 				maxlength:100
 			},
-			no_order:{
-				digits:true
+			name:{
+				required:true
+			},
+			sex:{
+				required:true
+			},
+			birthday:{
+				required:true
+			},
+			zodiac:{
+				required:true
+			},
+			death_date:{
+				required:true
+			},
+			open_type:{
+				required:true
 			}
 		}
 	});

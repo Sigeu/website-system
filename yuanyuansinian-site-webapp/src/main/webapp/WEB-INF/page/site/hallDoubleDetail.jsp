@@ -13,48 +13,78 @@
 	<%@ include file="siteHeader.jsp"%>
 	
 	<div class="container all-bg museum">
-		<div class="row museum-info">
-			<div class="col-sm-4 col-md-3 museum-info-left">
-				<img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="museum" />
-				<button class="btn btn-success">
-					<span class="hidden-sm hidden-md">缘园</span>祭奠
-				</button>
-				<!-- <button class="btn btn-info">
-					纪念<span class="hidden-sm hidden-md">相</span>册
-				</button> -->
-				<!-- <button class="btn btn-warning">关注</button> -->
+		<div class="container all-bg museum">
+	<div class="row museum-info">
+		<div class="col-sm-4 col-md-3 museum-info-left">
+			<img src="${hallDouble.imgs }" class="img-responsive" />
+			<button class="btn btn-success"><span class="hidden-sm hidden-md">缘园</span>祭奠</button>
+			<!-- <button class="btn btn-info">纪念<span class="hidden-sm hidden-md">相</span>册</button>
+			<button class="btn btn-warning">关注</button> -->
+		</div>
+		<div class="col-sm-8 col-md-9">
+			<div class="pro-header">
+				<h4 class="pro-title pull-left">基本信息</h4>
+				<p class="pull-right museum-des hidden-xs">天束幽花已经离开我们<mark>${hallDouble.days }</mark>天</p>
 			</div>
-			<div class="col-sm-8 col-md-9">
-				<div class="pro-header">
-					<h4 class="pro-title pull-left">基本信息</h4>
-					<p class="pull-right museum-des hidden-xs">
-						${hall.title }
-						<mark>120</mark>
-						天
-					</p>
+			<div class="clearfix"></div>
+			<div class="row museum-info-right">
+				<div class="col-sm-6">
+					<ul>
+						<li><span class="pull-left">中文名：</span>${hallDouble.name }</li>
+						<li><span class="pull-left">生日：</span>${hallDouble.birthday }</li>
+						<li><span class="pull-left">国籍：</span>${hallDouble.nationality }</li>
+						<li><span class="pull-left">出生地：</span>${hallDouble.birthplace }</li>
+						<li><span class="pull-left">墓地地址：</span>${hallDouble.address }</li>
+						<li><span class="pull-left">主要成就：</span>${hallDouble.achievement }</li>
+					</ul>
 				</div>
-				<div class="clearfix"></div>
-				<div class="row museum-info-right">
-					<div class="col-sm-6">
-						<ul>
-							<li><span class="pull-left">中文名：</span>${hallDouble.name }</li>
-							<li><span class="pull-left">国籍：</span>${hallDouble.nationality }</li>
-							<li><span class="pull-left">出生地：</span>${hallDouble.birthplace }</li>
-							<li><span class="pull-left">墓地地址：</span>${hallDouble.address }</li>
-							<li><span class="pull-left">主要成就：</span>${hallDouble.achievement }</li>
-						</ul>
-					</div>
-					<div class="col-sm-6">
-						<ul>
-							<li><span class="pull-left">别名：</span>${hallDouble.alias }</li>
-							<li><span class="pull-left">民族：</span>${hallDouble.nation }</li>
-							<li><span class="pull-left">籍贯：</span>${hallDouble.native_place }</li>
-							<li><span class="pull-left">信仰：</span>${hallDouble.belief }</li>
-						</ul>
-					</div>
+				<div class="col-sm-6">
+					<ul>
+						<li><span class="pull-left">别名：</span>${hallDouble.alias }</li>
+						<li><span class="pull-left">生肖：</span>${hallDouble.zodiac }</li>
+						<li><span class="pull-left">民族：</span>${hallDouble.nation }</li>
+						<li><span class="pull-left">籍贯：</span>${hallDouble.native_place }</li>
+						<li><span class="pull-left">信仰：</span>${hallDouble.belief }</li>
+					</ul>
 				</div>
 			</div>
 		</div>
+	</div>
+	
+	<div class="row museum-info">
+		<div class="col-sm-4 col-md-3 museum-info-left">
+			<img src="${hallDouble.imgs }" class="img-responsive" />
+			<button class="btn btn-success"><span class="hidden-sm hidden-md">缘园</span>祭奠</button>
+			<!-- <button class="btn btn-info">纪念<span class="hidden-sm hidden-md">相</span>册</button>
+			<button class="btn btn-warning">关注</button> -->
+		</div>
+		<div class="col-sm-8 col-md-9">
+			<div class="pro-header">
+				<h4 class="pro-title pull-left">基本信息</h4>
+				<p class="pull-right museum-des hidden-xs">天束幽花已经离开我们<mark>120</mark>天</p>
+			</div>
+			<div class="clearfix"></div>
+			<div class="row museum-info-right">
+				<div class="col-sm-6">
+					<ul>
+						<li><span class="pull-left">中文名：</span>${hallDouble.name2 }</li>
+						<li><span class="pull-left">国籍：</span>${hallDouble.nationality2 }</li>
+						<li><span class="pull-left">出生地：</span>${hallDouble.birthplace2 }</li>
+						<li><span class="pull-left">墓地地址：</span>${hallDouble.address2 }</li>
+						<li><span class="pull-left">主要成就：</span>${hallDouble.achievement2 }</li>
+					</ul>
+				</div>
+				<div class="col-sm-6">
+					<ul>
+						<li><span class="pull-left">别名：</span>${hallDouble.alias2 }</li>
+						<li><span class="pull-left">民族：</span>${hallDouble.nation2 }</li>
+						<li><span class="pull-left">籍贯：</span>${hallDouble.native_place2 }</li>
+						<li><span class="pull-left">信仰：</span>${hallDouble.belief2 }</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
 		<div class="museum-body">
 			<div class="nav-title">
@@ -98,7 +128,6 @@
 								<div class="anthology-des text-justify">${oration.description}</div>
 							</div>
 						</c:forEach>
-						
 					</div>
 					<div class="page">
 						<ul class="pagination">

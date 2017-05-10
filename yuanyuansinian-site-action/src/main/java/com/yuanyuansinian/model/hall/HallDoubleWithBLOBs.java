@@ -18,6 +18,12 @@ public class HallDoubleWithBLOBs extends HallDouble {
      * @mbg.generated Fri May 05 15:28:30 CST 2017
      */
     private String achievement;
+    
+    //生平事迹
+    private String life_story;
+    
+    //生平事迹
+    private String life_story2;
 
     /**
      *
@@ -99,4 +105,20 @@ public class HallDoubleWithBLOBs extends HallDouble {
     public void setAchievement2(String achievement2) {
         this.achievement2 = achievement2 == null ? null : achievement2.trim();
     }
+
+	public String getLife_story() {
+		return life_story;
+	}
+
+	public void setLife_story(String life_story) {
+		this.life_story = life_story;
+	}
+
+	public String getLife_story2() {
+		return life_story2;
+	}
+
+	public void setLife_story2(String life_story2) {
+		this.life_story2 = life_story2;
+	}
 }

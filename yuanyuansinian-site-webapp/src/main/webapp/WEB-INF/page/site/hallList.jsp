@@ -95,25 +95,23 @@
 				<a href="###" class="more pull-right">更多&raquo;</a>
 			</div>
 			<div class="clearfix"></div>
-			<div class="row" id="double_div" style="display: none"> 
-				<c:forEach items="${listHallByOpenType}" var="hallOpen" varStatus="hallStatus"> 
-				<c:if test="${hallOpen.hall_type == '2'}">
+			<div class="row" id="single_div" style="display: none"> 
+				<c:forEach items="${listSingleHallByOpenType}" var="singleHall" varStatus="singleHallStatus"> 
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
-							<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><img src="${hallOpen.imgs}" class="img-responsive"
+							<a href="###" onclick="toHallDetail('${singleHall.id }','${singleHall.hall_type }')"><img src="${singleHall.imgs}" class="img-responsive"
 								alt="img"></a>
 							<div class="caption">
-								<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><h5>${hallOpen.title}</h5></a>
+								<a href="###" onclick="toHallDetail('${singleHall.id }','${singleHall.hall_type }')"><h5>${singleHall.title}</h5></a>
 								<p>
-									<strong>在世：</strong>${hallOpen.alive_date }
+									<strong>在世：</strong>${singleHall.alive_date }
 								</p>
 								<p class="thumbnail-des text-justify">
-									<strong>简介：</strong>${hallOpen.description}
+									<strong>简介：</strong>${singleHall.description}
 								</p>
 							</div>
 						</div>
 					</div>
-					</c:if>
             </c:forEach> 
             <div class="clearfix"></div>
 					<div class="page">
@@ -128,25 +126,23 @@
 				</div>	
 				 
                 
-			<div class="row" id="single_div"  style="block">
-				<c:forEach items="${listHallByOpenType}" var="hallOpen" varStatus="hallStatus"> 
-				<c:if test="${hallOpen.hall_type == '1'}">
+			<div class="row" id="double_div"  style="block">
+				<c:forEach items="${listHallDoubleByOpenType}" var="hallDouble" varStatus="hallDoubleStatus"> 
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
-							<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><img src="${hallOpen.imgs}" class="img-responsive"
+							<a href="###" onclick="toHallDetail('${hallDouble.id }','${hallDouble.hall_type }')"><img src="${hallDouble.imgs}" class="img-responsive"
 								alt="img"></a>
 							<div class="caption">
-								<a href="###" onclick="toHallDetail('${hallOpen.id }','${hallOpen.hall_type }')"><h5>${hallOpen.title}</h5></a>
+								<a href="###" onclick="toHallDetail('${hallDouble.id }','${hallDouble.hall_type }')"><h5>${hallDouble.title}</h5></a>
 								<p>
-									<strong>在世：</strong>${hallOpen.alive_date }
+									<strong>在世：</strong>${hallDouble.alive_date }
 								</p>
 								<p class="thumbnail-des text-justify">
-									<strong>简介：</strong>${hallOpen.description}
+									<strong>简介：</strong>${hallDouble.description}
 								</p>
 							</div>
 						</div>
 					</div>
-				 </c:if>
             </c:forEach> 
             <div class="clearfix"></div>
 					<div class="page">

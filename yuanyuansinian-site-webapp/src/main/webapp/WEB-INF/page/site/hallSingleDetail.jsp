@@ -15,7 +15,7 @@
 	<div class="container all-bg museum">
 		<div class="row museum-info">
 			<div class="col-sm-4 col-md-3 museum-info-left">
-				<img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="museum" />
+				<img src="${hall.imgs }" class="img-responsive" alt="museum" />
 				<button class="btn btn-success">
 					<span class="hidden-sm hidden-md">缘园</span>祭奠
 				</button>
@@ -29,7 +29,7 @@
 					<h4 class="pro-title pull-left">基本信息</h4>
 					<p class="pull-right museum-des hidden-xs">
 						${hall.title }
-						<mark>120</mark>
+						<mark>${hall.days }</mark>
 						天
 					</p>
 				</div>
@@ -38,6 +38,7 @@
 					<div class="col-sm-6">
 						<ul>
 							<li><span class="pull-left">中文名：</span>${hall.name }</li>
+							<li><span class="pull-left">生日：</span>${hall.birthday }</li>
 							<li><span class="pull-left">国籍：</span>${hall.nationality }</li>
 							<li><span class="pull-left">出生地：</span>${hall.birthplace }</li>
 							<li><span class="pull-left">墓地地址：</span>${hall.address }</li>
@@ -47,6 +48,7 @@
 					<div class="col-sm-6">
 						<ul>
 							<li><span class="pull-left">别名：</span>${hall.alias }</li>
+							<li><span class="pull-left">生肖：</span>${hall.zodiac }</li>
 							<li><span class="pull-left">民族：</span>${hall.nation }</li>
 							<li><span class="pull-left">籍贯：</span>${hall.native_place }</li>
 							<li><span class="pull-left">信仰：</span>${hall.belief }</li>
@@ -98,32 +100,6 @@
 								<div class="anthology-des text-justify">${oration.description}</div>
 							</div>
 						</c:forEach>
-						
-						<!-- <div class="anthology-pro">
-							<a href="###"><h5>追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</h5></a>
-							<span class="anthology-date">2016-12-20</span>
-							<div class="anthology-des text-justify">追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</div>
-						</div>
-						<div class="anthology-pro">
-							<a href="###"><h5>追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</h5></a>
-							<span class="anthology-date">2016-12-20</span>
-							<div class="anthology-des text-justify">追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</div>
-						</div>
-						<div class="anthology-pro">
-							<a href="###"><h5>追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</h5></a>
-							<span class="anthology-date">2016-12-20</span>
-							<div class="anthology-des text-justify">追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</div>
-						</div>
-						<div class="anthology-pro">
-							<a href="###"><h5>追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</h5></a>
-							<span class="anthology-date">2016-12-20</span>
-							<div class="anthology-des text-justify">追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</div>
-						</div>
-						<div class="anthology-pro">
-							<a href="###"><h5>追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</h5></a>
-							<span class="anthology-date">2016-12-20</span>
-							<div class="anthology-des text-justify">追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板追忆文选和追思留言的列表都使用这个模板，打开的具体文章内容使用生平事迹的模板</div>
-						</div> -->
 					</div>
 					<div class="page">
 						<ul class="pagination">
