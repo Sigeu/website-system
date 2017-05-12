@@ -33,6 +33,7 @@ import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.model.order.Order;
 import com.yuanyuansinian.model.product.Product;
+import com.yuanyuansinian.model.warehouse.Warehouse;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
@@ -49,6 +50,7 @@ import com.yuanyuansinian.service.link.ILinkService;
 import com.yuanyuansinian.service.oration.IOrationService;
 import com.yuanyuansinian.service.order.IOrderService;
 import com.yuanyuansinian.service.product.IProductService;
+import com.yuanyuansinian.service.warehouse.IWarehouseService;
 
 /**
  * @Description: 主页管理
@@ -104,6 +106,9 @@ public class IndexController extends MyBaseController {
 	// 双人纪念馆Service
 	@Resource
 	private IHallDoubleService hallDoubleService;
+	
+	@Resource
+	private IWarehouseService warehouseService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -561,14 +566,52 @@ public class IndexController extends MyBaseController {
 		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hall.getDeath_date());
 		hall.setDays(days);
 		model.addAttribute("hall", hall);
-		//获取登录的会员
-		//Member memberUser = super.getSessionMemberUser(request);
-		//String memberId= memberUser.getId().toString();
 		//当前纪念馆的祭文
 		List<Oration> listOration = orationService.queryOrationListByHall(hallId+"", IMySystemConstants.COUNT_NUM5);
 		model.addAttribute("listOration", listOration);
 		
 		return "site/hallSingleDetail";
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到单人纪念馆-祭奠
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toShowSingleMemorial")
+	public String toShowSingleMemorial(HttpServletRequest request, Model model) {
+		
+		int hallId = Integer.parseInt(request.getParameter("id"));
+		Hall hall = this.hallService.queryHallById(hallId);
+		
+		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hall.getDeath_date());
+		hall.setDays(days);
+		model.addAttribute("hall", hall);
+		
+		return "site/hallSingleMemorial";
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: 跳转到单人纪念馆-祭奠
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toShowDoubleMemorial")
+	public String toShowDoubleMemorial(HttpServletRequest request, Model model) {
+		
+		int hallId = Integer.parseInt(request.getParameter("id"));
+		HallDouble hallDouble = this.hallDoubleService.queryHallDoubleById(hallId);
+		
+		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hallDouble.getDeath_date());
+		hallDouble.setDays(days);
+		model.addAttribute("hallDouble", hallDouble);
+		
+		return "site/hallDoubleMemorial";
 	}
 	
 	/**
@@ -845,6 +888,28 @@ public class IndexController extends MyBaseController {
 			}
 		}
 		 return returnPage;
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到已买产品页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toChooseMyProduct")
+	public String toChooseMyProduct(HttpServletRequest request, Model model) {
+		Member memberUser = super.getSessionMemberUser(request);
+		//type
+		String type = request.getParameter("type")==null? "":request.getParameter("type");
+		Warehouse warehouse = new Warehouse();
+		warehouse.setProduct_type(type);
+		warehouse.setMember_id(memberUser.getId()+"");
+		List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByType(type);
+		
+		model.addAttribute("listWarehouse", listWarehouse);
+		
+		 return "site/hallChooseMyProduct";
 	}
 	
 	/**

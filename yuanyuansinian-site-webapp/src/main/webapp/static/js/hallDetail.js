@@ -5,24 +5,28 @@
 
 
 $(function(){
+	//跳转到灵堂
+	//$('#single_memorial_but').on('click',function(){
+	//		window.location.href = contextPath + "/sinian/index/indexController/toShowSingleMemorial";
+	//});
 	//上香
 	$('#incense_but').on('click',function(){
-		window.location.href = contextPath + "/sinian/index/indexController/toChooseProduct?type=1";
+		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=1";
 	});
 	
 	//贡品
 	$('#tribute_but').on('click',function(){
-		window.location.href = contextPath + "/sinian/index/indexController/toChooseProduct?type=2";
+		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=2";
 	});
 	
 	//献花
 	$('#flowers_but').on('click',function(){
-		window.location.href = contextPath + "/sinian/index/indexController/toChooseProduct?type=3";
+		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=3";
 	});
 	
 	//点歌
 	$('#song_but').on('click',function(){
-		window.location.href = contextPath + "/sinian/index/indexController/toChooseProduct?type=4";
+		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=4";
 	});
 	
 	/*----------------------选择提交 begin-----------------------*/
@@ -43,3 +47,12 @@ $(function() {
 });
 /*----------------------搜索end-----------------------*/
 
+//跳转到灵堂
+function toShowSingleMemorial(hallId){
+	window.location.href = contextPath + "/sinian/index/indexController/toShowSingleMemorial?id=" + hallId;
+}
+
+//跳转到灵堂
+function toShowDoubleMemorial(hallId){
+	window.location.href = contextPath + "/sinian/index/indexController/toShowDoubleMemorial?id=" + hallId;
+}

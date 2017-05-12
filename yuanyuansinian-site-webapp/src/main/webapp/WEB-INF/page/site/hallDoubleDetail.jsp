@@ -17,7 +17,7 @@
 	<div class="row museum-info">
 		<div class="col-sm-4 col-md-3 museum-info-left">
 			<img src="${hallDouble.imgs }" class="img-responsive" />
-			<button class="btn btn-success"><span class="hidden-sm hidden-md">缘园</span>祭奠</button>
+			<button class="btn btn-success" onclick="toShowDoubleMemorial('${hallDouble.id }')"><span class="hidden-sm hidden-md">缘园</span>祭奠</button>
 			<!-- <button class="btn btn-info">纪念<span class="hidden-sm hidden-md">相</span>册</button>
 			<button class="btn btn-warning">关注</button> -->
 		</div>
@@ -54,7 +54,7 @@
 	<div class="row museum-info">
 		<div class="col-sm-4 col-md-3 museum-info-left">
 			<img src="${hallDouble.imgs }" class="img-responsive" />
-			<button class="btn btn-success"><span class="hidden-sm hidden-md">缘园</span>祭奠</button>
+			<button class="btn btn-success" onclick="toShowDoubleMemorial('${hallDouble.id }')"><span class="hidden-sm hidden-md">缘园</span>祭奠</button>
 			<!-- <button class="btn btn-info">纪念<span class="hidden-sm hidden-md">相</span>册</button>
 			<button class="btn btn-warning">关注</button> -->
 		</div>
@@ -99,14 +99,20 @@
 						aria-controls="profile" role="tab" data-toggle="tab">纪念册</a></li> -->
 				</ul>
 				<div class="btn-tools pull-right hidden-xs">
-					<button class="btn btn-danger" id="incense_but">上香</button>
-					</li>
-					<button class="btn btn-danger" id="tribute_but">贡品</button>
-					</li>
-					<button class="btn btn-danger" id="flowers_but">献花</button>
-					</li>
-					<button class="btn btn-danger" id="song_but">点歌</button>
-					</li>
+					<c:choose>  
+					   <c:when test="${empty sessionScope.memberUser}">
+					   </c:when>  
+					   <c:otherwise>
+						   <button class="btn btn-danger" id="incense_but">上香</button>
+							</li>
+							<button class="btn btn-danger" id="tribute_but">贡品</button>
+							</li>
+							<button class="btn btn-danger" id="flowers_but">献花</button>
+							</li>
+							<button class="btn btn-danger" id="song_but">点歌</button>
+							</li>
+					   </c:otherwise>  
+					</c:choose>  
 				</div>
 			</div>
 			<div class="tab-content">

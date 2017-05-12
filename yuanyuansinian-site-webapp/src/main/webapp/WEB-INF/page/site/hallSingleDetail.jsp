@@ -16,7 +16,7 @@
 		<div class="row museum-info">
 			<div class="col-sm-4 col-md-3 museum-info-left">
 				<img src="${hall.imgs }" class="img-responsive" alt="museum" />
-				<button class="btn btn-success">
+				<button class="btn btn-success" id="single_memorial_but" onclick="toShowSingleMemorial('${hall.id }')">
 					<span class="hidden-sm hidden-md">缘园</span>祭奠
 				</button>
 				<!-- <button class="btn btn-info">
@@ -70,15 +70,22 @@
 					<li role="presentation"><a href="#album"
 						aria-controls="profile" role="tab" data-toggle="tab">纪念册</a></li> -->
 				</ul>
+				
 				<div class="btn-tools pull-right hidden-xs">
-					<button class="btn btn-danger" id="incense_but">上香</button>
-					</li>
-					<button class="btn btn-danger" id="tribute_but">贡品</button>
-					</li>
-					<button class="btn btn-danger" id="flowers_but">献花</button>
-					</li>
-					<button class="btn btn-danger" id="song_but">点歌</button>
-					</li>
+					<c:choose>  
+					   <c:when test="${empty sessionScope.memberUser}">
+					   </c:when>  
+					   <c:otherwise>
+						   <button class="btn btn-danger" id="incense_but">上香</button>
+							</li>
+							<button class="btn btn-danger" id="tribute_but">贡品</button>
+							</li>
+							<button class="btn btn-danger" id="flowers_but">献花</button>
+							</li>
+							<button class="btn btn-danger" id="song_but">点歌</button>
+							</li>
+					   </c:otherwise>  
+					</c:choose>  
 				</div>
 			</div>
 			<div class="tab-content">

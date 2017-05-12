@@ -48,10 +48,10 @@
 					<c:forEach items="${listHall}" var="hall" varStatus="hallStatus"> 
 							<div class="row miss-setup-pro">
 								<div class="col-sm-4 col-md-3">
-									<a href="###"  onclick="toShowHall('${hall.id}');"><img src="${hall.imgs}" class="img-responsive" alt="${hall.title}" /></a>
+									<a href="###"  onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><img src="${hall.imgs}" class="img-responsive" alt="${hall.title}" /></a>
 								</div>
 								<div class="col-sm-8 col-md-9">
-									<a href="###"  onclick="toShowHall('${hall.id}');"><h5>${hall.title}</h5></a>
+									<a href="###"  onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><h5>${hall.title}</h5></a>
 									<p><strong>创建日期：</strong>${hall.create_date}</p>
 									<div class="miss-des text-justify"><strong>简介：</strong>${hall.description}</div>
 								</div>
@@ -142,6 +142,8 @@
 		src="${pageContext.request.contextPath}/static/js/member.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/oration.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/article.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '我的思念';
 		// 项目路径

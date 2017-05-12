@@ -155,6 +155,11 @@ p.museum-des {position:relative; top:8px}
 .incense {margin-top:-50px; margin-bottom:20px; padding:0; position:relative}
 .incense-body img.incense-bg {margin:0 auto; width:320px}
 .incense-img {position:absolute; top:53px; width:50px; height:50px}
+
+.flower-left {position:absolute; width:7%; top:105px; left:82px}
+.flower-right {position:absolute; width:7%; top:105px; right:82px}
+.fragrant {position:absolute; height:12%; top:120px; left:155px}
+
 .incense-btn button {width:24%}
 .contact-left {padding-left:10px}
 .contact-left h2 {margin-bottom:10px; font-size:20px}
@@ -192,6 +197,15 @@ p.museum-des {position:relative; top:8px}
 .incense-product-list > div {margin-bottom:10px}
 .incense-product-list .thumbnail h5 {margin-top:2px; width:75%; float:left; font-size:14px}
 
+/*购物车结算*/
+	.settlement-pro {padding:15px 0px; border-bottom:1px solid #ddd}
+	.settlement-img img {width:100%}
+	.settlement-title {margin-bottom:5px; width:100%; height:25px; line-height:25px; overflow:hidden; font-size:12px; text-align:justify}
+	.settlement-price {margin-bottom:5px; font-size:12px; color:#b85844}
+	.form-group {margin-bottom:12px}
+	.settlement-number .form-horizontal .control-label {margin-bottom:7px; padding-right:0px; font-size:12px; color:#b85844; font-weight:normal; text-align:left}
+	.settlement-number .form-horizontal .settlement-input {padding-left:0px; font-size:12px}
+	.settlement-btn {margin:15px 0px}
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
 	.navbar-logo {padding:0}
@@ -262,6 +276,11 @@ p.museum-des {position:relative; top:8px}
 	.incense {margin-top:-5px; margin-bottom:30px}
 	.incense-body img.incense-bg {width:100%}
 	.incense-img {top:124px; left:315px; width:119px; height:119px}
+	
+	.flower-left {position:absolute; width:auto; top:222px; left:185px}
+	.flower-right {position:absolute; width:auto; top:222px; right:185px}
+	.fragrant {position:absolute; height:auto; top:277px; left:365px}
+	
 	.incense-btn {position:absolute; left:265px; bottom:20px}
 	.incense-btn button {width:auto; height:25px; line-height:25px; padding-top:0}
 	.contact-add {padding:50px 15px}
@@ -288,6 +307,16 @@ p.museum-des {position:relative; top:8px}
 	
 	/* 纪念馆贡品列表页 */
 	.incense-product-list .thumbnail h5 {margin-top:10px; width:55%}
+	
+	/*购物车结算*/
+	.settlement-pro {padding:15px 0px; border-bottom:1px solid #ddd}
+	.settlement-img img {width:100%; height:105px}
+	.settlement-title {margin-bottom:5px; width:100%; height:25px; line-height:25px; overflow:hidden; font-size:12px; text-align:justify}
+	.settlement-price {margin-bottom:5px; font-size:12px; color:#b85844}
+	.form-group {margin-bottom:5px}
+	.settlement-number .form-horizontal .control-label {margin-bottom:7px; padding-right:0px; font-size:12px; color:#b85844; font-weight:normal; text-align:left}
+	.settlement-number .form-horizontal .settlement-input {padding-left:0px; font-size:12px}
+	.settlement-btn {margin:15px 0px}
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -342,6 +371,11 @@ p.museum-des {position:relative; top:8px}
 	.anthology-date {color:#999}
 	.incense {margin-bottom:40px}
 	.incense-img {top:160px; left:409px; width:153px; height:153px}
+	
+	.flower-left {position:absolute; top:315px; left:247px}
+	.flower-right {position:absolute; top:315px; right:247px}
+	.fragrant {position:absolute; top:377px; left:475px}
+	
 	.incense-btn {left:370px; bottom:25px}
 	.incense-btn button {height:34px; line-height:32px}
 	.contact-left {padding-left:20px}
@@ -356,8 +390,15 @@ p.museum-des {position:relative; top:8px}
 	.incense-double-img {position:absolute; top:170px; left:295px; width:153px; height:153px}
 	.incense-double-imgsec {left:520px}
 	.new-body .new-pro:first-child {margin-bottom:50px}
-	
-	
+
+	/*购物车结算*/
+	.settlement-pro {padding:20px 0px}
+	.settlement-img img {height:140px}
+	.settlement-title {margin-bottom:7px; font-size:15px}
+	.settlement-price {margin-bottom:7px; font-size:15px}
+	.settlement-number .form-horizontal .control-label {margin-bottom:7px; font-size:15px}
+	.settlement-number .form-horizontal .settlement-input {font-size:15px}
+	.settlement-btn {margin:20px 0px}
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
@@ -406,7 +447,11 @@ p.museum-des {position:relative; top:8px}
 	.anthology-body {padding-top:0px; padding-bottom:0px}
 	.incense {margin-bottom:50px}
 	.incense-img {top:192px; left:492px; width:185px; height:185px}
-	.incense-double-img {}
+	
+	.flower-left {position:absolute; top:397px; left:305px}
+	.flower-right {position:absolute; top:397px; right:305px}
+	.fragrant {position:absolute; top:470px; left:572px}
+	
 	.incense-btn {left:472px; bottom:25px}
 	.contact-left {padding-left:50px}
 	.contact-left p {margin-bottom:20px}
@@ -417,5 +462,11 @@ p.museum-des {position:relative; top:8px}
 	.all-info.img-list img.double-img {width:265px; height:265px}
 	.incense-double-img {position:absolute; top:204px; left:358px; width:185px; height:185px}
 	.incense-double-imgsec {left:624px}
+
+	/*购物车结算*/
+	.settlement-img img {height:175px}
+	.settlement-title {margin-bottom:10px; height:50px}
+	.settlement-price {margin-bottom:10px}
+	.settlement-number .form-horizontal .control-label {margin-bottom:10px}
 
 }
