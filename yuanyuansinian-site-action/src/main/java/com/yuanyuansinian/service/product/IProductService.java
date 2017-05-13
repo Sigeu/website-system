@@ -68,5 +68,7 @@ public interface IProductService {
 
 	void uploadImg(HttpServletRequest request, String id);
 
+	List<Product> queryProductListByIds(String[] productIds);
+
 
 }

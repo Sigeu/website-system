@@ -7,7 +7,7 @@
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/css/keleyidivpager.css">
-<title>缘园资讯-内容页</title>
+<title>用户文章内容页</title>
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>
@@ -23,20 +23,19 @@
 				<div class="here">
 					<ol class="breadcrumb">
 						<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
-						<li><a href="#" onclick="toShowNoticeList('${content.column_id }')">通知公告</a></li>
-						<li class="active">${content.title }</li>
+						<li>用户文章</li>
+						<li class="active">${oration.title }</li>
 					</ol>
 				</div>
 				<div class="article">
 					<div class="article-top">
-						<h1>${content.title }</h1>
+						<h1>${oration.title }</h1>
 						<div class="article-info">
-							<span>${content.add_time }</span><span>作者：${content.issue } </span><span
-								class="hidden-xs">浏览次数：${content.hits }</span>
+							<span>${oration.create_date }</span><span>作者：会员123 </span>
 						</div>
 					</div>
 					<div class="article-body">
-						<p>${content.content }</p>
+						<p>${oration.content }</p>
 					</div>
 					<div class="article-near">
 						<ul class="pager">

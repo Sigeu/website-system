@@ -20,26 +20,7 @@
 	</div>
 </div>
 
-<%-- <div class="container con-tab all-bg miss-con">		
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="side-nav">
-				<div class="pro-header">
-					<h4>我的思念</h4>
-				</div>
-				<div class="side-nav-body">
-					<ul>
-						<li><a href="###">我的购物车</a></li>
-						<li class="active"><a href="###">我的创建</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<iframe src="${pageContext.request.contextPath}/sinian/hall/hallController/toHallListByMember" name="my_create" id="my_create" 
-						scrolling="no" frameborder="0" width="100%"></iframe>
-	</div>
-</div> --%>
-	<div class="container con-tab all-bg miss-con">		
+<div class="container con-tab all-bg miss-con">		
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="side-nav">
@@ -55,57 +36,33 @@
 			</div>
 		</div>
 		<div class="col-sm-9">
-			<div class="nav-title">
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#pay" aria-controls="home" role="tab" data-toggle="tab">待付款商品</a></li>
-					<li role="presentation"><a href="#paid" aria-controls="profile" role="tab" data-toggle="tab">已付款商品</a></li>
-				</ul>
-				<div class="btn-tools pull-right">
-					<button class="btn btn-danger" id="settlement_but">点击结算</button></li>
-				</div>
+			<div class="settlement">
+				<c:forEach var="cart" items="${listCart}">
+					<div class="settlement-pro">
+						<div class="col-sm-4 settlement-img"><a href="###" onclick="toShoppingDetail('${cart.product_id }')"><img src="${cart.product_pic}" ></a></div>
+						<div class="col-sm-8 settlement-info">
+							<div class="settlement-title"><a href="###" onclick="toShoppingDetail('${cart.product_id }')">${cart.product_name}</a></div>
+							<div class="settlement-price">单价：￥${cart.price_site }</div>
+							<div class="settlement-number">
+								<form class="form-horizontal">
+									<div class="form-group">
+										<label class="col-sm-3 col-md-2 control-label">数量：</label>
+										<div class="col-sm-3 col-md-2 settlement-input">
+											<input type="text" class="form-control" placeholder="请输入" />
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- <div class="settlement-price pull-left">需支付：￥0.00</div> -->
+							<div class="shop-info pull-right"><input type="checkbox" name="pay_check" value="${cart.product_id }"></div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+                </c:forEach>
+				
+				<button class="btn btn-danger pull-right settlement-btn" id="settlement_but">立刻结算</button>
 			</div>
 			<div class="clearfix"></div>
-			<div class="tab-content">
-				<div class="row tab-pane active img-list shop-list miss-shop-list" id="pay">
-					<c:forEach var="cart" items="${listCart}">
-						<div class="col-sm-4">
-							<div class="thumbnail">
-								<a href="###"><img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img"></a>
-								<a href="###"><h5>${cart.title}</h5></a>
-								<div class="shop-info miss-shop-info hidden-xs pull-right"><input type="checkbox">￥20.25</div>
-							</div>
-						</div>
-	                 </c:forEach>
-					<div class="clearfix"></div>
-					<div class="page">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="row tab-pane img-list shop-list miss-shop-list miss-shop-full" id="paid">
-					<c:forEach var="order" items="${listOrder}">
-						<div class="col-sm-4">
-							<div class="thumbnail">
-								<a href="###"><img src="${pageContext.request.contextPath}/static/images/logo.png" class="img-responsive" alt="img"></a>
-								<a href="###"><h5>${order.title}</h5></a>
-							</div>
-						</div>
-	                 </c:forEach>
-					<div class="clearfix"></div>
-					<div class="page">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
@@ -113,6 +70,8 @@
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/member.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/article.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '我的思念';
 		// 项目路径

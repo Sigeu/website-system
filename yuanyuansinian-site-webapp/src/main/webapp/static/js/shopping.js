@@ -25,9 +25,70 @@ $('#add_cart_but').on('click',function(){
 			});
 			
 		}else{
-			layer.alert(data.result_message);
+			layer.alert(data.result_message, {
+				  closeBtn: 1
+			}, function(){
+				url = contextPath + "/sinian/index/indexController/toMemberCart";
+				window.location.href = url;
+			});
 		}
 	});
 });
-/*----------------------商城  end-------------------------*/
 
+//立刻购买:已存在则不操作，不存在则新增
+$('#buy_now_but').on('click',function(){
+	$.ajax({
+		method : "POST",
+		url : contextPath + "/sinian/cart/cartController/addCart",
+		data : {
+			product_id : $('#product_id').val()
+		}
+	}).done(function(data) {
+		var flag = data.flag;
+		if(flag == '0'){
+			layer.alert(data.result_message, {
+			  closeBtn: 1
+			}, function(){
+				url = contextPath + "/sinian/index/indexController/toMemberLogin";
+				window.location.href = url;
+			});
+			
+		}else{
+			layer.alert(data.result_message, {
+				  closeBtn: 1
+			}, function(){
+				url = contextPath + "/sinian/index/indexController/toMemberCart";
+				window.location.href = url;
+			});
+		}
+	});
+});
+
+//预订
+$('#buy_later_but').on('click',function(){
+	$.ajax({
+		method : "POST",
+		url : contextPath + "/sinian/cart/cartController/addCart",
+		data : {
+			product_id : $('#product_id').val()
+		}
+	}).done(function(data) {
+		var flag = data.flag;
+		if(flag == '0'){
+			layer.alert(data.result_message, {
+			  closeBtn: 1
+			}, function(){
+				url = contextPath + "/sinian/index/indexController/toMemberLogin";
+				window.location.href = url;
+			});
+			
+		}else{
+			layer.alert(data.result_message, {
+				  closeBtn: 1
+			}, function(){
+				url = contextPath + "/sinian/index/indexController/toMemberCart";
+				window.location.href = url;
+			});
+		}
+	});
+});

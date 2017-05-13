@@ -61,4 +61,6 @@ public interface IWarehouseService {
 
 	List<Warehouse> queryWarehouseListByType(String type);
 
+	int updateWarehouseForUse(Warehouse warehouse);
+
 }

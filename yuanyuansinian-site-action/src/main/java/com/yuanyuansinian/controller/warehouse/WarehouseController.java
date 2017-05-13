@@ -4,6 +4,9 @@
  */
 package com.yuanyuansinian.controller.warehouse;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -381,7 +384,36 @@ public class WarehouseController extends MyBaseController {
 
 		return map;
 	}
+	
+	//使用礼品
+	@ResponseBody
+	@RequestMapping("/updateWarehouseForUse")
+	public Map<String, Object> updateWarehouseForUse(HttpServletRequest request) {
+		
+		int warehouseId = Integer.parseInt(request.getParameter("id"));
+		Warehouse  warehouse = this.warehouseService.queryWarehouseById(warehouseId);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		String today = MyDateUtil.getDate();
+		String endDay = MyDateUtil.addDay(today,Integer.parseInt(warehouse.getValidity_day()));
+		//使用日期
+		warehouse.setUse_date(today);
+		//结束日期
+		warehouse.setEnd_date(endDay);
+		//使用状态
+		warehouse.setUse_status(STATUS_CODE_1);
+		
+		int count = this.warehouseService.updateWarehouseForUse(warehouse);
+		if (RESULT_COUNT_1 == count) {
+			map.put("flag", "1");
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} else {
+			map.put("flag", "0");
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
 
+		return map;
+	}
 	/**
 	 * 
 	 * @Description: 已购买产品删除

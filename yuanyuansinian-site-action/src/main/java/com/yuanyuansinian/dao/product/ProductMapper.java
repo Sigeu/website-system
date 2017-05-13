@@ -1,6 +1,7 @@
 package com.yuanyuansinian.dao.product;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.model.product.ProductWithBLOBs;
@@ -71,5 +72,7 @@ public interface ProductMapper {
 	List<Product> queryProductRecycleList(Product product);
 
 	void uploadImg(Product product);
+
+	List<Product> queryProductListByIds(Map<String, Object> map);
 
 }

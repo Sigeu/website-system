@@ -6,8 +6,8 @@
 			<div class="col-sm-3 footer-logo hidden-xs"><img src="${pageContext.request.contextPath}/static/images/footer.png" class="img-responsive" alt="logo"></div>
 			<div class="col-sm-6">
 				<ul>
-					<li id="copyright">AAAAA</li>
-					<li id="record_num">BBBBBB</li>
+					<li id="copyright">Copyright © 1995-2016 </li>
+					<li id="record_num">鲁ICP备17015625号-1</li>
 					<!-- <li><span id="copyright"></span></li>
 					<li><span id="record_num"></span></li> -->
 					<li>地址：<span id="address"></span> 电话：<span id="tel"></span> 邮编：<span id="addr_zip"></span></li>

@@ -10,7 +10,7 @@ $(function(){
 		layer.open({
 		    type: 2,
 		    maxmin:true,
-		    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改信息</div></strong>","background-color: #5a97df"],
+		    title:["修改"],
 		    area: ['100%', '100%'],
 		    shadeClose: false, //点击遮罩关闭
 		    content: contextPath + '/sinian/index/indexController/toMemberEdit'
@@ -20,15 +20,29 @@ $(function(){
 	
 	/*----------------------结算 begin-----------------------*/
 	$('#settlement_but').on('click',function(){
-		layer.alert("请先选择需要结算的商品！");
-		/*layer.open({
-		    type: 2,
-		    maxmin:true,
-		    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改信息</div></strong>","background-color: #5a97df"],
-		    area: ['100%', '100%'],
-		    shadeClose: false, //点击遮罩关闭
-		    content: contextPath + '/sinian/index/indexController/toMemberEdit'
-		 });*/
+		var product_id = "";
+		$("[name ='pay_check']:checkbox").each(function() {
+	        if ($(this).is(':checked')) {
+	        	product_id += $(this).val() + ',';
+	        }
+		});
+		if(product_id == ""){
+			layer.alert("请先选择需要结算的商品！");
+			return;
+		}else{
+			layer.alert("支付宝结算");
+			return;
+			/*layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["结算"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: contextPath + '/sinian/index/indexController/toSettlement'
+			 });*/
+		}
+		
+		
 	});
 	/*----------------------结算 end-------------------------*/
 	

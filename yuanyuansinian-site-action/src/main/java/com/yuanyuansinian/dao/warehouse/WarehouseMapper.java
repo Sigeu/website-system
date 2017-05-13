@@ -56,4 +56,6 @@ public interface WarehouseMapper {
 	List<Warehouse> queryWarehouseListByType(String type);
 
 	List<Warehouse> queryWarehouseList(Warehouse warehouse);
+
+	int updateWarehouseForUse(Warehouse warehouse);
 }

@@ -406,4 +406,17 @@
     set pic = #{pic,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 列表 -->
+  <select id="queryProductListByIds" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_product where id in 
+    <foreach item="item" index="index" collection="productIds" open="(" separator="," close=")">  
+	  #{item}  
+	 </foreach>  
+  </select>
 </mapper>

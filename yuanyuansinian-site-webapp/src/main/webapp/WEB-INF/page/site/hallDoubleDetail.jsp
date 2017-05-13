@@ -24,7 +24,7 @@
 		<div class="col-sm-8 col-md-9">
 			<div class="pro-header">
 				<h4 class="pro-title pull-left">基本信息</h4>
-				<p class="pull-right museum-des hidden-xs">天束幽花已经离开我们<mark>${hallDouble.days }</mark>天</p>
+				<p class="pull-right museum-des hidden-xs">已经离开我们<mark>${hallDouble.days }</mark>天</p>
 			</div>
 			<div class="clearfix"></div>
 			<div class="row museum-info-right">
@@ -158,6 +158,7 @@
 		src="${pageContext.request.contextPath}/static/js/hallDetail.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '纪念馆明细';
+		var hallType = "2";
 		//-------分页数据----------
 		var id = '${column_id }';
 		var totalPage = '${totalPage }';

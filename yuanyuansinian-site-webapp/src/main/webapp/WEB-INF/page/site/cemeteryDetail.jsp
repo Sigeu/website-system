@@ -26,9 +26,9 @@
 			</ul>
 		</div>
 		<div class="product-btn">
-			<button class="btn btn-warning btn-lg">加入购物车</button>
-			<button class="btn btn-danger btn-lg">立即购买</button>
-			<button class="btn btn-success btn-lg">预定本墓</button>
+			<button class="btn btn-warning btn-lg" id="add_cart_but">加入购物车</button>
+			<button class="btn btn-danger btn-lg" id="buy_now_but">立即购买</button>
+			<button class="btn btn-success btn-lg" id="buy_later_but" >预定本墓</button>
 		</div>
 	</div>
 </div>
@@ -70,18 +70,7 @@
 				</div>
 				<div class="clearfix"></div>
 				<div class="recommend-body">
-					<div class="thumbnail">
-						 <img src="${pageContext.request.contextPath}/static/images/ex2.jpg" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
-					<div class="thumbnail">
-						 <img src="${pageContext.request.contextPath}/static/images/ex.jpg" class="img-responsive" alt="img">
-						<div class="caption">
-							<a href="###"><h5>缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一缘园思念网网推荐陵园之一</h5></a>
-						</div>
-					</div>
+					<%@ include file="recommend-index.jsp"%>
 				</div>
 			</div>
 		</div>
@@ -90,6 +79,10 @@
 
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/shopping.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/cemetery.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '公墓陵园';
 		//-------分页数据----------

@@ -95,7 +95,7 @@
 				<a href="###" class="more pull-right">更多&raquo;</a>
 			</div>
 			<div class="clearfix"></div>
-			<div class="row" id="single_div" style="display: none"> 
+			<div class="row" id="single_div" style="display: block"> 
 				<c:forEach items="${listSingleHallByOpenType}" var="singleHall" varStatus="singleHallStatus"> 
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
@@ -126,7 +126,7 @@
 				</div>	
 				 
                 
-			<div class="row" id="double_div"  style="block">
+			<div class="row" id="double_div"  style="display:none">
 				<c:forEach items="${listHallDoubleByOpenType}" var="hallDouble" varStatus="hallDoubleStatus"> 
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
@@ -166,6 +166,8 @@
 		src="${pageContext.request.contextPath}/static/js/cemetery.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/article.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/oration.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '纪念馆';
 		//-------分页数据----------

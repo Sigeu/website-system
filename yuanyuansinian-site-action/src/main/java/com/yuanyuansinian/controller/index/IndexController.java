@@ -710,14 +710,15 @@ public class IndexController extends MyBaseController {
 		return "site/informationDetail";
 	}
 	
+	//用户文章内容
 	@RequestMapping("/toOrationDetail")
 	public String toOrationDetail(HttpServletRequest request, Model model) {
-		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
-		Content content = contentService.queryContentById(contentId);
+		int orationId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
+		Oration oration = orationService.queryOrationById(orationId);
 		
-		model.addAttribute("content", content);
+		model.addAttribute("oration", oration);
 		
-		return "site/noticeDetail";
+		return "site/orationDetail";
 	}
 	
 	/**
@@ -756,8 +757,11 @@ public class IndexController extends MyBaseController {
 	public String toShoppingDetail(HttpServletRequest request, Model model) {
 		int productId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
 		Product product = productService.queryProductById(productId);
-		
 		model.addAttribute("product", product);
+		
+		//公墓陵园推荐
+		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
+		model.addAttribute("cemeteryList", cemeteryList);
 		return "site/shoppingDetail";
 	}
 	
@@ -798,9 +802,11 @@ public class IndexController extends MyBaseController {
 	public String toCemeteryDetail(HttpServletRequest request, Model model) {
 		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
 		Cemetery cemetery = cemeteryService.queryCemeteryById(contentId);
-		
 		model.addAttribute("cemetery", cemetery);
 		
+		//公墓陵园推荐
+		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
+		model.addAttribute("cemeteryList", cemeteryList);
 		return "site/cemeteryDetail";
 	}
 	
@@ -864,6 +870,20 @@ public class IndexController extends MyBaseController {
 		return "site/memberCreate";
 	}
 	
+	//结算页面
+	@RequestMapping("/toSettlement")
+	public String toSettlement(HttpServletRequest request, Model model) {
+		String ids = request.getParameter("id")==null? "":request.getParameter("id");
+		String[] productIds = ids.split(",");
+		
+		//可以购买的产品
+		List<Product> productList = productService.queryProductListByIds(productIds);
+		model.addAttribute("productList", productList);
+		
+		return "site/settlementList";
+	}
+	
+	
 	/**
 	 * 
 	 * @Description: 查看纪念馆 
@@ -900,14 +920,23 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/toChooseMyProduct")
 	public String toChooseMyProduct(HttpServletRequest request, Model model) {
 		Member memberUser = super.getSessionMemberUser(request);
+		//纪念馆类型
+		String hallType = request.getParameter("hallType")==null? "":request.getParameter("hallType");
+		model.addAttribute("hallType", hallType);
+		
+		String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
+		model.addAttribute("hallId", hallId);
 		//type
 		String type = request.getParameter("type")==null? "":request.getParameter("type");
+		//已购买的产品
 		Warehouse warehouse = new Warehouse();
 		warehouse.setProduct_type(type);
 		warehouse.setMember_id(memberUser.getId()+"");
 		List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByType(type);
-		
 		model.addAttribute("listWarehouse", listWarehouse);
+		//可以购买的产品
+		List<Product> productList = productService.queryProductListByType(type);
+		model.addAttribute("productList", productList);
 		
 		 return "site/hallChooseMyProduct";
 	}

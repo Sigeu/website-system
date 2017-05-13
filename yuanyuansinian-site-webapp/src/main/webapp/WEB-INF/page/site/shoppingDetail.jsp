@@ -47,8 +47,8 @@
 				</div>
 				<div class="article-near">
 					<ul class="pager">
-						<li class="previous disabled"><a href="#">上一篇：没有了</a></li>
-						<li class="next"><a href="#">下一篇：记忆中的棉麻服饰搭配，你还记得吗？</a></li>
+						<!-- <li class="previous disabled"><a href="#">上一篇：没有了</a></li>
+						<li class="next"><a href="#">下一篇：记忆中的棉麻服饰搭配，你还记得吗？</a></li> -->
 					</ul>
 				</div>
 			</div>
@@ -68,6 +68,8 @@
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/shopping.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/cemetery.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '缘园商城';
 		// 项目路径

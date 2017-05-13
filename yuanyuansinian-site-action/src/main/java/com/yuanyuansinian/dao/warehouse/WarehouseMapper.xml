@@ -211,4 +211,12 @@
     and member_id = #{member_id,jdbcType=VARCHAR}
     and product_type = #{product_type,jdbcType=VARCHAR}
   </select>
+  
+  <update id="updateWarehouseForUse" parameterType="com.yuanyuansinian.model.warehouse.Warehouse">
+    update ujn_warehouse
+    set use_date = #{use_date,jdbcType=VARCHAR},
+      end_date = #{end_date,jdbcType=VARCHAR},
+      use_status = #{use_status,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

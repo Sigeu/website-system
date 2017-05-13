@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <header class="navbar-static-top navbar-top">
 	<div class="container">
-		<p class="navbar-text hidden-xs">24小时联系电话：0531-12345678</p>
+		<p class="navbar-text hidden-xs">24小时联系电话：0531-86951156</p>
 		<p class="navbar-text navbar-right"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberLogin" id="reg" class="navbar-link" style="color:#b85844">用户登录</a> | <a href="##" class="navbar-link" id="register_but1">用户注册</a> | <a href="${pageContext.request.contextPath}/sinian/contact/contactController/toContactUs" class="navbar-link">联系我们</a></p>
 	</div>
 </header>

@@ -5,8 +5,10 @@
 package com.yuanyuansinian.service.product.impl;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -214,6 +216,13 @@ public class ProductService implements IProductService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public List<Product> queryProductListByIds(String[] productIds) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productIds", productIds);
+		return productMapper.queryProductListByIds(map);
 	}
 
 }

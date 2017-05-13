@@ -19,16 +19,12 @@
 				<button class="btn btn-success" id="single_memorial_but" onclick="toShowSingleMemorial('${hall.id }')">
 					<span class="hidden-sm hidden-md">缘园</span>祭奠
 				</button>
-				<!-- <button class="btn btn-info">
-					纪念<span class="hidden-sm hidden-md">相</span>册
-				</button> -->
-				<!-- <button class="btn btn-warning">关注</button> -->
 			</div>
 			<div class="col-sm-8 col-md-9">
 				<div class="pro-header">
 					<h4 class="pro-title pull-left">基本信息</h4>
 					<p class="pull-right museum-des hidden-xs">
-						${hall.title }
+						已经离开我们
 						<mark>${hall.days }</mark>
 						天
 					</p>
@@ -131,6 +127,8 @@
 		src="${pageContext.request.contextPath}/static/js/hallDetail.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '纪念馆明细';
+		var hallType = "1";
+		var hallId = "${hall.id }";
 		//-------分页数据----------
 		var id = '${column_id }';
 		var totalPage = '${totalPage }';

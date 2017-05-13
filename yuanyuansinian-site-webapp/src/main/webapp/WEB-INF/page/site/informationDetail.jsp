@@ -62,8 +62,8 @@
 					</div>
 					<div class="article-near">
 						<ul class="pager">
-							<li class="previous disabled"><a href="#">上一篇：没有了</a></li>
-							<li class="next"><a href="#">下一篇：记忆中的棉麻服</a></li>
+							<!-- <li class="previous disabled"><a href="#">上一篇：没有了</a></li>
+							<li class="next"><a href="#">下一篇：记忆中的棉麻服</a></li> -->
 						</ul>
 					</div>
 				</div>
