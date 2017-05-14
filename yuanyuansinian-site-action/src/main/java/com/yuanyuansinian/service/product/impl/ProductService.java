@@ -191,8 +191,6 @@ public class ProductService implements IProductService {
                     	UUID uuid = UUID.randomUUID();
                         String fileName = uuid + myFileName; 
                         String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
-                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
-                        
                         //定义上传路径  
                         //String path = "E:/upload-file/"; 
                         File localFile = new File(path, fileName);  
@@ -201,11 +199,7 @@ public class ProductService implements IProductService {
                         }  
                         img_index.transferTo(localFile); 
                         //处理url
-                        String webNameSrc = request.getContextPath();
-                        String webName = webNameSrc.substring(1);
-                        String srcP = path.substring(path.indexOf(webName),path.length());
-                        String srcPathTem = srcP.replace("\\", "/");
-                        product.setPic("/" + srcPathTem + "/" + fileName);
+                        product.setPic(IMySystemConstants.SERVER_FILE_PATH + fileName);
                     }  
 	            }
 	        }

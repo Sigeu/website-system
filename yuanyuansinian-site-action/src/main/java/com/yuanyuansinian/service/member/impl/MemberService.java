@@ -168,11 +168,7 @@ public class MemberService implements IMemberService {
                         }  
                         img_index.transferTo(localFile); 
                         //处理url
-                        String webNameSrc = request.getContextPath();
-                        String webName = webNameSrc.substring(1);
-                        String srcP = path.substring(path.indexOf(webName),path.length());
-                        String srcPathTem = srcP.replace("\\", "/");
-                        member.setImgs("/" + srcPathTem + "/" + fileName);
+                        member.setImgs(IMySystemConstants.SERVER_FILE_PATH + fileName);
                     }  
 	            }
 	        }

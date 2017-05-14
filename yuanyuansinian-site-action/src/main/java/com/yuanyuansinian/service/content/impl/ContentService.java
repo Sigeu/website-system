@@ -205,11 +205,7 @@ public class ContentService implements IContentService {
                         }  
                         img_index.transferTo(localFile); 
                         //处理url
-                        String webNameSrc = request.getContextPath();
-                        String webName = webNameSrc.substring(1);
-                        String srcP = path.substring(path.indexOf(webName),path.length());
-                        String srcPathTem = srcP.replace("\\", "/");
-                        content.setCover_img_url("/" + srcPathTem + "/" + fileName);
+                        content.setCover_img_url(IMySystemConstants.SERVER_FILE_PATH + fileName);
                     }  
 	            }
 	        }

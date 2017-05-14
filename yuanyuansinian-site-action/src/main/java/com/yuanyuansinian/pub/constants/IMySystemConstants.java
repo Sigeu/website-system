@@ -59,7 +59,7 @@ public interface IMySystemConstants {
 
 	static final String FILE_PATH_IMAGE = "/upload/image/";
 	static final String FILE_PATH = "upload/";
-	
+	static final String SERVER_FILE_PATH = "/yuanyuansinian-site-webapp/upload/image/";
 	//绁枃
 	static final String COLUMN130 = "130";
 	//绾康棣�

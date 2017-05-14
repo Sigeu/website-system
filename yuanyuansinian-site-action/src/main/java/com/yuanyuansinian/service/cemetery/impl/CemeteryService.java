@@ -200,11 +200,8 @@ public class CemeteryService implements ICemeteryService {
                         }  
                         img_index.transferTo(localFile); 
                         //处理url
-                        String webNameSrc = request.getContextPath();
-                        String webName = webNameSrc.substring(1);
-                        String srcP = path.substring(path.indexOf(webName),path.length());
-                        String srcPathTem = srcP.replace("\\", "/");
-                        cemetery.setImgs("/" + srcPathTem + "/" + fileName);
+                      //处理url
+                        cemetery.setImgs(IMySystemConstants.SERVER_FILE_PATH + fileName);
                     }  
 	            }
 	        }

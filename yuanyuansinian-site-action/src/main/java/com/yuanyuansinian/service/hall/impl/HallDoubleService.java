@@ -211,11 +211,7 @@ public class HallDoubleService implements IHallDoubleService {
                         }  
                         img_index.transferTo(localFile); 
                         //处理url
-                        String webNameSrc = request.getContextPath();
-                        String webName = webNameSrc.substring(1);
-                        String srcP = path.substring(path.indexOf(webName),path.length());
-                        String srcPathTem = srcP.replace("\\", "/");
-                        hallDouble.setImgs("/" + srcPathTem + "/" + fileName);
+                        hallDouble.setImgs(IMySystemConstants.SERVER_FILE_PATH + fileName);
                     }
 	            }
 	        }
