@@ -228,6 +228,12 @@ public class ContentService implements IContentService {
 		// TODO Auto-generated method stub
 		return contentMapper.queryNoticeList(content);
 	}
+
+	@Override
+	public List<Content> queryContentListForSearch(ContentWithBLOBs content) {
+		// TODO Auto-generated method stub
+		return contentMapper.queryContentListForSearch(content);
+	}
 	
 
 

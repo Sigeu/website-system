@@ -67,4 +67,6 @@ public interface IMemberService {
 
 	Member queryMemberByEmail(String email,String pwd);
 
+	void uploadImg(HttpServletRequest request, String id);
+
 }

@@ -150,6 +150,7 @@ public class MemberController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			memberService.addMember(request, member);
+			map.put("model_id", member.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,10 +173,35 @@ public class MemberController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			memberService.addMember(request, member);
+			map.put("model_id", member.getId());
 			map.put(RESULT_MESSAGE_STRING, "注册成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 头像上传  
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/uploadImg")
+	public Map<String, Object> uploadImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			memberService.uploadImg(request, id);
+			
+			//map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
 
 		return map;
@@ -195,6 +221,7 @@ public class MemberController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		member.setCreate_date(MyDateUtil.getDateTime());
 		int count = this.memberService.updateMember(member);
+		map.put("model_id", member.getId());
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {
@@ -334,6 +361,21 @@ public class MemberController extends MyBaseController {
 			map.put(RESULT_STATUS_STRING, "0");
 		}
 
+		return map;
+	}
+	
+	//会员注销
+	@ResponseBody
+	@RequestMapping("/memberLogout")
+	public Map<String, Object> memberLogout(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			MyUserSessionUtil.removeMember(request);
+			map.put(RESULT_MESSAGE_STRING, "注销成功！");
+		} catch (Exception e) {
+			map.put(RESULT_MESSAGE_STRING, "登出失败，请联系管理员！");
+		}
+		
 		return map;
 	}
 }

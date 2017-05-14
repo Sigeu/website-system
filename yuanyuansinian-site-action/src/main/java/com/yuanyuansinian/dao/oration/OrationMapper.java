@@ -79,4 +79,6 @@ public interface OrationMapper {
 	List<Oration> queryOrationListByMemberAndHall(Map<String, Object> map);
 
 	List<Oration> queryOrationListByHall(Map<String, Object> map);
+
+	List<Oration> queryOrationNewListByMember(Map<String, Object> map);
 }

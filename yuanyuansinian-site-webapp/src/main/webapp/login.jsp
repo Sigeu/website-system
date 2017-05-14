@@ -47,7 +47,7 @@
 									<input id="password" name="password" type="password" class="form-control" placeholder="请输入您的密码">	
 								</div>
 							</div>
-							 <div class="form-group">
+							 <%-- <div class="form-group">
 								<label class="control-label col-md-3">验证码</label>
 								<div class="">
 									<div class="col-md-5 col-xs-8">
@@ -57,7 +57,7 @@
 										<a href="###"><img class="code-img pull-left" id="img_" src="${pageContext.request.contextPath}/verifyCodeServlet"></a> <a class="code-img-wd hidden-xs" id="kanbuq" href="##">换一张</a>
 									</div>
 								</div>
-							</div>
+							</div> --%>
 						</form>
 					</div>
 				</div>

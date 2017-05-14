@@ -84,4 +84,6 @@ public interface ContentMapper {
 	void uploadContentImg(Content content);
 
 	List<Content> queryNoticeList(Content content);
+
+	List<Content> queryContentListForSearch(ContentWithBLOBs content);
 }

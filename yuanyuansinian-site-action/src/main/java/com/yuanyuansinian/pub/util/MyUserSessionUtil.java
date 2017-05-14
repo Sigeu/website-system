@@ -132,6 +132,11 @@ public class MyUserSessionUtil {
 	public static void putMember(HttpServletRequest request, Object member) {
 		request.getSession().setAttribute(memberUserKey, member);
 	}
+	
+	//移除会员登录
+	public static void removeMember(HttpServletRequest request) {
+		request.getSession().removeAttribute(memberUserKey);
+	}
 
 	/**
 	 * 获取成员session

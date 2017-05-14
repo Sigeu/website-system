@@ -206,6 +206,13 @@ p.museum-des {position:relative; top:8px}
 	.settlement-number .form-horizontal .control-label {margin-bottom:7px; padding-right:0px; font-size:12px; color:#b85844; font-weight:normal; text-align:left}
 	.settlement-number .form-horizontal .settlement-input {padding-left:0px; font-size:12px}
 	.settlement-btn {margin:15px 0px}
+/*注册*/
+	.form-pos {position:relative}
+	.form-pos > label {position:absolute; top:5px; right:20px; color:#b85844}
+	.c-red {color:#b85844}
+	
+/*登录*/
+	.login-modal {position:static; margin-top:10px}
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
 	.navbar-logo {padding:0}
@@ -291,7 +298,7 @@ p.museum-des {position:relative; top:8px}
 	.new-noleft {padding-left:0; padding-right:10px; margin-bottom:0}
 	.new-noright {padding-right:0; padding-left:10px}
 	.new-navbar {height:220px}
-	.new-con {position:relative; margin-top:-100px}
+	.new-con {position:relative; margin-top:-120px}
 	.new-body {padding:20px 30px}
 	.new-notice {padding:0 30px; margin-bottom:20px}
 	.new-add {margin-top:90px}
@@ -317,6 +324,10 @@ p.museum-des {position:relative; top:8px}
 	.settlement-number .form-horizontal .control-label {margin-bottom:7px; padding-right:0px; font-size:12px; color:#b85844; font-weight:normal; text-align:left}
 	.settlement-number .form-horizontal .settlement-input {padding-left:0px; font-size:12px}
 	.settlement-btn {margin:15px 0px}
+	
+	/*登录*/
+	.login-modal {position:static; margin-top:10px}
+
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -399,6 +410,10 @@ p.museum-des {position:relative; top:8px}
 	.settlement-number .form-horizontal .control-label {margin-bottom:7px; font-size:15px}
 	.settlement-number .form-horizontal .settlement-input {font-size:15px}
 	.settlement-btn {margin:20px 0px}
+	
+	/*登录*/
+	.login-modal {position:static; margin-top:10px}
+	
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
@@ -468,5 +483,6 @@ p.museum-des {position:relative; top:8px}
 	.settlement-title {margin-bottom:10px; height:50px}
 	.settlement-price {margin-bottom:10px}
 	.settlement-number .form-horizontal .control-label {margin-bottom:10px}
-
+	
+	
 }

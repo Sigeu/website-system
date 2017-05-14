@@ -77,5 +77,7 @@ public interface IOrationService {
 
 	List<Oration> queryOrationListByHall(String hallId, int limitNum);
 
+	List<Oration> queryOrationNewListByMember(Integer memberId, int limitNum);
+
 
 }

@@ -383,8 +383,8 @@
     <include refid="Blob_Column_List" />
     from ujn_product
      where big_type = #{big_type,jdbcType=VARCHAR}
-   	 <if test="title != null and title != ''">
-   		and title like concat('%', #{title,jdbcType=VARCHAR}, '%')
+   	 <if test="name != null and name != ''">
+   		and name like concat('%', #{name,jdbcType=VARCHAR}, '%')
      </if>
      <if test="keywords != null and keywords != ''">
      	and keywords = #{keywords,jdbcType=VARCHAR}

@@ -12,13 +12,8 @@
 <body>
 	<%@ include file="siteHeader.jsp"%>
 	<div class="container con-tab miss">
-	<div class="col-sm-3 miss-ico">
-		<img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img" />
-	</div>
-	<div class="col-sm-9">
 		<%@ include file="memberInfo.jsp"%>
 	</div>
-</div>
 	<div class="container con-tab all-bg miss-con">		
 	<div class="row">
 		<div class="col-sm-3">
@@ -38,7 +33,7 @@
 			<div class="nav-title">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#setup" aria-controls="home" role="tab" data-toggle="tab">我的建馆</a></li>
-					<li role="presentation"><a href="#visit" aria-controls="profile" role="tab" data-toggle="tab">我的访问记录</a></li>
+					<!-- <li role="presentation"><a href="#visit" aria-controls="profile" role="tab" data-toggle="tab">我的访问记录</a></li> -->
 					<li role="presentation"><a href="#release" aria-controls="profile" role="tab" data-toggle="tab">我的发布</a></li>
 				</ul>
 			</div>

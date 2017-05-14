@@ -70,6 +70,8 @@ public interface IHallService {
 
 	void uploadSingleHallImg(HttpServletRequest request, String hall_id);
 
+	List<Hall> queryHallNewListByMember(Integer memberId, int limitNum);
+
 
 
 }

@@ -482,6 +482,27 @@
     </if>
   </select>
   
+     <!-- 内容列表 -->
+   <select id="queryContentListForSearch" parameterType="com.yuanyuansinian.model.content.Content" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_content
+    where 1=1
+    <if test="title != null and title != ''">
+        or title like concat('%', #{title}, '%')
+    </if>
+    <if test="keywords != null and keywords != ''">
+        or keywords like concat('%', #{keywords}, '%')
+    </if>
+     <if test="description != null and description != ''">
+        or description like concat('%', #{description}, '%')
+    </if>
+    <if test="content != null and content != ''">
+        or content like concat('%', #{description}, '%')
+    </if>
+  </select>
   
   <!-- 通知公告列表 -->
    <select id="queryNoticeList" parameterType="com.yuanyuansinian.model.content.Content" resultMap="ResultMapWithBLOBs">

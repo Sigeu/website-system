@@ -58,7 +58,7 @@
 				<input type="text" class="input-text" value="" placeholder="销售价格" id="price_site" name="price_site">
 			</div>
 		</div>
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">成本价格：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="成本价格" id="price_cost" name="price_cost">
@@ -69,9 +69,9 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="最低价格" id="price_min" name="price_min">
 			</div>
-		</div>
+		</div> -->
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">计算单位：</label>
+			<label class="form-label col-xs-4 col-sm-2">计价单位：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="计算单位" id="units" name="units">
 			</div>
@@ -89,12 +89,12 @@
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="0" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
-		</div>
+		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">产品封面：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -155,8 +155,8 @@ $(function() {
 				required:true,
 				number:true
 			},
-			no_order:{
-				digits:true
+			type:{
+				required:true
 			}
 		},
 		onkeyup:false,

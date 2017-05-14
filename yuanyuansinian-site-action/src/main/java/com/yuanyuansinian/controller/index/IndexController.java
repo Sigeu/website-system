@@ -303,7 +303,7 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/search")
 	public String search(HttpServletRequest request, Model model) {
-		String search_text = request.getParameter("serach_text")==null? "":request.getParameter("serach_text");
+		String search_text = request.getParameter("search_text")==null? "":request.getParameter("search_text");
 		// 最新公开信息 
 		ContentWithBLOBs content = new ContentWithBLOBs();
 		content.setTitle(search_text);
@@ -316,40 +316,15 @@ public class IndexController extends MyBaseController {
 		//内容列表
 		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
 		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
-		List<Content> contentList = contentService.queryContentList(content);
+		List<Content> contentList = contentService.queryContentListForSearch(content);
 		int totalRecords = contentList.size();
 		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
 		
-		// 网站联系方式
-		Contact contact = contactService.queryContact();
-		// 友情链接
-		List<Link> linkList = linkService.queryLinkList(null);
 		
-		// 侧栏年度报告 
-		Content contentReport = new Content();
-		String column_id_report = "103";
-		contentReport.setColumn_id(column_id_report);
-		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
-		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
-		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
-		//年度报告内容列表
-		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
 		
-		//栏目
-		List<Column> resultList = columnService.queryColumnList(null);
-		//排序
-		LinkedList<Column> result = new LinkedList<Column>();
-		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
-		//转换为ArrayList
-		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
-		
-		model.addAttribute("contact", contact);
-		model.addAttribute("linkList", linkList);
 		model.addAttribute("contentList", contentList);
 		model.addAttribute("totalRecords", totalRecords);
 		model.addAttribute("totalPage", totalPage);
-		model.addAttribute("contentReportList", contentReportList);
-		model.addAttribute("columnList", columnList);
 		model.addAttribute("search_text", search_text);
 		
 		return "site/searchList";
@@ -857,8 +832,9 @@ public class IndexController extends MyBaseController {
 			//已购买商品
 			List<Order> listOrder = orderService.queryOrderListByMember(memberUser.getId().toString(), IMySystemConstants.COUNT_NUM9);
 			model.addAttribute("listOrder", listOrder);
+			return "site/memberCart";
 		}
-		return "site/memberCart";
+		
 	}
 	
 	
@@ -866,8 +842,23 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/toMemberCreate")
 	public String toMemberCreate(HttpServletRequest request, Model model) {
 		
+		//获取登录的会员
+		Member memberUser = super.getSessionMemberUser(request);
+		if(null == memberUser){
+			return "redirect:/sinian/index/indexController/toMemberLogin";
+		}else{
+			//最新建馆:双人馆、单人馆合并后的结果集
+			List<Hall> listHallNew = hallService.queryHallNewListByMember(memberUser.getId(), IMySystemConstants.COUNT_NUM6);
+			model.addAttribute("listHallNew", listHallNew);
+			
+			//最新文章
+			List<Oration> listOrationNew = orationService.queryOrationNewListByMember(memberUser.getId(), IMySystemConstants.COUNT_NUM6);
+			model.addAttribute("listOrationNew", listOrationNew);
+			
+			
+			return "site/memberCreate";
+		}
 		
-		return "site/memberCreate";
 	}
 	
 	//结算页面

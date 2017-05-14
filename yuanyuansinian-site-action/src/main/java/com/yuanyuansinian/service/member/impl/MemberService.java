@@ -4,10 +4,11 @@
  */
 package com.yuanyuansinian.service.member.impl;
 
+import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.yuanyuansinian.dao.member.MemberMapper;
 import com.yuanyuansinian.model.member.Member;
+import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.member.IMemberService;
 
@@ -87,43 +89,6 @@ public class MemberService implements IMemberService {
 	 */
 	@Override
 	public int addMember(HttpServletRequest request,Member member) {
-		try {
-			//创建一个通用的多部分解析器  
-	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
-	        //判断 request 是否有文件上传,即多部分请求  
-	        if(multipartResolver.isMultipart(request)){  
-	            //转换成多部分request    
-	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
-	            //取得request中的所有文件名  
-	            Iterator<String> iter = multiRequest.getFileNames();  
-	            while(iter.hasNext()){  
-	                //取得上传文件  
-	                MultipartFile file = multiRequest.getFile(iter.next());  
-	                member.setPic(file.getBytes());
-	               /* if(file != null){  
-	                    //取得当前上传文件的文件名称  
-	                    String myFileName = file.getOriginalFilename();  
-	                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
-	                    if(myFileName.trim() !=""){  
-	                        //重命名上传后的文件名  
-	                    	UUID uuid = UUID.randomUUID();
-	                        String fileName = uuid + file.getOriginalFilename(); 
-	                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
-	                        //定义上传路径  
-	                        //String path = "E:/upload-file/"; 
-	                        File localFile = new File(path, fileName);  
-	                        if(!localFile.exists()){  
-	                        	localFile.mkdirs();  
-	                        }  
-	                        file.transferTo(localFile);  
-	                        member.setPic(IMySystemConstants.FILE_PATH_IMAGE + fileName);
-	                    }  
-	                }*/  
-	            }  
-	        }
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 		//创建时间
 		member.setCreate_date(MyDateUtil.getDateTime());
 		return memberMapper.insert(member);
@@ -169,6 +134,55 @@ public class MemberService implements IMemberService {
 		map.put("email", email);
 		map.put("pwd", pwd);
 		return memberMapper.queryMemberByEmail(map);
+	}
+
+	@Override
+	public void uploadImg(HttpServletRequest request, String id) {
+		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        Member member =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	member =  new Member();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+	            member.setId(Integer.parseInt(id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_");
+	            if(null != img_index){
+                    //取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        
+                        //定义上传路径  
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        String webNameSrc = request.getContextPath();
+                        String webName = webNameSrc.substring(1);
+                        String srcP = path.substring(path.indexOf(webName),path.length());
+                        String srcPathTem = srcP.replace("\\", "/");
+                        member.setImgs("/" + srcPathTem + "/" + fileName);
+                    }  
+	            }
+	        }
+	        //保存
+	        memberMapper.uploadImg(member);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 	}
 	
 

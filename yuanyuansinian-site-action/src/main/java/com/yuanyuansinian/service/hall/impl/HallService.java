@@ -227,4 +227,12 @@ public class HallService implements IHallService {
 		}
 		
 	}
+
+	@Override
+	public List<Hall> queryHallNewListByMember(Integer memberId, int limitNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("limitNum", limitNum);
+		return hallMapper.queryHallNewListByMember(map);
+	}
 }

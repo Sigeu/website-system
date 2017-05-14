@@ -27,9 +27,9 @@
 						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus"> 
 							<c:if test="${hallStatus.index == 0 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toShowHall('${hallNew.id}');"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
+									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
 									<div class="caption">
-										<a href="###"><h5>${hallNew.title}</h5></a>
+										<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><h5>${hallNew.title}</h5></a>
 										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
 									</div>
 								</div>
@@ -40,9 +40,9 @@
 						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus"> 
 							<c:if test="${hallStatus.index == 1 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toShowHall('${hallNew.id}');"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
+									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
 									<div class="caption">
-										<a href="###"><h5>${hallNew.title}</h5></a>
+										<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><h5>${hallNew.title}</h5></a>
 										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
 									</div>
 								</div>
@@ -53,9 +53,9 @@
 						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus">  
 							<c:if test="${hallStatus.index == 2 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toShowHall('${hallNew.id}');"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
+									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
 									<div class="caption">
-										<a href="###"><h5>${hallNew.title}</h5></a>
+										<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><h5>${hallNew.title}</h5></a>
 										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
 									</div>
 								</div>
@@ -152,13 +152,13 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/notice.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/static/js/index.js"></script>
-<script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/information.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/oration.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/cemetery.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/article.js"></script>
 <script type="text/javascript">
 	var activeFlag = '首页';
 	$('#index_li').addClass('active');

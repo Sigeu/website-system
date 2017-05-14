@@ -1,4 +1,3 @@
-yuanyuansinian-site-webapp/src/main/webapp/WEB-INF/page/site/hallDetail.js
 /**
  * 纪念馆详情
  * @author lzh_me@126.com

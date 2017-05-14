@@ -71,4 +71,6 @@ public interface MemberMapper {
 	int queryMemberCountByEmail(String email);
 
 	Member queryMemberByEmail(Map<String, Object> map);
+
+	void uploadImg(Member member);
 }

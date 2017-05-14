@@ -4,7 +4,17 @@
 <header class="navbar-static-top navbar-top">
 	<div class="container">
 		<p class="navbar-text hidden-xs">24小时联系电话：0531-86951156</p>
-		<p class="navbar-text navbar-right"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberLogin" id="reg" class="navbar-link" style="color:#b85844">用户登录</a> | <a href="##" class="navbar-link" id="register_but1">用户注册</a> | <a href="${pageContext.request.contextPath}/sinian/contact/contactController/toContactUs" class="navbar-link">联系我们</a></p>
+		<p class="navbar-text navbar-right">
+		<c:choose>  
+	   <c:when test="${empty sessionScope.memberUser}">
+	   	<a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberLogin" class="navbar-link" style="color:#b85844">用户登录</a>
+	   </c:when>  
+	   <c:otherwise>
+		   <a href="##" id="logout_but" class="navbar-link" style="color:#b85844">注销</a>
+	   </c:otherwise>  
+	</c:choose>  
+		 | <a href="${pageContext.request.contextPath}/sinian/index/indexController/toRegister" class="navbar-link" id="register_but1">用户注册</a>
+		  | <a href="${pageContext.request.contextPath}/sinian/contact/contactController/toContactUs" class="navbar-link">联系我们</a></p>
 	</div>
 </header>
 <div class="navbar navbar-logo">

@@ -72,4 +72,6 @@ public interface IContentService {
 
 	List<Content> queryNoticeList(Content content);
 
+	List<Content> queryContentListForSearch(ContentWithBLOBs content);
+
 }

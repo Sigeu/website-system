@@ -32,7 +32,26 @@ $(function() {
 $(function() {
 	$('#search_but').on('click',function(){
 		var url = contextPath + "/sinian/index/indexController/search?"+ new Date().getTime();  
-		$('#search_form').attr("action", url).submit();;
+		$('#search_form').attr("action", url).submit();
 	});
+	
+		
+		
 });
 /*----------------------搜索end-----------------------*/
+
+//注销
+$('#logout_but').on('click',function(){
+	$.ajax({
+		method : "POST",
+		url : contextPath + "/sinian/member/memberController/memberLogout",
+		data : {
+			//id : id
+		}
+	}).done(function(data) {
+		layer.alert(data.result_message, {
+			 closeBtn: 1
+		}, function(){
+			window.location.href = contextPath + '/sinian/index/indexController/toMemberLogin';
+		});	});
+});

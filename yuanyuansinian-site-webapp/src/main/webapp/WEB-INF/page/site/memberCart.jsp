@@ -12,12 +12,7 @@
 <body>
 	<%@ include file="siteHeader.jsp"%>
 	<div class="container con-tab miss">
-	<div class="col-sm-3 miss-ico">
-		<img src="${pageContext.request.contextPath}/static/images/ex3.jpg" class="img-responsive" alt="img" />
-	</div>
-	<div class="col-sm-9">
 		<%@ include file="memberInfo.jsp"%>
-	</div>
 </div>
 
 <div class="container con-tab all-bg miss-con">		

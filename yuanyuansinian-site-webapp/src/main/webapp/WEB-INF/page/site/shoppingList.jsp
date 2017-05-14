@@ -39,7 +39,7 @@
 									<a href="###" onclick="toShoppingDetail('${product1.id }')"><img src="${product1.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product1.id }')"><h5>${product1.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
-										<small>￥</small>${product1.price_market }
+										<small>￥</small>${product1.price_site }
 									</div>
 								</div>
 							</div>
@@ -66,7 +66,7 @@
 									<a href="###" onclick="toShoppingDetail('${product2.id }')"><img src="${product2.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product2.id }')"><h5>${product2.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
-										<small>￥</small>${product2.price_market }
+										<small>￥</small>${product2.price_site }
 									</div>
 								</div>
 							</div>
@@ -93,7 +93,7 @@
 									<a href="###" onclick="toShoppingDetail('${product3.id }')"><img src="${product3.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product3.id }')"><h5>${product3.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
-										<small>￥</small>${product3.price_market }
+										<small>￥</small>${product3.price_site }
 									</div>
 								</div>
 							</div>

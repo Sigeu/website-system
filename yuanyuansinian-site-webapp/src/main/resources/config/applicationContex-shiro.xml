@@ -137,11 +137,13 @@
 				/verifyCodeServlet = anon
 				/sinian/member/memberController/registerMember = anon
 				/sinian/member/memberController/memberLogin = anon
+				/sinian/member/memberController/memberLogout = anon
 				/sinian/carousel/carouselController/queryImgById*  = anon
 				/sinian/contact/** = anon
 				/sinian/hallDouble/hallDoubleController/toHallDoubleAdd = anon
 				/sinian/hallDouble/hallDoubleController/addDoubleHall = anon
 				/sinian/hallDouble/hallDoubleController/uploadImg = anon
+				/sinian/member/memberController/uploadImg = anon
 				/sinian/hall/hallController/toHallSingleAdd = anon
 				/sinian/hall/hallController/addSingleHall = anon
 				/sinian/hall/hallController/uploadSingleHallImg = anon

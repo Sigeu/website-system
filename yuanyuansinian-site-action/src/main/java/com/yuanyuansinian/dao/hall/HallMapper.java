@@ -79,4 +79,6 @@ public interface HallMapper {
 
 	void uploadSingleHallImg(HallWithBLOBs hall);
 
+	List<Hall> queryHallNewListByMember(Map<String, Object> map);
+
 }

@@ -34,7 +34,7 @@
 </div>
 
 
-<div class="modal show" id="regModal" tabindex="-1" data-backdrop="static">
+<div class="modal show login-modal" id="regModal" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -55,7 +55,7 @@
 								<input type="password" class="form-control" id="pwd" name="pwd" placeholder="请输入您的密码">	
 							</div>
 						</div>
-						 <div class="form-group">
+						 <%-- <div class="form-group">
 							<label class="control-label col-md-3">验证码</label>
 							<div class="">
 								<div class="col-md-5 col-xs-8">
@@ -65,7 +65,7 @@
 									<a href="###"><img src="${pageContext.request.contextPath}/static/images/code.jpg" class="code-img pull-left"></a><a href="###" class="code-img-wd hidden-xs">换一张</a>
 								</div>
 							</div>
-						</div>
+						</div> --%>
 					</form>
 				</div>
 			</div>
@@ -77,23 +77,7 @@
 		</div>
 	</div>
 </div>
-	<footer id="footer" class="navbar-fixed-bottom">
-	<div class="container">
-		<div class="col-sm-9">
-			<ul>
-				<li>Copyright &copy; 2017-2017 Yuanyuansinianwang</li>
-				<li>鲁ICP备**********号</li>
-				<li>地址：济南市历下区历山路76号 电话：0531-12345678 <span class="hidden-xs hidden-sm">邮编：250000</span></li>
-			</ul>
-		</div>
-		<div class="col-sm-3">
-			<div class="footer-tool pull-right hidden-xs">
-				<p>技术支持：源拾科技有限公司</p>
-				<p>技术邮箱：lzh_me@126.com</p>
-			</div>
-		</div>
-	</div>
-</footer>
+	<%@ include file="siteFooterForLogin.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/member.js"></script>
