@@ -113,7 +113,7 @@
 				<div class="new-add">
 					<input type="checkbox" checked="checked"><a href="###">阅读并同意缘园思念网服务条款</a>
 					<div class="clearfix"></div>
-					<button class="btn btn-warning" id="submit_but">提交建馆</button>
+					<button class="btn btn-warning" id="submit_but">提交</button>
 				</div>
 			</form>
 		</div>

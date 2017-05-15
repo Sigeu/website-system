@@ -34,17 +34,9 @@ $(function() {
 
 $(function() {
 	/*----------------------用户注册 begin---------------------*/
-	//$('#register_but1,#register_but2').on('click',function(){
-		//window.location.href = contextPath + '/sinian/index/indexController/toRegister';
-		/*layer.open({
-		    type: 2,
-		    maxmin:true,
-		    title:["用户注册"],
-		    area: ['60%', '90%'],
-		    shadeClose: false, //点击遮罩关闭
-		    content: contextPath + '/sinian/index/indexController/toRegister'
-		 });*/
-	//});
+	$('#register_but2').on('click',function(){
+		window.location.href = contextPath + '/sinian/index/indexController/toRegister';
+	});
 	/*----------------------用户注册 end-----------------------*/
 	
 	/*----------------------会员登录返回首页 begin-----------------------*/
