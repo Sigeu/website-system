@@ -19,8 +19,8 @@
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" id="hall" name="hall">
 					<option value="0">--请选择--</option>  
-                    <c:forEach items="${typeSelectList}" var="column">  
-                    	<option value=""></option>  
+                    <c:forEach items="${listHallNew}" var="hall">  
+                    	<option value="${hall.id}">${hall.title}</option>  
                     </c:forEach>  
 				</select>
 				</span> </div>

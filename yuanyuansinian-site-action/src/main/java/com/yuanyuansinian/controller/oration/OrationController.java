@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.yuanyuansinian.model.hall.Hall;
 import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.oration.Oration;
 import com.yuanyuansinian.pub.base.MyBaseController;
+import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.column.IColumnService;
+import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.oration.IOrationService;
 
 import framework.system.pub.util.DataTablePageUtil;
@@ -43,6 +46,10 @@ public class OrationController extends MyBaseController {
 	
 	@Resource
 	private IColumnService columnService;
+	
+	// 纪念馆
+	@Resource
+	private IHallService hallService;
 
 	/**
 	 * 
@@ -84,7 +91,10 @@ public class OrationController extends MyBaseController {
 		if(null == memberUser){
 			return "redirect:/sinian/index/indexController/toMemberLogin";
 		}else{
-
+			//最新建馆:双人馆、单人馆合并后的结果集
+			List<Hall> listHallNew = hallService.queryHallNewListByMember(memberUser.getId(), IMySystemConstants.COUNT_NUM6);
+			model.addAttribute("listHallNew", listHallNew);
+			
 			return "oration/orationAdd";
 		}
 	}

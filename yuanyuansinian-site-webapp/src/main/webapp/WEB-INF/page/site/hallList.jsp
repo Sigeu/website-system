@@ -21,7 +21,7 @@
 				<div class="memorial-pro">
 					<div class="pro-header">
 						<h4 class="pro-title pull-left">最新建馆</h4>
-						<a href="###" class="more pull-right">更多&raquo;</a>
+						<a href="#moreHall" class="more pull-right">更多&raquo;</a>
 					</div>
 					<div class="clearfix"></div>
 					<div class="with-date">
@@ -38,7 +38,7 @@
 				<div class="memorial-pro metorial-arc">
 					<div class="pro-header">
 						<h4 class="pro-title pull-left">最新文章</h4>
-						<a href="###" class="more pull-right">更多&raquo;</a>
+						<a href="${pageContext.request.contextPath}/sinian/index/indexController/toInformationList?id=130" class="more pull-right">更多&raquo;</a>
 					</div>
 					<div class="clearfix"></div>
 					<div class="without-date">
@@ -88,11 +88,10 @@
 			<%@ include file="recommend.jsp"%>
 		</div>
 		<div class="all-info img-list">
-			<div class="pro-header">
+			<div class="pro-header" id="moreHall">
 				<h4 class="pro-title pull-left">网上纪念馆</h4>
 				<button class="btn btn-warning btn-xs btn-memorial" id="single_hall">单人馆</button>
 				<button class="btn btn-warning btn-xs btn-memorial" id="double_hall">双人馆</button>
-				<a href="###" class="more pull-right">更多&raquo;</a>
 			</div>
 			<div class="clearfix"></div>
 			<div class="row" id="single_div" style="display: block"> 

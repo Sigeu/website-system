@@ -38,11 +38,11 @@
 						</ul>
 						<ul
 							class="pull-right pro-header-tool hidden-xs hidden-sm nav-title-tool">
-							<li class="pull-left"><a href="###">时间<span
+							<!-- <li class="pull-left"><a href="###">时间<span
 									class="glyphicon glyphicon-arrow-up"></span></a></li>
 							<li class="pull-left"><a href="###">热度<span
 									class="glyphicon glyphicon-arrow-down"></span></a></li>
-							<li class="pull-left"><a href="###">更多&raquo;</a></li>
+							<li class="pull-left"><a href="###">更多&raquo;</a></li> -->
 						</ul>
 					</div>
 					<div class="tab-content">

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="pro-header">
 	<h4 class="pro-title pull-left">公墓陵园推荐</h4>
-	<a href="###" class="more pull-right" onclick="toCemeteryList()">更多&raquo;</a>
+	<a href="${pageContext.request.contextPath}/sinian/index/indexController/toCemeteryList" class="more pull-right">更多&raquo;</a>
 </div>
 <div class="clearfix"></div>
 <div class="recommend-body">

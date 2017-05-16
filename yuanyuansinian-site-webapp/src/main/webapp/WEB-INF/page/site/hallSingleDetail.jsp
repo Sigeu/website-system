@@ -38,7 +38,7 @@
 							<li><span class="pull-left">国籍：</span>${hall.nationality }</li>
 							<li><span class="pull-left">出生地：</span>${hall.birthplace }</li>
 							<li><span class="pull-left">墓地地址：</span>${hall.address }</li>
-							<li><span class="pull-left">主要成就：</span>${hall.achievement }</li>
+							<%-- <li><span class="pull-left">主要成就：</span>${hall.achievement }</li> --%>
 						</ul>
 					</div>
 					<div class="col-sm-6">
@@ -61,6 +61,8 @@
 						aria-controls="home" role="tab" data-toggle="tab">生平事迹</a></li>
 					<li role="presentation"><a href="#anthology"
 						aria-controls="profile" role="tab" data-toggle="tab">追忆文选</a></li>
+					<li role="presentation"><a href="#message"
+						aria-controls="profile" role="tab" data-toggle="tab">主要成就</a></li>
 					<!-- <li role="presentation"><a href="#message"
 						aria-controls="profile" role="tab" data-toggle="tab">追思留言</a></li>
 					<li role="presentation"><a href="#album"
@@ -96,7 +98,7 @@
 				<div class="tab-pane active" id="deeds">
 					<!-- 生平事迹，也就是文章内容模板start -->
 					<div class="article-body">
-						<p>${hall.description }</p>
+						<p>${hall.life_story }</p>
 					</div>
 					<!-- end -->
 				</div>
@@ -120,6 +122,13 @@
 							<li><a href="#" aria-label="Next"><span
 									aria-hidden="true">&raquo;</span></a></li>
 						</ul>
+					</div>
+					<!-- end -->
+				</div>
+				<div class="tab-pane" id="message">
+					<!-- 生平事迹，也就是文章内容模板start -->
+					<div class="article-body">
+						<p>${hall.achievement }</p>
 					</div>
 					<!-- end -->
 				</div>
