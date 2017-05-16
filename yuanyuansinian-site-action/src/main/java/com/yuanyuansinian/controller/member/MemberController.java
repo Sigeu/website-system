@@ -342,6 +342,10 @@ public class MemberController extends MyBaseController {
 	public Map<String, Object> memberLogin(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Member member = null;
+		//标识为灵堂购买礼品
+		String flag = request.getParameter("flag")==null? "":request.getParameter("flag");
+		//标识礼品分类
+		String type = request.getParameter("type")==null? "":request.getParameter("type");
 		String name = request.getParameter("name")==null? "":request.getParameter("name");
 		String pwd = request.getParameter("pwd")==null? "":request.getParameter("pwd");
 		if(!"".equals(name) && name.indexOf("@") > 0){
@@ -356,6 +360,8 @@ public class MemberController extends MyBaseController {
 			MyUserSessionUtil.putMember(request, member);
 			map.put(RESULT_MESSAGE_STRING, "登录成功！");
 			map.put(RESULT_STATUS_STRING, "1");
+			map.put("flag", flag);
+			map.put("type", type);
 		} else {
 			map.put(RESULT_MESSAGE_STRING, "用户不存在！");
 			map.put(RESULT_STATUS_STRING, "0");

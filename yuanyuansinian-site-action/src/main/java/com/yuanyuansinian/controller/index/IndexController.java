@@ -12,12 +12,17 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.github.pagehelper.PageHelper;
 import com.yuanyuansinian.model.carousel.Carousel;
 import com.yuanyuansinian.model.cart.Cart;
@@ -26,6 +31,7 @@ import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.model.content.Content;
 import com.yuanyuansinian.model.content.ContentWithBLOBs;
+import com.yuanyuansinian.model.gift.HallGift;
 import com.yuanyuansinian.model.hall.Hall;
 import com.yuanyuansinian.model.hall.HallDouble;
 import com.yuanyuansinian.model.link.Link;
@@ -44,6 +50,7 @@ import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.config.IConfigService;
 import com.yuanyuansinian.service.contact.IContactService;
 import com.yuanyuansinian.service.content.IContentService;
+import com.yuanyuansinian.service.gift.IHallGiftService;
 import com.yuanyuansinian.service.hall.IHallDoubleService;
 import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.link.ILinkService;
@@ -109,6 +116,10 @@ public class IndexController extends MyBaseController {
 	
 	@Resource
 	private IWarehouseService warehouseService;
+	
+	// 纪念馆灵堂礼物Service
+	@Resource
+	private IHallGiftService hallGiftService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -557,13 +568,16 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/toShowSingleMemorial")
 	public String toShowSingleMemorial(HttpServletRequest request, Model model) {
-		
+		//纪念馆内容
 		int hallId = Integer.parseInt(request.getParameter("id"));
 		Hall hall = this.hallService.queryHallById(hallId);
-		
 		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hall.getDeath_date());
 		hall.setDays(days);
 		model.addAttribute("hall", hall);
+		
+		//当前纪念馆摆放的礼物
+		List<HallGift>  listHallGift = this.hallGiftService.queryHallGiftListForHall(hallId, IMySystemConstants.COUNT_NUM15);
+		model.addAttribute("listHallGift", listHallGift);
 		
 		return "site/hallSingleMemorial";
 	}
@@ -571,7 +585,7 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 跳转到单人纪念馆-祭奠
+	 * @Description: 跳转到双人纪念馆-祭奠
 	 * @param request
 	 * @param model
 	 * @return
@@ -585,6 +599,11 @@ public class IndexController extends MyBaseController {
 		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hallDouble.getDeath_date());
 		hallDouble.setDays(days);
 		model.addAttribute("hallDouble", hallDouble);
+		
+		
+		//当前纪念馆摆放的礼物
+		List<HallGift>  listHallGift = this.hallGiftService.queryHallGiftListForHall(hallId, IMySystemConstants.COUNT_NUM15);
+		model.addAttribute("listHallGift", listHallGift);
 		
 		return "site/hallDoubleMemorial";
 	}
@@ -903,7 +922,7 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 跳转到已买产品页面 
+	 * @Description: 跳转到已买产品页面 (舍弃，礼品不存放仓库，直接购买使用)
 	 * @param request
 	 * @param model
 	 * @return
@@ -1006,8 +1025,58 @@ public class IndexController extends MyBaseController {
 	 */
 	@RequestMapping("/toMemberLogin")
 	public String toMemberLogin(HttpServletRequest request, Model model) {
+		//标识为灵堂购买礼品
+		String flag = request.getParameter("flag")==null? "":request.getParameter("flag");
+		//标识礼品分类
+		String type = request.getParameter("type")==null? "":request.getParameter("type");
+		model.addAttribute("flag", flag);
+		model.addAttribute("type", type);
 		
 		return "site/memberLogin";
+	}
+	
+	//显示购买的礼品和总金额
+	@RequestMapping("/toPay")
+	public void toPay(HttpServletRequest request, HttpServletResponse response, Model model) {
+		try {
+			Member memberUser = super.getSessionMemberUser(request);
+			//礼品
+			String ids = request.getParameter("ids")==null? "":request.getParameter("ids");
+			//总价
+			String count = request.getParameter("count")==null? "":request.getParameter("count");
+			orderService.addOrderByIds(request, ids, memberUser.getId()+"", count);
+			//支付
+			AlipayClient alipayClient = new DefaultAlipayClient(
+					IMySystemConstants.ALIPAY_URL, IMySystemConstants.APP_ID,
+					IMySystemConstants.APP_PRIVATE_KEY, IMySystemConstants.FORMAT, IMySystemConstants.CHARSET, IMySystemConstants.ALIPAY_PUBLIC_KEY, IMySystemConstants.SIGN_TYPE); // 获得初始化的AlipayClient
+			AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();// 创建API对应的request
+			alipayRequest.setReturnUrl(IMySystemConstants.RETURN_URL);
+			alipayRequest.setNotifyUrl(IMySystemConstants.NOTIFY_URL);// 在公共参数中设置回跳和通知地址
+			alipayRequest
+					.setBizContent("{"
+							+ "    \"out_trade_no\":\"20150320010101001\","
+							+ "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\","
+							+ "    \"total_amount\":88.88,"
+							+ "    \"subject\":\"Iphone6 16G\","
+							+ "    \"body\":\"Iphone6 16G\","
+							+ "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\","
+							+ "    \"extend_params\":{"
+							+ "    \"sys_service_provider_id\":\"2088511833207846\""
+							+ "    }" + "  }");// 填充业务参数
+			String form = "";
+			try {
+				form = alipayClient.pageExecute(alipayRequest).getBody(); // 调用SDK生成表单
+			} catch (AlipayApiException e) {
+				e.printStackTrace();
+			}
+			response.setContentType("text/html;charset=" + IMySystemConstants.CHARSET);
+			response.getWriter().write(form);// 直接将完整的表单html输出到页面
+			response.getWriter().flush();
+			response.getWriter().close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
 	/**

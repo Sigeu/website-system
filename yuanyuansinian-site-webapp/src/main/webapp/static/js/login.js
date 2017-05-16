@@ -7,10 +7,18 @@ $(function() {
 	//登录
 	var options = {
 			success : function(data) {
-				var flag = data.status_flag;
-				if(flag == '1'){
-					//layer.alert("登录成功！");
-					window.location.href = contextPath + '/sinian/index/indexController/toMemberCenter';
+				var status_flag = data.status_flag;
+				if(status_flag == '1'){
+					//区分是否是灵堂购买礼品
+					var flag = data.flag;
+					//礼品分类
+					var type = data.type;
+					if(flag == 'buy'){
+						window.location.href = contextPath + '/sinian/index/indexController/toChooseProduct?type=' + type;
+					}else{
+						window.location.href = contextPath + '/sinian/index/indexController/toMemberCenter';
+					}
+					
 				}
 			},
 			error : function(data) {

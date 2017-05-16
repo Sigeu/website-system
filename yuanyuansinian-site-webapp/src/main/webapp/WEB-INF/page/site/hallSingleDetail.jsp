@@ -70,6 +70,14 @@
 				<div class="btn-tools pull-right hidden-xs">
 					<c:choose>  
 					   <c:when test="${empty sessionScope.memberUser}">
+					   		<button class="btn btn-danger" id="incense_but_nouser">上香</button>
+							</li>
+							<button class="btn btn-danger" id="tribute_but_nouser">贡品</button>
+							</li>
+							<button class="btn btn-danger" id="flowers_but_nouser">献花</button>
+							</li>
+							<button class="btn btn-danger" id="song_but_nouser">点歌</button>
+							</li>
 					   </c:when>  
 					   <c:otherwise>
 						   <button class="btn btn-danger" id="incense_but">上香</button>

@@ -12,29 +12,36 @@
 <body>
 	<%@ include file="siteHeader.jsp"%>
 	
-<%-- <div class="container incense">
-	<div class="incense-body">
-		<img src="${pageContext.request.contextPath}/static/images/incense.jpg" class="img-responsive incense-bg">
-		<img src="${hall.imgs }" class="img-responsive incense-img">
-		<div class="incense-btn">
-			<button class="btn btn-danger">上香</button>
-			<button class="btn btn-danger">贡品</button>
-			<button class="btn btn-danger">献花</button>
-			<button class="btn btn-danger">点歌</button>
-		</div>
-	</div>
-</div> --%>
-
 <div class="container incense">
 	<div class="incense-body">
 		<img src="${pageContext.request.contextPath}/static/images/incense.jpg" class="img-responsive incense-bg" alt="incense">
 		<img src="${hall.imgs }" class="img-responsive incense-img" alt="incense">
-		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left"><!-- 左侧花 -->
+		<c:forEach items="${listHallGift}" var="hallGift" varStatus="hallGiftStatus"> 
+			<c:if test="${hallGift.product_type == 1 } ">
+				<c:if test="${hallGift.product_position == 1 } ">
+					<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left"><!-- 左侧花 -->
+				</c:if>
+				<c:if test="${hallGift.product_position == 2 } ">
+					<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-right"><!-- 右侧花 -->
+				</c:if>
+			</c:if>
+			
+			<c:if test="${hallGift.product_type == 2 } ">
+				<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant"><!-- 香 -->
+			</c:if>
+			
+		</c:forEach>
+						
+		<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left"><!-- 左侧花 -->
 		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-right"><!-- 右侧花 -->
-		<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant"><!-- 香 -->
+		<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant"><!-- 香 --> --%>
 		<div class="incense-btn">
 			<c:choose>  
 			   <c:when test="${empty sessionScope.memberUser}">
+			   		 <button class="btn btn-danger" id="incense_but_nouser">上香</button>
+					<button class="btn btn-danger" id="tribute_but_nouser">贡品</button>
+					<button class="btn btn-danger" id="flowers_but_nouser">献花</button>
+					<button class="btn btn-danger" id="song_but_nouser">点歌</button>
 			   </c:when>  
 			   <c:otherwise>
 				    <button class="btn btn-danger" id="incense_but">上香</button>

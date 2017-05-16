@@ -77,4 +77,24 @@ public interface IMySystemConstants {
 	
 	//澧撳湴鍒嗙被
 	static final String CEMETERY_TYPE = "cemetery_type";
+	
+	//alipay
+	//支付宝网关（固定）
+	static final String ALIPAY_URL = "https://openapi.alipay.com/gateway.do";
+	//APPID 即创建应用后生成
+	static final String APP_ID = "";
+	//开发者私钥，由开发者自己生成
+	static final String APP_PRIVATE_KEY = ""; 
+	//参数返回格式，只支持json
+	static final String FORMAT = "json"; 
+	//编码集，支持GBK/UTF-8
+	static final String CHARSET = "UTF-8";
+	//支付宝公钥，由支付宝生成
+	static final String ALIPAY_PUBLIC_KEY = "";
+	//商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2
+	static final String SIGN_TYPE = "RSA2";
+	//支付宝网关（固定）
+	static final String RETURN_URL = "http://www.sdyysn.com/CallBack/return_url.jsp";
+	//支付宝网关（固定）
+	static final String NOTIFY_URL = "http://www.sdyysn.com/CallBack/notify_url.jsp";
 }

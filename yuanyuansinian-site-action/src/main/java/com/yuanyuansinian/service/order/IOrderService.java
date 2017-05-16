@@ -64,5 +64,7 @@ public interface IOrderService {
 
 	List<Order> queryOrderListByMember(String memberId, int limtNum);
 
+	void addOrderByIds(HttpServletRequest request, String ids, String memberId, String count);
+
 
 }

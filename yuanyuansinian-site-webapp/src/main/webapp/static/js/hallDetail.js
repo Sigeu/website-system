@@ -11,12 +11,34 @@ $(function(){
 	//});
 	//上香
 	$('#incense_but').on('click',function(){
-		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=1";
+		window.location.href = contextPath + "/sinian/index/indexController/toChooseProduct?type=1";
 	});
+	//未登录点击
+	$('#incense_but_nouser').on('click',function(){
+		layer.alert("尚未登录，请登录后购买！", {
+		  closeBtn: 1
+		}, function(){
+			//先登录:设置标识buy，表示登陆后跳回购买页面
+			window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=1";
+		});
+		
+	});
+	
 	
 	//贡品
 	$('#tribute_but').on('click',function(){
 		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=2";
+	});
+	
+	//未登录点击
+	$('#tribute_but_nouser').on('click',function(){
+		layer.alert("尚未登录，请登录后购买！", {
+		  closeBtn: 1
+		}, function(){
+			//先登录:设置标识buy，表示登陆后跳回购买页面
+			window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=2";
+		});
+		
 	});
 	
 	//献花
@@ -24,9 +46,31 @@ $(function(){
 		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=3";
 	});
 	
+	//未登录点击
+	$('#flowers_but_nouser').on('click',function(){
+		layer.alert("尚未登录，请登录后购买！", {
+		  closeBtn: 1
+		}, function(){
+			//先登录:设置标识buy，表示登陆后跳回购买页面
+			window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=3";
+		});
+		
+	});
+	
 	//点歌
 	$('#song_but').on('click',function(){
 		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=4";
+	});
+	
+	//未登录点击
+	$('#song_but_nouser').on('click',function(){
+		layer.alert("尚未登录，请登录后购买！", {
+		  closeBtn: 1
+		}, function(){
+			//先登录:设置标识buy，表示登陆后跳回购买页面
+			window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=4";
+		});
+		
 	});
 	
 	/*----------------------选择提交 begin-----------------------*/
@@ -47,12 +91,12 @@ $(function() {
 });
 /*----------------------搜索end-----------------------*/
 
-//跳转到灵堂
+//跳转到单人馆灵堂
 function toShowSingleMemorial(hallId){
 	window.location.href = contextPath + "/sinian/index/indexController/toShowSingleMemorial?id=" + hallId;
 }
 
-//跳转到灵堂
+//跳转到双人馆灵堂
 function toShowDoubleMemorial(hallId){
 	window.location.href = contextPath + "/sinian/index/indexController/toShowDoubleMemorial?id=" + hallId;
 }
