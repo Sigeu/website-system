@@ -23,8 +23,8 @@
 				</div>
 				<div class="side-nav-body">
 					<ul>
+						<li class="active"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCreate">我的建馆</a></li>
 						<li><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCart">我的购物车</a></li>
-						<li class="active"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCreate">我的创建</a></li>
 					</ul>
 				</div>
 			</div>
@@ -88,7 +88,9 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/member.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/static/js/hall.js"></script>
+		src="${pageContext.request.contextPath}/static/js/hall.js"></script>	
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/article.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '我的思念';
 		// 项目路径
