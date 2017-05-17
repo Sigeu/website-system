@@ -24,8 +24,8 @@
 				</div>
 				<div class="side-nav-body">
 					<ul>
+						<li><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCreate">我的建馆</a></li>
 						<li class="active"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCart">我的购物车</a></li>
-						<li><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCreate">我的创建</a></li>
 					</ul>
 				</div>
 			</div>

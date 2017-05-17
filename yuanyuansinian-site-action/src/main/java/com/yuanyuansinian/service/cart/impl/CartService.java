@@ -85,8 +85,11 @@ public class CartService implements ICartService {
 	public int addCart(HttpServletRequest request,Cart cart) {
 		int flag = 0;
 		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("product_id", cart.getProduct_id());
+			map.put("member_id", cart.getMember_id());
 			//先查询是否已经在购物车
-			Cart cartProduct = cartMapper.selectByProductId(cart.getProduct_id());
+			Cart cartProduct = cartMapper.selectByProductId(map);
 			if(null == cartProduct){
 				//创建时间
 				cart.setCreate_date(MyDateUtil.getDateTime());

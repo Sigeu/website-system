@@ -180,6 +180,7 @@ public class CartController extends MyBaseController {
 				map.put(RESULT_MESSAGE_STRING, "请登录后购买！");
 				map.put("flag", "0");
 			}else{
+				
 				cart.setMember_id(memberUser.getId().toString());
 				cart.setProduct_num(IMySystemConstants.COUNT_NUM1);
 				cartService.addCart(request, cart);

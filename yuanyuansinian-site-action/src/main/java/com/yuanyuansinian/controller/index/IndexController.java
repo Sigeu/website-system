@@ -819,9 +819,9 @@ public class IndexController extends MyBaseController {
 			return "redirect:/sinian/index/indexController/toMemberLogin";
 		}else{
 			model.addAttribute("memberUser", memberUser);
-			//我的创建
-			List<Hall> listHall = hallService.queryHallListByMember(memberUser.getId()+"", IMySystemConstants.COUNT_NUM2);
-			model.addAttribute("listHall", listHall);
+			//最新建馆:双人馆、单人馆合并后的结果集
+			List<Hall> listHallNew = hallService.queryHallNewListByMember(memberUser.getId(), IMySystemConstants.COUNT_NUM6);
+			model.addAttribute("listHallNew", listHallNew);
 			
 			//我的访问
 			//List<Visit> listVisit = visitService.queryVisitListByMember(memberUser.getId()+"", IMySystemConstants.COUNT_NUM2);

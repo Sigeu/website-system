@@ -23,8 +23,8 @@
 				</div>
 				<div class="side-nav-body">
 					<ul>
+						<li class="active"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCreate">我的建馆</a></li>
 						<li><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCart">我的购物车</a></li>
-						<li class="active"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberCreate">我的创建</a></li>
 					</ul>
 				</div>
 			</div>
@@ -40,7 +40,7 @@
 			<div class="clearfix"></div>
 			<div class="tab-content">
 				<div class="tab-pane active img-list shop-list miss-setup" id="setup">
-					<c:forEach items="${listHall}" var="hall" varStatus="hallStatus"> 
+					<c:forEach items="${listHallNew}" var="hall" varStatus="hallStatus"> 
 							<div class="row miss-setup-pro">
 								<div class="col-sm-4 col-md-3">
 									<a href="###"  onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><img src="${hall.imgs}" class="img-responsive" alt="${hall.title}" /></a>
@@ -99,10 +99,6 @@
 						<ul class="pagination">
 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</ul>
 					</div>

@@ -147,5 +147,6 @@
     <include refid="Base_Column_List" />
     from ujn_cart t
     where product_id = #{product_id,jdbcType=VARCHAR}
+    and member_id = #{member_id}
   </select>
 </mapper>
