@@ -8,4 +8,27 @@
   <artifactId>sun-city-webapp</artifactId>
   <name>sun-city-webapp</name>
   <description>webapp</description>
+   <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+	    <groupId>org.mybatis.generator</groupId>
+	    <artifactId>mybatis-generator-core</artifactId>
+	    <version>1.3.5</version>
+	</dependency>
+	<dependency>
+		<groupId>framework-parent</groupId>
+		<artifactId>framework-system-action</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>sun-city-action</groupId>
+	    <artifactId>sun-city-action</artifactId>
+	    <version>${project.version}</version>
+	</dependency>
+  </dependencies>
 </project>

@@ -5,7 +5,15 @@
     <artifactId>framework-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  <groupId>sun-city-action</groupId>
   <artifactId>sun-city-action</artifactId>
   <name>sun-city-action</name>
   <description>action</description>
+  <dependencies>
+		<dependency>
+			<groupId>framework-parent</groupId>
+			<artifactId>framework-system-action</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 </project>
