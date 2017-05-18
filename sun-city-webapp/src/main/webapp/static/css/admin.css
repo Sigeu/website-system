@@ -1,0 +1,74 @@
+@charset "utf-8";
+body {font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif; color: #333; font-size:14px}
+.container {background:#fff}
+ul, li {list-style:none; padding:0}
+h1 {font-size:27px}
+h2 {font-size:25px}
+h3 {font-size:20px}
+h4 {font-size:17px}
+h5 {font-size:15px}
+a {color:#333; text-decoration:none}
+a:hover {color:#25499d; text-decoration:none}
+a:focus {color:#25499d; text-decoration:none}
+.navbar-logo {margin-bottom:0}
+.navbar-logo .logo {padding-top:0; margin:10px 0}
+.navbar-logo .navbar-form {padding-bottom:0}
+.navbar {font-size:17px}
+.navbar-mainnav {z-index:1000}
+.nav > li > a {color:#000}
+.nav > li > a:focus, .nav > li >a:hover {color:#b85844; background-color:#efdba7}
+.nav > li.active > a {color:#b85844}
+.navbar-toggle {margin-top:-10px; margin-right:0; border:1px solid #b85844}
+.navbar-toggle span {background:#b85844}
+.navbar-mainnav {margin-bottom:0; padding-bottom:0}
+.navbar-mainnav .container {background:#f5f5dc}
+#footer {padding:25px 0; border-top:1px solid #ddd}
+#footer li {height:30px; line-height:30px}
+img.login-img {margin:0 auto}
+.login-jumb .modal-content {margin-top:70px; width:100%}
+.modal .code-img {margin-top:1px; height:32px}
+.code-img-wd {margin-left:15px; color:#333}
+.btn-submit {width:100%}
+.modal-footer {margin-right:15px}
+.modal-footer button {width:70px}
+.page {text-align:center}
+.banner-con {padding:0; margin-top:-50px}
+.carousel-inner img {margin:0 auto}
+
+/* 小屏幕（平板，大于等于768px） */
+@media (min-width: 768px) {
+	.navbar-logo {padding:0}
+	.navbar-logo .logo {padding-left:15px; margin-top:20px}
+	.navbar-logo .container {height:120px}
+	.navbar-logo .navbar-form {margin:45px 30px 0 0}
+	.nav>li>a:focus,.nav>li>a:hover {background-color:transparent}
+	.navbar-mainnav .container {padding:0}
+	#footer {padding:25px 0 15px 0}
+	.footer-logo {margin-top:20px}
+	.login-jumb {position:relative} 
+	/* .login-jumb .modal-content {position:absolute; margin-top:0; width:390px; top:110px; right:-3%} */
+	.login-jumb .modal {position:absolute; top:-80px; right:0px}
+	.login-jumb .modal-content {width:390px}
+	img.login-img {width:100%; height:420px}
+	.admin-des {margin-top:35px; line-height:180%; border-bottom:1px solid #ddd}
+	.admin-des p {margin-bottom:30px; text-indent:28px}
+}
+
+/* 中等屏幕（桌面显示器，大于等于992px） */
+@media (min-width: 992px) {
+	.pro-header-tool li {margin-right:10px}
+	.arclist .media-heading {margin:10px 0}
+	.media-img img {max-width:229px; height:151px}
+	.list a {width:85%}
+	#footer .container {padding-left:0; padding-right:0}
+	.footer-logo {margin-top:10px}
+	img.login-img {height:340px}
+	.login-jumb .modal-content {right:-21%}
+	.admin-des {margin-top:35px; line-height:180%}
+	.admin-des p {margin-bottom:30px; text-indent:28px}
+}
+
+/* 大屏幕（大桌面显示器，大于等于1200px） */
+@media (min-width: 1200px) {
+	.login-jumb .modal-content {right:-38%}
+}
