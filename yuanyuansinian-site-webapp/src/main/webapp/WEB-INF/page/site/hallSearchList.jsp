@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -23,36 +24,13 @@
 		<div class="arclist info-list-body">
 			
 			<div class="search-list-con">
-				<div class="search-pro">
-					<a href="###"><h5><span>缘园思念</span>幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-					<p class="search-date">2016-12-16</p>
-					<p>本项目为<span>缘园思念</span>触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号 货物名称   预算。</p>
-				</div>
-				<div class="search-pro">
-					<a href="###"><h5><span>缘园思念</span>幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-					<p class="search-date">2016-12-16</p>
-					<p>本项目为<span>缘园思念</span>触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分得对包内设备分项响应；详细技术参数招标文件。包号 货物名称   预算。</p>
-				</div>
-				<div class="search-pro">
-					<a href="###"><h5><span>缘园思念</span>幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-					<p class="search-date">2016-12-16</p>
-					<p>本项目为<span>缘园思念</span>触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分得对包内设备分项响应；详细技术参数招标文件。包号 货物名称   预算。</p>
-				</div>
-				<div class="search-pro">
-					<a href="###"><h5><span>缘园思念</span>幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-					<p class="search-date">2016-12-16</p>
-					<p>本项目为<span>缘园思念</span>触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分对包内设备分项响应；详细技术参数招标文件。包号 货物名称   预算。</p>
-				</div>
-				<div class="search-pro">
-					<a href="###"><h5><span>缘园思念</span>幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-					<p class="search-date">2016-12-16</p>
-					<p>本项目为<span>缘园思念</span>触摸屏、幼儿园教具、监控等设备采购共分3个包，供应摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分商不得对包内设备分项响应；详细技术参数招标文件。包号 货物名称   预算。</p>
-				</div>
-				<div class="search-pro">
-					<a href="###"><h5><span>缘园思念</span>幼儿园教具、窗帘等设备采购及空调移机招标公告</h5></a>
-					<p class="search-date">2016-12-16</p>
-					<p>本项目为<span>缘园思念</span>触摸屏、幼儿园教具、监控等设备采购共分3个包，供应商不得对包内设备分项响应；详细技术参数招标文件。包号 货物名称   预算。</p>
-				</div>
+				<c:forEach items="${listHallBySearch}" var="hall"> 
+					<div class="search-pro">
+						<a href="###"  onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><h5>${hall.title }</h5></a>
+						<p class="search-date">${fn:substring(hall.create_date, 0, 10)}</p>
+						<p>${hall.description }</p>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 		<div class="page">

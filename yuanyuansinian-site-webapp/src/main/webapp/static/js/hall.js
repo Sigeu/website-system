@@ -31,12 +31,12 @@ $(function(){
 	/*----------------------创建纪念馆 end-------------------------*/
 });
 
-/*----------------------搜索 begin---------------------*/
+/*----------------------纪念馆搜索 begin---------------------*/
 $(function() {
 	$('#hall_but').on('click',function(){
 		var url = contextPath + "/sinian/index/indexController/searchHall?"+ new Date().getTime();  
 		$('#search_hall_form').attr("action", url).submit();;
 	});
 });
-/*----------------------搜索end-----------------------*/
+/*----------------------纪念馆搜索end-----------------------*/
 

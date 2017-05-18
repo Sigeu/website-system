@@ -60,7 +60,7 @@
 						<form id="search_hall_form" action="#" method="post">
 							<div class="form-group">
 								<input type="text" class="form-control" name="hall_name"
-									placeholder="请输入逝者姓名">
+									placeholder="请输入关键字">
 							</div>
 							<button class="btn btn-warning" id="hall_but">查找纪念馆</button>
 						</form>

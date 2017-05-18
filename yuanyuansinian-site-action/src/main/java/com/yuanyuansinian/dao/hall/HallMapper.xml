@@ -500,16 +500,16 @@
 	<!-- 纪念馆搜索 -->
 	<select id="queryHallListBySearch" parameterType="string"
 		resultMap="ResultMapWithBLOBs">
-		select
-		<include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" />
-		from ujn_hall
-		where open_type = '1'
-		and (title like concat('%', #{search_text}, '%') or description like
-		concat('%', #{search_text}, '%') or name like concat('%',
+		select a.id,a.title,a.description,a.imgs,a.open_type,a.hall_type,a.name,a.alias,a.create_date,a.create_user from (
+		select h.id,h.title,h.description,h.imgs,h.open_type,h.hall_type,h.name,h.alias,h.create_date,h.create_user  from ujn_hall h
+		union all
+		select d.id,d.title,d.description,d.imgs,d.open_type,d.hall_type,d.name,d.alias,d.create_date,d.create_user  from ujn_hall_double d
+		) a
+		where a.open_type = '1'
+		and (a.title like concat('%', #{search_text}, '%') or a.description like
+		concat('%', #{search_text}, '%') or a.name like concat('%',
 		#{search_text}, '%'))
-		order by unix_timestamp(create_date) desc
+		order by unix_timestamp(a.create_date) desc
 	</select>
 
 	<!-- 更新封面图片 -->
