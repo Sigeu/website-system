@@ -14,18 +14,7 @@ function toHallDetail(id,type) {
 	window.location.href = url;
 }
 
-//缘园资讯
-function toInformationDetail(id) {
-	$.ajax({
-		method : "POST",
-		url : contextPath + "/sinian/index/indexController/toInformationDetail",
-		data : {
-			id : id
-		}
-	}).done(function(data) {
-		var open_type = data.open_type;
-	});
-}
+//缘园资讯:有专门的js
 
 //商城
 function toShoppingDetail(id) {

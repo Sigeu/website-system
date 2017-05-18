@@ -35,7 +35,7 @@
 						<li><span class="pull-left">国籍：</span>${hallDouble.nationality }</li>
 						<li><span class="pull-left">出生地：</span>${hallDouble.birthplace }</li>
 						<li><span class="pull-left">墓地地址：</span>${hallDouble.address }</li>
-						<li><span class="pull-left">主要成就：</span>${hallDouble.achievement }</li>
+						<%-- <li><span class="pull-left">主要成就：</span>${hallDouble.achievement }</li> --%>
 					</ul>
 				</div>
 				<div class="col-sm-6">
@@ -61,7 +61,7 @@
 		<div class="col-sm-8 col-md-9">
 			<div class="pro-header">
 				<h4 class="pro-title pull-left">基本信息</h4>
-				<p class="pull-right museum-des hidden-xs">天束幽花已经离开我们<mark>120</mark>天</p>
+				<p class="pull-right museum-des hidden-xs">已经离开我们<mark>${hallDouble.days }</mark>天</p>
 			</div>
 			<div class="clearfix"></div>
 			<div class="row museum-info-right">
@@ -71,7 +71,7 @@
 						<li><span class="pull-left">国籍：</span>${hallDouble.nationality2 }</li>
 						<li><span class="pull-left">出生地：</span>${hallDouble.birthplace2 }</li>
 						<li><span class="pull-left">墓地地址：</span>${hallDouble.address2 }</li>
-						<li><span class="pull-left">主要成就：</span>${hallDouble.achievement2 }</li>
+						<%-- <li><span class="pull-left">主要成就：</span>${hallDouble.achievement2 }</li> --%>
 					</ul>
 				</div>
 				<div class="col-sm-6">
@@ -93,6 +93,8 @@
 						aria-controls="home" role="tab" data-toggle="tab">生平事迹</a></li>
 					<li role="presentation"><a href="#anthology"
 						aria-controls="profile" role="tab" data-toggle="tab">追忆文选</a></li>
+					<li role="presentation"><a href="#message"
+						aria-controls="profile" role="tab" data-toggle="tab">主要成就</a></li>
 					<!-- <li role="presentation"><a href="#message"
 						aria-controls="profile" role="tab" data-toggle="tab">追思留言</a></li>
 					<li role="presentation"><a href="#album"
@@ -127,7 +129,7 @@
 				<div class="tab-pane active" id="deeds">
 					<!-- 生平事迹，也就是文章内容模板start -->
 					<div class="article-body">
-						<p>${hallDouble.description }</p>
+						<p>${hallDouble.life_story }</p>
 					</div>
 					<!-- end -->
 				</div>
@@ -151,6 +153,14 @@
 							<li><a href="#" aria-label="Next"><span
 									aria-hidden="true">&raquo;</span></a></li>
 						</ul>
+					</div>
+					<!-- end -->
+				</div>
+				
+				<div class="tab-pane" id="message">
+					<!-- 生平事迹，也就是文章内容模板start -->
+					<div class="article-body">
+						<p>${hallDouble.achievement }</p>
 					</div>
 					<!-- end -->
 				</div>

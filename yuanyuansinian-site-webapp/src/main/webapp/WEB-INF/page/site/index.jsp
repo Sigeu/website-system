@@ -19,7 +19,7 @@
 			<div class="setup all-info">
 				<div class="pro-header">
 					<h4 class="pro-title pull-left">最新建馆</h4>
-					<a href="###" class="more pull-right">更多&raquo;</a>
+					<a href="${pageContext.request.contextPath}/sinian/index/indexController/toHallList" class="more pull-right">更多&raquo;</a>
 				</div>
 				<div class="clearfix"></div>
 				<div class="row">
@@ -111,7 +111,7 @@
 					<ul class="pull-right pro-header-tool hidden-xs">
 						<li class="pull-left"><a href="###">时间<span class="glyphicon glyphicon-arrow-up"></span></a></li>
 						<li class="pull-left"><a href="###">热度<span class="glyphicon glyphicon-arrow-down"></span></a></li>
-						<li class="pull-left"><a href="###">更多&raquo;</a></li>
+						<li class="pull-left"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toInformationList?id=130">更多&raquo;</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"></div>

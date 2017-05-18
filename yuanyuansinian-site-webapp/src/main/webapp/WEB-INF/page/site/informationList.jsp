@@ -52,8 +52,18 @@
 							<c:forEach items="${contentChildList}" var="contentChild" varStatus="status"> 
 								<c:if test="${status.index == 0}">
 									<div class="col-md-4 media-img">
-										<a class="media-left" href="#" onclick="toInformationDetail('${contentChild.id }','${columnChildId }')"><img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
-											class="img-responsive" alt="img"></a>
+										<a class="media-left" href="#" onclick="toInformationDetail('${contentChild.id }','${columnChildId }')">
+										<c:choose>  
+										   <c:when test="${empty contentChild.cover_img_url}">
+										   		<img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
+											class="img-responsive" >
+										   </c:when>  
+										   <c:otherwise>
+											    <img src="${contentChild.cover_img_url}"
+											class="img-responsive">
+										   </c:otherwise>  
+										</c:choose>  
+										</a>
 									</div>
 									<div class="col-md-8">
 										<div class="media-body">
