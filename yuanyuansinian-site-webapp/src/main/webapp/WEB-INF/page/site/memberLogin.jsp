@@ -46,9 +46,9 @@
 						<input type="hidden" id="flag" name="flag" value="${flag }">
 						<input type="hidden" id="type" name="type" value="${type }">
 						 <div class="form-group">
-							<label class="control-label col-md-3">用户名</label>
+							<label class="control-label col-md-3">手机号码</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" id="name" name="name" placeholder="请输入您的用户名">	
+								<input type="text" class="form-control" id="name" name="name" placeholder="请输入注册时的手机号码">	
 							</div>
 						</div>
 						 <div class="form-group">
