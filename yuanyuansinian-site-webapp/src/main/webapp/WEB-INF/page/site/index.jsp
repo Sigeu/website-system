@@ -27,7 +27,18 @@
 						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus"> 
 							<c:if test="${hallStatus.index == 0 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
+									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')">
+									
+										<c:choose>  
+										   <c:when test="${empty hallNew.imgs}">
+										   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+											class="img-responsive" >
+										   </c:when>  
+										   <c:otherwise>
+											    <img src="${hallNew.imgs}" alt="${hallNew.title}">
+										   </c:otherwise>  
+										</c:choose> 
+									</a>
 									<div class="caption">
 										<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><h5>${hallNew.title}</h5></a>
 										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
@@ -40,7 +51,17 @@
 						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus"> 
 							<c:if test="${hallStatus.index == 1 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
+									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')">
+										<c:choose>  
+										   <c:when test="${empty hallNew.imgs}">
+										   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+											class="img-responsive" >
+										   </c:when>  
+										   <c:otherwise>
+											    <img src="${hallNew.imgs}" alt="${hallNew.title}">
+										   </c:otherwise>  
+										</c:choose> 
+									</a>
 									<div class="caption">
 										<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><h5>${hallNew.title}</h5></a>
 										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
@@ -53,7 +74,17 @@
 						<c:forEach items="${listHallNew}" var="hallNew" varStatus="hallStatus">  
 							<c:if test="${hallStatus.index == 2 }">
 								<div class="thumbnail">
-									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><img src="${hallNew.imgs}" alt="${hallNew.title}"></a>
+									<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')">
+										<c:choose>  
+										   <c:when test="${empty hallNew.imgs}">
+										   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+											class="img-responsive" >
+										   </c:when>  
+										   <c:otherwise>
+											    <img src="${hallNew.imgs}" alt="${hallNew.title}">
+										   </c:otherwise>  
+										</c:choose> 
+									</a>
 									<div class="caption">
 										<a href="###" onclick="toHallDetail('${hallNew.id }','${hallNew.hall_type }')"><h5>${hallNew.title}</h5></a>
 										<p class="thumbnail-des text-justify"><strong>简介：</strong>${hallNew.description}</p>
@@ -78,7 +109,17 @@
 					<c:forEach items="${contentList107}" var="content107" varStatus="content"> 
 							<c:if test="${content.index == 0 }">
 					<div class="col-md-5 media-img">
-						<a class="media-left" href="#" onclick="toInformationDetail('${content107.id }','${content107.column_id}')"><img src="${content107.cover_img_url }" class="img-responsive" alt="img"></a>
+						<a class="media-left" href="#" onclick="toInformationDetail('${content107.id }','${content107.column_id}')">
+							<c:choose>  
+							   <c:when test="${empty content107.cover_img_url}">
+							   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+								class="img-responsive" >
+							   </c:when>  
+							   <c:otherwise>
+								    <img src="${content107.cover_img_url }" class="img-responsive">
+							   </c:otherwise>  
+							</c:choose> 
+						</a>
 					</div>
 					<div class="col-md-7">
 						
@@ -109,8 +150,8 @@
 				<div class="pro-header">
 					<h4 class="pro-title pull-left">最新祭奠推荐</h4>
 					<ul class="pull-right pro-header-tool hidden-xs">
-						<li class="pull-left"><a href="###">时间<span class="glyphicon glyphicon-arrow-up"></span></a></li>
-						<li class="pull-left"><a href="###">热度<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+						<!-- <li class="pull-left"><a href="###">时间<span class="glyphicon glyphicon-arrow-up"></span></a></li>
+						<li class="pull-left"><a href="###">热度<span class="glyphicon glyphicon-arrow-down"></span></a></li> -->
 						<li class="pull-left"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toInformationList?id=130">更多&raquo;</a></li>
 					</ul>
 				</div>

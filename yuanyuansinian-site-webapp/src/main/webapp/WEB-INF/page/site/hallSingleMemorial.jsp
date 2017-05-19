@@ -15,7 +15,17 @@
 <div class="container incense">
 	<div class="incense-body">
 		<img src="${pageContext.request.contextPath}/static/images/incense.jpg" class="img-responsive incense-bg" alt="incense">
-		<img src="${hall.imgs }" class="img-responsive incense-img" alt="incense">
+		
+		<c:choose>  
+		   <c:when test="${empty hall.imgs}">
+		   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+			class="img-responsive" >
+		   </c:when>  
+		   <c:otherwise>
+			    <img src="${hall.imgs }" class="img-responsive incense-img" >
+		   </c:otherwise>  
+		</c:choose>
+			
 		<c:forEach items="${listHallGift}" var="hallGift" varStatus="hallGiftStatus"> 
 			<c:if test="${hallGift.product_type == 1 } ">
 				<c:if test="${hallGift.product_position == 1 } ">

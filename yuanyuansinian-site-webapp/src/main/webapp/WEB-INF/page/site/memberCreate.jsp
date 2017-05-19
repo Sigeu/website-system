@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -54,7 +55,7 @@
 	                </c:forEach>
 				</div>
 				
-				<div class="tab-pane img-list shop-list miss-list" id="visit">
+				<!-- <div class="tab-pane img-list shop-list miss-list" id="visit">
 					<div class="list">
 						
 					</div>
@@ -66,10 +67,16 @@
 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 				<div class="tab-pane img-list shop-list miss-list" id="release">
 					<div class="list">
-					</div>
+					<ul>
+						<c:forEach var="oration" items="${listOrationNew}">
+							<li><a href="###" onclick="toOrationDetail('${oration.id}');" class="pull-left">${oration.title }</a><span
+								class="list-date pull-right">${fn:substring(oration.create_date, 0, 10)}</span></li>
+	                	</c:forEach>
+					</ul>
+				</div>
 					<div class="clearfix"></div>
 					<div class="page">
 						<ul class="pagination">
@@ -91,6 +98,8 @@
 		src="${pageContext.request.contextPath}/static/js/hall.js"></script>	
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/article.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/oration.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '我的思念';
 		// 项目路径

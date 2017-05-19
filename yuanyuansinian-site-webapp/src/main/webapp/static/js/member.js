@@ -7,14 +7,15 @@
 $(function(){
 	/*----------------------修改信息 begin-----------------------*/
 	$('#edit_but').on('click',function(){
-		layer.open({
+		window.location.href = contextPath + "/sinian/index/indexController/toMemberEdit";
+		/*layer.open({
 		    type: 2,
 		    maxmin:true,
 		    title:["修改"],
 		    area: ['100%', '100%'],
 		    shadeClose: false, //点击遮罩关闭
 		    content: contextPath + '/sinian/index/indexController/toMemberEdit'
-		 });
+		 });*/
 	});
 	/*----------------------修改信息 end-------------------------*/
 	

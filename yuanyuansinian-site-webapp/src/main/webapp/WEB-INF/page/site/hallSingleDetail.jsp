@@ -15,7 +15,16 @@
 	<div class="container all-bg museum">
 		<div class="row museum-info">
 			<div class="col-sm-4 col-md-3 museum-info-left">
-				<img src="${hall.imgs }" class="img-responsive" alt="museum" />
+			<c:choose>  
+			   <c:when test="${empty hall.imgs}">
+			   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+				class="img-responsive" >
+			   </c:when>  
+			   <c:otherwise>
+				    <img src="${hall.imgs }" class="img-responsive" />
+			   </c:otherwise>  
+			</c:choose>
+				
 				<button class="btn btn-success" id="single_memorial_but" onclick="toShowSingleMemorial('${hall.id }')">
 					<span class="hidden-sm hidden-md">缘园</span>祭奠
 				</button>

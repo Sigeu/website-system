@@ -55,7 +55,7 @@
 										<a class="media-left" href="#" onclick="toInformationDetail('${contentChild.id }','${columnChildId }')">
 										<c:choose>  
 										   <c:when test="${empty contentChild.cover_img_url}">
-										   		<img src="${pageContext.request.contextPath}/static/images/ex3.jpg"
+										   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
 											class="img-responsive" >
 										   </c:when>  
 										   <c:otherwise>

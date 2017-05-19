@@ -55,6 +55,14 @@
 				</div> -->
 				<div class="form-group col-sm-6">
 					<label class="control-label col-sm-4 col-md-3"><span
+						class="c-red">*</span>手机号码</label>
+					<div class="col-sm-8 col-md-9 form-pos">
+						<input type="text" name="phone" id="phone" class="form-control" value="${memberUser.phone}"
+							placeholder="请输入手机号码,手机号码为会员登录帐号">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3"><span
 						class="c-red">*</span>登录密码</label>
 					<div class="col-sm-8 col-md-9 form-pos">
 						<input type="password" name="pwd" id="pwd" class="form-control" value="${memberUser.pwd}"
@@ -63,26 +71,18 @@
 				</div>
 				<div class="form-group col-sm-6">
 					<label class="control-label col-sm-4 col-md-3"><span
-						class="c-red">*</span>确认密码</label>
-					<div class="col-sm-8 col-md-9 form-pos">
-						<input type="password" name="pwd2" id="pwd2" class="form-control" value=""
-							placeholder="请再次输入密码">
-					</div>
-				</div>
-				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3"><span
-						class="c-red">*</span>手机号码</label>
-					<div class="col-sm-8 col-md-9 form-pos">
-						<input type="text" name="phone" id="phone" class="form-control" value="${memberUser.phone}"
-							placeholder="请输入手机号码">
-					</div>
-				</div>
-				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3"><span
 						class="c-red">*</span>电子邮箱</label>
 					<div class="col-sm-8 col-md-9 form-pos">
 						<input type="text" name="email" id="email" class="form-control" value="${memberUser.email}"
 							placeholder="请输入电子邮箱">
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3"><span
+						class="c-red">*</span>确认密码</label>
+					<div class="col-sm-8 col-md-9 form-pos">
+						<input type="password" name="pwd2" id="pwd2" class="form-control" value=""
+							placeholder="请再次输入密码">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">

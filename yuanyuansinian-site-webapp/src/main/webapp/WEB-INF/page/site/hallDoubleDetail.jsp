@@ -16,7 +16,16 @@
 		<div class="container all-bg museum">
 	<div class="row museum-info">
 		<div class="col-sm-4 col-md-3 museum-info-left">
-			<img src="${hallDouble.imgs }" class="img-responsive" />
+			<c:choose>  
+			   <c:when test="${empty hallDouble.imgs }">
+			   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+				class="img-responsive" >
+			   </c:when>  
+			   <c:otherwise>
+				    <img src="${hallDouble.imgs }" class="img-responsive" />
+			   </c:otherwise>  
+			</c:choose> 
+			
 			<button class="btn btn-success" onclick="toShowDoubleMemorial('${hallDouble.id }')"><span class="hidden-sm hidden-md">缘园</span>祭奠</button>
 			<!-- <button class="btn btn-info">纪念<span class="hidden-sm hidden-md">相</span>册</button>
 			<button class="btn btn-warning">关注</button> -->
@@ -53,7 +62,16 @@
 	
 	<div class="row museum-info">
 		<div class="col-sm-4 col-md-3 museum-info-left">
-			<img src="${hallDouble.imgs }" class="img-responsive" />
+			<c:choose>  
+			   <c:when test="${empty hallDouble.imgs}">
+			   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+				class="img-responsive" >
+			   </c:when>  
+			   <c:otherwise>
+				    <img src="${hallDouble.imgs }" class="img-responsive" />
+			   </c:otherwise>  
+			</c:choose> 
+			
 			<button class="btn btn-success" onclick="toShowDoubleMemorial('${hallDouble.id }')"><span class="hidden-sm hidden-md">缘园</span>祭奠</button>
 			<!-- <button class="btn btn-info">纪念<span class="hidden-sm hidden-md">相</span>册</button>
 			<button class="btn btn-warning">关注</button> -->

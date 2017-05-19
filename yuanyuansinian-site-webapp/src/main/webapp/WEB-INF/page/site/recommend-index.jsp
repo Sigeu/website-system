@@ -9,8 +9,15 @@
 	<c:forEach items="${cemeteryList}" var="cemetery" varStatus="cemeteryStatus"> 
 		<c:if test="${cemeteryStatus.index < 4 }">
 			<div class="thumbnail">
-				<img src="${cemetery.imgs}"
-					class="img-responsive" alt="img">
+				<c:choose>  
+				   <c:when test="${empty cemetery.imgs}">
+				   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+					class="img-responsive" >
+				   </c:when>  
+				   <c:otherwise>
+					    <img src="${cemetery.imgs}" class="img-responsive" alt="${cemetery.title}">
+				   </c:otherwise>  
+				</c:choose> 
 				<div class="caption">
 					<a href="###" onclick="toCemeteryDetail('${cemetery.id }')"><h5>${cemetery.title}</h5></a>
 				</div>

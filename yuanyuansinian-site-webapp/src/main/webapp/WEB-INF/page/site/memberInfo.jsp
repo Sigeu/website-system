@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<div class="col-sm-3 miss-ico">
-			<img src="${memberUser.imgs}" class="img-responsive" />
+			<c:choose>  
+			   <c:when test="${empty memberUser.imgs}">
+			   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+				class="img-responsive" >
+			   </c:when>  
+			   <c:otherwise>
+				    <img src="${memberUser.imgs}" class="img-responsive" />
+			   </c:otherwise>  
+			</c:choose>
+			
 		</div>
 		<div class="col-sm-9">
 		

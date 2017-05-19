@@ -98,8 +98,18 @@
 				<c:forEach items="${listSingleHallByOpenType}" var="singleHall" varStatus="singleHallStatus"> 
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
-							<a href="###" onclick="toHallDetail('${singleHall.id }','${singleHall.hall_type }')"><img src="${singleHall.imgs}" class="img-responsive"
-								alt="img"></a>
+							<a href="###" onclick="toHallDetail('${singleHall.id }','${singleHall.hall_type }')">
+							<c:choose>  
+							   <c:when test="${empty singleHall.imgs}">
+							   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+								class="img-responsive" >
+							   </c:when>  
+							   <c:otherwise>
+								    <img src="${singleHall.imgs}" class="img-responsive" alt="${singleHall.title}">
+							   </c:otherwise>  
+							</c:choose> 
+							
+							</a>
 							<div class="caption">
 								<a href="###" onclick="toHallDetail('${singleHall.id }','${singleHall.hall_type }')"><h5>${singleHall.title}</h5></a>
 								<p>
@@ -129,8 +139,19 @@
 				<c:forEach items="${listHallDoubleByOpenType}" var="hallDouble" varStatus="hallDoubleStatus"> 
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
-							<a href="###" onclick="toHallDetail('${hallDouble.id }','${hallDouble.hall_type }')"><img src="${hallDouble.imgs}" class="img-responsive"
-								alt="img"></a>
+							<a href="###" onclick="toHallDetail('${hallDouble.id }','${hallDouble.hall_type }')">
+							<c:choose>  
+							   <c:when test="${empty hallDouble.imgs}">
+							   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+								class="img-responsive" >
+							   </c:when>  
+							   <c:otherwise>
+								    <img src="${hallDouble.imgs}" class="img-responsive" alt="${hallDouble.title}">
+							   </c:otherwise>  
+							</c:choose> 
+							
+								
+							</a>
 							<div class="caption">
 								<a href="###" onclick="toHallDetail('${hallDouble.id }','${hallDouble.hall_type }')"><h5>${hallDouble.title}</h5></a>
 								<p>

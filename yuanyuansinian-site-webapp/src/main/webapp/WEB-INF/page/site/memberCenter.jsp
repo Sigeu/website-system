@@ -43,7 +43,18 @@
 					<c:forEach items="${listHallNew}" var="hall" varStatus="hallStatus"> 
 							<div class="row miss-setup-pro">
 								<div class="col-sm-4 col-md-3">
-									<a href="###"  onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><img src="${hall.imgs}" class="img-responsive" alt="${hall.title}" /></a>
+									<a href="###"  onclick="toHallDetail('${hall.id }','${hall.hall_type }')">
+									<c:choose>  
+									   <c:when test="${empty hall.imgs}">
+									   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+										class="img-responsive" >
+									   </c:when>  
+									   <c:otherwise>
+										    <img src="${hall.imgs}" class="img-responsive" alt="${hall.title}" />
+									   </c:otherwise>  
+									</c:choose>
+									
+									</a>
 								</div>
 								<div class="col-sm-8 col-md-9">
 									<a href="###"  onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><h5>${hall.title}</h5></a>
@@ -66,10 +77,6 @@
 						<ul class="pagination">
 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</ul>
 					</div>
@@ -80,18 +87,6 @@
 							<c:forEach items="${listOration}" var="oration" varStatus="orationStatus"> 
 								<li><a href="###" class="pull-left" onclick="toOrationDetail('${oration.id}');">${oration.title}</a><span class="list-date pull-right">${oration.create_date}</span></li>
 							</c:forEach>
-							<!-- <li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页 在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页+在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页 在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页 在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页+在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页 在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li>
-							<li><a href="###" class="pull-left">在这个位置打开相应的文章页</a><span class="list-date pull-right">2016-12-30</span></li> -->
 						</ul>
 					</div>
 					<div class="clearfix"></div>
