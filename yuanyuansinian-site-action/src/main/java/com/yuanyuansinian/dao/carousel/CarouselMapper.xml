@@ -32,8 +32,8 @@
     -->
     Id, title, description, img_url, no_order, remark,carousel_type,
     case   
-	  when carousel_type = 1 then '单人馆'  
-	  when carousel_type = 2 then '双人馆'  
+	  when carousel_type = 1 then '首页轮播图片'  
+	  when carousel_type = 2 then '单页图片'  
 	  else ''  
 	end as carousel_type_name 
   </sql>

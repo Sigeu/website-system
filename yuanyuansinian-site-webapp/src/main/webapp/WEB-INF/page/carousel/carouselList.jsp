@@ -36,6 +36,7 @@
 						<th>URL</th>
 						<th>图片</th>
 						<th>描述</th>
+						<th>分类</th>
 						<th>备注说明</th>
 						<th width="15%">操作</th>
 					</tr>
@@ -106,6 +107,9 @@
 									}
 								}, {
 									data : "description",
+									defaultContent : ""
+								}, {
+									data : "carousel_type_name",
 									defaultContent : ""
 								}, {
 									data : "remark",

@@ -21,6 +21,17 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型：</label>
+			<div class="radio-box">
+				<input type="radio" id="carousel_type1" name="carousel_type"
+					value="1" checked /> <label for="carousel_type1">首页轮播</label>
+			</div>
+			<div class="radio-box">
+				<input type="radio" id="carousel_type2" name="carousel_type"
+					value="2" /> <label for="carousel_type2">单页图片</label>
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">URL：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${carousel.img_url }" placeholder="URL" id="img_url" name="img_url">
@@ -77,7 +88,7 @@
 </script>
 <script type="text/javascript">
 $(function(){
-
+	$("input[name='carousel_type'][value='${carousel.carousel_type }']").attr("checked",true); 
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭

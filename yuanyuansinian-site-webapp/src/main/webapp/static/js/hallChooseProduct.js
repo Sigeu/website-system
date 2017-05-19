@@ -31,7 +31,7 @@ $(function(){
 				    type: 2,
 				    maxmin:true,
 				    title:["结算"],
-				    area: ['60%', '60%'],
+				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: contextPath + '/sinian/index/indexController/toPay?ids=' + ids + '&count=' + count
 				 });

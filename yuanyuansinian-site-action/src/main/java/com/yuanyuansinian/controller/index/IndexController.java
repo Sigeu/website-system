@@ -42,6 +42,7 @@ import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.model.warehouse.Warehouse;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
+import com.yuanyuansinian.pub.util.MyAutoGenerateOrderNum;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.carousel.ICarouselService;
 import com.yuanyuansinian.service.cart.ICartService;
@@ -1043,8 +1044,17 @@ public class IndexController extends MyBaseController {
 			//礼品
 			String ids = request.getParameter("ids")==null? "":request.getParameter("ids");
 			//总价
-			String count = request.getParameter("count")==null? "":request.getParameter("count");
+			String count = request.getParameter("count")==null? "0":request.getParameter("count");
 			orderService.addOrderByIds(request, ids, memberUser.getId()+"", count);
+			
+			//设置支付属性
+			String outTradeNo = MyAutoGenerateOrderNum.generateOrderNum("");
+			String productCode = "";
+			float totalAmount = Float.parseFloat(count);
+			String subject = "";
+			String body = "";
+			String passbackParams = "";
+			String sysServiceProviderId = MyAutoGenerateOrderNum.generateOrderNum("");
 			//支付
 			AlipayClient alipayClient = new DefaultAlipayClient(
 					IMySystemConstants.ALIPAY_URL, IMySystemConstants.APP_ID,
@@ -1056,9 +1066,9 @@ public class IndexController extends MyBaseController {
 					.setBizContent("{"
 							+ "    \"out_trade_no\":\"20150320010101001\","
 							+ "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\","
-							+ "    \"total_amount\":88.88,"
-							+ "    \"subject\":\"Iphone6 16G\","
-							+ "    \"body\":\"Iphone6 16G\","
+							+ "    \"total_amount\":0.01,"
+							+ "    \"subject\":\"缘园思念网祭奠礼品\","
+							+ "    \"body\":\"礼品名称\","
 							+ "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\","
 							+ "    \"extend_params\":{"
 							+ "    \"sys_service_provider_id\":\"2088511833207846\""

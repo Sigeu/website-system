@@ -119,7 +119,7 @@
 							<div class="anthology-pro">
 								<a href="###" onclick="toOrationDetail('${oration.id}');"><h5>${oration.title}</h5></a>
 								<span class="anthology-date">${oration.create_date}</span>
-								<div class="anthology-des text-justify">${oration.description}</div>
+								<div class="anthology-des text-justify">${oration.keywords}</div>
 							</div>
 						</c:forEach>
 					</div>
