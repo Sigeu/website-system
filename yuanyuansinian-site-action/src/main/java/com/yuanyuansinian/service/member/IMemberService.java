@@ -69,4 +69,6 @@ public interface IMemberService {
 
 	void uploadImg(HttpServletRequest request, String id);
 
+	int queryMemberCountByMemberName(String member_name);
+
 }

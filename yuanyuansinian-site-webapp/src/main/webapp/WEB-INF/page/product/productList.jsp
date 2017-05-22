@@ -156,7 +156,7 @@
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : true
+														"display" : false
 													} ]
 										};
 										var html = template(context);

@@ -333,6 +333,33 @@ public class MemberController extends MyBaseController {
 	
 	/**
 	 * 
+	 * @Description: 验证会员名称是否重复 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/checkMemberByMemberName")
+	public Map<String, Object> checkMemberByMemberName(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String member_name = request.getParameter("member_name")==null? "":request.getParameter("member_name");
+		int count = 1;
+		if(!"".equals(member_name)){
+			count = this.memberService.queryMemberCountByMemberName(member_name);
+		}else{
+			map.put(RESULT_STATUS_STRING, "0");
+		}
+		if (count > 0) {
+			map.put(RESULT_MESSAGE_STRING, "该会员名称已经被注册");
+			map.put(RESULT_STATUS_STRING, "0");
+		} else if(RESULT_COUNT_0 == count){
+			map.put(RESULT_STATUS_STRING, "1");
+		}
+
+		return map;
+	}
+	
+	/**
+	 * 
 	 * @Description: 会员登录 
 	 * @param request
 	 * @return

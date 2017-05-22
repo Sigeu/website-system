@@ -344,6 +344,13 @@
     where email = #{email,jdbcType=VARCHAR}
   </select>
   
+  <!-- 验证会员名称 -->
+  <select id="queryMemberCountByMemberName" parameterType="string" resultType="java.lang.Integer">
+    select count(*)
+    from ujn_member
+    where member_name = #{member_name,jdbcType=VARCHAR}
+  </select>
+  
   <!-- 头像 -->
   <update id="uploadImg" parameterType="com.yuanyuansinian.model.member.Member">
     update ujn_member

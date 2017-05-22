@@ -73,7 +73,6 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-default" id="return_but">返回</button>
-				<button class="btn btn-default" type="reset">重置</button>
 				<button class="btn btn-danger" id="login_but">提交</button>
 			</div>
 		</div>

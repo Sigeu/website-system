@@ -180,6 +180,12 @@ public class MemberService implements IMemberService {
 		}
 		
 	}
+
+	@Override
+	public int queryMemberCountByMemberName(String member_name) {
+		// TODO Auto-generated method stub
+		return memberMapper.queryMemberCountByMemberName(member_name);
+	}
 	
 
 

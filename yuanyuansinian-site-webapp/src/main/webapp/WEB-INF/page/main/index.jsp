@@ -97,7 +97,8 @@
 					<li><a data-href="${pageContext.request.contextPath}/sinian/order/orderController/toOrderList" data-title="订单管理" href="javascript:void(0)">订单管理</a></li>
 					<%-- <li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductListForHall" data-title="礼品管理" href="javascript:void(0)">礼品管理</a></li> --%>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/cemetery/cemeteryController/toCemeteryList" data-title="墓地陵园管理" href="javascript:void(0)">墓地陵园管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/sinian/hall/hallController/toHallList" data-title="纪念馆管理" href="javascript:void(0)">纪念馆管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/hall/hallController/toHallList" data-title="单人馆管理" href="javascript:void(0)">单人纪念馆管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/hallDouble/hallDoubleController/toHallDoubleList" data-title="双人馆管理" href="javascript:void(0)">双人纪念馆管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/oration/orationController/toOrationList" data-title="用户文章管理" href="javascript:void(0)">用户文章管理</a></li>
 				</ul>
 			</dd>

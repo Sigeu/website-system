@@ -24,7 +24,7 @@
 					<label class="control-label col-sm-4 col-md-3"><span
 						class="c-red">*</span>真实姓名</label>
 					<div class="col-sm-8 col-md-9 form-pos">
-						<input type="text" name="real_name" id="real_name"
+						<input type="text" name="real_name" id="real_name" value=""
 							class="form-control" placeholder="请输入姓名">
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 					<label class="control-label col-sm-4 col-md-3"><span
 						class="c-red">*</span>会员昵称</label>
 					<div class="col-sm-8 col-md-9 form-pos">
-						<input type="text" name="member_name" id="member_name"
+						<input type="text" name="member_name" id="member_name" value=""
 							class="form-control" placeholder="请输入别名">
 					</div>
 				</div>
@@ -149,7 +149,26 @@
 										required : true
 									},
 									member_name : {
-										required : true
+										required : true,
+										 remote: {
+						                        url: contextPath + "/sinian/member/memberController/checkMemberByMemberName",
+						                        type: "post",
+						                        dataType: "json",
+						                        data: {
+						                        	member_name: function () {
+						                                return $("#member_name").val();//这个是取要验证的密码
+						                            }
+						                        },
+						                        dataFilter: function (data) {//判断控制器返回的内容
+						                        	alert(data.status_flag)
+						                            if (data.status_flag == "1") {
+						                                return true;
+						                            }else {
+						                                return false;
+						                            }
+						                        return data.status_flag;
+						                        }
+						                    }
 									},
 									sex : {
 										required : true
@@ -170,6 +189,12 @@
 										email : true
 									}
 								},
+								messages: {
+									 member_name: {
+						                    required: "请填写会员名！",
+						                    remote: "会员名已被注册，请重新填写！"
+						                }
+						            },
 								onkeyup : false,
 								focusCleanup : false,
 								success : "valid",
