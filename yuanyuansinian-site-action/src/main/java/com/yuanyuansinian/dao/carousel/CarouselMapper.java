@@ -64,4 +64,7 @@ public interface CarouselMapper {
 	List<Carousel> queryCarouselList(Carousel carousel);
 
 	void uploadCarouselImg(Carousel carousel);
+
+	List<Carousel> queryCarouselBySingle();
+
 }

@@ -281,7 +281,7 @@ public class MemberController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/checkMemberByPhone")
-	public Map<String, Object> checkMemberByPhone(HttpServletRequest request) {
+	public boolean checkMemberByPhone(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String phone = request.getParameter("phone")==null? "":request.getParameter("phone");
 		int count = 1;
@@ -292,14 +292,12 @@ public class MemberController extends MyBaseController {
 			map.put(RESULT_STATUS_STRING, "0");
 		}
 		if (count > 0) {
-			map.put(RESULT_MESSAGE_STRING, "该手机号已经被注册");
-			map.put(RESULT_STATUS_STRING, "0");
+			return false;
 		} else if(RESULT_COUNT_0 == count){
-			map.put(RESULT_MESSAGE_STRING, "手机号可以注册");
-			map.put(RESULT_STATUS_STRING, "1");
+			return true;
+		}else{
+			return false;
 		}
-
-		return map;
 	}
 	
 	/**
@@ -310,7 +308,7 @@ public class MemberController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/checkMemberByEmail")
-	public Map<String, Object> checkMemberByEmail(HttpServletRequest request) {
+	public boolean checkMemberByEmail(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String email = request.getParameter("email")==null? "":request.getParameter("email");
 		int count = 1;
@@ -321,14 +319,12 @@ public class MemberController extends MyBaseController {
 			map.put(RESULT_STATUS_STRING, "0");
 		}
 		if (count > 0) {
-			map.put(RESULT_MESSAGE_STRING, "该手机号已经被注册");
-			map.put(RESULT_STATUS_STRING, "0");
+			return false;
 		} else if(RESULT_COUNT_0 == count){
-			map.put(RESULT_MESSAGE_STRING, "手机号可以注册");
-			map.put(RESULT_STATUS_STRING, "1");
+			return true;
+		}else{
+			return false;
 		}
-
-		return map;
 	}
 	
 	/**
@@ -339,7 +335,7 @@ public class MemberController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/checkMemberByMemberName")
-	public Map<String, Object> checkMemberByMemberName(HttpServletRequest request) {
+	public boolean checkMemberByMemberName(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String member_name = request.getParameter("member_name")==null? "":request.getParameter("member_name");
 		int count = 1;
@@ -349,13 +345,14 @@ public class MemberController extends MyBaseController {
 			map.put(RESULT_STATUS_STRING, "0");
 		}
 		if (count > 0) {
-			map.put(RESULT_MESSAGE_STRING, "该会员名称已经被注册");
-			map.put(RESULT_STATUS_STRING, "0");
+			return false;
 		} else if(RESULT_COUNT_0 == count){
-			map.put(RESULT_STATUS_STRING, "1");
+			return true;
+		}else{
+			return false;
 		}
+		
 
-		return map;
 	}
 	
 	/**

@@ -42,16 +42,24 @@ $(function() {
 
 //注销
 $('#logout_but').on('click',function(){
-	$.ajax({
-		method : "POST",
-		url : contextPath + "/sinian/member/memberController/memberLogout",
-		data : {
-			//id : id
-		}
-	}).done(function(data) {
-		layer.alert(data.result_message, {
-			 closeBtn: 1
-		}, function(){
-			window.location.href = contextPath + '/sinian/index/indexController/toMemberLogin';
-		});	});
+	layer.confirm("确认要当前登录用户吗？", {
+		btn : [ '注销', '取消' ]
+	//按钮
+	}, function(index) {
+		$.ajax({
+			method : "POST",
+			url : contextPath + "/sinian/member/memberController/memberLogout",
+			data : {
+				//id : id
+			}
+		}).done(function(data) {
+			layer.alert(data.result_message, {
+				 closeBtn: 1
+			}, function(){
+				window.location.href = contextPath + '/sinian/index/indexController/toMemberLogin';
+			});	});
+	}, function(index) {
+		layer.close(index);
+	});
+	
 });

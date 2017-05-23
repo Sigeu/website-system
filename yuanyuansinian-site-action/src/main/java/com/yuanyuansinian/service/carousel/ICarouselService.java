@@ -61,4 +61,6 @@ public interface ICarouselService {
 
 	void uploadCarouselImg(HttpServletRequest request, String id);
 
+	Carousel queryCarouselBySingle();
+
 }

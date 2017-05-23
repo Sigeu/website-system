@@ -66,7 +66,7 @@
 						class="c-red">*</span>登录密码</label>
 					<div class="col-sm-8 col-md-9 form-pos">
 						<input type="password" name="pwd" id="pwd" class="form-control" value="${memberUser.pwd}"
-							placeholder="请输入登录密码">
+							placeholder="登录密码为6-20个字母、数字组合">
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
@@ -86,10 +86,10 @@
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">现居住地</label>
+					<label class="control-label col-sm-4 col-md-3">现居住地址</label>
 					<div class="col-sm-8 col-md-9">
 						<input type="text" name="addr_now" id="addr_now" value="${memberUser.addr_now}"
-							class="form-control" placeholder="请输入现居住地">
+							class="form-control" placeholder="请输入现居住地址">
 					</div>
 				</div>
 				<!-- <div class="form-group col-sm-6">
@@ -138,6 +138,9 @@
 			return this.optional(element)
 					|| (length == 11 && mobile.test(value));
 		}, '请正确填写您的手机号码');
+		jQuery.validator.addMethod("regexPassword", function(value, element) {  
+		    return this.optional(element) || /^[A-Za-z0-9]{6,20}$/.test(value);  
+		}, "密码为6-20个字母、数字组合");
 		//表单提交，可上传文件
 		$(function() {
 			$('#sex').val('${memberUser.sex}');
@@ -150,13 +153,29 @@
 										required : true
 									},
 									member_name : {
-										required : true
+										required : true,
+										remote: {
+						                        url: contextPath + "/sinian/member/memberController/checkMemberByMemberName",
+						                        type: "post",
+						                        dataType: "json",
+						                        data: {
+						                        	member_name: function () {
+						                                return $("#member_name").val();//这个是取要验证的密码
+						                            }
+						                        },
+						                        dataFilter: function (data) {//判断控制器返回的内容，data只能是true或者false
+						                        	//alert(data)
+						                        	return data;
+						                        }
+						                    }
 									},
 									sex : {
 										required : true
 									},
 									pwd : {
-										required : true
+										required : true,
+										regexPassword : "密码为6-20个字母、数字组合"
+										
 									},
 									pwd2 : {
 										required : true,
@@ -164,13 +183,55 @@
 									},
 									phone : {
 										required : true,
-										isMobile:"请填写正确有效的手机号码!"
+										isMobile:"请填写正确有效的手机号码!",
+										remote: {
+					                        url: contextPath + "/sinian/member/memberController/checkMemberByPhone",
+					                        type: "post",
+					                        dataType: "json",
+					                        data: {
+					                        	member_name: function () {
+					                                return $("#phone").val();//这个是取要验证的密码
+					                            }
+					                        },
+					                        dataFilter: function (data) {//判断控制器返回的内容，data只能是true或者false
+					                        	//alert(data)
+					                        	return data;
+					                        }
+					                    }
 									},
 									email : {
 										required : true,
-										email : true
+										email : true,
+										remote: {
+					                        url: contextPath + "/sinian/member/memberController/checkMemberByEmail",
+					                        type: "post",
+					                        dataType: "json",
+					                        data: {
+					                        	member_name: function () {
+					                                return $("#email").val();//这个是取要验证的密码
+					                            }
+					                        },
+					                        dataFilter: function (data) {//判断控制器返回的内容，data只能是true或者false
+					                        	//alert(data)
+					                        	return data;
+					                        }
+					                    }
 									}
 								},
+								messages: {
+									member_name: {
+						                    required: "请填写会员名！",
+						                    remote: "会员名已被注册，请重新填写！"
+						                },
+						           	phone: {
+					                    required: "请填写正确有效的手机号码!",
+					                    remote: "手机号码已被注册，请重新填写！"
+					                },
+					                email: {
+					                    required: "请填正确的电子邮箱！",
+					                    remote: "电子邮箱已被注册，请重新填写！"
+					                }
+						        },
 								onkeyup : false,
 								focusCleanup : false,
 								success : "valid",

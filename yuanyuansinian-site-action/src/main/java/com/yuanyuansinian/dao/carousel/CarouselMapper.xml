@@ -222,4 +222,16 @@
     </set>
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 单页图片列表 -->
+  <select id="queryCarouselBySingle" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_carousel
+    where carousel_type = '2'
+    order by no_order desc
+  </select>
 </mapper>

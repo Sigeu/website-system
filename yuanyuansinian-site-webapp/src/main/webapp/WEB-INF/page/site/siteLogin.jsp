@@ -38,7 +38,7 @@
 							<span class="glyphicon glyphicon-user"></span>
 						</div>
 						<input type="text" class="form-control" id="name" name="name"
-							placeholder="请输入手机号或者邮箱登录">
+							placeholder="请使用注册时的手机号登录">
 					</div>
 					<div class="input-group">
 						<div class="input-group-addon">

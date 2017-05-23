@@ -154,6 +154,9 @@
 				/system/controller/loginController/logout = anon
 				/sinian/member/memberController/updateMember = anon
 				/sinian/member/memberController/checkMemberByMemberName = anon
+				/sinian/member/memberController/checkMemberByPhone = anon
+				/sinian/member/memberController/checkMemberByEmail = anon
+				/sinian/carousel/carouselController/queryImgBySingle = anon
 				/sinian/product/productController/uploadImg = anon
 				/sinian/cart/cartController/addCart = anon
 				/sinian/index/** = anon
