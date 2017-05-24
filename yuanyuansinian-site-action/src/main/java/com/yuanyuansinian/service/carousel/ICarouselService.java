@@ -63,4 +63,6 @@ public interface ICarouselService {
 
 	Carousel queryCarouselBySingle();
 
+	List<Carousel> queryCarouselListForSystem(Carousel carousel);
+
 }

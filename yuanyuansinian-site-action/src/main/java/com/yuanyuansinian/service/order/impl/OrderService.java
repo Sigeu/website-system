@@ -19,10 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.alipay.api.AlipayApiException;
-import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.yuanyuansinian.dao.order.OrderMapper;
 import com.yuanyuansinian.model.order.Order;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
@@ -194,9 +190,16 @@ public class OrderService implements IOrderService {
 			order.setProduct_id(id);
 			// order.setProduct_price(product_price);
 			order.setCreate_date(MyDateUtil.getDateTime());
+			order.setStatus(IMySystemConstants.VALUE_0);
 			orderMapper.insert(order);
 		}
 		
+	}
+
+	@Override
+	public void updateOrderByOrderNum(Order order) {
+		// TODO Auto-generated method stub
+		orderMapper.updateOrderByOrderNum(order);
 	}
 
 }

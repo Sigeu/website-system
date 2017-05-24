@@ -69,7 +69,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/sinian/carousel/carouselController/queryCarouselList",
+									url : "${pageContext.request.contextPath}/sinian/carousel/carouselController/queryCarouselListForSystem",
 									type:"POST",
 									data : {
 										//args1: "固定传参"

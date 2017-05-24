@@ -198,21 +198,47 @@ p.museum-des {position:relative; top:8px}
 .incense-product-list .thumbnail h5 {margin-top:2px; width:75%; float:left; font-size:14px}
 
 /*购物车结算*/
-	.settlement-pro {padding:15px 0px; border-bottom:1px solid #ddd}
-	.settlement-img img {width:100%}
-	.settlement-title {margin-bottom:5px; width:100%; height:25px; line-height:25px; overflow:hidden; font-size:12px; text-align:justify}
-	.settlement-price {margin-bottom:5px; font-size:12px; color:#b85844}
-	.form-group {margin-bottom:12px}
-	.settlement-number .form-horizontal .control-label {margin-bottom:7px; padding-right:0px; font-size:12px; color:#b85844; font-weight:normal; text-align:left}
-	.settlement-number .form-horizontal .settlement-input {padding-left:0px; font-size:12px}
-	.settlement-btn {margin:15px 0px}
+.settlement-pro {padding:15px 0px; border-bottom:1px solid #ddd}
+.settlement-img img {width:100%}
+.settlement-title {margin-bottom:5px; width:100%; height:25px; line-height:25px; overflow:hidden; font-size:12px; text-align:justify}
+.settlement-price {margin-bottom:5px; font-size:12px; color:#b85844}
+.form-group {margin-bottom:12px}
+.settlement-number .form-horizontal .control-label {margin-bottom:7px; padding-right:0px; font-size:12px; color:#b85844; font-weight:normal; text-align:left}
+.settlement-number .form-horizontal .settlement-input {padding-left:0px; font-size:12px}
+.settlement-btn {margin:15px 0px}
 /*注册*/
-	.form-pos {position:relative}
-	.form-pos > label {position:absolute; top:5px; right:20px; color:#b85844}
-	.c-red {color:#b85844}
-	
+.form-pos {position:relative}
+.form-pos > label {position:absolute; top:5px; right:20px; color:#b85844}
+.c-red {color:#b85844}
+
 /*登录*/
-	.login-modal {position:static; margin-top:10px}
+.login-modal {position:static; margin-top:10px}
+
+/*礼品*/
+.gift-con {margin:0 auto; border-radius:5px; background-color:#efdba8} 
+.gift-con .pro-header {margin:0 15px; border-bottom-color:#f5f5dd}
+.gift-con .side-nav {padding-right:0px}
+.gift-con .side-nav-body li {border-bottom-color:transparent}
+.gift-con .side-nav-body a {padding:0px; text-align:center}
+.gift-pro a img {height:85px}
+.gift-pro dl {margin-top:10px; margin-bottom:0px}
+.gift-pro dt, .gift-pro dd {width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+	
+/*弹出购物车*/
+.settle-con {margin:0 auto; padding-bottom:15px; border-radius:5px; background-color:#efdba8}
+.settle-con .pro-header {margin:0 15px; border-bottom-color:#f5f5dd} 
+.settle-body-all {margin:0 15px}
+.settle-body {margin-top:10px}
+.settle-pro {margin-bottom:15px; padding:15px; background-color:#f5f5dc; border:1px solid #ddd} 
+.settle-info {font-size:12px; height:20px; line-height:20px}
+.settle-title {margin-top:10px; width:100%; height:20px; line-height:20px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.settle-pro img {width:100%}
+.settle-price {color:#b85844}
+.settle-pro .input-group {margin-bottom:0px}
+.settle-btn {margin-top:10px}
+.settle-all-btn {padding-left:20px; padding-right:20px}
+.settle-all strong {font-size:15px; color:#b85844; padding:0 10px}
+	
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
 	.navbar-logo {padding:0}
@@ -303,7 +329,7 @@ p.museum-des {position:relative; top:8px}
 	.new-notice {padding:0 30px; margin-bottom:20px}
 	.new-add {margin-top:90px}
 	.new-add button {margin-top:30px; width:35%}
-	.register-con {margin-top:150px}
+	.register-con {margin-top:150px; background-color:#f9f9f9}
 	.search-index {margin-top:50px}
 	
 	/* 双人馆 double-box*/
@@ -327,7 +353,13 @@ p.museum-des {position:relative; top:8px}
 	
 	/*登录*/
 	.login-modal {position:static; margin-top:10px}
+	
+	/*礼品*/
+	.gift-con {width:90%} /*这个width:90%比例可以修改，根据修改自动缩放*/
 
+	/*弹出购物车*/
+	.settle-con {width:80%} /*这个width:80%比例可以修改，根据修改自动缩放*/
+	.settle-pro img {height:106px}
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -414,6 +446,12 @@ p.museum-des {position:relative; top:8px}
 	/*登录*/
 	.login-modal {position:static; margin-top:10px}
 	
+	/*礼品*/
+	.gift-pro a img {height:100px}
+
+	/*弹出购物车*/
+	.settle-title {margin-top:10px; width:100%; height:40px; line-height:20px; overflow:hidden; white-space:normal; text-overflow:clip}
+	.settle-pro img {height:150px}
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
@@ -484,5 +522,7 @@ p.museum-des {position:relative; top:8px}
 	.settlement-price {margin-bottom:10px}
 	.settlement-number .form-horizontal .control-label {margin-bottom:10px}
 	
-	
+	/*弹出购物车*/
+	.settle-title {height:20px; line-height:20px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+	.settle-pro img {height:117px}
 }

@@ -57,7 +57,7 @@
 					<label class="control-label col-sm-4 col-md-3"><span
 						class="c-red">*</span>手机号码</label>
 					<div class="col-sm-8 col-md-9 form-pos">
-						<input type="text" name="phone" id="phone" class="form-control" value="${memberUser.phone}"
+						<input type="text" name="phone" id="phone" class="form-control" readonly="readonly" value="${memberUser.phone}"
 							placeholder="请输入手机号码,手机号码为会员登录帐号">
 					</div>
 				</div>
@@ -73,7 +73,7 @@
 					<label class="control-label col-sm-4 col-md-3"><span
 						class="c-red">*</span>电子邮箱</label>
 					<div class="col-sm-8 col-md-9 form-pos">
-						<input type="text" name="email" id="email" class="form-control" value="${memberUser.email}"
+						<input type="text" name="email" id="email" class="form-control" readonly="readonly" value="${memberUser.email}"
 							placeholder="请输入电子邮箱">
 					</div>
 				</div>
@@ -153,21 +153,8 @@
 										required : true
 									},
 									member_name : {
-										required : true,
-										remote: {
-						                        url: contextPath + "/sinian/member/memberController/checkMemberByMemberName",
-						                        type: "post",
-						                        dataType: "json",
-						                        data: {
-						                        	member_name: function () {
-						                                return $("#member_name").val();//这个是取要验证的密码
-						                            }
-						                        },
-						                        dataFilter: function (data) {//判断控制器返回的内容，data只能是true或者false
-						                        	//alert(data)
-						                        	return data;
-						                        }
-						                    }
+										required : true
+										
 									},
 									sex : {
 										required : true
@@ -183,39 +170,11 @@
 									},
 									phone : {
 										required : true,
-										isMobile:"请填写正确有效的手机号码!",
-										remote: {
-					                        url: contextPath + "/sinian/member/memberController/checkMemberByPhone",
-					                        type: "post",
-					                        dataType: "json",
-					                        data: {
-					                        	member_name: function () {
-					                                return $("#phone").val();//这个是取要验证的密码
-					                            }
-					                        },
-					                        dataFilter: function (data) {//判断控制器返回的内容，data只能是true或者false
-					                        	//alert(data)
-					                        	return data;
-					                        }
-					                    }
+										isMobile:"请填写正确有效的手机号码!"
 									},
 									email : {
 										required : true,
-										email : true,
-										remote: {
-					                        url: contextPath + "/sinian/member/memberController/checkMemberByEmail",
-					                        type: "post",
-					                        dataType: "json",
-					                        data: {
-					                        	member_name: function () {
-					                                return $("#email").val();//这个是取要验证的密码
-					                            }
-					                        },
-					                        dataFilter: function (data) {//判断控制器返回的内容，data只能是true或者false
-					                        	//alert(data)
-					                        	return data;
-					                        }
-					                    }
+										email : true
 									}
 								},
 								messages: {

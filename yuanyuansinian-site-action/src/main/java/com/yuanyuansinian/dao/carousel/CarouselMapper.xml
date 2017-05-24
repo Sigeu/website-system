@@ -210,6 +210,16 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_carousel
+    where carousel_type = '1'
+  </select>
+  
+  <!-- 轮播图片列表 -->
+  <select id="queryCarouselListForSystem" parameterType="com.yuanyuansinian.model.carousel.Carousel" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_carousel
   </select>
   
   <!-- 更新轮播图片 -->

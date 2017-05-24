@@ -66,5 +66,7 @@ public interface IOrderService {
 
 	void addOrderByIds(HttpServletRequest request, String ids, String memberId, String count);
 
+	void updateOrderByOrderNum(Order order);
+
 
 }

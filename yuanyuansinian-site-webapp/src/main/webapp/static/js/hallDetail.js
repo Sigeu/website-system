@@ -10,65 +10,106 @@ $(function(){
 	//		window.location.href = contextPath + "/sinian/index/indexController/toShowSingleMemorial";
 	//});
 	//上香
-	$('#incense_but').on('click',function(){
-		window.location.href = contextPath + "/sinian/index/indexController/toChooseProduct?type=1";
+	$('#incense_but,#tribute_but,#flowers_but,#song_but').on('click',function(){
+		layer.open({
+		    type: 2,
+		    maxmin:true,
+		    title:["购买"],
+		    area: ['60%', '60%'],
+		    shadeClose: false, //点击遮罩关闭
+		    //content: contextPath + "/sinian/index/indexController/toChooseProduct?type=1"
+		    content: contextPath + "/sinian/index/indexController/toChooseProductAll"
+		 });
+		//window.location.href = contextPath + "/sinian/index/indexController/toChooseProduct?type=1";
 	});
 	//未登录点击
 	$('#incense_but_nouser').on('click',function(){
 		layer.alert("尚未登录，请登录后购买！", {
 		  closeBtn: 1
 		}, function(){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["登录"],
+			    area: ['60%', '60%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=1"
+			 });
 			//先登录:设置标识buy，表示登陆后跳回购买页面
-			window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=1";
+			//window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=1";
 		});
 		
 	});
 	
 	
 	//贡品
-	$('#tribute_but').on('click',function(){
+	/*$('#tribute_but').on('click',function(){
 		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=2";
-	});
+	});*/
 	
 	//未登录点击
 	$('#tribute_but_nouser').on('click',function(){
 		layer.alert("尚未登录，请登录后购买！", {
 		  closeBtn: 1
 		}, function(){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["登录"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=2"
+			 });
 			//先登录:设置标识buy，表示登陆后跳回购买页面
-			window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=2";
+			//window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=2";
 		});
 		
 	});
 	
 	//献花
-	$('#flowers_but').on('click',function(){
+	/*$('#flowers_but').on('click',function(){
 		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=3";
-	});
+	});*/
 	
 	//未登录点击
 	$('#flowers_but_nouser').on('click',function(){
 		layer.alert("尚未登录，请登录后购买！", {
 		  closeBtn: 1
 		}, function(){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["登录"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=3"
+			 });
 			//先登录:设置标识buy，表示登陆后跳回购买页面
-			window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=3";
+			//window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=3";
 		});
 		
 	});
 	
 	//点歌
-	$('#song_but').on('click',function(){
+	/*$('#song_but').on('click',function(){
 		window.location.href = contextPath + "/sinian/index/indexController/toChooseMyProduct?type=4";
-	});
+	});*/
 	
 	//未登录点击
 	$('#song_but_nouser').on('click',function(){
 		layer.alert("尚未登录，请登录后购买！", {
 		  closeBtn: 1
 		}, function(){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["登录"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=4"
+			 });
 			//先登录:设置标识buy，表示登陆后跳回购买页面
-			window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=4";
+			//window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=4";
 		});
 		
 	});

@@ -59,4 +59,6 @@ public interface OrderMapper {
 	List<Order> queryOrderListByType(Order order);
 
 	List<Order> queryOrderListByMember(Map<String, Object> map);
+
+	void updateOrderByOrderNum(Order order);
 }

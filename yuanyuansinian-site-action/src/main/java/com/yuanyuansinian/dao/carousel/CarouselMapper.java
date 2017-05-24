@@ -67,4 +67,6 @@ public interface CarouselMapper {
 
 	List<Carousel> queryCarouselBySingle();
 
+	List<Carousel> queryCarouselListForSystem(Carousel carousel);
+
 }

@@ -43,19 +43,18 @@
 									<div class="form-group">
 										<label class="col-sm-3 col-md-2 control-label">数量：</label>
 										<div class="col-sm-3 col-md-2 settlement-input">
-											<input type="text" class="form-control" placeholder="请输入" />
+											<input type="text" name="count_num" value="" class="form-control" placeholder="购买数量" />
 										</div>
 									</div>
 								</form>
 							</div>
-							<!-- <div class="settlement-price pull-left">需支付：￥0.00</div> -->
-							<div class="shop-info pull-right"><input type="checkbox" name="pay_check" value="${cart.product_id }"></div>
+							<!-- <div class="settlement-price pull-left">需支付：<b>￥</b><span id="money_num">0.00</span></div> -->
+							<div class="shop-info pull-right"><input type="checkbox"  value="${cart.product_name}-${cart.product_id}-${cart.price_site}" name="pay_check" value="${cart.product_id }"></div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
                 </c:forEach>
-				
-				<button class="btn btn-danger pull-right settlement-btn" id="settlement_but">立刻结算</button>
+				<button class="btn btn-danger pull-right settlement-btn" id="settlement_but">结算</button>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -71,6 +70,10 @@
 		var activeFlag = '我的思念';
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
+		//文本框输入事件,任何非正整数的输入都重置为1
+		$("input[name='count_num']").blur(function(){
+			$(this).val(this.value.replace(/[^\d]/g, 1).replace(/(\d{4})(?=\d)/g, "$1 "));
+		});
 	</script>
 </body>
 </html>

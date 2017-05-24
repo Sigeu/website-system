@@ -16,6 +16,8 @@
     <result column="product_num" jdbcType="INTEGER" property="product_num" />
     <result column="product_price" jdbcType="DOUBLE" property="product_price" />
     <result column="create_date" jdbcType="VARCHAR" property="create_date" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="trade_no" jdbcType="VARCHAR" property="trade_no" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -24,7 +26,7 @@
       This element was generated on Wed Mar 08 16:48:14 CST 2017.
     -->
     Id, order_num, member_id, product_id, remark, pay_type, product_num, product_price, 
-    create_date
+    create_date,status,trade_no
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
@@ -57,10 +59,10 @@
     </selectKey>
     insert into ujn_order (order_num, member_id, product_id, 
       remark, pay_type, product_num, 
-      product_price, create_date)
+      product_price, create_date,status,trade_no)
     values (#{order_num,jdbcType=VARCHAR}, #{member_id,jdbcType=VARCHAR}, #{product_id,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{pay_type,jdbcType=VARCHAR}, #{product_num,jdbcType=INTEGER}, 
-      #{product_price,jdbcType=DOUBLE}, #{create_date,jdbcType=VARCHAR})
+      #{product_price,jdbcType=DOUBLE}, #{create_date,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{trade_no,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yuanyuansinian.model.order.Order">
     <!--
@@ -97,6 +99,12 @@
       <if test="create_date != null">
         create_date,
       </if>
+       <if test="status != null">
+        status,
+      </if>
+      <if test="trade_no != null">
+        trade_no,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="order_num != null">
@@ -122,6 +130,12 @@
       </if>
       <if test="create_date != null">
         #{create_date,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="trade_no != null">
+        #{trade_no,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -157,6 +171,12 @@
       <if test="create_date != null">
         create_date = #{create_date,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+       <if test="trade_no != null">
+        trade_no = #{trade_no,jdbcType=VARCHAR},
+      </if>
     </set>
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -174,7 +194,9 @@
       pay_type = #{pay_type,jdbcType=VARCHAR},
       product_num = #{product_num,jdbcType=INTEGER},
       product_price = #{product_price,jdbcType=DOUBLE},
-      create_date = #{create_date,jdbcType=VARCHAR}
+      create_date = #{create_date,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      trade_no = #{trade_no,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -186,4 +208,11 @@
     where  member_id = #{member_id}
     order by create_date desc limit #{limtNum} 
   </select>
+  
+  <update id="updateOrderByOrderNum" parameterType="com.yuanyuansinian.model.order.Order">
+    update ujn_order
+    set status = #{status,jdbcType=VARCHAR},
+    trade_no = #{trade_no,jdbcType=VARCHAR}
+    where order_num = #{order_num,jdbcType=VARCHAR}
+  </update>
 </mapper>

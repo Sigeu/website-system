@@ -148,4 +148,10 @@ public class CarouselService implements ICarouselService {
 		}
 		return carousel;
 	}
+
+	@Override
+	public List<Carousel> queryCarouselListForSystem(Carousel carousel) {
+		// TODO Auto-generated method stub
+		return carouselMapper.queryCarouselListForSystem(carousel);
+	}
 }

@@ -18,11 +18,11 @@
 			<img src="${product.pic }" class="img-responsive">
 		</div>
 		<div class="col-sm-6">
-			<h3>${product.name }</h3>
+			<h3 id="name_">${product.name }</h3>
 			<div class="product-price">
 				<span class="btn-label pull-left">推荐价格</span>
 				<h2 class="pull-left">
-					<small>￥</small>${product.price_site }
+					<small>￥</small><span id="price_site">${product.price_site }</span>
 				</h2>
 			</div>
 			<div class="clearfix"></div>

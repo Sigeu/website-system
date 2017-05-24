@@ -158,6 +158,9 @@
 				/sinian/member/memberController/checkMemberByEmail = anon
 				/sinian/carousel/carouselController/queryImgBySingle = anon
 				/sinian/product/productController/uploadImg = anon
+				/sinian/order/orderController/notifyUrl = anon
+				/return_url.jsp = anon
+				/notify_url.jsp = anon
 				/sinian/cart/cartController/addCart = anon
 				/sinian/index/** = anon
 				/** = authc

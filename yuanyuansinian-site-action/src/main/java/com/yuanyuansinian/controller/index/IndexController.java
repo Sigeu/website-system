@@ -24,6 +24,7 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.github.pagehelper.PageHelper;
+import com.yuanyuansinian.alipay.config.AlipayConfig;
 import com.yuanyuansinian.model.carousel.Carousel;
 import com.yuanyuansinian.model.cart.Cart;
 import com.yuanyuansinian.model.cemetery.Cemetery;
@@ -972,6 +973,25 @@ public class IndexController extends MyBaseController {
 	
 	/**
 	 * 
+	 * @Description: 跳转到纪念馆选择所有分类祭品页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toChooseProductAll")
+	public String toChooseProductAll(HttpServletRequest request, Model model) {
+		Product product = new Product();
+		//纪念馆商品
+		product.setBig_type("2");
+		List<Product> productList = productService.queryProductList(product);
+		
+		model.addAttribute("productList", productList);
+		
+		 return "site/hallChooseProduct";
+	}
+	
+	/**
+	 * 
 	 * @Description: 纪念馆灵堂页面，包括选择的商品 
 	 * @param request
 	 * @param model
@@ -1049,30 +1069,41 @@ public class IndexController extends MyBaseController {
 			
 			//设置支付属性
 			String outTradeNo = MyAutoGenerateOrderNum.generateOrderNum("");
-			String productCode = "";
+			String productCode = "FAST_INSTANT_TRADE_PAY";
 			float totalAmount = Float.parseFloat(count);
-			String subject = "";
-			String body = "";
+			//float  totalAmount   =  (float)(Math.round(totalAmountTemp*100))/100;
+			String subject = "缘园思念网祭奠礼品";
+			String body = "礼品名称";
 			String passbackParams = "";
 			String sysServiceProviderId = MyAutoGenerateOrderNum.generateOrderNum("");
 			//支付
 			AlipayClient alipayClient = new DefaultAlipayClient(
-					IMySystemConstants.ALIPAY_URL, IMySystemConstants.APP_ID,
-					IMySystemConstants.APP_PRIVATE_KEY, IMySystemConstants.FORMAT, IMySystemConstants.CHARSET, IMySystemConstants.ALIPAY_PUBLIC_KEY, IMySystemConstants.SIGN_TYPE); // 获得初始化的AlipayClient
+					AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type); // 获得初始化的AlipayClient
 			AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();// 创建API对应的request
-			alipayRequest.setReturnUrl(IMySystemConstants.RETURN_URL);
-			alipayRequest.setNotifyUrl(IMySystemConstants.NOTIFY_URL);// 在公共参数中设置回跳和通知地址
+			alipayRequest.setReturnUrl(AlipayConfig.return_url);
+			alipayRequest.setNotifyUrl(AlipayConfig.notify_url);// 在公共参数中设置回跳和通知地址
 			alipayRequest
 					.setBizContent("{"
-							+ "    \"out_trade_no\":\"20150320010101001\","
-							+ "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\","
-							+ "    \"total_amount\":0.01,"
-							+ "    \"subject\":\"缘园思念网祭奠礼品\","
-							+ "    \"body\":\"礼品名称\","
-							+ "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\","
+							+ "    \"out_trade_no\":\""+ outTradeNo + "\","
+							+ "    \"product_code\":\""+ productCode + "\","
+							+ "    \"total_amount\":" + totalAmount+ ","
+							+ "    \"subject\":\"" + subject + "\","
+							+ "    \"body\":\"" + body + "\","
+							+ "    \"passback_params\":\"" + passbackParams + "\","
 							+ "    \"extend_params\":{"
-							+ "    \"sys_service_provider_id\":\"2088511833207846\""
+							+ "    \"sys_service_provider_id\":\"" + sysServiceProviderId + "\""
 							+ "    }" + "  }");// 填充业务参数
+										
+			/*alipayRequest.setBizContent("{" + "\"out_trade_no\":\"" + outTradeNo + "\"," +
+			        "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
+			        "    \"total_amount\":88.88," +
+			        "    \"subject\":\"Iphone6 16G\"," +
+			        "    \"body\":\"Iphone6 16G\"," +
+			        "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
+			        "    \"extend_params\":{" +
+			        "    \"sys_service_provider_id\":\"2089511833207846\"" +
+			        "    }"+
+			        "  }");*/
 			String form = "";
 			try {
 				form = alipayClient.pageExecute(alipayRequest).getBody(); // 调用SDK生成表单
