@@ -180,6 +180,8 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/hallChooseProduct.js"></script>
 	<script type="text/javascript">
+		//从那个纪念馆进入的该页面
+		var hallId = "${hallId }";
 		var activeFlag = '产品选择列表';
 		//-------分页数据----------
 		var id = '${column_id }';

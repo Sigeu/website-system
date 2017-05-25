@@ -11,6 +11,7 @@ public class Product {
     private Integer id;
     private String product_no;
     private Integer sales;
+    private String validity_day;
 
     /**
      *
@@ -526,5 +527,13 @@ public class Product {
 
 	public void setBig_type_name(String big_type_name) {
 		this.big_type_name = big_type_name;
+	}
+
+	public String getValidity_day() {
+		return validity_day;
+	}
+
+	public void setValidity_day(String validity_day) {
+		this.validity_day = validity_day;
 	}
 }

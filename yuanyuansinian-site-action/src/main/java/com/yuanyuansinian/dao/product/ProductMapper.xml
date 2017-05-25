@@ -28,6 +28,7 @@
     <result column="big_type_name" jdbcType="VARCHAR" property="big_type_name" />
     <result column="no_order" jdbcType="INTEGER" property="no_order" />
     <result column="sales" jdbcType="INTEGER" property="sales" />
+    <result column="validity_day" jdbcType="VARCHAR" property="validity_day" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yuanyuansinian.model.product.ProductWithBLOBs">
     <!--
@@ -69,7 +70,7 @@
 	  else ''  
 	end as big_type_name,
 	no_order,
-	sales
+	sales,validity_day
   </sql>
   <sql id="Blob_Column_List">
     <!--
@@ -114,13 +115,15 @@
       price_site, price_cost, price_min, 
       units, description, status, 
       create_date, keywords, pic, 
-      type, img_index, content,no_order,sales,big_type
+      type, img_index, content,no_order,sales,big_type,validity_day
       )
     values (#{product_no,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{name_short,jdbcType=VARCHAR}, #{price_market,jdbcType=DOUBLE}, 
       #{price_site,jdbcType=DOUBLE}, #{price_cost,jdbcType=DOUBLE}, #{price_min,jdbcType=DOUBLE}, 
       #{units,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{create_date,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{img_index,jdbcType=LONGVARBINARY}, #{content,jdbcType=LONGVARCHAR},#{no_order,jdbcType=INTEGER},#{sales,jdbcType=INTEGER},#{big_type,jdbcType=VARCHAR}
+      #{type,jdbcType=VARCHAR}, #{img_index,jdbcType=LONGVARBINARY}, #{content,jdbcType=LONGVARCHAR},
+      #{no_order,jdbcType=INTEGER},#{sales,jdbcType=INTEGER},#{big_type,jdbcType=VARCHAR},
+      #{validity_day,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yuanyuansinian.model.product.ProductWithBLOBs">
@@ -191,6 +194,9 @@
       <if test="big_type != null">
         big_type,
       </if>
+      <if test="validity_day != null">
+        validity_day,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="product_no != null">
@@ -249,6 +255,9 @@
       </if>
       <if test="big_type != null">
         #{big_type,jdbcType=VARCHAR},
+      </if>
+      <if test="validity_day != null">
+        #{validity_day,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -317,6 +326,9 @@
       <if test="big_type != null">
         big_type = #{big_type,jdbcType=VARCHAR},
       </if>
+      <if test="validity_day != null">
+        validity_day = #{validity_day,jdbcType=VARCHAR},
+      </if>
     </set>
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -345,7 +357,8 @@
       content = #{content,jdbcType=LONGVARCHAR},
       no_order = #{no_order,jdbcType=INTEGER},
       sales = #{sales,jdbcType=INTEGER},
-      big_type = #{big_type,jdbcType=VARCHAR}
+      big_type = #{big_type,jdbcType=VARCHAR},
+      validity_day = #{validity_day,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yuanyuansinian.model.product.Product">
@@ -371,7 +384,8 @@
       type = #{type,jdbcType=VARCHAR},
       no_order = #{no_order,jdbcType=INTEGER},
       sales = #{sales,jdbcType=INTEGER},
-      big_type = #{big_type,jdbcType=VARCHAR}
+      big_type = #{big_type,jdbcType=VARCHAR},
+      validity_day = #{validity_day,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   

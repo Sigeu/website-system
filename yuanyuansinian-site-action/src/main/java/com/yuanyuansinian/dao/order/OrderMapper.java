@@ -61,4 +61,6 @@ public interface OrderMapper {
 	List<Order> queryOrderListByMember(Map<String, Object> map);
 
 	void updateOrderByOrderNum(Order order);
+
+	Order queryOrderByOrderNum(String order_num);
 }

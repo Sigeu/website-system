@@ -882,6 +882,35 @@ public class IndexController extends MyBaseController {
 		
 	}
 	
+	
+	//仓库
+	@RequestMapping("/toMemberWarehouse")
+	public String toMemberWarehouse(HttpServletRequest request, Model model) {
+		//获取登录的会员
+		Member memberUser = super.getSessionMemberUser(request);
+		if(null == memberUser){
+			return "redirect:/sinian/index/indexController/toMemberLogin";
+		}else{
+			//默认查询所有的纪念馆产品
+			String type = "2";
+			//已购买的产品
+			Warehouse warehouse = new Warehouse();
+			warehouse.setProduct_type(type);
+			//当前用户
+			warehouse.setMember_id(memberUser.getId()+"");
+			List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByType(type);
+			model.addAttribute("listWarehouse", listWarehouse);
+			
+			//我创建的纪念馆，用于选择使用在哪个纪念馆
+			List<Hall> listHallNew = hallService.queryHallNewListByMember(memberUser.getId(), IMySystemConstants.COUNT_NUM6);
+			model.addAttribute("listHallNew", listHallNew);
+			
+			return "site/memberWarehouse";
+		}
+		
+	}
+	
+	
 	//结算页面
 	@RequestMapping("/toSettlement")
 	public String toSettlement(HttpServletRequest request, Model model) {
@@ -986,6 +1015,9 @@ public class IndexController extends MyBaseController {
 		List<Product> productList = productService.queryProductList(product);
 		
 		model.addAttribute("productList", productList);
+		//从哪个纪念馆进入的
+		String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
+		model.addAttribute("hallId", hallId);
 		
 		 return "site/hallChooseProduct";
 	}
@@ -1061,11 +1093,14 @@ public class IndexController extends MyBaseController {
 	public void toPay(HttpServletRequest request, HttpServletResponse response, Model model) {
 		try {
 			Member memberUser = super.getSessionMemberUser(request);
+			//从哪个纪念馆点击进来的
+			String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
+			
 			//礼品
 			String ids = request.getParameter("ids")==null? "":request.getParameter("ids");
 			//总价
 			String count = request.getParameter("count")==null? "0":request.getParameter("count");
-			orderService.addOrderByIds(request, ids, memberUser.getId()+"", count);
+			orderService.addOrderByIds(request, ids, memberUser.getId()+"", count, hallId);
 			
 			//设置支付属性
 			String outTradeNo = MyAutoGenerateOrderNum.generateOrderNum("");
@@ -1091,7 +1126,7 @@ public class IndexController extends MyBaseController {
 							+ "    \"body\":\"" + body + "\","
 							+ "    \"passback_params\":\"" + passbackParams + "\","
 							+ "    \"extend_params\":{"
-							+ "    \"sys_service_provider_id\":\"" + sysServiceProviderId + "\""
+							+ "    \"sys_service_provider_id\":\"" + hallId + "\""
 							+ "    }" + "  }");// 填充业务参数
 										
 			/*alipayRequest.setBizContent("{" + "\"out_trade_no\":\"" + outTradeNo + "\"," +

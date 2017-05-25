@@ -18,7 +18,7 @@ $(function(){
 		    area: ['60%', '60%'],
 		    shadeClose: false, //点击遮罩关闭
 		    //content: contextPath + "/sinian/index/indexController/toChooseProduct?type=1"
-		    content: contextPath + "/sinian/index/indexController/toChooseProductAll"
+		    content: contextPath + "/sinian/index/indexController/toChooseProductAll?hallId=" +  hallId
 		 });
 		//window.location.href = contextPath + "/sinian/index/indexController/toChooseProduct?type=1";
 	});

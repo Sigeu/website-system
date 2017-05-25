@@ -25,12 +25,17 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yuanyuansinian.alipay.config.AlipayConfig;
 import com.yuanyuansinian.model.column.Column;
+import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.order.Order;
+import com.yuanyuansinian.model.product.Product;
+import com.yuanyuansinian.model.warehouse.Warehouse;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.pub.util.MyDateUtil;
 import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.order.IOrderService;
+import com.yuanyuansinian.service.product.IProductService;
+import com.yuanyuansinian.service.warehouse.IWarehouseService;
 
 import framework.system.pub.util.DataTablePageUtil;
 
@@ -49,6 +54,12 @@ public class OrderController extends MyBaseController {
 	
 	@Resource
 	private IColumnService columnService;
+	
+	@Resource
+	private IWarehouseService warehouseService;
+	
+	@Resource
+	private IProductService productService;
 
 	/**
 	 * 
@@ -236,7 +247,8 @@ public class OrderController extends MyBaseController {
 	@ResponseBody
 	@RequestMapping("/notifyUrl")
 	public String notifyUrl(HttpServletRequest request, Order order) {
-		
+		//获取登录的会员
+		Member memberUser = super.getSessionMemberUser(request);
 		String message = "success";
 		/* *
 		 * 功能：支付宝服务器异步通知页面
@@ -290,6 +302,8 @@ public class OrderController extends MyBaseController {
 			
 				//交易状态
 				String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
+				//纪念馆ID
+				String hallId = new String(request.getParameter("sys_service_provider_id").getBytes("ISO-8859-1"),"UTF-8");
 				
 				if(trade_status.equals("TRADE_FINISHED")){
 					//判断该笔订单是否在商户网站中已经做过处理
@@ -305,12 +319,36 @@ public class OrderController extends MyBaseController {
 					
 					//注意：
 					//付款完成后，支付宝系统发送该交易状态通知
+					
+					//更新订单
 					order.setOrder_num(out_trade_no);
 					//支付成功
 					order.setStatus(IMySystemConstants.VALUE_1);
+					order.setHall_id(hallId);
 					//支付宝订单号
 					order.setTrade_no(trade_no);
 					this.orderService.updateOrderByOrderNum(order);
+					
+					//更新仓库
+					Order orderData = this.orderService.queryOrderByOrderNum(out_trade_no);
+					if(null != orderData){
+						Product product = this.productService.queryProductById(Integer.parseInt(orderData.getProduct_id()));
+						Warehouse warehouse = new Warehouse();
+						warehouse.setOrder_id(out_trade_no);
+						warehouse.setProduct_id(orderData.getProduct_id());
+						warehouse.setPurchase_date(MyDateUtil.getDateTime());
+						warehouse.setUse_date(MyDateUtil.getDateTime());
+						warehouse.setMember_id(memberUser.getId()+"");
+						//有效期
+						warehouse.setValidity_day(product.getValidity_day());
+						warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day())));
+						//正在使用
+						warehouse.setUse_status(IMySystemConstants.VALUE_1);
+						warehouse.setProduct_type(product.getType());
+						warehouse.setHall_id(hallId);
+						this.warehouseService.addWarehouse(null, warehouse);
+					}
+					
 				}
 				message = "success";
 				

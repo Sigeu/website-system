@@ -180,7 +180,7 @@ public class OrderService implements IOrderService {
 
 	@Override
 	public void addOrderByIds(HttpServletRequest request, String ids,
-			String memberId, String count) {
+			String memberId, String count, String hallId) {
 		Order order = null;
 		for (String id : ids.split(",")) {
 			order = new Order();
@@ -188,6 +188,7 @@ public class OrderService implements IOrderService {
 			order.setOrder_num(MyAutoGenerateOrderNum.generateOrderNum(""));
 			order.setMember_id(memberId);
 			order.setProduct_id(id);
+			order.setHall_id(hallId);
 			// order.setProduct_price(product_price);
 			order.setCreate_date(MyDateUtil.getDateTime());
 			order.setStatus(IMySystemConstants.VALUE_0);
@@ -200,6 +201,12 @@ public class OrderService implements IOrderService {
 	public void updateOrderByOrderNum(Order order) {
 		// TODO Auto-generated method stub
 		orderMapper.updateOrderByOrderNum(order);
+	}
+
+	@Override
+	public Order queryOrderByOrderNum(String order_num) {
+		// TODO Auto-generated method stub
+		return orderMapper.queryOrderByOrderNum(order_num);
 	}
 
 }

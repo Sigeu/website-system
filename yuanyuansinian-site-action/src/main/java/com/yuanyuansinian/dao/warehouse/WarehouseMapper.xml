@@ -17,7 +17,8 @@
     <result column="end_date" jdbcType="VARCHAR" property="end_date" />
     <result column="use_status" jdbcType="VARCHAR" property="use_status" />
     <result column="use_flag" jdbcType="VARCHAR" property="use_flag" />
-     <result column="product_type" jdbcType="VARCHAR" property="product_type" />
+    <result column="product_type" jdbcType="VARCHAR" property="product_type" />
+    <result column="hall_id" jdbcType="VARCHAR" property="hall_id" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -26,7 +27,7 @@
       This element was generated on Fri May 12 17:35:29 CST 2017.
     -->
     Id, order_id, member_id, product_id, purchase_date, use_date, validity_day, end_date, 
-    use_status, use_flag, product_type
+    use_status, use_flag, product_type,hall_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
@@ -59,11 +60,11 @@
     </selectKey>
     insert into ujn_warehouse (order_id, member_id, product_id, 
       purchase_date, use_date, validity_day, 
-      end_date, use_status, use_flag, product_type
+      end_date, use_status, use_flag, product_type,hall_id
       )
     values (#{order_id,jdbcType=VARCHAR}, #{member_id,jdbcType=VARCHAR}, #{product_id,jdbcType=VARCHAR}, 
       #{purchase_date,jdbcType=VARCHAR}, #{use_date,jdbcType=VARCHAR}, #{validity_day,jdbcType=VARCHAR}, 
-      #{end_date,jdbcType=VARCHAR}, #{use_status,jdbcType=VARCHAR}, #{use_flag,jdbcType=VARCHAR}, #{product_type,jdbcType=VARCHAR}
+      #{end_date,jdbcType=VARCHAR}, #{use_status,jdbcType=VARCHAR}, #{use_flag,jdbcType=VARCHAR}, #{product_type,jdbcType=VARCHAR}, #{hall_id,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yuanyuansinian.model.warehouse.Warehouse">
@@ -107,6 +108,9 @@
        <if test="product_type != null">
         product_type,
       </if>
+      <if test="hall_id != null">
+        hall_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="order_id != null">
@@ -138,6 +142,9 @@
       </if>
       <if test="product_type != null">
         #{product_type,jdbcType=VARCHAR},
+      </if>
+      <if test="hall_id != null">
+        #{hall_id,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -179,6 +186,9 @@
       <if test="product_type != null">
         product_type = #{product_type,jdbcType=VARCHAR},
       </if>
+       <if test="hall_id != null">
+        hall_id = #{hall_id,jdbcType=VARCHAR},
+      </if>
     </set>
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -198,11 +208,12 @@
       end_date = #{end_date,jdbcType=VARCHAR},
       use_status = #{use_status,jdbcType=VARCHAR},
       use_flag = #{use_flag,jdbcType=VARCHAR},
-      product_type = #{product_type,jdbcType=VARCHAR}
+      product_type = #{product_type,jdbcType=VARCHAR},
+      hall_id = #{hall_id,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   
-  <!-- 列表 -->
+  <!-- 仓库列表：显示所有未使用的产品 -->
   <select id="queryWarehouseListByType" parameterType="com.yuanyuansinian.model.warehouse.Warehouse" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -212,11 +223,22 @@
     and product_type = #{product_type,jdbcType=VARCHAR}
   </select>
   
+  <!-- 灵堂中正在使用的产品 -->
+  <select id="queryWarehouseListForHall" parameterType="com.yuanyuansinian.model.warehouse.Warehouse" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_warehouse
+    where use_status = '1' and hall_id = #{hall_id,jdbcType=VARCHAR}
+    and member_id = #{member_id,jdbcType=VARCHAR}
+    and product_type = #{product_type,jdbcType=VARCHAR}
+  </select>
+  
   <update id="updateWarehouseForUse" parameterType="com.yuanyuansinian.model.warehouse.Warehouse">
     update ujn_warehouse
     set use_date = #{use_date,jdbcType=VARCHAR},
       end_date = #{end_date,jdbcType=VARCHAR},
-      use_status = #{use_status,jdbcType=VARCHAR}
+      use_status = #{use_status,jdbcType=VARCHAR},
+      hall_id =  #{hall_id,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

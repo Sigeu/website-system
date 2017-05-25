@@ -27,6 +27,7 @@ public class Order {
      * @mbg.generated Wed Mar 08 16:48:14 CST 2017
      */
     private String member_id;
+    private String hall_id;
 
     /**
      *
@@ -316,5 +317,13 @@ public class Order {
 
 	public void setTrade_no(String trade_no) {
 		this.trade_no = trade_no;
+	}
+
+	public String getHall_id() {
+		return hall_id;
+	}
+
+	public void setHall_id(String hall_id) {
+		this.hall_id = hall_id;
 	}
 }

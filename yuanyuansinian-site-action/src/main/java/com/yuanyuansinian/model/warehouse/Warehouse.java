@@ -38,6 +38,7 @@ public class Warehouse {
     private String product_id;
     private String product_name;
     private String product_img;
+    private String hall_id;
 
     /**
      *
@@ -357,5 +358,13 @@ public class Warehouse {
 
 	public void setProduct_img(String product_img) {
 		this.product_img = product_img;
+	}
+
+	public String getHall_id() {
+		return hall_id;
+	}
+
+	public void setHall_id(String hall_id) {
+		this.hall_id = hall_id;
 	}
 }
