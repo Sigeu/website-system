@@ -33,22 +33,29 @@
 		</div>
 		<div class="col-sm-9">
 			<div class="settlement">
-				<c:forEach var="cart" items="${listWarehouse}">
+				<c:forEach var="warehouse" items="${listWarehouse}">
 					<div class="settlement-pro">
-						<div class="col-sm-4 settlement-img"><a href="###" onclick="toShoppingDetail('${warehouse.product_id }')"><img src="${warehouse.product_pic}" ></a></div>
+						<div class="col-sm-4 settlement-img"><a href="###" onclick="toShoppingDetail('${warehouse.product_id }')"><img src="${warehouse.product_img}" ></a></div>
 						<div class="col-sm-8 settlement-info">
 							<div class="settlement-title"><a href="###" onclick="toShoppingDetail('${warehouse.product_id }')">${warehouse.product_name}</a></div>
-							<div class="settlement-price">单价：￥${warehouse.price_site }</div>
-							<div class="shop-info pull-right"><input type="checkbox"  value="${cart.product_name}-${cart.product_id}-${cart.price_site}" name="pay_check" value="${cart.product_id }">勾选使用</div>
+							<div class="settlement-price">状态：${warehouse.use_status_name }</div>
+							<c:choose>  
+								   <c:when test="${warehouse.use_status == '1'}">
+								   </c:when>  
+								   <c:otherwise>
+									    <div class="shop-info pull-right"><input type="checkbox"  name="use_check" value="${warehouse.id }">勾选使用</div>
+								   </c:otherwise>  
+								</c:choose>  
 						</div>
 						<div class="clearfix"></div>
 					</div>
                 </c:forEach>
+                <br>
                 <div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>纪念馆：</label>
 					<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 						<select class="select" id="hall_id" name="hall_id">
-							<option value="0">--请选择--</option>  
+							<option value="">--请选择--</option>  
 		                    <c:forEach items="${listHallNew}" var="hall">  
 		                    	<option value="${hall.id}">${hall.title}</option>  
 		                    </c:forEach>  

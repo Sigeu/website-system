@@ -161,6 +161,7 @@
 				/sinian/hallDouble/hallDoubleController/uploadHead1 = anon
 				/sinian/hallDouble/hallDoubleController/uploadHead2 = anon
 				/sinian/order/orderController/notifyUrl = anon
+				/sinian/order/orderController/returnUrl = anon
 				/return_url.jsp = anon
 				/notify_url.jsp = anon
 				/sinian/cart/cartController/addCart = anon

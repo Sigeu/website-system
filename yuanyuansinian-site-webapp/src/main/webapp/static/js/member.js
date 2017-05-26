@@ -113,5 +113,59 @@ $(function(){
 		    content: contextPath + '/sinian/oration/orationController/toOrationAdd'
 		 });
 	});
+	
+	//使用礼品
+	$('#warehouse_use_but').on('click',function(){
+		var hall_id = $('#hall_id').val();
+		var ids = "";
+		$("input[name='use_check']").each(function(){
+			if($(this).is(":checked")){
+				var value = $(this).val();
+				//id
+				ids += value + ',';
+			}
+		});
+		if(ids == ''){
+			layer.alert("请选择要使用的礼品！");
+			return;
+		}
+		if(hall_id == ''){
+			layer.alert("请选择要使用的纪念馆！");
+			return;
+		}
+		index_confirm = layer.confirm('确认使用？', {
+			  btn: ['确认','取消'] //按钮
+			}, function(){
+				$.ajax({
+					method : "POST",
+					url : contextPath + "/sinian/index/indexController/updateWarehouseForUse",
+					data : {
+						ids : ids,
+						hall_id : hall_id
+					}
+				}).done(function(data) {
+					layer.open({
+						content : data.result_message,
+						yes : function(index, layero) {
+							window.location.reload();//刷新当前页面
+							layer.close(index);
+						}
+					});
+				});
+			}, function(){
+				layer.close(index_confirm);
+		});
+		return;
+			/*layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["结算"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: contextPath + '/sinian/index/indexController/toSettlement'
+			 });*/
+		
+		
+	});
 });
 

@@ -53,9 +53,13 @@ public interface WarehouseMapper {
      */
     int updateByPrimaryKey(Warehouse record);
 
-	List<Warehouse> queryWarehouseListByType(String type);
+	List<Warehouse> queryWarehouseListByType(Warehouse warehouse);
 
 	List<Warehouse> queryWarehouseList(Warehouse warehouse);
 
 	int updateWarehouseForUse(Warehouse warehouse);
+
+	void updateWarehouseStatus(Warehouse warehouse);
+
+	List<Warehouse> queryWarehouseListByHall(Warehouse warehouse);
 }

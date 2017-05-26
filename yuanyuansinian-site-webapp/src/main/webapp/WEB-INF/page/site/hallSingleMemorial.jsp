@@ -25,8 +25,10 @@
 			    <img src="${hall.imgs }" class="img-responsive incense-img" >
 		   </c:otherwise>  
 		</c:choose>
-			
-		<c:forEach items="${listHallGift}" var="hallGift" varStatus="hallGiftStatus"> 
+			<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left"><!-- 左侧花 -->
+			<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-right"><!-- 右侧花 -->
+			<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant"><!-- 香 --> --%>
+		<%-- <c:forEach items="${listHallGift}" var="hallGift" varStatus="hallGiftStatus"> 
 			<c:if test="${hallGift.product_type == 1 } ">
 				<c:if test="${hallGift.product_position == 1 } ">
 					<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left"><!-- 左侧花 -->
@@ -40,15 +42,30 @@
 				<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant"><!-- 香 -->
 			</c:if>
 			
-		</c:forEach>
+		</c:forEach>  --%>
+		
+		<c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
+							<c:if test="${warehouseStatus.index == 0 }">
+								<c:choose>  
+								   <c:when test="${empty warehouse.product_img}">
+								   		<img src="${pageContext.request.contextPath}/static/images/flower.png"
+									class="img-responsive flower-left" >
+								   </c:when>  
+								   <c:otherwise>
+									    <img src="${warehouse.product_img}" class="img-responsive flower-left">
+								   </c:otherwise>  
+							</c:choose> 
+							</c:if>
+						</c:forEach>
 						
+		
 		<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left"><!-- 左侧花 -->
 		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-right"><!-- 右侧花 -->
 		<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant"><!-- 香 --> --%>
 		<div class="incense-btn">
 			<c:choose>  
 			   <c:when test="${empty sessionScope.memberUser}">
-			   		 <button class="btn btn-danger" id="incense_but_nouser">上香</button>
+			   		<button class="btn btn-danger" id="incense_but_nouser">上香</button>
 					<button class="btn btn-danger" id="tribute_but_nouser">贡品</button>
 					<button class="btn btn-danger" id="flowers_but_nouser">献花</button>
 					<button class="btn btn-danger" id="song_but_nouser">点歌</button>
@@ -72,6 +89,8 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/hallDetail.js"></script>
 	<script type="text/javascript">
+		var hallId = "${hall.id }";
+		var hallType = "${hall.hall_type }";
 		var activeFlag = '纪念馆明细';
 		//-------分页数据----------
 		var id = '${column_id }';

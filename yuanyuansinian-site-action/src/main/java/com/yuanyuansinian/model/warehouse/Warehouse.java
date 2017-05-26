@@ -38,6 +38,7 @@ public class Warehouse {
     private String product_id;
     private String product_name;
     private String product_img;
+    private String price_site;
     private String hall_id;
 
     /**
@@ -84,6 +85,7 @@ public class Warehouse {
      * @mbg.generated Fri May 12 17:35:29 CST 2017
      */
     private String use_status;
+    private String use_status_name;
 
     /**
      *
@@ -366,5 +368,21 @@ public class Warehouse {
 
 	public void setHall_id(String hall_id) {
 		this.hall_id = hall_id;
+	}
+
+	public String getPrice_site() {
+		return price_site;
+	}
+
+	public void setPrice_site(String price_site) {
+		this.price_site = price_site;
+	}
+
+	public String getUse_status_name() {
+		return use_status_name;
+	}
+
+	public void setUse_status_name(String use_status_name) {
+		this.use_status_name = use_status_name;
 	}
 }

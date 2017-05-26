@@ -80,7 +80,7 @@
 		<div class="col-sm-8 col-md-9">
 			<div class="pro-header">
 				<h4 class="pro-title pull-left">基本信息</h4>
-				<p class="pull-right museum-des hidden-xs">已经离开我们<mark>${hallDouble.days }</mark>天</p>
+				<p class="pull-right museum-des hidden-xs">已经离开我们<mark>${hallDouble.days2 }</mark>天</p>
 			</div>
 			<div class="clearfix"></div>
 			<div class="row museum-info-right">

@@ -368,8 +368,10 @@ public class MemberController extends MyBaseController {
 		Member member = null;
 		//标识为灵堂购买礼品
 		String flag = request.getParameter("flag")==null? "":request.getParameter("flag");
-		//标识礼品分类
+		//标识单人馆还是双人馆
 		String type = request.getParameter("type")==null? "":request.getParameter("type");
+		String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
+		
 		String name = request.getParameter("name")==null? "":request.getParameter("name");
 		String pwd = request.getParameter("pwd")==null? "":request.getParameter("pwd");
 		if(!"".equals(name) && name.indexOf("@") > 0){
@@ -386,6 +388,7 @@ public class MemberController extends MyBaseController {
 			map.put(RESULT_STATUS_STRING, "1");
 			map.put("flag", flag);
 			map.put("type", type);
+			map.put("hallId", hallId);
 		} else {
 			map.put(RESULT_MESSAGE_STRING, "用户不存在！");
 			map.put(RESULT_STATUS_STRING, "0");

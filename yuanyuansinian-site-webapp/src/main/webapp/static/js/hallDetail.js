@@ -33,7 +33,7 @@ $(function(){
 			    title:["登录"],
 			    area: ['60%', '60%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=1"
+			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&hallType=" + hallType + "&hallId="  +  hallId
 			 });
 			//先登录:设置标识buy，表示登陆后跳回购买页面
 			//window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=1";
@@ -58,7 +58,7 @@ $(function(){
 			    title:["登录"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=2"
+			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&hallType=" + hallType + "&hallId="  +  hallId
 			 });
 			//先登录:设置标识buy，表示登陆后跳回购买页面
 			//window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=2";
@@ -82,7 +82,7 @@ $(function(){
 			    title:["登录"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=3"
+			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&hallType=" + hallType + "&hallId="  +  hallId
 			 });
 			//先登录:设置标识buy，表示登陆后跳回购买页面
 			//window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=3";
@@ -106,7 +106,7 @@ $(function(){
 			    title:["登录"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=4"
+			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&hallType=" + hallType + "&hallId="  +  hallId
 			 });
 			//先登录:设置标识buy，表示登陆后跳回购买页面
 			//window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&type=4";

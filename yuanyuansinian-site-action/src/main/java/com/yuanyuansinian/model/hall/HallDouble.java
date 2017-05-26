@@ -339,6 +339,7 @@ public class HallDouble {
 
 	// 离世天数
 	private int days;
+	private int days2;
 
 	// 头像
 	private String img_head;
@@ -1166,5 +1167,13 @@ public class HallDouble {
 
 	public void setImg_head2(String img_head2) {
 		this.img_head2 = img_head2;
+	}
+
+	public int getDays2() {
+		return days2;
+	}
+
+	public void setDays2(int days2) {
+		this.days2 = days2;
 	}
 }

@@ -246,7 +246,7 @@ public class OrderController extends MyBaseController {
 	
 	@ResponseBody
 	@RequestMapping("/notifyUrl")
-	public String notifyUrl(HttpServletRequest request, Order order) {
+	public String notifyUrl(HttpServletRequest request) {
 		//获取登录的会员
 		Member memberUser = super.getSessionMemberUser(request);
 		String message = "success";
@@ -294,7 +294,7 @@ public class OrderController extends MyBaseController {
 			4、验证app_id是否为该商户本身。
 			*/
 			if(signVerified) {//验证成功
-				//商户订单号
+				//商户订单号：所有的订单
 				String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
 			
 				//支付宝交易号
@@ -319,8 +319,7 @@ public class OrderController extends MyBaseController {
 					
 					//注意：
 					//付款完成后，支付宝系统发送该交易状态通知
-					
-					//更新订单
+					Order order = new Order();
 					order.setOrder_num(out_trade_no);
 					//支付成功
 					order.setStatus(IMySystemConstants.VALUE_1);
@@ -332,24 +331,29 @@ public class OrderController extends MyBaseController {
 					//更新仓库
 					Order orderData = this.orderService.queryOrderByOrderNum(out_trade_no);
 					if(null != orderData){
-						Product product = this.productService.queryProductById(Integer.parseInt(orderData.getProduct_id()));
-						Warehouse warehouse = new Warehouse();
-						warehouse.setOrder_id(out_trade_no);
-						warehouse.setProduct_id(orderData.getProduct_id());
-						warehouse.setPurchase_date(MyDateUtil.getDateTime());
-						warehouse.setUse_date(MyDateUtil.getDateTime());
-						warehouse.setMember_id(memberUser.getId()+"");
-						//有效期
-						warehouse.setValidity_day(product.getValidity_day());
-						warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day())));
-						//正在使用
-						warehouse.setUse_status(IMySystemConstants.VALUE_1);
-						warehouse.setProduct_type(product.getType());
-						warehouse.setHall_id(hallId);
-						this.warehouseService.addWarehouse(null, warehouse);
+						//购买的所有产品id
+						String[] idArray = orderData.getProduct_id().split(",");
+						for(String product_id : idArray){
+							Product product = this.productService.queryProductById(Integer.parseInt(product_id));
+							Warehouse warehouse = new Warehouse();
+							warehouse.setOrder_id(out_trade_no);
+							warehouse.setProduct_id(product_id);
+							warehouse.setPurchase_date(MyDateUtil.getDateTime());
+							warehouse.setUse_date(MyDateUtil.getDateTime());
+							warehouse.setMember_id(memberUser.getId()+"");
+							//有效期
+							warehouse.setValidity_day(product.getValidity_day());
+							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day())));
+							//正在使用
+							warehouse.setUse_status(IMySystemConstants.VALUE_1);
+							warehouse.setProduct_type(product.getType());
+							warehouse.setHall_id(hallId);
+							this.warehouseService.addWarehouse(null, warehouse);
+						}
+						
 					}
-					
 				}
+					
 				message = "success";
 				
 			}else {//验证失败
@@ -362,7 +366,122 @@ public class OrderController extends MyBaseController {
 			
 			//——请在这里编写您的程序（以上代码仅作参考）——
 		 } catch (Exception e) {
+			 e.printStackTrace();
+			 message = "fail";
+		}
+		return message;
+		
+	}
+	
+	
+	//接收支付返回信息
+	@RequestMapping("/returnUrl")
+	public String returnUrl(HttpServletRequest request) {
+		//获取登录的会员
+		Member memberUser = super.getSessionMemberUser(request);
+		String message = "success";
+		/* *
+		 * 功能：支付宝服务器异步通知页面
+		 * 日期：2017-03-30
+		 * 说明：
+		 * 以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
+		 * 该代码仅供学习和研究支付宝接口使用，只是提供一个参考。
+
+
+		 *************************页面功能说明*************************
+		 * 创建该页面文件时，请留心该页面文件中无任何HTML代码及空格。
+		 * 该页面不能在本机电脑测试，请到服务器上做测试。请确保外部可以访问该页面。
+		 * 如果没有收到该页面返回的 success 
+		 * 建议该页面只做支付成功的业务逻辑处理，退款的处理请以调用退款查询接口的结果为准。
+		 */
+		 try {
+			 /* *
+			  * 功能：支付宝服务器同步通知页面
+			  * 日期：2017-03-30
+			  * 说明：
+			  * 以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
+			  * 该代码仅供学习和研究支付宝接口使用，只是提供一个参考。
+
+
+			  *************************页面功能说明*************************
+			  * 该页面仅做页面展示，业务逻辑处理请勿在该页面执行
+			  */
+			  
+			 	//获取支付宝GET过来反馈信息
+			 	Map<String,String> params = new HashMap<String,String>();
+			 	Map<String,String[]> requestParams = request.getParameterMap();
+			 	for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			 		String name = (String) iter.next();
+			 		String[] values = (String[]) requestParams.get(name);
+			 		String valueStr = "";
+			 		for (int i = 0; i < values.length; i++) {
+			 			valueStr = (i == values.length - 1) ? valueStr + values[i]
+			 					: valueStr + values[i] + ",";
+			 		}
+			 		//乱码解决，这段代码在出现乱码时使用
+			 		valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			 		params.put(name, valueStr);
+			 	}
+			 	
+			 	boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
+
+			 	//——请在这里编写您的程序（以下代码仅作参考）——
+			 	if(signVerified) {
+			 		//商户订单号
+			 		String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+			 	
+			 		//支付宝交易号
+			 		String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+			 	
+			 		//付款金额
+			 		//String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
+			 		//纪念馆ID
+					//String hallId = new String(request.getParameter("sys_service_provider_id").getBytes("ISO-8859-1"),"UTF-8");
+					
+					//
+					Order order = new Order();
+					order.setOrder_num(out_trade_no);
+					//支付成功
+					order.setStatus(IMySystemConstants.VALUE_1);
+					//order.setHall_id(hallId);
+					//支付宝订单号
+					order.setTrade_no(trade_no);
+					this.orderService.updateOrderByOrderNum(order);
+					//添加仓库
+					Order orderData = this.orderService.queryOrderByOrderNum(out_trade_no);
+					if(null != orderData){
+						//购买的所有产品id
+						String[] idArray = orderData.getProduct_id().split(",");
+						for(String product_id : idArray){
+							Product product = this.productService.queryProductById(Integer.parseInt(product_id));
+							Warehouse warehouse = new Warehouse();
+							warehouse.setOrder_id(out_trade_no);
+							warehouse.setProduct_id(product_id);
+							warehouse.setPurchase_date(MyDateUtil.getDateTime());
+							warehouse.setUse_date(MyDateUtil.getDateTime());
+							warehouse.setMember_id(memberUser.getId()+"");
+							//有效期
+							warehouse.setValidity_day(product.getValidity_day());
+							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day())));
+							//正在使用
+							warehouse.setUse_status(IMySystemConstants.VALUE_1);
+							warehouse.setProduct_type(product.getType());
+							warehouse.setHall_id(orderData.getHall_id());
+							this.warehouseService.addWarehouse(null, warehouse);
+						}
+						
+					}
+					message = "redirect:/sinian/index/indexController/toMemberWarehouse";
+					
+			 		//out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
+			 	}else {
+			 		//out.println("验签失败");
+			 		message = "redirect:/sinian/index/indexController/toMemberWarehouse";
+			 	}
+			 	//——请在这里编写您的程序（以上代码仅作参考）——
+		 } catch (Exception e) {
 				// TODO: handle exception
+			 e.printStackTrace();
 			 message = "fail";
 		}
 		return message;

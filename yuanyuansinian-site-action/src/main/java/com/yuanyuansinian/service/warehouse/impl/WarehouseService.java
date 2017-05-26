@@ -101,15 +101,27 @@ public class WarehouseService implements IWarehouseService {
 	}
 
 	@Override
-	public List<Warehouse> queryWarehouseListByType(String type) {
+	public List<Warehouse> queryWarehouseListByType(Warehouse warehouse) {
 		// TODO Auto-generated method stub
-		return warehouseMapper.queryWarehouseListByType(type);
+		return warehouseMapper.queryWarehouseListByType(warehouse);
 	}
 
 	@Override
 	public int updateWarehouseForUse(Warehouse warehouse) {
 		// TODO Auto-generated method stub
 		return warehouseMapper.updateWarehouseForUse(warehouse);
+	}
+
+	@Override
+	public void updateWarehouseStatus(Warehouse warehouse) {
+		// TODO Auto-generated method stub
+		warehouseMapper.updateWarehouseStatus(warehouse);
+	}
+
+	@Override
+	public List<Warehouse> queryWarehouseListByHall(Warehouse warehouse) {
+		// TODO Auto-generated method stub
+		return warehouseMapper.queryWarehouseListByHall(warehouse);
 	}
 
 

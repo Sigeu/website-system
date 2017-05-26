@@ -45,6 +45,7 @@
 					<form class="form-horizontal" id="login_form" action="##" method="post">
 						<input type="hidden" id="flag" name="flag" value="${flag }">
 						<input type="hidden" id="type" name="type" value="${type }">
+						<input type="hidden" id="hallId" name="hallId" value="${hallId }">
 						 <div class="form-group">
 							<label class="control-label col-md-3">手机号码</label>
 							<div class="col-md-9">

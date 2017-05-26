@@ -59,8 +59,12 @@ public interface IWarehouseService {
 	 */
 	int deleteWarehouse(int warehouseId);
 
-	List<Warehouse> queryWarehouseListByType(String type);
+	List<Warehouse> queryWarehouseListByType(Warehouse warehouse);
 
 	int updateWarehouseForUse(Warehouse warehouse);
+
+	void updateWarehouseStatus(Warehouse warehouse);
+
+	List<Warehouse> queryWarehouseListByHall(Warehouse warehouse);
 
 }

@@ -193,19 +193,27 @@
 		
 		$('#type1').bind('click',function(){
 			$('#div1').show();
+			$('#type1').addClass('active');
 			$('#div2,#div3,#div4').hide();
+			$('#type2,#type3,#type4').removeClass('active');
 		});
 		$('#type2').bind('click',function(){
 			$('#div2').show();
+			$('#type2').addClass('active');
 			$('#div1,#div3,#div4').hide();
+			$('#type1,#type3,#type4').removeClass('active');
 		});
 		$('#type3').bind('click',function(){
 			$('#div3').show();
+			$('#type3').addClass('active');
 			$('#div1,#div2,#div4').hide();
+			$('#type1,#type2,#type4').removeClass('active');
 		});
 		$('#type4').bind('click',function(){
 			$('#div4').show();
+			$('#type4').addClass('active');
 			$('#div1,#div2,#div3').hide();
+			$('#type1,#type2,#type3').removeClass('active');
 		});
 	</script>
 </body>

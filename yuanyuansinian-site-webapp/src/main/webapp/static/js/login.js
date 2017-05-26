@@ -14,7 +14,15 @@ $(function() {
 					//礼品分类
 					var type = data.type;
 					if(flag == 'buy'){
-						window.location.href = contextPath + '/sinian/index/indexController/toChooseProduct?type=' + type;
+						//父页面刷新
+						parent.window.location.reload();
+						var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+						parent.layer.close(index); //再执行关闭
+						/*if(type == '1'){
+							window.location.href = contextPath + "/sinian/index/indexController/toShowSingleMemorial?id=" + data.hallId;
+						}else if(type == '2'){
+							window.location.href = contextPath + "/sinian/index/indexController/toShowDoubleMemorial?id=" + data.hallId;
+						}*/
 					}else{
 						window.location.href = contextPath + '/sinian/index/indexController/toMemberCenter';
 					}

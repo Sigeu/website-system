@@ -592,8 +592,18 @@ public class IndexController extends MyBaseController {
 		model.addAttribute("hall", hall);
 		
 		//当前纪念馆摆放的礼物
-		List<HallGift>  listHallGift = this.hallGiftService.queryHallGiftListForHall(hallId, IMySystemConstants.COUNT_NUM15);
-		model.addAttribute("listHallGift", listHallGift);
+		//List<HallGift>  listHallGift = this.hallGiftService.queryHallGiftListForHall(hallId, IMySystemConstants.COUNT_NUM15);
+		//model.addAttribute("listHallGift", listHallGift);
+		
+		
+		//根据纪念馆查询礼品：不区分会员
+		Warehouse warehouse = new Warehouse();
+		warehouse.setHall_id(hallId+"");
+		List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByHall(warehouse);
+		
+		model.addAttribute("listWarehouse", listWarehouse);
+		System.out.println(listWarehouse.size()+"--------------------------");
+		
 		
 		return "site/hallSingleMemorial";
 	}
@@ -638,6 +648,10 @@ public class IndexController extends MyBaseController {
 		HallDouble hallDouble = this.hallDoubleService.queryHallDoubleById(hallDoubleId);
 		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hallDouble.getDeath_date());
 		hallDouble.setDays(days);
+		
+		int days2 = MyDateUtil.getMargin(MyDateUtil.getDate(), hallDouble.getDeath_date2());
+		hallDouble.setDays2(days2);
+		
 		model.addAttribute("hallDouble", hallDouble);
 		
 		//获取登录的会员
@@ -912,7 +926,7 @@ public class IndexController extends MyBaseController {
 			warehouse.setProduct_type(type);
 			//当前用户
 			warehouse.setMember_id(memberUser.getId()+"");
-			List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByType(type);
+			List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByType(warehouse);
 			model.addAttribute("listWarehouse", listWarehouse);
 			
 			//我创建的纪念馆，用于选择使用在哪个纪念馆
@@ -987,7 +1001,7 @@ public class IndexController extends MyBaseController {
 		Warehouse warehouse = new Warehouse();
 		warehouse.setProduct_type(type);
 		warehouse.setMember_id(memberUser.getId()+"");
-		List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByType(type);
+		List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByType(warehouse);
 		model.addAttribute("listWarehouse", listWarehouse);
 		//可以购买的产品
 		List<Product> productList = productService.queryProductListByType(type);
@@ -1094,10 +1108,13 @@ public class IndexController extends MyBaseController {
 	public String toMemberLogin(HttpServletRequest request, Model model) {
 		//标识为灵堂购买礼品
 		String flag = request.getParameter("flag")==null? "":request.getParameter("flag");
-		//标识礼品分类
-		String type = request.getParameter("type")==null? "":request.getParameter("type");
+		//双人馆还是单人馆
+		String type = request.getParameter("hallType")==null? "":request.getParameter("hallType");
+		
+		String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
 		model.addAttribute("flag", flag);
 		model.addAttribute("type", type);
+		model.addAttribute("hallId", hallId);
 		
 		return "site/memberLogin";
 	}
@@ -1114,10 +1131,27 @@ public class IndexController extends MyBaseController {
 			String ids = request.getParameter("ids")==null? "":request.getParameter("ids");
 			//总价
 			String count = request.getParameter("count")==null? "0":request.getParameter("count");
-			orderService.addOrderByIds(request, ids, memberUser.getId()+"", count, hallId);
+			//String outTradeNoAll = "";
+			//生成订单:只生成一个订单
+			Order order = new Order();
+			// 订单号
+			String order_num = MyAutoGenerateOrderNum.generateOrderNum("");
+			order.setOrder_num(order_num);
+			order.setMember_id(memberUser.getId()+"");
+			//所有的产品id
+			order.setProduct_id(ids); 
+			order.setHall_id(hallId);
+			//总价
+			order.setProduct_price(Double.parseDouble(count));
+			order.setCreate_date(MyDateUtil.getDateTime());
+			order.setStatus(IMySystemConstants.VALUE_0);
+			//outTradeNoAll += order_num + "|";
+			//生成订单
+			orderService.addOrder(request, order);
+			//orderService.addOrderByIds(request, ids, memberUser.getId()+"", count, hallId);
 			
 			//设置支付属性
-			String outTradeNo = MyAutoGenerateOrderNum.generateOrderNum("");
+			String outTradeNo = order_num;//一个订单
 			String productCode = "FAST_INSTANT_TRADE_PAY";
 			float totalAmount = Float.parseFloat(count);
 			//float  totalAmount   =  (float)(Math.round(totalAmountTemp*100))/100;
@@ -1167,6 +1201,32 @@ public class IndexController extends MyBaseController {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+	}
+	
+	
+	//我的仓库：更新使用状态
+	@ResponseBody
+	@RequestMapping("/updateWarehouseForUse")
+	public Map<String, Object> updateWarehouseForUse(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			//id
+			String ids = request.getParameter("ids")==null? "":request.getParameter("ids");
+			//纪念馆
+			String hall_id = request.getParameter("hall_id")==null? "":request.getParameter("hall_id");
+			Warehouse warehouse = null;
+			for(String id : ids.split(",")){
+				warehouse = new Warehouse();
+				warehouse.setId(Integer.parseInt(id));
+				warehouse.setHall_id(hall_id);
+				warehouseService.updateWarehouseStatus(warehouse);
+			}
+			map.put(RESULT_MESSAGE_STRING, "操作成功！");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return map;
 	}
 	
 	/**

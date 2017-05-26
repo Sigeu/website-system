@@ -23,6 +23,10 @@
 		<div class="incense-btn">
 			<c:choose>  
 			   <c:when test="${empty sessionScope.memberUser}">
+			   		<button class="btn btn-danger" id="incense_but_nouser">上香</button>
+					<button class="btn btn-danger" id="tribute_but_nouser">贡品</button>
+					<button class="btn btn-danger" id="flowers_but_nouser">献花</button>
+					<button class="btn btn-danger" id="song_but_nouser">点歌</button>
 			   </c:when>  
 			   <c:otherwise>
 				    <button class="btn btn-danger" id="incense_but">上香</button>
@@ -41,6 +45,8 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/hallDetail.js"></script>
 	<script type="text/javascript">
+		var hallId = "${hallDouble.id }";
+		var hallType = "${hallDouble.hall_type }";
 		var activeFlag = '纪念馆明细';
 		//-------分页数据----------
 		var id = '${column_id }';

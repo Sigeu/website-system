@@ -396,7 +396,7 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_product
-     where big_type = #{big_type,jdbcType=VARCHAR}
+     where 1=1
    	 <if test="name != null and name != ''">
    		and name like concat('%', #{name,jdbcType=VARCHAR}, '%')
      </if>
