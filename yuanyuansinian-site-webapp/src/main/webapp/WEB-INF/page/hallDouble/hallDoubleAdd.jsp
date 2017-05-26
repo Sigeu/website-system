@@ -133,7 +133,9 @@
 						<label class="control-label col-xs-4 col-sm-3"><span
 							class="c-red">*</span>生肖：</label>
 						<div class="col-xs-8 col-sm-9">
-							<span class="select-box"> <select id="zodiac"
+							<input type="text" class="input-text" value="" placeholder="生肖" readonly="readonly"
+									id="zodiac" name="zodiac">
+							<!-- <span class="select-box"> <select id="zodiac"
 								name="zodiac" class="select">
 									<option value="">--请选择--</option>
 									<option value="鼠">鼠</option>
@@ -149,7 +151,7 @@
 									<option value="狗">狗</option>
 									<option value="猪">猪</option>
 							</select>
-							</span>
+							</span> -->
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
@@ -208,11 +210,18 @@
 						<label class="control-label col-sm-4 col-md-3">成就</label>
 						<div class="col-sm-8 col-md-9">
 							<textarea name="achievement" cols="" rows="" class="textarea"
-								placeholder="成就" datatype="*0-100" dragonfly="true"
-								onKeyUp="$.Huitextarealength(this,200)"></textarea>
+								placeholder="成就" datatype="*0-500" dragonfly="true"
+								onKeyUp="$.Huitextarealength(this,500)"></textarea>
 							<p class="textarea-numberbar">
-								<em class="textarea-length">0</em>/200
+								<em class="textarea-length">0</em>/500
 							</p>
+						</div>
+					</div>
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-4 col-md-3">照片</label>
+						<div class="col-sm-8 col-md-9">
+							<iframe src="${pageContext.request.contextPath}/sinian/index/indexController/hallDoubleAddHeadOne" name="zpiframe1" id="zpiframe1" 
+						scrolling="no" frameborder="0" width="100%"></iframe>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -274,7 +283,9 @@
 						<label class="control-label col-xs-4 col-sm-3"><span
 							class="c-red">*</span>生肖：</label>
 						<div class="col-xs-8 col-sm-9">
-							<span class="select-box"> <select id="zodiac2"
+							<input type="text" class="input-text" value="" placeholder="生肖" readonly="readonly"
+							id="zodiac2" name="zodiac2">
+							<!-- <span class="select-box"> <select id="zodiac2"
 								name="zodiac2" class="select">
 									<option value="">--请选择--</option>
 									<option value="鼠">鼠</option>
@@ -290,7 +301,7 @@
 									<option value="狗">狗</option>
 									<option value="猪">猪</option>
 							</select>
-							</span>
+							</span> -->
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
@@ -349,11 +360,18 @@
 						<label class="control-label col-sm-4 col-md-3">成就</label>
 						<div class="col-sm-8 col-md-9">
 							<textarea name="achievement2" cols="" rows="" class="textarea"
-								placeholder="成就" datatype="*0-100" dragonfly="true"
-								onKeyUp="$.Huitextarealength(this,200)"></textarea>
+								placeholder="成就" datatype="*0-500" dragonfly="true"
+								onKeyUp="$.Huitextarealength(this,500)"></textarea>
 							<p class="textarea-numberbar">
-								<em class="textarea-length">0</em>/200
+								<em class="textarea-length">0</em>/500
 							</p>
+						</div>
+					</div>
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-4 col-md-3">照片</label>
+						<div class="col-sm-8 col-md-9">
+							<iframe src="${pageContext.request.contextPath}/sinian/index/indexController/hallDoubleAddHeadTwo" name="zpiframe2" id="zpiframe2" 
+						scrolling="no" frameborder="0" width="100%"></iframe>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -377,7 +395,7 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/static/js/common-upload.js">
+		src="${pageContext.request.contextPath}/static/js/hallDouble-upload.js">
 	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 	<script type="text/javascript">
@@ -388,6 +406,13 @@
 		var model_id = '';
 	</script>
 	<script type="text/javascript">
+	//获取生肖
+	function getZodiac(year) {
+		var arr = [ '猴', '鸡', '狗', '猪', '鼠', '牛', '虎', '兔', '龙', '蛇', '马',
+				'羊' ];
+		return /^\d{4}$/.test(year) ? arr[year % 12] : null
+	}
+
 		$(function() {
 			//关闭按钮
 			$('#close_but').on('click', function() {
@@ -395,7 +420,20 @@
 				parent.layer.close(index); //再执行关闭
 				return false;
 			});
-
+			
+			$('#birthday').blur(function(){
+				var year = $(this).val().substring(0,4);
+				if(year != '' && typeof(year) != 'undefined'){
+					$('#zodiac').val(getZodiac(year));
+				}
+			});
+			
+			$('#birthday2').blur(function(){
+				var year = $(this).val().substring(0,4);
+				if(year != '' && typeof(year) != 'undefined'){
+					$('#zodiac2').val(getZodiac(year));
+				}
+			});
 		});
 
 		//表单提交，可上传文件

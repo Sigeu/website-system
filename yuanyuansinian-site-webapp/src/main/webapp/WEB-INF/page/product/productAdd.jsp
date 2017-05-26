@@ -73,7 +73,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">计价单位：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="计算单位" id="units" name="units">
+				<input type="text" class="input-text" value="元宝" placeholder="计算单位" id="units" name="units">
 			</div>
 		</div>
 		<div class="row cl">

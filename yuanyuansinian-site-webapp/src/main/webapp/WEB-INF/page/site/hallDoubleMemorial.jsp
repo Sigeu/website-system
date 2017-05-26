@@ -14,9 +14,9 @@
 	
 <div class="container incense">
 	<div class="incense-body">
-		<img src="${pageContext.request.contextPath}/static/images/incense-double.jpg" class="img-responsive incense-bg incense-double hidden-xs" alt="incense">
-		<img src="${hallDouble.imgs }" class="img-responsive incense-double-img pull-left" alt="incense">
-		<img src="${hallDouble.imgs }" class="img-responsive incense-double-img incense-double-imgsec pull-right" alt="incense">
+		<img src="${pageContext.request.contextPath}/static/images/incense-double.jpg" class="img-responsive incense-bg incense-double hidden-xs">
+		<img src="${hallDouble.img_head }" class="img-responsive incense-double-img pull-left" alt="incense">
+		<img src="${hallDouble.img_head2 }" class="img-responsive incense-double-img incense-double-imgsec pull-right" alt="incense">
 		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left hidden-xs"><!-- 左侧花 -->
 		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-right hidden-xs"><!-- 右侧花 -->
 		<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant hidden-xs"><!-- 香 -->

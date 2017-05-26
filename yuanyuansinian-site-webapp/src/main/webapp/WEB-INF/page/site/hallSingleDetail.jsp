@@ -42,8 +42,9 @@
 				<div class="row museum-info-right">
 					<div class="col-sm-6">
 						<ul>
-							<li><span class="pull-left">中文名：</span>${hall.name }</li>
+							<li><span class="pull-left">姓名：</span>${hall.name }</li>
 							<li><span class="pull-left">生日：</span>${hall.birthday }</li>
+							<li><span class="pull-left">去世日期：</span>${hall.death_date }</li>
 							<li><span class="pull-left">国籍：</span>${hall.nationality }</li>
 							<li><span class="pull-left">出生地：</span>${hall.birthplace }</li>
 							<li><span class="pull-left">墓地地址：</span>${hall.address }</li>

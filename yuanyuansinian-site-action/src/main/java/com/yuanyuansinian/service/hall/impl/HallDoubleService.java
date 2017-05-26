@@ -224,4 +224,99 @@ public class HallDoubleService implements IHallDoubleService {
 		
 	}
 
+	
+	@Override
+	public void uploadHead1(HttpServletRequest request, String hallDouble_id) {
+		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        HallDoubleWithBLOBs hallDouble =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	hallDouble =  new HallDoubleWithBLOBs();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+				hallDouble.setId(Integer.parseInt(hallDouble_id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_");
+	            if(null != img_index){
+	            	//取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
+                        
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        hallDouble.setImg_head(IMySystemConstants.SERVER_FILE_PATH + fileName);
+                    }
+	            }
+	        }
+	        //保存
+	        hallDoubleMapper.uploadHead1(hallDouble);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@Override
+	public void uploadHead2(HttpServletRequest request, String hallDouble_id) {
+		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        HallDoubleWithBLOBs hallDouble =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	hallDouble =  new HallDoubleWithBLOBs();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+				hallDouble.setId(Integer.parseInt(hallDouble_id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_");
+	            if(null != img_index){
+	            	//取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
+                        
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        hallDouble.setImg_head2(IMySystemConstants.SERVER_FILE_PATH + fileName);
+                    }
+	            }
+	        }
+	        //保存
+	        hallDoubleMapper.uploadHead2(hallDouble);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
 }

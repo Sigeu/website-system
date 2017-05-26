@@ -82,4 +82,8 @@ public interface HallDoubleMapper {
 	void uploadSingleHallDoubleImg(HallDoubleWithBLOBs hallDouble);
 
 	void uploadImg(HallDoubleWithBLOBs hallDouble);
+	
+	void uploadHead1(HallDoubleWithBLOBs hallDouble);
+	
+	void uploadHead2(HallDoubleWithBLOBs hallDouble);
 }

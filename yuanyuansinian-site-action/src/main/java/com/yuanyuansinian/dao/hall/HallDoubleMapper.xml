@@ -774,6 +774,23 @@
 		imgs = #{imgs,jdbcType=VARCHAR}
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
+	
+	
+	<!-- 更新头像1 -->
+	<update id="uploadHead1" parameterType="com.yuanyuansinian.model.hall.HallDouble">
+		update ujn_hall_double
+		set
+		img_head = #{img_head,jdbcType=VARCHAR}
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 更新头像2-->
+	<update id="uploadHead2" parameterType="com.yuanyuansinian.model.hall.HallDouble">
+		update ujn_hall_double
+		set
+		img_head2 = #{img_head2,jdbcType=VARCHAR}
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
 
 
 	<!-- 网上纪念馆 -->

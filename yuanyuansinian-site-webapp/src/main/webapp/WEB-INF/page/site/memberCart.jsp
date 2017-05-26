@@ -50,7 +50,7 @@
 								</form>
 							</div>
 							<!-- <div class="settlement-price pull-left">需支付：<b>￥</b><span id="money_num">0.00</span></div> -->
-							<div class="shop-info pull-right"><input type="checkbox"  value="${cart.product_name}-${cart.product_id}-${cart.price_site}" name="pay_check" value="${cart.product_id }"></div>
+							<div class="shop-info pull-right"><input type="checkbox"  value="${cart.product_name}-${cart.product_id}-${cart.price_site}" name="pay_check" value="${cart.product_id }">勾选结算</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>

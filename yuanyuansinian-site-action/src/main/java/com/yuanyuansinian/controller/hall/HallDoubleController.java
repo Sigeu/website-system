@@ -305,6 +305,42 @@ public class HallDoubleController extends MyBaseController {
 		return map;
 	}
 	
+	//头像1
+	@ResponseBody
+	@RequestMapping("/uploadHead1")
+	public Map<String, Object> uploadHead1(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			hallDoubleService.uploadHead1(request, id);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
+	//头像2
+	@ResponseBody
+	@RequestMapping("/uploadHead2")
+	public Map<String, Object> uploadHead2(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			hallDoubleService.uploadHead2(request, id);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
 	/**
 	 * 
 	 * @Description: 修改

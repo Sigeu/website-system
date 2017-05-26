@@ -307,6 +307,20 @@ public class IndexController extends MyBaseController {
 		return "site/register";
 	}
 	
+	//双人馆头像1
+	@RequestMapping("/hallDoubleAddHeadOne")
+	public String hallDoubleAddHeadOne(HttpServletRequest request, Model model) {
+		
+		return "hallDouble/hallDoubleAddHead1";
+	}
+	//双人馆头像2
+	@RequestMapping("/hallDoubleAddHeadTwo")
+	public String hallDoubleAddHeadTwo(HttpServletRequest request, Model model) {
+		
+		return "hallDouble/hallDoubleAddHead2";
+	}
+	
+	
 	/**
 	 * 
 	 * @Description: TODO 

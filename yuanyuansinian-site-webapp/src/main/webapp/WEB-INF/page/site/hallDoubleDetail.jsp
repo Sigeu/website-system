@@ -22,7 +22,7 @@
 				class="img-responsive" >
 			   </c:when>  
 			   <c:otherwise>
-				    <img src="${hallDouble.imgs }" class="img-responsive" />
+				    <img src="${hallDouble.img_head }" class="img-responsive" />
 			   </c:otherwise>  
 			</c:choose> 
 			
@@ -39,8 +39,9 @@
 			<div class="row museum-info-right">
 				<div class="col-sm-6">
 					<ul>
-						<li><span class="pull-left">中文名：</span>${hallDouble.name }</li>
+						<li><span class="pull-left">姓名：</span>${hallDouble.name }</li>
 						<li><span class="pull-left">生日：</span>${hallDouble.birthday }</li>
+						<li><span class="pull-left">去世日期：</span>${hallDouble.death_date }</li>
 						<li><span class="pull-left">国籍：</span>${hallDouble.nationality }</li>
 						<li><span class="pull-left">出生地：</span>${hallDouble.birthplace }</li>
 						<li><span class="pull-left">墓地地址：</span>${hallDouble.address }</li>
@@ -68,7 +69,7 @@
 				class="img-responsive" >
 			   </c:when>  
 			   <c:otherwise>
-				    <img src="${hallDouble.imgs }" class="img-responsive" />
+				    <img src="${hallDouble.img_head2 }" class="img-responsive" />
 			   </c:otherwise>  
 			</c:choose> 
 			
@@ -85,7 +86,9 @@
 			<div class="row museum-info-right">
 				<div class="col-sm-6">
 					<ul>
-						<li><span class="pull-left">中文名：</span>${hallDouble.name2 }</li>
+						<li><span class="pull-left">姓名：</span>${hallDouble.name2 }</li>
+						<li><span class="pull-left">生日：</span>${hallDouble.birthday2 }</li>
+						<li><span class="pull-left">去世日期：</span>${hallDouble.death_date2 }</li>
 						<li><span class="pull-left">国籍：</span>${hallDouble.nationality2 }</li>
 						<li><span class="pull-left">出生地：</span>${hallDouble.birthplace2 }</li>
 						<li><span class="pull-left">墓地地址：</span>${hallDouble.address2 }</li>
@@ -95,6 +98,7 @@
 				<div class="col-sm-6">
 					<ul>
 						<li><span class="pull-left">别名：</span>${hallDouble.alias2 }</li>
+						<li><span class="pull-left">生肖：</span>${hallDouble.zodiac2 }</li>
 						<li><span class="pull-left">民族：</span>${hallDouble.nation2 }</li>
 						<li><span class="pull-left">籍贯：</span>${hallDouble.native_place2 }</li>
 						<li><span class="pull-left">信仰：</span>${hallDouble.belief2 }</li>

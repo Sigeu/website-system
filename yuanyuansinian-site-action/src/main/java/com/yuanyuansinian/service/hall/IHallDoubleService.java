@@ -69,6 +69,10 @@ public interface IHallDoubleService {
 	void addDoubleHallDouble(HttpServletRequest request, HallDoubleWithBLOBs hallDouble);
 
 	void uploadImg(HttpServletRequest request, String id);
+	
+	void uploadHead1(HttpServletRequest request, String id);
+	
+	void uploadHead2(HttpServletRequest request, String id);
 
 
 

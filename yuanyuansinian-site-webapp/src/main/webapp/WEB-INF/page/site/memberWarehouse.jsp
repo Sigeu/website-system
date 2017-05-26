@@ -39,7 +39,7 @@
 						<div class="col-sm-8 settlement-info">
 							<div class="settlement-title"><a href="###" onclick="toShoppingDetail('${warehouse.product_id }')">${warehouse.product_name}</a></div>
 							<div class="settlement-price">单价：￥${warehouse.price_site }</div>
-							<div class="shop-info pull-right"><input type="checkbox"  value="${cart.product_name}-${cart.product_id}-${cart.price_site}" name="pay_check" value="${cart.product_id }"></div>
+							<div class="shop-info pull-right"><input type="checkbox"  value="${cart.product_name}-${cart.product_id}-${cart.price_site}" name="pay_check" value="${cart.product_id }">勾选使用</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
