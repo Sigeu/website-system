@@ -22,10 +22,14 @@ import com.github.pagehelper.PageInfo;
 import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.pub.base.MyBaseController;
 import com.yuanyuansinian.pub.util.MyDateUtil;
+import com.yuanyuansinian.pub.util.MyShaEncrypt;
 import com.yuanyuansinian.pub.util.MyUserSessionUtil;
 import com.yuanyuansinian.service.member.IMemberService;
 
+import framework.system.model.Log;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.DateUtil;
+import framework.system.service.ILogService;
 
 /**
  * @Description: 会员管理
@@ -39,6 +43,9 @@ public class MemberController extends MyBaseController {
 	// 会员Service
 	@Resource
 	private IMemberService memberService;
+	
+	@Resource
+	private ILogService logService;
 
 	/**
 	 * 
@@ -149,6 +156,11 @@ public class MemberController extends MyBaseController {
 	public Map<String, Object> addMember(HttpServletRequest request, Member member) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
+			String pwd = member.getPwd();
+			String pwdDb = MyShaEncrypt.encryptSHA(pwd);
+			//设置加密后的密码
+			member.setPwd(pwdDb);
+			member.setCreate_date(MyDateUtil.getDateTime());
 			memberService.addMember(request, member);
 			map.put("model_id", member.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
@@ -172,9 +184,21 @@ public class MemberController extends MyBaseController {
 	public Map<String, Object> registerMember(HttpServletRequest request, Member member) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
+			String pwd = member.getPwd();
+			String pwdDb = MyShaEncrypt.encryptSHA(pwd);
+			//设置加密后的密码
+			member.setPwd(pwdDb);
+			member.setCreate_date(MyDateUtil.getDateTime());
 			memberService.addMember(request, member);
 			map.put("model_id", member.getId());
 			map.put(RESULT_MESSAGE_STRING, "注册成功");
+			Log log = new Log();
+			log.setUser(member.getPhone());
+			log.setIp(this.getIpAddr(request));
+			log.setCreate_date(DateUtil.getDateTime());
+			log.setOperation("会员注册");
+			log.setType("Member");
+			logService.saveLog(log);
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
@@ -219,7 +243,7 @@ public class MemberController extends MyBaseController {
 	public Map<String, Object> updateMember(HttpServletRequest request, Member member) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		member.setCreate_date(MyDateUtil.getDateTime());
+		//member.setCreate_date(MyDateUtil.getDateTime());
 		int count = this.memberService.updateMember(member);
 		map.put("model_id", member.getId());
 		if (RESULT_COUNT_1 == count) {
@@ -242,6 +266,7 @@ public class MemberController extends MyBaseController {
 	@RequestMapping("/saveMember")
 	public Map<String, Object> saveMember(HttpServletRequest request, Member member) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		member.setCreate_date(MyDateUtil.getDateTime());
 		int count = this.memberService.updateMember(member);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
@@ -365,35 +390,51 @@ public class MemberController extends MyBaseController {
 	@RequestMapping("/memberLogin")
 	public Map<String, Object> memberLogin(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		Member member = null;
-		//标识为灵堂购买礼品
-		String flag = request.getParameter("flag")==null? "":request.getParameter("flag");
-		//标识单人馆还是双人馆
-		String type = request.getParameter("type")==null? "":request.getParameter("type");
-		String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
 		
-		String name = request.getParameter("name")==null? "":request.getParameter("name");
-		String pwd = request.getParameter("pwd")==null? "":request.getParameter("pwd");
-		if(!"".equals(name) && name.indexOf("@") > 0){
-			//邮箱登录
-			member = this.memberService.queryMemberByEmail(name,pwd);
-		}else{
-			//手机号登录
-			member = this.memberService.queryMemberByPhone(name,pwd);
+		Member member = null;
+		try {
+			//标识为灵堂购买礼品
+			String flag = request.getParameter("flag")==null? "":request.getParameter("flag");
+			//标识单人馆还是双人馆
+			String type = request.getParameter("type")==null? "":request.getParameter("type");
+			String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
+			
+			String name = request.getParameter("name")==null? "":request.getParameter("name");
+			String pwdP = request.getParameter("pwd")==null? "":request.getParameter("pwd");
+			//加密后的密码
+			String pwd = MyShaEncrypt.encryptSHA(pwdP);
+			
+			if(!"".equals(name) && name.indexOf("@") > 0){
+				//邮箱登录
+				member = this.memberService.queryMemberByEmail(name,pwd);
+			}else{
+				//手机号登录
+				member = this.memberService.queryMemberByPhone(name,pwd);
+			}
+			if (null != member) {
+				//存放session
+				MyUserSessionUtil.putMember(request, member);
+				map.put(RESULT_MESSAGE_STRING, "登录成功！");
+				map.put(RESULT_STATUS_STRING, "1");
+				map.put("flag", flag);
+				map.put("type", type);
+				map.put("hallId", hallId);
+				
+				Log log = new Log();
+				log.setUser(member.getPhone());
+				log.setIp(this.getIpAddr(request));
+				log.setCreate_date(DateUtil.getDateTime());
+				log.setOperation("会员登录");
+				log.setType("Member");
+				logService.saveLog(log);
+			} else {
+				map.put(RESULT_MESSAGE_STRING, "用户不存在！");
+				map.put(RESULT_STATUS_STRING, "0");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if (null != member) {
-			//存放session
-			MyUserSessionUtil.putMember(request, member);
-			map.put(RESULT_MESSAGE_STRING, "登录成功！");
-			map.put(RESULT_STATUS_STRING, "1");
-			map.put("flag", flag);
-			map.put("type", type);
-			map.put("hallId", hallId);
-		} else {
-			map.put(RESULT_MESSAGE_STRING, "用户不存在！");
-			map.put(RESULT_STATUS_STRING, "0");
-		}
-
 		return map;
 	}
 	
@@ -410,5 +451,31 @@ public class MemberController extends MyBaseController {
 		}
 		
 		return map;
+	}
+	
+	
+	/**
+	 * 获取IP
+	 * @param request
+	 * @return
+	 */
+	String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("X-Forwarded-For");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		return ip;
 	}
 }

@@ -109,11 +109,21 @@
 						</div>
 					</div>
 				</div>
+				<%-- <div class="form-group col-sm-6">
+					<label class="control-label col-sm-4 col-md-3">验证码</label>
+					<div class="col-sm-8 col-md-9">
+						<input type="text" class="form-control pull-left" placeholder="请输入验证码">
+					</div>
+					<div class="col-md-4 col-xs-4" style="padding:0">
+							<a href="###"><img src="${pageContext.request.contextPath}/static/images/code.jpg" class="code-img pull-left"></a><a href="###" class="code-img-wd hidden-xs">换一张</a>
+						</div>
+				</div> --%>
+				
 				<div class="clearfix"></div>
 				<div class="new-add">
 					<input type="checkbox" checked="checked"><a href="###">阅读并同意缘园思念网服务条款</a>
 					<div class="clearfix"></div>
-					<button class="btn btn-warning" id="submit_but">提交</button>
+					<button class="btn btn-warning" id="submit_but" >提交</button>
 				</div>
 			</form>
 		</div>
@@ -159,7 +169,7 @@
 						                        dataType: "json",
 						                        data: {
 						                        	member_name: function () {
-						                                return $("#member_name").val();//这个是取要验证的密码
+						                                return $("#member_name").val();
 						                            }
 						                        },
 						                        dataFilter: function (data) {//判断控制器返回的内容，data只能是true或者false
@@ -235,6 +245,7 @@
 								focusCleanup : false,
 								success : "valid",
 								submitHandler : function(form) {
+									$("#submit_but").attr("disabled", "disabled").attr("value","提交中..."); 
 									var imgList = $('#fileList')
 											.children('div');
 									if (imgList.length > 0) {
@@ -256,9 +267,9 @@
 											}
 										};
 										// 准备form表单
-										$("#form_").ajaxForm(options);
+										//$("#form_").ajaxForm(options);
 										// 表单提交     
-										$("#form_").ajaxSubmit(options);
+										//$("#form_").ajaxSubmit(options);
 									}
 									return false;
 								}
