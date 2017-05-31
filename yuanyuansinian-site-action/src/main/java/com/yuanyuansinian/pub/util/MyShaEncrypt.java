@@ -107,7 +107,7 @@ public class MyShaEncrypt {
 	}
 	
 	public static void main(String[] args) {
-		String pwd = "123456789";
+		String pwd = "123456";
 		try {
 			String pwdE = MyShaEncrypt.encryptSHA(pwd);
 			System.out.println(pwdE);
