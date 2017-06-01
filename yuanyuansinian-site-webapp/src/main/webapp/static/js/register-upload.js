@@ -131,7 +131,12 @@ jQuery(function() {
 			var options = {
 				success : function(data) {
 					uploader.options.formData.model_id = data.model_id;
-					uploader.upload();
+					if(typeof(data.model_id) == 'undefined' || data.model_id ==''){
+						layer.alert(data.result_message);
+					}else{
+						uploader.upload();
+					}
+					
 				}
 			};
 			// 准备form表单

@@ -71,6 +71,7 @@ span.list-date {font-size:13px; color:#666}
 .sidebar .recommend-body .thumbnail {border:0; padding:0}
 .sidebar .recommend-body .caption {padding:0}
 .sidebar .recommend-body .caption h5 {width:100%; height:25px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.login-body > table {color:#b85844; border-bottom:1px solid #ddd}
 .memorial-pro li {height:30px; line-height:30px}
 .memorial-pro .with-date a {display:block; width:70%; height:30px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
 .memorial-pro .without-date li {width:100%; height:30px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
@@ -355,11 +356,15 @@ p.museum-des {position:relative; top:8px}
 	.login-modal {position:static; margin-top:10px}
 	
 	/*礼品*/
-	.gift-con {width:90%} /*这个width:90%比例可以修改，根据修改自动缩放*/
+	.gift-con {width:80%} /*这个width:80%比例可以修改，根据修改自动缩放*/
 
 	/*弹出购物车*/
 	.settle-con {width:80%} /*这个width:80%比例可以修改，根据修改自动缩放*/
 	.settle-pro img {height:106px}
+	
+	/*贡品*/
+	.tribute-list {position:absolute; top:275px; left:40px}
+	.tribute-list img {height:55px; float:left ; margin-right:5px; margin-bottom:5px}
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -452,6 +457,10 @@ p.museum-des {position:relative; top:8px}
 	/*弹出购物车*/
 	.settle-title {margin-top:10px; width:100%; height:40px; line-height:20px; overflow:hidden; white-space:normal; text-overflow:clip}
 	.settle-pro img {height:150px}
+	
+	/*贡品*/
+	.tribute-list {top:425px; left:50px}
+	.tribute-list img {height:58px}
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
@@ -525,4 +534,9 @@ p.museum-des {position:relative; top:8px}
 	/*弹出购物车*/
 	.settle-title {height:20px; line-height:20px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
 	.settle-pro img {height:117px}
+	
+	/*贡品*/
+	.tribute-list {top:525px; left:60px}
+	.tribute-list img {height:70px} 
+
 }

@@ -184,21 +184,28 @@ public class MemberController extends MyBaseController {
 	public Map<String, Object> registerMember(HttpServletRequest request, Member member) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			String pwd = member.getPwd();
-			String pwdDb = MyShaEncrypt.encryptSHA(pwd);
-			//设置加密后的密码
-			member.setPwd(pwdDb);
-			member.setCreate_date(MyDateUtil.getDateTime());
-			memberService.addMember(request, member);
-			map.put("model_id", member.getId());
-			map.put(RESULT_MESSAGE_STRING, "注册成功");
-			Log log = new Log();
-			log.setUser(member.getPhone());
-			log.setIp(this.getIpAddr(request));
-			log.setCreate_date(DateUtil.getDateTime());
-			log.setOperation("会员注册");
-			log.setType("Member");
-			logService.saveLog(log);
+			String vCode = request.getParameter("vCode");
+			String sCode = (String) request.getSession().getAttribute("validateCode");
+			if(vCode.equals(sCode)){
+				String pwd = member.getPwd();
+				String pwdDb = MyShaEncrypt.encryptSHA(pwd);
+				//设置加密后的密码
+				member.setPwd(pwdDb);
+				member.setCreate_date(MyDateUtil.getDateTime());
+				memberService.addMember(request, member);
+				map.put("model_id", member.getId());
+				map.put(RESULT_MESSAGE_STRING, "注册成功");
+				Log log = new Log();
+				log.setUser(member.getPhone());
+				log.setIp(this.getIpAddr(request));
+				log.setCreate_date(DateUtil.getDateTime());
+				log.setOperation("会员注册");
+				log.setType("Member");
+				logService.saveLog(log);
+			}else{
+				map.put(RESULT_MESSAGE_STRING, "验证码不正确！");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);

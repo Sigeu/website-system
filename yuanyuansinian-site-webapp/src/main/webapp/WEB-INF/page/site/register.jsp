@@ -109,16 +109,19 @@
 						</div>
 					</div>
 				</div>
-				<%-- <div class="form-group col-sm-6">
-					<label class="control-label col-sm-4 col-md-3">验证码</label>
-					<div class="col-sm-8 col-md-9">
-						<input type="text" class="form-control pull-left" placeholder="请输入验证码">
+				<!-- 注册页验证码 start -->
+			<div class="form-group col-sm-6">
+				<label class="control-label col-sm-4 col-md-3">验证码</label>
+				<div class="col-sm-8 col-md-9">
+					<div class="col-xs-6 new-noleft">
+						<input type="text" id="vCode" name="vCode" maxlength="4" class="form-control" placeholder="请输入验证码">
 					</div>
-					<div class="col-md-4 col-xs-4" style="padding:0">
-							<a href="###"><img src="${pageContext.request.contextPath}/static/images/code.jpg" class="code-img pull-left"></a><a href="###" class="code-img-wd hidden-xs">换一张</a>
-						</div>
-				</div> --%>
-				
+					<div class="col-xs-6">
+						<a href="###"><img class="code-img pull-left" id="img_" src="${pageContext.request.contextPath}/verifyCodeServlet"></a> <a class="code-img-wd hidden-xs" id="kanbuq" href="##">换一张</a>
+					</div>
+				</div>
+			</div>
+			<!-- 注册页验证码 end -->
 				<div class="clearfix"></div>
 				<div class="new-add">
 					<input type="checkbox" checked="checked"><a href="###">阅读并同意缘园思念网服务条款</a>
@@ -159,6 +162,9 @@
 							{
 								rules : {
 									real_name : {
+										required : true
+									},
+									vCode : {
 										required : true
 									},
 									member_name : {
@@ -245,7 +251,7 @@
 								focusCleanup : false,
 								success : "valid",
 								submitHandler : function(form) {
-									$("#submit_but").attr("disabled", "disabled").attr("value","提交中..."); 
+									//$("#submit_but").attr("disabled", "disabled"); 
 									var imgList = $('#fileList')
 											.children('div');
 									if (imgList.length > 0) {
@@ -267,14 +273,23 @@
 											}
 										};
 										// 准备form表单
-										//$("#form_").ajaxForm(options);
+										$("#form_").ajaxForm(options);
 										// 表单提交     
-										//$("#form_").ajaxSubmit(options);
+										$("#form_").ajaxSubmit(options);
 									}
 									return false;
 								}
 							});
 
+		});
+		
+		
+		$(function(){
+			//刷新时清空验证码
+			$('#vCode').val('');
+			$('#kanbuq').on('click',function(){
+				$('#img_').attr('src','${pageContext.request.contextPath}/verifyCodeServlet?' + new Date().getTime());
+			});
 		});
 	</script>
 </body>
