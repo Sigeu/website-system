@@ -7,7 +7,7 @@
 <html lang="zh-cn">
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
-<title>纪念馆-祭奠</title>
+<title>纪念馆-灵堂祭奠</title>
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>
@@ -45,19 +45,43 @@
 		</c:forEach>  --%>
 		
 		<c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
-							<c:if test="${warehouseStatus.index == 0 }">
-								<c:choose>  
-								   <c:when test="${empty warehouse.product_img}">
-								   		<img src="${pageContext.request.contextPath}/static/images/flower.png"
-									class="img-responsive flower-left" >
-								   </c:when>  
-								   <c:otherwise>
-									    <img src="${warehouse.product_img}" class="img-responsive flower-left">
-								   </c:otherwise>  
-							</c:choose> 
-							</c:if>
-						</c:forEach>
-						
+			<c:if test="${warehouseStatus.index == 0 }">
+				<c:choose>  
+				   <c:when test="${empty warehouse.product_img}">
+				   		<img src="${pageContext.request.contextPath}/static/images/flower.png"
+					class="img-responsive flower-left" >
+				   </c:when>  
+				   <c:otherwise>
+					    <img src="${warehouse.product_img}" class="img-responsive flower-left">
+				   </c:otherwise>  
+			</c:choose> 
+			</c:if>
+		</c:forEach>
+		
+		<!-- 贡品start -->
+		<div class="tribute-list hidden-xs">
+			<img src="${pageContext.request.contextPath}/static/images/steamed-buns1.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/zy4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+		</div>
+		<!-- 贡品end -->				
 		
 		<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left"><!-- 左侧花 -->
 		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-right"><!-- 右侧花 -->

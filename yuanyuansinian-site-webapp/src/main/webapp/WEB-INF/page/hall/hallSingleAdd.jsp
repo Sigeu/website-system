@@ -31,7 +31,7 @@
 				<label class="form-label col-xs-4 col-sm-2">纪念馆简短说明：</label>
 				<div class="formControls col-xs-8 col-sm-9">
 					<textarea name="description" cols="" rows="" class="textarea"
-						placeholder="纪念馆简短说明" datatype="*0-100" dragonfly="true"
+						placeholder="纪念馆简短说明" dragonfly="true"
 						onKeyUp="$.Huitextarealength(this,200)"></textarea>
 					<p class="textarea-numberbar">
 						<em class="textarea-length">0</em>/200
@@ -163,10 +163,10 @@
 				<label class="form-label col-xs-4 col-sm-2">成就：</label>
 				<div class="formControls col-xs-8 col-sm-9">
 					<textarea name="achievement" cols="" rows="" class="textarea"
-						placeholder="成就" datatype="*0-100" dragonfly="true"
-						onKeyUp="$.Huitextarealength(this,200)"></textarea>
+						placeholder="成就" dragonfly="true"
+						onKeyUp="$.Huitextarealength(this,500)"></textarea>
 					<p class="textarea-numberbar">
-						<em class="textarea-length">0</em>/2000
+						<em class="textarea-length">0</em>/500
 					</p>
 				</div>
 			</div>
@@ -174,8 +174,8 @@
 				<label class="form-label col-xs-4 col-sm-2">生平事迹：</label>
 				<div class="formControls col-xs-8 col-sm-9">
 					<textarea name="life_story" cols="" rows="" class="textarea"
-						placeholder="成就" datatype="*0-100" dragonfly="true"
-						onKeyUp="$.Huitextarealength(this,200)"></textarea>
+						placeholder="成就" dragonfly="true"
+						onKeyUp="$.Huitextarealength(this,2000)"></textarea>
 					<p class="textarea-numberbar">
 						<em class="textarea-length">0</em>/2000
 					</p>

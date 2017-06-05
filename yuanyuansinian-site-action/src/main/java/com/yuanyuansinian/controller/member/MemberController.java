@@ -241,17 +241,25 @@ public class MemberController extends MyBaseController {
 	@ResponseBody
 	@RequestMapping("/updateMember")
 	public Map<String, Object> updateMember(HttpServletRequest request, Member member) {
-
+		
 		Map<String, Object> map = new HashMap<String, Object>();
-		//member.setCreate_date(MyDateUtil.getDateTime());
-		int count = this.memberService.updateMember(member);
-		map.put("model_id", member.getId());
-		if (RESULT_COUNT_1 == count) {
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
-		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		try {
+			String pwd = member.getPwd();
+			String pwdDb = MyShaEncrypt.encryptSHA(pwd);
+			//设置加密后的密码
+			member.setPwd(pwdDb);
+			//member.setCreate_date(MyDateUtil.getDateTime());
+			int count = this.memberService.updateMember(member);
+			map.put("model_id", member.getId());
+			if (RESULT_COUNT_1 == count) {
+				map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			} else {
+				map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			}
+		
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-
 		return map;
 	}
 
@@ -266,14 +274,21 @@ public class MemberController extends MyBaseController {
 	@RequestMapping("/saveMember")
 	public Map<String, Object> saveMember(HttpServletRequest request, Member member) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		member.setCreate_date(MyDateUtil.getDateTime());
-		int count = this.memberService.updateMember(member);
-		if (RESULT_COUNT_1 == count) {
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
-		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		try {
+			String pwd = member.getPwd();
+			String pwdDb = MyShaEncrypt.encryptSHA(pwd);
+			//设置加密后的密码
+			member.setPwd(pwdDb);
+			//member.setCreate_date(MyDateUtil.getDateTime());
+			int count = this.memberService.updateMember(member);
+			if (RESULT_COUNT_1 == count) {
+				map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			} else {
+				map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-
 		return map;
 	}
 
