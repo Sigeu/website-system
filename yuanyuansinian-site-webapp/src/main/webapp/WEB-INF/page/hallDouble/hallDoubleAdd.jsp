@@ -25,9 +25,9 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="new-body">
-			<p class="new-notice text-justify">
+			<!-- <p class="new-notice text-justify">
 				<span class="glyphicon glyphicon-star"></span>注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务
-			</p>
+			</p> -->
 			<form class="form-horizontal"
 				action="${pageContext.request.contextPath}/sinian/hallDouble/hallDoubleController/addDoubleHall"
 				method="post" id="form_">
@@ -70,8 +70,8 @@
 						<label class="form-label col-xs-4 col-sm-2">生平事迹：</label>
 						<div class="formControls col-xs-8 col-sm-9">
 							<textarea name="life_story" cols="" rows="" class="textarea"
-								placeholder="成就" datatype="*0-100" dragonfly="true"
-								onKeyUp="$.Huitextarealength(this,200)"></textarea>
+								placeholder="成就" dragonfly="true"
+								onKeyUp="$.Huitextarealength(this,2000)"></textarea>
 							<p class="textarea-numberbar">
 								<em class="textarea-length">0</em>/2000
 							</p>
@@ -135,23 +135,6 @@
 						<div class="col-xs-8 col-sm-9">
 							<input type="text" class="input-text" value="" placeholder="生肖" readonly="readonly"
 									id="zodiac" name="zodiac">
-							<!-- <span class="select-box"> <select id="zodiac"
-								name="zodiac" class="select">
-									<option value="">--请选择--</option>
-									<option value="鼠">鼠</option>
-									<option value="牛">牛</option>
-									<option value="虎">虎</option>
-									<option value="兔">兔</option>
-									<option value="龙">龙</option>
-									<option value="蛇">蛇</option>
-									<option value="马">马</option>
-									<option value="羊">羊</option>
-									<option value="猴">猴</option>
-									<option value="鸡">鸡</option>
-									<option value="狗">狗</option>
-									<option value="猪">猪</option>
-							</select>
-							</span> -->
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
@@ -210,7 +193,7 @@
 						<label class="control-label col-sm-4 col-md-3">成就</label>
 						<div class="col-sm-8 col-md-9">
 							<textarea name="achievement" cols="" rows="" class="textarea"
-								placeholder="成就" datatype="*0-500" dragonfly="true"
+								placeholder="成就" dragonfly="true"
 								onKeyUp="$.Huitextarealength(this,500)"></textarea>
 							<p class="textarea-numberbar">
 								<em class="textarea-length">0</em>/500
@@ -360,7 +343,7 @@
 						<label class="control-label col-sm-4 col-md-3">成就</label>
 						<div class="col-sm-8 col-md-9">
 							<textarea name="achievement2" cols="" rows="" class="textarea"
-								placeholder="成就" datatype="*0-500" dragonfly="true"
+								placeholder="成就" dragonfly="true"
 								onKeyUp="$.Huitextarealength(this,500)"></textarea>
 							<p class="textarea-numberbar">
 								<em class="textarea-length">0</em>/500

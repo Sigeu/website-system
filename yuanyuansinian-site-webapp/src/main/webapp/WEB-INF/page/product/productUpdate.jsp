@@ -38,6 +38,17 @@
 				</span> </div>
 		</div> --%>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select class="select" id="type" name="type">
+					<option value="0">--请选择--</option>  
+                    <c:forEach items="${codeList}" var="code">  
+                    	<option value="${code.code_value}">${code.code_name}</option>  
+                    </c:forEach>  
+				</select>
+				</span> </div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${product.name}" placeholder="产品名称" id="name" name="name">

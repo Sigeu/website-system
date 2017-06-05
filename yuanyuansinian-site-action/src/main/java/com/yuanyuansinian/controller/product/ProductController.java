@@ -152,11 +152,10 @@ public class ProductController extends MyBaseController {
 		Product product = this.productService.queryProductById(productId);
 		model.addAttribute("product", product);
 		
-		//List<Code> codeList = codeService.queryCodeListByType("product_type");
-		//model.addAttribute("codeList", codeList);
-		//产品大类
-		//List<Code> bigTypeCodeList = codeService.queryCodeListByType("big_type");
-		//model.addAttribute("bigTypeCodeList", bigTypeCodeList);
+		//产品小类
+		List<Code> codeList = codeService.queryCodeListByType("product_type");
+		
+		model.addAttribute("codeList", codeList);
 		
 		
 		return "product/productUpdate";
