@@ -20,6 +20,31 @@
 		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left hidden-xs"><!-- 左侧花 -->
 		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-right hidden-xs"><!-- 右侧花 -->
 		<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant hidden-xs"><!-- 香 -->
+		
+		<!-- 贡品start -->
+		<div class="tribute-list hidden-xs">
+			<img src="${pageContext.request.contextPath}/static/images/steamed-buns1.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/zy4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
+			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+		</div>
+		<!-- 贡品end -->
 		<div class="incense-btn">
 			<c:choose>  
 			   <c:when test="${empty sessionScope.memberUser}">

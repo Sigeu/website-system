@@ -21,9 +21,9 @@
 				<ul class="cl">
 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onclick="article_add('添加通知公告','article-add.html')"><i class="Hui-iconfont">&#xe616;</i> 通知公告</a></li>
-							<li><a href="javascript:;" onclick="picture_add('添加公墓陵园','picture-add.html')"><i class="Hui-iconfont">&#xe613;</i> 公墓陵园</a></li>
-							<li><a href="javascript:;" onclick="product_add('添加商城产品','product-add.html')"><i class="Hui-iconfont">&#xe620;</i> 商城产品</a></li>
+							<li><a href="javascript:;" onclick="notice_add('添加通知公告','${pageContext.request.contextPath}/sinian/content/contentController/toNoticeAdd')"><i class="Hui-iconfont">&#xe616;</i> 通知公告</a></li>
+							<li><a href="javascript:;" onclick="cemetery_add('添加公墓陵园','${pageContext.request.contextPath}/sinian/cemetery/cemeteryController/toCemeteryAdd')"><i class="Hui-iconfont">&#xe613;</i> 公墓陵园</a></li>
+							<li><a href="javascript:;" onclick="product_add('添加商城产品','${pageContext.request.contextPath}/sinian/product/productController/toProductAdd')"><i class="Hui-iconfont">&#xe620;</i> 商城产品</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -38,17 +38,6 @@
 							<li><a href="${pageContext.request.contextPath}/system/controller/loginController/logout">退出</a></li>
 						</ul>
 					</li>
-					<!-- <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
-					<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
-						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
-							<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
-							<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
-							<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
-							<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
-							<li><a href="javascript:;" data-val="orange" title="绿色">橙色</a></li>
-						</ul>
-					</li> -->
 				</ul>
 			</nav>
 		</div>
@@ -76,7 +65,6 @@
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/content/contentController/toContentList" data-title="内容管理" href="javascript:void(0)">内容管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/content/contentController/toNoticeList" data-title="通知公告管理" href="javascript:void(0)">通知公告管理</a></li>
-					<%-- <li><a data-href="${pageContext.request.contextPath}/sinian/content/contentController/toContentRecycleList" data-title="内容回收站" href="javascript:void(0)">内容回收站</a></li> --%>
 				</ul>
 			</dd>
 		</dl>
@@ -93,7 +81,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductList" data-title="商城产品管理" href="javascript:void(0)">商城产品管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toHallProductList" data-title="纪念馆产品管理" href="javascript:void(0)">纪念馆产品管理</a></li>
+					<%-- <li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toHallProductList" data-title="纪念馆产品管理" href="javascript:void(0)">纪念馆产品管理</a></li> --%>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/order/orderController/toOrderList" data-title="订单管理" href="javascript:void(0)">订单管理</a></li>
 					<%-- <li><a data-href="${pageContext.request.contextPath}/sinian/product/productController/toProductListForHall" data-title="礼品管理" href="javascript:void(0)">礼品管理</a></li> --%>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/cemetery/cemeteryController/toCemeteryList" data-title="墓地陵园管理" href="javascript:void(0)">墓地陵园管理</a></li>
@@ -117,13 +105,13 @@
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/member/memberController/toMemberList" data-title="会员列表" href="javascript:;">会员列表</a></li>
-					<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">停用的会员</a></li>
-					<li><a data-href="member-record-browse.html" data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
-					<li><a data-href="member-record-download.html" data-title="购买记录" href="javascript:void(0)">购买记录</a></li>
+					<!-- <li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">停用的会员</a></li> -->
+					<!-- <li><a data-href="member-record-browse.html" data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
+					<li><a data-href="member-record-download.html" data-title="购买记录" href="javascript:void(0)">购买记录</a></li> -->
 				</ul>
 			</dd>
 		</dl>
-		<dl id="menu-tongji">
+		<!-- <dl id="menu-tongji">
 			<dt><i class="Hui-iconfont">&#xe61a;</i> 统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
@@ -132,18 +120,17 @@
 					<li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">墓地陵园统计</a></li>
 				</ul>
 			</dd>
-		</dl>
+		</dl> -->
 		
 		<dl id="menu-admin">
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/userController/toUserList" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/system/controller/roleController/toRoleList" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+					<%-- <li><a data-href="${pageContext.request.contextPath}/system/controller/roleController/toRoleList" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightList" data-title="菜单管理" href="javascript:void(0)">菜单管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentList" data-title="部门管理" href="javascript:void(0)">部门管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentList" data-title="部门管理" href="javascript:void(0)">部门管理</a></li> --%>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/codeTypeController/toCodeTypeList" data-title="数据字典" href="javascript:void(0)">数据字典管理</a></li>
-					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/logController/toLogList" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
 				
 				</ul>
@@ -164,7 +151,7 @@
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-			<iframe scrolling="yes" frameborder="0" src="${pageContext.request.contextPath}/sinian/content/contentController/toContentList"></iframe>
+			<iframe scrolling="yes" frameborder="0" src="${pageContext.request.contextPath}/sinian/content/contentController/toNoticeList"></iframe>
 		</div>
 	</div>
 </section>
@@ -206,8 +193,8 @@ $(function(){
 		}
 	});*/
 });
-/*资讯-添加*/
-function article_add(title,url){
+/*通知公告-添加*/
+function notice_add(title,url){
 	var index = layer.open({
 		type: 2,
 		title: title,
@@ -215,8 +202,8 @@ function article_add(title,url){
 	});
 	layer.full(index);
 }
-/*图片-添加*/
-function picture_add(title,url){
+/*公墓陵园-添加*/
+function cemetery_add(title,url){
 	var index = layer.open({
 		type: 2,
 		title: title,

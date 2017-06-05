@@ -34,7 +34,6 @@
 			<div class="nav-title">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#setup" aria-controls="home" role="tab" data-toggle="tab">我的建馆</a></li>
-					<!-- <li role="presentation"><a href="#visit" aria-controls="profile" role="tab" data-toggle="tab">我的访问记录</a></li> -->
 					<li role="presentation"><a href="#release" aria-controls="profile" role="tab" data-toggle="tab">我的发布</a></li>
 				</ul>
 			</div>
@@ -67,21 +66,6 @@
 						</c:forEach>
 				</div>
 				
-				<div class="tab-pane img-list shop-list miss-list" id="visit">
-					<div class="list">
-						<ul>
-							<li><a href="###" class="pull-left">访问记录...更新中</a><span class="list-date pull-right">2016-12-30</span></li>
-						</ul>
-					</div>
-					<div class="clearfix"></div>
-					<div class="page">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-						</ul>
-					</div>
-				</div>
 				<div class="tab-pane img-list shop-list miss-list" id="release">
 					<div class="list">
 						<ul>

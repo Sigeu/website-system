@@ -25,9 +25,9 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="new-body">
-			<!-- <p class="new-notice text-justify">
-				<span class="glyphicon glyphicon-star"></span>注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务
-			</p> -->
+			 <p class="new-notice text-justify">
+				<!-- <span class="glyphicon glyphicon-star"></span>注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务 -->
+			</p>
 			<form class="form-horizontal"
 				action="${pageContext.request.contextPath}/sinian/hallDouble/hallDoubleController/addDoubleHall"
 				method="post" id="form_">

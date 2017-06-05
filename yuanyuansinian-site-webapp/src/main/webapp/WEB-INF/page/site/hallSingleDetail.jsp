@@ -7,7 +7,7 @@
 <html lang="zh-cn">
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
-<title>纪念馆-内容页</title>
+<title>纪念馆查看</title>
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>
@@ -108,7 +108,7 @@
 				<div class="tab-pane active" id="deeds">
 					<!-- 生平事迹，也就是文章内容模板start -->
 					<div class="article-body">
-						<p>${hall.life_story }</p>
+						<p style="word-wrap:break-word">${hall.life_story }</p>
 					</div>
 					<!-- end -->
 				</div>
@@ -138,7 +138,7 @@
 				<div class="tab-pane" id="message">
 					<!-- 生平事迹，也就是文章内容模板start -->
 					<div class="article-body">
-						<p>${hall.achievement }</p>
+						<p style="word-wrap:break-word">${hall.achievement }</p>
 					</div>
 					<!-- end -->
 				</div>

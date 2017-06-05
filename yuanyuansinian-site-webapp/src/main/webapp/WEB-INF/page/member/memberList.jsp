@@ -48,8 +48,8 @@
 				<thead>
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
-						<th>序号</th>
-						<th>登录名</th>
+						<!-- <th>序号</th>
+						<th>登录名</th> -->
 						<th>昵称</th>
 						<th>姓名</th>
 						<th>性别</th>
@@ -112,12 +112,12 @@
 									render: function (data, type, full, meta) {
 					                     return '<input type="checkbox" value="' + data + '" />';
 					                 }
-								}, {
+								}, /* {
 									data : "id"
 								}, {
 									data : "login_name",
 									defaultContent : 0
-								}, {
+								},  */{
 									data : "real_name",
 									defaultContent : 0
 								}, {

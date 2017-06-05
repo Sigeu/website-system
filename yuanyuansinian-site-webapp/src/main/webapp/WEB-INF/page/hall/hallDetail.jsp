@@ -8,7 +8,7 @@
 <script type="text/javascript">
 //window.k = "/static/hui/admin3.0/lib/ueditor/1.4.3/";//编辑器项目路径
 </script>
-<title>内容信息表页</title>
+<title>纪念馆明细页面</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">

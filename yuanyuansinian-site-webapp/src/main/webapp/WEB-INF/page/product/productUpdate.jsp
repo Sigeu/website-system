@@ -142,7 +142,7 @@ $(function(){
 	var ue = UE.getEditor('editor');
 	
 	//设置下拉选中的值
-	$('#big_type').val('${product.big_type}');
+	$('#type').val('${product.type}');
 	ue.ready(function() {//编辑器初始化完成再赋值  
     	ue.setContent('${product.content}');  //赋值给UEditor  
     });
