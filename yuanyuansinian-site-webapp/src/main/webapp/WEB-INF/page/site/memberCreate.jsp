@@ -50,6 +50,14 @@
 								<a href="###" onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><h5>${hall.title }</h5></a>
 								<p><strong>创建日期：</strong>${hall.create_date }</p>
 								<div class="miss-des text-justify"><strong>简介：</strong>${hall.description }</div>
+								<c:choose>  
+								   <c:when test="${empty sessionScope.memberUser}">
+								   </c:when>  
+								   <c:otherwise>
+									   <button class="btn btn-danger pull-left" onclick="toHallEdit('${hall.id }','${hall.hall_type }')">修改</button>
+								   </c:otherwise>  
+								</c:choose>  
+								
 							</div>
 							<div class="clearfix"></div>
 						</div>

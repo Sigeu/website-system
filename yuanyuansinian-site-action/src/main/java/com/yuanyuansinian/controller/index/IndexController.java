@@ -602,7 +602,6 @@ public class IndexController extends MyBaseController {
 		List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByHall(warehouse);
 		
 		model.addAttribute("listWarehouse", listWarehouse);
-		System.out.println(listWarehouse.size()+"--------------------------");
 		
 		
 		return "site/hallSingleMemorial";
@@ -662,6 +661,46 @@ public class IndexController extends MyBaseController {
 		model.addAttribute("listOration", listOration);
 				
 		return "site/hallDoubleDetail";
+	}
+	
+	/**
+	 * 
+	 * @Description: 双人馆修改 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toDoubleHallUpdate")
+	public String toDoubleHallUpdate(HttpServletRequest request, Model model) {
+		
+		int hallId = Integer.parseInt(request.getParameter("id"));
+		HallDouble hallDouble = this.hallDoubleService.queryHallDoubleById(hallId);
+		
+		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hallDouble.getDeath_date());
+		hallDouble.setDays(days);
+		model.addAttribute("hallDouble", hallDouble);
+		
+		return "site/hallDoubleUpdate";
+	}
+	
+	/**
+	 * 
+	 * @Description: 单人馆修改
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toSingleHallUpdate")
+	public String toSingleHallUpdate(HttpServletRequest request, Model model) {
+		
+		int hallId = Integer.parseInt(request.getParameter("id"));
+		Hall hall = this.hallService.queryHallById(hallId);
+		
+		int days = MyDateUtil.getMargin(MyDateUtil.getDate(), hall.getDeath_date());
+		hall.setDays(days);
+		model.addAttribute("hall", hall);
+		
+		return "site/hallSingleUpdate";
 	}
 	
 	/**

@@ -160,6 +160,8 @@
 				/sinian/product/productController/uploadImg = anon
 				/sinian/hallDouble/hallDoubleController/uploadHead1 = anon
 				/sinian/hallDouble/hallDoubleController/uploadHead2 = anon
+				/sinian/hallDouble/hallDoubleController/updateHallDouble = anon
+				/sinian/hall/hallController/updateHall = anon
 				/sinian/order/orderController/notifyUrl = anon
 				/sinian/order/orderController/returnUrl = anon
 				/return_url.jsp = anon
