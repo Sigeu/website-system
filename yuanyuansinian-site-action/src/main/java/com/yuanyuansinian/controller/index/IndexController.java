@@ -803,6 +803,9 @@ public class IndexController extends MyBaseController {
 		List<Product> productList3 = productService.queryProductListByType(IMySystemConstants.VALUE_3);
 		model.addAttribute("productList3", productList3);
 		
+		List<Product> productList4 = productService.queryProductListByType(IMySystemConstants.VALUE_4);
+		model.addAttribute("productList4", productList4);
+		
 		//公墓陵园推荐
 		List<Cemetery> cemeteryList = this.cemeteryService.queryCemeteryListForCountNum(IMySystemConstants.COUNT_NUM4);
 		model.addAttribute("cemeteryList", cemeteryList);

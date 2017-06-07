@@ -312,7 +312,7 @@ public class HallController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/updateHall")
-	public Map<String, Object> updateHall(HttpServletRequest request, Hall hall) {
+	public Map<String, Object> updateHall(HttpServletRequest request, HallWithBLOBs hall) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		hall.setCreate_date(MyDateUtil.getDateTime());

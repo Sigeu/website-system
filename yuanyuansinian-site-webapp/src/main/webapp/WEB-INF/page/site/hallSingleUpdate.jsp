@@ -87,7 +87,7 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>生肖：</label>
 				<div class="formControls col-xs-8 col-sm-9">
-					<input type="text" class="input-text" value="${hall.zodiac }" placeholder="生肖" readonly="readonly"
+					<input type="text" class="input-text" value="${hall.zodiac }" placeholder="生肖" 
 						id="zodiac" name="zodiac">
 				</div>
 			</div>

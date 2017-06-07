@@ -44,7 +44,17 @@
 					<c:forEach var="hall" items="${listHallNew}">
 						<div class="row miss-setup-pro">
 							<div class="col-sm-4 col-md-3">
-								<a href="###" onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><img src="${hall.imgs }" class="img-responsive" /></a>
+								<a href="###" onclick="toHallDetail('${hall.id }','${hall.hall_type }')">
+									<c:choose>  
+									   <c:when test="${empty hall.imgs}">
+									   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+										class="img-responsive" >
+									   </c:when>  
+									   <c:otherwise>
+										    <img src="${hall.imgs}" class="img-responsive" alt="${hall.title}" />
+									   </c:otherwise>  
+									</c:choose>
+								</a>
 							</div>
 							<div class="col-sm-8 col-md-9">
 								<a href="###" onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><h5>${hall.title }</h5></a>
@@ -113,6 +123,29 @@
 		var activeFlag = '我的思念';
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
+		
+		
+		//纪念馆信息修改
+		function toHallEdit(id,type){
+			var url = '';
+			//单人
+			if(type == '1'){
+				url = contextPath + '/sinian/index/indexController/toSingleHallUpdate?id=' + id;
+			}
+			//双人
+			if(type == '2'){
+				url = contextPath + '/sinian/index/indexController/toDoubleHallUpdate?id=' + id;
+			}
+			var hall_type = $().val();
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["修改"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: url
+			 });
+		}
 	</script>
 </body>
 </html>

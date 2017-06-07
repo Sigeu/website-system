@@ -34,7 +34,6 @@ import com.yuanyuansinian.service.hall.IHallDoubleService;
  */
 @Service("hallDoubleService") 
 public class HallDoubleService implements IHallDoubleService {
-	//友情链接Mapper
 	@Resource
 	private HallDoubleMapper hallDoubleMapper;
 	
@@ -47,9 +46,9 @@ public class HallDoubleService implements IHallDoubleService {
 	 * @see ujn.school.cn.service.hallDouble.IHallDoubleService#updateHallDouble(ujn.school.cn.model.hallDouble.HallDouble)
 	 */
 	@Override
-	public int updateHallDouble(HallDouble hallDouble) {
+	public int updateHallDouble(HallDoubleWithBLOBs hallDouble) {
 		// TODO Auto-generated method stub
-		return hallDoubleMapper.updateByPrimaryKey(hallDouble);
+		return hallDoubleMapper.updateByPrimaryKeySelective(hallDouble);
 	}
 	
 	/*

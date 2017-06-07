@@ -350,7 +350,7 @@ public class HallDoubleController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/updateHallDouble")
-	public Map<String, Object> updateHallDouble(HttpServletRequest request, HallDouble hallDouble) {
+	public Map<String, Object> updateHallDouble(HttpServletRequest request, HallDoubleWithBLOBs hallDouble) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		hallDouble.setCreate_date(MyDateUtil.getDateTime());

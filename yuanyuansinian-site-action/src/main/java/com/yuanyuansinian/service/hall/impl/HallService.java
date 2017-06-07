@@ -47,9 +47,9 @@ public class HallService implements IHallService {
 	 * @see ujn.school.cn.service.hall.IHallService#updateHall(ujn.school.cn.model.hall.Hall)
 	 */
 	@Override
-	public int updateHall(Hall hall) {
+	public int updateHall(HallWithBLOBs hall) {
 		// TODO Auto-generated method stub
-		return hallMapper.updateByPrimaryKey(hall);
+		return hallMapper.updateByPrimaryKeySelective(hall);
 	}
 	
 	/*

@@ -25,7 +25,7 @@ public interface IHallDoubleService {
 	 * @param hallDouble
 	 * @return
 	 */
-	int updateHallDouble(HallDouble hallDouble);
+	int updateHallDouble(HallDoubleWithBLOBs hallDouble);
 
 	/**
 	 * 

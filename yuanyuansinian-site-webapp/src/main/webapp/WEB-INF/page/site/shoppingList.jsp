@@ -40,6 +40,14 @@
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product1.id }')"><h5>${product1.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
 										<small>￥</small>${product1.price_site }
+										<c:choose>  
+										   <c:when test="${empty product1.units}">
+										   	<small>元宝</small>
+										   </c:when>  
+										   <c:otherwise>
+											   <small>${product1.units }</small>
+										   </c:otherwise>  
+										</c:choose> 
 									</div>
 								</div>
 							</div>
@@ -67,6 +75,14 @@
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product2.id }')"><h5>${product2.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
 										<small>￥</small>${product2.price_site }
+										<c:choose>  
+										   <c:when test="${empty product2.units}">
+										   	<small>元宝</small>
+										   </c:when>  
+										   <c:otherwise>
+											   <small>${product2.units }</small>
+										   </c:otherwise>  
+										</c:choose> 
 									</div>
 								</div>
 							</div>
@@ -94,6 +110,14 @@
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product3.id }')"><h5>${product3.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
 										<small>￥</small>${product3.price_site }
+										<c:choose>  
+										   <c:when test="${empty product3.units}">
+										   	<small>元宝</small>
+										   </c:when>  
+										   <c:otherwise>
+											   <small>${product3.units }</small>
+										   </c:otherwise>  
+										</c:choose> 
 									</div>
 								</div>
 							</div>
@@ -102,6 +126,41 @@
 			</div>
 		</div>
 		<!-- 分类3结束 -->
+		<!-- 分类4开始 -->
+		<div class="row">
+			<div class="shop-header">
+				<h4>什锦礼品推荐</h4>
+				<a href="###" class="more pull-right">更多&raquo;</a>
+			</div>
+			<div class="col-sm-3 hidden-xs">
+				<a href="###" class="shop-cat"><img src="${pageContext.request.contextPath}/static/images/shop4.jpg"
+					class="img-responsive" alt="shop-cat"></a>
+			</div>
+			<div class="col-sm-9">
+				<div class="row img-list shop-list">
+					<c:forEach items="${productList4}" var="product3" varStatus="product3Status"> 
+							<div class="col-sm-4">
+								<div class="thumbnail">
+									<a href="###" onclick="toShoppingDetail('${product4.id }')"><img src="${product4.pic }"
+										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product4.id }')"><h5>${product4.name }</h5></a>
+									<div class="shop-info hidden-xs hidden-sm pull-right">
+										<small>￥</small>${product4.price_site }
+										<c:choose>  
+										   <c:when test="${empty product4.units}">
+										   	<small>元宝</small>
+										   </c:when>  
+										   <c:otherwise>
+											   <small>${product4.units }</small>
+										   </c:otherwise>  
+										</c:choose> 
+									</div>
+								</div>
+							</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		<!-- 分类4结束 -->
 		<!-- 根据需要，他们要添加更多分类 -->
 	</div>
 

@@ -25,7 +25,7 @@ public interface IHallService {
 	 * @param hall
 	 * @return
 	 */
-	int updateHall(Hall hall);
+	int updateHall(HallWithBLOBs hall);
 
 	/**
 	 * 

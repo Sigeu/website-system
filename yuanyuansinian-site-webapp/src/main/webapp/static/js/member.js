@@ -19,30 +19,6 @@ $(function(){
 	});
 	/*----------------------会员修改信息 end-------------------------*/
 	
-	//纪念馆信息修改
-	function toHallEdit(id,type){
-		var url = '';
-		//单人
-		if(type == '1'){
-			url = contextPath + '/sinian/index/indexController/toSingleHallEdit';
-		}
-		//双人
-		if(type == '2'){
-			url = contextPath + '/sinian/index/indexController/toDoubleHallEdit';
-		}
-		var hall_type = $().val();
-		layer.open({
-		    type: 2,
-		    maxmin:true,
-		    title:["修改"],
-		    area: ['100%', '100%'],
-		    shadeClose: false, //点击遮罩关闭
-		    content: url
-		 });
-	}
-	
-	
-	
 	/*----------------------结算 begin-----------------------*/
 	$('#settlement_but').on('click',function(){
 		var ids = ""

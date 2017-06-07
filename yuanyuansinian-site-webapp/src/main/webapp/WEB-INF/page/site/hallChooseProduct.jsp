@@ -55,10 +55,10 @@
 				<div class="side-nav">
 					<div class="side-nav-body">
 						<ul>
-							<li class="active" id="type1"><a href="###">香烟</a></li>
-							<li id="type2"><a href="###">鲜花</a></li>
-							<li id="type3"><a href="###">美酒</a></li>
-							<li id="type4"><a href="###">烛台</a></li>
+							<li class="active" id="type1"><a href="###">鲜花礼品</a></li>
+							<li id="type2"><a href="###">烟酒礼品</a></li>
+							<li id="type3"><a href="###">蜡烛烛台</a></li>
+							<li id="type4"><a href="###">什锦礼品</a></li>
 						</ul>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 			
 			<div class="col-sm-10" style="display:block" id="div1">
 				<c:forEach items="${productList}" var="product" varStatus="productStatus"> 
-					<%-- <c:if test="${product.type == 1}"> --%>
+					<c:if test="${product.type == 1}"> 
 						<div class="col-sm-3 col-lg-2 gift-pro">
 							<div class="thumbnail">
 								<a href="###">
@@ -78,7 +78,7 @@
 								</a>
 							</div>
 						</div>
-					<%-- </c:if> --%>
+					</c:if>
 				</c:forEach>
 				<div class="clearfix"></div>
 				<div class="page">
