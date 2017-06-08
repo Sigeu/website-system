@@ -467,9 +467,9 @@ public class MemberController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			MyUserSessionUtil.removeMember(request);
-			map.put(RESULT_MESSAGE_STRING, "注销成功！");
+			map.put(RESULT_MESSAGE_STRING, "用户退出成功！");
 		} catch (Exception e) {
-			map.put(RESULT_MESSAGE_STRING, "登出失败，请联系管理员！");
+			map.put(RESULT_MESSAGE_STRING, "用户退出失败，请联系管理员！");
 		}
 		
 		return map;

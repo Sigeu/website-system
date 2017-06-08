@@ -40,10 +40,10 @@ $(function() {
 });
 /*----------------------搜索end-----------------------*/
 
-//注销
+//退出
 $('#logout_but').on('click',function(){
-	layer.confirm("确认要当前登录用户吗？", {
-		btn : [ '注销', '取消' ]
+	layer.confirm("确认要退出当前登录用户吗？", {
+		btn : [ '退出', '取消' ]
 	//按钮
 	}, function(index) {
 		$.ajax({

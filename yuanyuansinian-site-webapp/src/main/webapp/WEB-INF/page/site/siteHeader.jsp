@@ -10,7 +10,7 @@
 	   	<a href="${pageContext.request.contextPath}/sinian/index/indexController/toMemberLogin" class="navbar-link" style="color:#b85844">用户登录</a>
 	   </c:when>  
 	   <c:otherwise>
-		   <a href="##" id="logout_but" class="navbar-link" style="color:#b85844">注销</a>
+		   <a href="##" id="logout_but" class="navbar-link" style="color:#b85844">退出</a>
 	   </c:otherwise>  
 	</c:choose>  
 		 | <a href="${pageContext.request.contextPath}/sinian/index/indexController/toRegister" class="navbar-link" id="register_but1">用户注册</a>

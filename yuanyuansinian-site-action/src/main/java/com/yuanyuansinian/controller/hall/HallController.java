@@ -317,6 +317,7 @@ public class HallController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		hall.setCreate_date(MyDateUtil.getDateTime());
 		int count = this.hallService.updateHall(hall);
+		map.put("hall_id", hall.getId());
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} else {

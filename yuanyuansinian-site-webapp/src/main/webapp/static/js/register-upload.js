@@ -156,7 +156,7 @@ jQuery(function() {
 				});
             return false;
         }else{
-        	layer.alert("保存成功！", {
+        	layer.alert("注册成功！", {
 				  closeBtn: 1
 				}, function(){
 					window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin";
