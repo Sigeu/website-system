@@ -138,7 +138,7 @@
 			</div>
 			<div class="col-sm-9">
 				<div class="row img-list shop-list">
-					<c:forEach items="${productList4}" var="product3" varStatus="product3Status"> 
+					<c:forEach items="${productList4}" var="product4" varStatus="product4Status"> 
 							<div class="col-sm-4">
 								<div class="thumbnail">
 									<a href="###" onclick="toShoppingDetail('${product4.id }')"><img src="${product4.pic }"
