@@ -268,7 +268,7 @@
 																	closeBtn : 1
 																},
 																function() {
-																	window.location.href = contextPath + "/sinian/index/indexController/toMemberLogin";
+																	window.location.href = contextPath + "/sinian/index/indexController/toMemberCenter";
 																});
 											}
 										};

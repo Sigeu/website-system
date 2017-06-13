@@ -56,6 +56,7 @@ import com.yuanyuansinian.service.gift.IHallGiftService;
 import com.yuanyuansinian.service.hall.IHallDoubleService;
 import com.yuanyuansinian.service.hall.IHallService;
 import com.yuanyuansinian.service.link.ILinkService;
+import com.yuanyuansinian.service.member.IMemberService;
 import com.yuanyuansinian.service.oration.IOrationService;
 import com.yuanyuansinian.service.order.IOrderService;
 import com.yuanyuansinian.service.product.IProductService;
@@ -122,6 +123,10 @@ public class IndexController extends MyBaseController {
 	// 纪念馆灵堂礼物Service
 	@Resource
 	private IHallGiftService hallGiftService;
+	
+	// 会员Service
+	@Resource
+	private IMemberService memberService;
 	
 	/**
 	 * @Description:  显示网站主页
@@ -890,7 +895,9 @@ public class IndexController extends MyBaseController {
 		if(null == memberUser){
 			return "redirect:/sinian/index/indexController/toMemberLogin";
 		}else{
-			model.addAttribute("memberUser", memberUser);
+			//针对注册后默认登录的用户，先查询数据
+			Member member  = this.memberService.queryMemberByPhone(memberUser.getPhone(),"");
+			model.addAttribute("memberUser", member);
 			//最新建馆:双人馆、单人馆合并后的结果集
 			List<Hall> listHallNew = hallService.queryHallNewListByMember(memberUser.getId(), IMySystemConstants.COUNT_NUM6);
 			model.addAttribute("listHallNew", listHallNew);

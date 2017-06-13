@@ -195,6 +195,12 @@ public class MemberController extends MyBaseController {
 				memberService.addMember(request, member);
 				map.put("model_id", member.getId());
 				map.put(RESULT_MESSAGE_STRING, "注册成功");
+				map.put(RESULT_STATUS_STRING, "1");
+				//移除会员
+				MyUserSessionUtil.removeMember(request);
+				//存放session
+				MyUserSessionUtil.putMember(request, member);
+				
 				Log log = new Log();
 				log.setUser(member.getPhone());
 				log.setIp(this.getIpAddr(request));

@@ -17,7 +17,16 @@
 	<div class="web-info">
 		<h3>${memberUser.member_name}</h3>
 		<p class="hidden-sm">注册时间：${memberUser.create_date}</p>
-		<p class="hidden-sm">你已经在缘园思念网注册${memberUser.days }天了，感谢您的支持</p>
+		<p class="hidden-sm">你已经在缘园思念网注册
+		<c:choose>  
+		   <c:when test="${empty memberUser.days}">
+		   		0
+		   </c:when>  
+		   <c:otherwise>
+			   ${memberUser.days }
+		   </c:otherwise>  
+		</c:choose>
+		天了，感谢您的支持</p>
 	</div>
 	<div class="true-info">
 		<ul>

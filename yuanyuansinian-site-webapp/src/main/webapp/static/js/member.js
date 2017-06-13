@@ -83,7 +83,7 @@ $(function(){
 				    type: 2,
 				    maxmin:true,
 				    title:["创建单人纪念馆"],
-				    area: ['100%', '100%'],
+				    area: ['80%', '80%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: contextPath + '/sinian/hall/hallController/toHallSingleAdd'
 				 });
@@ -93,7 +93,7 @@ $(function(){
 				    type: 2,
 				    maxmin:true,
 				    title:["创建双人纪念馆"],
-				    area: ['100%', '100%'],
+				    area: ['80%', '80%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: contextPath + '/sinian/hallDouble/hallDoubleController/toHallDoubleAdd'
 				 });

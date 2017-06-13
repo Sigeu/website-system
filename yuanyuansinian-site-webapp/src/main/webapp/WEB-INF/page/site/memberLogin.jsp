@@ -49,26 +49,26 @@
 						 <div class="form-group">
 							<label class="control-label col-md-3">手机号码</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" id="name" name="name" placeholder="请输入注册时的手机号码">	
+								<input type="text" class="form-control" id="name" name="name" maxlength="11" placeholder="请输入注册时的手机号码">	
 							</div>
 						</div>
 						 <div class="form-group">
 							<label class="control-label col-md-3">密码</label>
 							<div class="col-md-9">
-								<input type="password" class="form-control" id="pwd" name="pwd" placeholder="请输入您的密码">	
+								<input type="password" class="form-control" id="pwd" name="pwd" maxlength="20" placeholder="请输入您的密码">	
 							</div>
 						</div>
-						 <%-- <div class="form-group">
+						<div class="form-group">
 							<label class="control-label col-md-3">验证码</label>
 							<div class="">
 								<div class="col-md-5 col-xs-8">
-									<input type="text" class="form-control pull-left" placeholder="请输入验证码">
+									<input type="text" id="vCode" name="vCode" maxlength="4" class="form-control" placeholder="请输入验证码">
 								</div>
 								<div class="col-md-4 col-xs-4" style="padding:0">
-									<a href="###"><img src="${pageContext.request.contextPath}/static/images/code.jpg" class="code-img pull-left"></a><a href="###" class="code-img-wd hidden-xs">换一张</a>
+									<a href="###"><img class="code-img pull-left" id="img_" src="${pageContext.request.contextPath}/verifyCodeServlet"></a> <a class="code-img-wd hidden-xs" id="kanbuq" href="##">换一张</a>
 								</div>
 							</div>
-						</div> --%>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -85,11 +85,18 @@
 		src="${pageContext.request.contextPath}/static/js/member.js"></script>
 	<script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/login.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '会员登录';
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
+		$(function(){
+			//刷新时清空验证码
+			$('#vCode').val('');
+			$('#kanbuq').on('click',function(){
+				$('#img_').attr('src','${pageContext.request.contextPath}/verifyCodeServlet?' + new Date().getTime());
+			});
+		});
 	</script>
 </body>
 </html>

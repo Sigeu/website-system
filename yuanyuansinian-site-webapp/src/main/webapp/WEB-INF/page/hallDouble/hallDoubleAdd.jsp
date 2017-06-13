@@ -15,9 +15,9 @@
 <title>纪念馆新建</title>
 </head>
 <body class="pos-r">
-	<nav class="breadcrumb">
+	<!-- <nav class="breadcrumb">
 		首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增双人纪念馆
-	</nav>
+	</nav> -->
 
 	<div class="container con-tab all-bg miss-con new-con">
 		<div class="pro-header">
@@ -28,6 +28,7 @@
 			 <p class="new-notice text-justify">
 				<!-- <span class="glyphicon glyphicon-star"></span>注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务注意：缘园思念创建的纪念馆提供一个月的免费试用，之后您可以选择“5年300元”和“10年500元”的服务 -->
 			</p>
+			<br>
 			<form class="form-horizontal"
 				action="${pageContext.request.contextPath}/sinian/hallDouble/hallDoubleController/addDoubleHall"
 				method="post" id="form_">
@@ -69,8 +70,8 @@
 					<div class="row cl">
 						<label class="form-label col-xs-4 col-sm-2">生平事迹：</label>
 						<div class="formControls col-xs-8 col-sm-9">
-							<textarea name="life_story" cols="" rows="" class="textarea"
-								placeholder="成就" dragonfly="true"
+							<textarea name="life_story" cols="" rows="" class="textarea" style="height:520px"
+								placeholder="生平事迹,最多2000字" dragonfly="true"
 								onKeyUp="$.Huitextarealength(this,2000)"></textarea>
 							<p class="textarea-numberbar">
 								<em class="textarea-length">0</em>/2000
@@ -192,8 +193,8 @@
 					<div class="form-group col-sm-6">
 						<label class="control-label col-sm-4 col-md-3">成就</label>
 						<div class="col-sm-8 col-md-9">
-							<textarea name="achievement" cols="" rows="" class="textarea"
-								placeholder="成就" dragonfly="true"
+							<textarea name="achievement" cols="" rows="" class="textarea" style="height:300px"
+								placeholder="个人能成就，最多500字" dragonfly="true"
 								onKeyUp="$.Huitextarealength(this,500)"></textarea>
 							<p class="textarea-numberbar">
 								<em class="textarea-length">0</em>/500
@@ -342,8 +343,8 @@
 					<div class="form-group col-sm-6">
 						<label class="control-label col-sm-4 col-md-3">成就</label>
 						<div class="col-sm-8 col-md-9">
-							<textarea name="achievement2" cols="" rows="" class="textarea"
-								placeholder="成就" dragonfly="true"
+							<textarea name="achievement2" cols="" rows="" class="textarea"  style="height:300px"
+								placeholder="个人能成就，最多500字" dragonfly="true"
 								onKeyUp="$.Huitextarealength(this,500)"></textarea>
 							<p class="textarea-numberbar">
 								<em class="textarea-length">0</em>/500
