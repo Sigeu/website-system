@@ -18,7 +18,7 @@
 		<div class="clearfix"></div>
 		<div class="new-body">
 			<form class="form-horizontal"
-				action="${pageContext.request.contextPath}/sinian/member/memberController/registerMember"
+				action="#"
 				method="post" id="form_">
 				<div class="form-group col-sm-6">
 					<label class="control-label col-sm-4 col-md-3"><span
@@ -274,6 +274,7 @@
 										};
 										// 准备form表单
 										$("#form_").ajaxForm(options);
+										options.url = contextPath + "/sinian/member/memberController/registerMember";
 										// 表单提交     
 										$("#form_").ajaxSubmit(options);
 									}
@@ -285,6 +286,12 @@
 		
 		
 		$(function(){
+			//取消回车的默认表单提交
+			$('input').keypress(function(e){
+	            if(e.keyCode==13){
+	                e.preventDefault();
+	         	}
+			});
 			//刷新时清空验证码
 			$('#vCode').val('');
 			$('#kanbuq').on('click',function(){

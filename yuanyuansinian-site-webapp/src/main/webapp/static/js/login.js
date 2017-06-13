@@ -18,15 +18,15 @@ $(function() {
 						parent.window.location.reload();
 						var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 						parent.layer.close(index); //再执行关闭
-						/*if(type == '1'){
-							window.location.href = contextPath + "/sinian/index/indexController/toShowSingleMemorial?id=" + data.hallId;
-						}else if(type == '2'){
-							window.location.href = contextPath + "/sinian/index/indexController/toShowDoubleMemorial?id=" + data.hallId;
-						}*/
 					}else{
 						window.location.href = contextPath + '/sinian/index/indexController/toMemberCenter';
 					}
 					
+				}else{
+					var index = layer.alert(data.result_message,{closeBtn: 0}, function(){
+						//关闭后的操作
+						window.location.reload();
+					});
 				}
 			},
 			error : function(data) {
@@ -37,6 +37,33 @@ $(function() {
 		$("#login_form").ajaxForm(options);
 		// 表单提交     
 		$('#login_but').on('click', function() {
+			var phone = $('#name').val();
+			var pwd = $('#pwd').val();
+			var vCode = $('#vCode').val();
+			if(phone == ''){
+				var index = layer.alert('手机号码不能为空！',{closeBtn: 0}, function(){
+					//关闭后的操作
+					$('#name').focus();
+					layer.close(index);
+				});
+				return;
+			}
+			if(pwd == ''){
+				var index = layer.alert('密码不能为空！',{closeBtn: 0}, function(){
+					//关闭后的操作
+					$('#pwd').focus();
+					layer.close(index);
+				});
+				return;
+			}
+			if(vCode == ''){
+				var index = layer.alert('验证码不能为空！',{closeBtn: 0}, function(){
+					//关闭后的操作
+					$('#vCode').focus();
+					layer.close(index);
+				});
+				return;
+			}
 			options.url = contextPath + "/sinian/member/memberController/memberLogin";
 			$("#login_form").ajaxSubmit(options);
 			

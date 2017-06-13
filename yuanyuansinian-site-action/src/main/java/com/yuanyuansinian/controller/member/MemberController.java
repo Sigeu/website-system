@@ -208,7 +208,7 @@ public class MemberController extends MyBaseController {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			map.put(RESULT_MESSAGE_STRING, "注册会员失败，请联系管理员！");
 		}
 
 		return map;
@@ -415,48 +415,66 @@ public class MemberController extends MyBaseController {
 		
 		Member member = null;
 		try {
-			//标识为灵堂购买礼品
-			String flag = request.getParameter("flag")==null? "":request.getParameter("flag");
-			//标识单人馆还是双人馆
-			String type = request.getParameter("type")==null? "":request.getParameter("type");
-			String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
-			
-			String name = request.getParameter("name")==null? "":request.getParameter("name");
-			String pwdP = request.getParameter("pwd")==null? "":request.getParameter("pwd");
-			//加密后的密码
-			String pwd = MyShaEncrypt.encryptSHA(pwdP);
-			
-			if(!"".equals(name) && name.indexOf("@") > 0){
-				//邮箱登录
-				member = this.memberService.queryMemberByEmail(name,pwd);
-			}else{
-				//手机号登录
-				member = this.memberService.queryMemberByPhone(name,pwd);
-			}
-			if (null != member) {
-				//存放session
-				MyUserSessionUtil.putMember(request, member);
-				map.put(RESULT_MESSAGE_STRING, "登录成功！");
-				map.put(RESULT_STATUS_STRING, "1");
-				map.put("flag", flag);
-				map.put("type", type);
-				map.put("hallId", hallId);
+			String vCode = request.getParameter("vCode");
+			String sCode = (String) request.getSession().getAttribute("validateCode");
+			if(vCode.equals(sCode)){
+				//标识为灵堂购买礼品
+				String flag = request.getParameter("flag")==null? "":request.getParameter("flag");
+				//标识单人馆还是双人馆
+				String type = request.getParameter("type")==null? "":request.getParameter("type");
+				String hallId = request.getParameter("hallId")==null? "":request.getParameter("hallId");
 				
-				Log log = new Log();
-				log.setUser(member.getPhone());
-				log.setIp(this.getIpAddr(request));
-				log.setCreate_date(DateUtil.getDateTime());
-				log.setOperation("会员登录");
-				log.setType("Member");
-				logService.saveLog(log);
-			} else {
-				map.put(RESULT_MESSAGE_STRING, "用户不存在！");
-				map.put(RESULT_STATUS_STRING, "0");
+				String name = request.getParameter("name")==null? "":request.getParameter("name");
+				String pwdP = request.getParameter("pwd")==null? "":request.getParameter("pwd");
+				//加密后的密码
+				String pwd = MyShaEncrypt.encryptSHA(pwdP);
+				
+				if(!"".equals(name) && name.indexOf("@") > 0){
+					//邮箱登录
+					member = this.memberService.queryMemberByEmail(name,pwd);
+				}else{
+					//手机号登录:默认查询的数据不验证密码
+					member = this.memberService.queryMemberByPhone(name,"");
+				}
+				//该手机号已经存在注册用户
+				if (null != member) {
+					//查询到的用户密码
+					String userPwd = member.getPwd();
+					//和录入的密码比较
+					if(userPwd.equals(pwd)){
+						//存放session
+						MyUserSessionUtil.putMember(request, member);
+						map.put(RESULT_MESSAGE_STRING, "登录成功！");
+						map.put(RESULT_STATUS_STRING, "1");
+						map.put("flag", flag);
+						map.put("type", type);
+						map.put("hallId", hallId);
+						
+						Log log = new Log();
+						log.setUser(member.getPhone());
+						log.setIp(this.getIpAddr(request));
+						log.setCreate_date(DateUtil.getDateTime());
+						log.setOperation("会员登录");
+						log.setType("Member");
+						logService.saveLog(log);
+					}else{
+						map.put(RESULT_MESSAGE_STRING, "密码不正确！");
+						map.put(RESULT_STATUS_STRING, "0");
+					}
+					
+				} else {
+					map.put(RESULT_MESSAGE_STRING, "用户不存在！");
+					map.put(RESULT_STATUS_STRING, "0");
+				}
+			}else{
+				map.put(RESULT_MESSAGE_STRING, "验证码不正确！");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, "登录失败，请联系管理员！");
 		}
+		
 		return map;
 	}
 	

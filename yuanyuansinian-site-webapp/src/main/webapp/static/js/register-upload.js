@@ -141,6 +141,7 @@ jQuery(function() {
 			};
 			// 准备form表单
 			$("#form_").ajaxForm(options);
+			options.url = contextPath + "/sinian/member/memberController/registerMember";
 			// 表单提交     
 			$("#form_").ajaxSubmit(options);
 		}
