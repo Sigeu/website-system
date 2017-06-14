@@ -8,12 +8,18 @@
 <title>轮播图片修改</title>
 </head>
 <body class="pos-r">
-		<nav class="breadcrumb">
+	<!-- 	<nav class="breadcrumb">
 			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>修改轮播图片
-		</nav>
+		</nav> -->
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/sinian/carousel/carouselController/updateCarousel" method="post" class="form form-horizontal" id="form_">
 		<input type="hidden" name="id" id="id" value="${carousel.id }" >
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">图片尺寸说明：</label>
+			<div class="radio-box">
+				<span>首页轮播图片尺寸为1600*412</span>
+			</div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -40,7 +46,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${carousel.no_order }" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+				<input type="text" class="input-text" value="${carousel.no_order }" placeholder="排序值" id="no_order" name="no_order">
 			</div>
 		</div>
 		<div class="row cl">
@@ -55,16 +61,16 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">描述：</label>
+			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">${carousel.description }</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">备注说明：</label>
+			<label class="form-label col-xs-4 col-sm-2">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">${carousel.remark }</textarea>
+				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="备注" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">${carousel.remark }</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
@@ -107,13 +113,46 @@ $(function() {
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$('#ctlBtn').trigger("click");
+			var imgList = $('#fileList')
+			.children('div');
+			if (imgList.length > 0) {
+				$('#ctlBtn').trigger("click");
+				// not empty
+			} else {
+				//  is empty
+				var options = {
+					success : function(data) {
+						layer
+								.alert(
+										data.result_message,
+										{
+											closeBtn : 1
+										},
+										function() {
+											//父页面刷新
+											parent.window.location
+													.reload();
+											var index = parent.layer
+													.getFrameIndex(window.name); //先得到当前iframe层的索引
+											parent.layer
+													.close(index); //再执行关闭
+										});
+					}
+				};
+				// 准备form表单
+				$("#form_").ajaxForm(options);
+				// 表单提交     
+				$("#form_").ajaxSubmit(options);
+			}
 			return false;
 		},
 		rules:{
 			title:{
 				required:true,
 				maxlength:100
+			},
+			carousel_type : {
+				required:true
 			},
 			no_order:{
 				digits:true

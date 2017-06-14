@@ -336,6 +336,7 @@ public class CarouselController extends MyBaseController {
 	 * @param response
 	 * void
 	 */
+	@RequestMapping("/showImg")
 	public String showImg(HttpServletRequest request, Model model) {
 		
 		int carouselId = Integer.parseInt(request.getParameter("id"));

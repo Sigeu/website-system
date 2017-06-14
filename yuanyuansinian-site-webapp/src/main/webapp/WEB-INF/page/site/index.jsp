@@ -209,7 +209,14 @@
 	//var totalRecords = '${totalRecords }';
 	// 项目路径
 	var contextPath = '${pageContext.request.contextPath}';
-	//-------分页数据----------	
+	//-------分页数据----------
+	$(function(){
+		//刷新时清空验证码
+		$('#vCode').val('');
+		$('#kanbuq').on('click',function(){
+			$('#img_').attr('src','${pageContext.request.contextPath}/verifyCodeServlet?' + new Date().getTime());
+		});
+	});
 </script>
 </body>
 </html>

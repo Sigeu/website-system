@@ -17,9 +17,11 @@
 		<div class="page-container">
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
+						<span>注：首页轮播图片尺寸为1600*412</span>
+						&nbsp;&nbsp;
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
-						</button> &nbsp;&nbsp;<span>注：首页轮播图片尺寸为1600*412</span>
+						</button> 
 					</td>
 				</tr>
 
@@ -33,7 +35,7 @@
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
 						<th>标题</th>
-						<th>URL</th>
+						<!-- <th>URL</th> -->
 						<th>图片</th>
 						<th>描述</th>
 						<th>分类</th>
@@ -96,13 +98,10 @@
 								}, {
 									data : "title",
 									defaultContent : 0
-								}, {
-									data : "img_url",
-									defaultContent : ""
-								}, {
+								},{
 									data : "id",
 									render : function(data, type, row, meta) {
-										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/sinian/carousel/carouselController/queryImgById?id=' + data + '">';
+										var context = '<a href="###" onclick="toShowImg('+ data +');return false;"><img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/sinian/carousel/carouselController/queryImgById?id=' + data + '"></a>';
 										return context;
 									}
 								}, {
@@ -207,7 +206,7 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加栏目</div></strong>","background-color: #5a97df"],
+				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/toCarouselAdd'
@@ -226,7 +225,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改用户</div></strong>","background-color: #5a97df"],
+			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/toCarouselUpdate?id='+id
@@ -263,13 +262,23 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/toCarouselDetail?id='+id
 			 });
 		}
-		
+		//查看大图
+		function toShowImg(id){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["查看图片"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: '${pageContext.request.contextPath}/sinian/carousel/carouselController/showImg?id=' + id
+			 });
+		}
 	</script>
 </body>
 </html>

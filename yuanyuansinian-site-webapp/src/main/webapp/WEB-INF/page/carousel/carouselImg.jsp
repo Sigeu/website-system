@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>友情链接明细</title>
+<title>查看图片</title>
 </head>
 <body class="pos-r">
 	<div>
