@@ -377,9 +377,23 @@ public class IndexController extends MyBaseController {
 		List<Hall> listHallBySearch = hallService.queryHallListBySearch(search_text);
 		
 		model.addAttribute("search_text", search_text);
-		model.addAttribute("listHallBySearch", listHallBySearch);
-		
+		model.addAttribute("size", listHallBySearch.size());
 		return "site/hallSearchList";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/searchHallForPage")
+	public List<Hall> searchHallForPage(HttpServletRequest request) {
+		List<Hall> listHallBySearch = null;
+		try {
+			String search_text = request.getParameter("hall_name")==null? "":request.getParameter("hall_name");
+			//网上纪念馆:公开属性，单人和双人
+			listHallBySearch = hallService.queryHallListBySearch(search_text);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listHallBySearch;
 	}
 	
 	/**

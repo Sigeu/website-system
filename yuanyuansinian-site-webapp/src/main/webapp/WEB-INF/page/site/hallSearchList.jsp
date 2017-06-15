@@ -7,7 +7,7 @@
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/static/css/keleyidivpager.css">
+	href="${pageContext.request.contextPath}/static/page/page.css">
 <title>纪念馆搜索结果</title>
 </head>
 <body>
@@ -18,30 +18,23 @@
 	<div class="container con-tab all-bg">		
 	<div class="info-list">
 		<div class="pro-header">
-			<h4 class="pro-title pull-left">站内搜索：关键字"<mark>${search_text }</mark><span class="hidden-xs">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共找到信息<mark>10</mark>条</span></h4>
+			<h4 class="pro-title pull-left">站内搜索：关键字"<mark>${search_text }</mark><span class="hidden-xs">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共找到信息<mark>${size }</mark>条</span></h4>
 		</div>
 		<div class="clearfix"></div>
 		<div class="arclist info-list-body">
 			
-			<div class="search-list-con">
-				<c:forEach items="${listHallBySearch}" var="hall"> 
+			<div class="search-list-con" id="demoContent">
+				<%-- <c:forEach items="${listHallBySearch}" var="hall"> 
 					<div class="search-pro">
 						<a href="###"  onclick="toHallDetail('${hall.id }','${hall.hall_type }')"><h5>${hall.title }</h5></a>
 						<p class="search-date">${fn:substring(hall.create_date, 0, 10)}</p>
 						<p>${hall.description }</p>
 					</div>
-				</c:forEach>
+				</c:forEach> --%>
 			</div>
 		</div>
 		<div class="page">
-			<ul class="pagination">
-				<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+			<ul class="pagination" id="page">
 			</ul>
 		</div>
 	</div>
@@ -55,6 +48,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/notice.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/page/page.js"></script>
 	<script type="text/javascript">
 		var activeFlag = '搜索';
 		//-------分页数据----------
@@ -65,5 +60,49 @@
 		var contextPath = '${pageContext.request.contextPath}';
 		//-------分页数据----------
 	</script>
+	<script type="text/javascript">
+   
+
+var datas=[];
+var options={};
+$(function() {
+	$.ajax({
+		method : "POST",
+		url : contextPath + "/sinian/index/indexController/searchHallForPage",
+		data : {
+			hall_name : '${search_text }'
+		}
+	}).done(function(data) {
+		datas = data;
+		console.log(datas)
+		options={
+		"id":"page",//显示页码的元素
+		"data":datas,//显示数据
+	    "maxshowpageitem":5,//最多显示的页码个数
+	    "pagelistcount":10,//每页显示数据个数
+	    "callBack":function(result){
+	    	var cHtml="";
+	        for(var i=0;i<result.length;i++){
+	            cHtml += "<div class='search-pro'><a href='###'  onclick=\"toHallDetail('" + result[i].id +"','" + result[i].hall_type +"')\"><h5>"+ result[i].title + "</h5></a><p class='search-date'>" + result[i].create_date.substring(0,10) + "</p></div>";//处理数据
+	        }
+	        $("#demoContent").html(cHtml);//将数据增加到页面中
+	    }
+	};
+		page.init(datas.length,1,options);
+	});
+	
+		
+});
+   
+function toHallDetail(id,type) {
+	if(type == '1'){
+		url = contextPath + "/sinian/index/indexController/toHallSingleDetail?id=" + id;
+	}else if(type == '2'){
+		url = contextPath + "/sinian/index/indexController/toHallDoubleDetail?id=" + id;
+	}
+	
+	window.location.href = url;
+}
+</script>
 </body>
 </html>

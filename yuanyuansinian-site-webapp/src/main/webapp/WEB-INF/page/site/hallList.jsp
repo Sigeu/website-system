@@ -59,8 +59,9 @@
 					<div class="search-body">
 						<form id="search_hall_form" action="#" method="post">
 							<div class="form-group">
+								<span>提示：可以通过纪念馆名称、纪念人姓名、纪念馆简短描述的关键词进行查找</span>
 								<input type="text" class="form-control" name="hall_name"
-									placeholder="请输入关键字">
+									placeholder="请输入搜索关键词">
 							</div>
 							<button class="btn btn-warning" id="hall_but">查找纪念馆</button>
 						</form>
@@ -96,6 +97,7 @@
 			<div class="clearfix"></div>
 			<div class="row" id="single_div" style="display: block"> 
 				<c:forEach items="${listSingleHallByOpenType}" var="singleHall" varStatus="singleHallStatus"> 
+					<c:if test="${singleHallStatus.index < 20 }">
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
 							<a href="###" onclick="toHallDetail('${singleHall.id }','${singleHall.hall_type }')">
@@ -121,22 +123,18 @@
 							</div>
 						</div>
 					</div>
+					</c:if>
             </c:forEach> 
             <div class="clearfix"></div>
-					<div class="page">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"><span
-									aria-hidden="true">&laquo;</span></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#" aria-label="Next"><span
-									aria-hidden="true">&raquo;</span></a></li>
-						</ul>
+            		<div class="page">
+						<button class="btn btn-warning btn-xs btn-memorial" id="single_more">查看更多</button>
 					</div>
 				</div>	
 				 
                 
 			<div class="row" id="double_div"  style="display:none">
 				<c:forEach items="${listHallDoubleByOpenType}" var="hallDouble" varStatus="hallDoubleStatus"> 
+					<c:if test="${hallDoubleStatus.index < 20 }">
 	            	<div class="col-sm-4 col-md-3">
 						<div class="thumbnail">
 							<a href="###" onclick="toHallDetail('${hallDouble.id }','${hallDouble.hall_type }')">
@@ -163,16 +161,11 @@
 							</div>
 						</div>
 					</div>
+					</c:if>
             </c:forEach> 
             <div class="clearfix"></div>
-					<div class="page">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"><span
-									aria-hidden="true">&laquo;</span></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#" aria-label="Next"><span
-									aria-hidden="true">&raquo;</span></a></li>
-						</ul>
+            	<div class="page">
+						<button class="btn btn-warning btn-xs btn-memorial" id="double_more">查看更多</button>
 					</div>
 			</div>
 		</div>
