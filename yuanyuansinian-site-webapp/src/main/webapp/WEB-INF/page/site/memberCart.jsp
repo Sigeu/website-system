@@ -48,6 +48,13 @@
 										</div>
 									</div>
 								</form>
+								<c:choose>  
+								   <c:when test="${empty sessionScope.memberUser}">
+								   </c:when>  
+								   <c:otherwise>
+									   <button class="btn btn-danger pull-left" onclick="toDelete('${cart.id }')">删除</button>
+								   </c:otherwise>  
+								</c:choose>
 							</div>
 							<!-- <div class="settlement-price pull-left">需支付：<b>￥</b><span id="money_num">0.00</span></div> -->
 							<div class="shop-info pull-right"><input type="checkbox"  value="${cart.product_name}-${cart.product_id}-${cart.price_site}" name="pay_check" value="${cart.product_id }">勾选结算</div>
@@ -75,6 +82,33 @@
 		$("input[name='count_num']").blur(function(){
 			$(this).val(this.value.replace(/[^\d]/g, 1).replace(/(\d{4})(?=\d)/g, "$1 "));
 		});
+		//删除
+		function toDelete(id) {
+			layer.confirm("确认要从购物车删除此物品吗？", {
+				btn : [ '确认', '取消' ]
+			//按钮
+			}, function(index) {
+				$.ajax({
+					url : contextPath + '/sinian/cart/cartController/deleteCart',
+					type : "POST",
+					dataType : "JSON",
+					data : {
+						id : id 
+					},
+					success : function(data) {
+						layer.open({
+							content : data.result_message,
+							yes : function(index, layero) {
+								window.location.reload();//刷新当前页面
+								layer.close(index); //如果设定了yes回调，需进行手工关闭
+							}
+						});
+					}
+				});
+			}, function(index) {
+				layer.close(index);
+			});
+		}
 	</script>
 </body>
 </html>

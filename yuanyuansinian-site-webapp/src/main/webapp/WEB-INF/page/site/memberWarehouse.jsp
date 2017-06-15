@@ -40,12 +40,19 @@
 							<div class="settlement-title"><a href="###" onclick="toShoppingDetail('${warehouse.product_id }')">${warehouse.product_name}</a></div>
 							<div class="settlement-price">状态：${warehouse.use_status_name }</div>
 							<c:choose>  
-								   <c:when test="${warehouse.use_status == '1'}">
+								   <c:when test="${empty sessionScope.memberUser}">
 								   </c:when>  
 								   <c:otherwise>
-									    <div class="shop-info pull-right"><input type="checkbox"  name="use_check" value="${warehouse.id }">勾选使用</div>
+									   <button class="btn btn-danger pull-left" onclick="toDelete('${warehouse.id }')">删除</button>
 								   </c:otherwise>  
 								</c:choose>  
+							<c:choose>  
+							   <c:when test="${warehouse.use_status == '1'}">
+							   </c:when>  
+							   <c:otherwise>
+								    <div class="shop-info pull-right"><input type="checkbox"  name="use_check" value="${warehouse.id }">勾选使用</div>
+							   </c:otherwise>  
+							</c:choose>  
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -82,6 +89,33 @@
 		$("input[name='count_num']").blur(function(){
 			$(this).val(this.value.replace(/[^\d]/g, 1).replace(/(\d{4})(?=\d)/g, "$1 "));
 		});
+		//删除
+		function toDelete(id) {
+			layer.confirm("确认要从仓库删除此物品吗？", {
+				btn : [ '确认', '取消' ]
+			//按钮
+			}, function(index) {
+				$.ajax({
+					url : contextPath + '/sinian/warehouse/warehouseController/deleteWarehouse',
+					type : "POST",
+					dataType : "JSON",
+					data : {
+						id : id 
+					},
+					success : function(data) {
+						layer.open({
+							content : data.result_message,
+							yes : function(index, layero) {
+								window.location.reload();//刷新当前页面
+								layer.close(index); //如果设定了yes回调，需进行手工关闭
+							}
+						});
+					}
+				});
+			}, function(index) {
+				layer.close(index);
+			});
+		}
 	</script>
 </body>
 </html>

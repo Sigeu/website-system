@@ -13,7 +13,7 @@
 				<!-- 用户登录后显示 start -->
 					<table class="table">
 						<tr class="warning"><td>用户名：</td><td>${sessionScope.memberUser.real_name}</td></tr>
-						<tr class="warning"><td>手机号：</td><td>${sessionScope.memberUser.phone}</td></tr>
+						<tr class="warning"><td>帐号：</td><td>${sessionScope.memberUser.phone}</td></tr>
 					</table>
 					<!-- 用户登录后显示 end -->
 			</div>
