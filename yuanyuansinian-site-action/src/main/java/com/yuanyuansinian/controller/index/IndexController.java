@@ -32,7 +32,6 @@ import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.contact.Contact;
 import com.yuanyuansinian.model.content.Content;
 import com.yuanyuansinian.model.content.ContentWithBLOBs;
-import com.yuanyuansinian.model.gift.HallGift;
 import com.yuanyuansinian.model.hall.Hall;
 import com.yuanyuansinian.model.hall.HallDouble;
 import com.yuanyuansinian.model.link.Link;
@@ -291,15 +290,15 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/toContentDetail")
 	public String toContentDetail(HttpServletRequest request, Model model) {
 		// 网站联系方式
-		Contact contact = contactService.queryContact();
+		//Contact contact = contactService.queryContact();
 		// 友情链接
-		List<Link> linkList = linkService.queryLinkList(null);
+		//List<Link> linkList = linkService.queryLinkList(null);
 		
 		int contentId = Integer.parseInt((request.getParameter("id")==null? "0":request.getParameter("id")));
 		Content content = contentService.queryContentById(contentId);
 		
-		model.addAttribute("contact", contact);
-		model.addAttribute("linkList", linkList);
+		//model.addAttribute("contact", contact);
+		//model.addAttribute("linkList", linkList);
 		model.addAttribute("content", content);
 		
 		return "site/article";
@@ -363,38 +362,6 @@ public class IndexController extends MyBaseController {
 	}
 	
 	
-	/**
-	 * 
-	 * @Description: 纪念馆搜索
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/searchHall")
-	public String searchHall(HttpServletRequest request, Model model) {
-		String search_text = request.getParameter("hall_name")==null? "":request.getParameter("hall_name");
-		//网上纪念馆:公开属性，单人和双人
-		List<Hall> listHallBySearch = hallService.queryHallListBySearch(search_text);
-		
-		model.addAttribute("search_text", search_text);
-		model.addAttribute("size", listHallBySearch.size());
-		return "site/hallSearchList";
-	}
-	
-	@ResponseBody
-	@RequestMapping("/searchHallForPage")
-	public List<Hall> searchHallForPage(HttpServletRequest request) {
-		List<Hall> listHallBySearch = null;
-		try {
-			String search_text = request.getParameter("hall_name")==null? "":request.getParameter("hall_name");
-			//网上纪念馆:公开属性，单人和双人
-			listHallBySearch = hallService.queryHallListBySearch(search_text);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return listHallBySearch;
-	}
 	
 	/**
 	 * 
@@ -571,6 +538,343 @@ public class IndexController extends MyBaseController {
 		return "site/hallList";
 	}
 	
+	
+	/*-------------------------------------网站内容分页列表 begin----------------------------------*/
+	
+	/**
+	 * 
+	 * @Description: 纪念馆搜索-分页列表
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/searchHall")
+	public String searchHall(HttpServletRequest request, Model model) {
+		String search_text = request.getParameter("hall_name")==null? "":request.getParameter("hall_name");
+		//网上纪念馆:公开属性，单人和双人
+		List<Hall> listHallBySearch = hallService.queryHallListBySearch(search_text);
+		
+		model.addAttribute("search_text", search_text);
+		model.addAttribute("size", listHallBySearch.size());
+		return "site/hallSearchList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 纪念馆搜索-分页调用 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/searchHallForPage")
+	public List<Hall> searchHallForPage(HttpServletRequest request) {
+		List<Hall> listHallBySearch = null;
+		try {
+			String search_text = request.getParameter("hall_name")==null? "":request.getParameter("hall_name");
+			//网上纪念馆:公开属性，单人和双人
+			listHallBySearch = hallService.queryHallListBySearch(search_text);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listHallBySearch;
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: 网站首页-最新建馆-更多页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallPageList")
+	public String toHallPageList(HttpServletRequest request, Model model) {
+		
+		//最新建馆：单人、双人,查询所有数据
+		List<Hall> listHallNew = hallService.queryAllHallList("");
+		
+		model.addAttribute("size", listHallNew.size());
+		return "site/hallPageList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 网站首页，最新建馆->更多页面->分页调用 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/hallForPage")
+	public List<Hall> hallForPage(HttpServletRequest request) {
+		List<Hall> listHallByPage = null;
+		try {
+			//网上纪念馆:公开属性，单人和双人
+			listHallByPage =  hallService.queryAllHallList("");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listHallByPage;
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: 网站首页-单人馆-更多页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallSinglePageList")
+	public String toHallSinglePageList(HttpServletRequest request, Model model) {
+		
+		//单人查询所有数据
+		List<Hall> listSingleHall = hallService.queryAllHallList(IMySystemConstants.VALUE_1);
+		
+		model.addAttribute("size", listSingleHall.size());
+		return "site/hallSinglePageList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 网站首页-单人馆->更多页面->分页调用 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/hallSingleForPage")
+	public List<Hall> hallSingleForPage(HttpServletRequest request) {
+		List<Hall> listHallByPage = null;
+		try {
+			//网上纪念馆:公开属性，单人
+			listHallByPage =  hallService.queryAllHallList(IMySystemConstants.VALUE_1);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listHallByPage;
+	}
+	
+	/**
+	 * 
+	 * @Description: 网站首页-双人馆-更多页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toHallDoublePageList")
+	public String toHallDoublePageList(HttpServletRequest request, Model model) {
+		
+		//单人查询所有数据
+		List<Hall> listSingleHall = hallService.queryAllHallList(IMySystemConstants.VALUE_2);
+		
+		model.addAttribute("size", listSingleHall.size());
+		return "site/hallDoublePageList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 网站首页-双人馆->更多页面->分页调用 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/hallDoubleForPage")
+	public List<Hall> hallDoubleForPage(HttpServletRequest request) {
+		List<Hall> listHallByPage = null;
+		try {
+			//网上纪念馆:公开属性，单人
+			listHallByPage =  hallService.queryAllHallList(IMySystemConstants.VALUE_2);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listHallByPage;
+	}
+	
+	/**
+	 * 
+	 * @Description: 网站首页-文章（最新祭奠）-更多页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toContentPageList")
+	public String toContentPageList(HttpServletRequest request, Model model) {
+		
+		//栏目ID
+		String column_id = request.getParameter("id")==null? "":request.getParameter("id");
+		//文章列表
+		List<Content> listContentByPage =  contentService.queryContentPageListByColumn(column_id);
+		//总条数
+		model.addAttribute("size", listContentByPage.size());
+		model.addAttribute("column_id", column_id);
+		
+		return "site/contentPageList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 网站首页-文章内容-分页调用 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/contentForPage")
+	public List<Content> contentForPage(HttpServletRequest request) {
+		List<Content> listContentByPage = null;
+		try {
+			//栏目ID
+			String column_id = request.getParameter("id")==null? "":request.getParameter("id");
+			//文章列表
+			listContentByPage =   contentService.queryContentPageListByColumn(column_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listContentByPage;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @Description: 公墓陵园-分页列表
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toCemeteryPageList")
+	public String toCemeteryPageList(HttpServletRequest request, Model model) {
+		
+		//分类ID
+		String cemetery_type = request.getParameter("id")==null? "":request.getParameter("id");
+		//公墓陵园
+		List<Cemetery> listCemeteryPage = cemeteryService.queryCemeteryListByType(cemetery_type);
+		
+		model.addAttribute("size", listCemeteryPage.size());
+		model.addAttribute("cemetery_type", cemetery_type);
+		
+		return "site/cemeteryPageList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 公墓陵园-分页调用 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/cemeteryForPage")
+	public List<Cemetery> cemeteryForPage(HttpServletRequest request) {
+		List<Cemetery> listCemeteryPage = null;
+		try {
+			//分类ID
+			String cemetery_type = request.getParameter("id")==null? "":request.getParameter("id");
+			//公墓陵园
+			listCemeteryPage = cemeteryService.queryCemeteryListByType(cemetery_type);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listCemeteryPage;
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: 用户文章-分页列表
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toOrationPageList")
+	public String toOrationPageList(HttpServletRequest request, Model model) {
+		
+		Oration oration = new Oration();
+		//公开
+		oration.setOpen_type(IMySystemConstants.VALUE_1);
+		//所有公开的用户文章
+		List<Oration> listOrationPage = orationService.queryOrationListByOpenType(oration);
+		
+		model.addAttribute("size", listOrationPage.size());
+		
+		return "site/orationPageList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 用户文章-分页调用 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/orationForPage")
+	public List<Oration> orationForPage(HttpServletRequest request) {
+		List<Oration> listOrationPage = null;
+		try {
+			Oration oration = new Oration();
+			//公开
+			oration.setOpen_type(IMySystemConstants.VALUE_1);
+			//所有公开的用户文章
+			listOrationPage = orationService.queryOrationListByOpenType(oration);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listOrationPage;
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: 商城产品-分页列表
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toShoppingPageList")
+	public String toShoppingPageList(HttpServletRequest request, Model model) {
+		
+		//分类ID
+		String type = request.getParameter("id")==null? "":request.getParameter("id");
+		//所有公开的用户文章
+		List<Product> listProductPage = productService.queryProductListByType(type);
+		
+		model.addAttribute("size", listProductPage.size());
+		model.addAttribute("type", type);
+		
+		return "site/shoppingPageList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 商城产品-分页调用 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/shoppingForPage")
+	public List<Product> shoppingForPage(HttpServletRequest request) {
+		List<Product> listProductPage = null;
+		try {
+			//分类ID
+			String type = request.getParameter("id")==null? "":request.getParameter("id");
+			//所有公开的用户文章
+			listProductPage = productService.queryProductListByType(type);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listProductPage;
+	}
+	
+	/*-------------------------------------网站内容分页列表 end------------------------------------*/
+	
 	/**
 	 * 
 	 * @Description:  单人纪念馆详细内容
@@ -646,8 +950,15 @@ public class IndexController extends MyBaseController {
 		
 		
 		//当前纪念馆摆放的礼物
-		List<HallGift>  listHallGift = this.hallGiftService.queryHallGiftListForHall(hallId, IMySystemConstants.COUNT_NUM15);
-		model.addAttribute("listHallGift", listHallGift);
+		//List<HallGift>  listHallGift = this.hallGiftService.queryHallGiftListForHall(hallId, IMySystemConstants.COUNT_NUM15);
+		//model.addAttribute("listHallGift", listHallGift);
+		
+		//根据纪念馆查询礼品：不区分会员
+		Warehouse warehouse = new Warehouse();
+		warehouse.setHall_id(hallId+"");
+		List<Warehouse> listWarehouse = warehouseService.queryWarehouseListByHall(warehouse);
+		
+		model.addAttribute("listWarehouse", listWarehouse);
 		
 		return "site/hallDoubleMemorial";
 	}

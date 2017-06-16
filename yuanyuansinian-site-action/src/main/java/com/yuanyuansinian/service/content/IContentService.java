@@ -74,4 +74,6 @@ public interface IContentService {
 
 	List<Content> queryContentListForSearch(ContentWithBLOBs content);
 
+	List<Content> queryContentPageListByColumn(String column_id);
+
 }

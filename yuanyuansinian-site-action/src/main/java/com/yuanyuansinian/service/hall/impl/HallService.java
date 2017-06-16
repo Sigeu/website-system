@@ -231,4 +231,11 @@ public class HallService implements IHallService {
 		map.put("limitNum", limitNum);
 		return hallMapper.queryHallNewListByMember(map);
 	}
+
+	@Override
+	public List<Hall> queryAllHallList(String hall_type) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hall_type", hall_type);
+		return hallMapper.queryAllHallList(map);
+	}
 }

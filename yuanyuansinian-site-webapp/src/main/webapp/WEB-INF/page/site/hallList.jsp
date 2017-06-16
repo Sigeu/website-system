@@ -21,7 +21,7 @@
 				<div class="memorial-pro">
 					<div class="pro-header">
 						<h4 class="pro-title pull-left">最新建馆</h4>
-						<a href="#moreHall" class="more pull-right">更多&raquo;</a>
+						<a href="${pageContext.request.contextPath}/sinian/index/indexController/toHallPageList" class="more pull-right">更多&raquo;</a>
 					</div>
 					<div class="clearfix"></div>
 					<div class="with-date">
@@ -38,7 +38,7 @@
 				<div class="memorial-pro metorial-arc">
 					<div class="pro-header">
 						<h4 class="pro-title pull-left">最新文章</h4>
-						<a href="${pageContext.request.contextPath}/sinian/index/indexController/toInformationList?id=130" class="more pull-right">更多&raquo;</a>
+						<a href="${pageContext.request.contextPath}/sinian/index/indexController/toOrationPageList" class="more pull-right">更多&raquo;</a>
 					</div>
 					<div class="clearfix"></div>
 					<div class="without-date">
@@ -127,7 +127,7 @@
             </c:forEach> 
             <div class="clearfix"></div>
             		<div class="page">
-						<button class="btn btn-warning btn-xs btn-memorial" id="single_more">查看更多</button>
+            			<a href="${pageContext.request.contextPath}/sinian/index/indexController/toHallSinglePageList" class="btn btn-warning btn-xs btn-memorial">查看更多</a>
 					</div>
 				</div>	
 				 
@@ -165,7 +165,7 @@
             </c:forEach> 
             <div class="clearfix"></div>
             	<div class="page">
-						<button class="btn btn-warning btn-xs btn-memorial" id="double_more">查看更多</button>
+						<a href="${pageContext.request.contextPath}/sinian/index/indexController/toHallDoublePageList" class="btn btn-warning btn-xs btn-memorial">查看更多</a>
 					</div>
 			</div>
 		</div>

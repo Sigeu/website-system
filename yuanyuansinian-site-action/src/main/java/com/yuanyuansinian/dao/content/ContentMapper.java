@@ -86,4 +86,6 @@ public interface ContentMapper {
 	List<Content> queryNoticeList(Content content);
 
 	List<Content> queryContentListForSearch(ContentWithBLOBs content);
+
+	List<Content> queryContentPageListByColumn(String column_id);
 }

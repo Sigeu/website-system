@@ -81,4 +81,6 @@ public interface HallMapper {
 
 	List<Hall> queryHallNewListByMember(Map<String, Object> map);
 
+	List<Hall> queryAllHallList(Map<String, Object> map);
+
 }

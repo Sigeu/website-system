@@ -314,7 +314,7 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_cemetery
-    where cemetery_type = #{cemetery_type}
+    where cemetery_type = #{cemetery_type,jdbcType=VARCHAR}
   </select>
   
   

@@ -45,6 +45,7 @@
 				<div class="info-list">
 					<div class="pro-header">
 						<h4 class="pro-title pull-left">${columnChildName }</h4>
+						<a href="${pageContext.request.contextPath}/sinian/index/indexController/toContentPageList?id=${columnChildId }" class="more pull-right">更多&raquo;</a>
 					</div>
 					<div class="clearfix"></div>
 					<div class="arclist info-list-body">
@@ -86,15 +87,6 @@
 							</c:forEach>
 							</ul>
 						</div>
-					</div>
-					<div class="page">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"><span
-									aria-hidden="true">&laquo;</span></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#" aria-label="Next"><span
-									aria-hidden="true">&raquo;</span></a></li>
-						</ul>
 					</div>
 				</div>
 			</div>

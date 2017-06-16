@@ -406,7 +406,7 @@
   </select>
   
   <!-- 列表 -->
-  <select id="queryProductListByType" parameterType="com.yuanyuansinian.model.product.Product" resultMap="ResultMapWithBLOBs">
+  <select id="queryProductListByType" parameterType="String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,

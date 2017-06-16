@@ -19,7 +19,7 @@
 			<div class="setup all-info">
 				<div class="pro-header">
 					<h4 class="pro-title pull-left">最新建馆</h4>
-					<a href="${pageContext.request.contextPath}/sinian/index/indexController/toHallList" class="more pull-right">更多&raquo;</a>
+					<a href="${pageContext.request.contextPath}/sinian/index/indexController/toHallPageList" class="more pull-right">更多&raquo;</a>
 				</div>
 				<div class="clearfix"></div>
 				<div class="row">
@@ -150,16 +150,14 @@
 				<div class="pro-header">
 					<h4 class="pro-title pull-left">最新祭奠推荐</h4>
 					<ul class="pull-right pro-header-tool hidden-xs">
-						<!-- <li class="pull-left"><a href="###">时间<span class="glyphicon glyphicon-arrow-up"></span></a></li>
-						<li class="pull-left"><a href="###">热度<span class="glyphicon glyphicon-arrow-down"></span></a></li> -->
-						<li class="pull-left"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toInformationList?id=130">更多&raquo;</a></li>
+						<li class="pull-left"><a href="${pageContext.request.contextPath}/sinian/index/indexController/toContentPageList?id=130">更多&raquo;</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"></div>
 				<div class="list">
 					<ul>
 						<c:forEach items="${contentList130}" var="content130"> 
-							<li><a href="###" class="pull-left" onclick="toOrationDetail('${content130.id }')">${content130.title }</a>
+							<li><a href="###" class="pull-left" onclick="toContentDetail('${content130.id }')">${content130.title }</a>
 							<span class="list-date pull-right">${fn:substring(content130.add_time, 0, 10)}</span></li>
 						</c:forEach>
 					</ul>
@@ -217,6 +215,11 @@
 			$('#img_').attr('src','${pageContext.request.contextPath}/verifyCodeServlet?' + new Date().getTime());
 		});
 	});
+	//查看内容
+	function toContentDetail(id) {
+		url = contextPath + "/sinian/index/indexController/toContentDetail?id=" + id;
+		window.location.href = url;
+	}
 </script>
 </body>
 </html>

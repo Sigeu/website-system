@@ -284,7 +284,7 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_oration
-    where open_type = '2'
+    where open_type = #{open_type,jdbcType=VARCHAR}
     order by id desc
   </select>
   

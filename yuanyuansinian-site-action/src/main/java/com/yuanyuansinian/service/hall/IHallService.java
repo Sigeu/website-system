@@ -72,6 +72,8 @@ public interface IHallService {
 
 	List<Hall> queryHallNewListByMember(Integer memberId, int limitNum);
 
+	List<Hall> queryAllHallList(String hall_type);
+
 
 
 }

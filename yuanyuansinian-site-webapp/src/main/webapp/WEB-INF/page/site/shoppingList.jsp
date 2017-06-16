@@ -25,7 +25,7 @@
 		<div class="row">
 			<div class="shop-header">
 				<h4>鲜花礼品推荐</h4>
-				<a href="###" class="more pull-right">更多&raquo;</a>
+				<a href="${pageContext.request.contextPath}/sinian/index/indexController/toShoppingPageList?id=1" class="more pull-right">更多&raquo;</a>
 			</div>
 			<div class="col-sm-3 hidden-xs">
 				<a href="###" class="shop-cat"><img src="${pageContext.request.contextPath}/static/images/shop1.jpg"
@@ -60,7 +60,7 @@
 		<div class="row">
 			<div class="shop-header">
 				<h4>烟酒礼品推荐</h4>
-				<a href="###" class="more pull-right">更多&raquo;</a>
+				<a href="${pageContext.request.contextPath}/sinian/index/indexController/toShoppingPageList?id=2" class="more pull-right">更多&raquo;</a>
 			</div>
 			<div class="col-sm-3 hidden-xs">
 				<a href="###" class="shop-cat"><img src="${pageContext.request.contextPath}/static/images/shop2.jpg"
@@ -95,7 +95,7 @@
 		<div class="row">
 			<div class="shop-header">
 				<h4>蜡烛烛台推荐</h4>
-				<a href="###" class="more pull-right">更多&raquo;</a>
+				<a href="${pageContext.request.contextPath}/sinian/index/indexController/toShoppingPageList?id=3" class="more pull-right">更多&raquo;</a>
 			</div>
 			<div class="col-sm-3 hidden-xs">
 				<a href="###" class="shop-cat"><img src="${pageContext.request.contextPath}/static/images/shop3.jpg"
@@ -130,7 +130,7 @@
 		<div class="row">
 			<div class="shop-header">
 				<h4>什锦礼品推荐</h4>
-				<a href="###" class="more pull-right">更多&raquo;</a>
+				<a href="${pageContext.request.contextPath}/sinian/index/indexController/toShoppingPageList?id=4" class="more pull-right">更多&raquo;</a>
 			</div>
 			<div class="col-sm-3 hidden-xs">
 				<a href="###" class="shop-cat"><img src="${pageContext.request.contextPath}/static/images/shop4.jpg"

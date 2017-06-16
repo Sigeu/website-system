@@ -73,5 +73,4 @@ public interface ICemeteryService {
 
 	List<Cemetery> queryCemeteryListForCountNum(int countNum);
 
-
 }

@@ -20,13 +20,13 @@
 	<div class="container con-tab all-bg">
 		<div class="row">
 			<div class="col-sm-9">
-				<div class="here">
+				<%-- <div class="here">
 					<ol class="breadcrumb">
 						<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 						<li>用户文章</li>
 						<li class="active">${oration.title }</li>
 					</ol>
-				</div>
+				</div> --%>
 				<div class="article">
 					<div class="article-top">
 						<h1>${oration.title }</h1>

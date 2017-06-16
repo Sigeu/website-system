@@ -38,6 +38,7 @@ public class Content {
     private String keywords;
     
     private String column_id;
+    private String column_name;
     
     private String order_column;
     
@@ -849,5 +850,13 @@ public class Content {
 
 	public void setIssue_name(String issue_name) {
 		this.issue_name = issue_name;
+	}
+
+	public String getColumn_name() {
+		return column_name;
+	}
+
+	public void setColumn_name(String column_name) {
+		this.column_name = column_name;
 	}
 }

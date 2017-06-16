@@ -65,17 +65,7 @@
 	                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"><span
-											aria-hidden="true">&laquo;</span></a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"><span
-											aria-hidden="true">&raquo;</span></a></li>
-								</ul>
+								<a href="${pageContext.request.contextPath}/sinian/index/indexController/toCemeteryPageList?id=A" class="btn btn-warning btn-xs btn-memorial">查看更多</a>
 							</div>
 						</div>
 
@@ -98,17 +88,7 @@
 		                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"><span
-											aria-hidden="true">&laquo;</span></a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"><span
-											aria-hidden="true">&raquo;</span></a></li>
-								</ul>
+									<a href="${pageContext.request.contextPath}/sinian/index/indexController/toCemeteryPageList?id=B" class="btn btn-warning btn-xs btn-memorial">查看更多</a>
 							</div>
 						</div>
 
@@ -131,17 +111,7 @@
 		                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"><span
-											aria-hidden="true">&laquo;</span></a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"><span
-											aria-hidden="true">&raquo;</span></a></li>
-								</ul>
+								<a href="${pageContext.request.contextPath}/sinian/index/indexController/toCemeteryPageList?id=C" class="btn btn-warning btn-xs btn-memorial">查看更多</a>
 							</div>
 						</div>
 
@@ -164,17 +134,7 @@
 		                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"><span
-											aria-hidden="true">&laquo;</span></a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"><span
-											aria-hidden="true">&raquo;</span></a></li>
-								</ul>
+								<a href="${pageContext.request.contextPath}/sinian/index/indexController/toCemeteryPageList?id=D" class="btn btn-warning btn-xs btn-memorial">查看更多</a>
 							</div>
 						</div>
 
@@ -197,17 +157,7 @@
 		                    </c:forEach> 
 							<div class="clearfix"></div>
 							<div class="page">
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"><span
-											aria-hidden="true">&laquo;</span></a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"><span
-											aria-hidden="true">&raquo;</span></a></li>
-								</ul>
+								<a href="${pageContext.request.contextPath}/sinian/index/indexController/toCemeteryPageList?id=E" class="btn btn-warning btn-xs btn-memorial">查看更多</a>
 							</div>
 						</div>
 					</div>

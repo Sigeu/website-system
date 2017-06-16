@@ -230,6 +230,12 @@ public class ContentService implements IContentService {
 		// TODO Auto-generated method stub
 		return contentMapper.queryContentListForSearch(content);
 	}
+
+	@Override
+	public List<Content> queryContentPageListByColumn(String column_id) {
+		// TODO Auto-generated method stub
+		return contentMapper.queryContentPageListByColumn(column_id);
+	}
 	
 
 

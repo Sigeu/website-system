@@ -33,6 +33,7 @@ public interface IMySystemConstants {
 	static final String VALUE_5 = "5";
 
 	// ---鍒楄〃鏁板�-----------------//
+	static final int COUNT_NUMF1 = -1;
 	static final int COUNT_NUM1 = 1;
 	static final int COUNT_NUM2 = 2;
 	static final int COUNT_NUM3 = 3;
