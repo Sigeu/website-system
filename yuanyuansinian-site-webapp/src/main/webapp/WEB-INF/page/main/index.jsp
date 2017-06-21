@@ -88,6 +88,7 @@
 					<li><a data-href="${pageContext.request.contextPath}/sinian/hall/hallController/toHallList" data-title="单人馆管理" href="javascript:void(0)">单人纪念馆管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/hallDouble/hallDoubleController/toHallDoubleList" data-title="双人馆管理" href="javascript:void(0)">双人纪念馆管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/sinian/oration/orationController/toOrationList" data-title="用户文章管理" href="javascript:void(0)">用户文章管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/sinian/templateImg/templateImgController/toTemplateImgList" data-title="灵堂模版管理" href="javascript:void(0)">灵堂模版管理</a></li>
 				</ul>
 			</dd>
 		</dl>
