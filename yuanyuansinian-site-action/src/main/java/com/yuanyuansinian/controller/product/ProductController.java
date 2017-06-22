@@ -117,6 +117,10 @@ public class ProductController extends MyBaseController {
 		//产品大类
 		model.addAttribute("big_type", IMySystemConstants.VALUE_1);
 		
+		//存放位置
+		List<Code> putTypeList = codeService.queryCodeListByType("put_type");
+		model.addAttribute("putTypeList", putTypeList);
+		
 		return "product/productAdd";
 	}
 	

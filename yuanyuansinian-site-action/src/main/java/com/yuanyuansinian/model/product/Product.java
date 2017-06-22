@@ -133,8 +133,9 @@ public class Product {
     private String type_name;
     private String big_type;
     private String big_type_name;
-    
-    
+    //摆放位置
+    private String put_type;
+    private String put_type_name;
     private int no_order;
 
     /**
@@ -535,5 +536,21 @@ public class Product {
 
 	public void setValidity_day(String validity_day) {
 		this.validity_day = validity_day;
+	}
+
+	public String getPut_type() {
+		return put_type;
+	}
+
+	public void setPut_type(String put_type) {
+		this.put_type = put_type;
+	}
+
+	public String getPut_type_name() {
+		return put_type_name;
+	}
+
+	public void setPut_type_name(String put_type_name) {
+		this.put_type_name = put_type_name;
 	}
 }
