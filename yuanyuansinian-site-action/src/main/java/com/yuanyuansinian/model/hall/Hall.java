@@ -180,6 +180,8 @@ public class Hall {
     private String death_date;
     //离世天数
     private int days;
+    //模版id
+    private String template_id;
     
     
     /**
@@ -700,6 +702,14 @@ public class Hall {
 
 	public void setDays(int days) {
 		this.days = days;
+	}
+
+	public String getTemplate_id() {
+		return template_id;
+	}
+
+	public void setTemplate_id(String template_id) {
+		this.template_id = template_id;
 	}
 
 }

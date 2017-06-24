@@ -20,14 +20,8 @@
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>标题:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="title"
-						name="title" placeholder="标题" class="input-text input-collspace size-MINI" />
-					</td>
-					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>关键字:</strong>&nbsp;&nbsp;
-					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="keywords"
-						name="keywords" placeholder="关键字" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="name"
+						name="name" placeholder="标题" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -187,13 +181,10 @@
 			//获取查询条件
 			function getSearchParams(){
 				//标题
-				var title = $("#title").val().trim();
-				//关键字
-				var keywords = $("#keywords").val().trim();
+				var name = $("#name").val().trim();
 				//查询条件
 				var param = {
-					"title" : title,
-					"keywords" : keywords
+					"name" : name
 				};
 				
 				return param;
@@ -202,9 +193,9 @@
 			//重置
 			$('#reset_but').on('click', function() {
 				//标题
-				$("#title").val('');
+				$("#name").val('');
 				//关键字
-				$("#keywords").val('');
+				$("#search_but").click();
 			});
 			
 			//添加

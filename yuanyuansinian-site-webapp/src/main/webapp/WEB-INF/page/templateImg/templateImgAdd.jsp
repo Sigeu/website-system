@@ -5,51 +5,31 @@
 <head>
 <%@ include file="../../../common/header.jsp"%>
 <link href="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
-<title>轮播图片添加</title>
+<title>灵堂模版添加</title>
 </head>
 <body class="pos-r">
-		<!-- <nav class="breadcrumb">
-			首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>新增轮播图片
-		</nav> -->
 	<div class="page-container">
-	<form action="${pageContext.request.contextPath}/sinian/carousel/carouselController/addCarousel" method="post" class="form form-horizontal" id="form_">
+	<form action="${pageContext.request.contextPath}/sinian/templateImg/templateImgController/addTemplateImg" method="post" class="form form-horizontal" id="form_">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">图片尺寸说明：</label>
 			<div class="radio-box">
-				<span>首页轮播图片尺寸为1600*412</span>
+				<span>灵堂模版图片尺寸为1600*412</span>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型：</label>
-			<div class="radio-box">
-				<input type="radio" id="carousel_type1" name="carousel_type"
-					value="1" checked /> <label for="carousel_type1">首页轮播</label>
-			</div>
-			<div class="radio-box">
-				<input type="radio" id="carousel_type2" name="carousel_type"
-					value="2" /> <label for="carousel_type2">单页图片</label>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>模版名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="标题" id="title" name="title">
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">URL：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="URL" id="img_url" name="img_url">
-			</div>
-		</div>
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="0" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
-		</div>
+		</div> -->
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
+			<label class="form-label col-xs-4 col-sm-2">模版图片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div id="uploader-demo">
 				    <!--用来存放item-->
@@ -84,8 +64,9 @@
 </div>
 <%@ include file="../../../common/footer_form.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/carousel-upload.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/template-upload.js"> </script>
 <script type="text/javascript">
+	var serverUrl = '/sinian/templateImg/templateImgController/uploadImg';
 	// 项目路径
 	var contextPath = '${pageContext.request.contextPath}';
 	//数据ID
@@ -149,12 +130,6 @@ $(function() {
 			title:{
 				required:true,
 				maxlength:100
-			},
-			carousel_type : {
-				required:true
-			},
-			no_order:{
-				digits:true
 			}
 		}
 	});

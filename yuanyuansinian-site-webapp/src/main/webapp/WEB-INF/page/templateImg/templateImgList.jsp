@@ -35,9 +35,8 @@
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
 						<th>模版名称</th>
-						<th>效果图</th>
+						<th>图片</th>
 						<th>描述说明</th>
-						<th>状态</th>
 						<th>备注说明</th>
 						<th width="15%">操作</th>
 					</tr>
@@ -70,7 +69,7 @@
 					.DataTable(
 							{
 								ajax : {
-									url : "${pageContext.request.contextPath}/sinian/templateImg/templateImgController/queryTemplateImgListForSystem",
+									url : "${pageContext.request.contextPath}/sinian/templateImg/templateImgController/queryTemplateImgList",
 									type:"POST",
 									data : {
 										//args1: "固定传参"
@@ -98,16 +97,13 @@
 									data : "title",
 									defaultContent : 0
 								},{
-									data : "id",
+									data : "imgs",
 									render : function(data, type, row, meta) {
-										var context = '<a href="###" onclick="toShowImg('+ data +');return false;"><img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/sinian/templateImg/templateImgController/queryImgById?id=' + data + '"></a>';
+										var context = '<img width="210" class="picture-thumb" src="' + data + '">';
 										return context;
 									}
 								}, {
 									data : "description",
-									defaultContent : ""
-								}, {
-									data : "templateImg_type_name",
 									defaultContent : ""
 								}, {
 									data : "remark",

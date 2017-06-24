@@ -211,6 +211,8 @@ public class HallDouble {
 	 */
 	private String sex2;
 	private String sex2_name;
+	//模版id
+	private String template_id;
 
 	public String getSex_name() {
 		return sex_name;
@@ -1175,5 +1177,13 @@ public class HallDouble {
 
 	public void setDays2(int days2) {
 		this.days2 = days2;
+	}
+
+	public String getTemplate_id() {
+		return template_id;
+	}
+
+	public void setTemplate_id(String template_id) {
+		this.template_id = template_id;
 	}
 }

@@ -95,7 +95,21 @@ public class TemplateImgController extends MyBaseController {
 
 		return "templateImg/templateImgDetail";
 	}
+	
+	/**
+	 * 
+	 * @Description: 模版选择页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toTemplateImgChoose")
+	public String toTemplateImgChoose(HttpServletRequest request, Model model) {
 
+		return "templateImg/templateImgChoose";
+	}
+	
+	
 	/**
 	 * 
 	 * @Description: 分页列表
@@ -148,7 +162,7 @@ public class TemplateImgController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			templateImgService.addTemplateImg(request, templateImg);
-			map.put("templateImg_id", templateImg.getId());
+			map.put("model_id", templateImg.getId());
 			//map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,8 +179,8 @@ public class TemplateImgController extends MyBaseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/uploadTemplateImgImg")
-	public Map<String, Object> uploadTemplateImgImg(HttpServletRequest request) {
+	@RequestMapping("/uploadImg")
+	public Map<String, Object> uploadImg(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			String id = nullToStringZero(request.getParameter("model_id"));
@@ -194,7 +208,7 @@ public class TemplateImgController extends MyBaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = this.templateImgService.updateTemplateImg(templateImg);
-		map.put("templateImg_id", templateImg.getId());
+		map.put("model_id", templateImg.getId());
 		if (RESULT_COUNT_1 == count) {
 			map.put("templateImg_id", templateImg.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

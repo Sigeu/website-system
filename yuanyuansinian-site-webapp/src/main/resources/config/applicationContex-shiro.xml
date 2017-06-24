@@ -166,6 +166,8 @@
 				/sinian/warehouse/warehouseController/deleteWarehouse = anon
 				/sinian/order/orderController/notifyUrl = anon
 				/sinian/order/orderController/returnUrl = anon
+				/sinian/templateImg/templateImgController/toTemplateImgChoose = anon
+				/sinian/templateImg/templateImgController/uploadImg = anon
 				/return_url.jsp = anon
 				/notify_url.jsp = anon
 				/sinian/cart/cartController/addCart = anon

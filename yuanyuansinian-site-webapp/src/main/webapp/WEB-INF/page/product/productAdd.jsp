@@ -69,28 +69,16 @@
 				<input type="text" class="input-text" value="" placeholder="销售价格" id="price_site" name="price_site">
 			</div>
 		</div>
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">成本价格：</label>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>有效期(天)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="成本价格" id="price_cost" name="price_cost">
+				<input type="text" class="input-text" value="" placeholder="有效期" id="validity_day" name="validity_day">
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">最低价格：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="最低价格" id="price_min" name="price_min">
-			</div>
-		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">计价单位：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="元宝" placeholder="计算单位" id="units" name="units">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">关键词：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="关键词，多个以空格隔开" id="keywords" name="keywords">
 			</div>
 		</div>
 		<div class="row cl">
@@ -100,12 +88,6 @@
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="0" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
-			</div>
-		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">产品封面：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -167,6 +149,10 @@ $(function() {
 				number:true
 			},
 			put_type:{
+				required:true,
+				number:true
+			},
+			validity_day:{
 				required:true,
 				number:true
 			},

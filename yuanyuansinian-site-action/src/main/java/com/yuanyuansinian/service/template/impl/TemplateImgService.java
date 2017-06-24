@@ -4,7 +4,9 @@
  */
 package com.yuanyuansinian.service.template.impl;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.yuanyuansinian.dao.template.TemplateImgMapper;
 import com.yuanyuansinian.model.template.TemplateImg;
+import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.service.template.ITemplateImgService;
 
 /**   
@@ -123,11 +126,29 @@ public class TemplateImgService implements ITemplateImgService {
 	            //设置ID
 	            templateImg.setId(Integer.parseInt(id));
 	            //封面照片
-	            MultipartFile img_index = multiRequest.getFile("img_templateImg");
+	            MultipartFile img_index = multiRequest.getFile("img_");
 	            if(null != img_index){
-	            	byte[] imgFile = img_index.getBytes();
+	            	//byte[] imgFile = img_index.getBytes();
 					// 保存照片
-	            	//templateImg.setImgs(imgFile);
+	            	//carousel.setImg(imgFile);
+                    //取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        templateImg.setImgs(IMySystemConstants.SERVER_FILE_PATH + fileName);
+                    }  
 	            }
 	        }
 	        //保存

@@ -165,4 +165,22 @@
       status = #{status,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 轮播图片列表 -->
+  <select id="queryTemplateImgList" parameterType="com.yuanyuansinian.model.template.TemplateImg" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_template_img
+  </select>
+  
+   <!-- 更新轮播图片 -->
+  <update id="uploadTemplateImgImg" parameterType="com.yuanyuansinian.model.template.TemplateImg">
+    update ujn_template_img
+    <set>
+      <if test="imgs != null">
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

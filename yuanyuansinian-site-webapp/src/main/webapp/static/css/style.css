@@ -239,6 +239,9 @@ p.museum-des {position:relative; top:8px}
 .settle-btn {margin-top:10px}
 .settle-all-btn {padding-left:20px; padding-right:20px}
 .settle-all strong {font-size:15px; color:#b85844; padding:0 10px}
+
+/*模板弹出页*/
+.template {padding-top:10px}
 	
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
@@ -310,6 +313,10 @@ p.museum-des {position:relative; top:8px}
 	.incense {margin-top:-5px; margin-bottom:30px}
 	.incense-body img.incense-bg {width:100%}
 	.incense-img {top:124px; left:315px; width:119px; height:119px}
+	/*墓碑模板 start*/
+	.monument .incense-img {top:124px; left:335px; width:80px; height:80px}
+	.monument span {position:absolute; top:220px; left:365px; width:20px; height:120px; line-height:22px; font-size:20px; color:#faf08d}
+	/*墓碑模板 end*/
 	
 	.flower-left {position:absolute; width:auto; top:222px; left:185px}
 	.flower-right {position:absolute; width:auto; top:222px; right:185px}
@@ -339,6 +346,13 @@ p.museum-des {position:relative; top:8px}
 	.incense-double-imgsec {left:400px}
 	.new-body .new-pro:first-child {margin-bottom:40px}
 	
+	/*双人墓碑模板 start*/
+	.monument-double .incense-double-img {top:130px; left:300px; width:70px; height:70px}
+	.monument-double .incense-double-imgsec {left:380px}
+	.monument-double span {position:absolute; top:220px; left:330px; width:20px; height:140px; line-height:25px; font-size:20px; color:#faf08d}
+	.monument-double span.incense-double-r {left:400px}
+	/*双人墓碑模板 end*/
+	
 	/* 纪念馆贡品列表页 */
 	.incense-product-list .thumbnail h5 {margin-top:10px; width:55%}
 	
@@ -363,8 +377,25 @@ p.museum-des {position:relative; top:8px}
 	.settle-pro img {height:106px}
 	
 	/*贡品*/
-	.tribute-list {position:absolute; top:275px; left:40px}
-	.tribute-list img {height:55px; float:left ; margin-right:5px; margin-bottom:5px}
+	.tribute-list {width:95%; position:absolute; top:275px; left:5%}
+	.tribute-list img {height:55px; float:left ; margin-right:5px; margin-bottom:10px}
+	
+	/*中间的香和香炉*/
+	.tribute-conmid {width:31%; position:absolute; top:50px; left:32%}
+	.tribute-conmid-fragrant {width:100%; position:absolute; top:-40px; left:0}
+	.tribute-conmid-fragrant img {width:33%; margin-right:0px; margin-left:0px}
+	
+	/*左侧贡品*/
+	.tribute-conl {width:40%; position:absolute; top:-80px; left:-3%}
+	
+	/*中间贡品*/
+	.tribute-conmid-list {width:40%; position:absolute; top:105px; left:30%}
+	
+	/*右侧贡品*/
+	.tribute-conr {width:40%; position:absolute; top:-80px; left:63%}
+	
+	/*模板弹出页*/
+	.template {margin:30px auto; padding-top:10px}
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -419,6 +450,10 @@ p.museum-des {position:relative; top:8px}
 	.anthology-date {color:#999}
 	.incense {margin-bottom:40px}
 	.incense-img {top:160px; left:409px; width:153px; height:153px}
+	/*墓碑模板 start*/
+	.monument .incense-img {top:160px; left:440px; width:90px; height:90px}
+	.monument span {position:absolute; top:270px; left:473px; width:20px; height:120px; line-height:30px; font-size:25px; color:#faf08d}
+	/*墓碑模板 end*/
 	
 	.flower-left {position:absolute; top:315px; left:247px}
 	.flower-right {position:absolute; top:315px; right:247px}
@@ -438,6 +473,13 @@ p.museum-des {position:relative; top:8px}
 	.incense-double-img {position:absolute; top:170px; left:295px; width:153px; height:153px}
 	.incense-double-imgsec {left:520px}
 	.new-body .new-pro:first-child {margin-bottom:50px}
+	
+	/*双人墓碑模板 start*/
+	.monument-double .incense-double-img {top:170px; left:395px; width:80px; height:80px}
+	.monument-double .incense-double-imgsec {left:495px}
+	.monument-double span {position:absolute; top:270px; left:426px; width:20px; height:140px; line-height:30px; font-size:25px; color:#faf08d}
+	.monument-double span.incense-double-r {left:515px}
+	/*双人墓碑模板 end*/
 
 	/*购物车结算*/
 	.settlement-pro {padding:20px 0px}
@@ -459,8 +501,21 @@ p.museum-des {position:relative; top:8px}
 	.settle-pro img {height:150px}
 	
 	/*贡品*/
-	.tribute-list {top:425px; left:50px}
-	.tribute-list img {height:58px}
+	.tribute-list {width:95%; top:470px; left:5%}
+	.tribute-list img {height:58px; margin-bottom:15px}
+	
+	/*中间的香和香炉*/
+	.tribute-conmid {width:25%; top:0px; left:35%}
+	.tribute-conmid-fragrant {top:-50px}
+	
+	/*左侧贡品*/
+	.tribute-conl {width:30%; position:absolute; top:-150px; left:0}
+	
+	/*中间贡品*/
+	.tribute-conmid-list {width:30%; position:absolute; top:60px; left:33%}
+	
+	/*右侧贡品*/
+	.tribute-conr {width:30%; position:absolute; top:-150px; left:67%}
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
@@ -509,6 +564,10 @@ p.museum-des {position:relative; top:8px}
 	.anthology-body {padding-top:0px; padding-bottom:0px}
 	.incense {margin-bottom:50px}
 	.incense-img {top:192px; left:492px; width:185px; height:185px}
+	/*墓碑模板 start*/
+	.monument .incense-img {top:192px; left:540px}
+	.monument span {top:310px; left:570px; width:20px; height:140px; line-height:35px; font-size:30px; color:#faf08d}
+	/*墓碑模板 end*/
 	
 	.flower-left {position:absolute; top:397px; left:305px}
 	.flower-right {position:absolute; top:397px; right:305px}
@@ -524,6 +583,13 @@ p.museum-des {position:relative; top:8px}
 	.all-info.img-list img.double-img {width:265px; height:265px}
 	.incense-double-img {position:absolute; top:204px; left:358px; width:185px; height:185px}
 	.incense-double-imgsec {left:624px}
+	
+	/*双人墓碑模板 start*/
+	.monument-double .incense-double-img {top:204px; left:485px; width:90px; height:90px}
+	.monument-double .incense-double-imgsec {left:595px}
+	.monument-double span {position:absolute; top:320px; left:515px; height:140px; line-height:35px; font-size:30px}
+	.monument-double span.incense-double-r {left:625px}
+	/*双人墓碑模板 end*/
 
 	/*购物车结算*/
 	.settlement-img img {height:175px}
@@ -536,7 +602,18 @@ p.museum-des {position:relative; top:8px}
 	.settle-pro img {height:117px}
 	
 	/*贡品*/
-	.tribute-list {top:525px; left:60px}
+	.tribute-list {top:555px}
 	.tribute-list img {height:70px} 
-
+	
+	/*中间的香和香炉*/
+	.tribute-conmid {position:absolute; top:0px; left:35%}
+	
+	/*左侧贡品*/
+	.tribute-conl {top:-160px}
+	
+	/*中间贡品*/
+	.tribute-conmid-list {top:70px}
+	
+	/*右侧贡品*/
+	.tribute-conr {top:-160px}
 }

@@ -67,40 +67,22 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">成本价格：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>有效期(天)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.price_cost}" placeholder="成本价格" id="price_cost" name="price_cost">
+				<input type="text" class="input-text" value="${product.validity_day}" placeholder="有效期" id="validity_day" name="validity_day">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">最低价格：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.price_min}" placeholder="最低价格" id="price_min" name="price_min">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">计算单位：</label>
+			<label class="form-label col-xs-4 col-sm-2">计算单位(元宝)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${product.units}" placeholder="计算单位" id="units" name="units">
 			</div>
 		</div>
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">关键词：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.keywords}" placeholder="关键词，多个以空格隔开" id="keywords" name="keywords">
-			</div>
-		</div> --%>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${product.description}</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${product.no_order}" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
 			</div>
 		</div>
 		<div class="row cl">
@@ -168,8 +150,16 @@ $(function() {
 				required:true,
 				number:true
 			},
-			no_order:{
-				digits:true
+			put_type:{
+				required:true,
+				number:true
+			},
+			validity_day:{
+				required:true,
+				number:true
+			},
+			type:{
+				required:true
 			}
 		},
 		onkeyup:false,

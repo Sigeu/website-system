@@ -39,6 +39,19 @@
 				</div>
 			</div>
 			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2"><span
+					class="c-red">*</span>纪念馆模版：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<div class="formControls col-xs-8 col-sm-9">
+						<input id="input_template" value="" class="input-text radius" placeholder="模版" type="text" style="cursor: pointer;" readonly="readonly" name="templateName">
+			          	<input type="hidden" id="template_id" name="template_id" value="">
+					</div>
+					<div class="formControls col-xs-1 col-sm-1">
+						<a id="btn_select" class="btn btn-secondary size-S radius" type="button" > <i class="Hui-iconfont Hui-iconfont-search2"></i>&nbsp;选择</a>
+					</div>
+				</div>
+			</div>
+			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2">别名：</label>
 				<div class="formControls col-xs-8 col-sm-9">
 					<input type="text" class="input-text" value="" placeholder="别名"
@@ -67,12 +80,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>在世：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="在世年份" id="alive_date" name="alive_date">
-			</div>
-		</div> -->
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>出生日期：</label>
@@ -88,23 +95,6 @@
 				<div class="formControls col-xs-8 col-sm-9">
 					<input type="text" class="input-text" value="" placeholder="生肖" readonly="readonly"
 						id="zodiac" name="zodiac">
-					<!-- <span class="select-box"> <select id="zodiac" name="zodiac"
-						class="select">
-							<option value="">--请选择--</option>
-							<option value="鼠">鼠</option>
-							<option value="牛">牛</option>
-							<option value="虎">虎</option>
-							<option value="兔">兔</option>
-							<option value="龙">龙</option>
-							<option value="蛇">蛇</option>
-							<option value="马">马</option>
-							<option value="羊">羊</option>
-							<option value="猴">猴</option>
-							<option value="鸡">鸡</option>
-							<option value="狗">狗</option>
-							<option value="猪">猪</option>
-					</select>
-					</span> -->
 				</div>
 			</div>
 			<div class="row cl">
@@ -224,9 +214,9 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/static/js/file-upload.js">
-		
-	</script>
+		src="${pageContext.request.contextPath}/static/js/file-upload.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/template.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 	<script type="text/javascript">
@@ -236,6 +226,15 @@
 		var model_id = '';
 	</script>
 	<script type="text/javascript">
+	
+		//选择模版
+		$("#btn_select,#input_template").click(function(){
+			utils.treeSelectTemplate(function(menuObj){
+				$("input[name='menuIconName']").val(menuObj.menuIconName);
+				$("#menuIcon").val(menuObj.menuIcon);
+			});
+		});
+	
 		//获取生肖
 		function getZodiac(year) {
 			var arr = [ '猴', '鸡', '狗', '猪', '鼠', '牛', '虎', '兔', '龙', '蛇', '马',
