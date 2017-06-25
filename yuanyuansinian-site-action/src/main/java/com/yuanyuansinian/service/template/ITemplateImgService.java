@@ -61,4 +61,6 @@ public interface ITemplateImgService {
 
 	void uploadTemplateImgImg(HttpServletRequest request, String id);
 
+	List<TemplateImg> queryTemplateImgListByType(String template_type);
+
 }

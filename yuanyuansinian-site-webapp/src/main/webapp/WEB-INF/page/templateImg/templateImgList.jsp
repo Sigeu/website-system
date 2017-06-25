@@ -36,6 +36,7 @@
 						<th><input type="checkbox" name="" value=""></th>
 						<th>模版名称</th>
 						<th>图片</th>
+						<th>模版类型</th>
 						<th>描述说明</th>
 						<th>备注说明</th>
 						<th width="15%">操作</th>
@@ -102,6 +103,9 @@
 										var context = '<img width="210" class="picture-thumb" src="' + data + '">';
 										return context;
 									}
+								}, {
+									data : "template_type_name",
+									defaultContent : ""
 								}, {
 									data : "description",
 									defaultContent : ""

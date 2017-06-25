@@ -56,4 +56,6 @@ public interface TemplateImgMapper {
 	List<TemplateImg> queryTemplateImgList(TemplateImg templateImg);
 
 	void uploadTemplateImgImg(TemplateImg templateImg);
+
+	List<TemplateImg> queryTemplateImgListByType(String template_type);
 }

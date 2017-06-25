@@ -63,6 +63,7 @@ public class TemplateImg {
      * @mbg.generated Wed Jun 21 17:08:55 CST 2017
      */
     private String template_type;
+    private String template_type_name;
 
     /**
      *
@@ -264,4 +265,12 @@ public class TemplateImg {
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
     }
+
+	public String getTemplate_type_name() {
+		return template_type_name;
+	}
+
+	public void setTemplate_type_name(String template_type_name) {
+		this.template_type_name = template_type_name;
+	}
 }

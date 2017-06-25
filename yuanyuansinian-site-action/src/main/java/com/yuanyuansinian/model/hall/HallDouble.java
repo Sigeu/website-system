@@ -213,6 +213,15 @@ public class HallDouble {
 	private String sex2_name;
 	//模版id
 	private String template_id;
+	private String template_imgs;
+
+	public String getTemplate_imgs() {
+		return template_imgs;
+	}
+
+	public void setTemplate_imgs(String template_imgs) {
+		this.template_imgs = template_imgs;
+	}
 
 	public String getSex_name() {
 		return sex_name;

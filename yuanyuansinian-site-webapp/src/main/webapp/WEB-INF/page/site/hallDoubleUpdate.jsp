@@ -56,6 +56,17 @@
 							</div>
 						</div>
 					</div>
+					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-2"><span
+							class="c-red">*</span>纪念馆模版：</label>
+						<div class="formControls col-xs-8 col-sm-9">
+							<input id="input_template" value="" class="input-text" placeholder="模版" type="text" style="cursor: pointer;" readonly="readonly" name="templateName">
+				          	<input type="hidden" id="template_id" name="template_id" value="">
+							<!-- <div class="formControls col-xs-1 col-sm-1">
+								<a id="btn_select" class="btn btn-secondary size-S radius" type="button" > <i class="Hui-iconfont Hui-iconfont-search2"></i>&nbsp;选择</a>
+							</div> -->
+						</div>
+					</div>
 					<br>
 					<div class="row cl">
 						<label class="form-label col-xs-4 col-sm-2"><span
@@ -362,8 +373,9 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/static/js/hallDouble-upload.js">
-	</script>
+		src="${pageContext.request.contextPath}/static/js/hallDouble-upload.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/js/template.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 	<script type="text/javascript">
 		var serverUrl = '/sinian/hallDouble/hallDoubleController/uploadImg';
@@ -373,6 +385,13 @@
 		var model_id = '';
 	</script>
 	<script type="text/javascript">
+	//选择模版
+	$("#input_template").click(function(){
+		utils.treeSelectDoubleTemplate(function(templateImg){
+			$("input[name='templateName']").val(templateImg.title);
+			$("#template_id").val(templateImg.id);
+		});
+	});
 	//获取生肖
 	function getZodiac(year) {
 		var arr = [ '猴', '鸡', '狗', '猪', '鼠', '牛', '虎', '兔', '龙', '蛇', '马',

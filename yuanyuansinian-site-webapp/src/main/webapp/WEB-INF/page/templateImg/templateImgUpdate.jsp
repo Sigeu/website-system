@@ -14,13 +14,24 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">图片尺寸说明：</label>
 			<div class="radio-box">
-				<span>灵堂模版图片尺寸为1600*412</span>
+				<span>灵堂模版图片尺寸为1170*735</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>模版名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${templateImg.id }" placeholder="标题" id="title" name="title">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>模版类型：</label>
+			<div class="radio-box">
+				<input type="radio" id="template_type1" name="template_type"
+					value="1" checked /> <label for="template_type1">单人模版</label>
+			</div>
+			<div class="radio-box">
+				<input type="radio" id="template_type2" name="template_type"
+					value="2" /> <label for="template_type2">双人模版</label>
 			</div>
 		</div>
 		<!-- <div class="row cl">
@@ -75,6 +86,7 @@
 </script>
 <script type="text/javascript">
 $(function(){
+	$("input[name='template_type'][value='${templateImg.template_type }']").attr("checked",true); 
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭

@@ -42,13 +42,11 @@
 				<label class="form-label col-xs-4 col-sm-2"><span
 					class="c-red">*</span>纪念馆模版：</label>
 				<div class="formControls col-xs-8 col-sm-9">
-					<div class="formControls col-xs-8 col-sm-9">
-						<input id="input_template" value="" class="input-text radius" placeholder="模版" type="text" style="cursor: pointer;" readonly="readonly" name="templateName">
-			          	<input type="hidden" id="template_id" name="template_id" value="">
-					</div>
-					<div class="formControls col-xs-1 col-sm-1">
+					<input id="input_template" value="" class="input-text" placeholder="模版" type="text" style="cursor: pointer;" readonly="readonly" name="templateName">
+		          	<input type="hidden" id="template_id" name="template_id" value="">
+					<!-- <div class="formControls col-xs-1 col-sm-1">
 						<a id="btn_select" class="btn btn-secondary size-S radius" type="button" > <i class="Hui-iconfont Hui-iconfont-search2"></i>&nbsp;选择</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="row cl">
@@ -229,9 +227,9 @@
 	
 		//选择模版
 		$("#btn_select,#input_template").click(function(){
-			utils.treeSelectTemplate(function(menuObj){
-				$("input[name='menuIconName']").val(menuObj.menuIconName);
-				$("#menuIcon").val(menuObj.menuIcon);
+			utils.treeSelectSingleTemplate(function(templateImg){
+				$("input[name='templateName']").val(templateImg.title);
+				$("#template_id").val(templateImg.id);
 			});
 		});
 	

@@ -32,16 +32,35 @@ var utils = {
 		return null;
 	},
 	//选择灵堂模版。func回调方法
-	treeSelectTemplate: function (func) {
+	treeSelectSingleTemplate: function (func) {
 		index_ = top.layer.open({
 				type: 2,
 				title: '选择模版',
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				//允许出现滚动条
-				content: [contextPath + '/sinian/templateImg/templateImgController/toTemplateImgChoose'],
+				content: [contextPath + '/sinian/templateImg/templateImgController/toSingleTemplateImgChoose'],
+				btn: ["确认", "关闭"],
+				yes: function (index, layero) {
+					var selectedData = layero.find("iframe")[0].contentWindow.getSelected();
+					top.layer.close(index_);
+					func(selectedData);
+				}
+			});
+	},
+	//选择灵堂模版。func回调方法
+	treeSelectDoubleTemplate: function (func) {
+		index_ = top.layer.open({
+				type: 2,
+				title: '选择模版',
+				shadeClose: true,
+				shade: false,
+				maxmin: true, //开启最大化最小化按钮
+				area: ['525px', '645px'],
+				//允许出现滚动条
+				content: [contextPath + '/sinian/templateImg/templateImgController/toDoubleTemplateImgChoose'],
 				btn: ["确认", "关闭"],
 				yes: function (index, layero) {
 					var selectedData = layero.find("iframe")[0].contentWindow.getSelected();

@@ -11,53 +11,112 @@
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>
-	
+
 <div class="container incense">
 	<div class="incense-body">
-		<img src="${pageContext.request.contextPath}/static/images/incense-double.jpg" class="img-responsive incense-bg incense-double hidden-xs">
-		<img src="${hallDouble.img_head }" class="img-responsive incense-double-img pull-left" alt="incense">
-		<img src="${hallDouble.img_head2 }" class="img-responsive incense-double-img incense-double-imgsec pull-right" alt="incense">
-		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-left hidden-xs"><!-- 左侧花 -->
-		<img src="${pageContext.request.contextPath}/static/images/flower.png" class="img-responsive flower-right hidden-xs"><!-- 右侧花 -->
-		<img src="${pageContext.request.contextPath}/static/images/fragrant.png" class="img-responsive fragrant hidden-xs"><!-- 香 -->
-		<div class="tribute-list hidden-xs">
-		<c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
-			<%-- <c:if test="${warehouseStatus.index != 0 }"> --%>
-				<c:choose>  
-				   <c:when test="${empty warehouse.product_img}">
-				   		<img src="${pageContext.request.contextPath}/static/images/flower.png"
-					class="img-responsive tribute" >
-				   </c:when>  
-				   <c:otherwise>
-					    <img src="${warehouse.product_img}" class="img-responsive tribute">
-				   </c:otherwise>  
-				</c:choose> 
-			<%-- </c:if> --%>
-		</c:forEach>
-		</div> 
+		<c:choose>  
+		   <c:when test="${empty hallDouble.template_imgs}">
+		   		<img src="${pageContext.request.contextPath}/static/images/incense-double5.jpg" class="img-responsive incense-bg incense-double hidden-xs" alt="incense">
+		   </c:when>  
+		   <c:otherwise>
+		   		<img src="${hallDouble.template_imgs }" class="img-responsive incense-bg incense-double hidden-xs" alt="incense">
+		   </c:otherwise>  
+		</c:choose>
+		<div class="monument-double">
+			<c:choose>  
+			   <c:when test="${empty hallDouble.img_head}">
+			   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+				class="img-responsive incense-double-img pull-left" >
+			   </c:when>  
+			   <c:otherwise>
+			   		<img src="${hallDouble.img_head }" class="img-responsive incense-double-img pull-left" >
+			   </c:otherwise>  
+			</c:choose>
+			<span class="incense-double-l hidden-xs">${hallDouble.name }</span>
+			<c:choose>  
+			   <c:when test="${empty hallDouble.img_head2}">
+			   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
+				class="img-responsive incense-double-img incense-double-imgsec pull-right" >
+			   </c:when>  
+			   <c:otherwise>
+			   		<img src="${hallDouble.img_head2 }" class="img-responsive incense-double-img incense-double-imgsec pull-right" >
+			   </c:otherwise>  
+			</c:choose>
+			<span class="incense-double-r hidden-xs">${hallDouble.name2 }</span>
+		</div>
 		<!-- 贡品start -->
-		<%-- <div class="tribute-list hidden-xs">
-			<img src="${pageContext.request.contextPath}/static/images/steamed-buns1.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/zy4.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/x4.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/x4.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
-			<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
-		</div> --%>
+		<div class="tribute-list hidden-xs">
+			<!-- 中间的香和香炉 start -->
+			<div class="tribute-conmid">
+				<!-- 中间的香 start -->
+				<div class="tribute-conmid-fragrant">
+					<%-- <c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
+						<c:if test="${warehouseStatus.index != 0 }">
+							<c:choose>  
+							   <c:when test="${empty warehouse.product_img}">
+							   		<img src="${pageContext.request.contextPath}/static/images/flower.png"
+								class="img-responsive tribute" >
+							   </c:when>  
+							   <c:otherwise>
+								    <img src="${warehouse.product_img}" class="img-responsive tribute">
+							   </c:otherwise>  
+							</c:choose> 
+						</c:if>
+					</c:forEach> --%>
+		
+					<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
+					<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
+					<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
+				</div>
+				<!-- 中间的香 end -->
+				<img src="${pageContext.request.contextPath}/static/images/burner1.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/burner1.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/burner1.png" class="img-responsive tribute">
+			</div>
+			<!-- 中间的香和香炉 end -->
+			
+			<!-- 摆出的贡品左侧 start -->
+			<div class="tribute-conl">
+				<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/qc4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/zy4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
+			</div>
+			<!-- 摆出的贡品左侧 end -->
+			
+			<!-- 摆出的贡品中间 start -->
+			<div class="tribute-conmid-list">
+				<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
+			</div>
+			<!-- 摆出的贡品中间 end -->
+			
+			<!-- 摆出的贡品右侧 start -->
+			<div class="tribute-conr">
+				<img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/qc4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/zy4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
+				<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
+			</div>
+			<!-- 摆出的贡品右侧 end -->
+		</div>
 		<!-- 贡品end -->
 		<div class="incense-btn">
 			<c:choose>  

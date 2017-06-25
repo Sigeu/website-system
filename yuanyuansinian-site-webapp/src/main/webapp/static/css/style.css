@@ -239,9 +239,6 @@ p.museum-des {position:relative; top:8px}
 .settle-btn {margin-top:10px}
 .settle-all-btn {padding-left:20px; padding-right:20px}
 .settle-all strong {font-size:15px; color:#b85844; padding:0 10px}
-
-/*模板弹出页*/
-.template {padding-top:10px}
 	
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
@@ -393,9 +390,6 @@ p.museum-des {position:relative; top:8px}
 	
 	/*右侧贡品*/
 	.tribute-conr {width:40%; position:absolute; top:-80px; left:63%}
-	
-	/*模板弹出页*/
-	.template {margin:30px auto; padding-top:10px}
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -516,6 +510,7 @@ p.museum-des {position:relative; top:8px}
 	
 	/*右侧贡品*/
 	.tribute-conr {width:30%; position:absolute; top:-150px; left:67%}
+
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */

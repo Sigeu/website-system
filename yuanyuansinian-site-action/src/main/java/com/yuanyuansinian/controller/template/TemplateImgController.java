@@ -21,6 +21,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yuanyuansinian.model.template.TemplateImg;
 import com.yuanyuansinian.pub.base.MyBaseController;
+import com.yuanyuansinian.pub.constants.IMySystemConstants;
 import com.yuanyuansinian.service.template.ITemplateImgService;
 
 import framework.system.pub.util.DataTablePageUtil;
@@ -103,12 +104,30 @@ public class TemplateImgController extends MyBaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toTemplateImgChoose")
-	public String toTemplateImgChoose(HttpServletRequest request, Model model) {
-
-		return "templateImg/templateImgChoose";
+	@RequestMapping("/toSingleTemplateImgChoose")
+	public String toSingleTemplateImgChoose(HttpServletRequest request, Model model) {
+		// 单人模版
+		List<TemplateImg> singleTemplateImgList = this.templateImgService.queryTemplateImgListByType(IMySystemConstants.VALUE_1);
+		model.addAttribute("singleTemplateImgList", singleTemplateImgList);
+		
+		return "templateImg/singleTemplateImgChoose";
 	}
 	
+	/**
+	 * 
+	 * @Description: 模版选择页面 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toDoubleTemplateImgChoose")
+	public String toDoubleTemplateImgChoose(HttpServletRequest request, Model model) {
+		// 单人模版
+		List<TemplateImg> doubleTemplateImgList = this.templateImgService.queryTemplateImgListByType(IMySystemConstants.VALUE_2);
+		model.addAttribute("doubleTemplateImgList", doubleTemplateImgList);
+				
+		return "templateImg/doubleTemplateImgChoose";
+	}
 	
 	/**
 	 * 

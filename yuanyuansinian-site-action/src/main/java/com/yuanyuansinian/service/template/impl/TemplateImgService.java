@@ -44,7 +44,7 @@ public class TemplateImgService implements ITemplateImgService {
 	@Override
 	public int updateTemplateImg(TemplateImg templateImg) {
 		// TODO Auto-generated method stub
-		return templateImgMapper.updateByPrimaryKey(templateImg);
+		return templateImgMapper.updateByPrimaryKeySelective(templateImg);
 	}
 	
 	/*
@@ -158,5 +158,11 @@ public class TemplateImgService implements ITemplateImgService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public List<TemplateImg> queryTemplateImgListByType(String template_type) {
+		// TODO Auto-generated method stub
+		return templateImgMapper.queryTemplateImgListByType(template_type);
 	}
 }

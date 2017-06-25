@@ -182,6 +182,7 @@ public class Hall {
     private int days;
     //模版id
     private String template_id;
+    private String template_imgs;
     
     
     /**
@@ -710,6 +711,14 @@ public class Hall {
 
 	public void setTemplate_id(String template_id) {
 		this.template_id = template_id;
+	}
+
+	public String getTemplate_imgs() {
+		return template_imgs;
+	}
+
+	public void setTemplate_imgs(String template_imgs) {
+		this.template_imgs = template_imgs;
 	}
 
 }
