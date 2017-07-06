@@ -106,7 +106,7 @@
 					</ul>
 				</div>
 				<div class="row media">
-					<c:forEach items="${contentList107}" var="content107" varStatus="content"> 
+					<%-- <c:forEach items="${contentList107}" var="content107" varStatus="content"> 
 							<c:if test="${content.index == 0 }">
 					<div class="col-md-5 media-img">
 						<a class="media-left" href="#" onclick="toInformationDetail('${content107.id }','${content107.column_id}')">
@@ -133,14 +133,14 @@
 							
 					</div>
 					</c:if>
-					</c:forEach>
+					</c:forEach> --%>
 				</div>
 				<div class="list">
 					<ul>
 						<c:forEach items="${contentList107}" var="content107" varStatus="content"> 
-							<c:if test="${content.index > 0 }">
+							<%-- <c:if test="${content.index > 0 }"> --%>
 								<li><a href="###" onclick="toInformationDetail('${content107.id }','${content107.column_id}')" class="pull-left">${content107.title}</a><span class="list-date pull-right">${fn:substring(content107.add_time, 0, 10)}</span></li>
-							</c:if>
+							<%-- </c:if> --%>
 						</c:forEach>
 					</ul>
 				</div>
