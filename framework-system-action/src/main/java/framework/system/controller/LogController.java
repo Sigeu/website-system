@@ -4,7 +4,9 @@
  */
 package framework.system.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -92,4 +94,30 @@ public class LogController extends SystemBaseController{
 		return dataTable;
 	}
 	
+	
+	/**
+	 * 
+	 * @Description: 删除
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteLogByIds")
+	public Map<String,Object> deleteLogByIds(HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			String ids = request.getParameter("id");
+	 		boolean flag = this.logService.deleteLogByIds(ids);
+			if(flag){
+				map.put(RESULT_MESSAGE_STRING, "删除成功！");
+			} else {
+				map.put(RESULT_MESSAGE_STRING, "删除失败！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return map;
+	}
 }

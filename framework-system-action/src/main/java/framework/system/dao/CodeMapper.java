@@ -56,4 +56,6 @@ public interface CodeMapper {
 	List<Code> queryCodeList(Code code);
 
 	List<Code> queryCodeListByType(String code_type);
+
+	void deleteCodeByCodeType(String code_type);
 }

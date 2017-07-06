@@ -27,4 +27,4 @@
 		</div>
 	</div>
 </footer>
-
+${config.statistical_code }

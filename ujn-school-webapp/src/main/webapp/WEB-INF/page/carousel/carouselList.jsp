@@ -17,6 +17,8 @@
 		<div class="page-container">
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
+						<span>注：首页轮播图片尺寸为1600*412</span>
+						&nbsp;&nbsp;
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;

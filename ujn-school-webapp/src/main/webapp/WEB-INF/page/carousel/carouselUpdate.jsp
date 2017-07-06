@@ -15,6 +15,12 @@
 	<form action="${pageContext.request.contextPath}/carousel/carouselController/updateCarousel" method="post" class="form form-horizontal" id="form_">
 		<input type="hidden" name="id" id="id" value="${carousel.id }" >
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">图片尺寸说明：</label>
+			<div class="radio-box">
+				<span>首页轮播图片尺寸为1600*412</span>
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${carousel.title }" placeholder="标题" id="title" name="title">
@@ -30,6 +36,12 @@
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${carousel.no_order }" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">原图片：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<img width="240" height="100" class="picture-thumb" src="${pageContext.request.contextPath}/carousel/carouselController/queryImgById?id=${carousel.id }">
 			</div>
 		</div>
 		<div class="row cl">

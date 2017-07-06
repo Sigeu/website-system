@@ -146,6 +146,13 @@ $(function() {
 															+ "\')",
 													"type" : "primary-outline size-MINI radius",
 													"display" : true
+												},{
+													"name" : "删除",
+													"fn" : "toDelete(\'"
+															+ row.id
+															+ "\')",
+													"type" : "danger-outline size-MINI radius",
+													"display" : row.status == '1'? false : true
 												}]
 									};
 									var html = template(context);
@@ -197,6 +204,33 @@ $(function() {
 	function reloadPage(){
 		window.location.reload();//刷新当前页面.
 	}
+	
+	//删除
+	function toDelete(id){
+		layer.confirm("确认删除？", {
+			  btn: ['确认','返回'] //按钮
+				}, function(index){
+					$.ajax({
+					    url: "${pageContext.request.contextPath}/system/controller/codeController/deleteCode" ,
+					    type: "POST",
+					    dataType: "JSON",
+					    data: {id:id},
+					    success:function(data){
+					    	layer.alert(data.result_message, {
+								  closeBtn: 1
+								}, function(){
+									//父页面刷新
+									window.location.reload();//刷新当前页面.
+									//var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+									//parent.layer.close(index); //再执行关闭
+								});
+					    }
+					});
+				}, function(index){
+					layer.close(index);
+			}); 
+	}
+
 </script>
 </body>
 </body>

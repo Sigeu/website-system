@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>内容管理信息表页</title>
 </head>
 <body>
 	<nav class="breadcrumb">
@@ -39,9 +39,6 @@
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 
@@ -62,8 +59,7 @@
 						<th>有效期</th>
 						<th>访问属性</th>
 						<th>审核状态</th>
-						<th>是否前台显示</th>
-						<th width="15%">操作</th>
+						<th width="8%">操作</th>
 					</tr>
 				</thead>
 				<!-- tbody是必须的 -->
@@ -131,7 +127,7 @@
 									data : "add_time",
 									defaultContent : ""
 								}, {
-									data : "column_id",
+									data : "column_id_name",
 									defaultContent : ""
 								}, {
 									data : "validity_time",
@@ -141,10 +137,16 @@
 									defaultContent : ""
 								}, {
 									data : "status_name",
-									defaultContent : ""
-								}, {
-									data : "display_type_name",
-									defaultContent : ""
+									defaultContent : "",
+									render: function (data, type, full, meta) {
+										var html = '';
+											if(data =='待审核'){
+												html = '<font color="red">'+ data + '</font>';
+											}else{
+												html = '<font>'+ data + '</font>';
+											}
+					                     return html;
+					                 }
 								}, {
 									data : null
 								} ],

@@ -200,12 +200,26 @@ public class CodeTypeController extends SystemBaseController{
 		return "system/code/codeTypeAdd";
 	}
 	
-	//删除
+	
+	/**
+	 * 
+	 * @Description: 删除
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
 	@RequestMapping("/deleteCodeType")
-	public String deleteCodeType(HttpServletRequest request,Model model){
-		int codeTypeId = Integer.parseInt(request.getParameter("id"));
-		CodeType CodeType = this.codeTypeService.getCodeTypeById(codeTypeId);
-		model.addAttribute("CodeType", CodeType);
-		return "showCodeType";
+	public Map<String, Object> deleteCodeType(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int id = Integer.parseInt(request.getParameter("id"));
+		int count = this.codeTypeService.deleteCodeType(id);
+		if (RESULT_COUNT_1 == count) {
+			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
+		}
+		return map;
 	}
+	
 }

@@ -47,7 +47,6 @@
 						<th><input type="checkbox" name="" value=""></th>
 						<th>登录名</th>
 						<th>真实姓名</th>
-						<th>用户类型</th>
 						<th>状态</th>
 						<th>所属部门</th>
 						<th width="25%">操作</th>
@@ -110,9 +109,6 @@
 									defaultContent : ""
 								}, {
 									data : "real_name",
-									defaultContent : ""
-								}, {
-									data : "user_type",
 									defaultContent : ""
 								}, {
 									data : "status_name",

@@ -206,9 +206,9 @@ public class CodeController extends SystemBaseController{
 		int codeId = Integer.parseInt(super.nullToStringZero(request.getParameter("id")));
 		int count = this.codeService.deleteCode(codeId);
 		if(RESULT_COUNT_1 == count){
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
 		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
 		}
 		
 		return map;

@@ -162,6 +162,7 @@
 			<![CDATA[ and str_to_date(create_date, '%Y-%m-%d %H:%i:%s')   <=  #{date_end}  ]]>
 		</if>
 	</where>
+	order by id desc
   </select>
   
   

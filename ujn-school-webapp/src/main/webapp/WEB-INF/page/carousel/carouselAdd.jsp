@@ -13,7 +13,12 @@
 		</nav>
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/carousel/carouselController/addCarousel" method="post" class="form form-horizontal" id="form_">
-		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">图片尺寸说明：</label>
+			<div class="radio-box">
+				<span>首页轮播图片尺寸为1600*412</span>
+			</div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型：</label>
 			<div class="radio-box">

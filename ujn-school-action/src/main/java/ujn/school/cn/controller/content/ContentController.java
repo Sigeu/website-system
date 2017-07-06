@@ -320,9 +320,9 @@ public class ContentController extends MyBaseController {
 		content.setAdd_time(MyDateUtil.getDateTime());
 		int count = this.contentService.auditContent(content);
 		if (RESULT_COUNT_1 == count) {
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			map.put(RESULT_MESSAGE_STRING, "审核成功！");
 		} else {
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			map.put(RESULT_MESSAGE_STRING, "审核失败！");
 		}
 
 		return map;

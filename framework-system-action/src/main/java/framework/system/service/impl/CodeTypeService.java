@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import framework.system.dao.CodeMapper;
 import framework.system.dao.CodeTypeMapper;
 import framework.system.model.CodeType;
 import framework.system.service.ICodeTypeService;
@@ -24,6 +25,8 @@ import framework.system.service.ICodeTypeService;
 public class CodeTypeService implements ICodeTypeService {
 	@Resource
 	private CodeTypeMapper codeTypeMapper;
+	@Resource
+	private CodeMapper codeMapper;
 	
 	@Override
 	public CodeType getCodeTypeById(int codeTypeId) {
@@ -52,6 +55,20 @@ public class CodeTypeService implements ICodeTypeService {
 	public int updateCodeType(CodeType codeType) {
 		// TODO Auto-generated method stub
 		return codeTypeMapper.updateByPrimaryKeySelective(codeType);
+	}
+
+
+	@Override
+	public int deleteCodeType(int id) {
+		try {
+			CodeType codeType = codeTypeMapper.selectByPrimaryKey(id);
+			if(null != codeType){
+				codeMapper.deleteCodeByCodeType(codeType.getCode_type());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return codeTypeMapper.deleteByPrimaryKey(id);
 	}
 
 }

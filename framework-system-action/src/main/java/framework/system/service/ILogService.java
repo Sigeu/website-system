@@ -41,4 +41,7 @@ public interface ILogService {
 	 */
 	int addLog(Log log);
 
+	boolean deleteLogByIds(String ids);
+
+
 }

@@ -17,8 +17,6 @@
 			<div class="tabBar cl">
 				<span>基本设置</span>
 				<span>安全设置</span>
-				<span>邮件设置</span>
-				<span>其他设置</span>
 			</div>
 			<div class="tabCon">
 				<div class="row cl">
@@ -93,46 +91,6 @@
 						<input type="text" class="input-text" value="${config.login_count }" id="login_count" name="login_count" >
 					</div>
 				</div>
-			</div>
-			<div class="tabCon">
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">邮件发送模式：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text"  class="input-text" value="" id="" name="">
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">SMTP服务器：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" id="" value="" class="input-text">
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">SMTP 端口：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="25" id="" name="" >
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">邮箱帐号：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="5" id="emailName" name="emailName" >
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">邮箱密码：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="password" id="email-password" value="" class="input-text">
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">收件邮箱地址：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" id="email-address" value="" class="input-text">
-					</div>
-				</div>
-			</div>
-			<div class="tabCon">
 			</div>
 		</div>
 		<div class="row cl">

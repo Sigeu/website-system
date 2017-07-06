@@ -74,14 +74,14 @@ public class SystemBaseController {
 
 	// 保存成功
 	public static final String SAVE_SUCESS_MESSAGE = "保存成功！";
-	public static final String DELETE_SUCESS_MESSAGE = "保存成功！";
+	public static final String DELETE_SUCESS_MESSAGE = "删除成功！";
 
 	// 提交成功
 	public static final String SUBMIT_SUCESS_MESSAGE = "提交成功！";
 
 	// 保存失败
 	public static final String SAVE_FAILED_MESSAGE = "保存失败，请联系管理员！";
-	public static final String DELETE_FAILED_MESSAGE = "保存失败，请联系管理员！";
+	public static final String DELETE_FAILED_MESSAGE = "删除失败，请联系管理员！";
 
 	// 提交失败
 	public static final String SUBMIT_FAILED_MESSAGE = "提交失败，请联系管理员！";

@@ -19,12 +19,10 @@
 		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="###">技术支持</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="##">&nbsp;</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">&nbsp;</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 			<nav class="nav navbar-nav">
 				<ul class="cl">
-					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 快捷菜单 <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
-							<li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i class="Hui-iconfont">&#xe613;</i> 图片</a></li>
-							<li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i class="Hui-iconfont">&#xe620;</i> 产品</a></li>
-							<li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+							<li><a href="javascript:;" onclick="article_add()"><i class="Hui-iconfont">&#xe616;</i> 添加内容</a></li>
+							<li><a href="javascript:;" onclick="user_add()"><i class="Hui-iconfont">&#xe60d;</i> 添加用户</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -103,7 +101,6 @@
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/audit/controller/auditController/toAuditContentList" data-title="文章统计" href="javascript:void(0)">文章统计</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/audit/controller/auditController/toAuditContentList" data-title="在线申请统计" href="javascript:void(0)">在线申请统计</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/audit/controller/auditController/toAuditContentList" data-title="在线反馈统计" href="javascript:void(0)">在线反馈统计</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -178,36 +175,29 @@ $(function(){
 		}
 	});*/
 });
-/*资讯-添加*/
-function article_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*图片-添加*/
-function picture_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*产品-添加*/
-function product_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
+/*内容-添加*/
+function article_add(){
+	layer.open({
+	    type: 2,
+	    maxmin:true,
+	    title:["添加"],
+	    area: ['100%', '100%'],
+	    shadeClose: false, //点击遮罩关闭
+	    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentAdd'
+	 });
 	layer.full(index);
 }
 /*用户-添加*/
-function member_add(title,url,w,h){
-	layer_show(title,url,w,h);
+function user_add(title,url){
+	layer.open({
+	    type: 2,
+	    maxmin:true,
+	    title:["添加"],
+	    area: ['100%', '100%'],
+	    shadeClose: false, //点击遮罩关闭
+	    content: '${pageContext.request.contextPath}/system/controller/userController/toUserAdd'
+	 });
+	layer.full(index);
 }
 </script> 
 </body>

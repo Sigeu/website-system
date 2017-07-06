@@ -42,6 +42,9 @@
 						<button class="btn btn-success radius size-MINI" id="reset_but">
 							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
 						</button> &nbsp;&nbsp;
+						<button class="btn btn-danger radius size-MINI" id="delete_but">
+							<i class="Hui-iconfont Hui-iconfont-del3">&nbsp;&nbsp;</i>批量删除
+						</button> &nbsp;&nbsp;
 					</td>
 				</tr>
 
@@ -53,9 +56,7 @@
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
 					<tr class="text-c">
-						<th><input type="checkbox" name="" value=""></th>
-						<th>序号</th>
-						<th>类型</th>
+						<th><input type="checkbox" name="check_log" id="check_all" value=""></th>
 						<th>内容</th>
 						<th>用户名</th>
 						<th>客户端IP</th>
@@ -81,6 +82,8 @@
 	<script type="text/javascript">
 		//初始化
 		$(function() {
+			//设置默认值
+			$("#check_all").prop("checked",false); 
 			//按钮模版
 			var tpl = $("#tpl").html();
 			//预编译模板
@@ -93,6 +96,7 @@
 								ajax : {
 									url : "${pageContext.request.contextPath}/system/controller/logController/queryLogList",
 									type:"POST",
+									dataSrc : "data",
 									data : {
 										//args1: "固定传参"
 									}
@@ -113,13 +117,8 @@
 								columns : [ {
 									data : "id",
 									render: function (data, type, full, meta) {
-					                     return '<input type="checkbox" value="' + data + '" />';
+					                     return '<input type="checkbox" name="check_log" value="' + data + '" />';
 					                 }
-								}, {
-									data : "id"
-								}, {
-									data : "type_name",
-									defaultContent : ""
 								}, {
 									data : "operation",
 									defaultContent : ""
@@ -179,6 +178,56 @@
 				$("#date_end").val('');
 				
 			});
+			
+			//全选
+			$('#check_all').on('click', function() {
+				if($(this).prop('checked')){
+					$("input[name='check_log']").attr("checked",true); 
+				}else{
+					$("input[name='check_log']").attr("checked",false);
+				}
+			});
+			
+			//批量删除
+			$('#delete_but').on('click', function() {
+				//要删除的数据
+				var ids = '';
+				$("input[name='check_log']:checkbox:checked").each(function(){ 
+					ids += $(this).val() + ',';
+				}) 
+				if('' == ids){
+					layer.open({
+			    		  content: '请勾选要删除的数据！',
+			    		  yes: function(index, layero){
+			    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+			    		  }
+			    		});
+					return;
+				}
+				layer.confirm("确认要删除吗？", {
+					  btn: ['确认','返回'] //按钮
+						}, function(index){
+							$.ajax({
+							    url: "${pageContext.request.contextPath}/system/controller/logController/deleteLogByIds" ,
+							    type: "POST",
+							    dataType: "JSON",
+							    data: {id:ids},
+							    success:function(data){
+							    	layer.open({
+							    		  content: data.result_message,
+							    		  yes: function(index, layero){
+							    		    window.location.reload();//刷新当前页面
+							    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+							    		  }
+							    		});
+							    }
+							});
+						}, function(index){
+							layer.close(index);
+					}); 
+				
+			});
+			
 			
 		});
 	</script>

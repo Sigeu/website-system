@@ -33,9 +33,6 @@
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
-						<button class="btn btn-primary radius size-MINI" id="export_but">
-							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
-						</button>
 					</td>
 				</tr>
 

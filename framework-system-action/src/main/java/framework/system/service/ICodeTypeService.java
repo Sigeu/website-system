@@ -37,4 +37,7 @@ public interface ICodeTypeService {
 
 	int updateCodeType(CodeType codeType);
 
+
+	int deleteCodeType(int id);
+
 }

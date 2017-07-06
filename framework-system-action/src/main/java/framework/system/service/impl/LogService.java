@@ -15,7 +15,7 @@ import framework.system.model.Log;
 import framework.system.service.ILogService;
 
 /**   
- * @Description: TODO 
+ * @Description: 日志管理 
  * @author lizhaotao lzh_me@126.com  
  * @date 2017年1月18日 上午10:50:13 
  * @version V1.0   
@@ -53,6 +53,24 @@ public class LogService implements ILogService {
 	public int addLog(Log log) {
 		// TODO Auto-generated method stub
 		return logMapper.insertSelective(log);
+	}
+
+
+	@Override
+	public boolean deleteLogByIds(String ids) {
+		boolean flag = false;
+		try {
+			for(String id : ids.split(",")){
+				if(!"".equals(id)){
+					logMapper.deleteByPrimaryKey(Integer.parseInt(id));
+				}
+			}
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag = false;
+		}
+		return flag;
 	}
 
 }

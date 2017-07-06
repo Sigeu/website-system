@@ -131,14 +131,14 @@
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
+														"display" : true
 													},{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
 																+ "\')",
-														"type" : "primary-outline size-MINI radius",
-														"display" : row.zt == '1'? true:false
+														"type" : "danger-outline size-MINI radius",
+														"display" : true
 													},{
 														"name" : "数据管理",
 														"fn" : "toDetail(\'"
@@ -227,7 +227,7 @@
 				  btn: ['确认','返回'] //按钮
 					}, function(index){
 						$.ajax({
-						    url: "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/issueKaoShiChangCi.do" ,
+						    url: "${pageContext.request.contextPath}/system/controller/codeTypeController/deleteCodeType" ,
 						    type: "POST",
 						    dataType: "JSON",
 						    data: {id:id},
