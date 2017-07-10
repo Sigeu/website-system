@@ -62,8 +62,17 @@ $('#buy_now_but').on('click',function(){
 			});*/
 				var ids = $('#product_id').val();
 				var names = $('#name_').text();
-				var count = $('#price_site').text();;
-				index_confirm = layer.confirm('总金额：￥' + count + "</br>礼品：" + names, {
+				var count = $('#price_site').text();
+				index_confirm = layer.open({
+				    type: 2,
+				    maxmin:true,
+				    title:["结算"],
+				    area: ['50%', '50%'],
+				    shadeClose: false, //点击遮罩关闭
+				    content: contextPath + '/sinian/index/indexController/choosePay?names=' + names + '&count=' + count
+				 });
+				
+				/*index_confirm = layer.confirm('总金额：￥' + count + "</br>礼品：" + names, {
 					  btn: ['购买','取消'] //按钮
 					}, function(){
 						layer.open({
@@ -77,7 +86,7 @@ $('#buy_now_but').on('click',function(){
 						layer.close(index_confirm);
 					}, function(){
 						layer.close(index_confirm);
-				});
+				});*/
 		}
 	});
 });

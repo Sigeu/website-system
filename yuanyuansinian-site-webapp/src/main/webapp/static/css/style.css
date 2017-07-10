@@ -239,6 +239,21 @@ p.museum-des {position:relative; top:8px}
 .settle-btn {margin-top:10px}
 .settle-all-btn {padding-left:20px; padding-right:20px}
 .settle-all strong {font-size:15px; color:#b85844; padding:0 10px}
+
+/*模板弹出页*/
+.template {padding-top:10px}
+
+/*支付方式选择*/
+.pay-top {padding-top:10px}
+.pay-body {padding-bottom:0px}
+.pay-body dl {width:100%; margin-bottom:0px}
+.pay-body dt {margin-bottom:5px; width:100%; height:20px; line-height:20px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.pay-body dd {width:100%; height:20px; line-height:20px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+.pay-count {height:45px; line-height:45px; font-size:15px}
+.pay-way-top {margin-bottom:10px; font-size:17px}
+.pay-way-pro {width:120px; float:left; margin-right:20px}
+.pay-way-pro img {width:120px; height:120px}
+.pay-way-pro dt {margin-bottom:10px}
 	
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
@@ -390,6 +405,15 @@ p.museum-des {position:relative; top:8px}
 	
 	/*右侧贡品*/
 	.tribute-conr {width:40%; position:absolute; top:-80px; left:63%}
+	
+	/*模板弹出页*/
+	.template {margin:30px auto; padding-top:10px}
+	
+	/*支付方式选择*/
+	.pay {margin:30px auto}
+	.pay-body dl {margin-bottom:20px}
+	.pay-count {text-align:right; font-size:17px}
+	.pay-way-top {margin-bottom:10px; font-size:17px}
 }
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
@@ -510,7 +534,6 @@ p.museum-des {position:relative; top:8px}
 	
 	/*右侧贡品*/
 	.tribute-conr {width:30%; position:absolute; top:-150px; left:67%}
-
 }
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
