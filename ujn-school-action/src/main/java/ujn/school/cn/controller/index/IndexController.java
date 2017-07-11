@@ -85,10 +85,12 @@ public class IndexController extends MyBaseController {
 			// 最新公开信息 
 			Content content1 = new Content();
 			//最新发布的6条信息
+			content1.setLimit_num(IMySystemConstants.COUNT_NUM6);
 			List<Content> contentListNew = contentService.queryContentListByNew(content1);
 			model.addAttribute("contentListNew", contentListNew);
-			// 重要信息公开 
+			// 重要信息公开，重要信息显示5条
 			Content content2 = new Content();
+			content2.setLimit_num(IMySystemConstants.COUNT_NUM5);
 			List<Content> contentList2 = contentService.queryContentListByImportance(content2);
 			model.addAttribute("contentList2", contentList2);
 			// 信息公开规章制度 
@@ -221,6 +223,81 @@ public class IndexController extends MyBaseController {
 		return "site/articleList";
 	}
 	
+	
+	/**
+	 * 
+	 * @Description: 3级栏目内容列表
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toContentListForLevel3")
+	public String toContentListForLevel3(HttpServletRequest request, Model model) {
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		Config config = configService.queryConfig();
+		// 最新公开信息 
+		Content content = new Content();
+		String column_id = request.getParameter("id")==null? "0":request.getParameter("id");
+		content.setColumn_id(column_id);
+		content.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		content.setOrder_type(IMySystemConstants.ORDER_DESC);
+		content.setCount_num(IMySystemConstants.COUNT_NUM4);
+		//内容列表
+		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
+		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
+		List<Content> contentList = contentService.queryContentListByColumn(content);
+		int totalRecords = contentList.size();
+		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
+		
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = IMySystemConstants.COLUMN113;
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		//点击的栏目
+		Column column = columnService.queryColumnById(Integer.parseInt(column_id));
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		//校务
+		List<Column> columnList102 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
+		//党务
+		List<Column> columnList107 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
+		
+		model.addAttribute("columnList102", columnList102);
+		model.addAttribute("columnList107", columnList107);
+		//3级菜单
+		List<Column> columnList3 = columnService.queryAllColumnListByLevel3();
+		model.addAttribute("columnList3", columnList3);
+		
+		List<Column> columnListThis3 = columnService.queryColumnListByIdAndLevel(column_id,IMySystemConstants.VALUE_3);
+		model.addAttribute("columnListThis3", columnListThis3);
+		model.addAttribute("contact", contact);
+		model.addAttribute("config", config);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentList", contentList);
+		model.addAttribute("column_id", column_id);
+		model.addAttribute("totalRecords", totalRecords);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("column", column);
+		model.addAttribute("columnList", columnList);
+		return "site/articleListForLevel3";
+	}
+	
 	/**
 	 * 
 	 * @Description: 信息公开申请 
@@ -274,6 +351,52 @@ public class IndexController extends MyBaseController {
 		
 		return "site/apply";
 	}
+	
+	
+	/**
+	 * 
+	 * @Description: 信息公开目录
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toContentList111")
+	public String toContentList111(HttpServletRequest request, Model model) {
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		Config config = configService.queryConfig();
+		
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		//校务
+		List<Column> columnList102 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN102,IMySystemConstants.VALUE_2);
+		//党务
+		List<Column> columnList107 = columnService.queryColumnListByIdAndLevel(IMySystemConstants.COLUMN107,IMySystemConstants.VALUE_2);
+		
+		model.addAttribute("columnList102", columnList102);
+		model.addAttribute("columnList107", columnList107);
+		//3级菜单
+		List<Column> columnList3 = columnService.queryAllColumnListByLevel3();
+		model.addAttribute("columnList3", columnList3);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("config", config);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("columnList", columnList);
+		
+		return "site/catalog";
+	}
+	
 	
 	/**
 	 * 

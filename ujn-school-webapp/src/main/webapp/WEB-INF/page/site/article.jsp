@@ -78,7 +78,7 @@
 
 	<%@ include file="../../../common/footer-site.jsp"%>
 	<script type="text/javascript">
-		
+	var contextPath = "${pageContext.request.contextPath}";
 	</script>
 </body>
 </html>

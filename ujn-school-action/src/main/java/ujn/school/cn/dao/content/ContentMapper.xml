@@ -655,7 +655,7 @@
     from ujn_content c
     where status = '1' and column_id = #{column_id,jdbcType=VARCHAR}
     and unix_timestamp(validity_time) &lt;  unix_timestamp(now()) 
-    order by #{order_column} #{order_type} limit #{count_num} 
+   order by id desc 
   </select>
   
   <!-- 内容恢复 -->
@@ -680,7 +680,7 @@
   </update>
   
   
-  <!-- 最新公开信息 -->
+  <!-- 最新公开信息 ：不包括重要信息-->
    <select id="queryContentListByNew" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -689,10 +689,14 @@
     from ujn_content c
     where 1=1
     and status = '1'
-    order by add_time asc limit 6
+    and importance is null
+    order by id desc  
+     <if test="limit_num != null and limit_num != 0">
+         limit #{limit_num}
+    </if>
   </select>
   
-  <!-- 重要公开信息 -->
+  <!-- 重要公开信息:设置了重要性标签并且审核通过的数据都属于重要信息 -->
    <select id="queryContentListByImportance" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -702,6 +706,9 @@
     where 1=1
      and status = '1'
     and importance is not null
-    order by add_time asc limit 6
+    order by id desc  
+    <if test="limit_num != null and limit_num != 0">
+         limit #{limit_num}
+    </if>
   </select>
 </mapper>

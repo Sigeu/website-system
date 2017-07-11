@@ -51,6 +51,9 @@ public class Content {
     private String order_type;
     
     private int count_num;
+    
+    //显示的条数
+    private int limit_num;
 
     /**
      *
@@ -1232,5 +1235,13 @@ public class Content {
 
 	public void setRead_type_name(String read_type_name) {
 		this.read_type_name = read_type_name;
+	}
+
+	public int getLimit_num() {
+		return limit_num;
+	}
+
+	public void setLimit_num(int limit_num) {
+		this.limit_num = limit_num;
 	}
 }

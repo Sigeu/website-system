@@ -48,7 +48,7 @@ public class ContentService implements IContentService {
 	@Override
 	public int updateContent(ContentWithBLOBs content) {
 		// TODO Auto-generated method stub
-		return contentMapper.updateByPrimaryKeyWithBLOBs(content);
+		return contentMapper.updateByPrimaryKeySelective(content);
 	}
 	
 	/*

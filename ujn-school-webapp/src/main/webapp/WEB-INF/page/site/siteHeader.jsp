@@ -41,7 +41,7 @@
 									<ul class="navbar-dropdown-thr" style="display: none">
 										<c:forEach var="column3" items="${columnList3}">
 											<c:if test="${column3.big_class == column.id}">
-												<li><a href="###" onclick="toContentList('${column3.id}');" >${column3.name }</a></li>
+												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stats"></em>&nbsp;${column3.name }</a></li>
 											</c:if>
 										</c:forEach>
 									</ul>
@@ -65,7 +65,7 @@
 									<ul class="navbar-dropdown-thr" style="display: none">
 										<c:forEach var="column3" items="${columnList3}">
 											<c:if test="${column3.big_class == column.id}">
-												<li><a href="###" onclick="toContentList('${column3.id}');" >${column3.name }</a></li>
+												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stats"></em>&nbsp;${column3.name }</a></li>
 											</c:if>
 										</c:forEach>
 									</ul>
@@ -94,7 +94,7 @@
 						<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 						<c:forEach var="column" items="${columnList}">
 							<c:if test="${column.class_type == 1 && column.id != 102 && column.id != 107 }">
-								<li class="active"><a href="###" onclick="toContentList('${column.id}');">${column.name}</a></li>
+								<li class=""><a href="###" onclick="toContentList('${column.id}');">${column.name}</a></li>
 							</c:if>
 						</c:forEach>
 					</ul>

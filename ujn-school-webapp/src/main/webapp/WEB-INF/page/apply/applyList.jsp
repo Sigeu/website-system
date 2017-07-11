@@ -30,6 +30,9 @@
 						<button class="btn btn-success radius size-MINI" id="reset_but">
 							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
 						</button> &nbsp;&nbsp;
+						 <button class="btn btn-primary radius size-MINI" id="export_but">
+							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>导出
+						</button> 
 					</td>
 				</tr>
 
@@ -142,6 +145,13 @@
 														"display" : true
 													},{
 														"name" : "查看",
+														"fn" : "toDetail(\'"
+																+ row.id
+																+ "\')",
+														"type" : "primary-outline size-MINI radius",
+														"display" : true
+													},{
+														"name" : "回复",
 														"fn" : "toDetail(\'"
 																+ row.id
 																+ "\')",

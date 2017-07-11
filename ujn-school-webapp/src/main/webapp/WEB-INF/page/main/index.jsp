@@ -87,11 +87,10 @@
 			</dd>
 		</dl>
 		<dl id="menu-comments">
-			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe622;</i> 申请公开管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/apply/controller/applyController/toApplyList" data-title="在线申请" href="javascript:;">在线申请</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/apply/controller/applyController/toFeedbackList" data-title="意见反馈" href="javascript:void(0)">反馈状态</a></li>
 				</ul>
 			</dd>
 		</dl>

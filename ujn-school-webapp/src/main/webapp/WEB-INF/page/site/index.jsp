@@ -40,7 +40,7 @@
 
 				<div class="col-md-8 all-list">
 					<c:forEach var="contentNew" items="${contentListNew}" varStatus="content">
-						<c:if test="${content.index > 1}">
+						<c:if test="${content.index > 0}">
 							<div class="all-list-pro clearfix">
 								<div class="pro-date pull-left hidden-xs hidden-sm">
 									<dl>
@@ -81,30 +81,7 @@
 										<li><a href="###"
 											onclick="toContentDetail('${content2.id}');"
 											class="pull-left"><label class="btn btn-primary btn-xs">${content2.title}</label></a><span
-											class="list-date">${content2.add_time}</span></li>
-									</c:forEach>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="list info-list">
-						<div class="pro-top">
-							<h4 class="pull-left">
-								<a href="###" onclick="toContentList('${column_id3}');"><span
-									class="glyphicon glyphicon-list-alt"></span> 信息公开规章制度</a>
-							</h4>
-							<a href="###" onclick="toContentList('${column_id3}');"
-								class="more pull-right">更多&gt;&gt;</a>
-						</div>
-						<div class="clearfix"></div>
-						<div class="list-pro-container">
-							<div class="list-pro">
-								<ul>
-									<c:forEach var="content3" items="${contentList3}">
-										<li><a href="###"
-											onclick="toContentDetail('${content3.id}');"
-											class="pull-left">${content3.title}</a><span
-											class="list-date">${content3.add_time}</span></li>
+											class="list-date">${fn:substring(content2.add_time, 0, 10)}</span></li>
 									</c:forEach>
 								</ul>
 							</div>

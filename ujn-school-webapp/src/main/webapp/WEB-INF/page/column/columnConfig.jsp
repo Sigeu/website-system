@@ -148,14 +148,14 @@
 					<input type="radio" id="list_order3" name="list_order"
 						value="3" /> <label for="list_order3">访问数</label>
 				</div>
-				<!-- <div class="radio-box">
+				<div class="radio-box">
 					<input type="radio" id="list_order4" name="list_order"
-						value="4" /> <label for="list_order4">添加顺序正排</label>
+						value="4" /> <label for="list_order4">排序值正序</label>
 				</div>
 				<div class="radio-box">
 					<input type="radio" id="list_order5" name="list_order"
-						value="5" /> <label for="list_order5">添加顺序倒排</label>
-				</div> -->
+						value="5" /> <label for="list_order5">排序值倒序</label>
+				</div>
 			</div>
 		</div>
 		</br>

@@ -17,6 +17,7 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/content/controller/contentController/updateContent" method="post" class="form form-horizontal" id="form-content-update">
 		<input type="hidden" name="id" id="id_" value="${content.id}">
+		<input type="hidden" name="read_pwd" id="read_pwd" value="${content.read_pwd }" >
 		<%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
@@ -106,9 +107,9 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">内容标签：</label>
+			<label class="form-label col-xs-4 col-sm-2">关键词：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${content.tag}" placeholder="内容标签，可以手动录入或选择已有常用标签" id="tag" name="tag">
+				<input type="text" class="input-text" value="${content.tag}" placeholder="关键词，可以手动录入或选择已有常用标签" id="tag" name="tag">
 			</div>
 		</div>
 		<div class="row cl btn-label btn-prompt">

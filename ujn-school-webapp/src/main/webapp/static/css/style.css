@@ -16,17 +16,16 @@ a:hover, a:focus, a:visited {color:#25499d; text-decoration:none}
 .navbar-dropdown {position:absolute; width:230px}
 .navbar-dropdown span {display:inline-block; width:50%; height:40px; text-align:center; cursor:pointer; color:#25499d}
 .navbar-dorpdown-one {background:url(../images/dropdown.png) repeat-x left bottom; -moz-border-radius:4px 4px 0 0; border-radius:4px 4px 0 0;}
-#div_first {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
-#div_first li {line-height:40px}
-#div_second {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
-#div_second li {line-height:40px}
 .navbar-dropdown .navbar-dropdown-two {display:block; padding:0 10%; height:40px; text-align:left}
 .navbar-dropdown a.navbar-dropdown-two:hover, .navbar-dropdown a.active {color:#25499d; background:url(../images/dropdown-pro.png) repeat-x}
 a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:#000}
 .navbar-pos {position:relative}
 .navbar-dropdown .navbar-dropdown-thr {position:absolute; top:0px; left:100%; padding:10px 25px; width:560px; line-height:30px; background:url(../images/dropdown-thr.png)}
-#div_first .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
-#div_second .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
+#navbar-dropdown-con {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
+/* #navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px} */
+#navbar-dropdown-con li {line-height:40px}
+#navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
+/* #div_second .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px} */
 .navbar-pos a {color:#000}
 .navbar-pos a:hover, .navbar-pos a:hover span, .navbar-dropdown a.active span {color:#25499d}
 #footer {margin-top:20px; background-color:#25499d; color:#fff}
@@ -41,9 +40,11 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 .index-info {margin-top:15px; margin-bottom:30px}
 .info-list {margin-top:30px}
 .pro-top {width:100%; height:30px; line-height:30px; border-bottom:1px solid #25499d; color:#000}
-.pro-top > h4 {margin-top:0; width:auto; height:30px; line-height:30px; font-size:14px; border-bottom:1px solid #f60}
-.pro-top > h4 > a {color:#000}
+.pro-top > h4 {margin-top:0; height:30px; line-height:30px; font-size:14px; border-bottom:1px solid #f60}
+.pro-top > h4 > a {display:block; width:auto; color:#000; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
 .pro-top > h4 > a > span {color:#666}
+.article-sidebarl .pro-top > h4 {width:100%}
+.article-sidebarl .pro-top > h4 > a {width:70%}
 .pro-top a.more {color:#666; font-size:13px}
 .pro-top a.more:hover {text-decoration:underline}
 .index-info-fir-top a {display:block; width:100%; line-height:25px; font-size:14px; color:#000}
@@ -62,6 +63,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 .list-pro a {width:100%; padding:5px 0; overflow:hidden;  font-size:14px; white-space:nowrap; text-overflow:ellipsis; color:#333}
 .list-pro a:hover {color:#25499d}
 .list-pro .list-date {color:#666; font-size:12px}
+.index-tab .list-pro .btn-primary {margin-right:5px}
 .contact {margin-top:30px}
 .contact li {font-size:14px; line-height:30px}
 
@@ -96,7 +98,8 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 .search-pro p.search-date {color:#999}
 .cat-con .nav {margin-top:20px}
 .cat-con .nav > li > a {padding:7px 10px; font-size:14px}
-.cat-con .nav > li.active > a {color:#333}
+/* .cat-con .nav > li.active > a {color:#333} */
+.nav > li.active > a {text-decoration: none; background-color: #25499d; color: #fff}
 .cat-pro {padding:15px 0; background:url(../images/line.png) repeat-x left bottom}
 .cat-pro p {margin:0 0 5px 0; font-size:14px; color:#000}
 .cat-pro a {display:block; float:left; line-height:30px; margin-right:20px; color:#666}
@@ -111,7 +114,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 .login-jumb img {margin:0 auto}
 /* 小屏幕（平板，大于等于768px） */
 @media (min-width: 768px) {
-	.navbar-search {position:relative; top:25px}
+	.navbar-search {position:relative; top:0px; left:0px}
 	.navbar-top .container {padding-left:15px; padding-right:15px}
 	#navbar-collapse .nav-justified {height:40px; line-height:40px}
 	.navbar-top .input-group .form-control, .navbar-top .input-group .btn-default {height:34px}
@@ -130,12 +133,12 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 }
 /* 中等屏幕（桌面显示器，大于等于992px） */
 @media (min-width: 992px) {
-	.navbar-header {padding:0 15px}
+	/* .navbar-header {padding:0 15px} */
 	.navbar-top .container {background:url(../images/cloud-small.png) no-repeat right bottom}
 	.login-top .container {background:none}
 	.navbar-search {position:relative; top:25px; right:-20px; width:250px}
 	.navbar-menu {font-size:14px}
-	.navbar-dropdown .navbar-dropdown-two {padding-left:12%}
+	.navbar-dropdown .navbar-dropdown-two {padding-left:12%; width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
 	.carousel-inner img {min-height:400px}
 	.index-info {margin-top:30px}
 	.pro-top {height:40px; line-height:40px}
@@ -150,8 +153,8 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.pro-con {width:510px}
 	.pro-con > a > h5 {font-size:15px}
 	.no-line, .list-pro li.no-line {background:none}
-	.list-pro li {padding-bottom:0px; height:45px; line-height:45px}
-	.list-pro a {padding:0; width:80%; height:45px; line-height:45px; font-size:15px}
+	.list-pro li {padding-bottom:0px; height:49px; line-height:49px}
+	.list-pro a {padding:0; width:80%; height:49px; line-height:49px; font-size:15px}
 	.list-pro .list-date {float:right; font-size:13px}
 	.info-list {margin-top:30px}
 	.contact {margin-top:0}
@@ -194,19 +197,20 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
 @media (min-width: 1200px) {
-	.navbar-header {padding:15px 0}
+	/* .navbar-header {padding:0px 15px} */
 	.navbar-search {position:relative; top:30px; right:-100px; width:300px}
 	.navbar-top .container {background:url(../images/cloud.png) no-repeat right bottom}
 	.navbar-search .glyphicon-search {font-size:16px; top:2px; color:#999}
 	.login-top .container {background:#fff}
 	.navbar-menu {font-size:17px}
-	#div_first {font-size:14px}
-	#div_second {font-size:14px}
+	#navbar-dropdown-con {font-size:14px}
 	.navbar-dropdown .navbar-dropdown-two {padding-left:10%}
 	.index-info {margin-top:35px}
 	.pro-top > h4 {font-size:17px}
 	.pro-con {width:645px; }
 	.index-info {margin-bottom:50px}
+	.list-pro li {height:52px; line-height:52px}
+	.list-pro a {height:52px; line-height:52px}
 	.info-list {margin-top:50px}
 	.article-body img {width:70%}
 	.article-pro-con {width:1035px}

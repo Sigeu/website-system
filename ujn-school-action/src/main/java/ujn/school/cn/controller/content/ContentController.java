@@ -25,6 +25,7 @@ import ujn.school.cn.model.content.ContentWithBLOBs;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
 import ujn.school.cn.pub.util.MyDateUtil;
+import ujn.school.cn.pub.util.MyRandomUtils;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.content.IContentService;
 
@@ -107,8 +108,9 @@ public class ContentController extends MyBaseController {
 		List<Code> classCodeList = codeService.queryCodeListByType(IMySystemConstants.CLASS_CODE);
 		model.addAttribute("classCodeList", classCodeList);
 		
-		//String orderNum = MyAutoGenerateOrderNum.generateOrderNum("Content");
-		//model.addAttribute("orderNum", orderNum);
+		//8位的随机字符串密码（数字和字符）
+		String randomPwd = MyRandomUtils.randomString(IMySystemConstants.COUNT_NUM8);
+		model.addAttribute("randomPwd", randomPwd);
 		
 		return "content/contentAdd";
 	}

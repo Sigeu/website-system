@@ -35,9 +35,10 @@
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
 						<th>标题</th>
-						<th>URL</th>
+						<!-- <th>URL</th> -->
 						<th>图片</th>
-						<th>描述</th>
+						<th>类型</th>
+						<!-- <th>描述</th> -->
 						<th>备注说明</th>
 						<th width="15%">操作</th>
 					</tr>
@@ -97,19 +98,22 @@
 								},  {
 									data : "title",
 									defaultContent : 0
-								}, {
+								}, /* {
 									data : "img_url",
 									defaultContent : ""
-								}, {
+								},  */{
 									data : "id",
 									render : function(data, type, row, meta) {
 										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/carousel/carouselController/queryImgById?id=' + data + '">';
 										return context;
 									}
 								}, {
+									data : "carousel_type_name",
+									defaultContent : ""
+								}, /* {
 									data : "description",
 									defaultContent : ""
-								}, {
+								},  */{
 									data : "remark",
 									defaultContent : ""
 								}, {

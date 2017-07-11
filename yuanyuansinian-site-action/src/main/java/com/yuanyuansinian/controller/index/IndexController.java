@@ -1666,7 +1666,8 @@ public class IndexController extends MyBaseController {
 			
 			//Map<Object,Object> resInfo = new HashMap<Object, Object>();
 			//接收财付通通知的URL
-			String notify_url = "http://127.0.0.1:8180/tenpay_api_b2c/payNotifyUrl.jsp";
+			//String notify_url = "http://127.0.0.1:8180/tenpay_api_b2c/payNotifyUrl.jsp";
+			String notify_url = "http://www.sdyysn.com/payNotifyUrl.jsp";
 
 			//---------------生成订单号 开始------------------------
 			//当前时间 yyyyMMddHHmmss

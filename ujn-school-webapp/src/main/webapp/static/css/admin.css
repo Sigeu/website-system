@@ -8,8 +8,10 @@ h3 {font-size:20px}
 h4 {font-size:17px}
 h5 {font-size:15px}
 a {color:#333; text-decoration:none}
-a:hover {color:#25499d; text-decoration:none}
-a:focus {color:#25499d; text-decoration:none}
+a:hover {color:#b85844; text-decoration:none}
+a:focus {color:#b85844; text-decoration:none}
+a.more {color:#333; margin-top:7px}
+a.more:hover {text-decoration:underline; color:#b85844}
 .navbar-logo {margin-bottom:0}
 .navbar-logo .logo {padding-top:0; margin:10px 0}
 .navbar-logo .navbar-form {padding-bottom:0}
@@ -24,10 +26,14 @@ a:focus {color:#25499d; text-decoration:none}
 .navbar-mainnav .container {background:#f5f5dc}
 #footer {padding:25px 0}
 #footer li {height:30px; line-height:30px}
+
+
 img.login-img {margin:0 auto}
 .login-jumb .modal-content {margin-top:100px}
+
+
 .modal .code-img {margin-top:1px; height:32px}
-.code-img-wd {margin-left:15px; color:#333}
+.code-img-wd {margin-left:15px; color:#f0ad4e}
 .btn-submit {width:100%}
 .modal-footer {margin-right:15px}
 .modal-footer button {width:70px}
@@ -45,6 +51,7 @@ img.login-img {margin:0 auto}
 	.navbar-mainnav .container {padding:0}
 	#footer {padding:25px 0 15px 0}
 	.footer-logo {margin-top:20px}
+	
 	.login-jumb {position:relative}
 	.login-jumb .modal-content {position:absolute; margin-top:0; width:390px; top:110px; right:-3%}
 	img.login-img {width:100%; height:420px}

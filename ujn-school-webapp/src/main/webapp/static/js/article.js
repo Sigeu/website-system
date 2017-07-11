@@ -69,6 +69,17 @@ function toContentList(id) {
 	if(id == '112'){
 		url = contextPath + "/index/controller/indexController/toContentList112?id=" + id;
 	}
+	//信息公开目录：显示公开目录的菜单
+	if(id == '111'){
+		url = contextPath + "/index/controller/indexController/toContentList111?id=" + id;
+	}
+	window.location.href = url;
+}
+
+//3级栏目内容列表
+function toContentListForLevel3(id) {
+	var url = contextPath
+			+ "/index/controller/indexController/toContentListForLevel3?id=" + id;
 	window.location.href = url;
 }
 /*----------------------访问列表-----------------------*/
