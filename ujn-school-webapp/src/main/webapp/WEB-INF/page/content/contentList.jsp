@@ -58,6 +58,7 @@
 						<th>所属栏目</th>
 						<th>有效期</th>
 						<th>访问属性</th>
+						<th>访问密码</th>
 						<th>审核状态</th>
 						<th width="8%">操作</th>
 					</tr>
@@ -136,6 +137,9 @@
 									data : "read_type_name",
 									defaultContent : ""
 								}, {
+									data : "read_pwd",
+									defaultContent : ""
+								},{
 									data : "status_name",
 									defaultContent : "",
 									render: function (data, type, full, meta) {
