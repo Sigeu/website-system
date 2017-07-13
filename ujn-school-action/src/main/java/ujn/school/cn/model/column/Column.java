@@ -45,6 +45,7 @@ public class Column {
      * @mbg.generated Mon Feb 06 11:15:53 CST 2017
      */
     private Integer big_class;
+    private String big_class_name;
 
     /**
      *
@@ -127,6 +128,8 @@ public class Column {
      * @mbg.generated Mon Feb 06 11:15:53 CST 2017
      */
     private Integer class_type;
+    
+    private String class_type_name;
 
     /**
      *
@@ -833,5 +836,21 @@ public class Column {
 
 	public void setNav_name(String nav_name) {
 		this.nav_name = nav_name;
+	}
+
+	public String getBig_class_name() {
+		return big_class_name;
+	}
+
+	public void setBig_class_name(String big_class_name) {
+		this.big_class_name = big_class_name;
+	}
+
+	public String getClass_type_name() {
+		return class_type_name;
+	}
+
+	public void setClass_type_name(String class_type_name) {
+		this.class_type_name = class_type_name;
 	}
 }

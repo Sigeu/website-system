@@ -20,8 +20,8 @@
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>栏目名称:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="name"
+						name="name" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -46,8 +46,8 @@
 					<tr class="text-c">
 						<!-- <th>序号</th> -->
 						<th>栏目名称</th>
-						<!-- <th>所属模块</th> -->
-						<th>显示位置</th>
+						<th>栏目级别</th>
+						<th>上级栏目</th>
 						<!-- <th>是否前台显示</th> -->
 						<!-- <th>栏目级别</th>
 						<th>打开方式</th> -->
@@ -104,13 +104,13 @@
 								columns : [ {
 									data : "name",
 									defaultContent : ""
-								}, /* {
-									data : "module",
+								}, {
+									data : "class_type_name",
 									defaultContent : ""
-								},  */{
-									data : "nav_name",
+								}, {
+									data : "big_class_name",
 									defaultContent : ""
-								}, /* {
+								}, /*{
 									data : "display",
 									defaultContent : ""
 								},  */{
@@ -134,14 +134,7 @@
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
 														"display" :true
-													}, /* {
-														"name" : "查看",
-														"fn" : "toDetail(\'"
-																+ row.id
-																+ "\')",
-														"type" : "primary-outline size-MINI radius",
-														"display" : true
-													}, */{
+													}, {
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
@@ -163,19 +156,11 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//登录名称
-				var login_name = $("#login_name").val().trim();
-				//真实姓名
-				var real_name = $("#real_name").val().trim();
-				//注册时间
-				var date_start = $("#date_start").val().trim();
-				var date_end = $("#date_end").val().trim();
+				//栏目名称
+				var name = $("#name").val().trim();
 				//查询条件
 				var param = {
-					"login_name" : login_name,
-					"real_name" : real_name,
-					"date_start" : date_start,
-					"date_end" : date_end
+					"name" : name
 				};
 				
 				return param;
@@ -183,14 +168,9 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				//登录名称
-				$("#login_name").val('');
-				//真实姓名
-				$("#real_name").val('');
-				//注册时间
-				$("#date_start").val('');
-				$("#date_end").val('');
-				
+				//名称
+				$("#name").val('');
+				$('#search_but').trigger("click"); 
 			});
 			
 			//添加
@@ -198,29 +178,14 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加栏目</div></strong>","background-color: #5a97df"],
+				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnAdd'
 				 });
 			});
 			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
-			});
-			
 		});
-
-		//重新加载页面：子页面调用
-		function reloadPage(){
-			window.location.reload();//刷新当前页面.
-		}
 		
 		//修改
 		function toEdit(id){
@@ -272,17 +237,6 @@
 				}); 
 		}
 		
-		//查看明细
-		function toDetail(id){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["查看"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/column/controller/columnController/toColumnDetail?id='+id
-			 });
-		}
 		
 	</script>
 </body>

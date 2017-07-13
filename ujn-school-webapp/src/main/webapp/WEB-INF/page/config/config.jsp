@@ -80,7 +80,7 @@
 					</div>
 				</div>
 				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">默认密码：</label>
+					<label class="form-label col-xs-4 col-sm-2">系统用户默认密码：</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<input type="text" class="input-text" value="${config.default_pwd }" id="default_pwd" name="default_pwd" >
 					</div>

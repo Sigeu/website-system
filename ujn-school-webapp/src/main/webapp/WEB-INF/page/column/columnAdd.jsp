@@ -13,34 +13,14 @@
 		</nav>
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/column/controller/columnController/addColumn" method="post" class="form form-horizontal" id="form-column-add">
-		<input type="hidden" name="class_type" id="class_type" value="1">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上级栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
-				<!-- <ul id="column_tree" class="ztree"></ul> -->
-				<span class="select-box" id="sel_span">
-					<select class="select" id="big_class" name="big_class"> 
-						<option value="0">--顶级栏目--</option>  
-                        <c:forEach items="${columnList}" var="column">  
-                        	<option value="${column.id}" classtype="${column.class_type}">${column.name}</option>  
-                        </c:forEach>  
-                    </select> 
-				</span>
+				<input type="text" class="input-text" value="" placeholder="上级栏目" id="big_class_name" name="big_class_name" readonly="readonly">
+				<input type="hidden" name="big_class" id="big_class" value="">
+				<input type="hidden" name="class_type" id="class_type" value="">
 			</div>
 		</div>
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">栏目级别：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="class_type" class="select">
-					<option value="">--请选择--</option>
-					<option value="1">一级分类</option>
-					<option value="2">二级分类</option>
-					<option value="3">三级级分类</option>
-					<option value="4">四级分类</option>
-				</select>
-				</span> 
-			</div>
-		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>栏目名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -51,19 +31,6 @@
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="1" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">显示位置：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="nav" class="select">
-					<option value="">--请选择--</option>
-					<option value="1">头部导航</option>
-					<option value="2">尾部导航</option>
-					<option value="3">都显示</option>
-					<option value="0">不显示</option>
-				</select>
-				</span> 
 			</div>
 		</div>
 		</br>
@@ -77,6 +44,7 @@
 </div>
 <%@ include file="../../../common/footer_form.jsp"%>
 <script type="text/javascript">
+var contextPath = '${pageContext.request.contextPath}';
 $(function(){
 	//取消按钮
 	$('#close_but').on('click', function() {
@@ -95,6 +63,20 @@ $(function(){
 		}
 	}); 
 	
+	
+	//选择上级菜单
+	$("#big_class_name").click(function(){
+		utils.treeSelectColumn(false,'',function(columnList){
+			if(columnList && columnList.length > 0){
+				var column = columnList[0];
+				$('#big_class_name').val(column.name);
+				$('#big_class').val(column.id);
+				$('#class_type').val(column.class_type);
+			}
+		});
+	});
+	
+	
 }); 
 
 
@@ -110,12 +92,6 @@ $(function() {
 			no_order:{
 				required:true,
 				digits:true
-			},
-			class_type:{
-				required:true
-			},
-			nav:{
-				required:true
 			}
 		},
 		onkeyup:false,
