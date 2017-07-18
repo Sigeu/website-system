@@ -14,7 +14,7 @@
 <div class="article all-con cat-con">
 	<div class="container">
 			<ul class="tabBar nav nav-tabs">
-				<li class="active" id="li102"><a href="#" style="border-bottom-color: transparent; margin-bottom:0">校务公开</a></li>
+				<li class="" id="li102"><a href="#" style="border-bottom-color: transparent; margin-bottom:0">校务公开</a></li>
 				<li  id="li107"><a href="#">党务公开</a></li>
 			</ul>
 			<div class="cat-list" id="column102" style="display:block">
@@ -54,25 +54,47 @@
 <%@ include file="../../../common/footer-site.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript">
+//栏目ID
+var column_id = "${column_id}";
 var contextPath = "${pageContext.request.contextPath}";
 var id = '${column_id }';
 var totalPage = '${totalPage }';
 var totalRecords = '${totalRecords }';
 //表单提交，可上传文件
 $(function() {
-		$('#li102').on('click',function(){
-			$('#column102').show();
-			$('#column107').hide();
-			$(this).addClass('active');
-			$('#li107').removeClass('active');
-		});
-		
-		$('#li107').on('click',function(){
-			$('#column107').show();
-			$('#column102').hide();
-			$(this).addClass('active');
-			$('#li102').removeClass('active');
-		});
+	if(column_id == '102'){
+		//$('#li102').trigger('mouseover');
+		$('#column102').show();
+		$('#column107').hide();
+		$('#li102').addClass('active');
+		$('#li107').removeClass('active');
+	}
+	if(column_id == '107'){
+		$('#column107').show();
+		$('#column102').hide();
+		$('#li107').addClass('active');
+		$('#li102').removeClass('active');
+	}
+	if(column_id == '111'){
+		$('#column102').show();
+		$('#column107').hide();
+		$('#li102').addClass('active');
+		$('#li107').removeClass('active');
+	}
+	
+	$('#li102').on('mouseover',function(){
+		$('#column102').show();
+		$('#column107').hide();
+		$(this).addClass('active');
+		$('#li107').removeClass('active');
+	});
+	
+	$('#li107').on('mouseover',function(){
+		$('#column107').show();
+		$('#column102').hide();
+		$(this).addClass('active');
+		$('#li102').removeClass('active');
+	});
 });
 </script>
 </body>

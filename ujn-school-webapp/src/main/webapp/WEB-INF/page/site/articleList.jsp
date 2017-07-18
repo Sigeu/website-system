@@ -7,7 +7,7 @@
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/css/keleyidivpager.css">
-<title>内容列表</title>
+<title>济南大学信息公示网站内容列表</title>
 </head>
 <body>
 	<%@ include file="siteHeader.jsp"%>

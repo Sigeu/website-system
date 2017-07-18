@@ -653,8 +653,8 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_content c
-    where status = '1' and column_id = #{column_id,jdbcType=VARCHAR}
-    and unix_timestamp(validity_time) &lt;  unix_timestamp(now()) 
+    where c.status = '1' and c.column_id = #{column_id,jdbcType=VARCHAR}
+    and (unix_timestamp(c.validity_time) &lt;  unix_timestamp(now()) or c.validity_time is null or c.validity_time ='')
    order by id desc 
   </select>
   
@@ -680,7 +680,7 @@
   </update>
   
   
-  <!-- 最新公开信息 ：不包括重要信息-->
+  <!-- 最新公开信息（只查询属于校务和党务栏目内的数据） ：不包括重要信息-->
    <select id="queryContentListByNew" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -688,8 +688,9 @@
     <include refid="Blob_Column_List" />
     from ujn_content c
     where 1=1
-    and status = '1'
-    and importance is null
+    and c.status = '1'
+    and (c.importance is null or c.importance ='')
+    and (c.class1='102' or c.class1 = '107')
     order by id desc  
      <if test="limit_num != null and limit_num != 0">
          limit #{limit_num}
@@ -704,8 +705,10 @@
     <include refid="Blob_Column_List" />
     from ujn_content c
     where 1=1
-     and status = '1'
-    and importance is not null
+    and c.status = '1'
+    and c.importance is not null 
+    and c.importance !=''
+    and (c.class1='102' or c.class1 = '107')
     order by id desc  
     <if test="limit_num != null and limit_num != 0">
          limit #{limit_num}

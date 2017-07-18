@@ -69,9 +69,13 @@ function toContentList(id) {
 	if(id == '112'){
 		url = contextPath + "/index/controller/indexController/toContentList112?id=" + id;
 	}
-	//信息公开目录：显示公开目录的菜单
-	if(id == '111'){
+	//信息公开目录、校务、党务：显示公开目录的菜单,
+	if(id == '111' || id == '102'|| id == '107'){
 		url = contextPath + "/index/controller/indexController/toContentList111?id=" + id;
+	}
+	//年度报告
+	if(id == '113'){
+		url = contextPath + "/index/controller/indexController/toContentList113?id=" + id;
 	}
 	window.location.href = url;
 }

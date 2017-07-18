@@ -30,55 +30,7 @@
 		<div class="row">
 			<div id="menu_self" class="navbar-dropdown hidden-xs hidden-sm">
 				<div id="navbar-dropdown-top" >
-					<span id="span_first">校务公开</span><span id="span_second">党务公开</span>
-				</div>
-				<div id="div_first" style="display: none">
-					<ul>
-					<c:forEach var="column" items="${columnList102}">
-							<li class="navbar-pos" columnId="${column.id}">
-							<a href="###"  onclick="toContentList('${column.id}');" 
-								class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
-									<ul class="navbar-dropdown-thr" style="display: none">
-										<c:forEach var="column3" items="${columnList3}">
-											<c:if test="${column3.big_class == column.id}">
-												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stats"></em>&nbsp;${column3.name }</a></li>
-											</c:if>
-										</c:forEach>
-									</ul>
-							</li>
-					</c:forEach>
-					</ul>
-					<ul style="display: none">
-						<li><a href="###">00</a></li>
-						<li><a href="###">11</a></li>
-						<li><a href="###">22</a></li>
-						<li><a href="###">33</a></li>
-						<li><a href="###">44</a></li>
-					</ul>
-				</div>
-				<div id="div_second" style="display: none">
-					<ul>
-					<c:forEach var="column" items="${columnList107}">
-							<li class="navbar-pos">
-							<a href="###" onclick="toContentList('${column.id}');" 
-								class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
-									<ul class="navbar-dropdown-thr" style="display: none">
-										<c:forEach var="column3" items="${columnList3}">
-											<c:if test="${column3.big_class == column.id}">
-												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stats"></em>&nbsp;${column3.name }</a></li>
-											</c:if>
-										</c:forEach>
-									</ul>
-							</li>
-					</c:forEach>
-					</ul>
-					<ul style="display: none">
-						<li><a href="###">00</a></li>
-						<li><a href="###">11</a></li>
-						<li><a href="###">22</a></li>
-						<li><a href="###">33</a></li>
-						<li><a href="###">44</a></li>
-					</ul>
+					<span onclick="toContentList('102');">校务公开</span><span onclick="toContentList('107');">党务公开</span>
 				</div>
 			</div>
 			<div class="col-md-9 col-xs-12 navbar-right">

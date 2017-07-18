@@ -138,7 +138,15 @@
 									defaultContent : ""
 								}, {
 									data : "read_pwd",
-									defaultContent : ""
+									render: function (data, type, row, meta) {
+										var html = '';
+											if(row.read_type =='2'){
+												html = ''+ data + '';
+											}else{
+												html = '无需密码';
+											}
+					                     return html;
+					                 }
 								},{
 									data : "status_name",
 									defaultContent : "",
@@ -165,7 +173,7 @@
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : row.status == '1'? false : true
+														"display" :true
 													},{
 														"name" : "删除",
 														"fn" : "toDelete(\'"

@@ -7,7 +7,7 @@
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav.css">
-<title>网站首页</title>
+<title>济南大学信息公示网站首页</title>
 </head>
 <body>
 	<%@ include file="siteHeader-index.jsp"%>
@@ -104,7 +104,7 @@
 							<li>邮编：${contact.addr_zip }</li>
 							<li>邮箱：${contact.email }</li>
 						</ul>
-						<a href="###"><img
+						<a href="http://news.ujn.edu.cn" target="_blank"><img
 							src="${pageContext.request.contextPath}/static/images/news.jpg"
 							class="img-responsive" alt="济大新闻网"></a>
 					</div>
