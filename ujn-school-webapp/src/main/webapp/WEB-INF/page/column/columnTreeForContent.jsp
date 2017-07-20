@@ -40,9 +40,12 @@ function getSelected(){
 	var columnArray = new Array();
 	$.each(nodes,function(index,node){
 		var column = new Object;
-		column.id = node.id;
+		column.column_id = node.id;
 		column.name = node.name;
-		column.class_type = Number(node.class_type) + 1;
+		column.class_type = node.class_type;
+		column.class1 = node.class1;
+		column.class2 = node.class2;
+		column.class3 = node.class3;
 		columnArray.push(column);
 	});
 	return columnArray;
@@ -59,7 +62,7 @@ $(function () {
 					enable: true,
 					idKey: "id",
 					pIdKey: "big_class",
-					rootPId: "99999" //在查询数据的时候主动添加了根节点数据
+					rootPId: "0" //没有根节点数据
 				},
 				key : {
 					name : "name"
@@ -81,7 +84,7 @@ $(function () {
 	};
 	$.ajax({
 		type: "post",
-		url: '${pageContext.request.contextPath}/column/controller/columnController/listColumn',
+		url: '${pageContext.request.contextPath}/column/controller/columnController/listAllColumn',
 		data: {},
 		dataType: "json",
 		success: function (zNodes) {

@@ -300,12 +300,40 @@ public class ColumnController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 获取所有数据 
+	 * @Description: 获取所有数据 ：添加了一个虚拟的根节点数据
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/listColumn")
 	public List<Column> listColumn() {
+		List<Column> columnList = null;
+		try {
+			columnList = this.columnService.queryColumnList(null);
+			//添加根节点
+			Column rootColumn = new Column();
+			rootColumn.setId(0);
+			rootColumn.setBig_class(99999);
+			rootColumn.setName("所有栏目");
+			rootColumn.setClass_type(0);
+			rootColumn.setNav(1);
+			columnList.add(rootColumn);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return columnList;
+	}
+
+	
+	/**
+	 * 
+	 * @Description: 所有栏目数据 ，没有根节点
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/listAllColumn")
+	public List<Column> listAllColumn() {
 		List<Column> columnList = null;
 		try {
 			columnList = this.columnService.queryColumnList(null);
@@ -316,10 +344,13 @@ public class ColumnController extends MyBaseController {
 
 		return columnList;
 	}
-
+	
+	
 	/**
 	 * 
-	 * @Description: 栏目数据（树状结构）
+	 * @Description: 栏目管理-上级栏目数据（树状结构），
+	 * 		该数据的树状结构增加两个一个名字为“所有栏目”的虚拟数据作为根节点。
+	 * 		树状结构的数据做了单独的处理。
 	 * @param enableCheck
 	 * @param hasSelected
 	 * @param model
@@ -336,6 +367,27 @@ public class ColumnController extends MyBaseController {
 		return "column/columnTree";
 	}
 
+	/**
+	 * 
+	 * @Description: 内容管理-所属栏目 
+	 * @param enableCheck
+	 * @param hasSelected
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("columnTreeForContent")
+	public String columnTreeForContent(
+			@RequestParam(value = "enableCheck", required = false, defaultValue = "false") Boolean enableCheck,
+			@RequestParam(value = "hasSelected", required = false, defaultValue = "") String hasSelected,
+			Model model) {
+		model.addAttribute("enableCheck", enableCheck);// 是否允许多选
+		model.addAttribute("hasSelected", hasSelected);// 默认选中的
+
+		return "column/columnTreeForContent";
+	}
+	
+	
+	
 	/**
 	 * 
 	 * @Description: 添加

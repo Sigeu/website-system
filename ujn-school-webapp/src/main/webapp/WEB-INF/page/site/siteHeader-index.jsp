@@ -37,11 +37,11 @@
 					<c:forEach var="column" items="${columnList102}">
 							<li class="navbar-pos" columnId="${column.id}">
 							<a href="###"  onclick="toContentList('${column.id}');" 
-								class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
+								class="navbar-dropdown-two">${column.name }<span>&gt;</span></a>
 									<ul class="navbar-dropdown-thr" style="display: none">
 										<c:forEach var="column3" items="${columnList3}">
 											<c:if test="${column3.big_class == column.id}">
-												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stats"></em>&nbsp;${column3.name }</a></li>
+												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stop"></em>&nbsp;${column3.name }</a></li>
 											</c:if>
 										</c:forEach>
 									</ul>
@@ -61,11 +61,11 @@
 					<c:forEach var="column" items="${columnList107}">
 							<li class="navbar-pos">
 							<a href="###" onclick="toContentList('${column.id}');" 
-								class="navbar-dropdown-two active">${column.name }<span>&gt;</span></a>
+								class="navbar-dropdown-two">${column.name }<span>&gt;</span></a>
 									<ul class="navbar-dropdown-thr" style="display: none">
 										<c:forEach var="column3" items="${columnList3}">
 											<c:if test="${column3.big_class == column.id}">
-												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stats"></em>&nbsp;${column3.name }</a></li>
+												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stop"></em>&nbsp;${column3.name }</a></li>
 											</c:if>
 										</c:forEach>
 									</ul>

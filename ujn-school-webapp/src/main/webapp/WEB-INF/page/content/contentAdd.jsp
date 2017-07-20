@@ -29,7 +29,7 @@
 				</span> 
 			</div>
 		</div> --%>
-		<div class="row cl">
+		<%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>一级栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" id="class1" name="class1">
@@ -58,13 +58,25 @@
 				</select>
 				</span> 
 			</div>
-		</div>
+		</div> --%>
 		<%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>编号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${orderNum }" placeholder="编号" id="code_num" name="code_num" readonly="readonly">
 			</div>
 		</div> --%>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<input type="text" class="input-text" value="" placeholder="所属栏目" id="column_id_name" name="column_id_name" readonly="readonly">
+				<input type="hidden" name="column_id" id="column_id" value="">
+				<input type="hidden" name="class1" id="class1" value="">
+				<input type="hidden" name="class2" id="class2" value="">
+				<input type="hidden" name="class3" id="class3" value="">
+			</div>
+		</div>
+		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -154,7 +166,7 @@
 				</span>
 			</div>
 		</div>
-		<div class="row cl">
+		<%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">目录分类：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
@@ -166,7 +178,7 @@
 					</select>
 				</span>
 			</div>
-		</div>
+		</div> --%>
 		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -197,6 +209,20 @@ $(function(){
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭
 		return false;
+	});
+	
+	//所属栏目
+	$("#column_id_name").click(function(){
+		utils.treeSelectColumnForContent(false,'',function(columnList){
+			if(columnList && columnList.length > 0){
+				var column = columnList[0];
+				$('#column_id_name').val(column.name);
+				$('#column_id').val(column.column_id);
+				$('#class1').val(column.class1);
+				$('#class2').val(column.class2);
+				$('#class3').val(column.class3);
+			}
+		});
 	});
 	
 });

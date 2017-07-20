@@ -29,7 +29,7 @@
 				</select>
 				</span> </div>
 		</div> --%>
-		<div class="row cl">
+		<%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>一级栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" id="class1" name="class1">
@@ -58,7 +58,19 @@
 				</select>
 				</span> 
 			</div>
+		</div> --%>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<input type="text" class="input-text" value="${content.column_id_name}" placeholder="所属栏目" id="column_id_name" name="column_id_name" readonly="readonly">
+				<input type="hidden" name="column_id" id="column_id" value="${content.column_id}">
+				<input type="hidden" name="class1" id="class1" value="">
+				<input type="hidden" name="class2" id="class2" value="">
+				<input type="hidden" name="class3" id="class3" value="">
+			</div>
 		</div>
+		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -168,7 +180,6 @@ $(function(){
 		return false;
 	});
 	//赋值
-	$('#class1').val('${content.class1}');
 	$('#read_type').val('${content.read_type}');
 	ue.ready(function() {//编辑器初始化完成再赋值  
     	ue.setContent('${content.content}');  //赋值给UEditor  
@@ -177,6 +188,21 @@ $(function(){
 	if("永久有效" == '${content.validity_time}'){
 		$('#validity_time').val('');
 	}
+	
+	
+	//所属栏目
+	$("#column_id_name").click(function(){
+		utils.treeSelectColumnForContent(false,'',function(columnList){
+			if(columnList && columnList.length > 0){
+				var column = columnList[0];
+				$('#column_id_name').val(column.name);
+				$('#column_id').val(column.column_id);
+				$('#class1').val(column.class1);
+				$('#class2').val(column.class2);
+				$('#class3').val(column.class3);
+			}
+		});
+	});
 });
 
 

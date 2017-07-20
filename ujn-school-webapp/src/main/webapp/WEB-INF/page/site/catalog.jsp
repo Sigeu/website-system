@@ -14,8 +14,8 @@
 <div class="article all-con cat-con">
 	<div class="container">
 			<ul class="tabBar nav nav-tabs">
-				<li class="" id="li102"><a href="#" style="border-bottom-color: transparent; margin-bottom:0">校务公开</a></li>
-				<li  id="li107"><a href="#">党务公开</a></li>
+				<li class="" id="li102"><a href="#column102" style="border-bottom-color: transparent; margin-bottom:0">校务公开</a></li>
+				<li  id="li107"><a href="#column107">党务公开</a></li>
 			</ul>
 			<div class="cat-list" id="column102" style="display:block">
 				<c:forEach var="column" items="${columnList102}">
@@ -23,7 +23,7 @@
 							<p>${column.name }</p>
 							<c:forEach var="column3" items="${columnList3}">
 								<c:if test="${column3.big_class == column.id}">
-									<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" >|${column3.name }|</a></li>
+									<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><span class="glyphicon glyphicon-menu-right"></span>${column3.name }</a></li>
 								</c:if>
 							</c:forEach>
 							<div class="clearfix"></div>
@@ -37,7 +37,7 @@
 							<p>${column.name }</p>
 							<c:forEach var="column3" items="${columnList3}">
 								<c:if test="${column3.big_class == column.id}">
-									<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" >|${column3.name }|</a></li>
+									<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><span class="glyphicon glyphicon-menu-right"></span>${column3.name }</a></li>
 								</c:if>
 							</c:forEach>
 							<div class="clearfix"></div>
@@ -83,6 +83,7 @@ $(function() {
 	}
 	
 	$('#li102').on('mouseover',function(){
+		//$('.cat-pro')[4].focus();
 		$('#column102').show();
 		$('#column107').hide();
 		$(this).addClass('active');

@@ -21,11 +21,10 @@ a:hover, a:focus, a:visited {color:#25499d; text-decoration:none}
 a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:#000}
 .navbar-pos {position:relative}
 .navbar-dropdown .navbar-dropdown-thr {position:absolute; top:0px; left:100%; padding:10px 25px; width:560px; line-height:30px; background:url(../images/dropdown-thr.png)}
+.navbar-dropdown-thr em {margin-right:5px; font-size:10px}
 #navbar-dropdown-con {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
-/* #navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px} */
 #navbar-dropdown-con li {line-height:40px}
 #navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
-/* #div_second .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px} */
 .navbar-pos a {color:#000}
 .navbar-pos a:hover, .navbar-pos a:hover span, .navbar-dropdown a.active span {color:#25499d}
 #footer {margin-top:20px; background-color:#25499d; color:#fff}
@@ -33,7 +32,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 #footer li {line-height:30px}
 .page {margin-top:15px; text-align:center}
 .footer-tool {margin-top:10px; margin-right:15px; width:175px}
-.carousel-inner img {margin: 0 auto}
+.carousel-inner > .item > img {margin: 0 auto; height:100px}
 .nav > li > a {padding-top:0; padding-bottom:0; color:#000}
 .navbar-top .input-group .form-control, .navbar-top .input-group .btn-default {height:50px}
 
@@ -104,6 +103,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 .cat-pro p {margin:0 0 5px 0; font-size:14px; color:#000}
 .cat-pro a {display:block; float:left; line-height:30px; margin-right:20px; color:#666}
 .cat-pro a:hover {color:#25499d}
+.cat-pro span {font-size:10px}
 .apply-con {margin-top:20px}
 .form-btn {margin-top:20px; text-align:center}
 .form-btn > button {width:100px}
@@ -118,6 +118,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.navbar-top .container {padding-left:15px; padding-right:15px}
 	#navbar-collapse .nav-justified {height:40px; line-height:40px}
 	.navbar-top .input-group .form-control, .navbar-top .input-group .btn-default {height:34px}
+	.carousel-inner > .item > img {height:240px}
 	.index-info {margin-top:20px}
 	#footer {margin-top:50px; position:relative}
 	#footer .footer-tool {position:absolute; top:10px; right:15px}
@@ -130,6 +131,13 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.login-search {margin-top:20px}
 	.login-jumb img {height:430px}
 	.login-jumb .modal-content {position:absolute; top:70px; right:-30px; width:390px}
+	
+	/* 提交申请表单 */
+	.apply-con .form-group {margin-bottom:35px}
+	.apply-con .form-group .apply-pos, .apply-area {position:relative}
+	.apply-warning {position:absolute; top:37px}
+	.apply-area .apply-warning {position:absolute; top:32px; left:30px}
+	.apply-img {margin-top:25px; width:110px; height:110px}
 }
 /* 中等屏幕（桌面显示器，大于等于992px） */
 @media (min-width: 992px) {
@@ -139,7 +147,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.navbar-search {position:relative; top:25px; right:-20px; width:250px}
 	.navbar-menu {font-size:14px}
 	.navbar-dropdown .navbar-dropdown-two {padding-left:12%; width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
-	.carousel-inner img {min-height:400px}
+	.carousel-inner > .item > img {height:400px}
 	.index-info {margin-top:30px}
 	.pro-top {height:40px; line-height:40px}
 	.pro-top > h4 {font-size:16px; height:40px; line-height:40px}
@@ -208,6 +216,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.index-info {margin-top:35px}
 	.pro-top > h4 {font-size:17px}
 	.pro-con {width:645px; }
+	.carousel-inner > .item > img {height:450px}
 	.index-info {margin-bottom:50px}
 	.list-pro li {height:52px; line-height:52px}
 	.list-pro a {height:52px; line-height:52px}

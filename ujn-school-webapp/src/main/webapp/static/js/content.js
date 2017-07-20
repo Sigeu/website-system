@@ -30,7 +30,7 @@ $(function(){
 	});
 	
 	//一级菜单
-	$('#class1').on('change', function(){
+/*	$('#class1').on('change', function(){
 		var thisValue = $(this).val();
 		//先清空
 		$("#class2").empty();
@@ -47,9 +47,9 @@ $(function(){
 				}
 			}
 		});
-	});
+	});*/
 	//二级菜单
-	$('#class2').on('change', function(){
+/*	$('#class2').on('change', function(){
 		var thisValue = $(this).val();
 		//先清空
 		$("#class3").empty();
@@ -64,6 +64,8 @@ $(function(){
 				}
 			}
 		});
-	});
+	});*/
+	
+	
 });
 /*----------------------标签选择-----------------------*/

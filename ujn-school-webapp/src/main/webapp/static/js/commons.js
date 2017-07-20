@@ -27,7 +27,7 @@ var utils = {
 		}
 		return null;
 	},
-	//栏目选择
+	//栏目管理-上级栏目选择
 	treeSelectColumn: function (enableCheck, hasSelected, func) {
 		index_ = top.layer.open({
 				type: 2,
@@ -45,7 +45,24 @@ var utils = {
 				}
 			});
 	},
-	
+	//内容管理-所属栏目选择
+	treeSelectColumnForContent: function (enableCheck, hasSelected, func) {
+		index_ = top.layer.open({
+				type: 2,
+				title: '选择栏目',
+				shadeClose: true,
+				shade: false,
+				maxmin: true, //开启最大化最小化按钮
+				area: ['625px', '745px'],
+				content: [contextPath + '/column/controller/columnController/columnTreeForContent?enableCheck=' + enableCheck + "&hasSelected=" + hasSelected, "no"],
+				btn: ["确认", "关闭"],
+				yes: function (index, layero) {
+					var selectedData = layero.find("iframe")[0].contentWindow.getSelected();
+					top.layer.close(index_);
+					func(selectedData);
+				}
+			});
+	},
 	//选择部门,enableCheck:是否允许多选。func回调方法
 	treeSelectDept: function (enableCheck, hasSelected, func) {
 		index_ = top.layer.open({

@@ -14,7 +14,7 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/column/controller/columnController/updateColumn" method="post" class="form form-horizontal" id="form-column-update">
 		<input type="hidden" name="id" id="id_" value="${column.id}">
-		<div class="row cl">
+		<%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上级栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
 				<!-- <ul id="column_tree" class="ztree"></ul> -->
@@ -27,6 +27,14 @@
                     </select> 
 				</span>
 			</div>
+		</div> --%>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上级栏目：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<input type="text" class="input-text" value="${column.big_class_name}" placeholder="上级栏目" id="big_class_name" name="big_class_name" readonly="readonly">
+				<input type="hidden" name="big_class" id="big_class" value="${column.big_class}">
+				<input type="hidden" name="class_type" id="class_type" value="${column.class_type}">
+			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>栏目名称：</label>
@@ -38,31 +46,6 @@
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${column.no_order}" placeholder="排序值，越小越靠前" id="no_order" name="no_order">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">栏目级别：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="class_type" id="class_type" class="select">
-					<option value="1">一级分类</option>
-					<option value="2">二级分类</option>
-					<option value="3">三级级分类</option>
-					<option value="4">四级分类</option>
-				</select>
-				</span> 
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">显示位置：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select id="nav" name="nav" class="select">
-					<option value="">--请选择--</option>
-					<option value="1">头部导航</option>
-					<option value="2">尾部导航</option>
-					<option value="3">都显示</option>
-					<option value="0">不显示</option>
-				</select>
-				</span> 
 			</div>
 		</div>
 		</br>
@@ -80,15 +63,26 @@
 <script type="text/javascript">
 	
 $(function(){
-	//设置下拉选项的选中值
-	$("#big_class").val('${column.big_class}');
-	$("#class_type").val('${column.class_type}');
-	$("#nav").val('${column.nav}');
+	if('${column.big_class}' == '0'){
+		$('#big_class_name').val('根栏目');
+	}
 	//取消按钮
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭
 		return false;
+	});
+	
+	//选择上级菜单
+	$("#big_class_name").click(function(){
+		utils.treeSelectColumn(false,'',function(columnList){
+			if(columnList && columnList.length > 0){
+				var column = columnList[0];
+				$('#big_class_name').val(column.name);
+				$('#big_class').val(column.id);
+				$('#class_type').val(column.class_type);
+			}
+		});
 	});
 	
 });

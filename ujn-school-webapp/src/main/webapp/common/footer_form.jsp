@@ -10,3 +10,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/commons.js"></script>
+<script type="text/javascript">
+var contextPath = '${pageContext.request.contextPath}';
+</script>

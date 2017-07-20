@@ -53,7 +53,7 @@ $(function(){
 		return false;
 	});
 	//设置栏目等级。默认为1
-	$("#big_class").on('change',function(){
+	/* $("#big_class").on('change',function(){
 		var big_class_type = $(this).find("option:selected").attr('classtype');
 		if(typeof(big_class_type) == "undefined"){
 			$('#class_type').val('1');
@@ -61,7 +61,7 @@ $(function(){
 			var class_type = new Number(big_class_type) + 1;
 			$('#class_type').val(class_type);
 		}
-	}); 
+	});  */
 	
 	
 	//选择上级菜单

@@ -603,6 +603,7 @@
     <if test="keywords != null and keywords != ''">
         and keywords like concat('%', #{keywords}, '%')
     </if>
+    order by c.id desc
   </select>
   
   <!-- 内容审核列表 -->
@@ -619,6 +620,7 @@
     <if test="keywords != null and keywords != ''">
         and keywords like concat('%', #{keywords}, '%')
     </if>
+    order by c.id desc
   </select>
   
   <!-- 内容逻辑删除-->
@@ -643,6 +645,7 @@
     <if test="keywords != null and keywords != ''">
         and keywords like concat('%', #{keywords}, '%')
     </if>
+    order by c.id desc
   </select>
   
   

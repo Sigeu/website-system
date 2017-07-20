@@ -264,8 +264,10 @@ public class ContentController extends MyBaseController {
 				content.setOpen_code(IMySystemConstants.VALUE_1);
 			}else if(IMySystemConstants.COLUMN107.equals(content.getClass1())){
 				content.setOpen_code(IMySystemConstants.VALUE_2);
+			}else{
+				content.setOpen_code(IMySystemConstants.VALUE_3);
 			}
-			content.setColumn_id(content.getClass3());
+			//content.setColumn_id(content.getClass3());
 			
 			//默认状态为“0”：待审核
 			content.setStatus(IMySystemConstants.VALUE_0);
