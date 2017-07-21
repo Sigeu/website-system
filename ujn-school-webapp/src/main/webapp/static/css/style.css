@@ -22,9 +22,9 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 .navbar-pos {position:relative}
 .navbar-dropdown .navbar-dropdown-thr {position:absolute; top:0px; left:100%; padding:10px 25px; width:560px; line-height:30px; background:url(../images/dropdown-thr.png)}
 .navbar-dropdown-thr em {margin-right:5px; font-size:10px}
-#navbar-dropdown-con {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
-#navbar-dropdown-con li {line-height:40px}
-#navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
+.navbar-dropdown-con {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
+.navbar-dropdown-con li {line-height:40px}
+.navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
 .navbar-pos a {color:#000}
 .navbar-pos a:hover, .navbar-pos a:hover span, .navbar-dropdown a.active span {color:#25499d}
 #footer {margin-top:20px; background-color:#25499d; color:#fff}
@@ -211,7 +211,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.navbar-search .glyphicon-search {font-size:16px; top:2px; color:#999}
 	.login-top .container {background:#fff}
 	.navbar-menu {font-size:17px}
-	#navbar-dropdown-con {font-size:14px}
+	.navbar-dropdown-con {font-size:14px}
 	.navbar-dropdown .navbar-dropdown-two {padding-left:10%}
 	.index-info {margin-top:35px}
 	.pro-top > h4 {font-size:17px}

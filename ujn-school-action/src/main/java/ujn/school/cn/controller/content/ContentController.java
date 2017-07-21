@@ -34,6 +34,7 @@ import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Code;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.LogUtil;
 import framework.system.service.ICodeService;
 
 /**
@@ -54,7 +55,7 @@ public class ContentController extends MyBaseController {
 	
 	@Resource
 	private ICodeService codeService;
-
+	
 	/**
 	 * 
 	 * @Description: 跳转到分页列表
@@ -276,9 +277,14 @@ public class ContentController extends MyBaseController {
 			contentService.updateContentOrderNum(content);
 			
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			
+			//记录日志
+			LogUtil.saveLog(request, "内容管理-添加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			//记录日志
+			LogUtil.saveLog(request, "内容管理-添加失败");
 		}
 
 		return map;
@@ -305,7 +311,10 @@ public class ContentController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "内容管理-修改");
+		
 		return map;
 	}
 	
@@ -328,7 +337,10 @@ public class ContentController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, "审核失败！");
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "内容管理-审核");
+		
 		return map;
 	}
 
@@ -350,6 +362,10 @@ public class ContentController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
 		}
+		
+		//记录日志
+		LogUtil.saveLog(request, "内容管理-删除");
+		
 		return map;
 	}
 	
@@ -370,6 +386,10 @@ public class ContentController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
 		}
+		
+		//记录日志
+		LogUtil.saveLog(request, "内容管理-恢复");
+		
 		return map;
 	}
 	

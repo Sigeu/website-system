@@ -1,13 +1,10 @@
 package framework.system.pub.util;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang3.StringUtils;
 
 import framework.system.context.FrameworkeContext;
 import framework.system.model.Log;
+import framework.system.model.User;
 import framework.system.service.ILogService;
 
 /**
@@ -28,33 +25,48 @@ public class LogUtil {
 	}
 
 	/**
-	 * 保存操作日志.
-	 * @param req
-	 * @param czlx 操作类型
-	 * @param cznr 操作内容
+	 * 
+	 * @Description: 保存日志
+	 * @param request
+	 * @param operation 操作说明
 	 * @return
 	 */
-	/*public static int saveLog(HttpServletRequest req,
-			String czlx, String cznr, String bz) {
-		long glbm = UserSessionUtil.getGlbmID(req);
-		long yhid = UserSessionUtil.getUserID(req);
-		String yhxm = UserSessionUtil.getMemberName(req);
-		String bmmc = UserSessionUtil.getGlbmName(req);
+	public static int saveLog(HttpServletRequest request,String operation) {
+		User sessionUser = UserSessionUtil.getUser(request);
 		Log log = new Log();
-		log.setYhid(yhid);
-		log.setYhxm(yhxm);
-		log.setGlbm(glbm);
-		log.setBmmc(bmmc);
-		log.setCzsj(new Date());
-		log.setCzlx(czlx);
-		if(StringUtils.isNotEmpty(req.getParameter("menuID"))){
-			log.setCzcd(Long.parseLong(req.getParameter("menuID")));
-		}else{
-			log.setCzcd(-1L);
+		if(null != sessionUser){
+			log.setUser(sessionUser.getLogin_name());
 		}
-		log.setCznr(cznr);
-		log.setIp(req.getRemoteAddr());
-		log.setBz(bz);
+		log.setIp(getIpAddr(request));
+		log.setCreate_date(DateUtil.getDateTime());
+		log.setOperation(operation);
+		log.setType("");
 		return saveLog(log);
-	}*/
+		
+	}
+	
+	/**
+	 * 获取IP
+	 * @param request
+	 * @return
+	 */
+	public static String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("X-Forwarded-For");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		return ip;
+	}
 }

@@ -28,6 +28,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.LogUtil;
 
 /**
  * @Description: 轮播图片管理
@@ -41,7 +42,7 @@ public class CarouselController extends MyBaseController {
 	// 轮播图片Service
 	@Resource
 	private ICarouselService carouselService;
-
+	
 	/**
 	 * 
 	 * @Description: 跳转到分页列表
@@ -80,7 +81,7 @@ public class CarouselController extends MyBaseController {
 		int carouselId = Integer.parseInt(request.getParameter("id"));
 		Carousel carousel = this.carouselService.queryCarouselById(carouselId);
 		model.addAttribute("carousel", carousel);
-
+		
 		return "carousel/carouselUpdate";
 	}
 
@@ -153,10 +154,14 @@ public class CarouselController extends MyBaseController {
 		try {
 			carouselService.addCarousel(request, carousel);
 			map.put("carousel_id", carousel.getId());
-			//map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			//记录日志
+			LogUtil.saveLog(request, "轮播图片管理-添加成功");
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
-			//map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			//记录日志
+			LogUtil.saveLog(request, "轮播图片管理-添加失败");
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
 
 		return map;
@@ -205,7 +210,10 @@ public class CarouselController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "轮播图片管理-修改");
+		
 		return map;
 	}
 
@@ -228,6 +236,9 @@ public class CarouselController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
 		}
+		
+		//记录日志
+		LogUtil.saveLog(request, "轮播图片管理-删除");
 		return map;
 	}
 	

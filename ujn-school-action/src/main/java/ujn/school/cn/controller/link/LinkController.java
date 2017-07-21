@@ -26,6 +26,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.LogUtil;
 
 /**
  * @Description: 友情链接管理
@@ -39,6 +40,7 @@ public class LinkController extends MyBaseController {
 	// 友情链接Service
 	@Resource
 	private ILinkService linkService;
+	
 
 	/**
 	 * 
@@ -151,9 +153,13 @@ public class LinkController extends MyBaseController {
 		try {
 			linkService.addLink(request, link);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			//记录日志
+			LogUtil.saveLog(request, "友情链接管理-添加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			//记录日志
+			LogUtil.saveLog(request, "友情链接管理-添加失败");
 		}
 
 		return map;
@@ -178,7 +184,10 @@ public class LinkController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "友情链接管理-修改");
+		
 		return map;
 	}
 
@@ -199,7 +208,10 @@ public class LinkController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "友情链接管理-修改");
+				
 		return map;
 	}
 
@@ -221,6 +233,9 @@ public class LinkController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
 		}
+		
+		//记录日志
+		LogUtil.saveLog(request, "友情链接管理-删除");
 		return map;
 	}
 

@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import framework.system.pub.util.LogUtil;
 import ujn.school.cn.model.contact.Contact;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.service.contact.IContactService;
@@ -31,6 +32,7 @@ public class ContactController extends MyBaseController {
 	//
 	@Resource
 	private IContactService contactService;
+	
 
 	/**
 	 * 
@@ -67,7 +69,10 @@ public class ContactController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "网站联系方式-修改");
+		
 		return map;
 	}
 }

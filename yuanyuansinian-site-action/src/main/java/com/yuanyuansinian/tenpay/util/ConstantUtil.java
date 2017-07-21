@@ -9,7 +9,7 @@ public class ConstantUtil {
 	public static String APP_ID = "wxde774f3f1ba672b2";//微信开发平台应用id
 	public static String APP_SECRET = "2460ab8faa756e9b6b229b027cc611c7";//应用对应的凭证
 	//应用对应的密钥
-	public static String APP_KEY = "L8LrMqqeGRxST5reouB0K66CaYAWpqhAVsq7ggKkxHCOastWksvuX1uvmvQclxaHoYd3ElNBrNO2DHnnzgfVG9Qs473M3DTOZug5er46FhuGofumV8H2FVR9qkjSlC5K";
+	public static String APP_KEY = "MAFv97SMyuZ2WcCW";
 	public static String PARTNER = "1484404262";//财付通商户号
 	public static String PARTNER_KEY = "8934e7d15453e97507ef794cf7b0519d";//商户号对应的密钥
 	public static String TOKENURL = "https://api.weixin.qq.com/cgi-bin/token";//获取access_token对应的url

@@ -25,6 +25,7 @@ import ujn.school.cn.model.column.ColumnWithBLOBs;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.service.column.IColumnService;
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.LogUtil;
 
 /**
  * @Description: 栏目管理
@@ -39,6 +40,7 @@ public class ColumnController extends MyBaseController {
 	@Resource
 	private IColumnService columnService;
 
+	
 	/**
 	 * 
 	 * @Description: 跳转到栏目列表
@@ -407,7 +409,10 @@ public class ColumnController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "栏目管理-添加");
+		
 		return map;
 	}
 
@@ -429,7 +434,10 @@ public class ColumnController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "栏目管理-修改");
+		
 		return map;
 	}
 
@@ -451,7 +459,10 @@ public class ColumnController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "栏目管理-设置");
+		
 		return map;
 	}
 
@@ -477,10 +488,14 @@ public class ColumnController extends MyBaseController {
 			} else {
 				map.put(RESULT_MESSAGE_STRING, "删除失败！");
 			}
-
+			
+			//记录日志
+			LogUtil.saveLog(request, "栏目管理-删除");
 		} catch (Exception e) {
 			// TODO: handle exception
 			map.put(RESULT_MESSAGE_STRING, "删除失败！");
+			//记录日志
+			LogUtil.saveLog(request, "栏目管理-删除失败");
 		}
 
 		return map;

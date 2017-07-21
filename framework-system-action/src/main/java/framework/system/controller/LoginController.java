@@ -21,10 +21,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import framework.system.model.Log;
 import framework.system.model.User;
 import framework.system.pub.base.SystemBaseController;
-import framework.system.pub.util.DateUtil;
+import framework.system.pub.util.LogUtil;
 import framework.system.pub.util.UserSessionUtil;
 import framework.system.service.ILogService;
 import framework.system.service.IUserService;
@@ -43,7 +42,7 @@ public class LoginController extends SystemBaseController {
 
 	@Resource
 	private ILogService logService;
-
+	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request,  Model model) {
 		String msg = "";
@@ -63,24 +62,22 @@ public class LoginController extends SystemBaseController {
 	        	User systemUser = userService.queryUserByLogin(userParam);
 	        	//用户信息放在session中
 	        	UserSessionUtil.putUser(request, systemUser);
-				Log log = new Log();
-				log.setUser(userName);
-				log.setIp(this.getIpAddr(request));
-				log.setCreate_date(DateUtil.getDateTime());
-				log.setOperation("登录");
-				log.setType("");
-				logService.saveLog(log);
+				//记录日志
+				LogUtil.saveLog(request, "登录成功");
 	        } 
 	        return "main/index"; 
 		} catch (IncorrectCredentialsException e) {  
 	        msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";  
 	        model.addAttribute("message", msg);  
-	        System.out.println(msg);  
+	        //记录日志
+			LogUtil.saveLog(request, "登录密码错误");
 	        return "redirect:/";
 	    } catch (ExcessiveAttemptsException e) {  
 	        msg = "登录失败次数过多";  
 	        model.addAttribute("message", msg);  
 	        System.out.println(msg);  
+	        //记录日志
+			LogUtil.saveLog(request, "登录失败次数过多");
 	        return "redirect:/";
 	    } catch (LockedAccountException e) {  
 	        msg = "帐号已被锁定. The account for username " + token.getPrincipal() + " was locked.";  
@@ -100,7 +97,9 @@ public class LoginController extends SystemBaseController {
 	    } catch (UnknownAccountException e) {  
 	        msg = "帐号不存在. There is no user with username of " + token.getPrincipal();  
 	        model.addAttribute("message", msg);  
-	        System.out.println(msg);  
+	        System.out.println(msg); 
+	      //记录日志
+			LogUtil.saveLog(request, "帐号不存在");
 	        return "redirect:/";
 	    } catch (UnauthorizedException e) {  
 	        msg = "您没有得到相应的授权！" + e.getMessage();  

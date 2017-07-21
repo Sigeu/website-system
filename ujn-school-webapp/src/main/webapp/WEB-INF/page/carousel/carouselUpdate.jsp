@@ -108,7 +108,37 @@ $(function() {
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$('#ctlBtn').trigger("click");
+			var imgList = $('#fileList')
+			.children('div');
+			if (imgList.length > 0) {
+				$('#ctlBtn').trigger("click");
+				// not empty
+			} else {
+				//  is empty
+				var options = {
+					success : function(data) {
+						layer
+								.alert(
+										data.result_message,
+										{
+											closeBtn : 1
+										},
+										function() {
+											//父页面刷新
+											parent.window.location
+													.reload();
+											var index = parent.layer
+													.getFrameIndex(window.name); //先得到当前iframe层的索引
+											parent.layer
+													.close(index); //再执行关闭
+										});
+					}
+				};
+				// 准备form表单
+				$("#form_").ajaxForm(options);
+				// 表单提交     
+				$("#form_").ajaxSubmit(options);
+			}
 			return false;
 		},
 		rules:{

@@ -67,6 +67,7 @@ public class IndexController extends MyBaseController {
 	@Resource
 	private ICarouselService carouselService;
 	
+	
 	/**
 	 * @Description:  显示网站主页
 	 * @param request

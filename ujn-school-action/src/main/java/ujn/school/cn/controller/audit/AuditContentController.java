@@ -30,6 +30,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.pub.util.DataTablePageUtil;
+import framework.system.pub.util.LogUtil;
 
 /**
  * @Description: 内容管理
@@ -46,7 +47,6 @@ public class AuditContentController extends MyBaseController {
 	
 	@Resource
 	private IColumnService columnService;
-	
 
 	/**
 	 * 
@@ -158,7 +158,9 @@ public class AuditContentController extends MyBaseController {
 		} else {
 			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
 		}
-
+		
+		//记录日志
+		LogUtil.saveLog(request, "审核模块-修改");
 		return map;
 	}
 	

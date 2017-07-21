@@ -22,8 +22,7 @@
 
 <div class="login-jumb">
 	<img src="${pageContext.request.contextPath}/static/images/jumb.jpg" class="img-responsive login-img hidden-xs" alt="background" />
-	<form id="form_" class="form form-horizontal"
-				action="${pageContext.request.contextPath}/system/controller/loginController/login"
+	<form id="form_" class="form form-horizontal" action="${pageContext.request.contextPath}/system/controller/loginController/login"
 				method="post">
 	<!-- 模态框声明 -->
 	<div class="modal show" id="regModal" tabindex="-1" data-backdrop="static">
@@ -34,7 +33,6 @@
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form class="form-horizontal">
 							 <div class="form-group">
 								<label class="control-label col-md-3">用户名</label>
 								<div class="col-md-9">
@@ -58,7 +56,6 @@
 									</div>
 								</div>
 							</div>
-						</form>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -91,12 +88,15 @@
 	</div>
 </footer>
 <%@ include file="common/footer_index.jsp"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/layer/2.4/layer.js"></script>
 <script type="text/javascript">  
 	$(function(){
 		$('#kanbuq').on('click',function(){
 			$('#img_').attr('src','${pageContext.request.contextPath}/verifyCodeServlet?' + new Date().getTime());
 		});
 	});
+	
 </script>
 </body>
 </html>
