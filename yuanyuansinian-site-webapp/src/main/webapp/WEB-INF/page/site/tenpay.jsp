@@ -14,39 +14,29 @@
 	<!-- 支付方式弹出页 start -->
 <div class="container pay">
 	<div class="pay-top">
-		<h4>支付方式选择</h4>
+		<h4>支付</h4>
 	</div>
 	<div class="well pay-body">
 		<div class="row">
 			<div class="col-sm-9">
 				<dl>
-					<dt>产品名称：${names }</dt>
-					<!-- <dd>订单编号：2017010203040506070809</dd> -->
+					<dt>名称：缘园思念网商品</dt>
+					<dd>订单编号：${outTradeNo }</dd>
 				<dl>
 			</div>
 			<div class="col-sm-3 pay-count">
-				应付款：￥${count }
+				应付款：￥${totalAmount }
 			</div>
 		</div>
 	</div>
 	<div class="pay-way">
 		<p class="pay-way-top">
-			请选择支付方式：
+			请用微信扫码二维码：
 		</p>
-		<a href="###" onclick="toAlipay('${ids }','${count }');return false;">
 			<dl class="pay-way-pro">
-				<dt><img width="135" height="45" src="${pageContext.request.contextPath}/static/images/alipay.gif" alt="支付宝支付"></dt>  <!-- 替换相应图片即可 -->
-				<dd class="text-center">支付宝支付</dd>
+				<dt><img src="${pageContext.request.contextPath}/sinian/index/indexController/encodeQrcode?urlCode=${urlCode}" alt="微信支付"></dt>  <!-- 替换相应图片即可 -->
+				<dd class="text-center">微信扫码支付</dd>
 			</dl>
-		</a>
-		
-		<a href="###" onclick="toTenpay('${ids }','${count }');return false;">
-			<dl class="pay-way-pro">
-				<dt><img  src="${pageContext.request.contextPath}/static/images/WePayLogo.png" alt="微信支付"></dt>  <!-- 替换相应图片即可 -->
-				<dd class="text-center">微信支付</dd>
-			</dl>
-		</a>
-		
 	</div>
 </div>
 <!-- 支付方式弹出页 end -->

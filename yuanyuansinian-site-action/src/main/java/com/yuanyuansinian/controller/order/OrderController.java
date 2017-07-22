@@ -4,7 +4,13 @@
  */
 package com.yuanyuansinian.controller.order;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -23,6 +29,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.wxpay.sdk.WXPay;
+import com.github.wxpay.sdk.WXPayUtil;
 import com.yuanyuansinian.alipay.config.AlipayConfig;
 import com.yuanyuansinian.model.column.Column;
 import com.yuanyuansinian.model.member.Member;
@@ -36,6 +44,7 @@ import com.yuanyuansinian.service.column.IColumnService;
 import com.yuanyuansinian.service.order.IOrderService;
 import com.yuanyuansinian.service.product.IProductService;
 import com.yuanyuansinian.service.warehouse.IWarehouseService;
+import com.yuanyuansinian.tenpay.config.MyConfig;
 
 import framework.system.pub.util.DataTablePageUtil;
 
@@ -243,7 +252,12 @@ public class OrderController extends MyBaseController {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @Description: 支付宝通知
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/notifyUrl")
 	public String notifyUrl(HttpServletRequest request) {
@@ -488,6 +502,111 @@ public class OrderController extends MyBaseController {
 		
 	}
 
+	
+	/**
+	 * 
+	 * @Description: 微信支付通知 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/notifyUrlForTenpay")
+	public String notifyUrlForTenpay(HttpServletRequest request,HttpServletResponse response) {
+		String message = "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
+		try {
+			//获取登录的会员
+			Member memberUser = super.getSessionMemberUser(request);
+			//读取参数  
+		    InputStream inputStream ;  
+		    StringBuffer sb = new StringBuffer();  
+		    inputStream = request.getInputStream();  
+		    String s ;  
+		    BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));  
+		    while ((s = in.readLine()) != null){  
+		        sb.append(s);  
+		    }  
+		    in.close();  
+		    inputStream.close();  
+		  
+		    
+		    //判断签名是否正确  
+	        String notifyData = sb.toString(); // 支付结果通知的xml格式数据
+	
+	        MyConfig config = new MyConfig();
+	        WXPay wxpay = new WXPay(config);
+	
+	        Map<String, String> notifyMap = WXPayUtil.xmlToMap(notifyData);  // 转换成map
+	
+	        if (wxpay.isPayResultNotifySignatureValid(notifyMap)) {
+	            // 签名正确
+	            // 进行处理。
+	            // 注意特殊情况：订单已经退款，但收到了支付结果成功的通知，不应把商户侧订单状态从退款改成支付成功
+	        	
+	        	//商户订单号
+		 		String out_trade_no = notifyMap.get("out_trade_no");
+		 	
+		 		//微信支付订单号
+		 		String trade_no = notifyMap.get("transaction_id");
+				//
+				Order order = new Order();
+				order.setOrder_num(out_trade_no);
+				//支付成功
+				order.setStatus(IMySystemConstants.VALUE_1);
+				//order.setHall_id(hallId);
+				//微信订单号
+				order.setTrade_no(trade_no);
+				this.orderService.updateOrderByOrderNum(order);
+				//添加仓库
+				Order orderData = this.orderService.queryOrderByOrderNum(out_trade_no);
+				if(null != orderData){
+					//购买的所有产品id
+					String[] idArray = orderData.getProduct_id().split(",");
+					for(String product_id : idArray){
+						Product product = this.productService.queryProductById(Integer.parseInt(product_id));
+						Warehouse warehouse = new Warehouse();
+						warehouse.setOrder_id(out_trade_no);
+						warehouse.setProduct_id(product_id);
+						warehouse.setPurchase_date(MyDateUtil.getDateTime());
+						warehouse.setUse_date(MyDateUtil.getDateTime());
+						warehouse.setMember_id(memberUser.getId()+"");
+						//有效期
+						warehouse.setValidity_day(product.getValidity_day());
+						warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day())));
+						//正在使用
+						warehouse.setUse_status(IMySystemConstants.VALUE_1);
+						warehouse.setProduct_type(product.getType());
+						warehouse.setHall_id(orderData.getHall_id());
+						this.warehouseService.addWarehouse(null, warehouse);
+					}
+					
+				}
+				message = "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
+	        }
+	        else {
+	            // 签名错误，如果数据里没有sign字段，也认为是签名错误
+	        	 System.out.println("通知签名验证失败---时间::::"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+	        	 message = "<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名验证失败]]></return_msg></xml>";
+	        }
+	        
+	        //处理业务完毕  
+	        BufferedOutputStream out = new BufferedOutputStream(  
+	                response.getOutputStream());  
+	        out.write(message.getBytes());  
+	        out.flush();  
+	        out.close(); 
+        
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return message;
+		
+	}
+	
+	
+	
+	
 	/**
 	 * 
 	 * @Description: 删除
