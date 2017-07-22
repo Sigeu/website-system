@@ -156,6 +156,7 @@
 		<if test="date_end != null and date_end != ''">
 			<![CDATA[ and str_to_date(create_date, '%Y-%m-%d %H:%i:%s')   <=  #{date_end}  ]]>
 		</if>
+		and unix_timestamp(create_date) &gt;  unix_timestamp(date_sub(curdate(),interval 100 day))
 	</where>
 	order by id desc
   </select>
