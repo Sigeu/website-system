@@ -11,18 +11,15 @@
 <title>商城-产品内容页</title>
 </head>
 <body>
-	<!-- 支付方式弹出页 start -->
+<!-- 支付方式弹出页 start -->
 <div class="container pay">
 	<div class="pay-top">
 		<h4>支付方式选择</h4>
 	</div>
 	<div class="well pay-body">
 		<div class="row">
-			<div class="col-sm-9">
-				<dl>
-					<dt>产品名称：${names }</dt>
-					<!-- <dd>订单编号：2017010203040506070809</dd> -->
-				<dl>
+			<div class="col-sm-9 pay-title">
+				产品名称：${names }
 			</div>
 			<div class="col-sm-3 pay-count">
 				应付款：￥${count }
@@ -35,18 +32,16 @@
 		</p>
 		<a href="###" onclick="toAlipay('${ids }','${count }');return false;">
 			<dl class="pay-way-pro">
-				<dt><img width="135" height="45" src="${pageContext.request.contextPath}/static/images/alipay.gif" alt="支付宝支付"></dt>  <!-- 替换相应图片即可 -->
-				<dd class="text-center">支付宝支付</dd>
+				<dt><img src="${pageContext.request.contextPath}/static/images/alipay.png" alt="支付宝支付" class="img-responsive"></dt>  <!-- 替换相应图片即可 -->
+				<dd>支付宝支付</dd>
 			</dl>
 		</a>
-		
-		<a href="###" onclick="toTenpay('${ids }','${count }');return false;">
+		<a href="###"  onclick="toTenpay('${ids }','${count }');return false;">
 			<dl class="pay-way-pro">
-				<dt><img  src="${pageContext.request.contextPath}/static/images/WePayLogo.png" alt="微信支付"></dt>  <!-- 替换相应图片即可 -->
-				<dd class="text-center">微信支付</dd>
+				<dt><img src="${pageContext.request.contextPath}/static/images/tenpay.png" alt="微信支付" class="img-responsive"></dt>  <!-- 替换相应图片即可 -->
+				<dd>微信支付</dd>
 			</dl>
 		</a>
-		
 	</div>
 </div>
 <!-- 支付方式弹出页 end -->

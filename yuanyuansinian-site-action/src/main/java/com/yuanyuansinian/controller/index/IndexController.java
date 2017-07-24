@@ -1803,6 +1803,34 @@ public class IndexController extends MyBaseController {
 		return "site/tenpay";
 	}
 
+	
+	/**
+	 * 
+	 * @Description: 检查微信付款是否支付成功
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/checkTenpay")
+	public Map<String, Object> checkTenpay(HttpServletRequest request,@RequestParam(value = "outTradeNo", required = false,defaultValue = "") String outTradeNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			//本系统订单号
+			//String outTradeNo = request.getParameter("outTradeNo")==null? "": request.getParameter("id");
+			//默认状态
+			String status = IMySystemConstants.VALUE_0;
+			Order order = orderService.queryOrderByOrderNum(outTradeNo);
+			if(null != order){
+				status = order.getStatus();
+			}
+			map.put("status", status);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
 	/**
 	 * 生成二维码图片 不存储 直接以流的形式输出到页面
 	 * 

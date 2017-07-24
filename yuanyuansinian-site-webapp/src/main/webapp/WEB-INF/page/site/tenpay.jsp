@@ -11,32 +11,36 @@
 <title>商城-产品内容页</title>
 </head>
 <body>
-	<!-- 支付方式弹出页 start -->
+
+<!-- 支付方式弹出页 start -->
 <div class="container pay">
 	<div class="pay-top">
-		<h4>支付</h4>
+		<h4>收银台</h4>
 	</div>
-	<div class="well pay-body">
+	<div class="well pay-body pay-wx-body">
 		<div class="row">
 			<div class="col-sm-9">
 				<dl>
-					<dt>名称：缘园思念网商品</dt>
+					<dt>产品名称：缘园思念网商品</dt>
 					<dd>订单编号：${outTradeNo }</dd>
 				<dl>
 			</div>
-			<div class="col-sm-3 pay-count">
-				应付款：￥${totalAmount }
+			<div class="col-sm-3 pay-wx-count">
+				应付金额：￥${totalAmount }
 			</div>
 		</div>
 	</div>
 	<div class="pay-way">
-		<p class="pay-way-top">
-			请用微信扫码二维码：
-		</p>
-			<dl class="pay-way-pro">
-				<dt><img src="${pageContext.request.contextPath}/sinian/index/indexController/encodeQrcode?urlCode=${urlCode}" alt="微信支付"></dt>  <!-- 替换相应图片即可 -->
-				<dd class="text-center">微信扫码支付</dd>
-			</dl>
+		<div class="pay-wx">
+			<img src="${pageContext.request.contextPath}/static/images/wx.png" class="wxlogo pull-left">
+			<div class="pay-label pull-left">推荐</div>
+			<div class="pay-des pull-left">亿万用户的选择，更快更安全</div>
+			<div class="pay-price pull-right">支付：<span>${totalAmount }</span>元</div>
+		</div>
+		<div class="pay-code">
+			<img src="${pageContext.request.contextPath}/sinian/index/indexController/encodeQrcode?urlCode=${urlCode}" class="pay-code-img" alt="微信支付">
+			<img src="${pageContext.request.contextPath}/static/images/pay.jpg" class="pay-code-des" alt="微信支付">
+		</div>
 	</div>
 </div>
 <!-- 支付方式弹出页 end -->
@@ -62,7 +66,7 @@
 			 });
 		}
 		
-		//支付宝支付
+		//微信支付
 		function toTenpay(ids,count){
 			layer.open({
 			    type: 2,
@@ -75,6 +79,35 @@
 			//var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 			//parent.layer.close(index); //再执行关闭
 		}
+		
+		
+		//定时器，每隔5s查询订单支付状态，订单状态改变，清除页面定时器，页面跳转  
+		var timeCheckOrder = window.setInterval(checkOrder,5000);
+		function checkOrder() {
+			$.ajax({
+				method : "POST",
+				url : contextPath + "/sinian/index/indexController/checkTenpay",
+				data : {
+					'outTradeNo' : '${outTradeNo }'
+				}
+			}).done(function(data) {
+				//支付状态
+				var status = data.status;
+				
+				if (status == "0") {
+					//window.clearInterval(timeCheckOrder);
+					//当你在iframe页面关闭自身时
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭   
+					//支付成功跳转  
+					//window.location.href = contextPath + "/sinian/index/indexController/toMemberCenter";
+				} else if(status == "2"){
+					//支付失败  
+					clearInterval(timeCheckOrder);
+				}
+			});
+		}
+		
 	</script>
 </body>
 </html>

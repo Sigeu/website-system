@@ -165,6 +165,7 @@
 				/sinian/cart/cartController/deleteCart = anon
 				/sinian/warehouse/warehouseController/deleteWarehouse = anon
 				/sinian/order/orderController/notifyUrl = anon
+				/sinian/order/orderController/notifyUrlForTenpay = anon
 				/sinian/order/orderController/returnUrl = anon
 				/sinian/templateImg/templateImgController/toSingleTemplateImgChoose = anon
 				/sinian/templateImg/templateImgController/toDoubleTemplateImgChoose = anon
