@@ -67,26 +67,10 @@ $('#buy_now_but').on('click',function(){
 				    type: 2,
 				    maxmin:true,
 				    title:["结算"],
-				    area: ['50%', '50%'],
+				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: contextPath + '/sinian/index/indexController/choosePay?names=' + names + '&count=' + count
+				    content: contextPath + '/sinian/index/indexController/choosePay?ids=' + ids + '&names=' + names + '&count=' + count
 				 });
-				
-				/*index_confirm = layer.confirm('总金额：￥' + count + "</br>礼品：" + names, {
-					  btn: ['购买','取消'] //按钮
-					}, function(){
-						layer.open({
-						    type: 2,
-						    maxmin:true,
-						    title:["结算"],
-						    area: ['100%', '100%'],
-						    shadeClose: false, //点击遮罩关闭
-						    content: contextPath + '/sinian/index/indexController/toPay?ids=' + ids + '&count=' + count
-						 });
-						layer.close(index_confirm);
-					}, function(){
-						layer.close(index_confirm);
-				});*/
 		}
 	});
 });

@@ -54,7 +54,8 @@ $(function(){
 				    title:["结算"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
-				    content: contextPath + '/sinian/index/indexController/toPay?ids=' + ids + '&count=' + count
+				    //content: contextPath + '/sinian/index/indexController/toPay?ids=' + ids + '&count=' + count
+				    content: contextPath + '/sinian/index/indexController/choosePay?ids=' + ids + '&names=' + names + '&count=' + count
 				 });
 				layer.close(index_confirm);
 			}, function(){

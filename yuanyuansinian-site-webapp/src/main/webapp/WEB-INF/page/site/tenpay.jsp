@@ -54,32 +54,6 @@
 		var activeFlag = '缘园商城';
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
-		//支付宝支付
-		function toAlipay(ids,count){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["结算"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: contextPath + '/sinian/index/indexController/toPay?ids=' + ids + '&count=' + count
-			 });
-		}
-		
-		//微信支付
-		function toTenpay(ids,count){
-			layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["结算"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: contextPath + '/sinian/index/indexController/toTenpay?ids=' + ids + '&count=' + count
-			 });
-			//var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-			//parent.layer.close(index); //再执行关闭
-		}
-		
 		
 		//定时器，每隔5s查询订单支付状态，订单状态改变，清除页面定时器，页面跳转  
 		var timeCheckOrder = window.setInterval(checkOrder,5000);
@@ -94,16 +68,15 @@
 				//支付状态
 				var status = data.status;
 				
-				if (status == "0") {
-					//window.clearInterval(timeCheckOrder);
-					//当你在iframe页面关闭自身时
-					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-					parent.layer.close(index); //再执行关闭   
-					//支付成功跳转  
-					//window.location.href = contextPath + "/sinian/index/indexController/toMemberCenter";
+				if (status == "1") {
+					window.clearInterval(timeCheckOrder);
+					//调用父页面关闭所有弹窗并跳转到会员中心
+					parent.parent.toClose();
 				} else if(status == "2"){
 					//支付失败  
 					clearInterval(timeCheckOrder);
+					//调用父页面关闭所有弹窗并跳转到会员中心
+					parent.parent.toClose();
 				}
 			});
 		}

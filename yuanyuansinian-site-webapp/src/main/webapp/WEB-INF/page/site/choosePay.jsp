@@ -33,13 +33,13 @@
 		<a href="###" onclick="toAlipay('${ids }','${count }');return false;">
 			<dl class="pay-way-pro">
 				<dt><img src="${pageContext.request.contextPath}/static/images/alipay.png" alt="支付宝支付" class="img-responsive"></dt>  <!-- 替换相应图片即可 -->
-				<dd>支付宝支付</dd>
+				<!-- <dd>支付宝支付</dd> -->
 			</dl>
 		</a>
 		<a href="###"  onclick="toTenpay('${ids }','${count }');return false;">
 			<dl class="pay-way-pro">
 				<dt><img src="${pageContext.request.contextPath}/static/images/tenpay.png" alt="微信支付" class="img-responsive"></dt>  <!-- 替换相应图片即可 -->
-				<dd>微信支付</dd>
+				<!-- <dd>微信支付</dd> -->
 			</dl>
 		</a>
 	</div>
@@ -67,7 +67,7 @@
 			 });
 		}
 		
-		//支付宝支付
+		//微信支付
 		function toTenpay(ids,count){
 			layer.open({
 			    type: 2,
@@ -80,6 +80,12 @@
 			//var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 			//parent.layer.close(index); //再执行关闭
 		}
+		
+		/* function toClose(){
+			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+			parent.layer.close(index); //再执行关闭  
+			window.location.href = contextPath + "/sinian/index/indexController/toMemberCenter";
+		} */
 	</script>
 </body>
 </html>
