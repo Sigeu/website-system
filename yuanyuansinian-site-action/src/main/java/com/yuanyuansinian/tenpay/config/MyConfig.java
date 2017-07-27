@@ -22,7 +22,7 @@ public class MyConfig implements WXPayConfig{
     private byte[] certData;
 
     public MyConfig() throws Exception {
-        String certPath = "e:/apiclient/apiclient_cert.p12";
+        String certPath = "C:/apiclient/apiclient_cert.p12";
         File file = new File(certPath);
         InputStream certStream = new FileInputStream(file);
         this.certData = new byte[(int) file.length()];
