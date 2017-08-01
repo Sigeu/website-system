@@ -356,8 +356,8 @@ public class OrderController extends MyBaseController {
 							warehouse.setUse_date(MyDateUtil.getDateTime());
 							warehouse.setMember_id(memberUser.getId()+"");
 							//有效期
-							warehouse.setValidity_day(product.getValidity_day());
-							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day())));
+							warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
+							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
 							//正在使用
 							warehouse.setUse_status(IMySystemConstants.VALUE_1);
 							warehouse.setProduct_type(product.getType());
@@ -475,8 +475,8 @@ public class OrderController extends MyBaseController {
 							warehouse.setUse_date(MyDateUtil.getDateTime());
 							warehouse.setMember_id(memberUser.getId()+"");
 							//有效期
-							warehouse.setValidity_day(product.getValidity_day());
-							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day())));
+							warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
+							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
 							//正在使用
 							warehouse.setUse_status(IMySystemConstants.VALUE_1);
 							warehouse.setProduct_type(product.getType());
@@ -496,7 +496,7 @@ public class OrderController extends MyBaseController {
 		 } catch (Exception e) {
 				// TODO: handle exception
 			 e.printStackTrace();
-			 message = "fail";
+			 message = "redirect:/sinian/index/indexController/toMemberWarehouse";
 		}
 		return message;
 		
@@ -571,8 +571,8 @@ public class OrderController extends MyBaseController {
 						warehouse.setUse_date(MyDateUtil.getDateTime());
 						warehouse.setMember_id(memberUser.getId()+"");
 						//有效期
-						warehouse.setValidity_day(product.getValidity_day());
-						warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day())));
+						warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
+						warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
 						//正在使用
 						warehouse.setUse_status(IMySystemConstants.VALUE_1);
 						warehouse.setProduct_type(product.getType());

@@ -347,6 +347,7 @@ public class WarehouseController extends MyBaseController {
 			//warehouse.setIssue(getSessionUser(request).getLogin_name());
 			//默认状态为“0”：待审核
 			warehouse.setUse_status(IMySystemConstants.VALUE_0);
+			warehouse.setUse_date(MyDateUtil.getDateTime());
 			warehouseService.addWarehouse(request, warehouse);
 			map.put("model_id", warehouse.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
@@ -391,8 +392,8 @@ public class WarehouseController extends MyBaseController {
 		Warehouse  warehouse = this.warehouseService.queryWarehouseById(warehouseId);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		String today = MyDateUtil.getDate();
-		String endDay = MyDateUtil.addDay(today,Integer.parseInt(warehouse.getValidity_day()));
+		String today = MyDateUtil.getDateTime();
+		String endDay = MyDateUtil.addDay(today,Integer.parseInt(warehouse.getValidity_day()==null? DAYS_:warehouse.getValidity_day()));
 		//使用日期
 		warehouse.setUse_date(today);
 		//结束日期

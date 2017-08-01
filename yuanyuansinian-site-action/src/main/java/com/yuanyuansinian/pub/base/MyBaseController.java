@@ -76,6 +76,9 @@ public class MyBaseController{
 	public static final String STATUS_CODE_1 = "1";
 	public static final String STATUS_CODE_2 = "2";
 	public static final String STATUS_CODE_3 = "3";
+	
+	//贡品默认有效期
+	public static final String DAYS_ = "10";
 
 	// ------------------------------------------------------------------constants
 	

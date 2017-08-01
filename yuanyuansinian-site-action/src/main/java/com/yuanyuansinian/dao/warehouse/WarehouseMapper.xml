@@ -12,6 +12,7 @@
     <result column="member_id" jdbcType="VARCHAR" property="member_id" />
     <result column="product_id" jdbcType="VARCHAR" property="product_id" />
     <result column="product_img" jdbcType="VARCHAR" property="product_img" />
+    <result column="put_type" jdbcType="VARCHAR" property="put_type" />
     <result column="purchase_date" jdbcType="VARCHAR" property="purchase_date" />
     <result column="use_date" jdbcType="VARCHAR" property="use_date" />
     <result column="validity_day" jdbcType="VARCHAR" property="validity_day" />
@@ -31,6 +32,7 @@
     Id, order_id, member_id, 
     product_id, 
     (select pic from ujn_product p where p.id = t.product_id) as product_img,
+    (select put_type from ujn_product p1 where p1.id = t.product_id) as put_type,
     purchase_date, use_date, validity_day, end_date, 
     use_status, 
     case   

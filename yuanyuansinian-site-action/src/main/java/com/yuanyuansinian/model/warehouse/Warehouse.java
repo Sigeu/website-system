@@ -40,6 +40,7 @@ public class Warehouse {
     private String product_img;
     private String price_site;
     private String hall_id;
+    private String put_type;
 
     /**
      *
@@ -384,5 +385,13 @@ public class Warehouse {
 
 	public void setUse_status_name(String use_status_name) {
 		this.use_status_name = use_status_name;
+	}
+
+	public String getPut_type() {
+		return put_type;
+	}
+
+	public void setPut_type(String put_type) {
+		this.put_type = put_type;
 	}
 }
