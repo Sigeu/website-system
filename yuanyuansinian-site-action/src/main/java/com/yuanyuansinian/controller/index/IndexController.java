@@ -1618,9 +1618,14 @@ public class IndexController extends MyBaseController {
 		// 总价
 		String count = request.getParameter("count") == null ? "0" : request
 				.getParameter("count");
+		
+		String hallId = request.getParameter("hallId") == null ? "" : request
+				.getParameter("hallId");
+		
 		model.addAttribute("ids", ids);
 		model.addAttribute("names", names);
 		model.addAttribute("count", count);
+		model.addAttribute("hallId", hallId);
 
 		return "site/choosePay";
 	}

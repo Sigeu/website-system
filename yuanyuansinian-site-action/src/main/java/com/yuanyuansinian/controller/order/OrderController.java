@@ -358,10 +358,18 @@ public class OrderController extends MyBaseController {
 							//有效期
 							warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
 							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
-							//正在使用
-							warehouse.setUse_status(IMySystemConstants.VALUE_1);
+							if(null != orderData.getHall_id() && !"".equals(orderData.getHall_id())){
+								//正在使用
+								warehouse.setUse_status(IMySystemConstants.VALUE_1);
+								warehouse.setHall_id(orderData.getHall_id());
+							}else{
+								//未使用
+								warehouse.setUse_status(IMySystemConstants.VALUE_0);
+								warehouse.setHall_id("");
+							}
+							
 							warehouse.setProduct_type(product.getType());
-							warehouse.setHall_id(hallId);
+							
 							this.warehouseService.addWarehouse(null, warehouse);
 						}
 						
@@ -477,10 +485,16 @@ public class OrderController extends MyBaseController {
 							//有效期
 							warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
 							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
-							//正在使用
-							warehouse.setUse_status(IMySystemConstants.VALUE_1);
+							if(null != orderData.getHall_id() && !"".equals(orderData.getHall_id())){
+								//正在使用
+								warehouse.setUse_status(IMySystemConstants.VALUE_1);
+								warehouse.setHall_id(orderData.getHall_id());
+							}else{
+								//未使用
+								warehouse.setUse_status(IMySystemConstants.VALUE_0);
+								warehouse.setHall_id("");
+							}
 							warehouse.setProduct_type(product.getType());
-							warehouse.setHall_id(orderData.getHall_id());
 							this.warehouseService.addWarehouse(null, warehouse);
 						}
 						
@@ -573,10 +587,16 @@ public class OrderController extends MyBaseController {
 						//有效期
 						warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
 						warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
-						//正在使用
-						warehouse.setUse_status(IMySystemConstants.VALUE_1);
+						if(null != orderData.getHall_id() && !"".equals(orderData.getHall_id())){
+							//正在使用
+							warehouse.setUse_status(IMySystemConstants.VALUE_1);
+							warehouse.setHall_id(orderData.getHall_id());
+						}else{
+							//未使用
+							warehouse.setUse_status(IMySystemConstants.VALUE_0);
+							warehouse.setHall_id("");
+						}
 						warehouse.setProduct_type(product.getType());
-						warehouse.setHall_id(orderData.getHall_id());
 						this.warehouseService.addWarehouse(null, warehouse);
 					}
 					

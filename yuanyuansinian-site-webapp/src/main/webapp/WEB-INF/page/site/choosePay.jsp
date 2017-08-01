@@ -52,6 +52,8 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/cemetery.js"></script>
 	<script type="text/javascript">
+		//从那个纪念馆进入的该页面
+		var hallId = "${hallId }";
 		var activeFlag = '缘园商城';
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
@@ -63,7 +65,7 @@
 			    title:["结算"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: contextPath + '/sinian/index/indexController/toPay?ids=' + ids + '&count=' + count
+			    content: contextPath + '/sinian/index/indexController/toPay?ids=' + ids + '&count=' + count + '&hallId=' + hallId
 			 });
 		}
 		
@@ -75,7 +77,7 @@
 			    title:["结算"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
-			    content: contextPath + '/sinian/index/indexController/toTenpay?ids=' + ids + '&count=' + count
+			    content: contextPath + '/sinian/index/indexController/toTenpay?ids=' + ids + '&count=' + count + '&hallId=' + hallId
 			 });
 			//var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 			//parent.layer.close(index); //再执行关闭
