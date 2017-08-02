@@ -38,6 +38,17 @@
 				</span> </div>
 		</div> --%>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>摆放分类：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select class="select" id="put_type" name="put_type">
+					<option value="0">--请选择--</option>  
+                    <c:forEach items="${putTypeList}" var="code">  
+                    	<option value="${code.code_value}">${code.code_name}</option>  
+                    </c:forEach>  
+				</select>
+				</span> </div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${product.name}" placeholder="产品名称" id="name" name="name">
@@ -132,6 +143,7 @@ $(function(){
 	
 	//设置下拉选中的值
 	$('#big_type').val('${product.big_type}');
+	$('#put_type').val('${product.put_type}');
 	ue.ready(function() {//编辑器初始化完成再赋值  
     	ue.setContent('${product.content}');  //赋值给UEditor  
     });
@@ -154,6 +166,10 @@ $(function() {
 				maxlength:100
 			},
 			price_site:{
+				required:true,
+				number:true
+			},
+			put_type:{
 				required:true,
 				number:true
 			},

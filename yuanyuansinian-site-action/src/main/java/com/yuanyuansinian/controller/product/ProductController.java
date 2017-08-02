@@ -140,6 +140,10 @@ public class ProductController extends MyBaseController {
 		//产品大类
 		model.addAttribute("big_type", IMySystemConstants.VALUE_2);
 		
+		//存放位置
+		List<Code> putTypeList = codeService.queryCodeListByType("put_type");
+		model.addAttribute("putTypeList", putTypeList);
+		
 		return "product/hallProductAdd";
 	}
 
@@ -158,9 +162,11 @@ public class ProductController extends MyBaseController {
 		
 		//产品小类
 		List<Code> codeList = codeService.queryCodeListByType("product_type");
-		
 		model.addAttribute("codeList", codeList);
 		
+		//存放位置
+		List<Code> putTypeList = codeService.queryCodeListByType("put_type");
+		model.addAttribute("putTypeList", putTypeList);
 		
 		return "product/productUpdate";
 	}
@@ -178,6 +184,10 @@ public class ProductController extends MyBaseController {
 		Product product = this.productService.queryProductById(productId);
 		model.addAttribute("product", product);
 		
+		//存放位置
+		List<Code> putTypeList = codeService.queryCodeListByType("put_type");
+		model.addAttribute("putTypeList", putTypeList);
+				
 		return "product/hallProductUpdate";
 	}
 
