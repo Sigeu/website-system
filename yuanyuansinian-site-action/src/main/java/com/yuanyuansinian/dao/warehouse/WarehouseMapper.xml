@@ -248,7 +248,7 @@
     where use_status = '1' and hall_id = #{hall_id,jdbcType=VARCHAR}
   </select>
   
-  
+  <!-- 使用 -->
   <update id="updateWarehouseForUse" parameterType="com.yuanyuansinian.model.warehouse.Warehouse">
     update ujn_warehouse t
     set use_date = #{use_date,jdbcType=VARCHAR},

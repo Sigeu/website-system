@@ -82,8 +82,8 @@ public class WarehouseService implements IWarehouseService {
 	@Override
 	public int addWarehouse(HttpServletRequest request,Warehouse warehouse) {
 		//创建时间
-		warehouse.setPurchase_date(MyDateUtil.getDateTime());
-		return warehouseMapper.insert(warehouse);
+		//warehouse.setPurchase_date(MyDateUtil.getDateTime());
+		return warehouseMapper.insertSelective(warehouse);
 	}
 	
 	/*

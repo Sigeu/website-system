@@ -389,6 +389,7 @@ public class WarehouseController extends MyBaseController {
 	public Map<String, Object> updateWarehouseForUse(HttpServletRequest request) {
 		
 		int warehouseId = Integer.parseInt(request.getParameter("id"));
+		String hall_id = request.getParameter("hall_id")==null? "":request.getParameter("hall_id");
 		Warehouse  warehouse = this.warehouseService.queryWarehouseById(warehouseId);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -400,6 +401,8 @@ public class WarehouseController extends MyBaseController {
 		warehouse.setEnd_date(endDay);
 		//使用状态
 		warehouse.setUse_status(STATUS_CODE_1);
+		//纪念馆
+		warehouse.setHall_id(hall_id);
 		
 		int count = this.warehouseService.updateWarehouseForUse(warehouse);
 		if (RESULT_COUNT_1 == count) {

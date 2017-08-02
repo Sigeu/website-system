@@ -347,9 +347,12 @@ public class OrderController extends MyBaseController {
 					if(null != orderData){
 						//购买的所有产品id
 						String[] idArray = orderData.getProduct_id().split(",");
+						Warehouse warehouse = null;
+						Product product = null;
 						for(String product_id : idArray){
-							Product product = this.productService.queryProductById(Integer.parseInt(product_id));
-							Warehouse warehouse = new Warehouse();
+							product = new Product();
+							product = this.productService.queryProductById(Integer.parseInt(product_id));
+							warehouse = new Warehouse();
 							warehouse.setOrder_id(out_trade_no);
 							warehouse.setProduct_id(product_id);
 							warehouse.setPurchase_date(MyDateUtil.getDateTime());
@@ -474,9 +477,12 @@ public class OrderController extends MyBaseController {
 					if(null != orderData){
 						//购买的所有产品id
 						String[] idArray = orderData.getProduct_id().split(",");
+						Warehouse warehouse = null;
+						Product product = null;
 						for(String product_id : idArray){
-							Product product = this.productService.queryProductById(Integer.parseInt(product_id));
-							Warehouse warehouse = new Warehouse();
+							product = new Product();
+							product = this.productService.queryProductById(Integer.parseInt(product_id));
+							warehouse = new Warehouse();
 							warehouse.setOrder_id(out_trade_no);
 							warehouse.setProduct_id(product_id);
 							warehouse.setPurchase_date(MyDateUtil.getDateTime());
@@ -573,12 +579,17 @@ public class OrderController extends MyBaseController {
 				this.orderService.updateOrderByOrderNum(order);
 				//添加仓库
 				Order orderData = this.orderService.queryOrderByOrderNum(out_trade_no);
+				System.out.println("out_trade_no:" + out_trade_no + "------");
 				if(null != orderData){
 					//购买的所有产品id
 					String[] idArray = orderData.getProduct_id().split(",");
+					Warehouse warehouse = null;
+					Product product = null;
 					for(String product_id : idArray){
-						Product product = this.productService.queryProductById(Integer.parseInt(product_id));
-						Warehouse warehouse = new Warehouse();
+						System.out.println("product_id:" + product_id + "------");
+						product = new Product();
+						product = this.productService.queryProductById(Integer.parseInt(product_id));
+						warehouse = new Warehouse();
 						warehouse.setOrder_id(out_trade_no);
 						warehouse.setProduct_id(product_id);
 						warehouse.setPurchase_date(MyDateUtil.getDateTime());
@@ -597,7 +608,8 @@ public class OrderController extends MyBaseController {
 							warehouse.setHall_id("");
 						}
 						warehouse.setProduct_type(product.getType());
-						this.warehouseService.addWarehouse(null, warehouse);
+						this.warehouseService.addWarehouse(request, warehouse);
+						System.out.println("添加仓库---------------");
 					}
 					
 				}

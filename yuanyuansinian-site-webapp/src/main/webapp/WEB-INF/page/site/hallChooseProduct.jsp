@@ -215,6 +215,12 @@
 			$('#div1,#div2,#div3').hide();
 			$('#type1,#type2,#type3').removeClass('active');
 		});
+		
+		//供子页面调用关闭弹出页面
+		function toClose(){
+			layer.closeAll(); 
+			window.location.href = contextPath + "/sinian/index/indexController/toMemberCenter";
+		}
 	</script>
 </body>
 </html>

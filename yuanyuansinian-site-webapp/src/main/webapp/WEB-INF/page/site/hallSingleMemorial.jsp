@@ -163,6 +163,11 @@
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
 		//-------分页数据----------
+		//供子页面调用关闭弹出页面
+		function toClose(){
+			layer.closeAll(); 
+			window.location.href = contextPath + "/sinian/index/indexController/toMemberCenter";
+		}
 	</script>
 </body>
 </html>
