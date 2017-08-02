@@ -71,7 +71,12 @@
 				if (status == "1") {
 					window.clearInterval(timeCheckOrder);
 					//调用父页面关闭所有弹窗并跳转到会员中心
-					parent.parent.toClose();
+					if(parent.parent.parent){
+						parent.parent.parent.toClose();
+					}else if(parent.parent){
+						parent.parent.toClose();
+					}
+					
 				} else if(status == "2"){
 					//支付失败  
 					clearInterval(timeCheckOrder);

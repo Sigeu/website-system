@@ -8,9 +8,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -33,7 +31,6 @@ import com.github.wxpay.sdk.WXPay;
 import com.github.wxpay.sdk.WXPayUtil;
 import com.yuanyuansinian.alipay.config.AlipayConfig;
 import com.yuanyuansinian.model.column.Column;
-import com.yuanyuansinian.model.member.Member;
 import com.yuanyuansinian.model.order.Order;
 import com.yuanyuansinian.model.product.Product;
 import com.yuanyuansinian.model.warehouse.Warehouse;
@@ -262,7 +259,7 @@ public class OrderController extends MyBaseController {
 	@RequestMapping("/notifyUrl")
 	public String notifyUrl(HttpServletRequest request) {
 		//获取登录的会员
-		Member memberUser = super.getSessionMemberUser(request);
+		//Member memberUser = super.getSessionMemberUser(request);
 		String message = "success";
 		/* *
 		 * 功能：支付宝服务器异步通知页面
@@ -357,7 +354,7 @@ public class OrderController extends MyBaseController {
 							warehouse.setProduct_id(product_id);
 							warehouse.setPurchase_date(MyDateUtil.getDateTime());
 							warehouse.setUse_date(MyDateUtil.getDateTime());
-							warehouse.setMember_id(memberUser.getId()+"");
+							warehouse.setMember_id(orderData.getMember_id());
 							//有效期
 							warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
 							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
@@ -403,7 +400,7 @@ public class OrderController extends MyBaseController {
 	@RequestMapping("/returnUrl")
 	public String returnUrl(HttpServletRequest request) {
 		//获取登录的会员
-		Member memberUser = super.getSessionMemberUser(request);
+		//Member memberUser = super.getSessionMemberUser(request);
 		String message = "success";
 		/* *
 		 * 功能：支付宝服务器异步通知页面
@@ -487,7 +484,7 @@ public class OrderController extends MyBaseController {
 							warehouse.setProduct_id(product_id);
 							warehouse.setPurchase_date(MyDateUtil.getDateTime());
 							warehouse.setUse_date(MyDateUtil.getDateTime());
-							warehouse.setMember_id(memberUser.getId()+"");
+							warehouse.setMember_id(orderData.getMember_id());
 							//有效期
 							warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
 							warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
@@ -530,13 +527,12 @@ public class OrderController extends MyBaseController {
 	 * @param response
 	 * @return
 	 */
-	@ResponseBody
 	@RequestMapping("/notifyUrlForTenpay")
-	public String notifyUrlForTenpay(HttpServletRequest request,HttpServletResponse response) {
+	public void notifyUrlForTenpay(HttpServletRequest request,HttpServletResponse response) {
+		//获取登录的会员
+		//Member memberUser = super.getSessionMemberUser(request);
 		String message = "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
 		try {
-			//获取登录的会员
-			Member memberUser = super.getSessionMemberUser(request);
 			//读取参数  
 		    InputStream inputStream ;  
 		    StringBuffer sb = new StringBuffer();  
@@ -579,14 +575,12 @@ public class OrderController extends MyBaseController {
 				this.orderService.updateOrderByOrderNum(order);
 				//添加仓库
 				Order orderData = this.orderService.queryOrderByOrderNum(out_trade_no);
-				System.out.println("out_trade_no:" + out_trade_no + "------");
 				if(null != orderData){
 					//购买的所有产品id
 					String[] idArray = orderData.getProduct_id().split(",");
 					Warehouse warehouse = null;
 					Product product = null;
 					for(String product_id : idArray){
-						System.out.println("product_id:" + product_id + "------");
 						product = new Product();
 						product = this.productService.queryProductById(Integer.parseInt(product_id));
 						warehouse = new Warehouse();
@@ -594,7 +588,8 @@ public class OrderController extends MyBaseController {
 						warehouse.setProduct_id(product_id);
 						warehouse.setPurchase_date(MyDateUtil.getDateTime());
 						warehouse.setUse_date(MyDateUtil.getDateTime());
-						warehouse.setMember_id(memberUser.getId()+"");
+						warehouse.setMember_id(orderData.getMember_id());
+						
 						//有效期
 						warehouse.setValidity_day(product.getValidity_day()==null? DAYS_:product.getValidity_day());
 						warehouse.setEnd_date(MyDateUtil.addDay(MyDateUtil.getDate(), Integer.parseInt(product.getValidity_day()==null? DAYS_:product.getValidity_day())));
@@ -609,7 +604,6 @@ public class OrderController extends MyBaseController {
 						}
 						warehouse.setProduct_type(product.getType());
 						this.warehouseService.addWarehouse(request, warehouse);
-						System.out.println("添加仓库---------------");
 					}
 					
 				}
@@ -617,7 +611,6 @@ public class OrderController extends MyBaseController {
 	        }
 	        else {
 	            // 签名错误，如果数据里没有sign字段，也认为是签名错误
-	        	 System.out.println("通知签名验证失败---时间::::"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 	        	 message = "<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名验证失败]]></return_msg></xml>";
 	        }
 	        
@@ -629,11 +622,8 @@ public class OrderController extends MyBaseController {
 	        out.close(); 
         
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
-		
-		return message;
-		
 	}
 	
 	
