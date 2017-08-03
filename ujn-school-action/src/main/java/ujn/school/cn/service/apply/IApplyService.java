@@ -59,4 +59,10 @@ public interface IApplyService {
 	 */
 	int deleteApply(int applyId);
 
+	void uploadIdImg(HttpServletRequest request, String id);
+
+	void uploadFile(HttpServletRequest request, String id);
+
+	void uploadCreditCodeImg(HttpServletRequest request, String id);
+
 }

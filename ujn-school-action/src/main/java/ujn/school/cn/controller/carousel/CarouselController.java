@@ -291,4 +291,38 @@ public class CarouselController extends MyBaseController {
 		
 		return "carousel/carouselImg";
 	}
+	
+	/**
+	 * 
+	 * @Description: 单页图片显示 
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/queryImgBySingle")
+	public void queryImgBySingle(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			Carousel carousel = this.carouselService.queryCarouselBySingle();
+			if(null != carousel){
+				if(null != carousel.getImg()){
+					byte[] pic = carousel.getImg();
+		            InputStream is = new ByteArrayInputStream(pic);
+		            ServletOutputStream out=null;
+		            response.setContentType("application/octet-stream;charset=UTF-8");
+		            byte[] buff = new byte[2048];
+		            int size = 0;
+		            out = response.getOutputStream();
+		            while (is != null && (size = is.read(buff)) != -1) {
+		            	out.write(buff, 0, size);
+		            }
+		            out.flush();
+		            out.close();
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -133,6 +133,14 @@
 				/unauthorized.jsp = anon 
 				/system/controller/loginController/login = anon
 				/carousel/carouselController/queryImgById*  = anon
+				/carousel/carouselController/queryImgBySingle = anon
+				/apply/controller/applyController/toApplyIdPicUpload = anon
+				/apply/controller/applyController/toApplyCreditPicUpload = anon
+				/apply/controller/applyController/toApplyFilePicUpload = anon
+				/apply/controller/applyController/addApply = anon
+				/apply/controller/applyController/uploadIdImg = anon
+				/apply/controller/applyController/uploadCreditImg = anon
+				/apply/controller/applyController/uploadFileImg = anon
 				/index/** = anon
 				/site/** = anon
 				/static/** = anon

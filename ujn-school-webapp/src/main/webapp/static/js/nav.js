@@ -88,11 +88,9 @@ $(function() {
 
 /*----------------------友情链接 begin---------------------*/
 $(function() {
-	//轮播自动播放
+	//友情链接
 	$('#link_select').on('change',function(){
-		//var url = $(this).val();
 		window.open($(this).val());
-		//window.location.href = url;
 	});
 });
 /*----------------------友情链接 end-----------------------*/

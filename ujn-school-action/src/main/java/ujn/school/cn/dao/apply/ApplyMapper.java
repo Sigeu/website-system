@@ -54,4 +54,8 @@ public interface ApplyMapper {
     int updateByPrimaryKey(Apply record);
 
 	List<Apply> queryApplyList(Apply apply);
+
+	void uploadIdImg(Apply apply);
+
+	void uploadCreditCodeImg(Apply apply);
 }

@@ -6,10 +6,10 @@
 	src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/layer/2.4/layer.js"></script>
 
 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/static/js/keleyidivpager.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/static/js/article.pager.js"></script>
+<%-- <script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/js/keleyidivpager.js"></script> --%>
+<%-- <script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/js/article.pager.js"></script> --%>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/static/js/article.js"></script>
 <script type="text/javascript"

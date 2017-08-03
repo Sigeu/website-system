@@ -138,4 +138,14 @@ public class CarouselService implements ICarouselService {
 		}
 		
 	}
+	
+	@Override
+	public Carousel queryCarouselBySingle() {
+		List<Carousel> listCarousel = carouselMapper.queryCarouselBySingle();
+		Carousel carousel = null;
+		if(!listCarousel.isEmpty()){
+			carousel = listCarousel.get(0);
+		}
+		return carousel;
+	}
 }

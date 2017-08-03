@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ujn.school.cn.model.apply.Apply;
 import ujn.school.cn.pub.base.MyBaseController;
-import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.service.apply.IApplyService;
 
 import com.github.pagehelper.PageHelper;
@@ -39,6 +38,7 @@ public class ApplyController extends MyBaseController {
 	// 在线申请Service
 	@Resource
 	private IApplyService applyService;
+	
 
 	/**
 	 * 
@@ -104,7 +104,46 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyDetail";
 	}
+	
+	/**
+	 * 
+	 * @Description: 身份证上传 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toApplyIdPicUpload")
+	public String toApplyIdPicUpload(HttpServletRequest request, Model model) {
 
+		return "apply/applyIdPicUpload";
+	}
+	
+	/**
+	 * 
+	 * @Description: 营业执照上传 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toApplyCreditPicUpload")
+	public String toApplyCreditPicUpload(HttpServletRequest request, Model model) {
+
+		return "apply/applyCreditPicUpload";
+	}
+	
+	/**
+	 * 
+	 * @Description: 附件上传 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toApplyFilePicUpload")
+	public String toApplyFilePicUpload(HttpServletRequest request, Model model) {
+
+		return "apply/applyFilePicUpload";
+	}
+	
 	/**
 	 * 
 	 * @Description: 分页列表
@@ -195,6 +234,7 @@ public class ApplyController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			applyService.addApply(request, apply);
+			map.put("apply_id", apply.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -268,5 +308,74 @@ public class ApplyController extends MyBaseController {
 		}
 		return map;
 	}
+	
+	
+	/**
+	 * 
+	 * @Description: 上传身份证图片 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/uploadIdImg")
+	public Map<String, Object> uploadIdImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			applyService.uploadIdImg(request, id);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
 
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 上传营业执照图片 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/uploadCreditCodeImg")
+	public Map<String, Object> uploadCreditCodeImg(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			applyService.uploadCreditCodeImg(request, id);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 附件上传 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/uploadFile")
+	public Map<String, Object> uploadFile(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = nullToStringZero(request.getParameter("model_id"));
+			//保存数据
+			applyService.uploadFile(request, id);
+			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+		}
+
+		return map;
+	}
 }

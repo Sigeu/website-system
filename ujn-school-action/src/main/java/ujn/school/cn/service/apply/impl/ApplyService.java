@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import ujn.school.cn.dao.apply.ApplyMapper;
+import ujn.school.cn.dao.file.FileMapper;
 import ujn.school.cn.model.apply.Apply;
 import ujn.school.cn.pub.constants.IMySystemConstants;
 import ujn.school.cn.pub.util.MyDateUtil;
@@ -34,6 +35,9 @@ public class ApplyService implements IApplyService {
 	//在线申请Mapper
 	@Resource
 	private ApplyMapper applyMapper;
+	
+	@Resource
+	private FileMapper fileMapper;
 	
 	/*
 	 * (non-Javadoc)
@@ -88,7 +92,77 @@ public class ApplyService implements IApplyService {
 	 */
 	@Override
 	public int addApply(HttpServletRequest request,Apply apply) {
+		//创建时间
+		apply.setCreate_date(MyDateUtil.getDateTime());
+		return applyMapper.insert(apply);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * <p>Title: deleteApply</p> 
+	 * <p>Description: </p> 
+	 * @param applyId
+	 * @return 
+	 * @see ujn.school.cn.service.apply.IApplyService#deleteApply(int)
+	 */
+	@Override
+	public int deleteApply(int applyId) {
+		
+		return applyMapper.deleteByPrimaryKey(applyId);
+	}
+
+	@Override
+	public void uploadIdImg(HttpServletRequest request, String id) {
 		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        Apply apply =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	apply =  new Apply();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+	            apply.setId(Integer.parseInt(id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_");
+	            if(null != img_index){
+	            	//取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
+                        
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        apply.setId_file(IMySystemConstants.SERVER_FILE_PATH + fileName);
+                    }
+	            }
+	        }
+	        //保存
+	        applyMapper.uploadIdImg(apply);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void uploadFile(HttpServletRequest request, String id) {
+		try {
+			//附件表
+			ujn.school.cn.model.file.File ujnFile = new ujn.school.cn.model.file.File();
 			//创建一个通用的多部分解析器  
 	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
 	        //判断 request 是否有文件上传,即多部分请求  
@@ -116,7 +190,13 @@ public class ApplyService implements IApplyService {
 	                        	localFile.mkdirs();  
 	                        }  
 	                        file.transferTo(localFile);  
-	                        //apply.setWeb_logo(IMySystemConstants.FILE_PATH_IMAGE + fileName);
+	                        //保存文件信息到附件表
+	                        ujnFile.setBelong_id(id);
+	                        ujnFile.setFile_name(myFileName);
+	                        ujnFile.setFile_path(path);
+	                        ujnFile.setFile_status(IMySystemConstants.VALUE_1);
+	                        //保存附件表
+	                        fileMapper.insertSelective(ujnFile);
 	                    }  
 	                }  
 	            }  
@@ -124,23 +204,54 @@ public class ApplyService implements IApplyService {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		//创建时间
-		//apply.setAdd_time(MyDateUtil.getDateTime());
-		return applyMapper.insert(apply);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * <p>Title: deleteApply</p> 
-	 * <p>Description: </p> 
-	 * @param applyId
-	 * @return 
-	 * @see ujn.school.cn.service.apply.IApplyService#deleteApply(int)
-	 */
-	@Override
-	public int deleteApply(int applyId) {
 		
-		return applyMapper.deleteByPrimaryKey(applyId);
+	}
+
+	@Override
+	public void uploadCreditCodeImg(HttpServletRequest request, String id) {
+		try {
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
+	        Apply apply =  null;
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){ 
+	        	apply =  new Apply();
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            //设置ID
+	            apply.setId(Integer.parseInt(id));
+	            //封面照片
+	            MultipartFile img_index = multiRequest.getFile("img_index");
+	            if(null != img_index){
+	            	//取得当前上传文件的文件名称  
+                    String myFileName = img_index.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
+                        
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        img_index.transferTo(localFile); 
+                        //处理url
+                        apply.setCredit_code_file(IMySystemConstants.SERVER_FILE_PATH + fileName);
+                    }
+	            }
+	        }
+	        //保存
+	        applyMapper.uploadCreditCodeImg(apply);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 	}
 	
 
