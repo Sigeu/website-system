@@ -51,11 +51,11 @@
 				<!-- 中间的香 start -->
 				<div class="tribute-conmid-fragrant">
 					<c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
-						<c:if test="${warehouse.put_type == '3' }">
+						<c:if test="${warehouse.put_type == '6' }">
 							<c:choose>  
 							   <c:when test="${empty warehouse.product_img}">
-							   		<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png"
-								class="img-responsive tribute" > --%>
+							   		<img src="${pageContext.request.contextPath}/static/images/x2.png"
+								class="img-responsive tribute" >
 							   </c:when>  
 							   <c:otherwise>
 								    <img src="${warehouse.product_img}" class="img-responsive tribute">
@@ -63,31 +63,24 @@
 							</c:choose> 
 						</c:if>
 					</c:forEach>
-		
-					<%-- <img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
-					<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute">
-					<img src="${pageContext.request.contextPath}/static/images/x2.png" class="img-responsive tribute"> --%>
 				</div>
 				<!-- 中间的香 end -->
 				
+				<!-- 中间的香炉 start -->
 				<c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
-						<c:if test="${warehouse.put_type == '4' }">
-							<c:choose>  
-							   <c:when test="${empty warehouse.product_img}">
-							   		<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png"
-								class="img-responsive tribute" > --%>
-							   </c:when>  
-							   <c:otherwise>
-								    <img src="${warehouse.product_img}" class="img-responsive tribute">
-							   </c:otherwise>  
-							</c:choose> 
-						</c:if>
-					</c:forEach>
-					
-					
-				<%-- <img src="${pageContext.request.contextPath}/static/images/burner1.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/burner1.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/burner1.png" class="img-responsive tribute"> --%>
+					<c:if test="${warehouse.put_type == '7'}">
+						<c:choose>  
+						   <c:when test="${empty warehouse.product_img}">
+						   		<img src="${pageContext.request.contextPath}/static/images/burner1.png"
+							class="img-responsive tribute" >
+						   </c:when>  
+						   <c:otherwise>
+							    <img src="${warehouse.product_img}" class="img-responsive tribute">
+						   </c:otherwise>  
+						</c:choose> 
+					</c:if>
+				</c:forEach>
+				<!-- 中间的香炉 end -->
 			</div>
 			<!-- 中间的香和香炉 end -->
 			
@@ -95,11 +88,11 @@
 			<div class="tribute-conl">
 				
 				<c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
-					<c:if test="${warehouse.put_type == '6' }">
+					<c:if test="${warehouse.put_type == '1' }">
 						<c:choose>  
 						   <c:when test="${empty warehouse.product_img}">
-						   		<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png"
-							class="img-responsive tribute" > --%>
+						   		<img src="${pageContext.request.contextPath}/static/images/flower.png"
+							class="img-responsive tribute" >
 						   </c:when>  
 						   <c:otherwise>
 							    <img src="${warehouse.product_img}" class="img-responsive tribute">
@@ -108,25 +101,13 @@
 					</c:if>
 				</c:forEach>
 					
-				<%-- <img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/qc4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/zy4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute"> --%>
 			</div>
 			<!-- 摆出的贡品左侧 end -->
 			
 			<!-- 摆出的贡品中间 start -->
 			<div class="tribute-conmid-list">
 				<c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
-					<c:if test="${warehouse.put_type == '5'}">
+					<c:if test="${warehouse.put_type == '3' || warehouse.put_type == '4' || warehouse.put_type == '5'}">
 						<c:choose>  
 						   <c:when test="${empty warehouse.product_img}">
 						   		<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png"
@@ -138,10 +119,6 @@
 						</c:choose> 
 					</c:if>
 				</c:forEach>
-				
-				<%-- <img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute"> --%>
 			</div>
 			<!-- 摆出的贡品中间 end -->
 			
@@ -149,11 +126,11 @@
 			<div class="tribute-conr">
 			
 				<c:forEach items="${listWarehouse}" var="warehouse" varStatus="warehouseStatus"> 
-						<c:if test="${warehouse.put_type == '7'}">
+						<c:if test="${warehouse.put_type == '2'}">
 							<c:choose>  
 							   <c:when test="${empty warehouse.product_img}">
-							   		<%-- <img src="${pageContext.request.contextPath}/static/images/flower.png"
-								class="img-responsive tribute" > --%>
+							   		<img src="${pageContext.request.contextPath}/static/images/flower.png"
+								class="img-responsive tribute" >
 							   </c:when>  
 							   <c:otherwise>
 								    <img src="${warehouse.product_img}" class="img-responsive tribute">
@@ -161,19 +138,6 @@
 							</c:choose> 
 						</c:if>
 					</c:forEach>
-				
-				<%-- <img src="${pageContext.request.contextPath}/static/images/mt3.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/mt4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/j3.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/qc4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/zy4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/x12.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/kst4.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/y2.png" class="img-responsive tribute">
-				<img src="${pageContext.request.contextPath}/static/images/zy2.png" class="img-responsive tribute"> --%>
 			</div>
 			<!-- 摆出的贡品右侧 end -->
 		</div>
