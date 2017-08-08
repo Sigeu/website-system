@@ -80,7 +80,17 @@ jQuery(function() {
         if ( state === 'uploading' ) {
             uploader.stop();
         } else {
-            uploader.upload();
+        	var options = {
+    				success : function(data) {
+    					uploader.options.formData.model_id = data.apply_id;
+    					uploader.upload();
+    				}
+    			};
+    			// 准备form表单
+    			$("#form_personal",window.parent.document).ajaxForm(options);
+    			// 表单提交     
+    			$("#form_personal",window.parent.document).ajaxSubmit(options);
+            //uploader.upload();
         }
     });
 });

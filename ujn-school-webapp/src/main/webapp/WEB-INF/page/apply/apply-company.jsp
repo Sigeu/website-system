@@ -104,12 +104,8 @@
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">上传附件</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
-								<%-- <iframe src="${pageContext.request.contextPath}/apply/controller/applyController/toApplyFilePicUpload" name="fileiframe" id="fileiframe" 
-										scrolling="no" frameborder="0" ></iframe> --%>
-								<span class="btn-upload form-group">
-								  <input class="input-text upload-url radius"  type="text" name="uploadfile-1" id="uploadfile-1" readonly>&nbsp;&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
-								  <input type="file" multiple name="file-1" class="input-file">
-								</span>
+								<iframe src="${pageContext.request.contextPath}/apply/controller/applyController/toApplyFilePicUpload" name="fileiframe" id="fileiframe" 
+										scrolling="no" frameborder="0" ></iframe>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -131,13 +127,13 @@
 						<br/>
 						<div class="form-btn">
 							<button class="btn btn-default" type="reset" style="margin-right:30px">重置</button>
-							<button class="btn btn-primary" id="personal_submit" type="submit">提交</button>
+							<button class="btn btn-primary" id="personal_submit" type="submit">提交1</button>
 						</div>
 					</form>
 				</div>
 				
 				<div class="tabCon apply-con">
-					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post"  class="form-horizontal" id="form_company">
+					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post"  class="form-horizontal" id="form_">
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">法人姓名</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
@@ -198,26 +194,17 @@
 							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-md-3 control-label">法人证件附件</label>
+							<label class="col-sm-2 col-md-3 control-label">上传证件</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
-								<iframe src="${pageContext.request.contextPath}/apply/controller/applyController/toApplyIdPicUpload" name="idiframe" id="idiframe" 
-										scrolling="no" frameborder="0" ></iframe>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 col-md-3 control-label">企业营业执照附件</label>
-							<div class="col-sm-6 col-md-6 apply-pos">
-								<iframe src="${pageContext.request.contextPath}/apply/controller/applyController/toApplyCreditPicUpload" name="creditiframe" id="creditiframe" 
-										scrolling="no" frameborder="0" ></iframe>
+								<input type="file" id="exampleInputFile" class="form-control"style="border:0; box-shadow:none">
+								<a href="###"><img src="img/news.jpg" class="img-responsive apply-img"></a><!-- 上传缩略图显示在这里 -->
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">上传附件</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
-								<span class="btn-upload form-group">
-								  <input class="input-text upload-url radius"  type="text" name="uploadfile-1" id="uploadfile-1" readonly>&nbsp;&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
-								  <input type="file" multiple name="file-1" class="input-file">
-								</span>
+								<input type="file" id="exampleInputFile" class="form-control"style="border:0; box-shadow:none">
+								<div class="apply-add"><a href="###">附件：申请表附件</a></div><!-- 上传结果显示在这里 -->
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -239,7 +226,7 @@
 						<br/>
 						<div class="form-btn">
 							<button class="btn btn-default" type="reset" style="margin-right:30px">重置</button>
-							<button class="btn btn-primary" type="submit" id="company_but">提交</button>
+							<button class="btn btn-primary" type="button"  style="">提交</button>
 						</div>
 					</form>
 				</div>
@@ -275,9 +262,10 @@
 <!-- form提交 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/apply-upload.js"> </script>
 <script type="text/javascript">
 var contextPath = "${pageContext.request.contextPath}";
-var apply_id = '';
+var totalPage = '';
 $(function(){
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -289,7 +277,7 @@ $(function(){
 });
 
 
-//个人申请表单提交
+//表单提交，可上传文件
 $(function() {
 	
 	var options = {
@@ -351,7 +339,6 @@ $(function() {
 			}
 		},
 		onkeyup:false,
-		//onsubmit:false,
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
@@ -360,8 +347,7 @@ $(function() {
 			var imgList = $("#idiframe").contents().find("#fileList").children('div');
 			if (imgList.length > 0) {
 				// not empty
-				//idiframe.toClickUpload();
-				 $("#idiframe").contents().find('#ctlBtn').trigger('click');
+				idiframe.toClickUpload();
 			} else {
 				// 准备form表单
 				$("#form_personal").ajaxForm(options);
@@ -369,101 +355,16 @@ $(function() {
 				$("#form_personal").ajaxSubmit(options);
 			}
 
-			return false;
+	return false;
 			
 		}
 	});
 	
-});
-
-//企业申请表单提交
-$(function() {
 	
-	var options_company = {
-			success : function(data) {
-				layer.alert(data.result_message,
-						{
-							closeBtn : 1
-						},
-						function() {
-							//父页面刷新
-							parent.window.location
-									.reload();
-							var index = parent.layer
-									.getFrameIndex(window.name); //先得到当前iframe层的索引
-							parent.layer
-									.close(index); //再执行关闭
-						});
-			}
-		};
 	
-	//表单验证
-	$("#form_company").validate({
-		rules:{
-			user_name:{
-				required:true,
-				maxlength:20
-			},
-			user_unit:{
-				required:true,
-				maxlength:100
-			},
-			user_tel:{
-				required:true,
-				digits:true
-			},
-			address:{
-				required:true,
-				maxlength:200
-			},
-			postcode:{
-				required:true,
-				digits:true,
-				maxlength:6
-			},
-			id_num:{
-				required:true,
-				maxlength:18
-			},
-			content:{
-				required:true,
-				maxlength:500
-			},
-			reason:{
-				required:true,
-				maxlength:500
-			},
-			remark:{
-				maxlength:500
-			}
-		},
-		onkeyup:false,
-		//onsubmit:false,
-		focusCleanup:false,
-		success:"valid",
-		submitHandler:function(form){
-			//确保图片上传
-			var idiframe = $("#idiframe")[0].contentWindow;
-			var imgList = $("#idiframe").contents().find("#fileList").children('div');
-			if (imgList.length > 0) {
-				// not empty
-				//idiframe.toClickUpload();
-				 $("#idiframe").contents().find('#ctlBtn').trigger('click');
-			} else {
-				// 准备form表单
-				$("#form_company").ajaxForm(options_company);
-				// 表单提交     
-				$("#form_company").ajaxSubmit(options_company);
-			}
-
-			return false;
-			
-		}
-	});
+	
 	
 });
-
-
 </script>
 </body>
 </body>

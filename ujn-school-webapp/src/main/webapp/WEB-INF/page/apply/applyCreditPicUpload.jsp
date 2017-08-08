@@ -21,13 +21,9 @@
 
 <%@ include file="../../../common/footer-site.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/apply-upload.js"> </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/apply-creditupload.js"> </script>
 <script type="text/javascript">
 var contextPath = "${pageContext.request.contextPath}";
-var totalPage = '';
-function toClickUpload(){
-	$('#ctlBtn').trigger("click");
-}
 </script>
 </body>
 </body>
