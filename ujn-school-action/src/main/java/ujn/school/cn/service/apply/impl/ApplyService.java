@@ -22,6 +22,7 @@ import ujn.school.cn.dao.file.FileMapper;
 import ujn.school.cn.model.apply.Apply;
 import ujn.school.cn.pub.constants.IMySystemConstants;
 import ujn.school.cn.pub.util.MyDateUtil;
+import ujn.school.cn.pub.util.MyRandomUtils;
 import ujn.school.cn.service.apply.IApplyService;
 
 /**   
@@ -94,6 +95,7 @@ public class ApplyService implements IApplyService {
 	public int addApply(HttpServletRequest request,Apply apply) {
 		//创建时间
 		apply.setCreate_date(MyDateUtil.getDateTime());
+		apply.setCheck_pwd(MyRandomUtils.randomString(32));
 		applyMapper.insert(apply);
 		try {
 			//附件表

@@ -254,19 +254,42 @@
 					</form>
 				</div>
 				<div class="tabCon apply-con">
-					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post"  class="form-horizontal" id="form_">
-						<div class="form-group col-md-6">
-							<label class="col-sm-2 col-md-4 col-lg-3 control-label"><span class="c-red">*</span>确认码</label>
-							<div class="col-sm-9 col-md-8 col-lg-9">
-								<input type="text" class="form-control" value="" placeholder="请输入您的确认码" id="check_pwd" name="check_pwd">
-							</div>
+					<div data-options="fit:true" style="height: 100%">
+						<div class="page-container">
+							<table id="search_table" style="width: 95%;" border="0">
+								<tr>
+									<td align="right" width="10%" class="mybg" nowrap="nowrap">
+										<strong>申请确认码:</strong>&nbsp;&nbsp;
+									</td>
+									<td width="10%" nowrap="nowrap"><input type="text" id="title"
+										name="title" placeholder="标题" class="input-text input-collspace size-MINI" />
+									</td>
+									<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
+										<button class="btn btn-warning radius size-MINI" id="search_but">
+											<i class="Hui-iconfont Hui-iconfont-search2">&nbsp;&nbsp;</i>查询
+										</button> &nbsp;&nbsp;
+									</td>
+								</tr>
+				
+								<tr>
+									<td colspan="5">&nbsp;&nbsp;</td>
+								</tr>
+							</table>
+							<table id="data_table" style="width: 98%" style="text-align: center;"
+								class="table table-border table-bordered  table-hover table-striped">
+								<thead>
+									<tr class="text-c">
+										<th>申请人</th>
+										<th>申请日期</th>
+										<th>申请内容</th>
+										<th width="8%">操作</th>
+									</tr>
+								</thead>
+								<!-- tbody是必须的 -->
+								<tbody></tbody>
+							</table>
 						</div>
-						<br/>
-						<div class="form-btn">
-							<button class="btn btn-default" type="reset" style="margin-right:40px">重置</button>
-							<button class="btn btn-primary" type="button"  style="">提交</button>
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 <%@ include file="articleListSidebar.jsp"%>
@@ -285,6 +308,17 @@
 <!-- form提交 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<!-- 模版 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/handlebars-v4.0.5.js"></script>
+<!--定义操作列按钮模板-->
+<script id="tpl" type="text/x-handlebars-template">
+	{{#each func}}
+		{{#if this.display}}
+			<button type="button" class="btn btn-{{this.type}} btn-sm" onclick="{{this.fn}}">{{this.name}}</button>
+		{{/if}} 
+		{{else}}
+	{{/each}} 
+</script>
 <script type="text/javascript">
 var contextPath = "${pageContext.request.contextPath}";
 var apply_id = '';
@@ -473,17 +507,127 @@ $(function() {
 	});
 	
 });
+	//初始化
+	$(function() {
+		//按钮模版
+		var tpl = $("#tpl").html();
+		//预编译模板
+		var template = Handlebars.compile(tpl);
 
-function creditUpload(){
-	
-	//确保图片上传
-	var creditiframe = $("#form_company #creditiframe")[0].contentWindow;
-	var imgListCompany = $("#form_company #creditiframe").contents().find("#fileList").children('div');
-	if (imgListCompany.length > 0){
-		$("#form_company #creditiframe").contents().find('#creditBtn').trigger('click');
-	}
-	
-}
+		//初始化表格
+		var oTable = $("#data_table")
+				.DataTable(
+						{
+							ajax : {
+								url : "${pageContext.request.contextPath}/content/controller/contentController/queryContentList",
+								type:"POST",
+								data : {
+									//args1: "固定传参"
+								}
+							}, 
+							serverSide : true,//开启服务器模式:启用服务器分页
+							lengthChange : false,//是否允许用户改变表格每页显示的记录数
+							ordering : false,//是否允许用户排序
+							paging : true,//是否分页
+							pagingType : "full_numbers",//除首页、上一页、下一页、末页四个按钮还有页数按钮
+							processing : true,//是否显示处理状态
+							/* scrollX: true,//允许水平滚动
+							scrollY: "200px",
+							scrollCollapse: true, */
+							searching : false,//是否开始本地搜索
+							stateSave : false,//刷新时是否保存状态
+							autoWidth : true,//自动计算宽度
+							//deferRender : true,//延迟渲染
+							columns : [ {
+								data : "user_name",
+								defaultContent : ""
+							}, {
+								data : "create_date",
+								defaultContent : ""
+							}, {
+								data : "content",
+								defaultContent : ""
+							}, {
+								data : null
+							} ],
+							columnDefs : [ {
+								targets : -1,
+								render : function(data, type, row, meta) {
+									var context = {
+										func : [
+												{
+													"name" : "修改",
+													"fn" : "toEdit(\'"
+															+ row.id
+															+ "\')",
+													"type" : "primary-outline size-MINI radius",
+													"display" :true
+												},{
+													"name" : "删除",
+													"fn" : "toDelete(\'"
+															+ row.id
+															+ "\')",
+													"type" : "danger-outline size-MINI radius",
+													"display" : row.status == '1'? false : true
+												},{
+													"name" : "查看",
+													"fn" : "toDetail(\'"
+															+ row.id
+															+ "\')",
+													"type" : "primary-outline size-MINI radius",
+													"display" : false
+												} ]
+									};
+									var html = template(context);
+									return html;
+								}
+							} ],
+							language : {
+								lengthMenu : "每页显示 _MENU_记录",
+								zeroRecords : "没有匹配的数据",
+								info : "第_PAGE_页 / 共_PAGES_页",
+								infoEmpty : "",
+								search : "查找",
+								infoFiltered : "",
+								paginate : {
+									"first" : "首页 ",
+									"last" : "末页",
+									"next" : "下一页",
+									"previous" : "上一页"
+								}
+							}
+						});
+		//条件查询
+		$('#search_but').on('click', function() {
+			oTable.settings()[0].ajax.data = getSearchParams();
+			oTable.ajax.reload();
+		});
+		
+		//获取查询条件
+		function getSearchParams(){
+			//标题
+			var title = $("#title").val().trim();
+			//关键字
+			var keywords = $("#keywords").val().trim();
+			//查询条件
+			var param = {
+				"title" : title,
+				"keywords" : keywords
+			};
+			
+			return param;
+		}
+		
+		//重置
+		$('#reset_but').on('click', function() {
+			//标题
+			$("#title").val('');
+			//关键字
+			$("#keywords").val('');
+		});
+		
+		
+	});
 </script>
 </body>
 </body>
