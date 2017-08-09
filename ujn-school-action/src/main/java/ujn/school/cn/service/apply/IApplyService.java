@@ -65,4 +65,6 @@ public interface IApplyService {
 
 	void uploadCreditCodeImg(HttpServletRequest request, String id);
 
+	List<Apply> queryApplyByPwd(Apply apply);
+
 }

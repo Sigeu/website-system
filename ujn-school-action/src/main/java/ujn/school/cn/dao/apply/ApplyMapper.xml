@@ -295,7 +295,7 @@
   </update>
   
   
-  <select id="queryApplyList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="queryApplyList" parameterType="ujn.school.cn.model.apply.Apply" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from ujn_apply
@@ -313,4 +313,12 @@
 		set credit_code_file = #{credit_code_file,jdbcType=VARCHAR}
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
+	
+	
+<select id="queryApplyByPwd" parameterType="ujn.school.cn.model.apply.Apply" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_apply
+    where check_pwd = #{check_pwd,jdbcType=VARCHAR}
+ </select>
 </mapper>

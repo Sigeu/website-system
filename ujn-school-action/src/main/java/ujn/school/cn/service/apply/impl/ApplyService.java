@@ -327,6 +327,12 @@ public class ApplyService implements IApplyService {
 		}
 		
 	}
+
+	@Override
+	public List<Apply> queryApplyByPwd(Apply apply) {
+		// TODO Auto-generated method stub
+		return applyMapper.queryApplyByPwd(apply);
+	}
 	
 
 

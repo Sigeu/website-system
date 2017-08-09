@@ -261,8 +261,8 @@
 									<td align="right" width="10%" class="mybg" nowrap="nowrap">
 										<strong>申请确认码:</strong>&nbsp;&nbsp;
 									</td>
-									<td width="10%" nowrap="nowrap"><input type="text" id="title"
-										name="title" placeholder="标题" class="input-text input-collspace size-MINI" />
+									<td width="10%" nowrap="nowrap"><input type="text" id="check_pwd"
+										name="check_pwd" placeholder="申请确认码" class="input-text input-collspace size-MINI" />
 									</td>
 									<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 										<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -513,16 +513,15 @@ $(function() {
 		var tpl = $("#tpl").html();
 		//预编译模板
 		var template = Handlebars.compile(tpl);
-
 		//初始化表格
 		var oTable = $("#data_table")
 				.DataTable(
 						{
 							ajax : {
-								url : "${pageContext.request.contextPath}/content/controller/contentController/queryContentList",
+								url : "${pageContext.request.contextPath}/apply/controller/applyController/queryApplyByPwd",
 								type:"POST",
 								data : {
-									//args1: "固定传参"
+									check_pwd: $('#check_pwd').val()
 								}
 							}, 
 							serverSide : true,//开启服务器模式:启用服务器分页
@@ -556,20 +555,6 @@ $(function() {
 									var context = {
 										func : [
 												{
-													"name" : "修改",
-													"fn" : "toEdit(\'"
-															+ row.id
-															+ "\')",
-													"type" : "primary-outline size-MINI radius",
-													"display" :true
-												},{
-													"name" : "删除",
-													"fn" : "toDelete(\'"
-															+ row.id
-															+ "\')",
-													"type" : "danger-outline size-MINI radius",
-													"display" : row.status == '1'? false : true
-												},{
 													"name" : "查看",
 													"fn" : "toDetail(\'"
 															+ row.id
@@ -605,14 +590,11 @@ $(function() {
 		
 		//获取查询条件
 		function getSearchParams(){
-			//标题
-			var title = $("#title").val().trim();
-			//关键字
-			var keywords = $("#keywords").val().trim();
+			//
+			var check_pwd = $("#check_pwd").val().trim();
 			//查询条件
 			var param = {
-				"title" : title,
-				"keywords" : keywords
+				"check_pwd" : check_pwd
 			};
 			
 			return param;
@@ -621,9 +603,7 @@ $(function() {
 		//重置
 		$('#reset_but').on('click', function() {
 			//标题
-			$("#title").val('');
-			//关键字
-			$("#keywords").val('');
+			$("#check_pwd").val('');
 		});
 		
 		

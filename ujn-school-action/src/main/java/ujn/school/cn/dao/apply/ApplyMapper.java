@@ -58,4 +58,6 @@ public interface ApplyMapper {
 	void uploadIdImg(Apply apply);
 
 	void uploadCreditCodeImg(Apply apply);
+
+	List<Apply> queryApplyByPwd(Apply apply);
 }
