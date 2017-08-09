@@ -104,38 +104,65 @@ public class ApplyService implements IApplyService {
 	        if(multipartResolver.isMultipart(request)){  
 	            //转换成多部分request    
 	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
-	            //取得request中的所有文件名  
-	            Iterator<String> iter = multiRequest.getFileNames();  
-	            while(iter.hasNext()){  
-	                //取得上传文件  
-	                MultipartFile file = multiRequest.getFile(iter.next());  
-	                if(file != null){  
-	                    //取得当前上传文件的文件名称  
-	                    String myFileName = file.getOriginalFilename();  
-	                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
-	                    if(myFileName.trim() !=""){  
-	                        //重命名上传后的文件名  
-	                    	UUID uuid = UUID.randomUUID();
-	                        String fileName = uuid + file.getOriginalFilename(); 
-	                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
-	                        //定义上传路径  
-	                        //String path = "E:/upload-file/"; 
-	                        File localFile = new File(path, fileName);  
-	                        if(!localFile.exists()){  
-	                        	localFile.mkdirs();  
-	                        }  
-	                        file.transferTo(localFile);  
-	                        //保存文件信息到附件表
-	                        ujnFile.setBelong_id(apply.getId()+"");
-	                        ujnFile.setFile_name(myFileName);
-	                        ujnFile.setFile_path(path);
-	                        ujnFile.setFile_status(IMySystemConstants.VALUE_1);
-	                        //保存附件表
-	                        fileMapper.insertSelective(ujnFile);
-	                    }  
+	            
+	            //营业执照
+	            MultipartFile file_credit = multiRequest.getFile("file-credit");
+	            if(null != file_credit){
+	            	Apply applyCredit = new Apply();
+	            	//取得当前上传文件的文件名称  
+                    String myFileName = file_credit.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + myFileName; 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //String path = request.getContextPath() + "/" + IMySystemConstants.FILE_PATH_IMAGE;
+                        
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        file_credit.transferTo(localFile); 
+                        applyCredit.setId(apply.getId());
+                        //处理url
+                        applyCredit.setCredit_code_file(IMySystemConstants.SERVER_FILE_PATH + fileName);
+                      //保存
+            	        applyMapper.uploadCreditCodeImg(applyCredit);
+                    }
+	            }
+	            
+	            //附件
+	            MultipartFile file_apply = multiRequest.getFile("file-apply");
+	            if(null != file_apply){
+                	//取得当前上传文件的文件名称  
+                    String myFileName = file_apply.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        String fileName = uuid + file_apply.getOriginalFilename(); 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        file_apply.transferTo(localFile);  
+                        //保存文件信息到附件表
+                        ujnFile.setBelong_id(apply.getId()+"");
+                        ujnFile.setFile_name(myFileName);
+                        ujnFile.setFile_path(path);
+                        ujnFile.setFile_status(IMySystemConstants.VALUE_1);
+                        //保存附件表
+                        fileMapper.insertSelective(ujnFile);
+                    }  
 	                }  
-	            }  
-	        }
+	            }
+	            
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -266,7 +293,7 @@ public class ApplyService implements IApplyService {
 	            //设置ID
 	            apply.setId(Integer.parseInt(id));
 	            //封面照片
-	            MultipartFile img_index = multiRequest.getFile("img_index");
+	            MultipartFile img_index = multiRequest.getFile("img_");
 	            if(null != img_index){
 	            	//取得当前上传文件的文件名称  
                     String myFileName = img_index.getOriginalFilename();  

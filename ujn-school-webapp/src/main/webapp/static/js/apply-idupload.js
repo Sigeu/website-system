@@ -128,17 +128,8 @@ jQuery(function() {
 		if (state === 'uploading') {
 			uploader.stop();
 		} else {
-			var options = {
-				success : function(data) {
-					uploader.options.formData.model_id = data.apply_id;
-					uploader.upload();
-					parent.apply_id = data.apply_id;
-				}
-			};
-			// 准备form表单
-			$("#form_personal",window.parent.document).ajaxForm(options);
-			// 表单提交     
-			$("#form_personal",window.parent.document).ajaxSubmit(options);
+			uploader.options.formData.model_id = parent.apply_id;
+			uploader.upload();
 		}
 	});
 	//提示上传状态
@@ -155,19 +146,14 @@ jQuery(function() {
 				});
             return false;
         }else{
-        	if($("#form_company",window.parent.document)){
-        		$("#form_company",window.parent.document).contents().find('#ctlBtn').trigger('click');
-        	}else{
-        		parent.layer.alert("保存成功！", {
-  				  closeBtn: 1
-  				}, function(){
-  					//父页面刷新
-  					parent.window.location.reload();
-  					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-  					parent.layer.close(index); //再执行关闭
-  				});
-        	}
-        	
+			parent.layer.alert("保存成功！", {
+				  closeBtn: 1
+				}, function(){
+					//父页面刷新
+					parent.window.location.reload();
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭
+				});
         }
     });
 });

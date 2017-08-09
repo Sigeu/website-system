@@ -16,7 +16,7 @@
 	    <!--用来存放item-->
 	    <div id="fileList" class="uploader-list"></div>
 	    <div id="filePicker">选择图片</div>
-	    <button id="ctlBtn"  class="but_hidden">开始上传</button>
+	    <button id="creditBtn"  class="but_hidden">开始上传</button>
 	</div>
 
 <%@ include file="../../../common/footer-site.jsp"%>

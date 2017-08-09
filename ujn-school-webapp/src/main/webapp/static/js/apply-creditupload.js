@@ -1,7 +1,7 @@
 
 // 轮播图片上传
 jQuery(function() {
-	var $ = jQuery, $list = $('#fileList'), $btn = $('#ctlBtn'),state = 'pending',
+	var $ = jQuery, $list = $('#fileList'), $btn = $('#creditBtn'),state = 'pending',
 	// 优化retina, 在retina下这个值是2
 	ratio = window.devicePixelRatio || 1,
 
@@ -21,7 +21,7 @@ jQuery(function() {
 		swf : contextPath + '/js/Uploader.swf',
 
 		// 文件接收服务端。
-		server: contextPath + '/apply/controller/applyController/uploadIdImg',
+		server: contextPath + '/apply/controller/applyController/uploadCreditCodeImg',
 
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -128,16 +128,8 @@ jQuery(function() {
 		if (state === 'uploading') {
 			uploader.stop();
 		} else {
-			var options = {
-				success : function(data) {
-					uploader.options.formData.model_id = parent.apply_id;
-					uploader.upload();
-				}
-			};
-			// 准备form表单
-			//$("#form_company",window.parent.document).ajaxForm(options);
-			// 表单提交     
-			//$("#form_company",window.parent.document).ajaxSubmit(options);
+			uploader.options.formData.model_id = parent.apply_id;
+			uploader.upload();
 		}
 	});
 	//提示上传状态
@@ -154,14 +146,15 @@ jQuery(function() {
 				});
             return false;
         }else{
-        	parent.layer.alert("保存成功！", {
+        	$('#form_company  #credit_code_file',window.parent.document).val(path);
+        	/*parent.layer.alert("保存成功！", {
 				  closeBtn: 1
 				}, function(){
 					//父页面刷新
 					parent.window.location.reload();
 					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 					parent.layer.close(index); //再执行关闭
-				});
+				});*/
         }
     });
 });

@@ -47,35 +47,35 @@
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的姓名" id="user_name" name="user_name">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">工作单位</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的工作单位" id="user_unit" name="user_unit">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">联系电话</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的联系电话" id="user_tel" name="user_tel">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">通信地址 </label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的通信地址" id="address" name="address">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">邮政编码</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的邮政编码" id="postcode" name="postcode">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">证件类型</label>
@@ -85,14 +85,14 @@
 									<option value="护照">护照</option>
 								</select>
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">证件号码</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的证件号码" id="id_num" name="id_num">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">上传证件</label>
@@ -108,7 +108,7 @@
 										scrolling="no" frameborder="0" ></iframe> --%>
 								<span class="btn-upload form-group">
 								  <input class="input-text upload-url radius"  type="text" name="uploadfile-1" id="uploadfile-1" readonly>&nbsp;&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
-								  <input type="file" multiple name="file-1" class="input-file">
+								  <input type="file" multiple name="file-apply" class="input-file">
 								</span>
 							</div>
 						</div>
@@ -116,17 +116,17 @@
 						<div class="form-group">
 							<label class="col-xs-12 col-sm-2 col-md-3 control-label">所需信息的内容描述</label>
 							<textarea id="content" name="content" class="col-xs-12 col-sm-6 col-md-6 " rows="5" placeholder=""></textarea>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-xs-12 col-sm-2 col-md-3 control-label">申请获取信息的理由</label>
 							<textarea id="reason" name="reason" class="col-xs-12 col-sm-6 col-md-6" rows="5" placeholder=""></textarea>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-xs-12 col-sm-2 col-md-3 control-label">备注</label>
 							<textarea id="remark" name="remark" class="col-xs-12 col-sm-6 col-md-6" rows="5" placeholder=""></textarea>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<br/>
 						<div class="form-btn">
@@ -138,47 +138,48 @@
 				
 				<div class="tabCon apply-con">
 					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post"  class="form-horizontal" id="form_company">
+						<input type="hidden" name="credit_code_file" value="" id="credit_code_file">
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">法人姓名</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的姓名" id="user_name" name="user_name">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">工作单位</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的工作单位" id="user_unit" name="user_unit">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">统一社会信用代码</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
-								<input type="text" class="form-control" placeholder="请输入您的证件号码" id="id_num" name="id_num">
+								<input type="text" class="form-control" placeholder="请输入您的证件号码" id="credit_code" name="credit_code">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">联系电话</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的联系电话" id="user_tel" name="user_tel">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">通信地址 </label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的通信地址" id="address" name="address">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">邮政编码</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的邮政编码" id="postcode" name="postcode">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">法人证件类型</label>
@@ -188,14 +189,14 @@
 									<option value="护照">护照</option>
 								</select>
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">法人证件号码</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<input type="text" class="form-control" placeholder="请输入您的证件号码" id="id_num" name="id_num">
 							</div>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">法人证件附件</label>
@@ -204,11 +205,20 @@
 										scrolling="no" frameborder="0" ></iframe>
 							</div>
 						</div>
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">企业营业执照附件</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<iframe src="${pageContext.request.contextPath}/apply/controller/applyController/toApplyCreditPicUpload" name="creditiframe" id="creditiframe" 
 										scrolling="no" frameborder="0" ></iframe>
+							</div>
+						</div> --%>
+						<div class="form-group">
+							<label class="col-sm-2 col-md-3 control-label">企业营业执照附件</label>
+							<div class="col-sm-6 col-md-6 apply-pos">
+								<span class="btn-upload form-group">
+								  <input class="input-text upload-url radius"  type="text" name="uploadfile-1" id="uploadfile-1" readonly>&nbsp;&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
+								  <input type="file" multiple name="file-credit" class="input-file">
+								</span>
 							</div>
 						</div>
 						<div class="form-group">
@@ -216,7 +226,7 @@
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<span class="btn-upload form-group">
 								  <input class="input-text upload-url radius"  type="text" name="uploadfile-1" id="uploadfile-1" readonly>&nbsp;&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
-								  <input type="file" multiple name="file-1" class="input-file">
+								  <input type="file" multiple name="file-apply" class="input-file">
 								</span>
 							</div>
 						</div>
@@ -224,17 +234,17 @@
 						<div class="form-group">
 							<label class="col-xs-12 col-sm-2 col-md-3 control-label">所需信息的内容描述</label>
 							<textarea id="content" name="content" class="col-xs-12 col-sm-6 col-md-6 " rows="5" placeholder=""></textarea>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-xs-12 col-sm-2 col-md-3 control-label">申请获取信息的理由</label>
 							<textarea id="reason" name="reason" class="col-xs-12 col-sm-6 col-md-6" rows="5" placeholder=""></textarea>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<div class="form-group">
 							<label class="col-xs-12 col-sm-2 col-md-3 control-label">备注</label>
 							<textarea id="remark" name="remark" class="col-xs-12 col-sm-6 col-md-6" rows="5" placeholder=""></textarea>
-							<div class="col-md-3 apply-warning text-danger">请输入合法的信息</div>
+							
 						</div>
 						<br/>
 						<div class="form-btn">
@@ -278,6 +288,7 @@
 <script type="text/javascript">
 var contextPath = "${pageContext.request.contextPath}";
 var apply_id = '';
+var credit_path = '';
 $(function(){
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -294,19 +305,28 @@ $(function() {
 	
 	var options = {
 			success : function(data) {
-				layer.alert(data.result_message,
-						{
-							closeBtn : 1
-						},
-						function() {
-							//父页面刷新
-							parent.window.location
-									.reload();
-							var index = parent.layer
-									.getFrameIndex(window.name); //先得到当前iframe层的索引
-							parent.layer
-									.close(index); //再执行关闭
-						});
+				apply_id = data.apply_id;
+				//确保图片上传
+				var idiframe = $("#form_personal  #idiframe")[0].contentWindow;
+				var imgList = $("#form_personal  #idiframe").contents().find("#fileList").children('div');
+				if (imgList.length > 0) {
+					// not empty
+					$("#form_personal #idiframe").contents().find('#ctlBtn').trigger('click');
+				} else {
+					layer.alert(data.result_message,
+							{
+								closeBtn : 1
+							},
+							function() {
+								//父页面刷新
+								parent.window.location
+										.reload();
+								var index = parent.layer
+										.getFrameIndex(window.name); //先得到当前iframe层的索引
+								parent.layer
+										.close(index); //再执行关闭
+							});
+				}
 			}
 		};
 	
@@ -355,19 +375,10 @@ $(function() {
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			//确保图片上传
-			var idiframe = $("#idiframe")[0].contentWindow;
-			var imgList = $("#idiframe").contents().find("#fileList").children('div');
-			if (imgList.length > 0) {
-				// not empty
-				//idiframe.toClickUpload();
-				 $("#idiframe").contents().find('#ctlBtn').trigger('click');
-			} else {
-				// 准备form表单
-				$("#form_personal").ajaxForm(options);
-				// 表单提交     
-				$("#form_personal").ajaxSubmit(options);
-			}
+			// 准备form表单
+			$("#form_personal").ajaxForm(options);
+			// 表单提交     
+			$("#form_personal").ajaxSubmit(options);
 
 			return false;
 			
@@ -381,19 +392,28 @@ $(function() {
 	
 	var options_company = {
 			success : function(data) {
-				layer.alert(data.result_message,
-						{
-							closeBtn : 1
-						},
-						function() {
-							//父页面刷新
-							parent.window.location
-									.reload();
-							var index = parent.layer
-									.getFrameIndex(window.name); //先得到当前iframe层的索引
-							parent.layer
-									.close(index); //再执行关闭
-						});
+				apply_id = data.apply_id;
+				//确保图片上传
+				var idiframe = $("#form_company  #idiframe")[0].contentWindow;
+				var imgList = $("#form_company  #idiframe").contents().find("#fileList").children('div');
+				if (imgList.length > 0) {
+					// not empty
+					$("#form_company #idiframe").contents().find('#ctlBtn').trigger('click');
+				} else {
+					layer.alert(data.result_message,
+							{
+								closeBtn : 1
+							},
+							function() {
+								//父页面刷新
+								parent.window.location
+										.reload();
+								var index = parent.layer
+										.getFrameIndex(window.name); //先得到当前iframe层的索引
+								parent.layer
+										.close(index); //再执行关闭
+							});
+				}
 			}
 		};
 	
@@ -442,19 +462,10 @@ $(function() {
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			//确保图片上传
-			var idiframe = $("#idiframe")[0].contentWindow;
-			var imgList = $("#idiframe").contents().find("#fileList").children('div');
-			if (imgList.length > 0) {
-				// not empty
-				//idiframe.toClickUpload();
-				 $("#idiframe").contents().find('#ctlBtn').trigger('click');
-			} else {
-				// 准备form表单
-				$("#form_company").ajaxForm(options_company);
-				// 表单提交     
-				$("#form_company").ajaxSubmit(options_company);
-			}
+			// 准备form表单
+			$("#form_company").ajaxForm(options_company);
+			// 表单提交     
+			$("#form_company").ajaxSubmit(options_company);
 
 			return false;
 			
@@ -463,7 +474,16 @@ $(function() {
 	
 });
 
-
+function creditUpload(){
+	
+	//确保图片上传
+	var creditiframe = $("#form_company #creditiframe")[0].contentWindow;
+	var imgListCompany = $("#form_company #creditiframe").contents().find("#fileList").children('div');
+	if (imgListCompany.length > 0){
+		$("#form_company #creditiframe").contents().find('#creditBtn').trigger('click');
+	}
+	
+}
 </script>
 </body>
 </body>
