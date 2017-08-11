@@ -9,7 +9,7 @@
 <body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span>在线申请管理
+		在线申请管理 <span class="c-gray en">&gt;</span>在线申请
 	</nav>
 	<div id="win"></div>
 	<div id="win2"></div>
@@ -18,10 +18,15 @@
 			<table id="search_table" style="width: 95%;" border="0">
 				<tr>
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
-						<strong>关键词:</strong>&nbsp;&nbsp;
+						<strong>申请分类:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="content"
-						name="content" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><span class="select-box" style="width: 90%;">
+						<select class="select" size="1" id="user_type" name="user_type" >
+							<option value=''>--请选择--</option>
+	                            <option value="1">个人</option> 
+	                            <option value="2">企业/组织</option> 
+						</select>
+						</span>
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -46,12 +51,15 @@
 					<tr class="text-c">
 						<th><input type="checkbox" name="" value=""></th>
 						<th>申请人姓名</th>
+						<th>申请日期</th>
+						<th>分类</th>
 						<th>联系电话</th>
 						<th>工作单位</th>
 						<th>申请内容</th>
 						<th>申请原因</th>
-						<th>公开方式</th>
 						<th>备注说明</th>
+						<th>附件</th>
+						<th>状态</th>
 						<th width="15%">操作</th>
 					</tr>
 				</thead>
@@ -111,6 +119,12 @@
 									data : "user_name",
 									defaultContent : ""
 								}, {
+									data : "create_date",
+									defaultContent : ""
+								}, {
+									data : "user_type_name",
+									defaultContent : ""
+								}, {
 									data : "user_tel",
 									defaultContent : ""
 								}, {
@@ -123,10 +137,13 @@
 									data : "reason",
 									defaultContent : ""
 								}, {
-									data : "open_type",
+									data : "remark",
 									defaultContent : ""
 								}, {
-									data : "remark",
+									data : "apply_file",
+									defaultContent : ""
+								}, {
+									data : "status_name",
 									defaultContent : ""
 								}, {
 									data : null
@@ -156,7 +173,7 @@
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : true
+														"display" : row.status == 1 ? true:false
 													} ]
 										};
 										var html = template(context);
@@ -186,11 +203,11 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//名称
-				var content = $("#content").val().trim();
+				//分类
+				var user_type = $("#user_type").val().trim();
 				//查询条件
 				var param = {
-					"content" : content
+					user_type : user_type
 				};
 				
 				return param;
@@ -198,11 +215,17 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				//名称
-				$("#content").val('');
-				
+				//分类
+				$("#user_type").val('');
+				$('#search_but').trigger('click');
 			});
 			
+			//导出
+			$('#export_but').on('click', function() {
+				//分类
+				var user_type = $("#user_type").val().trim();
+				window.open('${pageContext.request.contextPath}/apply/controller/applyController/exportExcel?user_type=' + user_type,'查看原图',"fullscreen=1")
+			});
 			
 		});
 
@@ -248,7 +271,6 @@
 			    content: '${pageContext.request.contextPath}/apply/controller/applyController/toApplyDetail?id='+id
 			 });
 		}
-		
 	</script>
 </body>
 </html>

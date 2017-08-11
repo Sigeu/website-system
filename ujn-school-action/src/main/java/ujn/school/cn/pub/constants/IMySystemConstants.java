@@ -57,6 +57,7 @@ public interface IMySystemConstants {
 	// 按降序排列
 	static final String ORDER_COLUMN_ADD_TIME = "add_time";
 
+	static final String SERVER_PROJECT_NAME = "ujn-school-webapp";
 	static final String SERVER_FILE_PATH = "/ujn-school-webapp/upload/image/";
 	static final String FILE_PATH_IMAGE = "upload/image/";
 	static final String FILE_PATH = "upload/";

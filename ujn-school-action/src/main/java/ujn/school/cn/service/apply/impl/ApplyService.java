@@ -145,7 +145,8 @@ public class ApplyService implements IApplyService {
                     if(myFileName.trim() !=""){  
                         //重命名上传后的文件名  
                     	UUID uuid = UUID.randomUUID();
-                        String fileName = uuid + file_apply.getOriginalFilename(); 
+                        //String fileName = uuid + file_apply.getOriginalFilename(); 
+                        String fileName = uuid + myFileName.substring(myFileName.lastIndexOf(".")); 
                         String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
                         //定义上传路径  
                         //String path = "E:/upload-file/"; 
@@ -157,7 +158,15 @@ public class ApplyService implements IApplyService {
                         //保存文件信息到附件表
                         ujnFile.setBelong_id(apply.getId()+"");
                         ujnFile.setFile_name(myFileName);
-                        ujnFile.setFile_path(path);
+                        
+                        //处理下保存的路径
+                        //1、替换'\'为'/'
+                        // String tempPath = path.replaceAll("\\\\", "/");
+                        //2、截取
+                		//String file_path = tempPath.substring(tempPath.indexOf(IMySystemConstants.SERVER_PROJECT_NAME) + IMySystemConstants.SERVER_PROJECT_NAME.length());
+                		//3、设置路径
+                        ujnFile.setFile_path(IMySystemConstants.SERVER_FILE_PATH + fileName);
+                        
                         ujnFile.setFile_status(IMySystemConstants.VALUE_1);
                         //保存附件表
                         fileMapper.insertSelective(ujnFile);

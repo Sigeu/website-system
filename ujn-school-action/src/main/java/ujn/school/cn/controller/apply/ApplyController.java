@@ -4,6 +4,11 @@
  */
 package ujn.school.cn.controller.apply;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,10 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ujn.school.cn.model.apply.Apply;
 import ujn.school.cn.pub.base.MyBaseController;
+import ujn.school.cn.pub.constants.IMySystemConstants;
+import ujn.school.cn.pub.util.PoiExcelUtil;
 import ujn.school.cn.service.apply.IApplyService;
 
 import com.github.pagehelper.PageHelper;
@@ -38,7 +46,6 @@ public class ApplyController extends MyBaseController {
 	// 在线申请Service
 	@Resource
 	private IApplyService applyService;
-	
 
 	/**
 	 * 
@@ -52,8 +59,8 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyList";
 	}
-	
-	//意见反馈
+
+	// 意见反馈
 	@RequestMapping("/toFeedbackList")
 	public String toFeedbackList(HttpServletRequest request, Model model) {
 
@@ -104,10 +111,10 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyDetail";
 	}
-	
+
 	/**
 	 * 
-	 * @Description: 身份证上传 
+	 * @Description: 身份证上传
 	 * @param request
 	 * @param model
 	 * @return
@@ -117,10 +124,10 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyIdPicUpload";
 	}
-	
+
 	/**
 	 * 
-	 * @Description: 营业执照上传 
+	 * @Description: 营业执照上传
 	 * @param request
 	 * @param model
 	 * @return
@@ -130,10 +137,10 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyCreditPicUpload";
 	}
-	
+
 	/**
 	 * 
-	 * @Description: 附件上传 
+	 * @Description: 附件上传
 	 * @param request
 	 * @param model
 	 * @return
@@ -143,7 +150,7 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyFilePicUpload";
 	}
-	
+
 	/**
 	 * 
 	 * @Description: 分页列表
@@ -182,7 +189,7 @@ public class ApplyController extends MyBaseController {
 
 		return dataTable;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/queryApplyByPwd")
 	public DataTablePageUtil<Apply> queryApplyByPwd(HttpServletRequest request,
@@ -224,8 +231,9 @@ public class ApplyController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/queryFeedbackList")
-	public DataTablePageUtil<Apply> queryFeedbackList(HttpServletRequest request,
-			HttpServletResponse response, Apply apply) {
+	public DataTablePageUtil<Apply> queryFeedbackList(
+			HttpServletRequest request, HttpServletResponse response,
+			Apply apply) {
 		// 使用DataTables的属性接收分页数据
 		DataTablePageUtil<Apply> dataTable = null;
 		try {
@@ -252,6 +260,7 @@ public class ApplyController extends MyBaseController {
 
 		return dataTable;
 	}
+
 	/**
 	 * 
 	 * @Description: 添加
@@ -264,6 +273,8 @@ public class ApplyController extends MyBaseController {
 	public Map<String, Object> addApply(HttpServletRequest request, Apply apply) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
+			// 默认状态 1：正常
+			apply.setStatus(STATUS_CODE_1);
 			applyService.addApply(request, apply);
 			map.put("apply_id", apply.getId());
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
@@ -284,10 +295,11 @@ public class ApplyController extends MyBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/updateApply")
-	public Map<String, Object> updateApply(HttpServletRequest request, Apply apply) {
+	public Map<String, Object> updateApply(HttpServletRequest request,
+			Apply apply) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		//apply.setAdd_time(MyDateUtil.getDateTime());
+		// apply.setAdd_time(MyDateUtil.getDateTime());
 		int count = this.applyService.updateApply(apply);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
@@ -339,11 +351,10 @@ public class ApplyController extends MyBaseController {
 		}
 		return map;
 	}
-	
-	
+
 	/**
 	 * 
-	 * @Description: 上传身份证图片 
+	 * @Description: 上传身份证图片
 	 * @param request
 	 * @return
 	 */
@@ -353,7 +364,7 @@ public class ApplyController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			String id = nullToStringZero(request.getParameter("model_id"));
-			//保存数据
+			// 保存数据
 			applyService.uploadIdImg(request, id);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
@@ -363,10 +374,10 @@ public class ApplyController extends MyBaseController {
 
 		return map;
 	}
-	
+
 	/**
 	 * 
-	 * @Description: 上传营业执照图片 
+	 * @Description: 上传营业执照图片
 	 * @param request
 	 * @return
 	 */
@@ -376,7 +387,7 @@ public class ApplyController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			String id = nullToStringZero(request.getParameter("model_id"));
-			//保存数据
+			// 保存数据
 			applyService.uploadCreditCodeImg(request, id);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
@@ -386,10 +397,10 @@ public class ApplyController extends MyBaseController {
 
 		return map;
 	}
-	
+
 	/**
 	 * 
-	 * @Description: 附件上传 
+	 * @Description: 附件上传
 	 * @param request
 	 * @return
 	 */
@@ -399,7 +410,7 @@ public class ApplyController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			String id = nullToStringZero(request.getParameter("model_id"));
-			//保存数据
+			// 保存数据
 			applyService.uploadFile(request, id);
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
 		} catch (Exception e) {
@@ -408,5 +419,173 @@ public class ApplyController extends MyBaseController {
 		}
 
 		return map;
+	}
+
+	/**
+	 * 
+	 * @Description: 查看原图
+	 * @param request
+	 * @param response
+	 *            void
+	 */
+	@RequestMapping("/showImg")
+	public String showImg(HttpServletRequest request, Model model) {
+
+		int applyId = Integer.parseInt(request.getParameter("id"));
+		String type = request.getParameter("type");
+		Apply apply = this.applyService.queryApplyById(applyId);
+		model.addAttribute("apply", apply);
+		model.addAttribute("type", type);
+
+		return "apply/applyImg";
+	}
+
+	/**
+	 * 
+	 * @Description: 文件下载
+	 * @param fileName
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/downloadFile")
+	public void downloadFile(@RequestParam("id") Integer applyId,
+			HttpServletRequest request, HttpServletResponse response) {
+
+		Apply apply = this.applyService.queryApplyById(applyId);
+		if (null != apply) {
+			String realPath = request.getServletContext().getRealPath(
+					IMySystemConstants.FILE_PATH_IMAGE);
+			String apply_file_path = apply.getApply_file_path();
+			String fileName = apply_file_path.substring(apply_file_path
+					.lastIndexOf("/") + 1);
+			System.out.println("fileName:" + fileName);
+			File file = new File(realPath, fileName);
+			if (file.exists()) {
+				response.setCharacterEncoding("utf-8");
+				response.setContentType("multipart/form-data");
+				response.setHeader("Content-Disposition",
+						"attachment;fileName=" + fileName);
+
+				// response.setContentType("application/force-download");//
+				// 设置强制下载不打开
+				// response.addHeader("Content-Disposition",
+				// "attachment;fileName=" + fileName);// 设置文件名
+				byte[] buffer = new byte[1024];
+				FileInputStream fis = null;
+				BufferedInputStream bis = null;
+				try {
+					fis = new FileInputStream(file);
+					bis = new BufferedInputStream(fis);
+					OutputStream os = response.getOutputStream();
+					int i = bis.read(buffer);
+					while (i != -1) {
+						os.write(buffer, 0, i);
+						i = bis.read(buffer);
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				} finally {
+					if (bis != null) {
+						try {
+							bis.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					if (fis != null) {
+						try {
+							fis.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @Description: excel导出
+	 * @param fileName
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/exportExcel")
+	public void exportExcel(@RequestParam("user_type") String user_type,
+			HttpServletRequest request, HttpServletResponse response) {
+		try {
+			Apply apply = new Apply();
+			apply.setUser_type(user_type);
+			List<Apply> applyList = this.applyService.queryApplyList(apply);
+			String title = "";
+			if (STATUS_CODE_1.equals(user_type)) {
+				title = "个人";
+			} else if (STATUS_CODE_2.equals(user_type)) {
+				title = "企业";
+			}
+			/*-------------------改造自 AbstractJExcelView-------------------------------------*/
+			// 创建标题名称
+			String titlename = title + "在线申请";
+			// 创建表格标题
+			String[] titles = { "申请人姓名", "申请日期", "分类", "联系电话", "工作单位", "申请内容" };
+			// 列名
+			String[] columns = { "user_name", "create_date", "user_type_name",
+					"user_tel", "user_unit", "content" };
+			// 列宽
+			Integer[] widths = { 25, 25, 25, 25, 40, 100 };
+			// sheet名称
+			String sheetName = title + "在线申请导出数据";
+			String excel_name = title + "在线申请导出数据";
+			// excel 名称
+			//String codedFileName = java.net.URLEncoder.encode(excel_name, "UTF-8");
+			String codedFileName =  this.encodeChineseDownloadFileName(request,excel_name);
+			// 设置导出格式和名称
+			response.reset();
+			response.setContentType("application/vnd.ms-excel");
+			response.setHeader("Content-Disposition", "attachment; filename="
+					+ codedFileName + ".xls");
+
+			PoiExcelUtil.export(response, applyList, titles, columns, widths,
+					sheetName, Apply.class, false, titlename);
+			/*--------------------------------------------------------*/
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
+	/**
+	 * 对文件流输出下载的中文文件名进行编码 屏蔽各种浏览器版本的差异性
+	 * 
+	 * @throws UnsupportedEncodingException
+	 */
+	public String encodeChineseDownloadFileName(
+			HttpServletRequest request, String pFileName) throws Exception {
+
+		String filename = null;
+		String agent = request.getHeader("USER-AGENT");
+		if (null != agent) {
+			if (-1 != agent.indexOf("Firefox")) {// Firefox
+				filename = "=?UTF-8?B?"
+						+ (new String(
+								org.apache.commons.codec.binary.Base64
+										.encodeBase64(pFileName
+												.getBytes("UTF-8")))) + "?=";
+			} else if (-1 != agent.indexOf("Chrome")) {// Chrome
+				filename = new String(pFileName.getBytes(), "ISO8859-1");
+			} else {// IE7+
+				filename = java.net.URLEncoder.encode(pFileName, "UTF-8");
+				filename = filename.replace("+", "%20");
+			}
+		} else {
+			filename = pFileName;
+		}
+		return filename;
 	}
 }

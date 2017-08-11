@@ -42,6 +42,7 @@
 				</div>
 				<div class="tabCon apply-con">
 					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post"  class="form-horizontal" id="form_personal">
+						<input type="hidden" name="user_type" id="user_type" value="1">
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">姓名</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
@@ -139,6 +140,7 @@
 				<div class="tabCon apply-con">
 					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post"  class="form-horizontal" id="form_company">
 						<input type="hidden" name="credit_code_file" value="" id="credit_code_file">
+						<input type="hidden" name="user_type" id="user_type" value="2">
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">法人姓名</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
