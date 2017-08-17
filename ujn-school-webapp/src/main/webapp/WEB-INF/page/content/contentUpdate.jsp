@@ -18,47 +18,6 @@
 	<form action="${pageContext.request.contextPath}/content/controller/contentController/updateContent" method="post" class="form form-horizontal" id="form-content-update">
 		<input type="hidden" name="id" id="id_" value="${content.id}">
 		<input type="hidden" name="read_pwd" id="read_pwd" value="${content.read_pwd }" >
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="column_id" name="column_id">
-					<option value="0">--请选择--</option>  
-                    <c:forEach items="${columnSelectList}" var="column">  
-                    	<option value="${column.id}">${column.name}</option>  
-                    </c:forEach>  
-				</select>
-				</span> </div>
-		</div> --%>
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>一级栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="class1" name="class1">
-					<option value="0">--请选择--</option>  
-                    <c:forEach items="${columnListByLevel}" var="column">  
-                    	<option value="${column.id}">${column.name}</option>  
-                    </c:forEach>  
-				</select>
-				</span> 
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>二级栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="class2" name="class2">
-					<option value="">--请选择--</option>  
-				</select>
-				</span> 
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>三级栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="class3" name="class3">
-					<option value="">--请选择--</option>  
-				</select>
-				</span> 
-			</div>
-		</div> --%>
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
@@ -103,9 +62,9 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">重要信息标签：</label>
+			<label class="form-label col-xs-4 col-sm-2">重要信息标签(手输无效)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${content.importance}" placeholder="重要信息标签，可以手动录入或选择已有常用标签" id="importance" name="importance">
+				<input type="text" class="input-text" value="${content.importance}" readonly="readonly" placeholder="重要信息标签，可以手动录入或选择已有常用标签" id="importance" name="importance">
 			</div>
 		</div>
 		<div class="row cl btn-label btn-prompt">

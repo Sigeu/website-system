@@ -17,55 +17,6 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/content/controller/contentController/addContent" method="post" class="form form-horizontal" id="form-content-add">
 		<input type="hidden" name="read_pwd" id="read_pwd" value="${randomPwd }" >
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="column_id" name="column_id">
-					<option value="0">--请选择--</option>  
-                    <c:forEach items="${columnSelectList}" var="column">  
-                    	<option value="${column.id}">${column.name}</option>  
-                    </c:forEach>  
-				</select>
-				</span> 
-			</div>
-		</div> --%>
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>一级栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="class1" name="class1">
-					<option value="0">--请选择--</option>  
-                    <c:forEach items="${columnListByLevel}" var="column">  
-                    	<option value="${column.id}">${column.name}</option>  
-                    </c:forEach>  
-				</select>
-				</span> 
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>二级栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="class2" name="class2">
-					<option value="">--请选择--</option>  
-				</select>
-				</span> 
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>三级栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" id="class3" name="class3">
-					<option value="">--请选择--</option>  
-				</select>
-				</span> 
-			</div>
-		</div> --%>
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>编号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${orderNum }" placeholder="编号" id="code_num" name="code_num" readonly="readonly">
-			</div>
-		</div> --%>
-		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
@@ -110,9 +61,9 @@
 		</div>
 		
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">重要信息标签：</label>
+			<label class="form-label col-xs-4 col-sm-2">重要信息标签(手输无效)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="重要信息标签，可以手动录入或选择已有常用标签" id="importance" name="importance">
+				<input type="text" class="input-text" value="" readonly="readonly" placeholder="重要信息标签，可以手动录入或选择已有常用标签" id="importance" name="importance">
 			</div>
 		</div>
 		<div class="row cl btn-label btn-prompt">
@@ -166,25 +117,6 @@
 				</span>
 			</div>
 		</div>
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">目录分类：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<span class="select-box">
-					<select class="select" id="class_code" name="class_code">
-						<option value="">--请选择--</option> 
-						<c:forEach items="${classCodeList}" var="classCode" varStatus="code"> 
-	                  		<option value="${classCode.code_value }">${classCode.code_name }</option> 
-	                 	</c:forEach>
-					</select>
-				</span>
-			</div>
-		</div> --%>
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="链接到网站外部的网址" id="links" name="links">
-			</div>
-		</div> -->
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">

@@ -10,62 +10,48 @@ $(function(){
 	$('#importance_content button').on('click', function(){
 		var thisValue = $(this).text();
 		var oldValue = $('#importance').val();
+		var importance = '';
 		if('' == oldValue){
-			$('#importance').val(thisValue);
+			importance = thisValue + ",";
 		}else{
-			$('#importance').val(oldValue + "," + thisValue);
+			importance = oldValue + thisValue + ",";
 		}
-		
+		var arr = new Array();
+		arr = importance.split(",");
+		$('#importance').val(unique(arr));
 	});
 	//内容标签
 	$('#tag_content button').on('click', function(){
 		var thisValue = $(this).text();
 		var oldValue = $('#tag').val();
+		var tag = '';
 		if('' == oldValue){
-			$('#tag').val(thisValue);
+			tag = thisValue + ",";
 		}else{
-			$('#tag').val(oldValue + "," + thisValue);
+			tag =  oldValue + thisValue + ",";
 		}
-		
+		var arr = new Array();
+		tag = tag.replace(/，/ig,','); 
+		arr = tag.split(",");
+		$('#tag').val(unique(arr));
 	});
 	
-	//一级菜单
-/*	$('#class1').on('change', function(){
-		var thisValue = $(this).val();
-		//先清空
-		$("#class2").empty();
-		$("#class2").append("<option value=''>--请选择--</option>");
-		$("#class3").empty();
-		$("#class3").append("<option value=''>--请选择--</option>");
-		$.ajax({
-			type:"post",
-			url: contextPath + "/column/controller/columnController/queryChildColumnListById?id=" + thisValue,
-			datatype:"json",
-			success:function(data){
-				for(var i = 0;i < data.length;i++){
-					$("#class2").append("<option value=" + data[i].id + ">" +  data[i].name + "</option>");
-				}
-			}
-		});
-	});*/
-	//二级菜单
-/*	$('#class2').on('change', function(){
-		var thisValue = $(this).val();
-		//先清空
-		$("#class3").empty();
-		$("#class3").append("<option value=''>--请选择--</option>");
-		$.ajax({
-			type:"post",
-			url: contextPath + "/column/controller/columnController/queryChildColumnListById?id=" + thisValue,
-			datatype:"json",
-			success:function(data){
-				for(var i = 0;i < data.length;i++){
-					$("#class3").append("<option value=" + data[i].id + ">" +  data[i].name + "</option>");
-				}
-			}
-		});
-	});*/
-	
-	
+	$('#tag').blur( function(event){
+		var tag = $('#tag').val();
+		tag = tag.replace(/，/ig,',');
+		$('#tag').val(tag);
+	});
 });
 /*----------------------标签选择-----------------------*/
+
+function unique(arr) {
+	// 遍历arr，把元素分别放入tmp数组(不存在才放)
+	var tmp = new Array();
+	for ( var i in arr) {
+		// 该元素在tmp内部不存在才允许追加
+		if (tmp.indexOf(arr[i]) == -1) {
+			tmp.push(arr[i]);
+		}
+	}
+	return tmp;
+}
