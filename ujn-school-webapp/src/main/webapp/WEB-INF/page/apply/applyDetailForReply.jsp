@@ -141,24 +141,10 @@
 				</div>
 			</div>
 		</c:if>
-		<br>
-		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="close_but" class="btn btn-default radius" type="button">&nbsp;&nbsp;返回&nbsp;&nbsp;</button>
-			</div>
-		</div>
 			</form>
 		</div>
 <%@ include file="../../../common/footer_form.jsp"%>
 <script type="text/javascript">
-$(function(){
-	$('#close_but').on('click', function() {
-		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-		parent.layer.close(index); //再执行关闭
-		return false;
-	});
-	
-});
 //查看原图
 function toShowImg(id,type,check_pwd){
 	window.open('${pageContext.request.contextPath}/apply/controller/applyController/showImg?id=' + id + '&type=' + type + '&check_pwd=' + check_pwd,'查看原图',"fullscreen=1");

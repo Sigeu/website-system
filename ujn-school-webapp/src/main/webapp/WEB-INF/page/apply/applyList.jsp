@@ -169,11 +169,11 @@
 														"display" : true
 													},{
 														"name" : "回复",
-														"fn" : "toDetail(\'"
+														"fn" : "toReply(\'"
 																+ row.id
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
-														"display" : row.status == 1 ? true:false
+														"display" : row.status == '1' ? true:false
 													} ]
 										};
 										var html = template(context);
@@ -269,6 +269,18 @@
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/apply/controller/applyController/toApplyDetail?id='+id
+			 });
+		}
+		
+		//查看
+		function toReply(id){
+			layer.open({
+			    type: 2,
+			    maxmin:true,
+			    title:["查看"],
+			    area: ['100%', '100%'],
+			    shadeClose: false, //点击遮罩关闭
+			    content: '${pageContext.request.contextPath}/apply/controller/applyController/toApplyReply?id='+id
 			 });
 		}
 	</script>

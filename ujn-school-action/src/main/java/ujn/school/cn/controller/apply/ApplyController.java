@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ujn.school.cn.model.apply.Apply;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
+import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.pub.util.PoiExcelUtil;
 import ujn.school.cn.service.apply.IApplyService;
 
@@ -111,7 +113,40 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyDetail";
 	}
+	
+	/**
+	 * 
+	 * @Description: 根据ID和确认码查询明细
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toShowReplyApplyDetail")
+	public String toShowReplyApplyDetail(HttpServletRequest request, Model model) {
+		int applyId = Integer.parseInt(request.getParameter("id"));
+		String check_pwd = request.getParameter("check_pwd");
+		Apply apply = this.applyService.queryApplyByIdAndCheckPwd(applyId,check_pwd);
+		model.addAttribute("apply", apply);
 
+		return "apply/applyDetailForReply";
+	}
+	
+	/**
+	 * 
+	 * @Description: 跳转到回复页面
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toApplyReply")
+	public String toApplyReply(HttpServletRequest request, Model model) {
+		int applyId = Integer.parseInt(request.getParameter("id"));
+		Apply apply = this.applyService.queryApplyById(applyId);
+		model.addAttribute("apply", apply);
+
+		return "apply/applyReply";
+	}
+	
 	/**
 	 * 
 	 * @Description: 身份证上传
@@ -189,7 +224,15 @@ public class ApplyController extends MyBaseController {
 
 		return dataTable;
 	}
-
+	
+	/**
+	 * 
+	 * @Description: 根据确认码查询数据 
+	 * @param request
+	 * @param response
+	 * @param apply
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/queryApplyByPwd")
 	public DataTablePageUtil<Apply> queryApplyByPwd(HttpServletRequest request,
@@ -223,44 +266,28 @@ public class ApplyController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 在线反馈
+	 * @Description: 回复
 	 * @param request
-	 * @param response
 	 * @param apply
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/queryFeedbackList")
-	public DataTablePageUtil<Apply> queryFeedbackList(
-			HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping("/replyApply")
+	public Map<String, Object> replyApply(HttpServletRequest request,
 			Apply apply) {
-		// 使用DataTables的属性接收分页数据
-		DataTablePageUtil<Apply> dataTable = null;
-		try {
-			// 使用DataTables的属性接收分页数据
-			dataTable = new DataTablePageUtil<Apply>(request);
-			// 开始分页：PageHelper会处理接下来的第一个查询
-			PageHelper.startPage(dataTable.getPage_num(),
-					dataTable.getPage_size());
-			// 还是使用List，方便后期用到
-			List<Apply> applyList = this.applyService.queryApplyList(apply);
-			// 用PageInfo对结果进行包装
-			PageInfo<Apply> pageInfo = new PageInfo<Apply>(applyList);
 
-			// 封装数据给DataTables
-			dataTable.setDraw(dataTable.getDraw());
-			dataTable.setData(pageInfo.getList());
-			dataTable.setRecordsTotal((int) pageInfo.getTotal());
-			dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+		Map<String, Object> map = new HashMap<String, Object>();
+		apply.setReply_date(MyDateUtil.getDateTime());
+		int count = this.applyService.updateApplyForReply(request,apply);
+		if (RESULT_COUNT_1 == count) {
+			map.put(RESULT_MESSAGE_STRING, "回复成功");
+		} else {
+			map.put(RESULT_MESSAGE_STRING, "回复失败");
 		}
 
-		return dataTable;
+		return map;
 	}
-
+	
 	/**
 	 * 
 	 * @Description: 添加
@@ -432,8 +459,11 @@ public class ApplyController extends MyBaseController {
 	public String showImg(HttpServletRequest request, Model model) {
 
 		int applyId = Integer.parseInt(request.getParameter("id"));
+		//确认码：为了防止前台通过url修改id查询数据
+		String check_pwd = request.getParameter("check_pwd");
+		
 		String type = request.getParameter("type");
-		Apply apply = this.applyService.queryApplyById(applyId);
+		Apply apply = this.applyService.queryApplyByIdAndCheckPwd(applyId,check_pwd);
 		model.addAttribute("apply", apply);
 		model.addAttribute("type", type);
 
@@ -442,24 +472,24 @@ public class ApplyController extends MyBaseController {
 
 	/**
 	 * 
-	 * @Description: 文件下载
+	 * @Description: 申请文件下载
 	 * @param fileName
 	 * @param request
 	 * @param response
 	 * @return
 	 */
 	@RequestMapping("/downloadFile")
-	public void downloadFile(@RequestParam("id") Integer applyId,
+	public void downloadFile(@RequestParam("id") Integer applyId,@RequestParam("check_pwd") String check_pwd,
 			HttpServletRequest request, HttpServletResponse response) {
-
-		Apply apply = this.applyService.queryApplyById(applyId);
+		
+		//确认码：为了防止前台通过url修改id查询数据
+		Apply apply = this.applyService.queryApplyByIdAndCheckPwd(applyId,check_pwd);
 		if (null != apply) {
 			String realPath = request.getServletContext().getRealPath(
 					IMySystemConstants.FILE_PATH_IMAGE);
 			String apply_file_path = apply.getApply_file_path();
 			String fileName = apply_file_path.substring(apply_file_path
 					.lastIndexOf("/") + 1);
-			System.out.println("fileName:" + fileName);
 			File file = new File(realPath, fileName);
 			if (file.exists()) {
 				response.setCharacterEncoding("utf-8");
@@ -507,7 +537,73 @@ public class ApplyController extends MyBaseController {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * @Description: 回复附件下载 
+	 * @param applyId
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/downloadFileForReply")
+	public void downloadFileForReply(@RequestParam("id") Integer applyId,@RequestParam("check_pwd") String check_pwd,
+			HttpServletRequest request, HttpServletResponse response) {
+		//确认码：为了防止前台通过url修改id查询数据
+		Apply apply = this.applyService.queryApplyByIdAndCheckPwd(applyId,check_pwd);
+		if (null != apply) {
+			String realPath = request.getServletContext().getRealPath(
+					IMySystemConstants.FILE_PATH_IMAGE);
+			String reply_file_path = apply.getReply_file_path();
+			String fileName = reply_file_path.substring(reply_file_path
+					.lastIndexOf("/") + 1);
+			File file = new File(realPath, fileName);
+			if (file.exists()) {
+				response.setCharacterEncoding("utf-8");
+				response.setContentType("multipart/form-data");
+				response.setHeader("Content-Disposition",
+						"attachment;fileName=" + fileName);
 
+				// response.setContentType("application/force-download");//
+				// 设置强制下载不打开
+				// response.addHeader("Content-Disposition",
+				// "attachment;fileName=" + fileName);// 设置文件名
+				byte[] buffer = new byte[1024];
+				FileInputStream fis = null;
+				BufferedInputStream bis = null;
+				try {
+					fis = new FileInputStream(file);
+					bis = new BufferedInputStream(fis);
+					OutputStream os = response.getOutputStream();
+					int i = bis.read(buffer);
+					while (i != -1) {
+						os.write(buffer, 0, i);
+						i = bis.read(buffer);
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				} finally {
+					if (bis != null) {
+						try {
+							bis.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					if (fis != null) {
+						try {
+							fis.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * 
 	 * @Description: excel导出

@@ -267,9 +267,11 @@
 										name="check_pwd" placeholder="申请确认码" class="input-text input-collspace size-MINI" />
 									</td>
 									<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
-										<button class="btn btn-warning radius size-MINI" id="search_but">
+										<button class="btn btn-warning radius size-MINI" id="reply_search_but">
 											<i class="Hui-iconfont Hui-iconfont-search2">&nbsp;&nbsp;</i>查询
 										</button> &nbsp;&nbsp;
+										<button class="btn btn-success radius size-MINI" id="reply_reset_but">
+										<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
 									</td>
 								</tr>
 				
@@ -302,6 +304,7 @@
 <%@ include file="siteFooter.jsp"%>
 
 <%@ include file="../../../common/footer-site.jsp"%>
+<%@ include file="../../../common/footer_list.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui/js/H-ui.js"></script> 
 <!-- 表单验证 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
@@ -523,7 +526,7 @@ $(function() {
 								url : "${pageContext.request.contextPath}/apply/controller/applyController/queryApplyByPwd",
 								type:"POST",
 								data : {
-									check_pwd: $('#check_pwd').val()
+									///check_pwd: $('#check_pwd').val()
 								}
 							}, 
 							serverSide : true,//开启服务器模式:启用服务器分页
@@ -559,10 +562,10 @@ $(function() {
 												{
 													"name" : "查看",
 													"fn" : "toDetail(\'"
-															+ row.id
+															+ row.id + "\',\'" + row.check_pwd
 															+ "\')",
 													"type" : "primary-outline size-MINI radius",
-													"display" : false
+													"display" : true
 												} ]
 									};
 									var html = template(context);
@@ -585,7 +588,7 @@ $(function() {
 							}
 						});
 		//条件查询
-		$('#search_but').on('click', function() {
+		$('#reply_search_but').on('click', function() {
 			oTable.settings()[0].ajax.data = getSearchParams();
 			oTable.ajax.reload();
 		});
@@ -598,18 +601,21 @@ $(function() {
 			var param = {
 				"check_pwd" : check_pwd
 			};
-			
 			return param;
 		}
 		
 		//重置
-		$('#reset_but').on('click', function() {
+		$('#reply_reset_but').on('click', function() {
 			//标题
 			$("#check_pwd").val('');
+			$('#reply_search_but').trigger('click');
 		});
-		
-		
 	});
+	
+	//查看
+	function toDetail(id,check_pwd){
+		window.open('${pageContext.request.contextPath}/apply/controller/applyController/toShowReplyApplyDetail?id=' + id + '&check_pwd=' + check_pwd ,'查看',"fullscreen=1")
+	}
 </script>
 </body>
 </body>

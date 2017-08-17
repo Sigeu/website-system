@@ -67,4 +67,8 @@ public interface IApplyService {
 
 	List<Apply> queryApplyByPwd(Apply apply);
 
+	int updateApplyForReply(HttpServletRequest request, Apply apply);
+
+	Apply queryApplyByIdAndCheckPwd(int applyId, String check_pwd);
+
 }

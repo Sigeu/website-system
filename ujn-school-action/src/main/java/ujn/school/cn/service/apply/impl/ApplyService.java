@@ -5,8 +5,10 @@
 package ujn.school.cn.service.apply.impl;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -51,7 +53,7 @@ public class ApplyService implements IApplyService {
 	@Override
 	public int updateApply(Apply apply) {
 		// TODO Auto-generated method stub
-		return applyMapper.updateByPrimaryKey(apply);
+		return applyMapper.updateByPrimaryKeySelective(apply);
 	}
 	
 	/*
@@ -168,6 +170,8 @@ public class ApplyService implements IApplyService {
                         ujnFile.setFile_path(IMySystemConstants.SERVER_FILE_PATH + fileName);
                         
                         ujnFile.setFile_status(IMySystemConstants.VALUE_1);
+                        //申请附件
+                        ujnFile.setType_flag(IMySystemConstants.VALUE_1);
                         //保存附件表
                         fileMapper.insertSelective(ujnFile);
                     }  
@@ -341,6 +345,76 @@ public class ApplyService implements IApplyService {
 	public List<Apply> queryApplyByPwd(Apply apply) {
 		// TODO Auto-generated method stub
 		return applyMapper.queryApplyByPwd(apply);
+	}
+
+	@Override
+	public int updateApplyForReply(HttpServletRequest request, Apply apply) {
+		int count = 0;
+		//更新回复
+		applyMapper.updateByPrimaryKeySelective(apply);
+		try {
+			//附件表
+			ujn.school.cn.model.file.File ujnFile = new ujn.school.cn.model.file.File();
+			//创建一个通用的多部分解析器  
+	        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());  
+	        //判断 request 是否有文件上传,即多部分请求  
+	        if(multipartResolver.isMultipart(request)){  
+	            //转换成多部分request    
+	            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
+	            
+	            //附件
+	            MultipartFile file_apply = multiRequest.getFile("file-reply");
+	            if(null != file_apply){
+                	//取得当前上传文件的文件名称  
+                    String myFileName = file_apply.getOriginalFilename();  
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在  
+                    if(myFileName.trim() !=""){  
+                        //重命名上传后的文件名  
+                    	UUID uuid = UUID.randomUUID();
+                        //String fileName = uuid + file_apply.getOriginalFilename(); 
+                        String fileName = uuid + myFileName.substring(myFileName.lastIndexOf(".")); 
+                        String path = request.getSession().getServletContext().getRealPath(IMySystemConstants.FILE_PATH_IMAGE);
+                        //定义上传路径  
+                        //String path = "E:/upload-file/"; 
+                        File localFile = new File(path, fileName);  
+                        if(!localFile.exists()){  
+                        	localFile.mkdirs();  
+                        }  
+                        file_apply.transferTo(localFile);  
+                        //保存文件信息到附件表
+                        ujnFile.setBelong_id(apply.getId()+"");
+                        ujnFile.setFile_name(myFileName);
+                        
+                        //处理下保存的路径
+                        //1、替换'\'为'/'
+                        // String tempPath = path.replaceAll("\\\\", "/");
+                        //2、截取
+                		//String file_path = tempPath.substring(tempPath.indexOf(IMySystemConstants.SERVER_PROJECT_NAME) + IMySystemConstants.SERVER_PROJECT_NAME.length());
+                		//3、设置路径
+                        ujnFile.setFile_path(IMySystemConstants.SERVER_FILE_PATH + fileName);
+                        
+                        ujnFile.setFile_status(IMySystemConstants.VALUE_1);
+                        //回复附件
+                        ujnFile.setType_flag(IMySystemConstants.VALUE_2);
+                        //保存附件表
+                        count = fileMapper.insertSelective(ujnFile);
+                    }  
+                }  
+            }
+	            
+		} catch (Exception e) {
+			e.printStackTrace();
+			count = 0;
+		}
+		return count;
+	}
+
+	@Override
+	public Apply queryApplyByIdAndCheckPwd(int applyId, String check_pwd) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("id", applyId);
+		map.put("check_pwd", check_pwd);
+		return applyMapper.queryApplyByIdAndCheckPwd(map);
 	}
 	
 

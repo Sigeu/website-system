@@ -141,6 +141,11 @@
 				/apply/controller/applyController/uploadIdImg = anon
 				/apply/controller/applyController/uploadCreditImg = anon
 				/apply/controller/applyController/uploadFileImg = anon
+				/apply/controller/applyController/queryApplyByPwd = anon
+				/apply/controller/applyController/toShowReplyApplyDetail = anon
+				/apply/controller/applyController/showImg = anon
+				/apply/controller/applyController/downloadFile = anon
+				/apply/controller/applyController/downloadFileForReply = anon
 				/index/** = anon
 				/site/** = anon
 				/static/** = anon

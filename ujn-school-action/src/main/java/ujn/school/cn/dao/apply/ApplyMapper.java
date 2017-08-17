@@ -1,6 +1,7 @@
 package ujn.school.cn.dao.apply;
 
 import java.util.List;
+import java.util.Map;
 
 import ujn.school.cn.model.apply.Apply;
 
@@ -60,4 +61,6 @@ public interface ApplyMapper {
 	void uploadCreditCodeImg(Apply apply);
 
 	List<Apply> queryApplyByPwd(Apply apply);
+
+	Apply queryApplyByIdAndCheckPwd(Map<String, Object> map);
 }
