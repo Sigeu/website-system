@@ -99,7 +99,7 @@ function toContentListForImportance() {
 /*----------------------重要信息列表-----------------------*/
 
 /*----------------------最新信息列表-----------------------*/
-//列表
+//最新公开列表
 function toContentListForNew() {
 	var url = contextPath
 			+ "/index/controller/indexController/queryContentListForNew";

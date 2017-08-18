@@ -45,6 +45,7 @@
     <result column="year_code" jdbcType="VARCHAR" property="year_code" />
     <result column="order_code" jdbcType="VARCHAR" property="order_code" />
     <result column="open_type_code" jdbcType="VARCHAR" property="open_type_code" />
+    <result column="count" jdbcType="VARCHAR" property="count" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="ujn.school.cn.model.content.ContentWithBLOBs">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
@@ -716,5 +717,25 @@
     <if test="limit_num != null and limit_num != 0">
          limit #{limit_num}
     </if>
+  </select>
+  
+  
+   <!-- 统计 -->
+   <select id="queryContentStatistics" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
+    select c.column_id,
+    (select name from ujn_column cu where column_id = cu.id) as column_id_name,
+    count(1) as count
+    from ujn_content c
+    where 1=1
+    <if test="column_id != null and column_id != ''">
+        and column_id = #{column_id,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate != null and startDate != ''">
+		and unix_timestamp(c.add_time) &gt;=  unix_timestamp(#{startDate,jdbcType=VARCHAR})
+	</if>
+	<if test="endDate != null and endDate != ''">
+		and unix_timestamp(c.add_time) &lt;=  unix_timestamp(#{endDate,jdbcType=VARCHAR})
+	</if>
+    group by c.column_id
   </select>
 </mapper>

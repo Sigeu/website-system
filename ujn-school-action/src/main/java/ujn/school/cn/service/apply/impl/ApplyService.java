@@ -175,8 +175,8 @@ public class ApplyService implements IApplyService {
                         //保存附件表
                         fileMapper.insertSelective(ujnFile);
                     }  
-	                }  
-	            }
+                }  
+            }
 	            
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -415,6 +415,12 @@ public class ApplyService implements IApplyService {
 		map.put("id", applyId);
 		map.put("check_pwd", check_pwd);
 		return applyMapper.queryApplyByIdAndCheckPwd(map);
+	}
+
+	@Override
+	public List<Apply> queryApplyStatistics(Apply apply) {
+		// TODO Auto-generated method stub
+		return applyMapper.queryApplyStatistics(apply);
 	}
 	
 

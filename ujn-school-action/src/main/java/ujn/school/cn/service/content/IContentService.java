@@ -74,4 +74,6 @@ public interface IContentService {
 
 	List<Content> queryContentListByImportance(Content content);
 
+	List<Content> queryContentStatistics(Content content);
+
 }

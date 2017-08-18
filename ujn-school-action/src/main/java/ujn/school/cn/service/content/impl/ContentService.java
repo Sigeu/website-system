@@ -187,6 +187,12 @@ public class ContentService implements IContentService {
 		// TODO Auto-generated method stub
 		return contentMapper.queryContentListByImportance(content);
 	}
+
+	@Override
+	public List<Content> queryContentStatistics(Content content) {
+		// TODO Auto-generated method stub
+		return contentMapper.queryContentStatistics(content);
+	}
 	
 
 

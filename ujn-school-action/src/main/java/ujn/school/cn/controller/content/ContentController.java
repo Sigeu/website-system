@@ -71,6 +71,19 @@ public class ContentController extends MyBaseController {
 	
 	/**
 	 * 
+	 * @Description: 跳转到统计页面
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toContentStatistics")
+	public String toContentStatistics(HttpServletRequest request, Model model) {
+
+		return "content/contentStatistics";
+	}
+	
+	/**
+	 * 
 	 * @Description: 跳转到内容回收站列表 
 	 * @param request
 	 * @param model
@@ -204,6 +217,46 @@ public class ContentController extends MyBaseController {
 		return dataTable;
 	}
 	
+	
+	
+	/**
+	 * 
+	 * @Description: 统计
+	 * @param request
+	 * @param response
+	 * @param content
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryContentStatistics")
+	public DataTablePageUtil<Content> queryContentStatistics(HttpServletRequest request,
+			HttpServletResponse response, Content content) {
+		// 使用DataTables的属性接收分页数据
+		DataTablePageUtil<Content> dataTable = null;
+		try {
+			// 使用DataTables的属性接收分页数据
+			dataTable = new DataTablePageUtil<Content>(request);
+			// 开始分页：PageHelper会处理接下来的第一个查询
+			PageHelper.startPage(dataTable.getPage_num(),
+					dataTable.getPage_size());
+			// 还是使用List，方便后期用到
+			List<Content> contentList = this.contentService.queryContentStatistics(content);
+			// 用PageInfo对结果进行包装
+			PageInfo<Content> pageInfo = new PageInfo<Content>(contentList);
+
+			// 封装数据给DataTables
+			dataTable.setDraw(dataTable.getDraw());
+			dataTable.setData(pageInfo.getList());
+			dataTable.setRecordsTotal((int) pageInfo.getTotal());
+			dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return dataTable;
+	}
 	/**
 	 * 
 	 * @Description: 内容回收站

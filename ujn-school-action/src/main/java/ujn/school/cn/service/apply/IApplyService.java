@@ -71,4 +71,6 @@ public interface IApplyService {
 
 	Apply queryApplyByIdAndCheckPwd(int applyId, String check_pwd);
 
+	List<Apply> queryApplyStatistics(Apply apply);
+
 }

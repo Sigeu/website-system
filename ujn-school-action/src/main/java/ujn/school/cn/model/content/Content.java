@@ -52,6 +52,10 @@ public class Content {
     
     private int count_num;
     
+    private String startDate;
+    private String endDate;
+    private String count;
+    
     //显示的条数
     private int limit_num;
 
@@ -1243,5 +1247,29 @@ public class Content {
 
 	public void setLimit_num(int limit_num) {
 		this.limit_num = limit_num;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
 	}
 }

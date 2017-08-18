@@ -63,4 +63,6 @@ public interface ApplyMapper {
 	List<Apply> queryApplyByPwd(Apply apply);
 
 	Apply queryApplyByIdAndCheckPwd(Map<String, Object> map);
+
+	List<Apply> queryApplyStatistics(Apply apply);
 }

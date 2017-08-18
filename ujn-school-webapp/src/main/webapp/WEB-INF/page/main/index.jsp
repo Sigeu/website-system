@@ -98,8 +98,8 @@
 			<dt><i class="Hui-iconfont">&#xe61a;</i> 统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="${pageContext.request.contextPath}/audit/controller/auditController/toAuditContentList" data-title="文章统计" href="javascript:void(0)">文章统计</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/audit/controller/auditController/toAuditContentList" data-title="在线申请统计" href="javascript:void(0)">在线申请统计</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/content/controller/contentController/toContentStatistics" data-title="文章统计" href="javascript:void(0)">文章统计</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/apply/controller/applyController/toApplyStatistics" data-title="在线申请统计" href="javascript:void(0)">在线申请统计</a></li>
 				</ul>
 			</dd>
 		</dl>

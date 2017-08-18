@@ -733,11 +733,7 @@ public class IndexController extends MyBaseController {
 	public String queryContentListForNew(HttpServletRequest request, Model model) {
 			
 		//内容列表
-		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
-		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
-		List<Content> contentList = contentService.queryContentListByNew(null);
-		int totalRecords = contentList.size();
-		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
+		//List<Content> contentList = contentService.queryContentListByNew(null);
 		
 		// 网站联系方式
 		Contact contact = contactService.queryContact();
@@ -764,16 +760,35 @@ public class IndexController extends MyBaseController {
 		
 		model.addAttribute("contact", contact);
 		model.addAttribute("linkList", linkList);
-		model.addAttribute("contentList", contentList);
-		model.addAttribute("totalRecords", totalRecords);
-		model.addAttribute("totalPage", totalPage);
+		//model.addAttribute("contentList", contentList);
 		model.addAttribute("contentReportList", contentReportList);
 		model.addAttribute("columnList", columnList);
 		model.addAttribute("search_text", "最新公开信息");
 		
-		return "site/searchList";
+		return "site/articleNewList";
 	}
 	
+	/**
+	 * 
+	 * @Description: 最新公开分页 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/articleNewForPage")
+	public List<Content> articleNewForPage(HttpServletRequest request) {
+		List<Content> listContentPage = null;
+		try {
+			Content content = new Content();
+			// 所有数据
+			listContentPage = contentService.queryContentListByNew(content);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listContentPage;
+	}
 	
 	/**
 	 * 获取IP

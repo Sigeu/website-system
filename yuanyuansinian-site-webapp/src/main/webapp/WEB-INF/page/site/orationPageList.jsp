@@ -61,43 +61,41 @@
 		//-------分页数据----------
 	</script>
 	<script type="text/javascript">
-   
-
-var datas=[];
-var options={};
-$(function() {
-	$.ajax({
-		method : "POST",
-		url : contextPath + "/sinian/index/indexController/orationForPage",
-		data : {
-			//id : '${column_id }'
+		var datas=[];
+		var options={};
+		$(function() {
+			$.ajax({
+				method : "POST",
+				url : contextPath + "/sinian/index/indexController/orationForPage",
+				data : {
+					//id : '${column_id }'
+				}
+			}).done(function(data) {
+				datas = data;
+				options={
+				"id":"page",//显示页码的元素
+				"data":datas,//显示数据
+			    "maxshowpageitem":5,//最多显示的页码个数
+			    "pagelistcount":10,//每页显示数据个数
+			    "callBack":function(result){
+			    	var cHtml="";
+			        for(var i=0;i<result.length;i++){
+			            cHtml += "<div class='search-pro'><a href='###'  onclick=\"toOrationDetail('" + result[i].id +"')\"><h5>"+ result[i].title + "</h5></a><p class='search-date'>" + result[i].create_date.substring(0,10) + "</p></div>";//处理数据
+			        }
+			        $("#demoContent").html(cHtml);//将数据增加到页面中
+			    }
+			};
+				page.init(datas.length,1,options);
+			});
+			
+				
+		});
+		   
+		//查看内容
+		function toOrationDetail(id) {
+			url = contextPath + "/sinian/index/indexController/toOrationDetail?id=" + id;
+			window.location.href = url;
 		}
-	}).done(function(data) {
-		datas = data;
-		options={
-		"id":"page",//显示页码的元素
-		"data":datas,//显示数据
-	    "maxshowpageitem":5,//最多显示的页码个数
-	    "pagelistcount":10,//每页显示数据个数
-	    "callBack":function(result){
-	    	var cHtml="";
-	        for(var i=0;i<result.length;i++){
-	            cHtml += "<div class='search-pro'><a href='###'  onclick=\"toOrationDetail('" + result[i].id +"')\"><h5>"+ result[i].title + "</h5></a><p class='search-date'>" + result[i].create_date.substring(0,10) + "</p></div>";//处理数据
-	        }
-	        $("#demoContent").html(cHtml);//将数据增加到页面中
-	    }
-	};
-		page.init(datas.length,1,options);
-	});
-	
-		
-});
-   
-//查看内容
-function toOrationDetail(id) {
-	url = contextPath + "/sinian/index/indexController/toOrationDetail?id=" + id;
-	window.location.href = url;
-}
-</script>
+	</script>
 </body>
 </html>

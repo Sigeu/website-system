@@ -81,4 +81,6 @@ public interface ContentMapper {
 	List<Content> queryContentListByNew(Content content);
 
 	List<Content> queryContentListByImportance(Content content);
+
+	List<Content> queryContentStatistics(Content content);
 }

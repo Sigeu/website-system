@@ -1,374 +1,413 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ujn.school.cn.dao.apply.ApplyMapper">
-  <resultMap id="BaseResultMap" type="ujn.school.cn.model.apply.Apply">
-    <id column="Id" jdbcType="INTEGER" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="user_name" />
-    <result column="user_unit" jdbcType="VARCHAR" property="user_unit" />
-    <result column="user_tel" jdbcType="VARCHAR" property="user_tel" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
-    <result column="id_type" jdbcType="VARCHAR" property="id_type" />
-    <result column="id_num" jdbcType="VARCHAR" property="id_num" />
-    <result column="id_file" jdbcType="VARCHAR" property="id_file" />
-    <result column="credit_code" jdbcType="VARCHAR" property="credit_code" />
-    <result column="credit_code_file" jdbcType="VARCHAR" property="credit_code_file" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="reason" jdbcType="VARCHAR" property="reason" />
-    <result column="open_type" jdbcType="VARCHAR" property="open_type" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-    <result column="check_pwd" jdbcType="VARCHAR" property="check_pwd" />
-    <result column="user_type" jdbcType="VARCHAR" property="user_type" />
-    <result column="user_type_name" jdbcType="VARCHAR" property="user_type_name" />
-    <result column="create_date" jdbcType="VARCHAR" property="create_date" />
-    <result column="apply_file" jdbcType="VARCHAR" property="apply_file" />
-    <result column="apply_file_name" jdbcType="VARCHAR" property="apply_file_name" />
-    <result column="apply_file_path" jdbcType="VARCHAR" property="apply_file_path" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="status_name" jdbcType="VARCHAR" property="status_name" />
-    <result column="reply_content" jdbcType="VARCHAR" property="reply_content" />
-    <result column="reply_file" jdbcType="VARCHAR" property="reply_file" />
-    <result column="reply_file_name" jdbcType="VARCHAR" property="reply_file_name" />
-    <result column="reply_file_path" jdbcType="VARCHAR" property="reply_file_path" />
-    <result column="reply_date" jdbcType="VARCHAR" property="reply_date" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    Id, user_name, user_unit, user_tel, address, postcode, 
-    id_type, 
-    id_num, id_file, credit_code, credit_code_file,
-    content, reason, open_type, remark, check_pwd, 
-    user_type, 
-    case   
-	  when user_type = 1 then '个人'  
-	  when user_type = 2 then '企业/组织'
-	  else ''  
-	end as user_type_name,
-    create_date,
-    apply_file,
-    (select f.file_name from ujn_file f where f.belong_id = a.id and f.type_flag = '1') as apply_file_name,
-	(select f.file_path from ujn_file f where f.belong_id = a.id and f.type_flag = '1') as apply_file_path,
-    status,
-    case   
-	  when status = 1 then '待回复'  
-	  when status = 2 then '已删除'
-	  when status = 3 then '已回复' 
-	  when status = 4 then '申请未通过'  
-	  else ''  
-	end as status_name,
-	reply_content,
-	reply_file,
-	(select f.file_name from ujn_file f where f.belong_id = a.id and f.type_flag = '2') as reply_file_name,
-	(select f.file_path from ujn_file f where f.belong_id = a.id and f.type_flag = '2') as reply_file_path,
-	reply_date
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from ujn_apply a
-    where Id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from ujn_apply
-    where Id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="ujn.school.cn.model.apply.Apply">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into ujn_apply (user_name, user_unit, user_tel, 
-      address, postcode, id_type, 
-      id_num, id_file,credit_code, credit_code_file, content, 
-      reason, open_type, remark, 
-      check_pwd, user_type, create_date,apply_file,status,reply_content,
-	reply_file,reply_date
-      )
-    values (#{user_name,jdbcType=VARCHAR}, #{user_unit,jdbcType=VARCHAR}, #{user_tel,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, #{id_type,jdbcType=VARCHAR}, 
-      #{id_num,jdbcType=VARCHAR}, #{id_file,jdbcType=VARCHAR}, #{credit_code,jdbcType=VARCHAR}, #{credit_code_file,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{reason,jdbcType=VARCHAR}, #{open_type,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{check_pwd,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR}, #{create_date,jdbcType=VARCHAR}, #{apply_file,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{reply_content,jdbcType=VARCHAR}, #{reply_file,jdbcType=VARCHAR} #{reply_date,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="ujn.school.cn.model.apply.Apply">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into ujn_apply
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="user_name != null">
-        user_name,
-      </if>
-      <if test="user_unit != null">
-        user_unit,
-      </if>
-      <if test="user_tel != null">
-        user_tel,
-      </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="postcode != null">
-        postcode,
-      </if>
-      <if test="id_type != null">
-        id_type,
-      </if>
-      <if test="id_num != null">
-        id_num,
-      </if>
-      <if test="id_file != null">
-        id_file,
-      </if>
-      <if test="credit_code != null">
-        credit_code,
-      </if>
-      <if test="credit_code_file != null">
-        credit_code_file,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-      <if test="reason != null">
-        reason,
-      </if>
-      <if test="open_type != null">
-        open_type,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-      <if test="check_pwd != null">
-        check_pwd,
-      </if>
-      <if test="user_type != null">
-        user_type,
-      </if>
-      <if test="create_date != null">
-        create_date,
-      </if>
-      <if test="apply_file != null">
-        apply_file,
-      </if>
-       <if test="status != null">
-        status,
-      </if>
-      <if test="reply_content != null">
-        reply_content,
-      </if>
-      <if test="reply_file != null">
-        reply_file,
-      </if>
-      <if test="reply_date != null">
-        reply_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="user_name != null">
-        #{user_name,jdbcType=VARCHAR},
-      </if>
-      <if test="user_unit != null">
-        #{user_unit,jdbcType=VARCHAR},
-      </if>
-      <if test="user_tel != null">
-        #{user_tel,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="postcode != null">
-        #{postcode,jdbcType=VARCHAR},
-      </if>
-      <if test="id_type != null">
-        #{id_type,jdbcType=VARCHAR},
-      </if>
-      <if test="id_num != null">
-        #{id_num,jdbcType=VARCHAR},
-      </if>
-      <if test="id_file != null">
-        #{id_file,jdbcType=VARCHAR},
-      </if>
-      <if test="credit_code != null">
-        #{credit_code,jdbcType=VARCHAR},
-      </if>
-      <if test="credit_code_file != null">
-        #{credit_code_file,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="reason != null">
-        #{reason,jdbcType=VARCHAR},
-      </if>
-      <if test="open_type != null">
-        #{open_type,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="check_pwd != null">
-        #{check_pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="user_type != null">
-        #{user_type,jdbcType=VARCHAR},
-      </if>
-      <if test="create_date != null">
-        #{create_date,jdbcType=VARCHAR},
-      </if>
-      <if test="apply_file != null">
-        #{apply_file,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="reply_content != null">
-        #{reply_content,jdbcType=VARCHAR},
-      </if>
-      <if test="reply_file != null">
-        #{reply_file,jdbcType=VARCHAR},
-      </if>
-      <if test="reply_date != null">
-        #{reply_date,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="ujn.school.cn.model.apply.Apply">
-    update ujn_apply
-    <set>
-      <if test="user_name != null">
-        user_name = #{user_name,jdbcType=VARCHAR},
-      </if>
-      <if test="user_unit != null">
-        user_unit = #{user_unit,jdbcType=VARCHAR},
-      </if>
-      <if test="user_tel != null">
-        user_tel = #{user_tel,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="postcode != null">
-        postcode = #{postcode,jdbcType=VARCHAR},
-      </if>
-      <if test="id_type != null">
-        id_type = #{id_type,jdbcType=VARCHAR},
-      </if>
-      <if test="id_num != null">
-        id_num = #{id_num,jdbcType=VARCHAR},
-      </if>
-      <if test="id_file != null">
-        id_file = #{id_file,jdbcType=VARCHAR},
-      </if>
-      <if test="credit_code != null">
-        credit_code = #{credit_code,jdbcType=VARCHAR},
-      </if>
-      <if test="credit_code_file != null">
-        credit_code_file = #{credit_code_file,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="reason != null">
-        reason = #{reason,jdbcType=VARCHAR},
-      </if>
-      <if test="open_type != null">
-        open_type = #{open_type,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="check_pwd != null">
-        check_pwd = #{check_pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="user_type != null">
-        user_type = #{user_type,jdbcType=VARCHAR},
-      </if>
-      <if test="create_date != null">
-        create_date = #{create_date,jdbcType=VARCHAR},
-      </if>
-      <if test="apply_file != null">
-        apply_file = #{create_date,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="reply_content != null">
-        reply_content = #{reply_content,jdbcType=VARCHAR},
-      </if>
-      <if test="reply_file != null">
-        reply_file = #{reply_file,jdbcType=VARCHAR},
-      </if>
-      <if test="reply_date != null">
-        reply_date = #{reply_date,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="ujn.school.cn.model.apply.Apply">
-    update ujn_apply
-    set user_name = #{user_name,jdbcType=VARCHAR},
-      user_unit = #{user_unit,jdbcType=VARCHAR},
-      user_tel = #{user_tel,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      postcode = #{postcode,jdbcType=VARCHAR},
-      id_type = #{id_type,jdbcType=VARCHAR},
-      id_num = #{id_num,jdbcType=VARCHAR},
-      id_file = #{id_file,jdbcType=VARCHAR},
-      credit_code = #{credit_code,jdbcType=VARCHAR},
-      credit_code_file = #{credit_code_file,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      reason = #{reason,jdbcType=VARCHAR},
-      open_type = #{open_type,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      check_pwd = #{check_pwd,jdbcType=VARCHAR},
-      user_type = #{user_type,jdbcType=VARCHAR},
-      create_date = #{create_date,jdbcType=VARCHAR},
-      apply_file = #{apply_file,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      reply_content = #{reply_content,jdbcType=VARCHAR},
-      reply_file = #{reply_file,jdbcType=VARCHAR},
-      reply_date = #{reply_date,jdbcType=VARCHAR}
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  
-  
-  <select id="queryApplyList" parameterType="ujn.school.cn.model.apply.Apply" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from ujn_apply a
-    where 1=1
-    <if test="user_type != null and user_type != ''">
-        and user_type = #{user_type,jdbcType=VARCHAR}
-    </if>
-    order by id desc
-  </select>
-  	<!-- 身份证图片 -->
-	<update id="uploadIdImg" parameterType="ujn.school.cn.model.apply.Apply">
+	<resultMap id="BaseResultMap" type="ujn.school.cn.model.apply.Apply">
+		<id column="Id" jdbcType="INTEGER" property="id" />
+		<result column="user_name" jdbcType="VARCHAR" property="user_name" />
+		<result column="user_unit" jdbcType="VARCHAR" property="user_unit" />
+		<result column="user_tel" jdbcType="VARCHAR" property="user_tel" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="postcode" jdbcType="VARCHAR" property="postcode" />
+		<result column="id_type" jdbcType="VARCHAR" property="id_type" />
+		<result column="id_num" jdbcType="VARCHAR" property="id_num" />
+		<result column="id_file" jdbcType="VARCHAR" property="id_file" />
+		<result column="credit_code" jdbcType="VARCHAR" property="credit_code" />
+		<result column="credit_code_file" jdbcType="VARCHAR" property="credit_code_file" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="reason" jdbcType="VARCHAR" property="reason" />
+		<result column="open_type" jdbcType="VARCHAR" property="open_type" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="check_pwd" jdbcType="VARCHAR" property="check_pwd" />
+		<result column="user_type" jdbcType="VARCHAR" property="user_type" />
+		<result column="user_type_name" jdbcType="VARCHAR" property="user_type_name" />
+		<result column="create_date" jdbcType="VARCHAR" property="create_date" />
+		<result column="apply_file" jdbcType="VARCHAR" property="apply_file" />
+		<result column="apply_file_name" jdbcType="VARCHAR" property="apply_file_name" />
+		<result column="apply_file_path" jdbcType="VARCHAR" property="apply_file_path" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="status_name" jdbcType="VARCHAR" property="status_name" />
+		<result column="reply_content" jdbcType="VARCHAR" property="reply_content" />
+		<result column="reply_file" jdbcType="VARCHAR" property="reply_file" />
+		<result column="reply_file_name" jdbcType="VARCHAR" property="reply_file_name" />
+		<result column="reply_file_path" jdbcType="VARCHAR" property="reply_file_path" />
+		<result column="reply_date" jdbcType="VARCHAR" property="reply_date" />
+		<result column="count" jdbcType="VARCHAR" property="count" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		Id, user_name, user_unit, user_tel, address, postcode,
+		id_type,
+		id_num, id_file, credit_code, credit_code_file,
+		content, reason, open_type, remark, check_pwd,
+		user_type,
+		case
+		when user_type = 1 then '个人'
+		when user_type = 2 then '企业/组织'
+		else ''
+		end as user_type_name,
+		create_date,
+		apply_file,
+		(select f.file_name from ujn_file f where f.belong_id = a.id and f.type_flag
+		= '1') as apply_file_name,
+		(select f.file_path from ujn_file f where f.belong_id = a.id and f.type_flag
+		= '1') as apply_file_path,
+		status,
+		case
+		when status = 1 then '待回复'
+		when status = 2 then '已删除'
+		when status = 3 then '已回复'
+		when status = 4 then '申请未通过'
+		else ''
+		end as status_name,
+		reply_content,
+		reply_file,
+		(select f.file_name from ujn_file f where f.belong_id = a.id and f.type_flag
+		= '2') as reply_file_name,
+		(select f.file_path from ujn_file f where f.belong_id = a.id and f.type_flag
+		= '2') as reply_file_path,
+		reply_date
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ujn_apply a
+		where Id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from ujn_apply
+		where Id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="ujn.school.cn.model.apply.Apply">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into ujn_apply (user_name, user_unit, user_tel,
+		address, postcode, id_type,
+		id_num, id_file,credit_code, credit_code_file, content,
+		reason, open_type, remark,
+		check_pwd, user_type, create_date,apply_file,status,reply_content,
+		reply_file,reply_date
+		)
+		values (#{user_name,jdbcType=VARCHAR}, #{user_unit,jdbcType=VARCHAR},
+		#{user_tel,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, #{id_type,jdbcType=VARCHAR},
+		#{id_num,jdbcType=VARCHAR}, #{id_file,jdbcType=VARCHAR},
+		#{credit_code,jdbcType=VARCHAR}, #{credit_code_file,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{reason,jdbcType=VARCHAR}, #{open_type,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{check_pwd,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR},
+		#{create_date,jdbcType=VARCHAR}, #{apply_file,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}, #{reply_content,jdbcType=VARCHAR},
+		#{reply_file,jdbcType=VARCHAR} #{reply_date,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="ujn.school.cn.model.apply.Apply">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into ujn_apply
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="user_name != null">
+				user_name,
+			</if>
+			<if test="user_unit != null">
+				user_unit,
+			</if>
+			<if test="user_tel != null">
+				user_tel,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="postcode != null">
+				postcode,
+			</if>
+			<if test="id_type != null">
+				id_type,
+			</if>
+			<if test="id_num != null">
+				id_num,
+			</if>
+			<if test="id_file != null">
+				id_file,
+			</if>
+			<if test="credit_code != null">
+				credit_code,
+			</if>
+			<if test="credit_code_file != null">
+				credit_code_file,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="reason != null">
+				reason,
+			</if>
+			<if test="open_type != null">
+				open_type,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="check_pwd != null">
+				check_pwd,
+			</if>
+			<if test="user_type != null">
+				user_type,
+			</if>
+			<if test="create_date != null">
+				create_date,
+			</if>
+			<if test="apply_file != null">
+				apply_file,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="reply_content != null">
+				reply_content,
+			</if>
+			<if test="reply_file != null">
+				reply_file,
+			</if>
+			<if test="reply_date != null">
+				reply_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="user_name != null">
+				#{user_name,jdbcType=VARCHAR},
+			</if>
+			<if test="user_unit != null">
+				#{user_unit,jdbcType=VARCHAR},
+			</if>
+			<if test="user_tel != null">
+				#{user_tel,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="postcode != null">
+				#{postcode,jdbcType=VARCHAR},
+			</if>
+			<if test="id_type != null">
+				#{id_type,jdbcType=VARCHAR},
+			</if>
+			<if test="id_num != null">
+				#{id_num,jdbcType=VARCHAR},
+			</if>
+			<if test="id_file != null">
+				#{id_file,jdbcType=VARCHAR},
+			</if>
+			<if test="credit_code != null">
+				#{credit_code,jdbcType=VARCHAR},
+			</if>
+			<if test="credit_code_file != null">
+				#{credit_code_file,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="reason != null">
+				#{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="open_type != null">
+				#{open_type,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="check_pwd != null">
+				#{check_pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="user_type != null">
+				#{user_type,jdbcType=VARCHAR},
+			</if>
+			<if test="create_date != null">
+				#{create_date,jdbcType=VARCHAR},
+			</if>
+			<if test="apply_file != null">
+				#{apply_file,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="reply_content != null">
+				#{reply_content,jdbcType=VARCHAR},
+			</if>
+			<if test="reply_file != null">
+				#{reply_file,jdbcType=VARCHAR},
+			</if>
+			<if test="reply_date != null">
+				#{reply_date,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="ujn.school.cn.model.apply.Apply">
 		update ujn_apply
-		set id_file = #{id_file,jdbcType=VARCHAR}
+		<set>
+			<if test="user_name != null">
+				user_name = #{user_name,jdbcType=VARCHAR},
+			</if>
+			<if test="user_unit != null">
+				user_unit = #{user_unit,jdbcType=VARCHAR},
+			</if>
+			<if test="user_tel != null">
+				user_tel = #{user_tel,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="postcode != null">
+				postcode = #{postcode,jdbcType=VARCHAR},
+			</if>
+			<if test="id_type != null">
+				id_type = #{id_type,jdbcType=VARCHAR},
+			</if>
+			<if test="id_num != null">
+				id_num = #{id_num,jdbcType=VARCHAR},
+			</if>
+			<if test="id_file != null">
+				id_file = #{id_file,jdbcType=VARCHAR},
+			</if>
+			<if test="credit_code != null">
+				credit_code = #{credit_code,jdbcType=VARCHAR},
+			</if>
+			<if test="credit_code_file != null">
+				credit_code_file = #{credit_code_file,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="reason != null">
+				reason = #{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="open_type != null">
+				open_type = #{open_type,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="check_pwd != null">
+				check_pwd = #{check_pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="user_type != null">
+				user_type = #{user_type,jdbcType=VARCHAR},
+			</if>
+			<if test="create_date != null">
+				create_date = #{create_date,jdbcType=VARCHAR},
+			</if>
+			<if test="apply_file != null">
+				apply_file = #{create_date,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="reply_content != null">
+				reply_content = #{reply_content,jdbcType=VARCHAR},
+			</if>
+			<if test="reply_file != null">
+				reply_file = #{reply_file,jdbcType=VARCHAR},
+			</if>
+			<if test="reply_date != null">
+				reply_date = #{reply_date,jdbcType=VARCHAR},
+			</if>
+		</set>
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
-	
-	 <!-- 营业执照图片 -->
+	<update id="updateByPrimaryKey" parameterType="ujn.school.cn.model.apply.Apply">
+		update ujn_apply
+		set user_name = #{user_name,jdbcType=VARCHAR},
+		user_unit = #{user_unit,jdbcType=VARCHAR},
+		user_tel = #{user_tel,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		postcode = #{postcode,jdbcType=VARCHAR},
+		id_type = #{id_type,jdbcType=VARCHAR},
+		id_num = #{id_num,jdbcType=VARCHAR},
+		id_file = #{id_file,jdbcType=VARCHAR},
+		credit_code = #{credit_code,jdbcType=VARCHAR},
+		credit_code_file = #{credit_code_file,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		reason = #{reason,jdbcType=VARCHAR},
+		open_type = #{open_type,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		check_pwd = #{check_pwd,jdbcType=VARCHAR},
+		user_type = #{user_type,jdbcType=VARCHAR},
+		create_date = #{create_date,jdbcType=VARCHAR},
+		apply_file = #{apply_file,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		reply_content = #{reply_content,jdbcType=VARCHAR},
+		reply_file = #{reply_file,jdbcType=VARCHAR},
+		reply_date = #{reply_date,jdbcType=VARCHAR}
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 列表 -->
+	<select id="queryApplyList" parameterType="ujn.school.cn.model.apply.Apply"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ujn_apply a
+		where 1=1
+		<if test="user_type != null and user_type != ''">
+			and user_type = #{user_type,jdbcType=VARCHAR}
+		</if>
+		order by id desc
+	</select>
+	<!-- 身份证图片 -->
+	<update id="uploadIdImg" parameterType="ujn.school.cn.model.apply.Apply">
+		update ujn_apply
+		set
+		id_file = #{id_file,jdbcType=VARCHAR}
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 营业执照图片 -->
 	<update id="uploadCreditCodeImg" parameterType="ujn.school.cn.model.apply.Apply">
 		update ujn_apply
 		set credit_code_file = #{credit_code_file,jdbcType=VARCHAR}
-		where Id = #{id,jdbcType=INTEGER}
+		where Id =
+		#{id,jdbcType=INTEGER}
 	</update>
-	
-	
-<select id="queryApplyByPwd" parameterType="ujn.school.cn.model.apply.Apply" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from ujn_apply a
-    where check_pwd = #{check_pwd,jdbcType=VARCHAR}
-    order by id desc
- </select>
- 
- <select id="queryApplyByIdAndCheckPwd" parameterType="map" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from ujn_apply a
-    where id = #{id,jdbcType=VARCHAR} and check_pwd = #{check_pwd,jdbcType=VARCHAR}
- </select>
+
+	<!-- 根据确认码查询数据 -->
+	<select id="queryApplyByPwd" parameterType="ujn.school.cn.model.apply.Apply"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ujn_apply a
+		where check_pwd = #{check_pwd,jdbcType=VARCHAR}
+		order by id desc
+	</select>
+	<!-- 根据ID和确认码查询明细 -->
+	<select id="queryApplyByIdAndCheckPwd" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ujn_apply a
+		where id = #{id,jdbcType=VARCHAR} and check_pwd =
+		#{check_pwd,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 统计 -->
+	<select id="queryApplyStatistics" parameterType="ujn.school.cn.model.apply.Apply"
+		resultMap="BaseResultMap">
+		select a.user_type,
+		case
+		when user_type = 1 then '个人'
+		when user_type = 2 then '企业'
+		end as user_type_name,
+		count(a.user_type) as count
+		from ujn_apply a where 1=1 
+		<if test="user_type != null and user_type != ''">
+			and user_type = #{user_type,jdbcType=VARCHAR}
+		</if>
+		<if test="startDate != null and startDate != ''">
+			and unix_timestamp(a.create_date) &gt;=  unix_timestamp(#{startDate,jdbcType=VARCHAR})
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and unix_timestamp(a.create_date) &lt;=  unix_timestamp(#{endDate,jdbcType=VARCHAR})
+		</if>
+		group by a.user_type
+	</select>
 </mapper>
