@@ -100,6 +100,11 @@ public class UserController extends SystemBaseController{
 			if(null != userSession){
 				User user = userService.getUserById(userSession.getId());
 				model.addAttribute("user", user);
+				
+				//部门下拉列表
+				List<Department> departmentList = departmentService.queryDepartmentList(null);
+				model.addAttribute("departmentList", departmentList);
+				
 				return "system/user/userMessage";
 			}else{
 				 return "redirect:/";

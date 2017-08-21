@@ -154,7 +154,7 @@ $(function(){
 		layer.open({
 		    type: 2,
 		    maxmin:true,
-		    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户信息</div></strong>","background-color: #5a97df"],
+		    title:["用户信息"],
 		    area: ['100%', '100%'],
 		    shadeClose: false, //点击遮罩关闭
 		    content: '${pageContext.request.contextPath}/system/controller/userController/toUserMessage'

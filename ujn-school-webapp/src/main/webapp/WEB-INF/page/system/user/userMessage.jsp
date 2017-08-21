@@ -41,13 +41,22 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">性别：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${user.sex}" placeholder="性别" id="sex" name="sex">
+				<select class="select" id="sex" name="sex">
+					<option value="">--请选择--</option> 
+					<option value="1">男</option>
+					<option value="2">女</option> 
+				</select>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">部门：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${user.dept}" placeholder="部门" id="dept" name="dept">
+				<select class="select" id="dept" name="dept">
+					<option value="0">--请选择--</option>  
+                    <c:forEach items="${departmentList}" var="dept">  
+                    	<option value="${dept.dept_code}">${dept.dept_name}</option>  
+                    </c:forEach>  
+				</select>
 			</div>
 		</div>
 		<div class="row cl">
@@ -157,14 +166,16 @@ $(function(){
 });
 
 
-//表单提交，可上传文件
-$(function() {
-	// 表单提交     
-	/* $('#submit_but').on('click', function() {
-		$("#form-user-message").ajaxSubmit(options);
+$(function(){
+
+	$('#close_but').on('click', function() {
+		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		parent.layer.close(index); //再执行关闭
 		return false;
-	}); */
+	});
 	
+	$('#sex').val('${user.sex}');
+	$('#dept').val('${user.dept}');
 });
 </script>
 </body>
