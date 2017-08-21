@@ -23,6 +23,7 @@ import com.github.pagehelper.PageInfo;
 import framework.system.model.Funcright;
 import framework.system.model.RoleFuncright;
 import framework.system.pub.base.SystemBaseController;
+import framework.system.pub.constants.ISystemConstants;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.pub.util.ZtreeNode;
 import framework.system.service.IFuncrightService;
@@ -116,6 +117,8 @@ public class FuncrightController extends SystemBaseController {
 		try {
 			// 使用DataTables的属性接收分页数据
 			dataTable = new DataTablePageUtil<Funcright>(request);
+			//不分页
+			dataTable.setPage_size( ISystemConstants.PAGE_SIZE100);
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());

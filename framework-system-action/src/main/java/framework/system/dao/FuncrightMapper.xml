@@ -280,6 +280,11 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_funcright
+     <where>
+		<if test="funcright_name != null and funcright_name != ''">
+			and funcright_name  like concat('%', #{funcright_name}, '%')
+		</if>
+	</where>
   </select>
   
     <select id="queryFuncrightTree" parameterType="framework.system.model.Funcright" resultMap="BaseResultMap">

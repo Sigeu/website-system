@@ -32,6 +32,13 @@
 	<!-- form提交 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
 	<script type="text/javascript">
+	$(function(){
+		$('#close_but').on('click', function() {
+			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+			parent.layer.close(index); //再执行关闭
+			return false;
+		});
+	});
 		//初始化
 		var setting = {
 			check: {

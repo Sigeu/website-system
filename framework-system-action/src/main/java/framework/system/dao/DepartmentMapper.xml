@@ -293,11 +293,11 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_department
-     <where>
-    	 <if test="parent_code != null and parent_code != ''">
-	        parent_code = #{parent_code,jdbcType=VARCHAR} or dept_code = #{parent_code,jdbcType=VARCHAR}
-	     </if>
-    </where>
+    <where>
+		<if test="dept_name != null and dept_name != ''">
+			and dept_name  like concat('%', #{dept_name}, '%')
+		</if>
+	</where>
   </select>
   
   <select id="queryDepartmentTree" parameterType="string" resultMap="BaseResultMap">

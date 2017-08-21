@@ -170,6 +170,11 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_code_type
+    <where>
+		<if test="type_name != null and type_name != ''">
+			and type_name  like concat('%', #{type_name}, '%')
+		</if>
+	</where>
     order by order_num desc
   </select>
   

@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>菜单表页</title>
+<title>菜单管理列表页</title>
 </head>
 <body>
 	<nav class="breadcrumb">
@@ -20,8 +20,8 @@
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>菜单名称:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="funcright_name"
+						name="funcright_name" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -44,9 +44,6 @@
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
 					<tr class="text-c">
-						<th><input type="checkbox" name="" value=""></th>
-						<th>序号</th>
-						<th>排序号</th>
 						<th>菜单code</th>
 						<th>菜单名称</th>
 						<th>菜单url</th>
@@ -91,8 +88,9 @@
 								serverSide : true,//开启服务器模式:启用服务器分页
 								lengthChange : false,//是否允许用户改变表格每页显示的记录数
 								ordering : false,//是否允许用户排序
-								paging : true,//是否分页
+								paging : false,//是否分页
 								pagingType : "full_numbers",//除首页、上一页、下一页、末页四个按钮还有页数按钮
+								pageLength : 100,
 								processing : true,//是否显示处理状态
 								/* scrollX: true,//允许水平滚动
 								scrollY: "200px",
@@ -102,16 +100,6 @@
 								autoWidth : true,//自动计算宽度
 								//deferRender : true,//延迟渲染
 								columns : [ {
-									data : "id",
-									render: function (data, type, full, meta) {
-					                     return '<input type="checkbox" value="' + data + '" />';
-					                 }
-								}, {
-									data : "id"
-								}, {
-									data : "show_order",
-									defaultContent : ""
-								}, {
 									data : "funcright_code",
 									defaultContent : ""
 								}, {
@@ -195,7 +183,7 @@
 			$('#reset_but').on('click', function() {
 				//角色名称
 				$("#funcright_name").val('');
-				
+				$('#search_but').trigger('click');
 			});
 			
 			//添加
@@ -203,36 +191,21 @@
 				layer.open({
 				    type: 2,
 				    maxmin:true,
-				    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;添加角色</div></strong>","background-color: #5a97df"],
+				    title:["添加"],
 				    area: ['100%', '100%'],
 				    shadeClose: false, //点击遮罩关闭
 				    content: '${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightAdd'
 				 });
 			});
 			
-			//导出
-			$('#export_but').on('click', function() {
-				
-				var params = $.param(getSearchParams());
-			    var url = "${pageContext.request.contextPath}/zgzssb/kaoShiChangCiController/exportExcel.do"+ "?" + params;
-			    //window.location.href = url;
-			    $('<form method="post" action="' + url + '"></form>').appendTo('body').submit().remove();
-			    //$('#search_form').submit().remove();
-			});
-			
 		});
-
-		//重新加载页面：子页面调用
-		function reloadPage(){
-			window.location.reload();//刷新当前页面.
-		}
 		
 		//修改
 		function toEdit(id){
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;修改角色</div></strong>","background-color: #5a97df"],
+			    title:["修改"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightUpdate?id='+id
@@ -269,7 +242,7 @@
 			layer.open({
 			    type: 2,
 			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;查看角色</div></strong>","background-color: #5a97df"],
+			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightDetail?id='+id

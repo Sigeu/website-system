@@ -11,7 +11,7 @@
 <body>
 <div class="navbar-logo hidden-xs">
 		<div class="navbar-header">
-			<a href="${pageContext.request.contextPath}/index.jsp" target="_blank" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui.admin/images/logo2.png" class="img-responsive" alt=""></a>
+			<%-- <a href="${pageContext.request.contextPath}/index.jsp" target="_blank" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui.admin/images/logo2.png" class="img-responsive" alt=""></a> --%>
 		</div>
 </div>
 <header class="navbar-wrapper">
@@ -110,8 +110,8 @@
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/userController/toUserList" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/roleController/toRoleList" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-					<li><a data-href="${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightList" data-title="菜单管理" href="javascript:void(0)">菜单管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentList" data-title="部门管理" href="javascript:void(0)">部门管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightList" data-title="菜单管理" href="javascript:void(0)">菜单管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/codeTypeController/toCodeTypeList" data-title="数据字典" href="javascript:void(0)">数据字典管理</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/logController/toLogList" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
 				</ul>

@@ -25,7 +25,7 @@
 					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">字典值：</td>
 					<td nowrap="nowrap">
 					<input type="text"  style="width: 90%;"  placeholder="字典项数值"
-						id="code_value" name="code_value" value="" class="input-text" maxlength="25" />
+						id="code_value" name="code_value" value="" class="input-text" maxlength="120" />
 						<font style="color: red">*</font>
 					 </td>
 				</tr>
@@ -49,8 +49,8 @@
 				</tr>
 				<tr>
 					<td align="right" width="16%" nowrap="nowrap" class="text-r mybg">备注信息：</td>
-					<td colspan="3"><textarea style="width: 90%;" id="remark" placeholder="备注说明，最多300个汉字"
-							name="remark" rows="2" class="textarea" maxlength="600"></textarea>
+					<td colspan="3"><textarea style="width: 90%;" id="remark" placeholder="备注说明，最多100个汉字"
+							name="remark" rows="2" class="textarea" maxlength="100"></textarea>
 					</td>
 				</tr>
 			</table>
@@ -88,17 +88,17 @@ $(function() {
 		rules:{
 			code_name:{
 				required:true,
-				maxlength:25
+				maxlength:120
 			},
 			code_value:{
 				required:true,
-				maxlength:25
+				maxlength:120
 			},
 			order_num:{
 				digits:true
 			},
 			remark:{
-				maxlength:300
+				maxlength:120
 			}
 		},
 		onkeyup:false,

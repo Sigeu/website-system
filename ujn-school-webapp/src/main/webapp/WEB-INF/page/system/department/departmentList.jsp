@@ -17,45 +17,31 @@
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 部门管理 <span class="c-gray en">&gt;</span> 部门列表 
 	</nav>
 	<div class="page-container">
-	
-		<table style="width: 95%;" border="0" >
-			<tr>
-				<td align="right" width="10%" class="mybg" nowrap="nowrap">
-					&nbsp;&nbsp;<strong>部门代码：</strong>&nbsp;&nbsp;
-				</td>
-				<td width="20%" nowrap="nowrap">
-					<input type="text" id="dept_code" name="dept_code"  class="input-text input-collspace size-MINI" />
-				</td>
-				
-				<td align="right" width="10%" nowrap="nowrap" class="mybg">
-					<strong>部门名称：</strong>&nbsp;&nbsp;
-				</td>
-				<td width="20%" nowrap="nowrap">
-					<input type="text" id="dept_name" name="dept_name" value="" class="input-text input-collspace size-MINI" />
-				</td>
-				
-				<td width="40%" align="right" nowrap="nowrap">
-					&nbsp;&nbsp;
-					<button class="btn btn-warning radius size-MINI" id="search_but">
-						<i class="Hui-iconfont Hui-iconfont-search2">&nbsp;&nbsp;</i>查询
-					</button>
-					&nbsp;&nbsp;
-					<button class="btn btn-success radius size-MINI" id="reset_but">
-						<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
-					</button>
-					&nbsp;&nbsp;
-					<button class="btn btn-primary radius size-MINI" id="add_but">
-						<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
-					</button>
-				</td>
-			</tr>
-			
-			<tr>
-				<td colspan="5">
-					&nbsp;&nbsp;
-				</td>
-			</tr>
-		</table>
+		<table id="search_table" style="width: 95%;" border="0">
+				<tr>
+					<td align="right" width="10%" class="mybg" nowrap="nowrap">
+						<strong>部门名称:</strong>&nbsp;&nbsp;
+					</td>
+					<td width="10%" nowrap="nowrap"><input type="text" id="dept_name"
+						name="dept_name" class="input-text input-collspace size-MINI" />
+					</td>
+					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
+						<button class="btn btn-warning radius size-MINI" id="search_but">
+							<i class="Hui-iconfont Hui-iconfont-search2">&nbsp;&nbsp;</i>查询
+						</button> &nbsp;&nbsp;
+						<button class="btn btn-success radius size-MINI" id="reset_but">
+							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
+						</button> &nbsp;&nbsp;
+						<button class="btn btn-primary radius size-MINI" id="add_but">
+							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
+						</button> &nbsp;&nbsp;
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="3">&nbsp;&nbsp;</td>
+				</tr>
+			</table>
 			<table id="data_table" style="width: 98%" style="text-align: center;"
 				class="table table-border table-bordered  table-hover table-striped">
 				<input type="hidden" name="parent_code" id="parent_code" value="" >
@@ -242,13 +228,10 @@
 			
 			//获取查询条件
 			function getSearchParams(){
-				//部门编码
-				var dept_code = $("#dept_code").val().trim();
 				//部门名称
 				var dept_name = $("#dept_name").val().trim();
 				//查询条件
 				var param = {
-					"dept_code" : dept_code,
 					"dept_name" : dept_name
 				};
 				
@@ -257,9 +240,8 @@
 			
 			//重置
 			$('#reset_but').on('click', function() {
-				$("#dept_code").val('');
 				$("#dept_name").val('');
-				
+				$('#search_but').trigger('click');
 			});
 			
 			//添加

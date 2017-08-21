@@ -202,6 +202,7 @@
 			$('#reset_but').on('click', function() {
 				//真实姓名
 				$("#real_name").val('');
+				$('#search_but').trigger('click');
 				
 			});
 			

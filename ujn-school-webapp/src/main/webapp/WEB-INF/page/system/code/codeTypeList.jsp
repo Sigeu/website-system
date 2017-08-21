@@ -189,6 +189,7 @@
 			$('#reset_but').on('click', function() {
 				//类别名称
 				$("#type_name").val('');
+				$('#search_but').trigger('click');
 			});
 			
 			//添加

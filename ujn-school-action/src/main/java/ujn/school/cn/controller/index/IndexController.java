@@ -28,7 +28,7 @@ import ujn.school.cn.model.link.Link;
 import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
 import ujn.school.cn.pub.util.MyDateUtil;
-import ujn.school.cn.pub.util.MyIpUtil;
+import ujn.school.cn.pub.util.MyIpV4Util;
 import ujn.school.cn.service.carousel.ICarouselService;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.config.IConfigService;
@@ -37,6 +37,9 @@ import ujn.school.cn.service.content.IContentService;
 import ujn.school.cn.service.link.ILinkService;
 
 import com.github.pagehelper.PageHelper;
+
+import framework.system.model.Code;
+import framework.system.service.ICodeService;
 
 /**
  * @Description: 栏目管理
@@ -66,6 +69,9 @@ public class IndexController extends MyBaseController {
 	// 轮播图片Service
 	@Resource
 	private ICarouselService carouselService;
+	
+	@Resource
+	private ICodeService codeService;
 	
 	
 	/**
@@ -518,6 +524,7 @@ public class IndexController extends MyBaseController {
 		return "site/article";
 	}
 	
+	
 	@RequestMapping("/toContentDetailByPwd")
 	public String toContentDetailByPwd(HttpServletRequest request, Model model) {
 
@@ -542,7 +549,7 @@ public class IndexController extends MyBaseController {
 	}
 	/**
 	 * 
-	 * @Description: 
+	 * @Description: 内容访问方式验证
 	 * @param request
 	 * @param column
 	 * @return
@@ -572,7 +579,14 @@ public class IndexController extends MyBaseController {
 				}else if(IMySystemConstants.VALUE_1.equals(read_type)){
 					//验证IP
 					String ip = getIpAddr(request);
-					// 网站配置
+					if(checkUserIp(ip)){
+						//允许访问
+						open_type = IMySystemConstants.VALUE_1;
+					}else{
+						//不允许访问
+						open_type = IMySystemConstants.VALUE_3;
+					}
+					/*// 网站配置
 					Config config = configService.queryConfig();
 					String ipSection = config.getIp_section();
 					if(MyIpUtil.ipExistsInRange(ip, ipSection)){
@@ -581,7 +595,7 @@ public class IndexController extends MyBaseController {
 					}else{
 						//不允许访问
 						open_type = IMySystemConstants.VALUE_3;
-					}
+					}*/
 				}else if(IMySystemConstants.VALUE_2.equals(read_type)){
 					//2：输入密码查看
 					open_type = IMySystemConstants.VALUE_2;
@@ -593,6 +607,45 @@ public class IndexController extends MyBaseController {
 
 		return map;
 	}
+	/**
+	 * 
+	 * @Description: 验证用户IP是否在网站设置的IP范围内 
+	 * @param userIp
+	 * @return
+	 */
+	public boolean checkUserIp(String userIp) {
+		//获取设置的IP范围
+		String code_type = "IP_SCOPE";
+		List<Code>  codeList = this.codeService.queryCodeListByType(code_type);
+		//默认值
+		boolean flag = false;
+		for(Code codeIp : codeList){
+			System.out.println(codeIp.getCode_value());
+			String[] idScope = codeIp.getCode_value().split("-");
+			if(2 == idScope.length){
+				String startIp = idScope[0];
+				String endIp = idScope[1];
+				//startIp > endIp
+				if(MyIpV4Util.compareIpV4s(startIp, endIp) > 0){
+					//判断条件为用户ip大于endIp,小于等于startIp
+					if((MyIpV4Util.compareIpV4s(userIp, endIp) >= 0) && (MyIpV4Util.compareIpV4s(userIp, startIp) <= 0)){
+						flag = true;
+						break;
+					}
+				}else{
+					//startIp < endIp
+					//判断条件为用户ip大于startIp,小于等于endIp
+					if((MyIpV4Util.compareIpV4s(userIp, startIp) >= 0) && (MyIpV4Util.compareIpV4s(userIp, endIp) <= 0)){
+						flag = true;
+						break;
+					}
+				}
+			}
+			
+		}
+		return flag;
+	}
+	
 	
 	/**
 	 * 
@@ -627,7 +680,13 @@ public class IndexController extends MyBaseController {
 		return map;
 	}
 	
-	
+	/**
+	 * 
+	 * @Description: 搜索
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/search")
 	public String search(HttpServletRequest request, Model model) {
 		String search_text = request.getParameter("serach_text")==null? "":request.getParameter("serach_text");

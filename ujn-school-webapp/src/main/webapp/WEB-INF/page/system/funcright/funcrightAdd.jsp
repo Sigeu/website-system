@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../../../../common/header.jsp"%>
-<title>用户信息表页</title>
+<title>菜单管理新增页面</title>
 </head>
 <body class="pos-r">
 		<nav class="breadcrumb">
@@ -12,12 +12,12 @@
 		</nav>
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/system/controller/funcrightController/addFuncright" method="post" class="form form-horizontal" id="form-funcright-add">
-		<div class="row cl">
+		<!-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单code：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="菜单code" id="funcright_code" name="funcright_code">
 			</div>
-		</div>
+		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>菜单名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>排序：</label>
+			<label class="form-label col-xs-4 col-sm-2">排序：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="排序号，越小越靠前" id="show_order" name="show_order">
 			</div>
@@ -39,8 +39,8 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
+				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
 			</div>
 		</div>
 		</br>
@@ -55,9 +55,6 @@
 <%@ include file="../../../../common/footer_form.jsp"%>
 <script type="text/javascript">
 $(function(){
-	//表单验证
-	//$("#form_").Validform();
-
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭

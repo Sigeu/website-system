@@ -157,6 +157,12 @@
     select 
     <include refid="Base_Column_List" />
     from ujn_role
+    <where>
+		<if test="role_name != null and role_name != ''">
+			and role_name  like concat('%', #{role_name}, '%')
+		</if>
+	</where>
+    
   </select>
   
    <!-- 角色下拉列表 -->
@@ -166,7 +172,7 @@
     from ujn_role
   </select>
   
-  <!-- 角色分页列表 -->
+  <!-- 角色树 -->
   <select id="queryRoleTree" parameterType="framework.system.model.Role" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

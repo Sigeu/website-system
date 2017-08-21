@@ -65,13 +65,13 @@
 						<span class="c-red">*</span>
 						底部版权信息：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" id="copyright" name="copyright" placeholder="&copy; 2016 H-ui.net" value="${contact.copyright }" class="input-text">
+						<input type="text" id="copyright" name="copyright" placeholder="底部版权信息" value="${contact.copyright }" class="input-text">
 					</div>
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">备案号：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" id="record_num" name="record_num" placeholder="京ICP备00000000号" value="${contact.record_num }" class="input-text">
+						<input type="text" id="record_num" name="record_num" placeholder="备案号" value="${contact.record_num }" class="input-text">
 					</div>
 				</div>
 			</div>

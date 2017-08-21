@@ -8,12 +8,17 @@ package framework.system.pub.constants;
  */
 public interface ISystemConstants {
 	
+	//系统用户默认密码
+	static final String DEFAULT_PASSWORD = "111111";
+	
 	//起止位置1
 	static final int PAGE_NUM = 1;
 	// 数据长度15
 	static final int PAGE_SIZE = 10;
 	
 	static final int PAGE_SIZE15 = 15;
+	
+	static final int PAGE_SIZE100 = 100;
 	
 	
 	//起止位置1

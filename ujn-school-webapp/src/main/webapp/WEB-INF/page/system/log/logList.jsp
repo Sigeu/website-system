@@ -176,7 +176,7 @@
 				//注册时间
 				$("#date_start").val('');
 				$("#date_end").val('');
-				
+				$('#search_but').trigger('click');
 			});
 			
 			//全选

@@ -78,11 +78,11 @@ public class MyIpUtil {
 
 	public static void main(String[] args) {
 
-		String ip = "10.10.10.116";
-		String ipSection = "10.10.10.116";
+		String ip = "192.168.0.1";
+		String ipSection = "192.168.0.1,192.168.255.254";
 		boolean exists = ipExistsInRange(ip, ipSection);
 		System.out.println(exists);
-		System.out.println(getIp2long(ip));
+		//System.out.println(getIp2long(ip));
 		
 	}
 

@@ -78,15 +78,11 @@
 <%@ include file="../../../../common/footer_form.jsp"%>
 <script type="text/javascript">
 $(function(){
-	//表单验证
-	//$("#form_").Validform();
-
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭
 		return false;
 	});
-	
 });
 
 

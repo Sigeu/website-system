@@ -25,6 +25,7 @@ import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Department;
 import framework.system.pub.base.SystemBaseController;
+import framework.system.pub.constants.ISystemConstants;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.pub.util.ZtreeNode;
 import framework.system.service.IDepartmentService;
@@ -136,9 +137,14 @@ public class DepartmentController extends SystemBaseController{
 		int departmentId = Integer.parseInt(request.getParameter("id"));
 		Department department = this.departmentService.getDepartmentById(departmentId);
 		model.addAttribute("department", department);
+		//根目录的parent_code是0
+		if(!ISystemConstants.VALUE_0.equals(department.getParent_code())){
+			Department dept = departmentService.getDepartmentByCode(department.getParent_code());
+			model.addAttribute("parent_name", dept.getDept_name());
+		}else{
+			model.addAttribute("parent_name", "根目录");
+		}
 		
-		Department dept = departmentService.getDepartmentByCode(department.getParent_code());
-		model.addAttribute("parent_name", dept.getDept_name());
 		
 		return "system/department/departmentEdit";
 	}

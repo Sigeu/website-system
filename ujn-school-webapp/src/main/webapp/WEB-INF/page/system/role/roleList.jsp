@@ -20,8 +20,8 @@
 					<td align="right" width="10%" class="mybg" nowrap="nowrap">
 						<strong>角色名称:</strong>&nbsp;&nbsp;
 					</td>
-					<td width="10%" nowrap="nowrap"><input type="text" id="ksccmc"
-						name="ksccmc" class="input-text input-collspace size-MINI" />
+					<td width="10%" nowrap="nowrap"><input type="text" id="role_name"
+						name="role_name" class="input-text input-collspace size-MINI" />
 					</td>
 					<td width="20%" align="left" nowrap="nowrap">&nbsp;&nbsp;
 						<button class="btn btn-warning radius size-MINI" id="search_but">
@@ -37,7 +37,7 @@
 				</tr>
 
 				<tr>
-					<td colspan="5">&nbsp;&nbsp;</td>
+					<td colspan="3">&nbsp;&nbsp;</td>
 				</tr>
 			</table>
 			<table id="data_table" style="width: 98%" style="text-align: center;"
@@ -194,7 +194,7 @@
 			$('#reset_but').on('click', function() {
 				//角色名称
 				$("#role_name").val('');
-				
+				$('#search_but').trigger('click');
 			});
 			
 			//添加
