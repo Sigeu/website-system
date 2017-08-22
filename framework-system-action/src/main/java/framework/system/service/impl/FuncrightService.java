@@ -87,7 +87,7 @@ public class FuncrightService implements IFuncrightService {
 			//2、根据角色查询所有的菜单
 			roleFuncrightList = roleFuncrightMapper.queryRoleFuncright(userRoleList);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		return roleFuncrightList;

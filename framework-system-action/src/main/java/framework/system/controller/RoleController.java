@@ -232,7 +232,15 @@ public class RoleController extends SystemBaseController {
 		}
 		return map;
 	}
-
+	
+	/**
+	 * 
+	 * @Description: 角色树 
+	 * @param request
+	 * @param response
+	 * @param role
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/queryRoleTree")
 	public ZtreeNode queryRoleTree(HttpServletRequest request, HttpServletResponse response,Role role){
@@ -256,7 +264,7 @@ public class RoleController extends SystemBaseController {
 						flag = false;
 					}
 				}
-				ztreeNode.addChild((new ZtreeNode(roleObj.getRole_code()
+				ztreeNode.addChild((new ZtreeNode(roleObj.getId()
 						.toString(), "",
 						roleObj.getRole_name(), true, false, flag)));
 			}
@@ -286,7 +294,12 @@ public class RoleController extends SystemBaseController {
 		return map;
 	}
 	
-	
+	/**
+	 * 
+	 * @Description: 角色授权 
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/addUserFuncright")
 	public Map<String, Object> addUserFuncright(HttpServletRequest request) {

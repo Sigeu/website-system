@@ -252,7 +252,7 @@ public class FuncrightController extends SystemBaseController {
 						flag = false;
 					}
 				}
-				ztreeNode.addChild((new ZtreeNode(funcrightObj.getFuncright_code()
+				ztreeNode.addChild((new ZtreeNode(funcrightObj.getId()
 						.toString(), "",
 						funcrightObj.getFuncright_name(), true, false, flag)));
 			}

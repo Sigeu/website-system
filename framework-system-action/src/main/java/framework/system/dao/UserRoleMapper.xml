@@ -120,7 +120,7 @@
     where Id = #{id,jdbcType=INTEGER}
   </update>
   
-  
+  <!-- 根据用户code查询角色 -->
   <select id="queryUserRoleTree" parameterType="string" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

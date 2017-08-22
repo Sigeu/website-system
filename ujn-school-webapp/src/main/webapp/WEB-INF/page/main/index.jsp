@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>  
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -29,25 +30,14 @@
 			</nav>
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
-					<li>超级管理员</li>
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<li>欢迎用户：</li>
+					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">${systemUser.real_name }&nbsp; &nbsp;&nbsp;<i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="#" id="userMessage">个人信息</a></li>
 							<li><a href="${pageContext.request.contextPath}/system/controller/loginController/logout">切换账户</a></li>
 							<li><a href="${pageContext.request.contextPath}/system/controller/loginController/logout">退出</a></li>
 						</ul>
 					</li>
-					<!-- <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
-					<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
-						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
-							<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
-							<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
-							<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
-							<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
-							<li><a href="javascript:;" data-val="orange" title="绿色">橙色</a></li>
-						</ul>
-					</li> -->
 				</ul>
 			</nav>
 		</div>
@@ -56,67 +46,111 @@
 <aside class="Hui-aside">
 	<input runat="server" id="divScrollValue" type="hidden" value="" />
 	<div class="menu_dropdown bk_2">
+		<shiro:hasPermission name="1"> 
 		<dl id="menu-system">
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 网站管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+					<shiro:hasPermission name="2"> 
 					<li><a data-href="${pageContext.request.contextPath}/config/controller/configController/toConfig" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="3"> 
 					<li><a data-href="${pageContext.request.contextPath}/column/controller/columnController/toColumnList" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="4">
 					<li><a data-href="${pageContext.request.contextPath}/link/controller/linkController/toLinkList" data-title="友情链接管理" href="javascript:void(0)">友情链接管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="5">
 					<li><a data-href="${pageContext.request.contextPath}/contact/controller/contactController/toContact" data-title="联系方式设置" href="javascript:void(0)">联系方式设置</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="6">
 					<li><a data-href="${pageContext.request.contextPath}/carousel/carouselController/toCarouselList" data-title="轮播图片管理" href="javascript:void(0)">轮播图片管理</a></li>
+					</shiro:hasPermission>
 				</ul>
 			</dd>
 		</dl>
-		
+		</shiro:hasPermission>
+		<shiro:hasPermission name="7"> 
 		<dl id="menu-article">
 			<dt><i class="Hui-iconfont">&#xe616;</i> 内容管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+					<shiro:hasPermission name="8">
 					<li><a data-href="${pageContext.request.contextPath}/content/controller/contentController/toContentList" data-title="内容管理" href="javascript:void(0)">内容管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="9">
 					<li><a data-href="${pageContext.request.contextPath}/content/controller/contentController/toContentRecycleList" data-title="内容回收站" href="javascript:void(0)">内容回收站</a></li>
+					</shiro:hasPermission>
 				</ul>
 			</dd>
 		</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="10"> 
 		<dl id="menu-picture">
 			<dt><i class="Hui-iconfont">&#xe637;</i> 审核管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+					<shiro:hasPermission name="11">
 					<li><a data-href="${pageContext.request.contextPath}/audit/controller/auditController/toAuditContentList" data-title="审核管理" href="javascript:void(0)">审核管理</a></li>
+					</shiro:hasPermission>
 				</ul>
 			</dd>
 		</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="12"> 
 		<dl id="menu-comments">
 			<dt><i class="Hui-iconfont">&#xe622;</i> 申请公开管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+					<shiro:hasPermission name="13">
 					<li><a data-href="${pageContext.request.contextPath}/apply/controller/applyController/toApplyList" data-title="在线申请" href="javascript:;">在线申请</a></li>
+					</shiro:hasPermission>
 				</ul>
 			</dd>
 		</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="14"> 
 		<dl id="menu-tongji">
 			<dt><i class="Hui-iconfont">&#xe61a;</i> 统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+					<shiro:hasPermission name="15">
 					<li><a data-href="${pageContext.request.contextPath}/content/controller/contentController/toContentStatistics" data-title="文章统计" href="javascript:void(0)">文章统计</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="16">
 					<li><a data-href="${pageContext.request.contextPath}/apply/controller/applyController/toApplyStatistics" data-title="在线申请统计" href="javascript:void(0)">在线申请统计</a></li>
+					</shiro:hasPermission>
 				</ul>
 			</dd>
 		</dl>
-		
+		</shiro:hasPermission>
+		<shiro:hasPermission name="17"> 
 		<dl id="menu-admin">
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+					<shiro:hasPermission name="18">
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/userController/toUserList" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="19">
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/roleController/toRoleList" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="21">
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/departmentController/toDepartmentList" data-title="部门管理" href="javascript:void(0)">部门管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="20">
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/funcrightController/toFuncrightList" data-title="菜单管理" href="javascript:void(0)">菜单管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="22">
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/codeTypeController/toCodeTypeList" data-title="数据字典" href="javascript:void(0)">数据字典管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="23">
 					<li><a data-href="${pageContext.request.contextPath}/system/controller/logController/toLogList" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
+					</shiro:hasPermission>
 				</ul>
 			</dd>
 		</dl>
+		</shiro:hasPermission>
 	</div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
