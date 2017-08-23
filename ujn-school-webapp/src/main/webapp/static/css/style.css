@@ -25,6 +25,8 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 .navbar-dropdown-con {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
 .navbar-dropdown-con li {line-height:40px}
 .navbar-dropdown-con .navbar-dropdown-thr li {line-height:30px; float:left; margin-right:30px}
+#div_first, #div_second {font-size:12px; color:#000; background:url(../images/dropdown-con.png)}
+#div_first li, #div_second li {line-height:40px}
 .navbar-pos a {color:#000}
 .navbar-pos a:hover, .navbar-pos a:hover span, .navbar-dropdown a.active span {color:#25499d}
 #footer {margin-top:20px; background-color:#25499d; color:#fff}
@@ -115,7 +117,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 
 /* 在线提交申请 */
 .apply-warning {height:34px; line-height:34px}
-.apply-con textarea {color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 4px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s; -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s}
+.apply-con textarea {padding:5px 10px; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 4px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s; -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s}
 .apply-con textarea:focus {border-color: #66afe9; outline: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6); box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)}
 
 /* 小屏幕（平板，大于等于768px） */
@@ -239,3 +241,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 /* 按钮标签 */
 .btn-label .btn {margin-bottom:7px; border-radius:4px}
 .row.btn-prompt {margin-top:7px}
+
+/*apply*/
+.tabBar span.current {background-color:#25499d !important}
+.apply-pos .error {color:#d9534f}
