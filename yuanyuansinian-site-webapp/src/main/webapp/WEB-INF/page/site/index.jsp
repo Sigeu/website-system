@@ -106,34 +106,6 @@
 					</ul>
 				</div>
 				<div class="row media">
-					<%-- <c:forEach items="${contentList107}" var="content107" varStatus="content"> 
-							<c:if test="${content.index == 0 }">
-					<div class="col-md-5 media-img">
-						<a class="media-left" href="#" onclick="toInformationDetail('${content107.id }','${content107.column_id}')">
-							<c:choose>  
-							   <c:when test="${empty content107.cover_img_url}">
-							   		<img src="${pageContext.request.contextPath}/static/images/default.jpg"
-								class="img-responsive" >
-							   </c:when>  
-							   <c:otherwise>
-								    <img src="${content107.cover_img_url }" class="img-responsive">
-							   </c:otherwise>  
-							</c:choose> 
-						</a>
-					</div>
-					<div class="col-md-7">
-						
-						<div class="col-md-4 index-info-con">
-							<div class="media-body">
-								<a href="###" onclick="toInformationDetail('${content107.id}','${content107.column_id}');"><h5 class="media-heading">${content107.title}</h5></a>
-								<p>${fn:substring(content107.add_time, 0, 10)}</p>
-								<p class="arclist-des text-justify">${content107.description}</p>
-							</div>
-						</div>
-							
-					</div>
-					</c:if>
-					</c:forEach> --%>
 				</div>
 				<div class="list">
 					<ul>
@@ -220,6 +192,15 @@
 		url = contextPath + "/sinian/index/indexController/toContentDetail?id=" + id;
 		window.location.href = url;
 	}
+	
+	$(function(){
+		$(document).keyup(function(event){
+		  if(event.keyCode ==13){
+			 event.keyCode = 0;
+			 return false;
+		  }
+		});
+	});  
 </script>
 </body>
 </html>

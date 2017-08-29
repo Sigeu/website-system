@@ -10,6 +10,7 @@
     <id column="Id" jdbcType="INTEGER" property="id" />
     <result column="order_id" jdbcType="VARCHAR" property="order_id" />
     <result column="member_id" jdbcType="VARCHAR" property="member_id" />
+    <result column="member_name" jdbcType="VARCHAR" property="member_name" />
     <result column="product_id" jdbcType="VARCHAR" property="product_id" />
     <result column="product_img" jdbcType="VARCHAR" property="product_img" />
     <result column="put_type" jdbcType="VARCHAR" property="put_type" />
@@ -30,10 +31,12 @@
       This element was generated on Fri May 12 17:35:29 CST 2017.
     -->
     Id, order_id, member_id, 
+    (select member_name from ujn_member m where m.id = t.member_id) as member_name,
     product_id, 
     (select pic from ujn_product p where p.id = t.product_id) as product_img,
     (select put_type from ujn_product p1 where p1.id = t.product_id) as put_type,
-    purchase_date, use_date, validity_day, end_date, 
+    (select validity_day from ujn_product p2 where p2.id = t.product_id) as validity_day,
+    purchase_date, use_date, end_date, 
     use_status, 
     case   
 	  when use_status = 0 then '未使用'  

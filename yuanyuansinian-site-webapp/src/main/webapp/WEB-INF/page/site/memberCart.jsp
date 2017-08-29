@@ -38,6 +38,10 @@
 						<div class="col-sm-4 settlement-img"><a href="###" onclick="toShoppingDetail('${cart.product_id }')"><img src="${cart.product_pic}" ></a></div>
 						<div class="col-sm-8 settlement-info">
 							<div class="settlement-title"><a href="###" onclick="toShoppingDetail('${cart.product_id }')">${cart.product_name}</a></div>
+							<!-- 商品过期时间 start -->
+							<div class="clearfix"></div>
+							<span>有效期：${cart.validity_day==null? '10': cart.validity_day }天</span>
+							<!-- 商品过期时间 end -->
 							<div class="settlement-price">单价：￥${cart.price_site }</div>
 							<div class="settlement-number">
 								<form class="form-horizontal">

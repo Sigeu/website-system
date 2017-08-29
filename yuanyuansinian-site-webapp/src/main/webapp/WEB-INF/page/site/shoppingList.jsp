@@ -48,6 +48,10 @@
 											   <small>${product1.units }</small>
 										   </c:otherwise>  
 										</c:choose> 
+										<!-- 商品过期时间 start -->
+										<div class="clearfix"></div>
+										<span>有效期：${product1.validity_day==null? '10': product1.validity_day }天</span>
+										<!-- 商品过期时间 end -->
 									</div>
 								</div>
 							</div>
@@ -83,6 +87,10 @@
 											   <small>${product2.units }</small>
 										   </c:otherwise>  
 										</c:choose> 
+										<!-- 商品过期时间 start -->
+										<div class="clearfix"></div>
+										<span>有效期：${product2.validity_day==null? '10': product2.validity_day }天</span>
+										<!-- 商品过期时间 end -->
 									</div>
 								</div>
 							</div>
@@ -118,6 +126,10 @@
 											   <small>${product3.units }</small>
 										   </c:otherwise>  
 										</c:choose> 
+										<!-- 商品过期时间 start -->
+										<div class="clearfix"></div>
+										<span>有效期：${product3.validity_day==null? '10': product3.validity_day }天</span>
+										<!-- 商品过期时间 end -->
 									</div>
 								</div>
 							</div>
@@ -153,6 +165,10 @@
 											   <small>${product4.units }</small>
 										   </c:otherwise>  
 										</c:choose> 
+										<!-- 商品过期时间 start -->
+										<div class="clearfix"></div>
+										<span>有效期：${product4.validity_day==null? '10': product4.validity_day }天</span>
+										<!-- 商品过期时间 end -->
 									</div>
 								</div>
 							</div>

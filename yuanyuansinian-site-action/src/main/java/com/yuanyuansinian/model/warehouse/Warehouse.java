@@ -27,6 +27,7 @@ public class Warehouse {
      * @mbg.generated Fri May 12 17:35:29 CST 2017
      */
     private String member_id;
+    private String member_name;
 
     /**
      *
@@ -393,5 +394,13 @@ public class Warehouse {
 
 	public void setPut_type(String put_type) {
 		this.put_type = put_type;
+	}
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 }

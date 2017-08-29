@@ -2,9 +2,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/layer/2.4/layer.js"></script>
 
-<!-- 表单验证 -->
+<!-- è¡¨åéªè¯ -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-<!-- form提交 -->
+<!-- formæäº¤ -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>

@@ -74,6 +74,7 @@
 									<dl class="text-center">
 										<dt onclick="toShoppingDetail('${product.id}');">${product.name}</dt>
 										<dd><input type="checkbox"  name="product_choose" value="${product.name}-${product.id}-${product.price_site}">￥${product.price_site}</dd>
+										<dd>有效期：${product.validity_day==null? '10': product.validity_day}天</dd>
 									</dl>
 								</a>
 							</div>
@@ -100,6 +101,7 @@
 									<dl class="text-center">
 										<dt onclick="toShoppingDetail('${product.id}');">${product.name}</dt>
 										<dd><input type="checkbox"  name="product_choose" value="${product.name}-${product.id}-${product.price_site}">￥${product.price_site}</dd>
+										<dd>有效期：${product.validity_day==null? '10': product.validity_day}天</dd>
 									</dl>
 								</a>
 							</div>
@@ -127,6 +129,7 @@
 									<dl class="text-center">
 										<dt onclick="toShoppingDetail('${product.id}');">${product.name}</dt>
 										<dd><input type="checkbox"  name="product_choose" value="${product.name}-${product.id}-${product.price_site}">￥${product.price_site}</dd>
+										<dd>有效期：${product.validity_day==null? '10': product.validity_day}天</dd>
 									</dl>
 								</a>
 							</div>
@@ -154,6 +157,7 @@
 									<dl class="text-center">
 										<dt onclick="toShoppingDetail('${product.id}');">${product.name}</dt>
 										<dd><input type="checkbox"  name="product_choose" value="${product.name}-${product.id}-${product.price_site}">￥${product.price_site}</dd>
+										<dd>有效期：${product.validity_day==null? '10': product.validity_day}天</dd>
 									</dl>
 								</a>
 							</div>

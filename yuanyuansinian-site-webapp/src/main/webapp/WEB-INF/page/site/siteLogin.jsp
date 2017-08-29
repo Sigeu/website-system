@@ -57,7 +57,7 @@
 					</div>
 					<button class="btn btn-success btn-login" type="button"
 						id="login_but">点击登录</button>
-					<button class="btn btn-warning btn-register" id="register_but2">点击注册</button>
+					<button class="btn btn-warning btn-register" type="button" id="register_but2">点击注册</button>
 				</form>
 			</div>
 		</div>
