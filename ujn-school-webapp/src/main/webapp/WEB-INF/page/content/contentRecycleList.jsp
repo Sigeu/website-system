@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>  
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -149,14 +150,18 @@
 									targets : -1,
 									render : function(data, type, row, meta) {
 										var context = {
-											func : [{
+											func : [
+											        <shiro:hasPermission name="24">
+													{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
 																+ "\')",
 														"type" : "danger-outline size-MINI radius",
-														"display" : row.zt == '1'? false:true
-													}, {
+														"display" : true
+													},
+													</shiro:hasPermission> 
+													{
 														"name" : "查看",
 														"fn" : "toDetail(\'"
 																+ row.id

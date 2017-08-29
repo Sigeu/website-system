@@ -68,4 +68,19 @@ public class DepartmentService implements IDepartmentService {
 		return departmentMapper.updateByPrimaryKeySelective(department);
 	}
 
+
+	@Override
+	public List<Department> queryDepartmentListByParent(String parent_code) {
+		// TODO Auto-generated method stub
+		return departmentMapper.queryDepartmentListByParent(parent_code);
+	}
+
+
+	@Override
+	public List<Department> queryDepartmentListByParentList(
+			List<Department> departmentList) {
+		// TODO Auto-generated method stub
+		return departmentMapper.queryDepartmentListByParentList(departmentList);
+	}
+
 }

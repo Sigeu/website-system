@@ -5,6 +5,7 @@
 package ujn.school.cn.controller.content;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,9 +34,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import framework.system.model.Code;
+import framework.system.model.Department;
 import framework.system.pub.util.DataTablePageUtil;
 import framework.system.pub.util.LogUtil;
 import framework.system.service.ICodeService;
+import framework.system.service.IDepartmentService;
 
 /**
  * @Description: 内容管理
@@ -55,6 +58,9 @@ public class ContentController extends MyBaseController {
 	
 	@Resource
 	private ICodeService codeService;
+	
+	@Resource
+	private IDepartmentService departmentService;
 	
 	/**
 	 * 
@@ -198,6 +204,9 @@ public class ContentController extends MyBaseController {
 			// 开始分页：PageHelper会处理接下来的第一个查询
 			PageHelper.startPage(dataTable.getPage_num(),
 					dataTable.getPage_size());
+			
+			List<String> list = getAllDeptCodeByUser(request);
+			content.setList(list);
 			// 还是使用List，方便后期用到
 			List<Content> contentList = this.contentService.queryContentList(content);
 			// 用PageInfo对结果进行包装
@@ -208,7 +217,6 @@ public class ContentController extends MyBaseController {
 			dataTable.setData(pageInfo.getList());
 			dataTable.setRecordsTotal((int) pageInfo.getTotal());
 			dataTable.setRecordsFiltered(dataTable.getRecordsTotal());
-
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -445,7 +453,38 @@ public class ContentController extends MyBaseController {
 		
 		return map;
 	}
-	
+	/**
+	 * 
+	 * @Description: 查询当前用户的部门和子部门 
+	 * @param request
+	 * @return
+	 */
+	protected List<String>  getAllDeptCodeByUser (HttpServletRequest request){
+		Map<String,String> map = new HashMap<String,String>();
+		// 1级
+		String deptCode = getSessionUser(request).getDept();
+		map.put(deptCode, deptCode);
+		// 2级
+		//根据父类查询子节点
+		List<Department>  departmentList = this.departmentService.queryDepartmentListByParent(deptCode);
+		if(null != departmentList && !departmentList.isEmpty()){
+			// 3级
+			List<Department>  departmentAllList = this.departmentService.queryDepartmentListByParentList(departmentList);
+			if(null != departmentAllList && !departmentAllList.isEmpty()){
+				for(Department dept3 : departmentAllList){
+					map.put(dept3.getDept_code(), dept3.getDept_code());
+				}
+			}
+		}
+		for(Department dept2 : departmentList){
+			map.put(dept2.getDept_code(), dept2.getDept_code());
+		}
+		
+		Collection<String> valueCollection = map.values();
+	    List<String> valueList = new ArrayList<String>(valueCollection);
+	    
+		return valueList;
+	}
 	
 	/**
 	 * 排序

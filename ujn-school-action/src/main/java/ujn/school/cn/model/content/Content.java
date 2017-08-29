@@ -1,5 +1,7 @@
 package ujn.school.cn.model.content;
 
+import java.util.List;
+
 public class Content {
     /**
      *
@@ -55,6 +57,8 @@ public class Content {
     private String startDate;
     private String endDate;
     private String count;
+    
+    private List<String> list;
     
     //显示的条数
     private int limit_num;
@@ -1271,5 +1275,13 @@ public class Content {
 
 	public void setCount(String count) {
 		this.count = count;
+	}
+
+	public List<String> getList() {
+		return list;
+	}
+
+	public void setList(List<String> list) {
+		this.list = list;
 	}
 }
