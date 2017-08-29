@@ -56,4 +56,6 @@ public interface LogMapper {
 
 	List<Log> queryLogList(Log log);
 
+	void deleteLogForTask();
+
 }

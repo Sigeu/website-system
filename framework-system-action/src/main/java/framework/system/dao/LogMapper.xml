@@ -160,6 +160,9 @@
 	</where>
 	order by id desc
   </select>
-  
-  
+  <!-- 删除前3个月的日志 -->
+  <delete id="deleteLogForTask" parameterType="java.lang.Integer">
+    delete from ujn_log
+    where <![CDATA[ str_to_date(create_date, '%Y-%m-%d %H:%i:%s')   <=  SUBDATE(CURDATE(),INTERVAL 3 month)  ]]>
+  </delete>
 </mapper>
