@@ -20,7 +20,8 @@
 			<div class="col-md-9 article-sidebarl list-sidebarl list-sidebarr">
 				<div class="list">
 					<div class="pro-top">
-						<h4 class="pull-left"><a href="###"><span class="glyphicon glyphicon-list"></span> ${column.name }</a></h4>
+						<h4 class="pull-left"  style="width:90%;"><a href="###"><span class="glyphicon glyphicon-list"></span> ${column.name }</a></h4>
+						<a href="###" onclick="toContentListForPage(${column_id });" class="more pull-right">更多&gt;&gt;</a>
 					</div>
 					<div class="clearfix"></div>
 					<div class="list-pro-container">
