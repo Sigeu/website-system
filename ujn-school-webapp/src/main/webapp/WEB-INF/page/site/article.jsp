@@ -35,7 +35,7 @@
 						<p>${content.content }</p>
 					</div>
 				</div>
-				<div class="article-like">
+				<!-- <div class="article-like">
 					<div class="article-like-top">
 						<h4 class="pull-left">相关阅读</h4>
 						<button type="button" class="btn btn-primary pull-right">关闭</button>
@@ -69,7 +69,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

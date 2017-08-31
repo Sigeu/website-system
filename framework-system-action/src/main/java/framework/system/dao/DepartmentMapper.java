@@ -58,4 +58,9 @@ public interface DepartmentMapper {
 	List<Department> queryDepartmentTree(String dept_code);
 
 	Department getDepartmentByCode(String parent_code);
+
+	List<Department> queryDepartmentListByParent(String parent_code);
+
+	List<Department> queryDepartmentListByParentList(
+			List<Department> departmentList);
 }

@@ -107,3 +107,37 @@ function toContentListForNew() {
 }
 /*----------------------最新信息列表-----------------------*/
 
+/*----------------------分页列表-----------------------*/
+//栏目内容列表--更多--分页列表
+function toContentListForPage(id) {
+	//信息公开制度
+	if(id == '109'){
+		url = contextPath + "/index/controller/indexController/queryContentListForPage109?id=" + id;
+	}
+	//信息公开指南
+	if(id == '110'){
+		url = contextPath + "/index/controller/indexController/queryContentListForPage110?id=" + id;
+	}
+	//年度报告
+	if(id == '113'){
+		url = contextPath + "/index/controller/indexController/queryContentListForPage113?id=" + id;
+	}
+	window.location.href = url;
+}
+/*----------------------分页列表-----------------------*/
+
+
+//处理null和undefined
+function toString(content){
+	var str = content;
+	if (typeof(content) == "undefined"){ 
+		str = '';
+	}
+	if (!content && typeof(content)!="undefined" && content!=0){ 
+		str = ''; 
+	}
+	if(isNaN(content)){ 
+		str = '';  
+	}
+	return str;
+}

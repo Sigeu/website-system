@@ -31,6 +31,10 @@ $(function() {
 /*----------------------搜索 begin---------------------*/
 $(function() {
 	$('#search_but').on('click',function(){
+		var text = $('#search_text').val();
+		if('' == text){
+			return false;
+		}
 		var url = contextPath + "/sinian/index/indexController/search?"+ new Date().getTime();  
 		$('#search_form').attr("action", url).submit();
 	});

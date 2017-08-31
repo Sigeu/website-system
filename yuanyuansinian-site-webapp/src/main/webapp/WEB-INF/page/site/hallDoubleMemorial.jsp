@@ -58,6 +58,16 @@
 								class="img-responsive tribute" >
 							   </c:when>  
 							   <c:otherwise>
+							   		<!-- 贡品详细信息 start -->
+									<div class="tribute-info">
+										<img src="${pageContext.request.contextPath}/static/images/x2.png" onmouseover='showTooltip(this);' onmouseout='hideTooltip(this);' id='img0' class="img-responsive tribute">
+										<ul class="tribute-info-des" id='tooltip0' >
+											<li>名称：${warehouse.product_name}</li>
+											<li>祭奠人：${warehouse.member_name}</li>
+											<li>有效期：${warehouse.validity_day==null? '10': warehouse.validity_day}天</li>
+										</ul>
+									</div>
+									<!-- 贡品详细信息 end -->
 								    <img src="${warehouse.product_img}" class="img-responsive tribute">
 							   </c:otherwise>  
 							</c:choose> 
@@ -75,6 +85,16 @@
 							class="img-responsive tribute" >
 						   </c:when>  
 						   <c:otherwise>
+						   		<!-- 贡品详细信息 start -->
+								<div class="tribute-info">
+									<img src="${pageContext.request.contextPath}/static/images/x2.png" onmouseover='showTooltip(this);' onmouseout='hideTooltip(this);' id='img0' class="img-responsive tribute">
+									<ul class="tribute-info-des" id='tooltip0' >
+										<li>名称：${warehouse.product_name}</li>
+										<li>祭奠人：${warehouse.member_name}</li>
+										<li>有效期：${warehouse.validity_day==null? '10': warehouse.validity_day}天</li>
+									</ul>
+								</div>
+								<!-- 贡品详细信息 end -->
 							    <img src="${warehouse.product_img}" class="img-responsive tribute">
 						   </c:otherwise>  
 						</c:choose> 
@@ -95,6 +115,16 @@
 							class="img-responsive tribute" >
 						   </c:when>  
 						   <c:otherwise>
+						   		<!-- 贡品详细信息 start -->
+								<div class="tribute-info">
+									<img src="${pageContext.request.contextPath}/static/images/x2.png" onmouseover='showTooltip(this);' onmouseout='hideTooltip(this);' id='img0' class="img-responsive tribute">
+									<ul class="tribute-info-des" id='tooltip0' >
+										<li>名称：${warehouse.product_name}</li>
+										<li>祭奠人：${warehouse.member_name}</li>
+										<li>有效期：${warehouse.validity_day==null? '10': warehouse.validity_day}天</li>
+									</ul>
+								</div>
+								<!-- 贡品详细信息 end -->
 							    <img src="${warehouse.product_img}" class="img-responsive tribute">
 						   </c:otherwise>  
 						</c:choose> 
@@ -114,6 +144,16 @@
 							class="img-responsive tribute" > --%>
 						   </c:when>  
 						   <c:otherwise>
+						   		<!-- 贡品详细信息 start -->
+								<div class="tribute-info">
+									<img src="${pageContext.request.contextPath}/static/images/x2.png" onmouseover='showTooltip(this);' onmouseout='hideTooltip(this);' id='img0' class="img-responsive tribute">
+									<ul class="tribute-info-des" id='tooltip0' >
+										<li>名称：${warehouse.product_name}</li>
+										<li>祭奠人：${warehouse.member_name}</li>
+										<li>有效期：${warehouse.validity_day==null? '10': warehouse.validity_day}天</li>
+									</ul>
+								</div>
+								<!-- 贡品详细信息 end -->
 							    <img src="${warehouse.product_img}" class="img-responsive tribute">
 						   </c:otherwise>  
 						</c:choose> 
@@ -133,6 +173,16 @@
 								class="img-responsive tribute" >
 							   </c:when>  
 							   <c:otherwise>
+							   		<!-- 贡品详细信息 start -->
+								<div class="tribute-info">
+									<img src="${pageContext.request.contextPath}/static/images/x2.png" onmouseover='showTooltip(this);' onmouseout='hideTooltip(this);' id='img0' class="img-responsive tribute">
+									<ul class="tribute-info-des" id='tooltip0' >
+										<li>名称：${warehouse.product_name}</li>
+										<li>祭奠人：${warehouse.member_name}</li>
+										<li>有效期：${warehouse.validity_day==null? '10': warehouse.validity_day}天</li>
+									</ul>
+								</div>
+								<!-- 贡品详细信息 end -->
 								    <img src="${warehouse.product_img}" class="img-responsive tribute">
 							   </c:otherwise>  
 							</c:choose> 

@@ -46,4 +46,9 @@ public interface IDepartmentService {
 
 	int updateDepartment(Department department);
 
+	List<Department> queryDepartmentListByParent(String deptCode);
+
+	List<Department> queryDepartmentListByParentList(
+			List<Department> departmentList);
+
 }

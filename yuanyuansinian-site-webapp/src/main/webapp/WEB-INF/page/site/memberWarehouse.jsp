@@ -38,6 +38,10 @@
 						<div class="col-sm-4 settlement-img"><a href="###" onclick="toShoppingDetail('${warehouse.product_id }')"><img src="${warehouse.product_img}" ></a></div>
 						<div class="col-sm-8 settlement-info">
 							<div class="settlement-title"><a href="###" onclick="toShoppingDetail('${warehouse.product_id }')">${warehouse.product_name}</a></div>
+							<!-- 商品过期时间 start -->
+							<div class="clearfix"></div>
+							<span>有效期：${warehouse.validity_day==null? '10': warehouse.validity_day}天</span>
+							<!-- 商品过期时间 end -->
 							<div class="settlement-price">状态：${warehouse.use_status_name }</div>
 							<c:choose>  
 								   <c:when test="${empty sessionScope.memberUser}">

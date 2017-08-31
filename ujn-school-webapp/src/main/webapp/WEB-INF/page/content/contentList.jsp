@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>  
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -120,7 +121,11 @@
 									defaultContent : ""
 								}, {
 									data : "title",
-									defaultContent : ""
+									defaultContent : "",
+									render : function(data, type, row, meta) {
+										var context = '<a href="##" onclick="toDetail(\'' + row.id + '\')">'+ data + '</a>';
+										return context;
+									}
 								}, {
 									data : "issue_name",
 									defaultContent : ""
@@ -174,14 +179,18 @@
 																+ "\')",
 														"type" : "primary-outline size-MINI radius",
 														"display" :true
-													},{
+													},
+													<shiro:hasPermission name="24">
+													{
 														"name" : "删除",
 														"fn" : "toDelete(\'"
 																+ row.id
 																+ "\')",
 														"type" : "danger-outline size-MINI radius",
-														"display" : row.status == '1'? false : true
-													},{
+														"display" : true
+													},
+													</shiro:hasPermission> 
+													{
 														"name" : "查看",
 														"fn" : "toDetail(\'"
 																+ row.id
@@ -306,14 +315,16 @@
 		
 		//查看
 		function toDetail(id){
-			layer.open({
+			var url = '${pageContext.request.contextPath}/index/controller/indexController/toContentDetail?id='+id;
+			window.open ( url, "内容查看" ,"_blank") ;
+			/* layer.open({
 			    type: 2,
 			    maxmin:true,
 			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentDetail?id='+id
-			 });
+			 }); */
 		}
 		
 	</script>

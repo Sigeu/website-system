@@ -787,7 +787,7 @@ public class IndexController extends MyBaseController {
 		return "site/searchList";
 	}
 	
-	//最新公开信息列表
+	//最新公开信息分页列表
 	@RequestMapping("/queryContentListForNew")
 	public String queryContentListForNew(HttpServletRequest request, Model model) {
 			
@@ -841,6 +841,201 @@ public class IndexController extends MyBaseController {
 			Content content = new Content();
 			// 所有数据
 			listContentPage = contentService.queryContentListByNew(content);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listContentPage;
+	}
+	
+	/**
+	 * 
+	 * @Description: 信息公开制度-更多-分页列表 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/queryContentListForPage109")
+	public String queryContentListForPage109(HttpServletRequest request, Model model) {
+			
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = IMySystemConstants.COLUMN113;
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("columnList", columnList);
+		model.addAttribute("search_text", "最新公开信息");
+		
+		return "site/articleList109";
+	}
+	
+	/**
+	 * 
+	 * @Description: 信息公开制度
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/articleListForPage109")
+	public List<Content> articleListForPage109(HttpServletRequest request) {
+		List<Content> listContentPage = null;
+		try {
+			Content content = new Content();
+			content.setColumn_id("109");
+			// 所有数据
+			listContentPage = contentService.queryContentListByColumn(content);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listContentPage;
+	}
+	
+	/**
+	 * 
+	 * @Description: 信息公开指南-更多-分页列表 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/queryContentListForPage110")
+	public String queryContentListForPage110(HttpServletRequest request, Model model) {
+			
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = IMySystemConstants.COLUMN113;
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("columnList", columnList);
+		model.addAttribute("search_text", "最新公开信息");
+		
+		return "site/articleList110";
+	}
+	
+	/**
+	 * 
+	 * @Description: 信息公开指南
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/articleListForPage110")
+	public List<Content> articleListForPage110(HttpServletRequest request) {
+		List<Content> listContentPage = null;
+		try {
+			Content content = new Content();
+			content.setColumn_id("110");
+			// 所有数据
+			listContentPage = contentService.queryContentListByColumn(content);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listContentPage;
+	}
+	
+	/**
+	 * 
+	 * @Description: 年度报告-更多-分页列表 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/queryContentListForPage113")
+	public String queryContentListForPage113(HttpServletRequest request, Model model) {
+			
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = IMySystemConstants.COLUMN113;
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("columnList", columnList);
+		model.addAttribute("search_text", "最新公开信息");
+		
+		return "site/articleList113";
+	}
+	
+	/**
+	 * 
+	 * @Description: 年度报告
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/articleListForPage113")
+	public List<Content> articleListForPage113(HttpServletRequest request) {
+		List<Content> listContentPage = null;
+		try {
+			Content content = new Content();
+			content.setColumn_id("113");
+			// 所有数据
+			listContentPage = contentService.queryContentListByColumn(content);
 
 		} catch (Exception e) {
 			// TODO: handle exception

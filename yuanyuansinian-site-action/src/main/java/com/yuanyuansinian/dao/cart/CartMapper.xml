@@ -9,6 +9,7 @@
     <result column="member_name" jdbcType="VARCHAR" property="member_name" />
     <result column="product_pic" jdbcType="VARCHAR" property="product_pic" />
     <result column="price_site" jdbcType="VARCHAR" property="price_site" />
+    <result column="validity_day" jdbcType="VARCHAR" property="validity_day" />
     <result column="product_num" jdbcType="INTEGER" property="product_num" />
     <result column="create_date" jdbcType="VARCHAR" property="create_date" />
   </resultMap>
@@ -18,6 +19,7 @@
     (select name from ujn_product p where p.id = t.product_id) as product_name,
     (select pic from ujn_product p1 where p1.id = t.product_id) as product_pic,
     (select price_site from ujn_product p2 where p2.id = t.product_id) as price_site,
+    (select validity_day from ujn_product p2 where p2.id = t.product_id) as validity_day,
     member_id, 
     (select member_name from ujn_member m where m.id = t.member_id) as member_name,
     product_num, 

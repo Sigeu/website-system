@@ -312,4 +312,21 @@
     from ujn_department
     where dept_code = #{parent_code,jdbcType=INTEGER}
   </select>
+  
+   <select id="queryDepartmentListByParent" parameterType="String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_department 
+    where parent_code = #{parent_code}
+  </select>
+  
+  <select id="queryDepartmentListByParentList" parameterType="String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ujn_department
+     where parent_code in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+              #{item.dept_code}
+	</foreach>
+  </select>
 </mapper>
