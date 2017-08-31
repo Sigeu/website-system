@@ -115,23 +115,12 @@
 									defaultContent : 0
 								}, {
 									data : "title",
-									defaultContent : ""
-								}, /* {
-									data : "class1",
-									defaultContent : ""
-								}, {
-									data : "class2",
-									defaultContent : ""
-								}, {
-									data : "class3",
-									defaultContent : ""
-								}, {
-									data : "web_logo",
+									defaultContent : "",
 									render : function(data, type, row, meta) {
-										var context = '<img width="210" class="picture-thumb" src="' + '${pageContext.request.contextPath}/' + data + '">';
+										var context = '<a href="##" onclick="toDetail(\'' + row.id + '\')">'+ data + '</a>';
 										return context;
 									}
-								},  */{
+								}, {
 									data : "issue",
 									defaultContent : ""
 								}, {
@@ -258,14 +247,16 @@
 		
 		//查看
 		function toDetail(id){
-			layer.open({
+			var url = '${pageContext.request.contextPath}/index/controller/indexController/toContentDetail?id='+id;
+			window.open ( url, "内容查看" ,"_blank") ;
+			/* layer.open({
 			    type: 2,
 			    maxmin:true,
 			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentDetail?id='+id
-			 });
+			 }); */
 		}
 		
 	</script>

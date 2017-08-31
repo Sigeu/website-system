@@ -121,7 +121,11 @@
 									defaultContent : ""
 								}, {
 									data : "title",
-									defaultContent : ""
+									defaultContent : "",
+									render : function(data, type, row, meta) {
+										var context = '<a href="##" onclick="toDetail(\'' + row.id + '\')">'+ data + '</a>';
+										return context;
+									}
 								}, {
 									data : "issue_name",
 									defaultContent : ""
@@ -311,14 +315,16 @@
 		
 		//查看
 		function toDetail(id){
-			layer.open({
+			var url = '${pageContext.request.contextPath}/index/controller/indexController/toContentDetail?id='+id;
+			window.open ( url, "内容查看" ,"_blank") ;
+			/* layer.open({
 			    type: 2,
 			    maxmin:true,
 			    title:["查看"],
 			    area: ['100%', '100%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentDetail?id='+id
-			 });
+			 }); */
 		}
 		
 	</script>
