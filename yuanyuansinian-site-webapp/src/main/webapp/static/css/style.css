@@ -454,7 +454,7 @@ p.museum-des {position:relative; top:8px}
 	.article-top h1 {padding:18px; font-size:25px}
 	.article-body img {width:70%}
 	.article-near a {max-width:270px}
-	.shop-list .thumbnail h5 {width:70%; float:left}
+	.shop-list .thumbnail h5 {width:60%; float:left}
 	.shop-info {margin-top:6px; font-size:17px; color:#b85844}
 	.miss-shop-info {font-size:14px}
 	.shop-info small {font-size:70%}
@@ -573,7 +573,7 @@ p.museum-des {position:relative; top:8px}
 	.nav-title .nav-tabs > li {margin-bottom:-1px}
 	.side-nav {padding-right:30px}
 	.article-top h1 {padding:20px; font-size:27px}
-	.shop-list .thumbnail h5 {width:75%}
+	.shop-list .thumbnail h5 {width:65%}
 	.shop-cat img {height:460px}
 	.product img {height:370px}
 	.product h3 {height:50px}

@@ -22,7 +22,7 @@
 			<div class="product-price">
 				<span class="btn-label pull-left">推荐价格</span>
 				<h2 class="pull-left">
-					<small>￥</small><span id="price_site">${product.price_site }元宝&nbsp;&nbsp;</span><span>有效期：${product.validity_day==null? '10': product.validity_day }天</span>
+					<small>￥</small><span id="price_site">${product.price_site }元宝&nbsp;&nbsp;</span><small>有效期：${product.validity_day==null? '10': product.validity_day }天</small>
 				</h2>
 			</div>
 			<div class="clearfix"></div>

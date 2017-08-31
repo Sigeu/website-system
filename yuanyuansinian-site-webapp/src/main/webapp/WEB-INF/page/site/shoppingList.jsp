@@ -39,7 +39,7 @@
 									<a href="###" onclick="toShoppingDetail('${product1.id }')"><img src="${product1.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product1.id }')"><h5>${product1.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
-										<small>￥</small>${product1.price_site }
+										<small>￥${product1.price_site }</small>
 										<c:choose>  
 										   <c:when test="${empty product1.units}">
 										   	<small>元宝</small>
@@ -48,11 +48,12 @@
 											   <small>${product1.units }</small>
 										   </c:otherwise>  
 										</c:choose> 
-										<!-- 商品过期时间 start -->
-										<div class="clearfix"></div>
-										<span>有效期：${product1.validity_day==null? '10': product1.validity_day }天</span>
-										<!-- 商品过期时间 end -->
+
 									</div>
+									<!-- 商品过期时间 start -->
+									<div class="clearfix"></div>
+									<span>有效期：${product1.validity_day==null? '10': product1.validity_day }天</span>
+									<!-- 商品过期时间 end -->
 								</div>
 							</div>
 					</c:forEach>
@@ -78,7 +79,7 @@
 									<a href="###" onclick="toShoppingDetail('${product2.id }')"><img src="${product2.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product2.id }')"><h5>${product2.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
-										<small>￥</small>${product2.price_site }
+										<small>￥${product2.price_site }</small>
 										<c:choose>  
 										   <c:when test="${empty product2.units}">
 										   	<small>元宝</small>
@@ -87,11 +88,12 @@
 											   <small>${product2.units }</small>
 										   </c:otherwise>  
 										</c:choose> 
-										<!-- 商品过期时间 start -->
-										<div class="clearfix"></div>
-										<span>有效期：${product2.validity_day==null? '10': product2.validity_day }天</span>
-										<!-- 商品过期时间 end -->
+										
 									</div>
+									<!-- 商品过期时间 start -->
+									<div class="clearfix"></div>
+									<span>有效期：${product2.validity_day==null? '10': product2.validity_day }天</span>
+									<!-- 商品过期时间 end -->
 								</div>
 							</div>
 					</c:forEach>
@@ -117,7 +119,7 @@
 									<a href="###" onclick="toShoppingDetail('${product3.id }')"><img src="${product3.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product3.id }')"><h5>${product3.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
-										<small>￥</small>${product3.price_site }
+										<small>￥${product3.price_site }</small>
 										<c:choose>  
 										   <c:when test="${empty product3.units}">
 										   	<small>元宝</small>
@@ -126,11 +128,12 @@
 											   <small>${product3.units }</small>
 										   </c:otherwise>  
 										</c:choose> 
-										<!-- 商品过期时间 start -->
-										<div class="clearfix"></div>
-										<span>有效期：${product3.validity_day==null? '10': product3.validity_day }天</span>
-										<!-- 商品过期时间 end -->
+										
 									</div>
+									<!-- 商品过期时间 start -->
+									<div class="clearfix"></div>
+									<span>有效期：${product3.validity_day==null? '10': product3.validity_day }天</span>
+									<!-- 商品过期时间 end -->
 								</div>
 							</div>
 					</c:forEach>
@@ -156,7 +159,7 @@
 									<a href="###" onclick="toShoppingDetail('${product4.id }')"><img src="${product4.pic }"
 										class="img-responsive" alt="img"></a> <a href="###" onclick="toShoppingDetail('${product4.id }')"><h5>${product4.name }</h5></a>
 									<div class="shop-info hidden-xs hidden-sm pull-right">
-										<small>￥</small>${product4.price_site }
+										<small>￥${product4.price_site }</small>
 										<c:choose>  
 										   <c:when test="${empty product4.units}">
 										   	<small>元宝</small>
@@ -165,11 +168,12 @@
 											   <small>${product4.units }</small>
 										   </c:otherwise>  
 										</c:choose> 
-										<!-- 商品过期时间 start -->
-										<div class="clearfix"></div>
-										<span>有效期：${product4.validity_day==null? '10': product4.validity_day }天</span>
-										<!-- 商品过期时间 end -->
+										
 									</div>
+									<!-- 商品过期时间 start -->
+									<div class="clearfix"></div>
+									<span>有效期：${product4.validity_day==null? '10': product4.validity_day }天</span>
+									<!-- 商品过期时间 end -->
 								</div>
 							</div>
 					</c:forEach>
