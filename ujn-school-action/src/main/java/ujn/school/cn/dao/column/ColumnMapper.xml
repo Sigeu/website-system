@@ -468,7 +468,7 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_column t
-    where 1=1 
+    where 1=1 and nav = '1'
      <if test="name != null and name != ''">
         and name like concat('%', #{name}, '%')
     </if>

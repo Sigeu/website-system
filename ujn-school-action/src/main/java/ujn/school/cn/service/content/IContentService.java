@@ -76,4 +76,10 @@ public interface IContentService {
 
 	List<Content> queryContentStatistics(Content content);
 
+	boolean auditContentForMore(String ids, String type);
+
+	List<Content> queryContentStatisticsForDept(Content content);
+
+	List<Content> queryContentListForSearch(ContentWithBLOBs content);
+
 }

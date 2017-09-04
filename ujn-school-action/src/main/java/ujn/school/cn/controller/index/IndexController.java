@@ -29,6 +29,7 @@ import ujn.school.cn.pub.base.MyBaseController;
 import ujn.school.cn.pub.constants.IMySystemConstants;
 import ujn.school.cn.pub.util.MyDateUtil;
 import ujn.school.cn.pub.util.MyIpV4Util;
+import ujn.school.cn.pub.util.MyRandomUtils;
 import ujn.school.cn.service.carousel.ICarouselService;
 import ujn.school.cn.service.column.IColumnService;
 import ujn.school.cn.service.config.IConfigService;
@@ -690,21 +691,9 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/search")
 	public String search(HttpServletRequest request, Model model) {
 		String search_text = request.getParameter("serach_text")==null? "":request.getParameter("serach_text");
-		// 最新公开信息 
-		ContentWithBLOBs content = new ContentWithBLOBs();
-		content.setTitle(search_text);
-		content.setContent(search_text);
-		content.setKeywords(search_text);
-		content.setDescription(search_text);
-		content.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
-		content.setOrder_type(IMySystemConstants.ORDER_DESC);
-		content.setCount_num(IMySystemConstants.COUNT_NUM4);
+		
 		//内容列表
-		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
-		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
-		List<Content> contentList = contentService.queryContentList(content);
-		int totalRecords = contentList.size();
-		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
+		//List<Content> contentList = contentService.queryContentList(content);
 		
 		// 网站联系方式
 		Contact contact = contactService.queryContact();
@@ -731,15 +720,45 @@ public class IndexController extends MyBaseController {
 		
 		model.addAttribute("contact", contact);
 		model.addAttribute("linkList", linkList);
-		model.addAttribute("contentList", contentList);
-		model.addAttribute("totalRecords", totalRecords);
-		model.addAttribute("totalPage", totalPage);
+		//model.addAttribute("contentList", contentList);
 		model.addAttribute("contentReportList", contentReportList);
 		model.addAttribute("columnList", columnList);
 		model.addAttribute("search_text", search_text);
 		
 		return "site/searchList";
 	}
+	
+	/**
+	 * 
+	 * @Description: 搜索结果分页 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/searchForPage")
+	public List<Content> searchForPage(HttpServletRequest request) {
+		List<Content> listContentPage = null;
+		String search_text = request.getParameter("serach_text")==null? "":request.getParameter("serach_text");
+		try {
+			// 最新公开信息 
+			ContentWithBLOBs content = new ContentWithBLOBs();
+			content.setTitle(search_text);
+			content.setContent(search_text);
+			content.setKeywords(search_text);
+			content.setDescription(search_text);
+			content.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+			content.setOrder_type(IMySystemConstants.ORDER_DESC);
+			content.setCount_num(IMySystemConstants.COUNT_NUM4);
+			// 所有数据
+			listContentPage = contentService.queryContentListForSearch(content);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listContentPage;
+	}
+	
 	
 	//重要信息列表
 	@RequestMapping("/queryContentListForImportance")
@@ -1114,5 +1133,18 @@ public class IndexController extends MyBaseController {
 			return result;
 		}
 
+	}
+	
+	/**
+	 * 
+	 * @Description: 重新生成访问密码 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/createPwd")
+	public String createPwd(HttpServletRequest request) {
+		String randomPwd = MyRandomUtils.randomString(IMySystemConstants.COUNT_NUM8);
+		return randomPwd;
 	}
 }

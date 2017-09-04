@@ -5,8 +5,10 @@
 package ujn.school.cn.service.content.impl;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -192,6 +194,38 @@ public class ContentService implements IContentService {
 	public List<Content> queryContentStatistics(Content content) {
 		// TODO Auto-generated method stub
 		return contentMapper.queryContentStatistics(content);
+	}
+
+	@Override
+	public boolean auditContentForMore(String ids, String type) {
+		boolean flag = false;
+		try {
+			if(null != ids){
+				Map<String,String> map = new HashMap<String,String>();
+				for(String id : ids.split(",")){
+					map.put("id", id);
+					map.put("status", type);
+					contentMapper.auditContentForMore(map);
+				}
+			}
+			flag = true;
+		} catch (Exception e) {
+			flag = false;
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public List<Content> queryContentStatisticsForDept(Content content) {
+		// TODO Auto-generated method stub
+		return contentMapper.queryContentStatisticsForDept(content);
+	}
+
+	@Override
+	public List<Content> queryContentListForSearch(ContentWithBLOBs content) {
+		// TODO Auto-generated method stub
+		return contentMapper.queryContentListForSearch(content);
 	}
 	
 

@@ -100,14 +100,14 @@
 						value="1" /> <label for="is_show1">是</label>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">栏目修饰名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="栏目修饰名称" id="name_mark" name="name_mark">
 			</div>
 		</div>
-		<!-- <div class="row cl">
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">栏目是否允许关联：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div class="radio-box">
@@ -119,20 +119,20 @@
 						value="1" /> <label for="rele_class1">是</label>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">栏目是否前台显示：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div class="radio-box">
 					<input type="radio" id="display0" name="display"
-						value="0" checked /> <label for="display0">否</label>
+						value="0" /> <label for="display0">否</label>
 				</div>
 				<div class="radio-box">
 					<input type="radio" id="display1" name="display"
-						value="1" /> <label for="display1">是</label>
+						value="1" checked/> <label for="display1">是</label>
 				</div>
 			</div>
-		</div> -->
+		</div> 
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序方式：</label>
 			<div class="formControls col-xs-8 col-sm-9">

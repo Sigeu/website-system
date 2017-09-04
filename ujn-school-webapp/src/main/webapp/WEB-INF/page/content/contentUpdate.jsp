@@ -17,7 +17,7 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/content/controller/contentController/updateContent" method="post" class="form form-horizontal" id="form-content-update">
 		<input type="hidden" name="id" id="id_" value="${content.id}">
-		<input type="hidden" name="read_pwd" id="read_pwd" value="${content.read_pwd }" >
+		<%-- <input type="hidden" name="read_pwd" id="read_pwd" value="${content.read_pwd }" > --%>
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属栏目：</label>
@@ -107,12 +107,15 @@
 				</span>
 			</div>
 		</div>
-		<%-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">外部链接：</label>
+		<c:if test="${content.read_type == '2'}">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">访问密码：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${content.links}" placeholder="链接到网站外部的网址" id="links" name="links">
+				<input style="width:90%" type="text" class="input-text" value="${content.read_pwd}" placeholder="访问密码" id="read_pwd" name="read_pwd">
+				<button id="create_pwd" class="btn btn-secondary radius" type="button">重新生成</button>
 			</div>
-		</div> --%>
+		</div>
+		</c:if>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -160,6 +163,18 @@ $(function(){
 				$('#class2').val(column.class2);
 				$('#class3').val(column.class3);
 			}
+		});
+	});
+	//重新生成密码
+	$('#create_pwd').on('click',function(){
+		$.ajax({
+			method : "POST",
+			url : contextPath + "/index/controller/indexController/createPwd",
+			data : {
+				//serach_text : '${serach_text }'
+			}
+		}).done(function(data) {
+			$('#read_pwd').val(data);
 		});
 	});
 });

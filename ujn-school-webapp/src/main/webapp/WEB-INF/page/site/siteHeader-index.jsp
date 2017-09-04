@@ -13,7 +13,7 @@
 			<div class="col-xs-12 col-md-3 col-md-offset-2 navbar-search" style="padding:0px">
 				<div class="input-group">
 					
-						<input type="text" name="serach_text" class="form-control"> <span
+						<input type="text" id="serach_text" name="serach_text" class="form-control"> <span
 							class="input-group-btn">
 							<button class="btn btn-default" type="button" id="search_but">
 								<span class="glyphicon glyphicon-search"></span>
@@ -30,7 +30,7 @@
 		<div class="row">
 			<div id="menu_self" class="navbar-dropdown hidden-xs hidden-sm">
 				<div id="navbar-dropdown-top" >
-					<span id="span_first">校务公开</span><span id="span_second">党务公开</span>
+					<span id="span_first" class="navbar-dorpdown-one">校务公开</span><span id="span_second">党务公开</span>
 				</div>
 				<div id="div_first" style="display: block">
 					<ul>

@@ -117,9 +117,13 @@
 					<shiro:hasPermission name="15">
 					<li><a data-href="${pageContext.request.contextPath}/content/controller/contentController/toContentStatistics" data-title="文章统计" href="javascript:void(0)">文章统计</a></li>
 					</shiro:hasPermission>
+					<shiro:hasPermission name="25">
+					<li><a data-href="${pageContext.request.contextPath}/content/controller/contentController/toContentStatisticsForDept" data-title="部门文章统计" href="javascript:void(0)">部门文章统计</a></li>
+					</shiro:hasPermission>
 					<shiro:hasPermission name="16">
 					<li><a data-href="${pageContext.request.contextPath}/apply/controller/applyController/toApplyStatistics" data-title="在线申请统计" href="javascript:void(0)">在线申请统计</a></li>
 					</shiro:hasPermission>
+					
 				</ul>
 			</dd>
 		</dl>

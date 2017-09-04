@@ -610,6 +610,28 @@
     order by c.id desc
   </select>
   
+  <!-- 内容搜索列表 -->
+   <select id="queryContentListForSearch" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ujn_content c
+    <where>
+    <if test="title != null and title != ''">
+        or title like concat('%', #{title}, '%')
+    </if>
+    <if test="keywords != null and keywords != ''">
+        or keywords like concat('%', #{keywords}, '%')
+    </if>
+    <if test="description != null and description != ''">
+        or description like concat('%', #{description}, '%')
+    </if>
+    </where>
+    order by c.id desc
+  </select>
+  
+  
   <!-- 内容审核列表 -->
   <select id="queryAuditContentList" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
     select 
@@ -687,6 +709,13 @@
   </update>
   
   
+    <!-- 批量审核 -->
+  <update id="auditContentForMore" parameterType="map">
+    update ujn_content 
+    set status = #{status,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
   <!-- 最新公开信息（只查询属于校务和党务栏目内的数据） ：不包括重要信息-->
    <select id="queryContentListByNew" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
     select 
@@ -740,5 +769,24 @@
 		and unix_timestamp(c.add_time) &lt;=  unix_timestamp(#{endDate,jdbcType=VARCHAR})
 	</if>
     group by c.column_id
+  </select>
+  
+  <!-- 按部门文章统计 -->
+   <select id="queryContentStatisticsForDept" parameterType="ujn.school.cn.model.content.Content" resultMap="ResultMapWithBLOBs">
+     select c.dept_code,
+    (select dept_name from ujn_department cu where c.dept_code = cu.dept_code) as dept_code_name,
+    count(1) as count
+    from ujn_content c
+    where 1=1
+    <if test="dept_code != null and dept_code != ''">
+        and c.dept_code = #{dept_code,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate != null and startDate != ''">
+		and unix_timestamp(c.add_time) &gt;=  unix_timestamp(#{startDate,jdbcType=VARCHAR})
+	</if>
+	<if test="endDate != null and endDate != ''">
+		and unix_timestamp(c.add_time) &lt;=  unix_timestamp(#{endDate,jdbcType=VARCHAR})
+	</if>
+    	 group by c.dept_code
   </select>
 </mapper>

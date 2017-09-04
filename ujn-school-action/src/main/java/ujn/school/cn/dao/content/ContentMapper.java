@@ -1,6 +1,7 @@
 package ujn.school.cn.dao.content;
 
 import java.util.List;
+import java.util.Map;
 
 import ujn.school.cn.model.content.Content;
 import ujn.school.cn.model.content.ContentWithBLOBs;
@@ -83,4 +84,10 @@ public interface ContentMapper {
 	List<Content> queryContentListByImportance(Content content);
 
 	List<Content> queryContentStatistics(Content content);
+
+	void auditContentForMore(Map<String, String> map);
+
+	List<Content> queryContentStatisticsForDept(Content content);
+
+	List<Content> queryContentListForSearch(ContentWithBLOBs content);
 }

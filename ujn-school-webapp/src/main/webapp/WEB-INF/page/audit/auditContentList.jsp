@@ -37,6 +37,13 @@
 						<button class="btn btn-success radius size-MINI" id="reset_but">
 							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
 						</button> &nbsp;&nbsp;
+						 <button class="btn btn-primary radius size-MINI" id="audit_true_but_more">
+							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>批量通过
+						</button> 
+						&nbsp;&nbsp;
+						 <button class="btn btn-primary radius size-MINI" id="audit_false_but_more">
+							<i class="Hui-iconfont Hui-iconfont-daochu">&nbsp;&nbsp;</i>批量不通过
+						</button> 
 					</td>
 				</tr>
 
@@ -48,7 +55,7 @@
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
 					<tr class="text-c">
-						<th><input type="checkbox" name="" value=""></th>
+						<th><input type="checkbox" name="check_content" id="check_all" value=""></th>
 						<th>标题</th>
 						<th>发布人</th>
 						<th>更新时间</th>
@@ -106,7 +113,7 @@
 								columns : [ {
 									data : "id",
 									render: function (data, type, full, meta) {
-					                     return '<input type="checkbox" value="' + data + '" />';
+					                     return '<input type="checkbox" name="check_content" value="' + data + '" />';
 					                 }
 								}, {
 									data : "title",
@@ -312,6 +319,97 @@
 			    content: '${pageContext.request.contextPath}/index/controller/indexController/toContentDetail?id='+id
 			 }); */
 		}
+		
+		$(function(){
+			//全选
+			$('#check_all').on('click', function() {
+				if($(this).prop('checked')){
+					$("input[name='check_content']").attr("checked",true); 
+				}else{
+					$("input[name='check_content']").attr("checked",false);
+				}
+			});
+			
+			//批量通过
+			$('#audit_true_but_more').on('click', function() {
+				//要删除的数据
+				var ids = '';
+				$("input[name='check_content']:checkbox:checked").each(function(){ 
+					ids += $(this).val() + ',';
+				}) 
+				if('' == ids){
+					layer.open({
+			    		  content: '请勾选要审核的数据！',
+			    		  yes: function(index, layero){
+			    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+			    		  }
+			    		});
+					return;
+				}
+				layer.confirm("确认要全部审核通过吗？", {
+					  btn: ['确认','返回'] //按钮
+						}, function(index){
+							$.ajax({
+							    url: "${pageContext.request.contextPath}/content/controller/contentController/auditContentForMore" ,
+							    type: "POST",
+							    dataType: "JSON",
+							    data: {id:ids,type:'1'},
+							    success:function(data){
+							    	layer.open({
+							    		  content: data.result_message,
+							    		  yes: function(index, layero){
+							    		    window.location.reload();//刷新当前页面
+							    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+							    		  }
+							    		});
+							    }
+							});
+						}, function(index){
+							layer.close(index);
+					}); 
+				
+			});
+			
+			//批量不通过
+			$('#audit_false_but_more').on('click', function() {
+				//要删除的数据
+				var ids = '';
+				$("input[name='check_content']:checkbox:checked").each(function(){ 
+					ids += $(this).val() + ',';
+				}) 
+				if('' == ids){
+					layer.open({
+			    		  content: '请勾选要审核的数据！',
+			    		  yes: function(index, layero){
+			    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+			    		  }
+			    		});
+					return;
+				}
+				layer.confirm("确认要全部审核不通过吗？", {
+					  btn: ['确认','返回'] //按钮
+						}, function(index){
+							$.ajax({
+							    url: "${pageContext.request.contextPath}/content/controller/contentController/auditContentForMore" ,
+							    type: "POST",
+							    dataType: "JSON",
+							    data: {id:ids,type:'3'},
+							    success:function(data){
+							    	layer.open({
+							    		  content: data.result_message,
+							    		  yes: function(index, layero){
+							    		    window.location.reload();//刷新当前页面
+							    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+							    		  }
+							    		});
+							    }
+							});
+						}, function(index){
+							layer.close(index);
+					}); 
+				
+			});
+		});
 	</script>
 </body>
 </html>

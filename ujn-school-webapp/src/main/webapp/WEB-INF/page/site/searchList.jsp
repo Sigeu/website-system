@@ -6,7 +6,7 @@
 <head>
 <%@ include file="../../../common/header-site.jsp"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/static/css/keleyidivpager.css">
+	href="${pageContext.request.contextPath}/static/page/page.css">
 <title>搜索列表</title>
 </head>
 <body>
@@ -20,17 +20,17 @@
 				<div class="col-md-9 article-sidebarl list-sidebarl list-sidebarr">
 					<div class="list search-list">
 						<div class="pro-top">
-							<h4 class="pull-left">站内搜索：关键字“<span>${search_text }</span>” &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em class="hidden-xs">共找到信息<span>${totalRecords }</span>条</em></h4>
+							<h4 class="pull-left">站内搜索：关键字“<span>${search_text }</span>”</h4>
 						</div>
 						<div class="clearfix"></div>
-						<div class="search-list-con">
-							<c:forEach var="content" items="${contentList}">
+						<div class="search-list-con"  id="demoContent">
+							<%-- <c:forEach var="content" items="${contentList}">
 								<div class="search-pro">
 									<a href="###" onclick="toContentDetail('${content.id}');"><h5>${content.title}</h5></a>
 									<p class="search-date">${content.add_time}</p>
 									<p>${content.description}</p>
 								</div>
-							</c:forEach>
+							</c:forEach> --%>
 						</div>
 					</div>
 					<nav class="page">
@@ -54,14 +54,48 @@
 		src="${pageContext.request.contextPath}/static/js/article.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/nav.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/page/page.js"></script>
 	<script type="text/javascript">
 		//-------分页数据----------
 		var id = '${column_id }';
-		var totalPage = '${totalPage }';
-		var totalRecords = '${totalRecords }';
 		// 项目路径
 		var contextPath = '${pageContext.request.contextPath}';
 		//-------分页数据----------
+		var serach_text = '${search_text }';
+		var datas=[];
+		var options={};
+		$(function() {
+			$.ajax({
+				method : "POST",
+				url : contextPath + "/index/controller/indexController/searchForPage",
+				data : {
+					serach_text : serach_text
+				}
+			}).done(function(data) {
+				datas = data;
+				options={
+				"id":"page",//显示页码的元素
+				"data":datas,//显示数据
+			    "maxshowpageitem":5,//最多显示的页码个数
+			    "pagelistcount":10,//每页显示数据个数
+			    "callBack":function(result){
+			    	var cHtml="";
+			        for(var i=0;i<result.length;i++){
+			        	//处理数据
+			            cHtml += "<div class='search-pro'><a href='###'  onclick=\"toContentDetail('" + result[i].id +"')\"><h5>"+ result[i].title + "</h5></a>" +
+			            "<p class='search-date'>" + toString(result[i].update_time) + "</p>" +
+					    "<p>" + toString(result[i].description) + "</p>" +
+			            "</div>";
+			        }
+			        $("#demoContent").html(cHtml);//将数据增加到页面中
+			    }
+			};
+				page.init(datas.length,1,options);
+			});
+			
+				
+		});
 	</script>
 </body>
 </html>
