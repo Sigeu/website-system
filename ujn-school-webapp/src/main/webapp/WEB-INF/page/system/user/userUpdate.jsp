@@ -21,9 +21,15 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">用户姓名：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户姓名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${user.real_name}" placeholder="用户姓名" id="real_name" name="real_name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>登录密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${user.password}" placeholder="登录密码" id="password" name="password">
 			</div>
 		</div>
 		<div class="row cl">
@@ -37,7 +43,7 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">部门：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>部门：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<select class="select" id="dept" name="dept">
 					<option value="0">--请选择--</option>  
@@ -69,7 +75,7 @@
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="submit_but" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button id="submit_but" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button id="close_but" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -78,9 +84,7 @@
 <%@ include file="../../../../common/footer_form.jsp"%>
 <script type="text/javascript">
 $(function(){
-	//表单验证
-	//$("#form_").Validform();
-
+	//关闭
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 		parent.layer.close(index); //再执行关闭
@@ -94,24 +98,51 @@ $(function(){
 
 //表单提交，可上传文件
 $(function() {
-	var options = {
-		success : function(data) {
-			layer.alert(data.result_message, {
-			  closeBtn: 1
-			}, function(){
-				//父页面刷新
-				parent.window.location.reload();
-				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-				parent.layer.close(index); //再执行关闭
-			});
+	//表单验证
+	$("#form-user-add").validate({
+		rules:{
+			login_name:{
+				required:true,
+				maxlength:30
+			},
+			real_name:{
+				required:true,
+				maxlength:20
+			},
+			password:{
+				required:true,
+				maxlength:20
+			},
+			dept:{
+				required:true
+			},
+			remark:{
+				maxlength:200
+			}
+		},
+		onkeyup:false,
+		focusCleanup:false,
+		success:"valid",
+		submitHandler:function(form){
+			var options = {
+					success : function(data) {
+						layer.alert(data.result_message, {
+						  closeBtn: 1
+						}, function(){
+							//父页面刷新
+							parent.window.location.reload();
+							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+							parent.layer.close(index); //再执行关闭
+						});
+					}
+				};
+				// 准备form表单
+				$("#form-user-add").ajaxForm(options);
+				// 表单提交     
+				$("#form-user-add").ajaxSubmit(options);
+				
+				return false;
 		}
-	};
-	// 准备form表单
-	$("#form-user-add").ajaxForm(options);
-	// 表单提交     
-	$('#submit_but').on('click', function() {
-		$("#form-user-add").ajaxSubmit(options);
-		return false;
 	});
 	
 });

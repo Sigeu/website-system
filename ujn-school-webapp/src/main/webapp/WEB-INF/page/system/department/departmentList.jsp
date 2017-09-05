@@ -51,7 +51,6 @@
 						<th>部门代码</th>
 						<th>部门名称</th>
 						<th>上级部门</th>
-						<th>部门联系人</th>
 						<th>联系电话</th>
 						<th>传真</th>
 						<th width="15%">操作</th>
@@ -159,10 +158,7 @@
 									data : "dept_name",
 									defaultContent : ""
 								}, {
-									data : "dept_main",
-									defaultContent : ""
-								}, {
-									data : "manager_user_id",
+									data : "parent_name",
 									defaultContent : ""
 								}, {
 									data : "contact_tel",

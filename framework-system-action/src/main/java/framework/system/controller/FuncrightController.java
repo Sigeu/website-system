@@ -236,26 +236,46 @@ public class FuncrightController extends SystemBaseController {
 		//返回的数据
 		try {
 			String role_id = request.getParameter("role_id");
+			//系统所有的权限
 			List<Funcright>  funcrightList = this.funcrightService.queryFuncrightTree(funcright);
+			//授权角色已经存在的权限
 			List<RoleFuncright>  roleFuncrightList = this.funcrightService.queryRoleFuncrightTree(role_id);
 			//根节点
 			ztreeNode = new ZtreeNode("", null,"系统菜单", true, false, false);
 			String funcright_code = "";
 			boolean flag = false;
-			for (Funcright funcrightObj : funcrightList) {
-				funcright_code = funcrightObj.getFuncright_code();
-				for(RoleFuncright roleFuncright : roleFuncrightList){
-					if(funcright_code.equals(roleFuncright.getFuncright_code())){
-						flag = true;
-						break;
-					}else{
-						flag = false;
+			if(null != roleFuncrightList && !roleFuncrightList.isEmpty()){
+				//1、遍历所有的权限
+				for (Funcright funcrightObj : funcrightList) {
+					flag = false;
+					funcright_code = funcrightObj.getId().toString();
+					//2、在已有授权中遍历该权限，存在则设置为勾选
+					for(RoleFuncright roleFuncright : roleFuncrightList){
+						if(funcright_code.equals(roleFuncright.getFuncright_code())){
+							flag = true;
+							//找到后直接跳出循环
+							break;
+						}else{
+							//继续找
+							flag = false;
+							continue;
+						}
 					}
+					ztreeNode.addChild((new ZtreeNode(funcrightObj.getId()
+							.toString(), "",
+							funcrightObj.getFuncright_name(), true, false, flag)));
 				}
-				ztreeNode.addChild((new ZtreeNode(funcrightObj.getId()
-						.toString(), "",
-						funcrightObj.getFuncright_name(), true, false, flag)));
+			}else{
+				//之前没有授权，全部是未勾选
+				for (Funcright funcrightObj : funcrightList) {
+					ztreeNode.addChild((new ZtreeNode(funcrightObj.getId()
+							.toString(), "",
+							funcrightObj.getFuncright_name(), true, false, false)));
+				}
 			}
+			
+			
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -96,14 +96,14 @@
 							
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-md-3 control-label">上传证件</label>
+							<label class="col-sm-2 col-md-3 control-label">上传证件(10M以内)</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<iframe src="${pageContext.request.contextPath}/apply/controller/applyController/toApplyIdPicUpload" name="idiframe" id="idiframe" 
 										scrolling="no" frameborder="0" ></iframe>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-md-3 control-label">上传附件</label>
+							<label class="col-sm-2 col-md-3 control-label">上传附件(50M以内)</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<%-- <iframe src="${pageContext.request.contextPath}/apply/controller/applyController/toApplyFilePicUpload" name="fileiframe" id="fileiframe" 
 										scrolling="no" frameborder="0" ></iframe> --%>
@@ -201,7 +201,7 @@
 							
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-md-3 control-label">法人证件附件</label>
+							<label class="col-sm-2 col-md-3 control-label">法人证件附件(10M以内)</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<iframe src="${pageContext.request.contextPath}/apply/controller/applyController/toApplyIdPicUpload" name="idiframe" id="idiframe" 
 										scrolling="no" frameborder="0" ></iframe>
@@ -215,7 +215,7 @@
 							</div>
 						</div> --%>
 						<div class="form-group">
-							<label class="col-sm-2 col-md-3 control-label">企业营业执照附件</label>
+							<label class="col-sm-2 col-md-3 control-label">企业营业执照附件(10M以内)</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<span class="btn-upload form-group">
 								  <input class="input-text upload-url radius"  type="text" name="uploadfile-1" id="uploadfile-1" readonly>&nbsp;&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>
@@ -224,7 +224,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-md-3 control-label">上传附件</label>
+							<label class="col-sm-2 col-md-3 control-label">上传附件(50M以内)</label>
 							<div class="col-sm-6 col-md-6 apply-pos">
 								<span class="btn-upload form-group">
 								  <input class="input-text upload-url radius"  type="text" name="uploadfile-1" id="uploadfile-1" readonly>&nbsp;&nbsp;<a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xf0020;</i> 浏览文件</a>

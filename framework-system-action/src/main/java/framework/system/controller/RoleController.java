@@ -255,7 +255,7 @@ public class RoleController extends SystemBaseController {
 			String role_code = "";
 			boolean flag = false;
 			for (Role roleObj : roleList) {
-				role_code = roleObj.getRole_code();
+				role_code = roleObj.getId().toString();
 				for(UserRole userRole : userRoleList){
 					if(role_code.equals(userRole.getRole_code())){
 						flag = true;

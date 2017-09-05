@@ -5,7 +5,7 @@
 <head>
 <%@ include file="../../../../common/header.jsp"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/zTreeStyle/zTreeStyle.css" type="text/css">
-<title>用户授权页</title>
+<title>角色授权</title>
 </head>
 <body>
 	<nav class="breadcrumb">
