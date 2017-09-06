@@ -217,12 +217,13 @@ public class ContentController extends MyBaseController {
 		try {
 			// 使用DataTables的属性接收分页数据
 			dataTable = new DataTablePageUtil<Content>(request);
-			// 开始分页：PageHelper会处理接下来的第一个查询
-			PageHelper.startPage(dataTable.getPage_num(),
-					dataTable.getPage_size());
+			
 			
 			List<String> list = getAllDeptCodeByUser(request);
 			content.setList(list);
+			// 开始分页：PageHelper会处理接下来的第一个查询
+			PageHelper.startPage(dataTable.getPage_num(),
+					dataTable.getPage_size());
 			// 还是使用List，方便后期用到
 			List<Content> contentList = this.contentService.queryContentList(content);
 			// 用PageInfo对结果进行包装
