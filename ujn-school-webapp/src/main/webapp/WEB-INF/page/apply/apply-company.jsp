@@ -26,9 +26,9 @@
 </style>
 </head>
 <body class="pos-r">
-<%@ include file="siteHeader.jsp"%>
+<%@ include file="../site/siteHeader.jsp"%>
 
-<%@ include file="page-pic.jsp"%>
+<%@ include file="../site/page-pic.jsp"%>
 
 <div class="article all-con cat-con">
 	<div class="container">
@@ -246,12 +246,12 @@
 					</form>
 				</div>
 			</div>
-<%@ include file="articleListSidebar.jsp"%>
+<%@ include file="../site/articleListSidebar.jsp"%>
 		</div>
 	</div>
 </div>
 
-<%@ include file="siteFooter.jsp"%>
+<%@ include file="../site/siteFooter.jsp"%>
 
 <%@ include file="../../../common/footer-site.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui/js/H-ui.js"></script> 

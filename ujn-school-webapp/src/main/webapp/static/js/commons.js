@@ -35,7 +35,7 @@ var utils = {
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				content: [contextPath + '/column/controller/columnController/columnTree?enableCheck=' + enableCheck + "&hasSelected=" + hasSelected, "no"],
 				btn: ["确认", "关闭"],
 				yes: function (index, layero) {
@@ -53,7 +53,7 @@ var utils = {
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				content: [contextPath + '/column/controller/columnController/columnTreeForContent?enableCheck=' + enableCheck + "&hasSelected=" + hasSelected, "no"],
 				btn: ["确认", "关闭"],
 				yes: function (index, layero) {
@@ -71,7 +71,7 @@ var utils = {
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				content: [contextPath + 'sys/office/officeTree?enableCheck=' + enableCheck + "&hasSelected=" + hasSelected, "no"],
 				btn: ["确认", "关闭"],
 				yes: function (index, layero) {
@@ -89,7 +89,7 @@ var utils = {
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				content: [contextPath + 'sys/user/userTreePage?enableCheck=' + enableCheck + "&hasSelected=" + hasSelected, "no"],
 				btn: ["确认", "关闭"],
 				yes: function (index, layero) {
@@ -134,7 +134,7 @@ var utils = {
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				content: [contextPath + 'sys/menu/menuTree?enableCheck=' + enableCheck + "&hasSelected=" + hasSelected, "no"],
 				btn: ["确认", "关闭"],
 				yes: function (index, layero) {
@@ -152,7 +152,7 @@ var utils = {
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				content: [contextPath + 'sys/menu/menuRoleTree?enableCheck=' + enableCheck + "&hasSelected=" + hasSelected, "no"],
 				btn: ["确认", "关闭"],
 				yes: function (index, layero) {
@@ -170,7 +170,7 @@ var utils = {
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				//允许出现滚动条
 				content: [contextPath + 'sys/menu/menuIconList'],
 				btn: ["确认", "关闭"],
@@ -189,7 +189,7 @@ var utils = {
 				shadeClose: true,
 				shade: false,
 				maxmin: true, //开启最大化最小化按钮
-				area: ['625px', '745px'],
+				area: ['525px', '645px'],
 				content: [contextPath + 'sys/role/roleTreePage?enableCheck=' + enableCheck + "&hasSelected=" + hasSelected, "no"],
 				btn: ["确认", "关闭"],
 				yes: function (index, layero) {

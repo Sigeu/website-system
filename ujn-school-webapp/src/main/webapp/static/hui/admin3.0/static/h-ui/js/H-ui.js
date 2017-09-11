@@ -4011,7 +4011,7 @@ function Huisethome(obj){
 				netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
 				}
 			catch(e){
-				$.Huimodalalert("此操作被浏览器拒绝！\n请在浏览器地址栏输入\"about:config\"并回车\n然后将 [signed.applets.codebase_principal_support]的值设置为'true',双击即可。",2000);
+				$.Huimodalalert("此操作被浏览器拒绝！\n请在浏览器地址栏输入&quot;about:config&quot;并回车\n然后将 [signed.applets.codebase_principal_support]的值设置为'true',双击即可。",2000);
 			}
 			var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
 			prefs.setCharPref('browser.startup.homepage',url);

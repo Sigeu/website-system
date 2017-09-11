@@ -210,6 +210,10 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_carousel
+    where 1=1
+   <if test="carousel_type != null and carousel_type != ''">
+        and carousel_type = #{carousel_type,jdbcType=VARCHAR}
+    </if>
   </select>
   
   <!-- 更新轮播图片 -->

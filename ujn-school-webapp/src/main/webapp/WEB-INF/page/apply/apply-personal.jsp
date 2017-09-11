@@ -113,11 +113,11 @@
 						<br/>
 						<div class="form-btn">
 							<button class="btn btn-default" type="reset" style="margin-right:30px">重置</button>
-							<button class="btn btn-primary" id="personal_submit" type="submit">提交1</button>
+							<button class="btn btn-primary" id="personal_submit" type="submit">提交</button>
 						</div>
 					</form>
 
-<%@ include file="siteFooter.jsp"%>
+<%@ include file="../site/siteFooter.jsp"%>
 
 <%@ include file="../../../common/footer-site.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/static/h-ui/js/H-ui.js"></script> 

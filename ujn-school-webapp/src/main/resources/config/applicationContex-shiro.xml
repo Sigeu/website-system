@@ -126,10 +126,11 @@
 		</property>
 		<property name="filterChainDefinitions">
 			<value>
-				/login.jsp = anon
+				/ = anon
 				/index.jsp = anon
+				/login.jsp = anon
 				/apply/controller/applyController/addApply = anon
-				/system/controller/loginController/logout = logout
+				/system/controller/loginController/logout = anon
 				/unauthorized.jsp = anon 
 				/system/controller/loginController/login = anon
 				/carousel/carouselController/queryImgById*  = anon

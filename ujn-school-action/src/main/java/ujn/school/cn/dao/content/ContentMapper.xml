@@ -723,8 +723,7 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_content c
-    where 1=1
-    and c.status = '1'
+    where  c.status = '1'
     and (c.importance is null or c.importance ='')
     and (c.class1='102' or c.class1 = '107')
     order by id desc  
@@ -740,8 +739,7 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_content c
-    where 1=1
-    and c.status = '1'
+    where c.status = '1'
     and c.importance is not null 
     and c.importance !=''
     and (c.class1='102' or c.class1 = '107')
