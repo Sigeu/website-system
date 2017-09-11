@@ -121,7 +121,7 @@ public class LoginController extends SystemBaseController {
 	public String logout(HttpServletRequest request,  Model model) {
 		Subject currentUser = SecurityUtils.getSubject();  
         currentUser.logout();  
-        return "redirect:/admin"; 
+        return "redirect:/login.jsp"; 
 		
 	}
 	
