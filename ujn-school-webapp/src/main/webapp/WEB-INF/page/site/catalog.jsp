@@ -14,8 +14,8 @@
 <div class="article all-con cat-con">
 	<div class="container">
 			<ul class="tabBar nav nav-tabs">
-				<li class="" id="li102"><a href="#column102" style="border-bottom-color: transparent; margin-bottom:0">校务公开</a></li>
-				<li  id="li107"><a href="#column107">党务公开</a></li>
+				<li class="active" id="li102"><a href="#column102" style="border-bottom-color: transparent; margin-bottom:0">校务公开</a></li>
+				<li class="" id="li107"><a href="#column107">党务公开</a></li>
 			</ul>
 			<div class="cat-list" id="column102" style="display:block">
 				<c:forEach var="column" items="${columnList102}">
@@ -60,8 +60,9 @@ var contextPath = "${pageContext.request.contextPath}";
 var id = '${column_id }';
 var totalPage = '${totalPage }';
 var totalRecords = '${totalRecords }';
-//表单提交，可上传文件
+//
 $(function() {
+	//直接点击的菜单
 	if(column_id == '102'){
 		//$('#li102').trigger('mouseover');
 		$('#column102').show();
@@ -75,27 +76,30 @@ $(function() {
 		$('#li107').addClass('active');
 		$('#li102').removeClass('active');
 	}
+	//点击菜单默认显示
 	if(column_id == '111'){
 		$('#column102').show();
 		$('#column107').hide();
 		$('#li102').addClass('active');
 		$('#li107').removeClass('active');
 	}
-	
-	$('#li102').on('mouseover',function(){
-		//$('.cat-pro')[4].focus();
+	//鼠标移上
+	$('#li102').mouseover(function(){
 		$('#column102').show();
 		$('#column107').hide();
-		$(this).addClass('active');
 		$('#li107').removeClass('active');
+		$('#li102').addClass('active');
+		
 	});
 	
-	$('#li107').on('mouseover',function(){
+	$('#li107').mouseover(function(){
 		$('#column107').show();
 		$('#column102').hide();
-		$(this).addClass('active');
 		$('#li102').removeClass('active');
+		$('#li107').addClass('active');
+		
 	});
+	
 });
 </script>
 </body>

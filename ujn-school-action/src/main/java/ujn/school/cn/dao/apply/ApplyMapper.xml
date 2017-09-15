@@ -409,5 +409,6 @@
 			and unix_timestamp(a.create_date) &lt;=  unix_timestamp(#{endDate,jdbcType=VARCHAR})
 		</if>
 		group by a.user_type
+		order by count desc
 	</select>
 </mapper>

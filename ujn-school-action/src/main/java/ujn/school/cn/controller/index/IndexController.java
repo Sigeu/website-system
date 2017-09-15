@@ -497,6 +497,26 @@ public class IndexController extends MyBaseController {
 		int contentId =  Integer.parseInt(nullToStringZero(request.getParameter("id")));
 		Content content = contentService.queryContentById(contentId);
 		
+		//设置当前位置
+		String thisColumnId = content.getColumn_id();
+		Column thisColumn = columnService.queryColumnById(Integer.parseInt(thisColumnId));
+		//当前栏目
+		model.addAttribute("locationThis", thisColumn.getName());
+		model.addAttribute("locationidThis", thisColumnId);
+		//当前栏目的父类
+		Column parentColumn1 = columnService.queryColumnById(thisColumn.getBig_class());
+		if(null != parentColumn1) {
+			model.addAttribute("location3", parentColumn1.getName());
+			model.addAttribute("locationid3", parentColumn1.getId());
+			//父类的父类
+			Column parentColumn2 = columnService.queryColumnById(parentColumn1.getBig_class());
+			//选择的是三级菜单
+			if(null != parentColumn2) {
+				model.addAttribute("location2", parentColumn2.getName());
+				model.addAttribute("locationid2", parentColumn2.getId());
+			}
+		}
+		
 		//栏目
 		List<Column> resultList = columnService.queryColumnList(null);
 		//排序
@@ -525,6 +545,17 @@ public class IndexController extends MyBaseController {
 		return "site/article";
 	}
 	
+	
+	/**
+	 * 
+	 * @Description: 根据栏目ID查询父栏目ID 
+	 * @param columnId
+	 * @return
+	 */
+	Column getParentColumnByColumnId(String columnId) {
+		Column column = columnService.queryColumnById(Integer.parseInt(columnId));
+		return column;
+	}
 	
 	@RequestMapping("/toContentDetailByPwd")
 	public String toContentDetailByPwd(HttpServletRequest request, Model model) {

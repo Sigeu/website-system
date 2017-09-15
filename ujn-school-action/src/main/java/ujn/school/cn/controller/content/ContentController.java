@@ -387,7 +387,19 @@ public class ContentController extends MyBaseController {
 			}else{
 				content.setOpen_code(IMySystemConstants.VALUE_3);
 			}
-			//content.setColumn_id(content.getClass3());
+			//设置class1\class2\class3
+			String thisColumnId = content.getColumn_id();
+			String parentClass1 = getParentClassByColumnId(thisColumnId);
+			String parentClass2 = getParentClassByColumnId(parentClass1);
+			//选择的是二级菜单
+			if("0".equals(parentClass2)) {
+				content.setClass1(parentClass1);
+				content.setClass2(thisColumnId);
+			}else {
+				content.setClass1(parentClass2);
+				content.setClass2(parentClass1);
+				content.setClass3(thisColumnId);
+			}
 			
 			//默认状态为“0”：待审核
 			content.setStatus(IMySystemConstants.VALUE_0);
@@ -407,6 +419,21 @@ public class ContentController extends MyBaseController {
 		}
 
 		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 根据栏目ID查询父栏目ID 
+	 * @param columnId
+	 * @return
+	 */
+	String getParentClassByColumnId(String columnId) {
+		int parentClass = 0;
+		Column column = columnService.queryColumnById(Integer.parseInt(columnId));
+		if(null != column) {
+			parentClass = column.getBig_class();
+		}
+		return parentClass+"";
 	}
 	
 	/**

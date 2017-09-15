@@ -18,7 +18,16 @@
 		<div class="container">
 			<div class="row">
 				<p class="breadcrumb">
-					<a href="###">首页</a> \ <a href="###">信息管理制度</a> \ 济南大学召开中外合作办学工作调度会
+					<a href="${pageContext.request.contextPath}/index.jsp">首页</a> 
+					<c:if test="${not empty locationid2}">
+						\ <a href="###" onclick="toContentList('${locationid2}');">${location2 }</a> 
+					</c:if>
+					<c:if test="${not empty locationid3 }">
+						\ <a href="###" onclick="toContentList('${locationid3}');">${location3 } </a> 
+					</c:if>
+					<c:if test="${not empty locationidThis }">
+						\ <a href="###" onclick="toContentList('${locationidThis}');">${locationThis }</a>
+					</c:if>
 				</p>
 				<div class="article-main">
 					<div class="article-top text-center">
