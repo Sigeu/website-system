@@ -82,4 +82,6 @@ public interface IContentService {
 
 	List<Content> queryContentListForSearch(ContentWithBLOBs content);
 
+	int updateContentHits(String id, String hits);
+
 }

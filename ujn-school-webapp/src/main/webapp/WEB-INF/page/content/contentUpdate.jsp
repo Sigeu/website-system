@@ -116,6 +116,17 @@
 			</div>
 		</div>
 		</c:if>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否置顶显示：</label>
+			 <div class="radio-box">
+			    <input type="radio" id="top_ok-0" value="0" name="top_ok"  checked>
+			    <label for="radio-1">不置顶</label>
+			  </div>
+			  <div class="radio-box">
+			    <input type="radio" id="top_ok-1" value="1" name="top_ok">
+			    <label for="radio-2">置顶显示</label>
+			  </div>
+		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -143,6 +154,7 @@ $(function(){
 	});
 	//赋值
 	$('#read_type').val('${content.read_type}');
+	$("input[name='top_ok'][value='${content.top_ok}']").attr("checked",true); 
 	ue.ready(function() {//编辑器初始化完成再赋值  
     	ue.setContent('${content.content}');  //赋值给UEditor  
     });  

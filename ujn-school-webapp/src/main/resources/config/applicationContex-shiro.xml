@@ -147,6 +147,7 @@
 				/apply/controller/applyController/showImg = anon
 				/apply/controller/applyController/downloadFile = anon
 				/apply/controller/applyController/downloadFileForReply = anon
+				/content/controller/contentController/updateContentHits = anon
 				/index/** = anon
 				/site/** = anon
 				/static/** = anon

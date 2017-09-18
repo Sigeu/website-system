@@ -643,4 +643,27 @@ public class ContentController extends MyBaseController {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @Description: 更新点击数 
+	 * @param request
+	 * @param content
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/updateContentHits")
+	public Map<String, Object> updateContentHits(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			String id = request.getParameter("id");
+			String hits = request.getParameter("hits");
+			this.contentService.updateContentHits(id,hits);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return map;
+	}
 }

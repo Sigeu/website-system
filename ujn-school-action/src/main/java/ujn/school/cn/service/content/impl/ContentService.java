@@ -130,7 +130,7 @@ public class ContentService implements IContentService {
 		}
 		//创建时间
 		content.setAdd_time(MyDateUtil.getDateTime());
-		return contentMapper.insert(content);
+		return contentMapper.insertSelective(content);
 	}
 	
 	/*
@@ -226,6 +226,14 @@ public class ContentService implements IContentService {
 	public List<Content> queryContentListForSearch(ContentWithBLOBs content) {
 		// TODO Auto-generated method stub
 		return contentMapper.queryContentListForSearch(content);
+	}
+
+	@Override
+	public int updateContentHits(String id, String hits) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("id", id);
+		map.put("hits", hits);
+		return contentMapper.updateContentHits(map);
 	}
 	
 

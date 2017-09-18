@@ -90,4 +90,6 @@ public interface ContentMapper {
 	List<Content> queryContentStatisticsForDept(Content content);
 
 	List<Content> queryContentListForSearch(ContentWithBLOBs content);
+
+	int updateContentHits(Map<String, String> map);
 }
