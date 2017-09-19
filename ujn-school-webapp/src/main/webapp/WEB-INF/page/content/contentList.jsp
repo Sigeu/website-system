@@ -40,6 +40,9 @@
 						<button class="btn btn-primary radius size-MINI" id="add_but">
 							<i class="Hui-iconfont Hui-iconfont-add">&nbsp;&nbsp;</i>添加
 						</button> &nbsp;&nbsp;
+						<button class="btn btn-danger radius size-MINI" id="delete_but">
+							<i class="Hui-iconfont Hui-iconfont-del3">&nbsp;&nbsp;</i>批量删除
+						</button>
 					</td>
 				</tr>
 
@@ -51,7 +54,7 @@
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
 					<tr class="text-c">
-						<th><input type="checkbox" name="" value=""></th>
+						<th><input type="checkbox" name="check_" id="check_all" value=""></th>
 						<th>文章编号</th>
 						<th>名称</th>
 						<th>发布人</th>
@@ -114,7 +117,7 @@
 								columns : [ {
 									data : "id",
 									render: function (data, type, full, meta) {
-					                     return '<input type="checkbox" value="' + data + '" />';
+					                     return '<input type="checkbox" name="check_"  value="' + data + '" />';
 					                 }
 								}, {
 									data : "code_num",
@@ -317,16 +320,57 @@
 		function toDetail(id){
 			var url = '${pageContext.request.contextPath}/index/controller/indexController/toContentDetail?id='+id;
 			window.open ( url, "内容查看" ,"_blank") ;
-			/* layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["查看"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentDetail?id='+id
-			 }); */
 		}
-		
+		$(function(){
+			//全选
+			$('#check_all').on('click', function() {
+				if($(this).prop('checked')){
+					$("input[name='check_']").attr("checked",true); 
+				}else{
+					$("input[name='check_']").attr("checked",false);
+				}
+			});
+			
+			//批量删除
+			$('#delete_but').on('click', function() {
+				//要删除的数据
+				var ids = '';
+				$("input[name='check_']:checkbox:checked").each(function(){ 
+					ids += $(this).val() + ',';
+				}) 
+				if('' == ids){
+					layer.open({
+			    		  content: '请勾选要删除的数据！',
+			    		  yes: function(index, layero){
+			    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+			    		  }
+			    		});
+					return;
+				}
+				layer.confirm("确认要删除吗？", {
+					  btn: ['确认','返回'] //按钮
+						}, function(index){
+							$.ajax({
+							    url: "${pageContext.request.contextPath}/content/controller/contentController/deleteContentByIds" ,
+							    type: "POST",
+							    dataType: "JSON",
+							    data: {id:ids},
+							    success:function(data){
+							    	layer.open({
+							    		  content: data.result_message,
+							    		  yes: function(index, layero){
+							    		    window.location.reload();//刷新当前页面
+							    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+							    		  }
+							    		});
+							    }
+							});
+						}, function(index){
+							layer.close(index);
+					}); 
+				
+			});
+		});
 	</script>
 </body>
 </html>

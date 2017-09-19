@@ -84,4 +84,10 @@ public interface IContentService {
 
 	int updateContentHits(String id, String hits);
 
+	boolean deleteContentByIds(String ids);
+
+	boolean deleteContentByIdsForRecycle(String ids);
+
+	int deleteContentForRecycle(int contentId);
+
 }

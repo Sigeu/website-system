@@ -37,6 +37,9 @@
 						<button class="btn btn-success radius size-MINI" id="reset_but">
 							<i class="Hui-iconfont Hui-iconfont-zhongzuo">&nbsp;&nbsp;</i>重置
 						</button> &nbsp;&nbsp;
+						<button class="btn btn-danger radius size-MINI" id="delete_but">
+							<i class="Hui-iconfont Hui-iconfont-del3">&nbsp;&nbsp;</i>批量删除
+						</button>
 					</td>
 				</tr>
 
@@ -48,7 +51,7 @@
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
 					<tr class="text-c">
-						<th><input type="checkbox" name="" value=""></th>
+						<th><input type="checkbox" name="check_" id="check_all"value=""></th>
 						<th>排序</th>
 						<th>名称</th>
 						<th>发布人</th>
@@ -108,7 +111,7 @@
 								columns : [ {
 									data : "id",
 									render: function (data, type, full, meta) {
-					                     return '<input type="checkbox" value="' + data + '" />';
+					                     return '<input type="checkbox" name="check_" value="' + data + '" />';
 					                 }
 								}, {
 									data : "order_no",
@@ -245,20 +248,87 @@
 				}); 
 		}
 		
+		//删除
+		function toDelete(id){
+			layer.confirm("确认删除？", {
+				  btn: ['确认','返回'] //按钮
+					}, function(index){
+						$.ajax({
+						    url: "${pageContext.request.contextPath}/content/controller/contentController/deleteContentForRecycle" ,
+						    type: "POST",
+						    dataType: "JSON",
+						    data: {id:id},
+						    success:function(data){
+						    	layer.alert(data.result_message, {
+									  closeBtn: 1
+									}, function(){
+										//父页面刷新
+										window.location.reload();//刷新当前页面.
+										var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+										parent.layer.close(index); //再执行关闭
+									});
+						    }
+						});
+					}, function(index){
+						layer.close(index);
+				}); 
+		}
+		
 		//查看
 		function toDetail(id){
 			var url = '${pageContext.request.contextPath}/index/controller/indexController/toContentDetail?id='+id;
 			window.open ( url, "内容查看" ,"_blank") ;
-			/* layer.open({
-			    type: 2,
-			    maxmin:true,
-			    title:["<strong><div class='Hui-iconfont Hui-iconfont-feedback2' style='color: white'>&nbsp;&nbsp;用户明细</div></strong>","background-color: #5a97df"],
-			    area: ['100%', '100%'],
-			    shadeClose: false, //点击遮罩关闭
-			    content: '${pageContext.request.contextPath}/content/controller/contentController/toContentDetail?id='+id
-			 }); */
 		}
-		
+		$(function(){
+			//全选
+			$('#check_all').on('click', function() {
+				if($(this).prop('checked')){
+					$("input[name='check_']").attr("checked",true); 
+				}else{
+					$("input[name='check_']").attr("checked",false);
+				}
+			});
+			
+			//批量删除
+			$('#delete_but').on('click', function() {
+				//要删除的数据
+				var ids = '';
+				$("input[name='check_']:checkbox:checked").each(function(){ 
+					ids += $(this).val() + ',';
+				}) 
+				if('' == ids){
+					layer.open({
+			    		  content: '请勾选要删除的数据！',
+			    		  yes: function(index, layero){
+			    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+			    		  }
+			    		});
+					return;
+				}
+				layer.confirm("确认要删除吗？", {
+					  btn: ['确认','返回'] //按钮
+						}, function(index){
+							$.ajax({
+							    url: "${pageContext.request.contextPath}/content/controller/contentController/deleteContentByIdsForRecycle" ,
+							    type: "POST",
+							    dataType: "JSON",
+							    data: {id:ids},
+							    success:function(data){
+							    	layer.open({
+							    		  content: data.result_message,
+							    		  yes: function(index, layero){
+							    		    window.location.reload();//刷新当前页面
+							    		    layer.close(index); //如果设定了yes回调，需进行手工关闭
+							    		  }
+							    		});
+							    }
+							});
+						}, function(index){
+							layer.close(index);
+					}); 
+				
+			});
+		});
 	</script>
 </body>
 </html>

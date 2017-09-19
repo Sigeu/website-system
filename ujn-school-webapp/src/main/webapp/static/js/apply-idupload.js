@@ -146,14 +146,27 @@ jQuery(function() {
 				});
             return false;
         }else{
-			parent.layer.alert("保存成功！", {
+        	parent.layer.alert("请保存好您的确认码，用于查看申请结果：" + parent.check_pwd,
+					{
+						closeBtn : 1
+					},
+					function() {
+						//父页面刷新
+						parent.window.location
+								.reload();
+						var index = parent.layer
+								.getFrameIndex(window.name); //先得到当前iframe层的索引
+						parent.layer
+								.close(index); //再执行关闭
+					});
+			/*parent.layer.alert("保存成功！", {
 				  closeBtn: 1
 				}, function(){
 					//父页面刷新
 					parent.window.location.reload();
 					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 					parent.layer.close(index); //再执行关闭
-				});
+				});*/
         }
     });
 });

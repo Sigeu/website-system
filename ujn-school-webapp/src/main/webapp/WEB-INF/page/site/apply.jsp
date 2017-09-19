@@ -129,6 +129,14 @@
 							<textarea id="remark" name="remark" class="col-xs-12 col-sm-6 col-md-6" rows="5" placeholder=""></textarea>
 							
 						</div>
+						<div class="form-group">
+							<label class="col-xs-12 col-sm-2 col-md-3 control-label">信息公开申请表下载</label>
+							<div class="col-sm-6 col-md-6 apply-pos">
+								<span class="btn-upload form-group">
+								<a href="##">信息公开申请表</a>
+								</span>
+							</div>
+						</div>
 						<br/>
 						<div class="form-btn">
 							<button class="btn btn-default" type="reset" style="margin-right:30px">重置</button>
@@ -248,6 +256,14 @@
 							<textarea id="remark" name="remark" class="col-xs-12 col-sm-6 col-md-6" rows="5" placeholder=""></textarea>
 							
 						</div>
+						<div class="form-group">
+							<label class="col-xs-12 col-sm-2 col-md-3 control-label">信息公开申请表下载</label>
+							<div class="col-sm-6 col-md-6 apply-pos">
+								<span class="btn-upload form-group">
+									<a href="##">信息公开申请表</a>
+								</span>
+							</div>
+						</div>
 						<br/>
 						<div class="form-btn">
 							<button class="btn btn-default" type="reset" style="margin-right:30px">重置</button>
@@ -327,6 +343,7 @@
 <script type="text/javascript">
 var contextPath = "${pageContext.request.contextPath}";
 var apply_id = '';
+var check_pwd = '';
 var credit_path = '';
 $(function(){
 	$('#close_but').on('click', function() {
@@ -345,6 +362,7 @@ $(function() {
 	var options = {
 			success : function(data) {
 				apply_id = data.apply_id;
+				check_pwd = data.check_pwd;
 				//确保图片上传
 				var idiframe = $("#form_personal  #idiframe")[0].contentWindow;
 				var imgList = $("#form_personal  #idiframe").contents().find("#fileList").children('div');
@@ -352,19 +370,35 @@ $(function() {
 					// not empty
 					$("#form_personal #idiframe").contents().find('#ctlBtn').trigger('click');
 				} else {
-					layer.alert(data.result_message,
-							{
-								closeBtn : 1
-							},
-							function() {
-								//父页面刷新
-								parent.window.location
-										.reload();
-								var index = parent.layer
-										.getFrameIndex(window.name); //先得到当前iframe层的索引
-								parent.layer
-										.close(index); //再执行关闭
-							});
+					if(data.flag == 'succ'){
+						layer.alert("请保存好您的确认码，用于查看申请结果：" + data.check_pwd,
+								{
+									closeBtn : 1
+								},
+								function() {
+									//父页面刷新
+									parent.window.location
+											.reload();
+									var index = parent.layer
+											.getFrameIndex(window.name); //先得到当前iframe层的索引
+									parent.layer
+											.close(index); //再执行关闭
+								});
+					}else{
+						layer.alert( "提交失败",
+								{
+									closeBtn : 1
+								},
+								function() {
+									//父页面刷新
+									parent.window.location
+											.reload();
+									var index = parent.layer
+											.getFrameIndex(window.name); //先得到当前iframe层的索引
+									parent.layer
+											.close(index); //再执行关闭
+								});
+					}
 				}
 			}
 		};
@@ -432,6 +466,7 @@ $(function() {
 	var options_company = {
 			success : function(data) {
 				apply_id = data.apply_id;
+				check_pwd = data.check_pwd;
 				//确保图片上传
 				var idiframe = $("#form_company  #idiframe")[0].contentWindow;
 				var imgList = $("#form_company  #idiframe").contents().find("#fileList").children('div');
@@ -439,19 +474,35 @@ $(function() {
 					// not empty
 					$("#form_company #idiframe").contents().find('#ctlBtn').trigger('click');
 				} else {
-					layer.alert(data.result_message,
-							{
-								closeBtn : 1
-							},
-							function() {
-								//父页面刷新
-								parent.window.location
-										.reload();
-								var index = parent.layer
-										.getFrameIndex(window.name); //先得到当前iframe层的索引
-								parent.layer
-										.close(index); //再执行关闭
-							});
+					if(data.flag == 'succ'){
+						layer.alert("请保存好您的确认码，用于查看申请结果：" + data.check_pwd,
+								{
+									closeBtn : 1
+								},
+								function() {
+									//父页面刷新
+									parent.window.location
+											.reload();
+									var index = parent.layer
+											.getFrameIndex(window.name); //先得到当前iframe层的索引
+									parent.layer
+											.close(index); //再执行关闭
+								});
+					}else{
+						layer.alert( "提交失败",
+								{
+									closeBtn : 1
+								},
+								function() {
+									//父页面刷新
+									parent.window.location
+											.reload();
+									var index = parent.layer
+											.getFrameIndex(window.name); //先得到当前iframe层的索引
+									parent.layer
+											.close(index); //再执行关闭
+								});
+					}
 				}
 			}
 		};

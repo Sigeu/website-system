@@ -597,7 +597,7 @@
     ,
     <include refid="Blob_Column_List" />
     from ujn_content c
-    where 1=1 and dept_code in
+    where status != '2' and dept_code in
     <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
               #{item}
 	</foreach>
@@ -649,11 +649,19 @@
     order by c.top_ok desc ,c.id desc
   </select>
   
-  <!-- 内容逻辑删除-->
+  <!-- 栏目删除是对应内容逻辑删除-->
   <update id="deleteContentByColumnId" parameterType="string">
     update ujn_content 
     set status = '2'
     where column_id = #{column_id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 内容逻辑删除-->
+  <update id="deleteContentById" parameterType="string">
+    update ujn_content 
+    set status = '2'
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   
   

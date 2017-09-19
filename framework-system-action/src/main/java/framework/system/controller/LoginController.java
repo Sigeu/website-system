@@ -47,9 +47,11 @@ public class LoginController extends SystemBaseController {
 	public String login(HttpServletRequest request,  Model model) {
 		String msg = "";
 		UsernamePasswordToken token = null;
+		String userName = "";  
+	    String password = "";  
 		try {
-		    String userName = request.getParameter("login_name");  
-		    String password = request.getParameter("password");  
+		    userName = request.getParameter("login_name");  
+		    password = request.getParameter("password");  
 		    token = new UsernamePasswordToken(userName, password);  
 		    token.setRememberMe(true);  
 		    Subject subject = SecurityUtils.getSubject();  
@@ -70,37 +72,37 @@ public class LoginController extends SystemBaseController {
 	        msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";  
 	        model.addAttribute("message", msg);  
 	        //记录日志
-			LogUtil.saveLog(request, "登录密码错误");
-	        return "redirect:/";
+			LogUtil.saveLogForNoUser(request, userName, "登录密码错误");
+	        return "redirect:/login.jsp";
 	    } catch (ExcessiveAttemptsException e) {  
 	        msg = "登录失败次数过多";  
 	        model.addAttribute("message", msg);  
 	        System.out.println(msg);  
 	        //记录日志
-			LogUtil.saveLog(request, "登录失败次数过多");
-	        return "redirect:/";
+			LogUtil.saveLogForNoUser(request, userName, "登录失败次数过多");
+	        return "redirect:/login.jsp";
 	    } catch (LockedAccountException e) {  
 	        msg = "帐号已被锁定. The account for username " + token.getPrincipal() + " was locked.";  
 	        model.addAttribute("message", msg);  
 	        System.out.println(msg);  
-	        return "redirect:/";
+	        return "redirect:/login.jsp";
 	    } catch (DisabledAccountException e) {  
 	        msg = "帐号已被禁用. The account for username " + token.getPrincipal() + " was disabled.";  
 	        model.addAttribute("message", msg);  
 	        System.out.println(msg);  
-	        return "redirect:/";
+	        return "redirect:/login.jsp";
 	    } catch (ExpiredCredentialsException e) {  
 	        msg = "帐号已过期. the account for username " + token.getPrincipal() + "  was expired.";  
 	        model.addAttribute("message", msg);  
 	        System.out.println(msg);  
-	        return "redirect:/";
+	        return "redirect:/login.jsp";
 	    } catch (UnknownAccountException e) {  
 	        msg = "帐号不存在. There is no user with username of " + token.getPrincipal();  
 	        model.addAttribute("message", msg);  
 	        System.out.println(msg); 
-	      //记录日志
-			LogUtil.saveLog(request, "帐号不存在");
-	        return "redirect:/";
+	        //记录日志
+	        LogUtil.saveLogForNoUser(request, userName, "帐号不存在");
+	        return "redirect:/login.jsp";
 	    } catch (UnauthorizedException e) {  
 	        msg = "您没有得到相应的授权！" + e.getMessage();  
 	        model.addAttribute("message", msg);  

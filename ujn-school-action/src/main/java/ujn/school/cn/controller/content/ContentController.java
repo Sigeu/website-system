@@ -393,9 +393,15 @@ public class ContentController extends MyBaseController {
 			String parentClass2 = getParentClassByColumnId(parentClass1);
 			//选择的是二级菜单
 			if("0".equals(parentClass2)) {
+				Column col = columnService.queryColumnById(Integer.parseInt(thisColumnId));
+				//设置目录分类编码（2位）
+				content.setClass_code(col.getAdd_class());
 				content.setClass1(parentClass1);
 				content.setClass2(thisColumnId);
 			}else {
+				Column col = columnService.queryColumnById(Integer.parseInt(parentClass1));
+				//设置目录分类编码（2位）
+				content.setClass_code(col.getAdd_class());
 				content.setClass1(parentClass2);
 				content.setClass2(parentClass1);
 				content.setClass3(thisColumnId);
@@ -519,7 +525,7 @@ public class ContentController extends MyBaseController {
 	
 	/**
 	 * 
-	 * @Description: 删除
+	 * @Description: 逻辑删除
 	 * @param request
 	 * @param model
 	 * @return
@@ -530,6 +536,33 @@ public class ContentController extends MyBaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int contentId = Integer.parseInt(request.getParameter("id"));
 		int count = this.contentService.deleteContent(contentId);
+		if (RESULT_COUNT_1 == count) {
+			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
+		} else {
+			map.put(RESULT_MESSAGE_STRING, DELETE_FAILED_MESSAGE);
+		}
+		
+		//记录日志
+		LogUtil.saveLog(request, "内容管理-删除");
+		
+		return map;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @Description: 物理删除
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteContentForRecycle")
+	public Map<String, Object> deleteContentForRecycle(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int contentId = Integer.parseInt(request.getParameter("id"));
+		int count = this.contentService.deleteContentForRecycle(contentId);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, DELETE_SUCESS_MESSAGE);
 		} else {
@@ -663,6 +696,57 @@ public class ContentController extends MyBaseController {
 			// TODO: handle exception
 		}
 		
+		
+		return map;
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: 逻辑删除
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteContentByIds")
+	public Map<String,Object> deleteContentByIds(HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			String ids = request.getParameter("id");
+	 		boolean flag = this.contentService.deleteContentByIds(ids);
+			if(flag){
+				map.put(RESULT_MESSAGE_STRING, "删除成功！");
+			} else {
+				map.put(RESULT_MESSAGE_STRING, "删除失败！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+	
+	/**
+	 * 
+	 * @Description: 物理删除
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteContentByIdsForRecycle")
+	public Map<String,Object> deleteContentByIdsForRecycle(HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			String ids = request.getParameter("id");
+	 		boolean flag = this.contentService.deleteContentByIdsForRecycle(ids);
+			if(flag){
+				map.put(RESULT_MESSAGE_STRING, "删除成功！");
+			} else {
+				map.put(RESULT_MESSAGE_STRING, "删除失败！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return map;
 	}

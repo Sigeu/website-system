@@ -349,10 +349,12 @@ public class ApplyController extends MyBaseController {
 			apply.setStatus(STATUS_CODE_1);
 			applyService.addApply(request, apply);
 			map.put("apply_id", apply.getId());
-			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);
+			//设置确认码
+			map.put("check_pwd", apply.getCheck_pwd());
+			map.put("flag", "succ");
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put(RESULT_MESSAGE_STRING, SAVE_FAILED_MESSAGE);
+			map.put("flag", "fail");
 		}
 
 		return map;

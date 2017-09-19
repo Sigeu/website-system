@@ -143,8 +143,15 @@ public class ContentService implements IContentService {
 	 */
 	@Override
 	public int deleteContent(int contentId) {
-		
-		return contentMapper.deleteByPrimaryKey(contentId);
+		int count = 0;
+		try {
+			contentMapper.deleteContentById(contentId+"");
+			count = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			count = 0;
+		}
+		return count;
 	}
 
 	@Override
@@ -234,6 +241,53 @@ public class ContentService implements IContentService {
 		map.put("id", id);
 		map.put("hits", hits);
 		return contentMapper.updateContentHits(map);
+	}
+
+	@Override
+	public boolean deleteContentByIds(String ids) {
+		boolean flag = false;
+		try {
+			for(String id : ids.split(",")){
+				if(!"".equals(id)){
+					contentMapper.deleteContentById(id);
+				}
+			}
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag = false;
+		}
+		return flag;
+	}
+
+	@Override
+	public boolean deleteContentByIdsForRecycle(String ids) {
+		boolean flag = false;
+		try {
+			for(String id : ids.split(",")){
+				if(!"".equals(id)){
+					contentMapper.deleteByPrimaryKey(Integer.parseInt(id));
+				}
+			}
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag = false;
+		}
+		return flag;
+	}
+
+	@Override
+	public int deleteContentForRecycle(int id) {
+		int count = 0;
+		try {
+			contentMapper.deleteByPrimaryKey(id);
+			count = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			count = 0;
+		}
+		return count;
 	}
 	
 

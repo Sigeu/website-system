@@ -245,3 +245,6 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 /*apply*/
 .tabBar span.current {background-color:#25499d !important}
 .apply-pos .error {color:#d9534f}
+
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {color:#fff; background:#25499d}

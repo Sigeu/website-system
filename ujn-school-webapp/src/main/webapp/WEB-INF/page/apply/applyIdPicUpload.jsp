@@ -26,6 +26,7 @@
 <script type="text/javascript">
 var contextPath = "${pageContext.request.contextPath}";
 var apply_id = '';
+var check_pwd = '';
 </script>
 </body>
 </body>

@@ -98,7 +98,7 @@ public class ApplyService implements IApplyService {
 		//创建时间
 		apply.setCreate_date(MyDateUtil.getDateTime());
 		apply.setCheck_pwd(MyRandomUtils.randomString(32));
-		applyMapper.insert(apply);
+		applyMapper.insertSelective(apply);
 		try {
 			//附件表
 			ujn.school.cn.model.file.File ujnFile = new ujn.school.cn.model.file.File();

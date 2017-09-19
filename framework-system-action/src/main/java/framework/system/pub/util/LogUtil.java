@@ -46,6 +46,25 @@ public class LogUtil {
 	}
 	
 	/**
+	 * 
+	 * @Description: 登录失败记录日志 
+	 * @param request
+	 * @param operation
+	 * @return
+	 */
+	public static int saveLogForNoUser(HttpServletRequest request,String userName,String operation) {
+		Log log = new Log();
+		//设置错误的用户名
+		log.setUser(userName);
+		log.setIp(getIpAddr(request));
+		log.setCreate_date(DateUtil.getDateTime());
+		log.setOperation(operation);
+		log.setType("");
+		return saveLog(log);
+		
+	}
+	
+	/**
 	 * 获取IP
 	 * @param request
 	 * @return

@@ -71,7 +71,7 @@ public interface ContentMapper {
 
 	List<Content> queryContentRecycleList(Content content);
 
-	void deleteContentByColumnId(String id);
+	void deleteContentById(String id);
 
 	List<Content> queryAuditContentList(Content content);
 
@@ -92,4 +92,6 @@ public interface ContentMapper {
 	List<Content> queryContentListForSearch(ContentWithBLOBs content);
 
 	int updateContentHits(Map<String, String> map);
+
+	void deleteContentByColumnId(String id);
 }

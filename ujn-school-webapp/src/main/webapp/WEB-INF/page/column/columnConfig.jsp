@@ -14,112 +14,20 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/column/controller/columnController/updateColumnConfig" method="post" class="form form-horizontal" id="form-column-config">
 		<input type="hidden" name="id" id="id_" value="${column.id }">
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属模块：</label>
-			<div class="formControls col-xs-8 col-sm-9"> 
-				<span class="select-box" id="sel_span">
-					<select class="select" id="module" name="module"> 
-						<option value="">--请选择--</option> 
-						<option value="1">文章模块</option> 
-						<option value="2">简介模块</option>   
-                    </select> 
-				</span>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>模块分类：</label>
-			<div class="formControls col-xs-8 col-sm-9"> 
-				<div class="radio-box">
-					<input type="radio" id="if_in0" name="if_in"
-						value="0" checked /> <label for="if_in0">内部模块</label>
-				</div>
-				<div class="radio-box">
-					<input type="radio" id="if_in1" name="if_in"
-						value="1" /> <label for="if_in1">外部模块</label>
-				</div>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>页面title：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="页面title标签内容" id="ctitle" name="ctitle">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>栏目关键词：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="栏目关键词，多个词以空格隔开" id="keywords" name="keywords">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">打开方式：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div class="radio-box">
-					<input type="radio" id="new_windows_self" name="new_windows"
-						value="_self" checked /> <label for="new_windows_self">当前页打开</label>
-				</div>
-				<div class="radio-box">
-					<input type="radio" id="new_windows_blank" name="new_windows"
-						value="_blank" /> <label for="new_windows_blank">新窗口打开</label>
-				</div>
-			</div>
-		</div> -->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">外部URL网址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="外部URL网址" id="out_url" name="out_url">
+				<input type="text" class="input-text" value="${column.out_url }" placeholder="外部URL网址" id="out_url" name="out_url">
 			</div>
 		</div>
-		<!-- <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">栏目标识：</label>
+		<c:if test="${column.class_type == '2' }">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">目录分类编码(2位)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="栏目标识" id="index_num" name="index_num">
+				<input type="text" class="input-text" value="${column.add_class }" placeholder="目录分类编码(2位)" id="add_class" name="add_class">
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">栏目首页图片：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="栏目首页图片" id="index_img" name="index_img">
-			</div>
-		</div> 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">栏目列表页图片：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="栏目列表页图片" id="column_img" name="column_img">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">是否允许添加内容（只针对简介模块）：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div class="radio-box">
-					<input type="radio" id="is_show0" name="is_show"
-						value="0" checked /> <label for="is_show0">否</label>
-				</div>
-				<div class="radio-box">
-					<input type="radio" id="is_show1" name="is_show"
-						value="1" /> <label for="is_show1">是</label>
-				</div>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">栏目修饰名称：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="栏目修饰名称" id="name_mark" name="name_mark">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">栏目是否允许关联：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div class="radio-box">
-					<input type="radio" id="rele_class0" name="rele_class"
-						value="0" checked /> <label for="rele_class0">否</label>
-				</div>
-				<div class="radio-box">
-					<input type="radio" id="rele_class1" name="rele_class"
-						value="1" /> <label for="rele_class1">是</label>
-				</div>
-			</div>
-		</div> -->
+		</c:if>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">栏目是否前台显示：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -171,7 +79,8 @@
 <script type="text/javascript">
 $(function(){
 	//设置选中
-	$('#module').val('${column.module}');
+	$("input[name='display'][value='${column.display}']").attr("checked",true);
+	$("input[name='list_order'][value='${column.list_order}']").attr("checked",true);
 	//取消按钮
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
