@@ -85,12 +85,13 @@
 								<ul>
 									<c:forEach var="content2" items="${contentList2}">
 										<li>
-										<c:if test="${content2.top_ok == 1 }">
-											<label class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-open"></span></label>
-										</c:if>
+										
 										<a href="###"
 											onclick="toContentDetail('${content2.id}');"
-											class="pull-left">${content2.title}</a><span
+											class="pull-left">
+											<c:if test="${content2.top_ok == 1 }">
+												<label class="btn btn-primary btn-xs"><span class="list-top glyphicon glyphicon-open"></span></label>
+											</c:if>${content2.title}</a><span
 											class="list-date">${fn:substring(content2.add_time, 0, 10)}</span></li>
 									</c:forEach>
 								</ul>

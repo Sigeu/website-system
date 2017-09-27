@@ -179,7 +179,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.article-info {line-height:40px}
 	.article-body {padding:0 30px; margin-top:40px}
 	.article-body p {text-indent:28px; text-align:justify; font-size:14px; line-height:30px; margin-bottom:25px}
-	.article-body img {width:78%; margin:0 auto 30px}
+	.article-body img {/*width:78%;*/ margin:0 auto 30px}
 	.article-like {padding-left:30px; padding-right:30px}
 	.article .all-list {padding-left:0px; padding-right:0px}
 	.article-like {margin-top:60px}
@@ -254,3 +254,4 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 .article-body a:hover {text-decoration:underline}
 .article-body .arc-ico {float:left; margin-top:6px; margin-right:-26px; width:17px; height:17px}
 
+.list-pro .list-top {padding-top:2px; padding-bottom:2px}  /*首页置顶*/
