@@ -795,13 +795,6 @@ public class IndexController extends MyBaseController {
 	@RequestMapping("/queryContentListForImportance")
 	public String queryContentListForImportance(HttpServletRequest request, Model model) {
 		
-		//内容列表
-		int pageNo = Integer.parseInt(request.getParameter("p")==null? "0":request.getParameter("p"));
-		PageHelper.startPage(pageNo,IMySystemConstants.PAGE_SIZE15);
-		List<Content> contentList = contentService.queryContentListByImportance(null);
-		int totalRecords = contentList.size();
-		int totalPage = (totalRecords  +  IMySystemConstants.PAGE_SIZE15  - 1) / IMySystemConstants.PAGE_SIZE15;  
-		
 		// 网站联系方式
 		Contact contact = contactService.queryContact();
 		// 友情链接
@@ -827,14 +820,33 @@ public class IndexController extends MyBaseController {
 		
 		model.addAttribute("contact", contact);
 		model.addAttribute("linkList", linkList);
-		model.addAttribute("contentList", contentList);
-		model.addAttribute("totalRecords", totalRecords);
-		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("contentReportList", contentReportList);
 		model.addAttribute("columnList", columnList);
 		model.addAttribute("search_text", "重要公开信息");
 		
-		return "site/searchList";
+		return "site/articleImportanceList";
+	}
+	
+	/**
+	 * 
+	 * @Description: 最新公开分页 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/articleImportanceForPage")
+	public List<Content> articleImportanceForPage(HttpServletRequest request) {
+		List<Content> listContentPage = null;
+		try {
+			Content content = new Content();
+			// 所有数据
+			listContentPage = contentService.queryContentListByImportance(content);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listContentPage;
 	}
 	
 	//最新公开信息分页列表

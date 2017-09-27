@@ -248,3 +248,9 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {color:#fff; background:#25499d}
+
+
+.article-body a {color:#25499d}
+.article-body a:hover {text-decoration:underline}
+.article-body .arc-ico {float:left; margin-top:6px; margin-right:-26px; width:17px; height:17px}
+

@@ -30,6 +30,9 @@
 					<c:if test="${content.index == 0 }">
 						<div class="col-md-4 index-info-con">
 							<div class="index-info-fir-top">
+								<c:if test="${contentNew.top_ok == 1 }">
+									<label class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-open"></span></label>
+								</c:if>
 								<a href="###" onclick="toContentDetail('${contentNew.id}');">${contentNew.title}</a>
 								<span>${contentNew.add_time}</span>
 							</div>
@@ -49,6 +52,9 @@
 									</dl>
 								</div>
 								<div class="pro-con pull-right">
+									<c:if test="${contentNew.top_ok == 1 }">
+										<label class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-open"></span></label>
+									</c:if>
 									<a href="###" onclick="toContentDetail('${contentNew.id}');"><h5>${contentNew.title}</h5></a>
 									<p>${contentNew.description}</p>
 								</div>
@@ -78,7 +84,11 @@
 							<div class="list-pro">
 								<ul>
 									<c:forEach var="content2" items="${contentList2}">
-										<li><a href="###"
+										<li>
+										<c:if test="${content2.top_ok == 1 }">
+											<label class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-open"></span></label>
+										</c:if>
+										<a href="###"
 											onclick="toContentDetail('${content2.id}');"
 											class="pull-left">${content2.title}</a><span
 											class="list-date">${fn:substring(content2.add_time, 0, 10)}</span></li>

@@ -581,9 +581,11 @@ $(function() {
 								}
 							}, 
 							serverSide : true,//开启服务器模式:启用服务器分页
+							paging : false,//是否分页
+							// 是否显示左下角的信息
+							info: false,
 							lengthChange : false,//是否允许用户改变表格每页显示的记录数
 							ordering : false,//是否允许用户排序
-							paging : true,//是否分页
 							pagingType : "full_numbers",//除首页、上一页、下一页、末页四个按钮还有页数按钮
 							processing : true,//是否显示处理状态
 							/* scrollX: true,//允许水平滚动

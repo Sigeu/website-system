@@ -457,6 +457,27 @@ public class ContentController extends MyBaseController {
 		content.setAdd_time(MyDateUtil.getDateTime());
 		//修改后状态为“待审核”
 		content.setStatus(IMySystemConstants.VALUE_0);
+		
+		//设置class1\class2\class3
+		String thisColumnId = content.getColumn_id();
+		String parentClass1 = getParentClassByColumnId(thisColumnId);
+		String parentClass2 = getParentClassByColumnId(parentClass1);
+		//选择的是二级菜单
+		if("0".equals(parentClass2)) {
+			Column col = columnService.queryColumnById(Integer.parseInt(thisColumnId));
+			//设置目录分类编码（2位）
+			content.setClass_code(col.getAdd_class());
+			content.setClass1(parentClass1);
+			content.setClass2(thisColumnId);
+		}else {
+			Column col = columnService.queryColumnById(Integer.parseInt(parentClass1));
+			//设置目录分类编码（2位）
+			content.setClass_code(col.getAdd_class());
+			content.setClass1(parentClass2);
+			content.setClass2(parentClass1);
+			content.setClass3(thisColumnId);
+		}
+		
 		int count = this.contentService.updateContent(content);
 		if (RESULT_COUNT_1 == count) {
 			map.put(RESULT_MESSAGE_STRING, SAVE_SUCESS_MESSAGE);

@@ -17,6 +17,7 @@
 	<div class="page-container">
 	<form action="${pageContext.request.contextPath}/content/controller/contentController/updateContent" method="post" class="form form-horizontal" id="form-content-update">
 		<input type="hidden" name="id" id="id_" value="${content.id}">
+		<input type="hidden" name="code_num" id="code_num_" value="${content.code_num}">
 		<%-- <input type="hidden" name="read_pwd" id="read_pwd" value="${content.read_pwd }" > --%>
 		
 		<div class="row cl">
