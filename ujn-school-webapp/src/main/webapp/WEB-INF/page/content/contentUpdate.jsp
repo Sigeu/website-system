@@ -144,9 +144,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/content.js"> </script>
 <script type="text/javascript">
 var contextPath = '${pageContext.request.contextPath}';
+var ue;
 $(function(){
 	//UE编辑器
-	var ue = UE.getEditor('editor');
+	ue = UE.getEditor('editor');
 	
 	$('#close_but').on('click', function() {
 		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
