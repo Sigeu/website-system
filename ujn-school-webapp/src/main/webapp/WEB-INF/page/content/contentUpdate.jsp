@@ -46,7 +46,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">描述说明：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${content.description}</textarea>
+				<textarea name="description" id="description" cols="" rows="" class="textarea"  placeholder="描述说明" datatype="*10-100" dragonfly="true" onKeyUp="$.Huitextarealength(this,200)">${content.description}</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
@@ -222,6 +222,16 @@ $(function() {
 						});
 					}
 				};
+			
+				if($('#description').val() == ''){
+					console.log(ue.getContentTxt().length);
+					var contentTxt = ue.getContentTxt();
+					if(contentTxt.length > 80){
+						$('#description').val(contentTxt.substring(0,80));
+					}else{
+						$('#description').val(contentTxt);
+					}
+				}
 				// 准备form表单
 				$("#form-content-update").ajaxForm(options);
 				// 表单提交     

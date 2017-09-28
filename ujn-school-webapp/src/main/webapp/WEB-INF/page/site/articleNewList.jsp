@@ -76,12 +76,18 @@
 			    "pagelistcount":10,//每页显示数据个数
 			    "callBack":function(result){
 			    	var cHtml="";
+			    	var labelHtml = "<label class=\"btn btn-primary btn-xs\"><span class=\"glyphicon glyphicon-open\"></span></label>&nbsp;";
 			        for(var i=0;i<result.length;i++){
-			        	//处理数据
-			            cHtml += "<div class='search-pro'><a href='###'  onclick=\"toContentDetail('" + result[i].id +"')\"><h5>"+ result[i].title + "</h5></a>" +
+			        	var cHtml_1 = "<div class='search-pro'><a href='###'  onclick=\"toContentDetail('" + result[i].id +"')\"><h5>";
+			        	if(result[i].top_ok == '1'){
+			        		cHtml_1 = cHtml_1 + labelHtml;
+			        	}
+			        	var cHtml_2 = result[i].title + "</h5></a>" +
 			            "<p class='search-date'>" + result[i].update_time + "</p>" +
 			            "<p>" + result[i].description + "</p>" +
 			            "</div>";
+			        	//处理数据
+			            cHtml +=  (cHtml_1 + cHtml_2);
 			        }
 			        $("#demoContent").html(cHtml);//将数据增加到页面中
 			    }

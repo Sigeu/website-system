@@ -52,10 +52,10 @@
 									</dl>
 								</div>
 								<div class="pro-con pull-right">
-									<c:if test="${contentNew.top_ok == 1 }">
+									
+									<a href="###" onclick="toContentDetail('${contentNew.id}');"><h5><c:if test="${contentNew.top_ok == 1 }">
 										<label class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-open"></span></label>
-									</c:if>
-									<a href="###" onclick="toContentDetail('${contentNew.id}');"><h5>${contentNew.title}</h5></a>
+									</c:if>${contentNew.title}</h5></a>
 									<p>${contentNew.description}</p>
 								</div>
 							</div>

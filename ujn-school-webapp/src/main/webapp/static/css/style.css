@@ -223,7 +223,7 @@ a.navbar-dropdown-two span, .sidebar-nav a span {float:right; width:auto; color:
 	.list-pro li {height:52px; line-height:52px}
 	.list-pro a {height:52px; line-height:52px}
 	.info-list {margin-top:50px}
-	.article-body img {width:70%}
+	.article-body img {/* width:70% */}
 	.article-pro-con {width:1035px}
 	.sidebarl {padding-right:40px}
 	.article-sidebarl .article-pro-con {width:722px}
