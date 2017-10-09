@@ -65,6 +65,7 @@ public class MyAutoGenerateOrderNum {
 	 * 		 编码规则：1、信息公开类别（1位），1为校务公开，2为党务公开,3为其余栏目；
 	 * 				2、单位代码（2位），为学校机构的编码，不足位前补0；
 	 * 				3、目录分类编码（2位），分为16类（对应的是二级导航），为01-11和99，99代表其它公开事项；
+	 * 				3-1、额为新增：若是一级栏目，则分类码为88（分类码不存在则默认为88）；
 	 * 				4、年份代码（4位），为信息生成年份；
 	 * 				5、信息流水号（5位），为某部门某年产生的信息流水号，标识文章的序号，这里使用5位数ID，不足前补0；
 	 * 				6、公开方式码（1位），1为主动公开，2为依申请公开
@@ -80,7 +81,7 @@ public class MyAutoGenerateOrderNum {
 		//2、单位代码
 		articleOrder = articleOrder + content.getDept_code() + "-";
 		//3、目录分类编码
-		articleOrder = articleOrder + content.getClass_code() + "-";
+		articleOrder = articleOrder + (content.getClass_code() == null? "88":content.getClass_code()) + "-";
 		//4、年份代码
 		articleOrder = articleOrder + MyDateUtil.getYear() + "-";
 		//5、生成流水号

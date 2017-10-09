@@ -376,6 +376,9 @@ public class ContentController extends MyBaseController {
 		try {
 			//发布人
 			content.setIssue(getSessionUser(request).getLogin_name());
+			content.setAdd_time(MyDateUtil.getDateTime());
+			//更新时间
+			content.setUpdate_time(MyDateUtil.getDateTime());
 			//发布年份
 			content.setYear_code(MyDateUtil.getYear());
 			content.setDept_code(getSessionUser(request).getDept());
@@ -455,6 +458,8 @@ public class ContentController extends MyBaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		content.setAdd_time(MyDateUtil.getDateTime());
+		//更新时间
+		content.setUpdate_time(MyDateUtil.getDateTime());
 		//修改后状态为“待审核”
 		content.setStatus(IMySystemConstants.VALUE_0);
 		

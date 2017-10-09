@@ -204,10 +204,10 @@ $(function() {
 				if($('#description').val() == ''){
 					console.log(ue.getContentTxt().length);
 					var contentTxt = ue.getContentTxt();
-					if(contentTxt.length > 80){
-						$('#description').val(contentTxt.substring(0,80));
+					if(contentTxt.length > 200){
+						$('#description').val(contentTxt.substring(0,200) + '...');
 					}else{
-						$('#description').val(contentTxt);
+						$('#description').val(contentTxt + '...');
 					}
 				}
 				// 准备form表单

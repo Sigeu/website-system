@@ -5,6 +5,7 @@
 <html>
 <head>
 <%@ include file="../../../common/header.jsp"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bs.css">
 <title>内容管理信息表页</title>
 </head>
 <body>
@@ -126,7 +127,14 @@
 									data : "title",
 									defaultContent : "",
 									render : function(data, type, row, meta) {
-										var context = '<a href="##" onclick="toDetail(\'' + row.id + '\')">'+ data + '</a>';
+										var context = '';
+										var labelHtml = "<label class=\"btn btn-primary btn-xs\"><span class=\"glyphicon glyphicon-open\"></span></label>";
+										if(row.top_ok == '1'){
+											context = '<a href="##" onclick="toDetail(\'' + row.id + '\')">'+ data + '</a>&nbsp;' + labelHtml ;
+										}else{
+											context = '<a href="##" onclick="toDetail(\'' + row.id + '\')">'+ data + '</a>';
+										}
+										
 										return context;
 									}
 								}, {
