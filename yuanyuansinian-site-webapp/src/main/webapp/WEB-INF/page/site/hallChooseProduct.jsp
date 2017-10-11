@@ -42,7 +42,7 @@
 			</div>
 		</div>
 	</div> --%>
-<div class="container" style="background-color:transparent">		
+<div style="background-color:transparent">		
 	<div class="gift-con">
 		<div class="pro-header">
 			<h4 class="pro-title pull-left">缘园思念网礼品选择</h4>
