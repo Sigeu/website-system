@@ -15,7 +15,7 @@ $(function(){
 		    type: 2,
 		    maxmin:true,
 		    title:["购买"],
-		    area: ['60%', '60%'],
+		    area: ['70%', '60%'],
 		    shadeClose: false, //点击遮罩关闭
 		    //content: contextPath + "/sinian/index/indexController/toChooseProduct?type=1"
 		    content: contextPath + "/sinian/index/indexController/toChooseProductAll?hallId=" +  hallId
@@ -31,7 +31,7 @@ $(function(){
 			    type: 2,
 			    maxmin:true,
 			    title:["登录"],
-			    area: ['60%', '60%'],
+			    area: ['70%', '60%'],
 			    shadeClose: false, //点击遮罩关闭
 			    content: contextPath + "/sinian/index/indexController/toMemberLogin?flag=buy&hallType=" + hallType + "&hallId="  +  hallId
 			 });

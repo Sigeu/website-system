@@ -313,6 +313,9 @@ public class ContentController extends MyBaseController {
 		try {
 			//发布人
 			content.setIssue(getSessionSystemUser(request).getLogin_name());
+			//添加时间
+			content.setAdd_time(MyDateUtil.getDateTime());
+			content.setUpdate_time(MyDateUtil.getDateTime());
 			//默认状态为“0”：待审核
 			content.setStatus(IMySystemConstants.VALUE_0);
 			contentService.addContent(request, content);
@@ -358,6 +361,7 @@ public class ContentController extends MyBaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		content.setAdd_time(MyDateUtil.getDateTime());
+		content.setUpdate_time(MyDateUtil.getDateTime());
 		map.put("content_id", content.getId());
 		int count = this.contentService.updateContent(content);
 		if (RESULT_COUNT_1 == count) {

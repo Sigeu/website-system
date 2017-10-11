@@ -57,7 +57,7 @@ public interface IMySystemConstants {
 	static final String ORDER_DESC = "desc";
 	// 鎸夐檷搴忔帓鍒�
 	static final String ORDER_COLUMN_ADD_TIME = "add_time";
-
+	static final String ORDER_COLUMN_UPDATE_TIME = "update_time";
 	static final String FILE_PATH_IMAGE = "/upload/image/";
 	static final String FILE_PATH = "upload/";
 	static final String SERVER_FILE_PATH = "/yuanyuansinian-site-webapp/upload/image/";

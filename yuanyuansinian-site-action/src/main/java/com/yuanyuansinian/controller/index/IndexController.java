@@ -162,7 +162,7 @@ public class IndexController extends MyBaseController {
 			String column_id107 = IMySystemConstants.COLUMN107;
 			content107.setClass1(column_id107);
 			content107
-					.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+					.setOrder_column(IMySystemConstants.ORDER_COLUMN_UPDATE_TIME);
 			content107.setOrder_type(IMySystemConstants.ORDER_DESC);
 			// 6条
 			content107.setCount_num(IMySystemConstants.COUNT_NUM6);
