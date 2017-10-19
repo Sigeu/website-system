@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
@@ -42,7 +42,7 @@
 							 <div class="form-group">
 								<label class="control-label col-md-3">密码</label>
 								<div class="col-md-9">
-									<input id="password" name="password" type="password" class="form-control" placeholder="请输入您的密码">	
+									<input id="password" name="password" type="password" class="form-control" placeholder="请输入您的密码" autocomplete="off">	
 								</div>
 							</div>
 							 <div class="form-group">

@@ -51,6 +51,15 @@
 					<td colspan="5">&nbsp;&nbsp;</td>
 				</tr>
 			</table>
+			<span>
+				说明：
+				<img src="${pageContext.request.contextPath}/static/images/top.png" alt="置顶"/>:置顶;
+				<img src="${pageContext.request.contextPath}/static/images/checking.png" alt="待审核"/>:待审核;
+				<img src="${pageContext.request.contextPath}/static/images/succes.png" alt="审核通过"/>:审核通过;
+				<img src="${pageContext.request.contextPath}/static/images/public.png" alt="公众访问"/>:公众访问;
+				<img src="${pageContext.request.contextPath}/static/images/ip.png" alt="校内访问"/>:校内访问;
+				<img src="${pageContext.request.contextPath}/static/images/password.png" alt="仅部分人可访问"/>:仅部分人可访问;
+			</span>
 			<table id="data_table" style="width: 98%" style="text-align: center;"
 				class="table table-border table-bordered  table-hover table-striped">
 				<thead>
@@ -60,12 +69,12 @@
 						<th>名称</th>
 						<th>发布人</th>
 						<th>发布时间</th>
-						<th>所属栏目</th>
+						<th width="15%">所属栏目</th>
 						<th>有效期</th>
 						<th>访问属性</th>
 						<th>访问密码</th>
 						<th>审核状态</th>
-						<th width="8%">操作</th>
+						<th width="5%">操作</th>
 					</tr>
 				</thead>
 				<!-- tbody是必须的 -->
@@ -128,7 +137,7 @@
 									defaultContent : "",
 									render : function(data, type, row, meta) {
 										var context = '';
-										var labelHtml = "<label class=\"btn btn-primary btn-xs\"><span class=\"glyphicon glyphicon-open\"></span></label>";
+										var labelHtml = '<img src="${pageContext.request.contextPath}/static/images/top.png" alt="置顶"/>';
 										if(row.top_ok == '1'){
 											context = '<a href="##" onclick="toDetail(\'' + row.id + '\')">'+ data + '</a>&nbsp;' + labelHtml ;
 										}else{
@@ -150,8 +159,20 @@
 									data : "validity_time",
 									defaultContent : ""
 								}, {
-									data : "read_type_name",
-									defaultContent : ""
+									data : "read_type",
+									defaultContent : "",
+									render: function (data, type, row, meta) {
+										var html = '';
+											if(row.read_type =='0'){
+												html = '<img src="${pageContext.request.contextPath}/static/images/public.png" alt="公众访问"/>';
+											}else if(row.read_type =='1'){
+												html = '<img src="${pageContext.request.contextPath}/static/images/ip.png" alt="校内访问"/>';
+											}else if(row.read_type =='1'){
+												html = '<img src="${pageContext.request.contextPath}/static/images/password.png" alt="仅部分人可访问"/>';
+											}
+											
+					                     return html;
+					                 }
 								}, {
 									data : "read_pwd",
 									render: function (data, type, row, meta) {
@@ -169,9 +190,11 @@
 									render: function (data, type, full, meta) {
 										var html = '';
 											if(data =='待审核'){
-												html = '<font color="red">'+ data + '</font>';
+												//html = '<font color="red">'+ data + '</font>';
+												html = '<img src="${pageContext.request.contextPath}/static/images/checking.png" alt="审核通过"/>';
 											}else{
-												html = '<font>'+ data + '</font>';
+												//html = '<font>'+ data + '</font>';
+												html = '<img src="${pageContext.request.contextPath}/static/images/succes.png" alt="审核通过"/>';
 											}
 					                     return html;
 					                 }

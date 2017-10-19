@@ -45,7 +45,7 @@
 				<thead>
 					<tr class="text-c">
 						<!-- <th>序号</th> -->
-						<th>栏目名称</th>
+						<th width="35%">栏目名称</th>
 						<th>栏目级别</th>
 						<th>上级栏目</th>
 						<!-- <th>是否前台显示</th> -->

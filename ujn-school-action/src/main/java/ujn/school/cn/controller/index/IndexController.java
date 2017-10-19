@@ -94,7 +94,7 @@ public class IndexController extends MyBaseController {
 			// 最新公开信息 :只查询属于校务和党务的栏目及其子栏目里的内容
 			Content content1 = new Content();
 			//最新发布的6条信息
-			content1.setLimit_num(IMySystemConstants.COUNT_NUM6);
+			content1.setLimit_num(IMySystemConstants.COUNT_NUM4);
 			List<Content> contentListNew = contentService.queryContentListByNew(content1);
 			model.addAttribute("contentListNew", contentListNew);
 			
