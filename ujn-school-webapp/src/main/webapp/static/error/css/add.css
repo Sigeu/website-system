@@ -1,0 +1,27 @@
+@charset "utf-8";
+body {font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif; color: #333; font-size:20px}
+.container {background:#fff}
+ul, li {list-style:none; padding:0}
+.mid {margin-top:60px}
+.mid img {margin:0 auto}
+.mid img.add-bg {margin:60px auto 40px}
+.prompt {width:250px; margin:0 auto}
+.prompt li {height:35px; line-height:35px}
+a {color:#25499d; text-decoration:none}
+a:hover {text-decoration:underline}
+/* 小屏幕（平板，大于等于768px） */
+@media (min-width: 768px) {
+	.mid {margin-top:150px}
+	.mid img.add-bg {margin:70px auto 50px}
+}
+
+/* 中等屏幕（桌面显示器，大于等于992px） */
+@media (min-width: 992px) {
+	.mid {margin-top:130px}
+	.mid img.add-bg {margin:50px auto 0}
+}
+
+/* 大屏幕（大桌面显示器，大于等于1200px） */
+@media (min-width: 1200px) {
+	.mid {margin-top:200px}
+}
