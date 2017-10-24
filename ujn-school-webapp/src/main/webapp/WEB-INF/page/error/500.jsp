@@ -12,7 +12,7 @@
 <div class="container">
 	<div class="mid">
 		<img src="${pageContext.request.contextPath}/static/error/img/add.png" class="img-responsive add-logo">
-		<img src="${pageContext.request.contextPath}/static/error/img/503.jpg" alt="503" class="img-responsive add-bg">
+		<img src="${pageContext.request.contextPath}/static/error/img/500.jpg" alt="500" class="img-responsive add-bg">
 	</div>
 	<div class="prompt">
 		<ul>
