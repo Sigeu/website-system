@@ -83,8 +83,8 @@
 			        		cHtml_1 = cHtml_1 + labelHtml;
 			        	}
 			        	var cHtml_2 = result[i].title + "</h5></a>" +
-			            "<p class='search-date'>" + result[i].update_time + "</p>" +
-			            "<p>" + result[i].description + "</p>" +
+			            "<p class='search-date'>" + result[i].add_time + "</p>" +
+			            "<p>" + (result[i].description).substring(0,100) + "...</p>" +
 			            "</div>";
 			        	//处理数据
 			            cHtml +=  (cHtml_1 + cHtml_2);

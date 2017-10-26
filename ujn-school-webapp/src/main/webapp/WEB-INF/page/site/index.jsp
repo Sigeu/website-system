@@ -36,7 +36,7 @@
 								<a href="###" onclick="toContentDetail('${contentNew.id}');">${contentNew.title}</a>
 								<span>${contentNew.add_time}</span>
 							</div>
-							<div class="index-info-fir-body">${contentNew.description}</div>
+							<div class="index-info-fir-body">${fn:substring(contentNew.description, 0, 200)}...</div>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -60,7 +60,7 @@
 											</c:if>${contentNew.title}
 										</h5>
 									</a>
-									<p>${contentNew.description}</p>
+									<p>${fn:substring(contentNew.description, 0, 100)}...</p>
 								</div>
 							</div>
 						</c:if>
