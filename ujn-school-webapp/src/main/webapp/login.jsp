@@ -58,6 +58,7 @@
 							</div>
 					</div>
 				</div>
+				<input type="hidden" name="csrfPreventionSalt" value="${csrfPreventionSalt}"/>
 				<div class="modal-footer">
 					<button class="btn btn-default" type="reset">重置</button>
 					<button class="btn btn-primary" id="submit_but" name="submit_but" type="submit">提交</button>
@@ -89,7 +90,7 @@
 </footer>
 <%@ include file="common/footer_index.jsp"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.form.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/hui/admin3.0/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/layer.js"></script>
 <script type="text/javascript">  
 	$(function(){
 		$('#kanbuq').on('click',function(){

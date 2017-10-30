@@ -130,6 +130,8 @@
 
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/static/js/carousel.js"></script>
 	<script type="text/javascript">
 		//-------分页数据----------
 		var id = '${column_id }';

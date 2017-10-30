@@ -41,7 +41,7 @@
 					</ul>
 				</div>
 				<div class="tabCon apply-con">
-					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post"  class="form-horizontal" id="form_personal">
+					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply?csrfPreventionSalt=${csrfPreventionSalt}" method="post"  class="form-horizontal" id="form_personal">
 						<input type="hidden" name="user_type" id="user_type" value="1">
 						<div class="form-group">
 							<label class="col-sm-2 col-md-3 control-label">姓名</label>
@@ -146,7 +146,7 @@
 				</div>
 				
 				<div class="tabCon apply-con">
-					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply" method="post"  class="form-horizontal" id="form_company">
+					<form action="${pageContext.request.contextPath}/apply/controller/applyController/addApply?csrfPreventionSalt=${csrfPreventionSalt}" method="post"  class="form-horizontal" id="form_company">
 						<input type="hidden" name="credit_code_file" value="" id="credit_code_file">
 						<input type="hidden" name="user_type" id="user_type" value="2">
 						<div class="form-group">
@@ -577,7 +577,7 @@ $(function() {
 								url : "${pageContext.request.contextPath}/apply/controller/applyController/queryApplyByPwd",
 								type:"POST",
 								data : {
-									///check_pwd: $('#check_pwd').val()
+									"csrfPreventionSalt" : "${csrfPreventionSalt}"
 								}
 							}, 
 							serverSide : true,//开启服务器模式:启用服务器分页
@@ -652,7 +652,8 @@ $(function() {
 			var check_pwd = $("#check_pwd").val().trim();
 			//查询条件
 			var param = {
-				"check_pwd" : check_pwd
+				"check_pwd" : check_pwd,
+				"csrfPreventionSalt" : "${csrfPreventionSalt}"
 			};
 			return param;
 		}
@@ -667,7 +668,7 @@ $(function() {
 	
 	//查看
 	function toDetail(id,check_pwd){
-		window.open('${pageContext.request.contextPath}/apply/controller/applyController/toShowReplyApplyDetail?id=' + id + '&check_pwd=' + check_pwd ,'查看',"fullscreen=1")
+		window.open('${pageContext.request.contextPath}/apply/controller/applyController/toShowReplyApplyDetail?id=' + id + '&check_pwd=' + check_pwd + '&csrfPreventionSalt=${csrfPreventionSalt}' ,'查看',"fullscreen=1")
 	}
 </script>
 </body>

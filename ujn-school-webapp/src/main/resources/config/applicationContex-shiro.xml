@@ -152,6 +152,7 @@
 				/site/** = anon
 				/static/** = anon
 				/ueditor/** = anon
+				/upload/image/** = anon
 				/common = anon
 				/verifyCodeServlet = anon
 				/** = authc

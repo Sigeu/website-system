@@ -12,7 +12,7 @@
 		<form id="search_form" action="#" method="post">
 			<div class="col-xs-12 col-md-3 col-md-offset-2 navbar-search" style="padding:0px">
 				<div class="input-group">
-					
+						<input type="hidden" name="csrfPreventionSalt" value="${csrfPreventionSalt}"/>
 						<input type="text" id="serach_text" name="serach_text" class="form-control"> <span
 							class="input-group-btn">
 							<button class="btn btn-default" type="button" id="search_but">
