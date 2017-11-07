@@ -91,6 +91,11 @@
 		<filter-name>validateSalt</filter-name>
 		<url-pattern>/apply/controller/applyController/toShowReplyApplyDetail</url-pattern>
 	</filter-mapping>
+	<!-- 过滤查看列表 -->
+	<filter-mapping>
+		<filter-name>validateSalt</filter-name>
+		<url-pattern>/index/controller/indexController/toContentList</url-pattern>
+	</filter-mapping>
 
 	<!-- 加载LOG4J -->
 	<listener>

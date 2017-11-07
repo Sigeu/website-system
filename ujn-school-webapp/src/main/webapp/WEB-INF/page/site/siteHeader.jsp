@@ -12,6 +12,7 @@
 		<form id="search_form" action="#" method="post">
 			<div class="col-xs-12 col-md-3 col-md-offset-2 navbar-search" style="padding:0px">
 				<div class="input-group">
+						<input type="hidden" name="csrfPreventionSalt" value="${csrfPreventionSalt}"/>
 						<input type="text" name="serach_text" value="" class="form-control"> <span
 							class="input-group-btn">
 							<button class="btn btn-default" type="button" id="search_but">
@@ -29,7 +30,7 @@
 		<div class="row">
 			<div id="menu_self" class="navbar-dropdown hidden-xs hidden-sm">
 				<div id="navbar-dropdown-top" >
-					<span onclick="toContentList('102');">校务公开</span><span onclick="toContentList('107');">党务公开</span>
+					<span onclick="toContentList('102','${csrfPreventionSalt}');">校务公开</span><span onclick="toContentList('107','${csrfPreventionSalt}');">党务公开</span>
 				</div>
 			</div>
 			<div class="col-md-9 col-xs-12 navbar-right">
@@ -45,7 +46,7 @@
 						<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 						<c:forEach var="column" items="${columnList}">
 							<c:if test="${column.class_type == 1 && column.id != 102 && column.id != 107 }">
-								<li class=""><a href="###" onclick="toContentList('${column.id}');">${column.name}</a></li>
+								<li class=""><a href="###" onclick="toContentList('${column.id}','${csrfPreventionSalt}');">${column.name}</a></li>
 							</c:if>
 						</c:forEach>
 					</ul>

@@ -62,9 +62,9 @@ function toContentDetail(id) {
 
 /*----------------------访问列表-----------------------*/
 // 列表
-function toContentList(id) {
+function toContentList(id,csrfPreventionSalt) {
 	var url = contextPath
-			+ "/index/controller/indexController/toContentList?id=" + id;
+			+ "/index/controller/indexController/toContentList?csrfPreventionSalt=" + csrfPreventionSalt + "&id=" + id;
 	//信息公开申请
 	if(id == '112'){
 		url = contextPath + "/index/controller/indexController/toContentList112?id=" + id;

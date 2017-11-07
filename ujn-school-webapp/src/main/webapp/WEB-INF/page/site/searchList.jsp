@@ -24,13 +24,6 @@
 						</div>
 						<div class="clearfix"></div>
 						<div class="search-list-con"  id="demoContent">
-							<%-- <c:forEach var="content" items="${contentList}">
-								<div class="search-pro">
-									<a href="###" onclick="toContentDetail('${content.id}');"><h5>${content.title}</h5></a>
-									<p class="search-date">${content.add_time}</p>
-									<p>${content.description}</p>
-								</div>
-							</c:forEach> --%>
 						</div>
 					</div>
 					<nav class="page">
@@ -46,8 +39,6 @@
 	<input type="hidden" name="id" id="id_" value="${column_id }">
 	<%@ include file="siteFooter.jsp"%>
 	<%@ include file="../../../common/footer-site.jsp"%>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/static/js/article.pager.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/article.js"></script>
 	<script type="text/javascript"

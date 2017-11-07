@@ -36,7 +36,7 @@
 					<ul>
 					<c:forEach var="column" items="${columnList102}">
 							<li class="navbar-pos" columnId="${column.id}">
-							<a href="###"  onclick="toContentList('${column.id}');" 
+							<a href="###"  onclick="toContentList('${column.id}','${csrfPreventionSalt}');" 
 								class="navbar-dropdown-two">${column.name }<span>&gt;</span></a>
 									<ul class="navbar-dropdown-thr" style="display: none">
 										<c:forEach var="column3" items="${columnList3}">
@@ -60,7 +60,7 @@
 					<ul>
 					<c:forEach var="column" items="${columnList107}">
 							<li class="navbar-pos">
-							<a href="###" onclick="toContentList('${column.id}');" 
+							<a href="###" onclick="toContentList('${column.id}','${csrfPreventionSalt}');" 
 								class="navbar-dropdown-two">${column.name }<span>&gt;</span></a>
 									<ul class="navbar-dropdown-thr" style="display: none">
 										<c:forEach var="column3" items="${columnList3}">
@@ -94,7 +94,7 @@
 						<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 						<c:forEach var="column" items="${columnList}">
 							<c:if test="${column.class_type == 1 && column.id != 102 && column.id != 107 }">
-								<li class=""><a href="###" onclick="toContentList('${column.id}');">${column.name}</a></li>
+								<li class=""><a href="###" onclick="toContentList('${column.id}','${csrfPreventionSalt}');">${column.name}</a></li>
 							</c:if>
 						</c:forEach>
 					</ul>
