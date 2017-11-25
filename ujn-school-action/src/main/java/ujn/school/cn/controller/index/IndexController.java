@@ -161,6 +161,16 @@ public class IndexController extends MyBaseController {
 	}
 	
 	/**
+	 * @Description:  显示网站主页
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/ipAccessError")
+	public String ipAccessError(HttpServletRequest request,  Model model) {
+		return "error/ip";
+	}
+	/**
 	 * 
 	 * @Description: 跳转到栏目更多页面
 	 * @param model
@@ -1096,6 +1106,71 @@ public class IndexController extends MyBaseController {
 		try {
 			Content content = new Content();
 			content.setColumn_id("113");
+			// 所有数据
+			listContentPage = contentService.queryContentListByColumn(content);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return listContentPage;
+	}
+	
+	
+	/**
+	 * 
+	 * @Description: 信息公开申请-更多-分页列表 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/queryContentListForPage112")
+	public String queryContentListForPage112(HttpServletRequest request, Model model) {
+			
+		// 网站联系方式
+		Contact contact = contactService.queryContact();
+		// 友情链接
+		List<Link> linkList = linkService.queryLinkList(null);
+		
+		// 侧栏年度报告 
+		Content contentReport = new Content();
+		String column_id_report = IMySystemConstants.COLUMN112;
+		contentReport.setColumn_id(column_id_report);
+		contentReport.setOrder_column(IMySystemConstants.ORDER_COLUMN_ADD_TIME);
+		contentReport.setOrder_type(IMySystemConstants.ORDER_DESC);
+		contentReport.setCount_num(IMySystemConstants.COUNT_NUM5);
+		//年度报告内容列表
+		List<Content> contentReportList = contentService.queryContentListByColumn(contentReport);
+		
+		//栏目
+		List<Column> resultList = columnService.queryColumnList(null);
+		//排序
+		LinkedList<Column> result = new LinkedList<Column>();
+		LinkedList<Column> columnLinkedList = this.toSort(resultList, result, 0);
+		//转换为ArrayList
+		List<Column> columnList = new ArrayList<Column>(columnLinkedList);
+		
+		model.addAttribute("contact", contact);
+		model.addAttribute("linkList", linkList);
+		model.addAttribute("contentReportList", contentReportList);
+		model.addAttribute("columnList", columnList);
+		
+		return "site/articleList112";
+	}
+	
+	/**
+	 * 
+	 * @Description: 信息公开申请
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/articleListForPage112")
+	public List<Content> articleListForPage112(HttpServletRequest request) {
+		List<Content> listContentPage = null;
+		try {
+			Content content = new Content();
+			content.setColumn_id("112");
 			// 所有数据
 			listContentPage = contentService.queryContentListByColumn(content);
 

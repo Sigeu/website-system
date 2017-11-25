@@ -78,6 +78,8 @@ public interface IMySystemConstants {
 	static final String COLUMN109 = "109";
 	//年度报告
 	static final String COLUMN113 = "113";
+	//年度报告
+	static final String COLUMN112 = "112";
 	//
 	//static final String COLUMN109 = "109";
 }

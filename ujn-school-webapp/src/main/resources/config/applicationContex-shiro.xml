@@ -151,6 +151,7 @@
 				/index/** = anon
 				/site/** = anon
 				/static/** = anon
+				/error/** = anon
 				/ueditor/** = anon
 				/upload/image/** = anon
 				/common = anon

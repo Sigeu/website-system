@@ -36,12 +36,12 @@
 					<ul>
 					<c:forEach var="column" items="${columnList102}">
 							<li class="navbar-pos" columnId="${column.id}">
-							<a href="###"  onclick="toContentList('${column.id}','${csrfPreventionSalt}');" 
+							<a href="###"  onclick="toContentList('${column.id}','${csrfPreventionSalt}');return false;" 
 								class="navbar-dropdown-two">${column.name }<span>&gt;</span></a>
 									<ul class="navbar-dropdown-thr" style="display: none">
 										<c:forEach var="column3" items="${columnList3}">
 											<c:if test="${column3.big_class == column.id}">
-												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stop"></em>&nbsp;${column3.name }</a></li>
+												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');return false;" ><em class="glyphicon glyphicon-stop"></em>&nbsp;${column3.name }</a></li>
 											</c:if>
 										</c:forEach>
 									</ul>
@@ -60,12 +60,12 @@
 					<ul>
 					<c:forEach var="column" items="${columnList107}">
 							<li class="navbar-pos">
-							<a href="###" onclick="toContentList('${column.id}','${csrfPreventionSalt}');" 
+							<a href="###" onclick="toContentList('${column.id}','${csrfPreventionSalt}');return false;" 
 								class="navbar-dropdown-two">${column.name }<span>&gt;</span></a>
 									<ul class="navbar-dropdown-thr" style="display: none">
 										<c:forEach var="column3" items="${columnList3}">
 											<c:if test="${column3.big_class == column.id}">
-												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><em class="glyphicon glyphicon-stop"></em>&nbsp;${column3.name }</a></li>
+												<li><a href="###" onclick="toContentListForLevel3('${column3.id}');return false;" ><em class="glyphicon glyphicon-stop"></em>&nbsp;${column3.name }</a></li>
 											</c:if>
 										</c:forEach>
 									</ul>
@@ -94,7 +94,7 @@
 						<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 						<c:forEach var="column" items="${columnList}">
 							<c:if test="${column.class_type == 1 && column.id != 102 && column.id != 107 }">
-								<li class=""><a href="###" onclick="toContentList('${column.id}','${csrfPreventionSalt}');">${column.name}</a></li>
+								<li class=""><a href="###" onclick="toContentList('${column.id}','${csrfPreventionSalt}');return false;">${column.name}</a></li>
 							</c:if>
 						</c:forEach>
 					</ul>

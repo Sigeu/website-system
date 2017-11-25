@@ -218,7 +218,6 @@ public class ContentController extends MyBaseController {
 			// 使用DataTables的属性接收分页数据
 			dataTable = new DataTablePageUtil<Content>(request);
 			
-			
 			List<String> list = getAllDeptCodeByUser(request);
 			content.setList(list);
 			// 开始分页：PageHelper会处理接下来的第一个查询
@@ -457,9 +456,12 @@ public class ContentController extends MyBaseController {
 	public Map<String, Object> updateContent(HttpServletRequest request, ContentWithBLOBs content) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		content.setAdd_time(MyDateUtil.getDateTime());
+		//content.setAdd_time(MyDateUtil.getDateTime());
 		//更新时间
-		content.setUpdate_time(MyDateUtil.getDateTime());
+		//content.setUpdate_time(MyDateUtil.getDateTime());
+		if(null == content.getUpdate_time() || "".equals(content.getUpdate_time())){
+			content.setUpdate_time(MyDateUtil.getDateTime());
+		}
 		//修改后状态为“待审核”
 		content.setStatus(IMySystemConstants.VALUE_0);
 		

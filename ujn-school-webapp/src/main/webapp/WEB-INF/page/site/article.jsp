@@ -20,13 +20,13 @@
 				<p class="breadcrumb">
 					<a href="${pageContext.request.contextPath}/index.jsp">首页</a> 
 					<c:if test="${not empty locationid2}">
-						\ <a href="###" onclick="toContentList('${locationid2}','${csrfPreventionSalt}');">${location2 }</a> 
+						\ <a href="###" onclick="toContentList('${locationid2}','${csrfPreventionSalt}');return false;">${location2 }</a> 
 					</c:if>
 					<c:if test="${not empty locationid3 }">
-						\ <a href="###" onclick="toContentList('${locationid3}','${csrfPreventionSalt}');">${location3 } </a> 
+						\ <a href="###" onclick="toContentList('${locationid3}','${csrfPreventionSalt}');return false;">${location3 } </a> 
 					</c:if>
 					<c:if test="${not empty locationidThis }">
-						\ <a href="###" onclick="toContentList('${locationidThis}','${csrfPreventionSalt}');">${locationThis }</a>
+						\ <a href="###" onclick="toContentList('${locationidThis}','${csrfPreventionSalt}');return false;">${locationThis }</a>
 					</c:if>
 				</p>
 				<div class="article-main">

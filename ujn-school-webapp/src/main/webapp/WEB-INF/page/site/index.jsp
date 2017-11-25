@@ -18,10 +18,10 @@
 		<div class="container">
 			<div class="pro-top">
 				<h4 class="pull-left">
-					<a href="###" onclick="toContentListForNew();"><span
+					<a href="###" onclick="toContentListForNew();return false;"><span
 						class="glyphicon glyphicon-th-list"></span> 最新公开信息</a>
 				</h4>
-				<a href="###" onclick="toContentListForNew();"
+				<a href="###" onclick="toContentListForNew();return false;"
 					class="more pull-right">更多&gt;&gt;</a>
 			</div>
 			<div class="clearfix"></div>
@@ -33,7 +33,7 @@
 								<c:if test="${contentNew.top_ok == 1 }">
 									<label class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-open"></span></label>
 								</c:if>
-								<a href="###" onclick="toContentDetail('${contentNew.id}');">${contentNew.title}</a>
+								<a href="###" onclick="toContentDetail('${contentNew.id}');return false;">${contentNew.title}</a>
 								<span>${contentNew.add_time}</span>
 							</div>
 							<div class="index-info-fir-body">${fn:substring(contentNew.description, 0, 200)}...</div>
@@ -53,7 +53,7 @@
 								</div>
 								<div class="pro-con pull-right">
 									
-									<a href="###" onclick="toContentDetail('${contentNew.id}');">
+									<a href="###" onclick="toContentDetail('${contentNew.id}');return false;">
 										<h5>
 											<c:if test="${contentNew.top_ok == 1 }">
 												<label class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-open"></span></label>
@@ -77,10 +77,10 @@
 					<div class="list">
 						<div class="pro-top">
 							<h4 class="pull-left">
-								<a href="###" onclick="toContentListForImportance();"><span
+								<a href="###" onclick="toContentListForImportance(); return false;"><span
 									class="glyphicon glyphicon-align-left"></span> 重要信息公开</a>
 							</h4>
-							<a href="###" onclick="toContentListForImportance();"
+							<a href="###" onclick="toContentListForImportance();return false;"
 								class="more pull-right">更多&gt;&gt;</a>
 						</div>
 						<div class="clearfix"></div>
@@ -91,7 +91,7 @@
 										<li>
 										
 										<a href="###"
-											onclick="toContentDetail('${content2.id}');"
+											onclick="toContentDetail('${content2.id}');return false;"
 											class="pull-left">
 											<c:if test="${content2.top_ok == 1 }">
 												<label class="btn btn-primary btn-xs"><span class="list-top glyphicon glyphicon-open"></span></label>

@@ -44,6 +44,20 @@
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- IP访问频率过滤 -->  
+	<filter>  
+	    <filter-name>IpAccessFilter</filter-name>  
+	    <filter-class>ujn.school.cn.pub.filter.IpAccessFilter</filter-class>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>IpAccessFilter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>  
+	<listener>  
+	    <listener-class>ujn.school.cn.pub.filter.IpAccessListener</listener-class>  
+	</listener>  
+	<!-- 配置监听器  -->  
+
 	<!-- XSS过滤 -->
 	<filter>
 		<filter-name>xssFilter</filter-name>

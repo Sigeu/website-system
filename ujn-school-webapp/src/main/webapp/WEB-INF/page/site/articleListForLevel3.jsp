@@ -21,7 +21,7 @@
 				<div class="list">
 					<div class="pro-top">
 						<h4 class="pull-left" style="width:90%;" ><a href="###"><span class="glyphicon glyphicon-list"></span> ${column.name }</a></h4>
-						<a href="###" onclick="toContentListForPage(${column_id });" class="more pull-right">更多&gt;&gt;</a>
+						<a href="###" onclick="toContentListForPage(${column_id });return false;" class="more pull-right">更多&gt;&gt;</a>
 					</div>
 					<div class="clearfix"></div>
 					<div class="list-pro-container">
@@ -29,7 +29,7 @@
 							<ul>
 								<c:forEach var="content" items="${contentList}">
 									<li><a href="###" 
-										onclick="toContentDetail('${content.id}');" class="pull-left">${content.title}</a><span
+										onclick="toContentDetail('${content.id}');return false;" class="pull-left">${content.title}</a><span
 										class="list-date">${content.add_time}</span></li>
 								</c:forEach>
 							</ul>
@@ -64,7 +64,7 @@
 					<div class="sidebar-con">
 						<ul>
 							<c:forEach var="contentReport" items="${contentReportList}">
-								<li><a href="###" onclick="toContentDetail('${contentReport.id}');">${contentReport.title}</a></li>
+								<li><a href="###" onclick="toContentDetail('${contentReport.id}');return false;">${contentReport.title}</a></li>
 							</c:forEach>
 						</ul>
 					</div>

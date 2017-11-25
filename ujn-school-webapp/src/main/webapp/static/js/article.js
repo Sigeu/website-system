@@ -65,10 +65,10 @@ function toContentDetail(id) {
 function toContentList(id,csrfPreventionSalt) {
 	var url = contextPath
 			+ "/index/controller/indexController/toContentList?csrfPreventionSalt=" + csrfPreventionSalt + "&id=" + id;
-	//信息公开申请
-	if(id == '112'){
+	//信息公开申请:add 2017-11-25,暂时屏蔽信息申请
+	/*if(id == '112'){
 		url = contextPath + "/index/controller/indexController/toContentList112?id=" + id;
-	}
+	}*/
 	//信息公开目录、校务、党务：显示公开目录的菜单,
 	if(id == '111' || id == '102'|| id == '107'){
 		url = contextPath + "/index/controller/indexController/toContentList111?id=" + id;
@@ -121,6 +121,11 @@ function toContentListForPage(id) {
 	//年度报告
 	if(id == '113'){
 		url = contextPath + "/index/controller/indexController/queryContentListForPage113?id=" + id;
+	}
+	
+	//信息公开申请 add 2017-11-25
+	if(id == '112'){
+		url = contextPath + "/index/controller/indexController/queryContentListForPage112?id=" + id;
 	}
 	window.location.href = url;
 }

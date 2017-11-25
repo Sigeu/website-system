@@ -7,7 +7,7 @@
 	<div class="sidebar-nav">
 		<ul class="nav nav-stacked">
 		<c:forEach var="column" items="${columnListThis3}">
-			<li><a href="###"  title="${column.name}" onclick="toContentList('${column.id}','${csrfPreventionSalt}');">${column.name}</a></li>
+			<li><a href="###"  title="${column.name}" onclick="toContentList('${column.id}','${csrfPreventionSalt}');return false;">${column.name}</a></li>
 		</c:forEach>
 		</ul>
 	</div>

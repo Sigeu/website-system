@@ -22,7 +22,7 @@
 		<div class="sidebar-con">
 			<ul>
 				<c:forEach var="contentReport" items="${contentReportList}"> 
-					<li><a href="###" onclick="toContentDetail('${content2.id}');">${contentReport.title}</a></li>
+					<li><a href="###" onclick="toContentDetail('${content2.id}');return false;">${contentReport.title}</a></li>
                  </c:forEach>
 			</ul>
 		</div>

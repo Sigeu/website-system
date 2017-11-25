@@ -197,7 +197,24 @@ public class ApplyService implements IApplyService {
 		
 		return applyMapper.deleteByPrimaryKey(applyId);
 	}
-
+	
+	@Override
+	public boolean deleteApplyByIds(String ids) {
+		boolean flag = false;
+		try {
+			for(String id : ids.split(",")){
+				if(!"".equals(id)){
+					applyMapper.deleteByPrimaryKey(Integer.parseInt(id));
+				}
+			}
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag = false;
+		}
+		return flag;
+	}
+	
 	@Override
 	public void uploadIdImg(HttpServletRequest request, String id) {
 		try {

@@ -128,6 +128,18 @@
 			    <label for="radio-2">置顶显示</label>
 			  </div>
 		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">添加时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="${content.add_time}" placeholder="添加时间" id="add_time" name="add_time" class="input-text Wdate">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">更新时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="${content.update_time}" placeholder="更新时间" id="update_time" name="update_time" class="input-text Wdate">
+			</div>
+		</div>
 		</br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">

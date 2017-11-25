@@ -29,7 +29,7 @@
 							<ul>
 								<c:forEach var="content" items="${contentList}">
 									<li><a href="###" 
-										onclick="toContentDetail('${content.id}');" class="pull-left">${content.title}</a><span
+										onclick="toContentDetail('${content.id}');return false;" class="pull-left">${content.title}</a><span
 										class="list-date">${content.add_time}</span></li>
 								</c:forEach>
 							</ul>

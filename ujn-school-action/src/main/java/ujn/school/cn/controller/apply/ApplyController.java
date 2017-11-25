@@ -516,6 +516,33 @@ public class ApplyController extends MyBaseController {
 
 		return "apply/applyImg";
 	}
+	
+	
+	/**
+	 * 
+	 * @Description: 批量删除
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteApplyByIds")
+	public Map<String,Object> deleteApplyByIds(HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			String ids = request.getParameter("id");
+	 		boolean flag = this.applyService.deleteApplyByIds(ids);
+			if(flag){
+				map.put(RESULT_MESSAGE_STRING, "删除成功！");
+			} else {
+				map.put(RESULT_MESSAGE_STRING, "删除失败！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return map;
+	}
 
 	/**
 	 * 

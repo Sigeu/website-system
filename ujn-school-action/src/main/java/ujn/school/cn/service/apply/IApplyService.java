@@ -73,4 +73,6 @@ public interface IApplyService {
 
 	List<Apply> queryApplyStatistics(Apply apply);
 
+	boolean deleteApplyByIds(String ids);
+
 }

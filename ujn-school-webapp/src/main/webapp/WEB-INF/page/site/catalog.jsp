@@ -23,7 +23,7 @@
 							<p>${column.name }</p>
 							<c:forEach var="column3" items="${columnList3}">
 								<c:if test="${column3.big_class == column.id}">
-									<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><span class="glyphicon glyphicon-menu-right"></span>${column3.name }</a></li>
+									<li><a href="###" onclick="toContentListForLevel3('${column3.id}');return false;" ><span class="glyphicon glyphicon-menu-right"></span>${column3.name }</a></li>
 								</c:if>
 							</c:forEach>
 							<div class="clearfix"></div>
@@ -37,7 +37,7 @@
 							<p>${column.name }</p>
 							<c:forEach var="column3" items="${columnList3}">
 								<c:if test="${column3.big_class == column.id}">
-									<li><a href="###" onclick="toContentListForLevel3('${column3.id}');" ><span class="glyphicon glyphicon-menu-right"></span>${column3.name }</a></li>
+									<li><a href="###" onclick="toContentListForLevel3('${column3.id}');return false;" ><span class="glyphicon glyphicon-menu-right"></span>${column3.name }</a></li>
 								</c:if>
 							</c:forEach>
 							<div class="clearfix"></div>
