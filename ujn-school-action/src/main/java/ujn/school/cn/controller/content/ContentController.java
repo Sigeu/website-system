@@ -375,9 +375,15 @@ public class ContentController extends MyBaseController {
 		try {
 			//发布人
 			content.setIssue(getSessionUser(request).getLogin_name());
-			content.setAdd_time(MyDateUtil.getDateTime());
-			//更新时间
-			content.setUpdate_time(MyDateUtil.getDateTime());
+			
+			if("".equals(content.getAdd_time()) || null == content.getAdd_time()) {
+				//添加时间
+				content.setAdd_time(MyDateUtil.getDateTime());
+			}
+			if("".equals(content.getUpdate_time()) || null == content.getUpdate_time()) {
+				//更新时间
+				content.setUpdate_time(MyDateUtil.getDateTime());
+			}
 			//发布年份
 			content.setYear_code(MyDateUtil.getYear());
 			content.setDept_code(getSessionUser(request).getDept());
